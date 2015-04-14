@@ -1,0 +1,134 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="fr">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The message compiler</title>
+</head>
+
+<body>
+
+<h2>The message compiler</h2>
+<p>This program converts .mc message text files into binary files suitable for inclusion into a .RC file by the resource compiler.&nbsp;</p>
+<h3>Command line syntax:&nbsp;</h3>
+<p>MC [-v] [-w] [-s] [-h DirSpec] [-r DirSpec] filename[.mc] ...&nbsp;<br>
+<br>
+where:&nbsp;<br>
+-v - generates verbose output to stderr.&nbsp;<br>
+-w - generates a warning message whenever an insert escape sequence is seen that is a superset of the type supported by OS/2 mkmsgf (i.e. anything other than %0 and %n). Useful for converting old OS/2 message files to this format.&nbsp;<br>
+<br>
+-s - Add an extra line to the beginning of each message that is the symbolic name associated with the message id.&nbsp;<br>
+-h DirSpec - specifies the target directory of the generated .h file. The file name is the name of the .mc file with a .h extension.&nbsp;<br>
+-r DirSpec - specifies the target directory of the generated .rc file. The file name is the name of the .mc file with a .rc extension.&nbsp;<br>
+<br>
+filename.mc - specifes one or more input message files that will be compiled into one or more binary resource files, one for each language that the message files contain message text for.&nbsp;<br>
+<br>
+The message compiler reads the .mc file and generates a .h file containing all the symbolic name definitions.&nbsp;<br>
+<br>
+For each LanguageId that was used to specify message text, it outputs a binary file containing a message table resource.&nbsp;<br>
+<br>
+It also outputs a single .rc file that contains the appropriate RC syntax to include each binary file output as a resource with the appropriate name and type ids.</p>
+<h3>Message Input</h3>
+<p>Messages are input as ASCII text in a text file. The format of this file supports specifying multiple versions of the same message text, one for each language supported. It also supports automatic assignment of code numbers to each message, along with the generation of a C language include file for use by the application for accessing the messages using symbolic constants. The purpose of the message text file is to define all of the messages needed by an application, in a format that makes it easy to support multiple languages with the same image file.<br>
+<br>
+This format is mainly used by the services started under windows NT, and in the device drivers. Obviously you can use it in other applications too.<br>
+<br>
+Message text files are converted into binary resource files by the MC program. These binary resource files are then input to the RC compiler which will put them in the resource table for an application or DLL.<br>
+<br>
+The format of the message text file (default extension is .mc). Basic syntax is Keyword=Value, where spaces around the equal sign are ignored, and the value is delimited by white space from the next keyword=value pair.<br>
+<br>
+Case is ignored when comparing against keyword names. The value portion can either be a numeric integer constant, NUMBER, using C syntax; a symbol name, NAME, that follows the rules for C identifier names; or a file name that follows the rules for the FAT file system (8 characters or less, no periods).<br>
+<br>
+Comment lines are allowed in the message text file. The comment syntax is the same as for WIN.INI, namely a semicolon begins a comment which is terminated by the end of the line. Comments that exist by themselves on a line are copied as is to the output .header file, with the semicolon converted to the C end of line comment syntax (//).<br>
+<br>
+The overall structure of a message text file consists of a header section which contains zero or more of the following keywords:<br>
+<br>
+<br>
+MessageIdTypedef={NAME}&nbsp;<br>
+SeverityNames=({NAME}={NUMBER}:{NAME})&nbsp;<br>
+FacilityNames=({NAME}={NUMBER}:{NAME})&nbsp;<br>
+LanguageNames=({NAME}={NUMBER}:{FILENAME})&nbsp;<br>
+<br>
+These keywords have the following meaning:<br>
+MessageIdTypedef -gives a symbolic name that is output as the typedef name for each numeric MessageId value.&nbsp;<br>
+<br>
+The default value for this is NULL, which means there will be no type cast output when defining symbolic names for a MessageId.<br>
+SeverityNames - defines the set of names that are allowed as the value of the Severity keyword in the message definition. The set is delimited by left and right parenthesis.<br>
+<br>
+Associated with each severity name is a number that, when shifted left by 30, gives the bit pattern to logically OR with the Facility value and MessageId to come up with the full 32-bit message code.<br>
+<br>
+The default value of this keyword is:<br>
+SeverityNames=(Success=0x0,Informational=0x1,Warning=0x2 Error=0x3 )&nbsp;<br>
+<br>
+Severity values occupy the high two bits of a 32-bit message code. Any severity value that does not fit in two bits is an error.&nbsp;<br>
+<br>
+The severity codes can be given symbolic names by following each value with :{NAME}<br>
+<br>
+FacilityNames - defines the set of names that are allowed as the value of the Facility keyword in the message definition.<br>
+<br>
+The set is delimited by left and right parenthesis.. Associated with each facility name is a number that, when shift it left by 16 bits, gives the bit pattern to logically OR with the Severity value and MessageId to come up with the full 32-bit message code.<br>
+<br>
+The default value of this keyword is:&nbsp;<br>
+<br>
+FacilityNames=(System=0x0FF,Application=0xFFF)&nbsp;<br>
+<br>
+Facility codes occupy the low order 12 bits of the high order 16-bits of a 32-bit message code. Any facility code that does not fit in 12 bits is an error. This allows for 4096 facility codes.&nbsp;<br>
+<br>
+The first 256 are reserved for use by the system software.The facility codes can be given symbolic names by following each value with :{NAME}<br>
+<br>
+LanguageNames - defines the set of names that are allowed as the value of the Language keyword in the message definition.<br>
+<br>
+The set is delimited by left and right parenthesis. Associated with each language name is a number and a file name that will be used to name the binary output file that will contain all of the message text for that language. The number corresponds to the Language Id tag to use in the resource table.<br>
+<br>
+The number is separated from the file name with a colon. The initial value of this keyword is:<br>
+LanguageNames=(English=1:MSG00001)<br>
+<br>
+Any new names that an application defines in its .mc file which don't override any of the builtin names will be added to the list of valid languages. This allows an application to support private languages with descriptive names.<br>
+<br>
+Following the header section are zero or more message definitions. Each message definition begins with one or more of the following keywords.<br>
+MessageId={|{NUMBER}|+{NUMBER}}&nbsp;<br>
+Severity={SEVERITY_NAME}&nbsp;<br>
+Facility={FACILITY_NAME}&nbsp;<br>
+SymbolicName={NAME}&nbsp;<br>
+<br>
+The MessageId keyword is required to mark the beginning of the message definition, although its value is optional. If no value is specified, then the value used will be the last value used for the facility, plus one. If the value is specified as +{NUMBER} thenthe value used will be the last value used for the facility, plus the number after the plus sign. Otherwise if a numeric value is given, that will be value used. Any MessageId value that does not fit in 16 bits is an error.<br>
+<br>
+ Severity and Facility are optional keywords that can specify additional bits to OR into the final 32-bit message code. If either of these are not specified they default to the value last specified for a message definition. The initial values of these prior to processing the first message definition is:<br>
+ Severity=Success Facility=Application<br>
+ The value associated with these keywords must match one of the names given to the FacilityNames and SeverityNames keywords. The SymbolicName keyword allows the ISV to associate a C symbolic constant name with the final 32-bit message code that is a result of ORing together the MessageId, Severity and Facility bits. The constant definition is output to the generated .h file with the following format:<br>
+<br>
+ // // {MESSAGETEXT} //<br>
+ #define CONSTANT_SYMBOL_NAME ((MessageIdTypedef) 0x12345678)<br>
+<br>
+where the comment before the definition is a copy of the message text for the first language specified in the message definition. The CONSTANT_SYMBOL_NAME is the value of the SymbolicName keyword. The MessageIdTypedef is not output if it is NULL, the default value.<br>
+<br>
+After the message definition keywords, comes one or more message text definitions. Each message text definition begins with the Language keyword that identifies which binary output file this message text is to be output to. Beginning on the very next line is the first line of the message text. The message text is terminated by a line containing a single period at the beginning of the line, immediately followed by a new line. No spaces allowed around keyword. Within the message text, blank lines and white space are preserved as part of the message.<br>
+<br>
+ Language={LANGUAGE_NAME}<br>
+<br>
+ {MESSAGETEXT}&nbsp;<br>
+ .&nbsp;<br>
+<br>
+ Within the message text, several escape sequences are supported for dynamically formatting the message. The percent sign character (%) begins all escape sequences.<br>
+<br>
+<br>
+·	%0 - This terminates a message text line without a trailing newline. This can be used to build up long lines or to terminate the message itself without a trailing newline, which is useful for prompt messages.<br>
+·	%n!printf format string! - This identifies an insert. The value of n can be between 1 and 99. The printf format string must be bracketed by exclamation marks. It is optional and defaults to !s! if not specified. The printf format string can contain the * specifier for either the precision or width components, and if so, they will consume inserts %n+1 and %n+2 for their values at run time. MC will print a warning message if an explicit reference is made to these inserts elsewhere in the message text. Inserts must reference a parameter passed to the FormatMessage API call. It will return an error if a message refers to an insert that was not passed to the FormatMessage API call. Any other character following a percent sign, other than a digit will be formatted in the output message without the percent sign. Some examples:<br>
+<br>
+·	%% - will output a single percent sign in the formatted message text.<br>
+·	%n - will output a hard line break when it occurs at the end of a a line. Useful when FormatMessage is supplying normal line breaks so the message fits in a certain width.<br>
+·	%r - will output a hard carriage return, without a trailing newline.&nbsp;<br>
+·	%b - will output a space in the formatted message text. This can be used to insure there are the appropriate number of trailing spaces in a message text line.&nbsp;<br>
+<br>
+·	%t - will output a tab in the formatted message text.&nbsp;<br>
+·	%. - will output a single period in the formatted message text. This can be used to get a single period at the beginning of a line without terminating the message text definition.&nbsp;<br>
+·	%! - will output a single exclamation point in the formatted message text. This can be used to get an exclamation point immediately after an insert without it being mistaken for the beginning of a printf format string.
+<br>
+<br>
+</p>
+
+</body>
+
+</html>

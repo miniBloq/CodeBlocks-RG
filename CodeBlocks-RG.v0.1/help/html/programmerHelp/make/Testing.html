@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Testing">Testing</a>,
+Next:<a rel="next" accesskey="n" href="Options-Summary.html#Options%20Summary">Options Summary</a>,
+Previous:<a rel="previous" accesskey="p" href="Overriding.html#Overriding">Overriding</a>,
+Up:<a rel="up" accesskey="u" href="Running.html#Running">Running</a>
+<hr><br>
+</div>
+
+<h3 class="section">Testing the Compilation of a Program</h3>
+
+   <p>Normally, when an error happens in executing a shell command, <code>make</code>
+gives up immediately, returning a nonzero status.  No further commands are
+executed for any target.  The error implies that the goal cannot be
+correctly remade, and <code>make</code> reports this as soon as it knows.
+
+   <p>When you are compiling a program that you have just changed, this is not
+what you want.  Instead, you would rather that <code>make</code> try compiling
+every file that can be tried, to show you as many compilation errors
+as possible.
+
+   <p>On these occasions, you should use the <code>-k</code> or
+<code>--keep-going</code> flag.  This tells <code>make</code> to continue to
+consider the other prerequisites of the pending targets, remaking them
+if necessary, before it gives up and returns nonzero status.  For
+example, after an error in compiling one object file, <code>make -k</code>
+will continue compiling other object files even though it already
+knows that linking them will be impossible.  In addition to continuing
+after failed shell commands, <code>make -k</code> will continue as much as
+possible after discovering that it does not know how to make a target
+or prerequisite file.  This will always cause an error message, but
+without <code>-k</code>, it is a fatal error (see <a href="Options-Summary.html#Options%20Summary">Summary of Options</a>).
+
+   <p>The usual behavior of <code>make</code> assumes that your purpose is to get the
+goals up to date; once <code>make</code> learns that this is impossible, it might
+as well report the failure immediately.  The <code>-k</code> flag says that the
+real purpose is to test as much as possible of the changes made in the
+program, perhaps to find several independent problems so that you can
+correct them all before the next attempt to compile.  This is why Emacs'
+<kbd>M-x compile</kbd> command passes the <code>-k</code> flag by default.
+
+   </body></html>
+

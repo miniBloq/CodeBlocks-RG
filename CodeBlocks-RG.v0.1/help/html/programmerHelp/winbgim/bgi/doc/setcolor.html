@@ -1,0 +1,131 @@
+<TITLE>BGI Documentation for 
+setcolor
+</TITLE>
+<H2>
+setcolor
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void setcolor(int color);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+setcolor sets the current drawing color to color, which can range from 0 to getmaxcolor.
+The current drawing color is the value to which pixels are set when
+lines, and so on are drawn. The drawing colors shown below are
+available for the CGA and EGA, respectively.
+<TABLE>
+<TR><TD><B>Palette Number&nbsp;&nbsp;&nbsp;</B>
+<TD><B>Three Colors</B>
+<TR><TD>0	<TD>LIGHTGREEN&nbsp;&nbsp;	<TD>LIGHTRED	<TD>YELLOW
+<TR><TD>1	<TD>LIGHTCYAN	<TD>LIGHTMAGENTA&nbsp;&nbsp;	<TD>WHITE
+<TR><TD>2	<TD>GREEN	<TD>RED	<TD>BROWN
+<TR><TD>3	<TD>CYAN	<TD>MAGENTA	<TD>LIGHTGRAY
+</TABLE>
+<TABLE>
+<TR><TD><B>Name</B><TD><B>Value</B>
+<TR><TD>BLACK <TD>0
+<TR><TD>BLUE<TD>1
+<TR><TD>GREEN<TD>2
+<TR><TD>CYAN<TD>3
+<TR><TD>RED<TD>4
+<TR><TD>MAGENTA<TD>5
+<TR><TD>BROWN<TD>6
+<TR><TD>LIGHTGRAY<TD>7
+<TR><TD>DARKGRAY<TD>8
+<TR><TD>LIGHTBLUE<TD>9
+<TR><TD>LIGHTGREEN<TD>10
+<TR><TD>LIGHTCYAN<TD>11
+<TR><TD>LIGHTRED<TD>12
+<TR><TD>LIGHTMAGENTA<TD>13
+<TR><TD>YELLOW<TD>14
+<TR><TD>WHITE<TD>15
+</TABLE>
+You select a drawing color by passing either the color number itself or the equivalent symbolic name to setcolor. For example, in CGAC0 mode, the palette contains four colors: the background color, light green, light red, and yellow. In this mode, either setcolor(3) or setcolor(CGA_YELLOW) selects a drawing color of yellow.
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+The <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> version allows the
+color
+argument to be an ordinary BGI color (from 0 to 15) or an
+<A HREF="wincolor.html">RGB color</A>.
+
+<P><DT><B>See also</B>
+<DD><A HREF="getcolor.html"> getcolor </A>
+<DD><A HREF="getmaxcolor.html"> getmaxcolor </A>
+<DD><A HREF="graphresult.html"> graphresult </A>
+<DD><A HREF="setallpalette.html"> setallpalette </A>
+<DD><A HREF="setbkcolor.html"> setbkcolor </A>
+<DD><A HREF="setpalette.html"> setpalette </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* setcolor example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* select driver and mode that supports multiple drawing colors */
+   int gdriver = EGA, gmode = EGAHI, errorcode;
+   int color, maxcolor, x, y;
+   char msg[80];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk)    /* an error occurred */
+
+   {
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   /* maximum color index supported */
+   maxcolor = getmaxcolor();
+
+   /* for centering text messages */
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+   x = getmaxx() / 2;
+   y = getmaxy() / 2;
+
+   /* loop through the available colors */
+   for (color=1; color&lt;=maxcolor; color++) {
+
+      cleardevice();         /* clear the screen */
+      setcolor(color);       /* select new background color */
+
+      /* output a messsage */
+      sprintf(msg, "Color: %d", color);
+      outtextxy(x, y, msg);
+      getch();
+   }
+
+   /* clean up */
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

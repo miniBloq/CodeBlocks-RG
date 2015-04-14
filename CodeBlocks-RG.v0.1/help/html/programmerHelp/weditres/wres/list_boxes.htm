@@ -1,0 +1,113 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="fr">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>List boxes</title>
+</head>
+
+<body>
+
+<h2>List boxes</h2>
+<p align="left">List box items can be represented by text strings, bitmaps, or both. If the list box is not large
+enough to display all the list box items at once, the list box provides a scroll bar. The user
+scrolls through the list box items, and applies or removes selection status as necessary.
+Selecting a list box item changes its visual appearance, usually by changing the text and
+background colors to those specified by the relevant operating system metrics. When the user
+selects or deselects an item, the system sends a notification message to the parent window of the
+list box.</p>
+<h3 align="left">Styles</h3>
+<ul>
+  <li>
+    <p align="left"><b>Multiple selection</b>.Turns string selection on or off each time the user clicks or double-clicks a string in the list
+    box. The user can select any number of strings.</li>
+  <li>
+    <p align="left"><b>Extended selection</b>. Allows multiple items to be selected by using the SHIFT key and the mouse or special key
+    combinations.</li>
+  <li>
+    <p align="left"><b>Multi column</b>. Specifies amulti columnn list box that is scrolled horizontally. The LB_SETCOLUMNWIDTH message
+    sets the width of the columns.</li>
+  <li>
+    <p align="left"><b>Standard</b>. orts strings in the list box alphabetically. The parent window receives an
+    input message whenever the user clicks or double-clicks a string. The list box has borders on all sides.</li>
+  <li>
+    <p align="left"><b>Sort</b>. The strings in the list box are sorted.</li>
+  <li>
+    <p align="left"><b>Notification.</b> Notifies the parent window with an
+    input message whenever the user clicks or double-clicks a string in the list
+    box.</li>
+  <li>
+    <p align="left"><b>Vert scroll</b>. List box has a vertical scroll</li>
+  <li>
+    <p align="left"><b>Horz scroll.</b> The list box has an horizontal scroll.</li>
+  <li>
+    <p align="left"><b>Tab stop</b>. The control can be reached with the TAB
+    key.</li>
+  <li>
+    <p align="left"><b>No auto redraw</b>. Specifies that the list box's appearance is not updated when changes are made.
+    To change the redraw state of the control, use the WM_SETREDRAW message.</li>
+  <li>
+    <p align="left"><b>No auto vscroll.</b> Shows a disabled vertical scroll bar for the list box when the box does not contain enough items
+    to scroll. If you do not<br>
+    specify this style, the scroll bar is hidden when the list box does not contain enough items.</li>
+  <li>
+    <p align="left"><b>No integral height</b>.&nbsp; Specifies that the size of the list box is exactly the size specified by the application when it
+    created the list box. Normally, the system sizes a list box so that the list box does not display
+    partial items.</li>
+  <li>
+    <p align="left"><b>Want keyboard.</b>&nbsp; Specifies that the owner of the list box receives WM_VKEYTOITEM messages whenever the user presses
+    a key and the list box has the input focus. This enables an application to perform special
+    processing on the keyboard input.</li>
+  <li>
+    <p align="left"><b>Owner draw fixed</b>. Specifies that the owner of the list box is responsible for drawing its contents and that the
+    items in the list box are the same height. The owner window receives a WM_MEASUREITEM message when
+    the list box is created and a WM_DRAWITEM message when a visual aspect of the list box has changed.</li>
+  <li>
+    <p align="left"><b>Owner draw variable</b>.Specifies that the owner of the list box is responsible for drawing its contents and that the
+    items in the list box are variable in height. The owner window receives a WM_MEASUREITEM message
+    for each item in the combo box when the combo box is created and a WM_DRAWITEM message when a
+    visual aspect of the combo box has changed.</li>
+  <li>
+    <p align="left"><b>Local storage</b>. Specifies that a list box contains items consisting of strings. The list box maintains the
+    memory and addresses for the strings so that the application can use the LB_GETTEXT message to
+    retrieve the text for a particular item. By default, all list boxes except owner-drawn list boxes
+    have this style. You can create an owner-drawn list box either with or without this style.</li>
+  <li>
+    <p align="left">Help id.The list box can receive a WM_HELP message</li>
+</ul>
+<p align="left">&nbsp;</p>
+
+<h2 align="left">Functions provided for list boxes within the generated framework</h2>
+<h3>int GetCurSel(void)</h3>
+<h3>int SetCurSel(int SelectionIndex)</h3>
+<p>This functions return or set the current selection.</p>
+<p><b>Example:</b></p>
+<p><font face="Courier New">ST_LISTBOX *listBox;</font></p>
+<p><font face="Courier New">...</font></p>
+<p><font face="Courier New">int sel = listBox-&gt;GetCurSel();</font></p>
+<p><font face="Courier New">listBox-&gt;SetCurSel(1); // Set selection to second
+line</font></p>
+<h3>int GetAnchorIndex(void);</h3>
+<p>This method retrieves the anchor index, i.e. the index from which a multiple
+selection starts. A multiple selection spans all items from the anchor item to
+the caret item.</p>
+<p><b>Example:</b></p>
+<p><font face="Courier New">ST_LISTBOX *listBox;</font></p>
+<p><font face="Courier New">...</font></p>
+<p><font face="Courier New">int start = listBox-&gt;GetAnchorIndex();</font></p>
+<h3>int GetCaretIndex(void)</h3>
+<p>Retrieves the caret index of a multiple selection list box.</p>
+<h3>int AddString(char *str)</h3>
+<p>Adds a string to a list box. If the list box has the sorted style, the
+listbox is sorted, if not, the line is added at the end of the list.</p>
+<h3 align="left">int InsertString(int index,char *str)</h3>
+<p>Inserts a string always at the given position. If &quot;index&quot; is -1,
+the string will be added at the end of the listbox.</p>
+<h3>int GetCount(void)</h3>
+<p>Retrieves the number of items in a list box.</p>
+
+</body>
+
+</html>

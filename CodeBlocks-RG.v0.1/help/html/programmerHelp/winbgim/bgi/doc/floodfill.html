@@ -1,0 +1,107 @@
+<TITLE>BGI Documentation for 
+floodfill
+</TITLE>
+<H2>
+floodfill
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void floodfill(int x, int y, int border);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+floodfill fills an enclosed area on bitmap devices. (x,y) is a "seed point" within the enclosed area to be filled. The area bounded by the color border is flooded with the current fill pattern and fill color. If the seed point is within an enclosed area, the inside will be filled. If the seed is outside the enclosed area, the exterior will be filled.
+<P>Use fillpoly instead of floodfill whenever possible so that you can maintain code compatibility with future versions.
+<P>floodfill does not work with the IBM-8514 driver.
+
+
+<P><DT><B>Return Value</B><DD>
+If an error occurs while flooding a region, graphresult returns a value of -7.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+The <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> version allows the
+border
+argument to be an ordinary BGI color (from 0 to 15) or an
+<A HREF="wincolor.html">RGB color</A>.
+
+<P><DT><B>See also</B>
+<DD><A HREF="drawpoly.html"> drawpoly </A>
+<DD><A HREF="fillpoly.html"> fillpoly </A>
+<DD><A HREF="graphresult.html"> graphresult </A>
+<DD><A HREF="setcolor.html"> setcolor </A>
+<DD><A HREF="setfillstyle.html"> setfillstyle </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* floodfill example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int maxx, maxy;
+
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   maxx = getmaxx();
+   maxy = getmaxy();
+
+   /* select drawing color */
+   setcolor(getmaxcolor());
+
+
+   /* select fill color */
+   setfillstyle(SOLID_FILL, getmaxcolor());
+
+   /* draw a border around the screen */
+   rectangle(0, 0, maxx, maxy);
+
+   /* draw some circles */
+   circle(maxx / 3, maxy /2, 50);
+   circle(maxx / 2, 20, 100);
+
+   circle(maxx-20, maxy-50, 75);
+   circle(20, maxy-20, 25);
+
+   /* wait for a key */
+   getch();
+
+   /* fill in bounded region */
+   floodfill(2, 2, getmaxcolor());
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

@@ -1,0 +1,4 @@
+<area shape="rect" href="$classwx_app_console.html" title="This class is essential for writing console&#45;only or hybrid apps without having to..." alt="" coords="41,172,153,204">
+<area shape="rect" href="$classwx_evt_handler.html" title="A class that can handle events from the windowing system." alt="" coords="45,89,149,121">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="5,7,80,39">
+<area shape="rect" href="$classwx_trackable.html" title="Add&#45;on base class for a trackable object." alt="" coords="104,7,203,39">

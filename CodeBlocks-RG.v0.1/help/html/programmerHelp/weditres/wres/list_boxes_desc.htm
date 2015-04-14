@@ -1,0 +1,1387 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>About List Boxes</title>
+</head>
+
+<body>
+
+<h2>About List Boxes</h2>
+<hr SIZE="1">
+<p>List box items can be represented by text strings, bitmaps, or both. If the
+list box is not large enough to display all the list box items at once, the list
+box provides a scroll bar. The user scrolls through the list box items, and
+applies or removes selection status as necessary. Selecting a list box item
+changes its visual appearance, usually by changing the text and background
+colors to those specified by the relevant operating system metrics. When the
+user selects or deselects an item, the system sends a notification message to
+the parent window of the list box.</p>
+<p>A dialog box procedure is responsible for initializing and monitoring its
+child windows, including any list boxes. The dialog box procedure communicates
+with the list box by sending messages to it and by processing the notification
+messages sent by the list box.</p>
+<p><b>Windows NT/2000/XP:</b> For an ANSI application, the system converts the
+text in a list box to Unicode using CP_ACP. This can cause problems. For
+example, accented Roman characters in a non-Unicode list box in Microsoft®
+Windows®, Japanese version will come out garbled. To fix this, either compile
+the application as Unicode or use an owner-drawn list box.</p>
+<p>For more information about dialog boxes, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_dialog_boxes">
+Dialog Boxes</MSHelp:link>
+. For general information about controls, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_General_Control_Info_cpp">
+General Control Information</MSHelp:link>
+.</p>
+<p>This section discusses the following topics.</p>
+<ul>
+  <li><a href="#types_styles" target="_self">List Box Types and Styles</a>
+  <li><a href="#functions" target="_self">List Box Functions</a>
+  <li><a href="#notification_messages" target="_self">Notification Messages from
+    List Boxes</a>
+  <li><a href="#messages" target="_self">Messages to List Boxes</a>
+  <li><a href="#default_messages" target="_self">Default Window Message
+    Processing</a>
+  <li><a href="#ownerdrawn_boxes" target="_self">Owner-drawn List Boxes</a></li>
+</ul>
+<h3><a name="types_styles"></a>List Box Types and Styles</h3>
+<p>There are two types of list boxes: single-selection (the default) and
+multiple-selection. In a <i>single-selection list box</i>, the user can select
+only one item at a time. In a <i>multiple-selection list box</i>, the user can
+select more than one item at a time. To create a multiple-selection list box,
+specify the LBS_MULTIPLESEL or the LBS_EXTENDEDSEL style.</p>
+<p>There are many list box styles and window styles that control the appearance
+and operation of a list box. These styles indicate whether list box items are
+sorted, arranged in multiple columns, drawn by the application, and so on. The
+dimensions and styles of a list box are typically defined in a dialog box
+template included in an application's resources.</p>
+<p>For a table of list box styles, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_List_Box_Styles_cpp">
+ <a href="/wres/list_box_styles.htm">List Box Styles</a></MSHelp:link>
+.</p>
+<div class="clsNote">
+  <b>Note</b>&nbsp;&nbsp;To use visual styles with these controls, an
+  application must include a manifest and must call <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_InitCommonControls_cpp">
+  InitCommonControls</MSHelp:link>
+  at the beginning of the program. For information on visual styles, see <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_inet_themes_overview_cpp">
+  Visual Styles</MSHelp:link>
+  . For information on manifests, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_inet_cookbook_overview_cpp">
+  Using Windows XP Visual Styles</MSHelp:link>
+  .
+</div>
+<h3><a name="functions"></a>List Box Functions</h3>
+<p>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DlgDirList_cpp">
+DlgDirList</MSHelp:link>
+ function replaces the contents of a list box with the names of drives,
+directories, and files that match a specified set of criteria. The <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DlgDirSelectEx_cpp">
+DlgDirSelectEx</MSHelp:link>
+ function retrieves the current selection in a list box initialized by <b>DlgDirList</b>.
+These functions make it possible for the user to select a drive, directory, or
+file from a list box without typing the location and name of the file.</p>
+<p>Also, the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_GetListBoxInfo_cpp">
+GetListBoxInfo</MSHelp:link>
+ function returns the number of items per column in a specified list box.</p>
+<h3><a name="notification_messages"></a>Notification Messages from List Boxes</h3>
+<p>When an event occurs in a list box, the list box sends a notification message
+to the dialog box procedure of the owner window. List box notification messages
+are sent when a user selects, double-clicks, or cancels a list box item; when
+the list box receives or loses the keyboard focus; and when the system cannot
+allocate enough memory for a list box request. A notification message is sent as
+a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_command">
+WM_COMMAND</MSHelp:link>
+ message in which the low-order word of the <i>wParam</i> parameter contains the
+list box identifier, the high-order word of <i>wParam</i> contains the
+notification message, and the <i>lParam</i> parameter contains the control
+window handle.</p>
+<p>A dialog box procedure is not required to process these messages; the default
+window procedure processes them.</p>
+<p>An application should monitor and process the following list box notification
+messages.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Notification message</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LBN_DBLCLK_cpp">
+        LBN_DBLCLK</MSHelp:link>
+      </td>
+      <td>The user double-clicks an item in the list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LBN_ERRSPACE_cpp">
+        LBN_ERRSPACE</MSHelp:link>
+      </td>
+      <td>The list box cannot allocate enough memory to fulfill a request.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LBN_KILLFOCUS_cpp">
+        LBN_KILLFOCUS</MSHelp:link>
+      </td>
+      <td>The list box loses the keyboard focus.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LBN_SELCANCEL_cpp">
+        LBN_SELCANCEL</MSHelp:link>
+      </td>
+      <td>The user cancels the selection of an item in the list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LBN_SELCHANGE_cpp">
+        LBN_SELCHANGE</MSHelp:link>
+      </td>
+      <td>The selection in a list box is about to change.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LBN_SETFOCUS_cpp">
+        LBN_SETFOCUS</MSHelp:link>
+      </td>
+      <td>The list box receives the keyboard focus.</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="messages"></a>Messages to List Boxes</h3>
+<p>A dialog box procedure can send messages to a list box to add, delete,
+examine, and change list box items. For example, a dialog box procedure could
+send an <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_ADDSTRING_cpp">
+LB_ADDSTRING</MSHelp:link>
+ message to a list box to add an item, and an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_GETSEL_cpp">
+LB_GETSEL</MSHelp:link>
+ message to determine whether the item is selected. Other messages set and
+retrieve information about the size, appearance, and behavior of the list box.
+For example, the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_SETHORIZONTALEXTENT_cpp">
+LB_SETHORIZONTALEXTENT</MSHelp:link>
+ message sets the scrollable width of a list box. A dialog box procedure can
+send any message to a list box by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_SendMessage">
+SendMessage</MSHelp:link>
+ or <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_SendDlgItemMessage">
+SendDlgItemMessage</MSHelp:link>
+ function.</p>
+<p>A list box item is often referenced by its <i>index</i>, an integer that
+represents the item's position in the list box. The index of the first item in a
+list box is 0, the index of the second item is 1, and so on.</p>
+<p>The following table describes how the predefined list box procedure responds
+to list box messages.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Message</th>
+      <th>Response</th>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_ADDFILE_cpp">
+        LB_ADDFILE</MSHelp:link>
+      </td>
+      <td>Inserts a file into a directory list box filled by the <b>DlgDirList</b>
+        function and retrieves the list box index of the inserted item.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_ADDSTRING_cpp">
+        LB_ADDSTRING</MSHelp:link>
+      </td>
+      <td>Adds a string to a list box and returns its index.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_DELETESTRING_cpp">
+        LB_DELETESTRING</MSHelp:link>
+      </td>
+      <td>Removes a string from a list box and returns the number of strings
+        remaining in the list.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_DIR_cpp">
+        LB_DIR</MSHelp:link>
+      </td>
+      <td>Adds a list of filenames to a list box and returns the index of the
+        last filename added.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_FINDSTRING_cpp">
+        LB_FINDSTRING</MSHelp:link>
+      </td>
+      <td>Returns the index of the first string in the list box that begins with
+        a specified string..</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_FINDSTRINGEXACT_cpp">
+        LB_FINDSTRINGEXACT</MSHelp:link>
+      </td>
+      <td>Returns the index of the string in the list box that is equal to a
+        specified string.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_GETANCHORINDEX_cpp">
+        LB_GETANCHORINDEX</MSHelp:link>
+      </td>
+      <td>Returns the index of the item that the mouse last selected.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_GETCARETINDEX_cpp">
+        LB_GETCARETINDEX</MSHelp:link>
+      </td>
+      <td>Returns the index of the item that has the focus rectangle.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_GETCOUNT_cpp">
+        LB_GETCOUNT</MSHelp:link>
+      </td>
+      <td>Returns the number of items in the list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_GETCURSEL_cpp">
+        LB_GETCURSEL</MSHelp:link>
+      </td>
+      <td>Returns the index of the currently selected item.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_GETHORIZONTALEXTENT_cpp">
+        LB_GETHORIZONTALEXTENT</MSHelp:link>
+      </td>
+      <td>Returns the scrollable width, in pixels, of a list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_GETITEMDATA_cpp">
+        LB_GETITEMDATA</MSHelp:link>
+      </td>
+      <td>Returns the value associated with the specified item.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_GETITEMHEIGHT_cpp">
+        LB_GETITEMHEIGHT</MSHelp:link>
+      </td>
+      <td>Returns the height, in pixels, of an item in a list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_GETITEMRECT_cpp">
+        LB_GETITEMRECT</MSHelp:link>
+      </td>
+      <td>Retrieves the client coordinates of the specified list box item.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_GETLOCALE_cpp">
+        LB_GETLOCALE</MSHelp:link>
+      </td>
+      <td>Retrieves the locale of the list box. The high-order word contains the
+        country/region code and the low-order word contains the language
+        identifier.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_GETSEL_cpp">
+        LB_GETSEL</MSHelp:link>
+      </td>
+      <td>Returns the selection state of a list box item.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_GETSELCOUNT_cpp">
+        LB_GETSELCOUNT</MSHelp:link>
+      </td>
+      <td>Returns the number of selected items in a multiple-selection list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_GETSELITEMS_cpp">
+        LB_GETSELITEMS</MSHelp:link>
+      </td>
+      <td>Creates an array of the indexes of all selected items in a
+        multiple-selection list box and returns the total number of selected
+        items.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_GETTEXT_cpp">
+        LB_GETTEXT</MSHelp:link>
+      </td>
+      <td>Retrieves the string associated with a specified item and the length
+        of the string.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_GETTEXTLEN_cpp">
+        LB_GETTEXTLEN</MSHelp:link>
+      </td>
+      <td>Returns the length, in characters, of the string associated with a
+        specified item.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_GETTOPINDEX_cpp">
+        LB_GETTOPINDEX</MSHelp:link>
+      </td>
+      <td>Returns the index of the first visible item in a list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_INITSTORAGE_cpp">
+        LB_INITSTORAGE</MSHelp:link>
+      </td>
+      <td>Allocates memory for the specified number of items and their
+        associated strings.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_INSERTSTRING_cpp">
+        LB_INSERTSTRING</MSHelp:link>
+      </td>
+      <td>Inserts a string at a specified index in a list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_ITEMFROMPOINT_cpp">
+        LB_ITEMFROMPOINT</MSHelp:link>
+      </td>
+      <td>Retrieves the zero-based index of the item nearest the specified point
+        in a list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_RESETCONTENT_cpp">
+        LB_RESETCONTENT</MSHelp:link>
+      </td>
+      <td>Removes all items from a list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_SELECTSTRING_cpp">
+        LB_SELECTSTRING</MSHelp:link>
+      </td>
+      <td>Selects the first string it finds that matches a specified prefix.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_SELITEMRANGE_cpp">
+        LB_SELITEMRANGE</MSHelp:link>
+      </td>
+      <td>Selects a specified range of items in a list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_SELITEMRANGEEX_cpp">
+        LB_SELITEMRANGEEX</MSHelp:link>
+      </td>
+      <td>Selects a specified range of items if the index of the first item in
+        the range is less than the index of the last item in the range. Cancels
+        the selection in the range if the index of the first item is greater
+        than the last.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_SETANCHORINDEX_cpp">
+        LB_SETANCHORINDEX</MSHelp:link>
+      </td>
+      <td>Sets the item that the mouse last selected to a specified item.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_SETCARETINDEX_cpp">
+        LB_SETCARETINDEX</MSHelp:link>
+      </td>
+      <td>Sets the focus rectangle to a specified list box item.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_SETCOLUMNWIDTH_cpp">
+        LB_SETCOLUMNWIDTH</MSHelp:link>
+      </td>
+      <td>Sets the width, in pixels, of all columns in a list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_SETCOUNT_cpp">
+        LB_SETCOUNT</MSHelp:link>
+      </td>
+      <td>Sets the number of items in a list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_SETCURSEL_cpp">
+        LB_SETCURSEL</MSHelp:link>
+      </td>
+      <td>Selects a specified list box item.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_SETHORIZONTALEXTENT_cpp">
+        LB_SETHORIZONTALEXTENT</MSHelp:link>
+      </td>
+      <td>Sets the scrollable width, in pixels, of a list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_SETITEMDATA_cpp">
+        LB_SETITEMDATA</MSHelp:link>
+      </td>
+      <td>Associates a value with a list box item.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_SETITEMHEIGHT_cpp">
+        LB_SETITEMHEIGHT</MSHelp:link>
+      </td>
+      <td>Sets the height, in pixels, of an item or items in a list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_SETLOCALE_cpp">
+        LB_SETLOCALE</MSHelp:link>
+      </td>
+      <td>Sets the locale of a list box and returns the previous locale
+        identifier.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_SETSEL_cpp">
+        LB_SETSEL</MSHelp:link>
+      </td>
+      <td>Selects an item in a multiple-selection list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_SETTABSTOPS_cpp">
+        LB_SETTABSTOPS</MSHelp:link>
+      </td>
+      <td>Sets the tab stops to those specified in a specified array.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_SETTOPINDEX_cpp">
+        LB_SETTOPINDEX</MSHelp:link>
+      </td>
+      <td>Scrolls the list box so the specified item is at the top of the
+        visible range.</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="default_messages"></a>Default Window Message Processing</h3>
+<p>The window procedure for the predefined list box window class carries out
+default processing for all messages that the list box does not process. When the
+list box procedure returns FALSE for a message, the predefined window procedure
+checks the message and performs default actions, as shown in the following
+table.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Message</th>
+      <th>Default action</th>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_char">
+        WM_CHAR</MSHelp:link>
+      </td>
+      <td>Moves the selection to the first item that begins with the character
+        the user typed. If the list box has the LBS_OWNERDRAW style, no action
+        occurs.
+        <p>&nbsp;
+        <p>Multiple characters typed within a short interval are treated as a
+        group, and the first item that begins with that series of characters is
+        selected.</p>
+        <p>&nbsp;</p>
+      </td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_create">
+        WM_CREATE</MSHelp:link>
+      </td>
+      <td>Creates an empty list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_destroy">
+        WM_DESTROY</MSHelp:link>
+      </td>
+      <td>Destroys the list box and frees any resources it uses.</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Passes the message to the dialog box procedure or parent window
+        process.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_enable">
+        WM_ENABLE</MSHelp:link>
+      </td>
+      <td>If the control is visible, invalidates the rectangle so the strings
+        can be painted gray.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_erasebkgnd">
+        WM_ERASEBKGND</MSHelp:link>
+      </td>
+      <td>Erases the background of a list box. If the list box has the
+        LBS_OWNERDRAW style, the background is not erased.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_getdlgcode">
+        WM_GETDLGCODE</MSHelp:link>
+      </td>
+      <td>Returns DLGC_WANTARROWS | DLGC_WANTCHARS, indicating the default list
+        box procedure processes the arrow keys and <b>WM_CHAR</b> messages.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_getfont">
+        WM_GETFONT</MSHelp:link>
+      </td>
+      <td>Returns a handle to the current font for the list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_HSCROLL_cpp">
+        WM_HSCROLL</MSHelp:link>
+      </td>
+      <td>Scrolls the list box horizontally.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_keydown">
+        WM_KEYDOWN</MSHelp:link>
+      </td>
+      <td>Processes virtual keys for scrolling. The virtual key is the index of
+        the item to move the caret to. The selection is not changed.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_killfocus">
+        WM_KILLFOCUS</MSHelp:link>
+      </td>
+      <td>Turns the caret off and destroys it. Sends an <b>LBN_KILLFOCUS</b>
+        notification message to the owner of the list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttondblclk">
+        WM_LBUTTONDBLCLK</MSHelp:link>
+      </td>
+      <td>Tracks the mouse in the list box client area. This enables the user to
+        cancel a selection if the mouse button is released outside the list box
+        client area.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttondown">
+        WM_LBUTTONDOWN</MSHelp:link>
+      </td>
+      <td>Tracks the mouse in the list box client area. This enables the user to
+        cancel a selection if the mouse button is released outside the list box
+        client area.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttonup">
+        WM_LBUTTONUP</MSHelp:link>
+      </td>
+      <td>Tracks the mouse in the list box client area. This enables the user to
+        cancel a selection if the mouse button is released outside the list box
+        client area.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_mousemove">
+        WM_MOUSEMOVE</MSHelp:link>
+      </td>
+      <td>Tracks the mouse in the list box client area. This enables the user to
+        cancel a selection if the mouse button is released outside the list box
+        client area.</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Performs a subclassed paint operation by using the list box handle to
+        the device context (DC).</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_setfocus">
+        WM_SETFOCUS</MSHelp:link>
+      </td>
+      <td>Turns the caret on and sends an <b>LBN_SETFOCUS</b> notification
+        message to the owner of the list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_setfont">
+        WM_SETFONT</MSHelp:link>
+      </td>
+      <td>Sets a new font for the list box.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_setredraw">
+        WM_SETREDRAW</MSHelp:link>
+      </td>
+      <td>Sets or clears the redraw flag based on the value of <i>wParam</i>.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_size">
+        WM_SIZE</MSHelp:link>
+      </td>
+      <td>Resizes the list box to an integral number of items.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_VSCROLL_cpp">
+        WM_VSCROLL</MSHelp:link>
+      </td>
+      <td>Scrolls the list box vertically.</td>
+    </tr>
+  </tbody>
+</table>
+<p>The predefined list box procedure passes all other messages to <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DefWindowProc">
+DefWindowProc</MSHelp:link>
+ for default processing.</p>
+<h3><a name="ownerdrawn_boxes"></a>Owner-drawn List Boxes</h3>
+<p>An application can create an <i>owner-drawn</i> list box to take
+responsibility for painting list items. The parent window or dialog box of an
+owner-drawn list box (its <i>owner</i>) receives <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_DRAWITEM_cpp">
+WM_DRAWITEM</MSHelp:link>
+ messages when a portion of the list box needs to be painted. An owner-drawn
+list box can list information other than, or in addition to, text strings.</p>
+<p>The owner of an owner-drawn list box must process the <b>WM_DRAWITEM</b>
+message. This message is sent whenever a portion of the list box must be
+redrawn. The owner may need to process other messages, depending on the styles
+specified for the list box.</p>
+<p>An application can create an owner-drawn list box by specifying the
+LBS_OWNERDRAWFIXED or LBS_OWNERDRAWVARIABLE style. If all list items in the list
+box are the same height, such as strings or icons, an application can use the
+LBS_OWNERDRAWFIXED style. If list items are of varying height, bitmaps of
+different size, for example, an application can use the LBS_OWNERDRAWVARIABLE
+style.</p>
+<p>The owner of an owner-drawn list box can process a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_MEASUREITEM_cpp">
+WM_MEASUREITEM</MSHelp:link>
+ message to specify the dimensions of list items. If the application creates the
+list box by using the LBS_OWNERDRAWFIXED style, the system sends the <b>WM_MEASUREITEM</b>
+message only once. The dimensions specified by the owner are used for all list
+items. If the LBS_OWNERDRAWVARIABLE style is used, the system sends a <b>WM_MEASUREITEM</b>
+message for each list item added to the list box. The owner can determine or set
+the height of a list item at any time by using the <b>LB_GETITEMHEIGHT</b> and <b>LB_SETITEMHEIGHT</b>
+messages, respectively.</p>
+<p>If the information displayed in an owner-drawn list box includes text, an
+application can keep track of the text for each list item by specifying the
+LBS_HASSTRINGS style. List boxes with the LBS_SORT style are sorted based on
+this text. If a list box is sorted, but is not of the LBS_HASSTRINGS style, the
+owner must process the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_COMPAREITEM_cpp">
+WM_COMPAREITEM</MSHelp:link>
+ message.</p>
+<p>In an owner-drawn list box, the owner must keep track of list items
+containing information other than or in addition to text. One convenient way to
+do this is to save the handle to the information as item data using the <b>LB_SETITEMDATA</b>
+message. To free data objects associated with items in a list box, the owner can
+process the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_DELETEITEM_cpp">
+WM_DELETEITEM</MSHelp:link>
+ message.</p>
+<p>For an example of an owner-drawn list box, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Using_List_Boxes_cpp">
+Creating an Owner-drawn List Box</MSHelp:link>
+.</p>
+<div class="clsDocBody">
+  <h3>Using List Boxes</h3>
+  <hr SIZE="1">
+  This section explains how to perform certains tasks associated with list
+  boxes.The following code examples demonstrate how to perform the tasks.
+  <ul>
+    <li><a href="#simple_listbox" target="_self">Creating a Simple List Box</a>
+    <li><a href="#dir_listing" target="_self">Creating a Directory Listing in a
+      Single-selection List Box</a>
+    <li><a href="#multi-selection" target="_self">Creating a Multiple-selection
+      List Box</a>
+    <li><a href="#ownerdrawn_listbox" target="_self">Creating an Owner-drawn
+      List Box</a></li>
+  </ul>
+  <h3><a name="simple_listbox"></a>Creating a Simple List Box</h3>
+  <p>The following example demonstrates how a dialog box procedure creates a
+  simple list box and fills it with the names of people on a softball team. When
+  a name in the list is selected, additional information about the player is
+  displayed in the dialog box. The following illustration shows the dialog box.</p>
+  <p><img border="0" src="list_b28.gif"></p>
+  <p>The list box has the LBS_STANDARD style, a combination of LBS_SORT,
+  LBS_NOTIFY, WS_VSCROLL, and WS_BORDER. The code initializes the dialog box
+  while processing the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_initdialog">
+  WM_INITDIALOG</MSHelp:link>
+  message. For each name that appears in the list box, the code sends an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_ADDSTRING_cpp">
+  LB_ADDSTRING</MSHelp:link>
+  message to the list box. By processing the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LBN_SELCHANGE_cpp">
+  LBN_SELCHANGE</MSHelp:link>
+  notification message, the code also keeps track of when the selection changes.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">#define BUFFER MAX_PATH 
+ 
+#define NAMELENGTH 15 
+#define POSITIONLENGTH 20 
+#define TEAMSIZE 15 
+ 
+typedef struct 
+{ 
+    TCHAR tchName[NAMELENGTH]; 
+    TCHAR tchPosition[POSITIONLENGTH]; 
+    int nGamesPlayed; 
+    int nInningsPlayed; 
+    double xBattingAverage; 
+    TCHAR tchFoodName[NAMELENGTH]; 
+} Player; 
+ 
+Player Roster[] = 
+{ 
+        {&quot;Alan&quot;, &quot;Center field&quot;, 17, 56, .375, &quot;Cannelloni&quot;}, 
+        {&quot;Colin&quot;, &quot;Pitcher&quot;, 26, 96, .456, &quot;Lefse&quot;}, 
+        {&quot;Cindy&quot;, &quot;Second base&quot;, 13, 58, .207, &quot;Tequila&quot;}, 
+        {&quot;Dave&quot;, &quot;First base&quot;, 28, 138, .508, &quot;Suds&quot;}, 
+        {&quot;David&quot;, &quot;Center field&quot;, 18, 101, .612, &quot;Bok Choy&quot;} 
+        {&quot;Jack&quot;, &quot;Pitcher&quot;, 27, 110, .542, &quot;Animal Crackers&quot;}, 
+        {&quot;Julie&quot;, &quot;Right field&quot;, 22, 101, .509, &quot;Mashed Potatoes&quot;}, 
+        {&quot;Karen&quot;, &quot;Second base&quot;, 26, 140, .238, &quot;Pez&quot;}, 
+        {&quot;Kathie&quot;, &quot;Left field&quot;, 26, 127, .353, &quot;Baba Ganouj&quot;}, 
+        {&quot;Matt&quot;, &quot;Shortstop&quot;, 24, 112, .579, &quot;Oats&quot;}, 
+        {&quot;Miriam&quot;, &quot;Right field&quot;, 24, 112, .393, &quot;Zotz&quot;}, 
+        {&quot;Pete&quot;, &quot;Shortstop&quot;, 26, 90, .608, &quot;Beet&quot;}, 
+        {&quot;Seth&quot;, &quot;Center field&quot;, 20, 76, .407, &quot;Otter Pop&quot;}, 
+        {&quot;Suzanna&quot;, &quot;Catcher&quot;, 16, 53, .286, &quot;Toast&quot;}, 
+        {&quot;Wendy&quot;, &quot;Third base&quot;, 25, 154, .493, &quot;Ham&quot;}, 
+    }; 
+ 
+BOOL APIENTRY DlgTeamProc( 
+    HWND hDlg,            <font color="blue">//</font><font color="green"> window handle to dialog box </font>
+    UINT message,         <font color="blue">//</font><font color="green"> type of message </font>
+    UINT wParam,          <font color="blue">//</font><font color="green"> message-specific information </font>
+    LONG lParam)          <font color="blue">//</font><font color="green"> message-specific information </font>
+{ 
+    TCHAR tchBuffer[BUFFER]; 
+    int nItem; 
+    int i; 
+    HWND hwndList; 
+ 
+    switch (message) 
+    { 
+        case WM_INITDIALOG: 
+        { 
+            hwndList = GetDlgItem(hDlg, IDL_SOFTBALL); 
+ 
+            <font color="blue">//</font><font color="green"> Initialize the list box (fill it with player names). </font>
+ 
+            for (i = 0; i &lt; TEAMSIZE; i++) 
+            { 
+                SendMessage(hwndList, LB_ADDSTRING, 0, 
+                    (LPARAM) Roster[i].tchName); 
+                SendMessage(hwndList, LB_SETITEMDATA, i, (LPARAM) i); 
+            } 
+            SetFocus(hwndList); 
+            return FALSE; 
+        } 
+ 
+        case WM_COMMAND: 
+            switch (LOWORD(wParam)) 
+            { 
+                case IDL_SOFTBALL: 
+                    switch (HIWORD(wParam)) 
+                    { 
+                        case LBN_SELCHANGE: 
+ 
+                           <font color="blue">//</font><font color="green"> Show the selected player's statistics. </font>
+ 
+                           hwndList = GetDlgItem(hDlg, IDL_SOFTBALL); 
+                           nItem = SendMessage(hwndList, LB_GETCURSEL, 
+                               0, 0); 
+                           i = SendMessage(hwndList, LB_GETITEMDATA, 
+                               nItem, 0); 
+ 
+                           SetDlgItemText(hDlg, IDS_POS, 
+                               Roster[i].tchPosition); 
+                           SetDlgItemText(hDlg, IDS_GAME, 
+                               _itoa(Roster[i].nGamesPlayed, 
+                               tchBuffer, 10)); 
+                           SetDlgItemText(hDlg, IDS_INN, 
+                               _itoa(Roster[i].nInningsPlayed, 
+                               tchBuffer, 10)); 
+                           SetDlgItemText(hDlg, IDS_BA, 
+                               _gcvt(Roster[i].xBattingAverage, 
+                               3, tchBuffer)); 
+                           SetDlgItemText(hDlg, IDS_FOOD, 
+                               Roster[i].tchFoodName); 
+                           return TRUE; 
+                   } 
+                   break; 
+ 
+                case IDOK: 
+                case IDCANCEL: 
+ 
+                  <font color="blue">//</font><font color="green"> Destroy the dialog box. </font>
+ 
+                  EndDialog(hDlg, TRUE); 
+                  return TRUE; 
+ 
+                default: 
+                  return FALSE; 
+            } 
+ 
+        default: 
+            return FALSE; 
+    } 
+} </pre>
+  <h3><a name="dir_listing"></a>Creating a Directory Listing in a
+  Single-selection List Box</h3>
+  <p>The following example demonstrates how to display the content of the
+  current directory in a list box and enable the user to delete one file at a
+  time.</p>
+  <p>In addition to the standard list box styles, this list box has the
+  LBS_MULTICOLUMN and LBS_HSCROLL styles. The code initializes the list box by
+  using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DlgDirList_cpp">
+  DlgDirList</MSHelp:link>
+  function to fill the list box with the names of all the files in the current
+  directory. When the user chooses the <b>Delete</b> button, the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DlgDirSelectEx_cpp">
+  DlgDirSelectEx</MSHelp:link>
+  function retrieves the name of the selected file. The code deletes the file by
+  using the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_deletefile">
+  DeleteFile</MSHelp:link>
+  function and updates the directory list box by sending the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_DELETESTRING_cpp">
+  LB_DELETESTRING</MSHelp:link>
+  message.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">#define BUFFER MAX_PATH 
+ 
+BOOL APIENTRY DlgDelFileProc( 
+    HWND hDlg,            <font color="blue">//</font><font color="green"> window handle to dialog box </font>
+    UINT message,         <font color="blue">//</font><font color="green"> type of message </font>
+    UINT wParam,          <font color="blue">//</font><font color="green"> message-specific information </font>
+    LONG lParam) 
+{ 
+ 
+    DWORD cchCurDir; 
+    LPTSTR lpszCurDir; 
+    LPTSTR lpszFileToDelete; 
+    int nItem; 
+    int nTotal; 
+    TCHAR tchBuffer[BUFFER+1]; 
+    BOOL fResult;	 
+ 
+    switch (message) 
+    { 
+        case WM_INITDIALOG: 
+ 
+           <font color="blue">//</font><font color="green"> Initialize the list box by filling it with files from </font>
+           <font color="blue">//</font><font color="green"> the current directory. </font>
+ 
+           lpszCurDir = tchBuffer; 
+           GetCurrentDirectory(cchCurDir, lpszCurDir); 
+		   lpszCurDir[BUFFER+1] = '\0';
+           DlgDirList(hDlg, lpszCurDir, IDL_FILES, IDS_PATHTOFILL, 0); 
+           SetFocus(GetDlgItem(hDlg, IDL_FILES)); 
+           return FALSE; 
+ 
+        case WM_COMMAND: 
+ 
+            switch (LOWORD(wParam)) 
+            { 
+                case IDOK: 
+ 
+                    <font color="blue">//</font><font color="green"> When the user presses the DEL (IDOK) button, </font>
+                    <font color="blue">//</font><font color="green"> delete the selected file. </font>
+ 
+                    lpszFileToDelete = tchBuffer; 
+ 
+                    DlgDirSelectEx(hDlg, lpszFileToDelete, MAX_PATH, 
+                        IDL_FILES); 
+                    fResult = DeleteFile(lpszFileToDelete); 
+                    if (!fResult) 
+                    { 
+                        MessageBox(hDlg, &quot;Could not delete file.&quot;, 
+                            NULL, MB_OK); 
+                    } 
+                    else 
+                    { 
+                        nItem = SendMessage(GetDlgItem(hDlg, 
+                                IDL_FILES), LB_GETCURSEL, 0, 0); 
+ 
+                        nTotal = SendMessage(GetDlgItem(hDlg, 
+                            IDL_FILES), LB_DELETESTRING, nItem, 0); 
+ 
+                        <font color="blue">//</font><font color="green"> Update the list box. </font>
+ 
+                        if (nTotal &gt; nItem) 
+                        { 
+                            SendMessage(GetDlgItem(hDlg, IDL_FILES), 
+                                LB_SETCURSEL, nItem, 0); 
+                        } 
+                        else 
+                        { 
+                            SendMessage(GetDlgItem(hDlg, IDL_FILES), 
+                                LB_SETCURSEL, nTotal, 0); 
+                        } 
+                    } 
+                    return TRUE; 
+ 
+                case IDCANCEL: 
+ 
+                    <font color="blue">//</font><font color="green"> Destroy the dialog box. </font>
+ 
+                    EndDialog(hDlg, TRUE); 
+                    return TRUE; 
+ 
+                default: 
+                    return FALSE; 
+            } 
+ 
+        default: 
+            return FALSE; 
+    } 
+} </pre>
+  <h3><a name="multi-selection"></a>Creating a Multiple-selection List Box</h3>
+  <p>The following example displays and initializes the dialog box used in the
+  preceding example. However, this code uses the LBS_MULTIPLESEL style to enable
+  the user to select more than one file at a time. When the user chooses the <b>Delete</b>
+  button, the example sends the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_GETSELCOUNT_cpp">
+  LB_GETSELCOUNT</MSHelp:link>
+  message (to retrieve the number of files selected) and the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_GETSELITEMS_cpp">
+  LB_GETSELITEMS</MSHelp:link>
+  message (to retrieve an array of selected list box items). After deleting a
+  file, the code removes the corresponding item from the list box by sending the
+  <b>LB_DELETESTRING</b> message.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">#define BUFFER MAX_PATH 
+ 
+#define BIGBUFF 8192 
+ 
+BOOL APIENTRY DlgDelFilesProc( 
+    HWND hDlg,            <font color="blue">//</font><font color="green"> window handle to dialog box </font>
+    UINT message,         <font color="blue">//</font><font color="green"> type of message </font>
+    UINT wParam,          <font color="blue">//</font><font color="green"> message-specific information </font>
+    LONG lParam) 
+{ 
+    DWORD cchCurDir; 
+    LPTSTR lpszCurDir; 
+    LPTSTR lpszFileToDelete; 
+    int nSelItems; 
+    int nSelItemsInBuffer; 
+    TCHAR tchBuffer[BUFFER+1]; 
+    TCHAR tchMsgBuff[BUFFER+1]; 
+    int nBuffer[BIGBUFF]; 
+    int i; 
+    BOOL fResult; 
+    HWND hListBox;
+	HRESULT hr; 
+ 
+    switch (message) { 
+ 
+        case WM_INITDIALOG: 
+ 
+           <font color="blue">//</font><font color="green"> Initialize the list box by filling it with files from </font>
+           <font color="blue">//</font><font color="green"> the current directory. </font>
+ 
+           lpszCurDir = tchBuffer; 
+           GetCurrentDirectory(cchCurDir, lpszCurDir);
+		   lpszCurDir[BUFFER+1] = '\0'; 
+           DlgDirList(hDlg, lpszCurDir, IDL_FILES, IDS_PATHTOFILL, 0); 
+ 
+           SetFocus(GetDlgItem(hDlg, IDL_FILES)); 
+ 
+           return FALSE; 
+ 
+        case WM_COMMAND: 
+ 
+            switch (LOWORD(wParam)) 
+            { 
+                case IDOK: 
+ 
+                    <font color="blue">//</font><font color="green"> When the user presses the Delete (IDOK) </font>
+                    <font color="blue">//</font><font color="green"> button, delete all the selected files. </font>
+ 
+                    lpszFileToDelete = tchBuffer; 
+ 
+                    hListBox = GetDlgItem(hDlg, IDL_FILES); 
+                    nSelItems = SendMessage(hListBox, 
+                            LB_GETSELCOUNT, 0, 0); 
+ 
+                    nSelItemsInBuffer = SendMessage(hListBox, 
+                            LB_GETSELITEMS, 512, (LPARAM) nBuffer); 
+ 
+                    if (nSelItems &gt; nSelItemsInBuffer) 
+                    { 
+                        MessageBox(hDlg, &quot;Too many items selected.&quot;, 
+                                NULL, MB_OK); 
+                    } 
+                    else 
+                    { 
+                        <font color="blue">//</font><font color="green"> Go through the list backwards because after </font>
+                        <font color="blue">//</font><font color="green"> deleting an item the indices change for </font>
+                        <font color="blue">//</font><font color="green"> every subsequent item. By going backward, </font>
+                        <font color="blue">//</font><font color="green"> the indices are never invalidated. </font>
+ 
+                        for (i = nSelItemsInBuffer - 1; i &gt;= 0; i--) 
+                        { 
+                            SendMessage(hListBox, LB_GETTEXT, 
+                                        nBuffer[i], 
+                                        (LPARAM) lpszFileToDelete); 
+ 
+                            fResult = DeleteFile(lpszFileToDelete); 
+                            if (!fResult) 
+                            {                     
+								hr = StringCchPrintf(tchMsgBuff,
+										BUFFER,
+										 &quot;Could not delete file: %s &quot; 
+                                        &quot;GetLastError = %u&quot;, 
+                                        (LPARAM) lpszFileToDelete);
+								if (FAILED(hr))
+								{
+								<font color="blue">//</font>
+								<font color="blue">//</font><font color="green"> TODO: write error handler</font>
+								<font color="blue">//</font>
+								}
+ 
+                                <font color="blue">//</font><font color="green"> Call app-defined error handler. </font>
+ 
+                                ErrorHandler(tchMsgBuff); 
+                            } 
+                            else 
+                            { 
+                                SendMessage(hListBox, LB_DELETESTRING, 
+                                        nBuffer[i], 0); 
+                            } 
+                        } 
+                        SendMessage(hListBox, LB_SETCARETINDEX, 0, 0); 
+                    } 
+                    return TRUE; 
+ 
+                case IDCANCEL: 
+ 
+                    <font color="blue">//</font><font color="green"> Destroy the dialog box. </font>
+ 
+                    EndDialog(hDlg, TRUE); 
+                    return TRUE; 
+ 
+                default: 
+                    return FALSE; 
+            } 
+ 
+        default: 
+                return FALSE; 
+    } 
+} </pre>
+  <h3><a name="ownerdrawn_listbox"></a>Creating an Owner-drawn List Box</h3>
+  <p>The following example shows how to draw a list box that contains five
+  owner-drawn items: four drawing implements and a fork. Each list item appears
+  as a bitmap followed by the name of the object. A button prompts the user to
+  select one item that is not like the others. Choosing the button with the fork
+  selected displays a &quot;You're right!&quot; message and closes the dialog
+  box. Choosing the button with any other list item selected displays a
+  &quot;Try again!&quot; message.</p>
+  <p>The list box has the LBS_OWNERDRAW and LBS_HASSTRINGS styles, in addition
+  to the standard list box styles. The code initializes the list box by sending
+  the <b>LB_ADDSTRING</b> message to set the text, and then sends the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_SETITEMDATA_cpp">
+  LB_SETITEMDATA</MSHelp:link>
+  message to associate a bitmap with each list box item. The code also sets the
+  height of each list box item by processing the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_MEASUREITEM_cpp">
+  WM_MEASUREITEM</MSHelp:link>
+  message and draws the text and bitmap for each item by processing the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_DRAWITEM_cpp">
+  WM_DRAWITEM</MSHelp:link>
+  message.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">#define XBITMAP 80 
+#define YBITMAP 20 
+ 
+#define BUFFER MAX_PATH 
+ 
+HBITMAP hbmpPencil, hbmpCrayon, hbmpMarker, hbmpPen, hbmpFork; 
+HBITMAP hbmpPicture, hbmpOld; 
+ 
+void AddItem(HWND hwnd, LPSTR lpstr, HBITMAP hbmp) 
+{ 
+    int nItem; 
+ 
+    nItem = SendMessage(hwndList, LB_ADDSTRING, 0, lpstr); 
+    SendMessage(hwndList, LB_SETITEMDATA, nItem, hbmp); 
+} 
+ 
+DWORD APIENTRY DlgDrawProc( 
+        HWND hDlg,            <font color="blue">//</font><font color="green"> window handle to dialog box </font>
+        UINT message,         <font color="blue">//</font><font color="green"> type of message </font>
+        UINT wParam,          <font color="blue">//</font><font color="green"> message-specific information </font>
+        LONG lParam) 
+{ 
+    int nItem; 
+    TCHAR tchBuffer[BUFFER]; 
+    HBITMAP hbmp; 
+    HWND hListBox; 
+    TEXTMETRIC tm; 
+    int y; 
+    HDC hdcMem; 
+    LPMEASUREITEMSTRUCT lpmis; 
+    LPDRAWITEMSTRUCT lpdis; 
+    RECT rcBitmap;
+	HRESULT hr; 
+	size_t * pcch;
+ 
+    switch (message) 
+    { 
+ 
+        case WM_INITDIALOG: 
+ 
+            <font color="blue">//</font><font color="green"> Load bitmaps. </font>
+ 
+            hbmpPencil = LoadBitmap(hinst, MAKEINTRESOURCE(700)); 
+            hbmpCrayon = LoadBitmap(hinst, MAKEINTRESOURCE(701)); 
+            hbmpMarker = LoadBitmap(hinst, MAKEINTRESOURCE(702)); 
+            hbmpPen = LoadBitmap(hinst, MAKEINTRESOURCE(703)); 
+            hbmpFork = LoadBitmap(hinst, MAKEINTRESOURCE(704)); 
+ 
+            <font color="blue">//</font><font color="green"> Retrieve list box handle. </font>
+ 
+            hListBox = GetDlgItem(hDlg, IDL_STUFF); 
+ 
+            <font color="blue">//</font><font color="green"> Initialize the list box text and associate a bitmap </font>
+            <font color="blue">//</font><font color="green"> with each list box item. </font>
+ 
+            AddItem(hListBox, &quot;pencil&quot;, hbmpPencil); 
+            AddItem(hListBox, &quot;crayon&quot;, hbmpCrayon); 
+            AddItem(hListBox, &quot;marker&quot;, hbmpMarker); 
+            AddItem(hListBox, &quot;pen&quot;,    hbmpPen); 
+            AddItem(hListBox, &quot;fork&quot;,   hbmpFork); 
+ 
+            SetFocus(hListBox); 
+            SendMessage(hListBox, LB_SETCURSEL, 0, 0); 
+            return TRUE; 
+ 
+        case WM_MEASUREITEM: 
+ 
+            lpmis = (LPMEASUREITEMSTRUCT) lParam; 
+ 
+            <font color="blue">//</font><font color="green"> Set the height of the list box items. </font>
+ 
+            lpmis-&gt;itemHeight = 20; 
+            return TRUE; 
+ 
+        case WM_DRAWITEM: 
+ 
+            lpdis = (LPDRAWITEMSTRUCT) lParam; 
+ 
+            <font color="blue">//</font><font color="green"> If there are no list box items, skip this message. </font>
+ 
+            if (lpdis-&gt;itemID == -1) 
+            { 
+                break; 
+            } 
+ 
+            <font color="blue">//</font><font color="green"> Draw the bitmap and text for the list box item. Draw a </font>
+            <font color="blue">//</font><font color="green"> rectangle around the bitmap if it is selected. </font>
+ 
+            switch (lpdis-&gt;itemAction) 
+            { 
+                case ODA_SELECT: 
+                case ODA_DRAWENTIRE: 
+ 
+                    <font color="blue">//</font><font color="green"> Display the bitmap associated with the item. </font>
+ 
+                    hbmpPicture =(HBITMAP)SendMessage(lpdis-&gt;hwndItem, 
+                        LB_GETITEMDATA, lpdis-&gt;itemID, (LPARAM) 0); 
+ 
+                    hdcMem = CreateCompatibleDC(lpdis-&gt;hDC); 
+                    hbmpOld = SelectObject(hdcMem, hbmpPicture); 
+ 
+                    BitBlt(lpdis-&gt;hDC, 
+                        lpdis-&gt;rcItem.left, lpdis-&gt;rcItem.top, 
+                        lpdis-&gt;rcItem.right - lpdis-&gt;rcItem.left, 
+                        lpdis-&gt;rcItem.bottom - lpdis-&gt;rcItem.top, 
+                        hdcMem, 0, 0, SRCCOPY); 
+ 
+                    <font color="blue">//</font><font color="green"> Display the text associated with the item. </font>
+ 
+                    SendMessage(lpdis-&gt;hwndItem, LB_GETTEXT, 
+                        lpdis-&gt;itemID, (LPARAM) tchBuffer); 
+ 
+                    GetTextMetrics(lpdis-&gt;hDC, &amp;tm); 
+ 
+                    y = (lpdis-&gt;rcItem.bottom + lpdis-&gt;rcItem.top - 
+                        tm.tmHeight) / 2;
+						
+					hr = StringCchLength(tchBuffer, BUFFER, pcch);
+					if (FAILED(hr))
+					{
+					<font color="blue">//</font><font color="green"> TODO: write error handler</font>
+					}
+ 
+                    TextOut(lpdis-&gt;hDC, 
+                        XBITMAP + 6, 
+                        y, 
+                        tchBuffer, 
+                        pcch); 						
+ 
+                    SelectObject(hdcMem, hbmpOld); 
+                    DeleteDC(hdcMem); 
+ 
+                    <font color="blue">//</font><font color="green"> Is the item selected? </font>
+ 
+                    if (lpdis-&gt;itemState &amp; ODS_SELECTED) 
+                    { 
+                        <font color="blue">//</font><font color="green"> Set RECT coordinates to surround only the </font>
+                        <font color="blue">//</font><font color="green"> bitmap. </font>
+ 
+                        rcBitmap.left = lpdis-&gt;rcItem.left; 
+                        rcBitmap.top = lpdis-&gt;rcItem.top; 
+                        rcBitmap.right = lpdis-&gt;rcItem.left + XBITMAP; 
+                        rcBitmap.bottom = lpdis-&gt;rcItem.top + YBITMAP; 
+ 
+                        <font color="blue">//</font><font color="green"> Draw a rectangle around bitmap to indicate </font>
+                        <font color="blue">//</font><font color="green"> the selection. </font>
+ 
+                        DrawFocusRect(lpdis-&gt;hDC, &amp;rcBitmap); 
+                    } 
+                    break; 
+ 
+                case ODA_FOCUS: 
+ 
+                    <font color="blue">//</font><font color="green"> Do not process focus changes. The focus caret </font>
+                    <font color="blue">//</font><font color="green"> (outline rectangle) indicates the selection. </font>
+                    <font color="blue">//</font><font color="green"> The IDOK button indicates the final </font>
+                    <font color="blue">//</font><font color="green"> selection. </font>
+ 
+                    break; 
+            } 
+            return TRUE; 
+ 
+        case WM_COMMAND: 
+ 
+            switch (LOWORD(wParam)) 
+            { 
+                case IDOK: 
+                    <font color="blue">//</font><font color="green"> Get the selected item's text. </font>
+ 
+                    nItem = SendMessage(GetDlgItem(hDlg, IDL_STUFF), 
+                       LB_GETCURSEL, 0, (LPARAM) 0); 
+                       hbmp = SendMessage(GetDlgItem(hDlg, IDL_STUFF), 
+                            LB_GETITEMDATA, nItem, 0); 
+ 
+                    <font color="blue">//</font><font color="green"> If the item is not the correct answer, tell the </font>
+                    <font color="blue">//</font><font color="green"> user to try again. </font>
+                    <font color="blue">//</font>
+                    <font color="blue">//</font><font color="green"> If the item is the correct answer, congratulate </font>
+                    <font color="blue">//</font><font color="green"> the user and destroy the dialog box. </font>
+ 
+                    if (hbmp != hbmpFork) 
+                    { 
+                        MessageBox(hDlg, &quot;Try again!&quot;, &quot;Oops&quot;, MB_OK); 
+                        return FALSE; 
+                    } 
+                    else 
+                    { 
+                        MessageBox(hDlg, &quot;You're right!&quot;, 
+                            &quot;Congratulations.&quot;, MB_OK); 
+ 
+                      <font color="blue">//</font><font color="green"> Fall through. </font>
+ 
+                    } 
+ 
+                case IDCANCEL: 
+ 
+                    <font color="blue">//</font><font color="green"> Destroy the dialog box. </font>
+ 
+                    EndDialog(hDlg, TRUE); 
+                    return TRUE; 
+ 
+                default: 
+ 
+                    return FALSE; 
+            } 
+ 
+        case WM_DESTROY: 
+ 
+            <font color="blue">//</font><font color="green"> Free any resources used by the bitmaps. </font>
+ 
+            DeleteObject(hbmpPencil); 
+            DeleteObject(hbmpCrayon); 
+            DeleteObject(hbmpMarker); 
+            DeleteObject(hbmpPen); 
+            DeleteObject(hbmpFork); 
+ 
+            return TRUE; 
+ 
+        default: 
+            return FALSE; 
+ 
+    } 
+    return FALSE; 
+} </pre>
+</div>
+
+</body>
+
+</html>

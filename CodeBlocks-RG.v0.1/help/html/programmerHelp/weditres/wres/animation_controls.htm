@@ -1,0 +1,273 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Animation Controls</title>
+</head>
+
+<body>
+
+<div class="clsDocBody">
+  <h2>Animation Controls</h2>
+  <hr SIZE="1">
+  <p>An <i>animation control</i> is a window that displays an Audio-Video
+  Interleaved (AVI) clip. An AVI clip is a series of bitmap frames like a movie.
+  Animation controls can only display AVI clips that do not contain audio.</p>
+  <h3><a name="_About_Animation_Controls"></a>About Animation Controls</h3>
+  <p>One common use for an animation control is to indicate system activity
+  during a lengthy operation. This is possible because the operation thread
+  continues executing while the AVI clip is displayed. For example, the Find
+  dialog box of Microsoft® Windows® Explorer displays a moving magnifying
+  glass as the system searches for a file.</p>
+  <div class="clsNote">
+    <b>Note</b>&nbsp;&nbsp; If you are using ComCtl32.dll version 6 the thread
+    is not supported, therefore make sure that your application does not block
+    the UI or the animation will not occur.
+  </div>
+  <p>An animation control can display an AVI clip originating from either an
+  uncompressed AVI file or from an AVI file that was compressed using run-length
+  (BI_RLE8) encoding. You can add the AVI clip to your application as an AVI
+  resource, or the clip can accompany your application as a separate AVI file.</p>
+  <div class="clsNote">
+    <b>Note</b>&nbsp;&nbsp; The AVI file, or resource, must not have a sound
+    channel. The capabilities of the animation control are very limited and are
+    subject to change. If you need a control to provide multimedia playback and
+    recording capabilities for your application, you can use the MCIWnd control.
+    For more information about the MCIWnd control, see the multimedia
+    documentation in the Platform SDK.
+  </div>
+  <h3><a name="_Animation_Control_Creation"></a>Animation Control Creation</h3>
+  <p>An animation control belongs to the ANIMATE_CLASS window class. You create
+  an animation control by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindow">
+  CreateWindow</MSHelp:link>
+  function or the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Animate_Create_cpp">
+  Animate_Create</MSHelp:link>
+  macro. The macro positions the animation control in the upper-left corner of
+  the parent window and, if the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="ACS_CENTER">
+  ACS_CENTER</MSHelp:link>
+  style is not specified, sets the width and height of the control based on the
+  dimensions of a frame in the AVI clip. If ACS_CENTER is specified, <b>Animate_Create</b>
+  sets the width and height of the control to zero. You can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_setwindowpos">
+  SetWindowPos</MSHelp:link>
+  function to set the position and size of the control.</p>
+  <p>If you create an animation control within a dialog box or from a dialog box
+  resource, the control is automatically destroyed when the user closes the
+  dialog box. If you create an animation control within a window, you must
+  explicitly destroy the control.</p>
+  <h3><a name="_About_Animation_Control_Messages"></a>About Animation Control
+  Messages</h3>
+  <p>An application sends messages to an animation control to open, play, stop,
+  and close the corresponding AVI clip. Each message has one or more macros that
+  you can use instead of sending the message explicitly.</p>
+  <p>After creating an animation control, an application sends the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ACM_OPEN_cpp">
+  ACM_OPEN</MSHelp:link>
+  message to open an AVI clip and load it into memory. The message specifies
+  either the path of an AVI file or the name of an AVI resource. The system
+  loads the AVI resource from the module that created the animation control.</p>
+  <p>If the animation control has the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Animation_Control_Styles_cpp">
+  ACS_AUTOPLAY</MSHelp:link>
+  style, the control begins playing the AVI clip immediately after the AVI file
+  or AVI resource is opened. Otherwise, an application can use the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ACM_PLAY_cpp">
+  ACM_PLAY</MSHelp:link>
+  message to start the AVI clip. An application can stop the clip at any time by
+  sending the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ACM_STOP_cpp">
+  ACM_STOP</MSHelp:link>
+  message. The last frame played remains displayed when the control finishes
+  playing the AVI clip or when <b>ACM_STOP</b> is sent.</p>
+  <p>An animation control can send two notification messages, <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ACN_START_cpp">
+  ACN_START</MSHelp:link>
+  and <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ACN_STOP_cpp">
+  ACN_STOP</MSHelp:link>
+  , to its parent window. Most applications do not handle either notification.</p>
+  <p>To close the AVI file or AVI resource and remove it from memory, an
+  application can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Animate_Close_cpp">
+  Animate_Close</MSHelp:link>
+  macro, which sends <b>ACM_OPEN</b> with the file name or resource name set to
+  NULL.</p>
+  <h3><a name="_Default_Message_Processing"></a>Default Message Processing</h3>
+  <p>This section describes the window messages handled by the window procedure
+  for the ANIMATE_CLASS window class.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>Message</th>
+        <th>Processing performed</th>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_close">
+          WM_CLOSE</MSHelp:link>
+        </td>
+        <td>Frees the AVI file or AVI resource associated with the animation
+          control.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_destroy">
+          WM_DESTROY</MSHelp:link>
+        </td>
+        <td>Frees the AVI file or AVI resource, frees an internal data
+          structure, and then calls the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DefWindowProc">
+          DefWindowProc</MSHelp:link>
+          function.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_erasebkgnd">
+          WM_ERASEBKGND</MSHelp:link>
+        </td>
+        <td>Erases the window background using the current background color for
+          static controls.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_nccreate">
+          WM_NCCREATE</MSHelp:link>
+        </td>
+        <td>Allocates and initializes an internal data structure and then calls <b>DefWindowProc</b>.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_nchittest">
+          WM_NCHITTEST</MSHelp:link>
+        </td>
+        <td>Returns the HTTRANSPARENT hit test value.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_paint">
+          WM_PAINT</MSHelp:link>
+        </td>
+        <td>Draws an AVI frame in the animation control.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_size">
+          WM_SIZE</MSHelp:link>
+        </td>
+        <td>Checks if the control has the ACS_CENTER style. If the control does
+          not, it calls <b>DefWindowProc</b>. Otherwise, it centers the
+          animation in the control, invalidates the control, and then calls <b>DefWindowProc</b>.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><a name="_Creating_an_Animation_Control"></a>Creating an Animation Control</h3>
+  <p>The following function creates an animation control in a dialog box. The
+  animation control is positioned below the specified control, and the
+  dimensions of the animation control are based on the dimensions of a frame in
+  the AVI clip.</p>
+  <p style="FONT-WEIGHT: bold; CURSOR: hand; TEXT-DECORATION: underline" ShowHideType="Example">&nbsp;</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">		
+<font color="blue">//</font><font color="green"> CreateAnimationCtrl - creates an animation control, positions it </font>
+<font color="blue">//</font><font color="green">                       below the specified control in a dialog box, </font>
+<font color="blue">//</font><font color="green">                       and opens the AVI clip for the animation control. </font>
+<font color="blue">//</font><font color="green"> Returns the handle to the animation control. </font>
+<font color="blue">//</font><font color="green"> hwndDlg             - handle to the dialog box. </font>
+<font color="blue">//</font><font color="green"> nIDCtl              - identifier of the control below which the animation control </font>
+<font color="blue">//</font><font color="green">                       is to be positioned. </font>
+<font color="blue">//</font><font color="green"> </font>
+<font color="blue">//</font><font color="green"> Constants </font>
+<font color="blue">//</font><font color="green">     IDC_ANIMATE - identifier of the animation control. </font>
+<font color="blue">//</font><font color="green">     CX_FRAME, CY_FRAME - width and height of the frames </font>
+<font color="blue">//</font><font color="green">     in the AVI clip. </font>
+
+HWND CreateAnimationCtrl(HWND hwndDlg, int nIDCtl) 
+{ 
+    HWND hwndAnim = NULL; 
+    RECT rc; 
+    POINT pt; 
+
+    <font color="blue">//</font><font color="green"> Create the animation control. </font>
+    hwndAnim = Animate_Create(hwndDlg, IDC_ANIMATE, 
+        WS_BORDER | WS_CHILD, g_hinst); 
+
+    <font color="blue">//</font><font color="green"> Get the screen coordinates of the specified control button. </font>
+    GetWindowRect(GetDlgItem(hwndDlg, nIDCtl), &amp;rc); 
+
+    <font color="blue">//</font><font color="green"> Convert the coordinates of the lower-left corner to </font>
+    <font color="blue">//</font><font color="green"> client coordinates. </font>
+    pt.x = rc.left; 
+    pt.y = rc.bottom; 
+    ScreenToClient(hwndDlg, &amp;pt); 
+
+    <font color="blue">//</font><font color="green"> Position the animation control below the Stop button. </font>
+    SetWindowPos(hwndAnim, 0, pt.x, pt.y + 20, 
+        CX_FRAME, CY_FRAME, 
+        SWP_NOZORDER | SWP_DRAWFRAME); 
+
+    <font color="blue">//</font><font color="green"> Open the AVI clip, and show the animation control. </font>
+    Animate_Open(hwndAnim, &quot;SEARCH.AVI&quot;); 
+    ShowWindow(hwndAnim, SW_SHOW); 
+
+    return hwndAnim; 
+} 
+
+	</pre>
+  <p>&nbsp;</p>
+  <h3><a name="_Controlling_the_AVI_Clip"></a>Controlling the AVI Clip</h3>
+  <p>The following function uses the animation control macros to control the
+  display of the AVI clip in an animation control.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">	
+<font color="blue">//</font><font color="green"> DoAnimation - plays, stops, or closes an animation control's </font>
+<font color="blue">//</font><font color="green">               AVI clip, depending on the value of an action flag. </font>
+<font color="blue">//</font><font color="green"> hwndAnim    - handle to an animation control </font>
+<font color="blue">//</font><font color="green"> nAction     - flag that determines whether to play, stop, or close </font>
+<font color="blue">//</font><font color="green">               the AVI clip. </font>
+
+void DoAnimation(HWND hwndAnim, int nAction) 
+{ 
+    switch (nAction) { 
+        case PLAYIT: 
+         <font color="blue">//</font><font color="green"> Play the clip continuously starting with the </font>
+         <font color="blue">//</font><font color="green"> first frame. </font>
+            Animate_Play(hwndAnim, 0, -1, -1); 
+            break; 
+
+        case STOPIT: 
+            Animate_Stop(hwndAnim); 
+            break; 
+
+        case CLOSEIT: 
+            Animate_Close(hwndAnim); 
+            break; 
+
+        default: 
+
+            break; 
+
+    } 
+
+    return; 
+} 
+
+	</pre>
+</div>
+
+</body>
+
+</html>

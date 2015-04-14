@@ -1,0 +1,49 @@
+<TITLE>BGI Documentation for 
+getactivepage
+</TITLE>
+<H2>
+getactivepage
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include "graphics.h"
+int getactivepage(void);
+</PRE>
+
+
+
+<DT><B>Description</B><IMG SRC="win.gif" ALT="[WIN]"><DD>
+The 
+getactivepage
+function is available in the
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation of BGI
+graphics.
+getactivepage gets the page number of the currently active page (where
+drawing takes place).
+<P>
+The active graphics page might not be the one you see onscreen,
+depending on how many graphics pages are available on your system. 
+<P>
+The original winbgi was designed to support up to 16 pages, but I have
+only used pages 1 and 2 myself.  NOTE: Using page number 0 might
+mess up the colors. I use pages 1-2 for double buffering. 
+
+
+<P><DT><B>Return Value</B><DD>
+The page number of the currently active page.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="getvisualpage.html"> getvisualpage </A>
+<DD><A HREF="setactivepage.html"> setactivepage </A>
+<DD><A HREF="swapbuffers.html"> swapbuffers </A>
+
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

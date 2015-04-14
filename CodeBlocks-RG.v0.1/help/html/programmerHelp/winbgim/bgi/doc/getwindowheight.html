@@ -1,0 +1,64 @@
+<TITLE>BGI Documentation for 
+getwindowheight
+</TITLE>
+<H2>
+getwindowheight
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+int getwindowheight(void);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+The 
+getwindowheight
+function is available in the
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation of BGI
+graphics.
+The function returns the total height of the window including
+nondrawable border areas.
+
+
+<P><DT><B>Return Value</B><DD>
+getwindowheight returns the total height of the window
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="getmaxy.html"> getmaxy </A>
+<DD><A HREF="getwindowwidth.html"> getwindowwidth </A>
+<DD><A HREF="gety.html"> gety </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* getwindowheight example */ 
+#include &lt;graphics.h&gt;
+
+int main(void)
+{
+   int w_above, w_below;
+   int height; // Total height of w_above;
+
+   // Make two windows, one on top of the other */
+   w_above = initwindow(300, 200);
+   height = getwindowheight( );   
+   w_below = initwindow(300, 200, 0, height);
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

@@ -1,0 +1,128 @@
+<TITLE>BGI Documentation for 
+gettextsettings
+</TITLE>
+<H2>
+gettextsettings
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void gettextsettings(struct textsettingstype *texttypeinfo);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+gettextsettings fills the textsettingstype structure pointed to by textinfo with information about the current text font, direction, size, and justification.
+The textsettingstype structure used by gettextsettings is defined in graphics.h as follows:
+<PRE>
+struct textsettingstype {
+   int font;
+   int direction;
+   int charsize;
+   int horiz;
+   int vert;
+};
+</PRE>
+See <A HREF="settextstyle.html">settextstyle</A> for a description of these fields.
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="outtext.html"> outtext </A>
+<DD><A HREF="outtextxy.html"> outtextxy </A>
+<DD><A HREF="registerbgifont.html"> registerbgifont </A>
+<DD><A HREF="settextjustify.html"> settextjustify </A>
+<DD><A HREF="settextstyle.html"> settextstyle </A>
+<DD><A HREF="setusercharsize.html"> setusercharsize </A>
+<DD><A HREF="textheight.html"> textheight </A>
+<DD><A HREF="textwidth.html"> textwidth </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* gettextsettings example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+
+/* the names of the supported fonts */
+char *font[] = { "DEFAULT_FONT", "TRIPLEX_FONT", "SMALL_FONT", "SANS_SERIF_FONT", "GOTHIC_FONT" };
+
+/* the names of the text directions supported */
+char *dir[] = { "HORIZ_DIR", "VERT_DIR" };
+
+/* horizontal text justifications supported */
+char *hjust[] = { "LEFT_TEXT", "CENTER_TEXT", "RIGHT_TEXT" };
+
+/* vertical text justifications supported */
+
+char *vjust[] = { "BOTTOM_TEXT", "CENTER_TEXT", "TOP_TEXT" };
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   struct textsettingstype textinfo;
+   int midx, midy, ht;
+   char fontstr[80], dirstr[80], sizestr[80];
+   char hjuststr[80], vjuststr[80];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+
+   /* get information about current text settings */
+   gettextsettings(&textinfo);
+
+   /* convert text information into strings */
+   sprintf(fontstr, "%s is the text style.", font[textinfo.font]);
+  sprintf(dirstr, "%s is the text direction.",dir[textinfo.direction]);
+
+  sprintf(sizestr, "%d is the text size.", textinfo.charsize);
+  sprintf(hjuststr, "%s is the horizontal justification.", hjust[textinfo.horiz]);
+  sprintf(vjuststr, "%s is the vertical justification.", vjust[textinfo.vert]);
+
+   /* display the information */
+   ht = textheight("W");
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+   outtextxy(midx, midy, fontstr);
+   outtextxy(midx, midy+2*ht, dirstr);
+   outtextxy(midx, midy+4*ht, sizestr);
+   outtextxy(midx, midy+6*ht, hjuststr);
+
+   outtextxy(midx, midy+8*ht, vjuststr);
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

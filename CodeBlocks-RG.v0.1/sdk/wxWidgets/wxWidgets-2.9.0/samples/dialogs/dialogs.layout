@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release" />
+	<File name="dialogs.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="58392" topLine="1902" />
+	</File>
+	<File name="..\..\src\generic\filedlgg.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="5221" topLine="160" />
+	</File>
+</CodeBlocks_layout_file>

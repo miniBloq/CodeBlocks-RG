@@ -1,0 +1,19 @@
+
+/*---------------------------------------------------------------------------
+
+    Filename: testapp.rc
+    Project:  wxWebConnect Test Application
+    (C) Copyright 2009, Kirix Corporation, All Rights Reserved.
+
+    Developer(s):    Benjamin I. Williams
+
+    Changes:
+
+        14 May 2009 - Created
+
+---------------------------------------------------------------------------*/
+
+mondrian ICON "mondrian.ico"
+
+#define wxUSE_NO_MANIFEST 1
+//## #include "wx/msw/wx.rc"

@@ -1,0 +1,96 @@
+<TITLE>BGI Documentation for 
+getgraphmode
+</TITLE>
+<H2>
+getgraphmode
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+int getgraphmode(void);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+Your program must make a successful call to initgraph before calling getgraphmode.
+<P>
+The enumeration graphics_mode, defined in graphics.h, gives names for the predefined graphics modes. For a table listing these enumeration values, refer to the description for initgraph.
+
+
+<P><DT><B>Return Value</B><DD>
+getgraphmode returns the graphics mode set by initgraph or setgraphmode.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+The <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> version of
+getgraphmode returns
+VGAHI for the
+graphmode, regardless of how 
+<A HREF="initgraph.html">initgraph</A> was called. 
+However, the screen is not necessarily 640&nbsp;x&nbsp;480.
+
+<P><DT><B>See also</B>
+<DD><A HREF="getmoderange.html"> getmoderange </A>
+<DD><A HREF="initgraph.html"> initgraph </A>
+<DD><A HREF="restorecrtmode.html"> restorecrtmode </A>
+<DD><A HREF="setgraphmode.html"> setgraphmode </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* getgraphmode example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int midx, midy, mode;
+   char numname[80], modename[80];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+
+   /* get mode number and name strings */
+   mode = getgraphmode();
+   sprintf(numname, "%d is the current mode number.", mode);
+   sprintf(modename, "%s is the current graphics mode.", getmodename(mode));
+
+   /* display the information */
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+   outtextxy(midx, midy, numname);
+
+   outtextxy(midx, midy+2*textheight("W"), modename);
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

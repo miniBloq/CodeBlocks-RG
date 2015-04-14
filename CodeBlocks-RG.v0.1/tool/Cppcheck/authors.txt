@@ -1,0 +1,17 @@
+The cppcheck team, in alphabetical order:
+
+Bill Egert
+Daniel Marjamäki
+Gianluca Scacco
+Hoang Tuan Su
+Kimmo Varis
+Leandro Penz
+Nguyen Duong Tuan
+Nicolas Le Cam
+Reijo Tomperi
+Robert Reif
+Slava Semushin
+Vesa Pikki
+
+GUI graphics courtesy of Tango Desktop Project:
+http://tango.freedesktop.org

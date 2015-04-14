@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Recursion">Recursion</a>,
+Next:<a rel="next" accesskey="n" href="Sequences.html#Sequences">Sequences</a>,
+Previous:<a rel="previous" accesskey="p" href="Interrupts.html#Interrupts">Interrupts</a>,
+Up:<a rel="up" accesskey="u" href="Commands.html#Commands">Commands</a>
+<hr><br>
+</div>
+
+<h3 class="section">Recursive Use of <code>make</code></h3>
+
+   <p>Recursive use of <code>make</code> means using <code>make</code> as a command in a
+makefile.  This technique is useful when you want separate makefiles for
+various subsystems that compose a larger system.  For example, suppose you
+have a subdirectory <code>subdir</code> which has its own makefile, and you would
+like the containing directory's makefile to run <code>make</code> on the
+subdirectory.  You can do it by writing this:
+
+<pre class="example">     subsystem:
+             cd subdir &amp;&amp; $(MAKE)
+     </pre>
+
+<p>or, equivalently, this (see <a href="Options-Summary.html#Options%20Summary">Summary of Options</a>):
+
+<pre class="example">     subsystem:
+             $(MAKE) -C subdir
+     </pre>
+
+   <p>You can write recursive <code>make</code> commands just by copying this example,
+but there are many things to know about how they work and why, and about
+how the sub-<code>make</code> relates to the top-level <code>make</code>.  You may
+also find it useful to declare targets that invoke recursive
+<code>make</code> commands as <code>.PHONY</code> (for more discussion on when
+this is useful, see <a href="Phony-Targets.html#Phony%20Targets">Phony Targets</a>).
+
+   <p>For your convenience, GNU <code>make</code> sets the variable <code>CURDIR</code> to
+the pathname of the current working directory for you.  If <code>-C</code> is
+in effect, it will contain the path of the new directory, not the
+original.  The value has the same precedence it would have if it were
+set in the makefile (by default, an environment variable <code>CURDIR</code>
+will not override this value).  Note that setting this variable has no
+effect on the operation of <code>make</code>
+
+<ul class="menu">
+<li><a accesskey="1" href="MAKE-Variable.html#MAKE%20Variable">MAKE Variable</a>:                The special effects of using <code>$(MAKE)</code>. 
+<li><a accesskey="2" href="Variables-Recursion.html#Variables%2fRecursion">Variables/Recursion</a>:          How to communicate variables to a sub-<code>make</code>. 
+<li><a accesskey="3" href="Options-Recursion.html#Options%2fRecursion">Options/Recursion</a>:            How to communicate options to a sub-<code>make</code>. 
+<li><a accesskey="4" href="-w-Option.html#-w%20Option">-w Option</a>:                    How the <code>-w</code> or <code>--print-directory</code> option
+                                  helps debug use of recursive <code>make</code> commands. 
+</ul>
+
+   </body></html>
+

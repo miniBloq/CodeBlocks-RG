@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Implicit%2fSearch">Implicit/Search</a>,
+Next:<a rel="next" accesskey="n" href="Libraries-Search.html#Libraries%2fSearch">Libraries/Search</a>,
+Previous:<a rel="previous" accesskey="p" href="Commands-Search.html#Commands%2fSearch">Commands/Search</a>,
+Up:<a rel="up" accesskey="u" href="Directory-Search.html#Directory%20Search">Directory Search</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">Directory Search and Implicit Rules</h4>
+
+   <p>The search through the directories specified in <code>VPATH</code> or with
+<code>vpath</code> also happens during consideration of implicit rules
+(see <a href="Implicit-Rules.html#Implicit%20Rules">Using Implicit Rules</a>).
+
+   <p>For example, when a file <code>foo.o</code> has no explicit rule, <code>make</code>
+considers implicit rules, such as the built-in rule to compile
+<code>foo.c</code> if that file exists.  If such a file is lacking in the
+current directory, the appropriate directories are searched for it.  If
+<code>foo.c</code> exists (or is mentioned in the makefile) in any of the
+directories, the implicit rule for C compilation is applied.
+
+   <p>The commands of implicit rules normally use automatic variables as a
+matter of necessity; consequently they will use the file names found by
+directory search with no extra effort.
+
+   </body></html>
+

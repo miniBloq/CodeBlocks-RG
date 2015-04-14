@@ -1,0 +1,97 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="content">
+<meta name="ProgId" content="Document">
+<title>Function declaration</title>
+</head>
+
+<body>
+
+<font FACE="Arial">
+</font>
+<font FACE="Arial"><font FACE="Arial" COLOR="#800000"></font>
+<h2>Function declaration</h2>
+<p>A declaration of a function specifies:</p>
+<ul>
+  <li>The return type of the function</li>
+  <li>Its name</li>
+  <li>The types of each argument</li>
+</ul>
+<p>The general form is:</p>
+</font>
+<p><font face="Courier New" size="2">&lt;type&gt; &lt;Name&gt;<b>(</b>&lt;type
+of arg 1&gt;, … &lt;type of arg N&gt; <b>)</b> ;</font></p>
+<p><font face="Courier New" size="2">double sqrt(double) ;</font></p>
+<font FACE="Arial">
+<p ALIGN="JUSTIFY">Note that an identifier can be added to the declaration but
+its presence is optional. We can write:</p>
+</font>
+<p ALIGN="JUSTIFY"><font face="Courier New" size="2">double sqrt(double x);</font></p>
+<font FACE="Arial">
+<p ALIGN="JUSTIFY">if we want to, but the &quot;x&quot; is not required and will
+be ignored by the compiler.</p>
+<p ALIGN="JUSTIFY">Functions can have a variable number of arguments. The
+function &quot;printf&quot; is an example of a function that takes several
+arguments. We declare those functions like this:</p>
+</font>
+<p ALIGN="JUSTIFY"><font face="Courier New" size="2">int printf(char *, ...);</font></p>
+<font FACE="Arial">
+<p ALIGN="JUSTIFY">The ellipsis means &quot;some more arguments&quot;.</p>
+<p ALIGN="JUSTIFY">Why function declarations are important?</p>
+<p ALIGN="JUSTIFY">When I started programming in C, prototypes for functions
+didn’t exist. So you could define a function like this:</p>
+</font>
+<dl>
+  <div align="justify">
+    <dt><font face="Courier New" size="2">int fn(int a)</font></dt>
+  </div>
+  <div align="justify">
+    <dt><font face="Courier New" size="2">{</font></dt>
+  </div>
+  <div align="justify">
+    <dt><font face="Courier New" size="2">&nbsp;&nbsp;&nbsp; return a+8;</font></dt>
+  </div>
+  <div align="justify">
+    <dt><font face="Courier New" size="2">}</font></dt>
+  </div>
+</dl>
+<font FACE="Arial">
+<p ALIGN="JUSTIFY">and in another module write:</p>
+</font>
+<p ALIGN="JUSTIFY"><font face="Courier New" size="2">fn(7,9);</font></p>
+<font FACE="Arial">
+<p ALIGN="JUSTIFY">without any problems.</p>
+<p ALIGN="JUSTIFY">Well, without any problems at compile time of course. The
+program crashed or returned nonsense results. When you had a big system of many
+modules written by several people, the probability that an error like this
+existed in the program was almost 100%. It is impossible to avoid mistakes like
+this. You can avoid them most of the time, but it is impossible to avoid them
+always.</p>
+<p ALIGN="JUSTIFY">Function prototypes introduced compile time checking of all
+function calls. There wasn’t anymore this dreaded problem that took us so many
+debugging hours with the primitive debuggers of that time. In the C++ language,
+the compiler will abort compilation if a function is used without prototypes. I
+have thought many times to introduce that into lcc-win32, because ignoring the
+function prototype is always an error. But, for compatibility reasons I haven’t
+done it yet. <a href="#[35]">[35]</a></p>
+</font>
+<p ALIGN="JUSTIFY"><font FACE="Arial" SIZE="2"><font color="#0000FF"><a name="[34]">[34]</a></font>
+The interface for using functions with a variable number of arguments is
+described in the standard header file &quot;stdarg.h&quot;. See too </font><a HREF="Functions_with_variable_number_of_arguments.htm"><font FACE="Arial" SIZE="2">functions
+with variable number of arguments</font></a></p>
+
+<p ALIGN="JUSTIFY"><font FACE="Arial" SIZE="2"><a name="[35]"><font color="#0000FF">[35]</font></a>
+There is a strong commitment, from the part of the compiler writers, to maintain
+the code that was written in the language, and to avoid destroying programs that
+are working. When the standards committee proposed the prototypes, all C code
+wasn’t using them yet, so a transition period was set up. Compilers would
+accept the old declarations without prototypes and just emit a warning. Some
+people say that this period should be over by now (it is more than 10 years that
+we have prototypes already), but still, new compilers like lcc-win32 are
+supporting old style declarations.</font></p>
+
+</body>
+
+</html>

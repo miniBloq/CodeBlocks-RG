@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug Win32" />
+	<File name="..\..\src\libsphinxbase\feat\lda.c" open="0" top="0" tabpos="2">
+		<Cursor position="5090" topLine="95" />
+	</File>
+	<File name="..\..\src\libsphinxbase\util\huff_code.c" open="0" top="0" tabpos="1">
+		<Cursor position="13166" topLine="479" />
+	</File>
+</CodeBlocks_layout_file>

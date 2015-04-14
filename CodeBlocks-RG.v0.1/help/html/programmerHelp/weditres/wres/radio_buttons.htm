@@ -1,0 +1,47 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="fr">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Radio buttons</title>
+</head>
+
+<body>
+
+<h2>Radio buttons</h2>
+<p>A <i>radio button</i> consists of a round button and application-defined text
+(a label), an icon, or a bitmap that indicates a choice the user can make by
+selecting the button. An application typically uses radio buttons in a group box
+to permit the user to choose from a set of related, but mutually exclusive
+options. For example, the application might present a group of radio buttons
+from which the user can select a format preference for text selected in the
+client area. The user could select a left-aligned, right-aligned, or centered
+format by selecting the corresponding radio button. Typically, the user can
+select only one option at a time from a set of radio buttons.</p>
+<p>A radio button can be one of two styles: standard or automatic, as defined by
+the constants BS_RADIOBUTTON and BS_AUTORADIOBUTTON. Each style can assume two
+check states: checked (a dot in the button) or cleared (no dot in the button).
+Repeatedly selecting a radio button (standard or automatic) toggles it from
+checked to cleared and back again.</p>
+<p>When the user selects either state, the radio button receives the keyboard
+focus. The system sends the button's parent window a <b>WM_COMMAND</b> message
+containing the <b>BN_CLICKED</b> notification code. The parent window doesn't
+acknowledge this message if it comes from an automatic radio button because the
+system automatically sets the check state for that style. But the parent window
+should acknowledge the message if it comes from a radio button because the
+parent window is responsible for setting the check state for that style.
+Regardless of the radio button style, the system automatically repaints the
+button as its state changes.</p>
+<p>Styles</p>
+<p>Normally, radio buttons look like this: <img border="0" src="radio_9.gif" width="61" height="26"></p>
+<p>If you select the &quot;Flat&quot; style, they will look like this: <img border="0" src="radio_10.gif" width="63" height="23"></p>
+<p>Similarly to check boxes, they can be made to appear like push buttons: <img border="0" src="radio_11.gif" width="69" height="30"></p>
+<p>This styles can be combined, for instance to have a flat, push like radio
+button.</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

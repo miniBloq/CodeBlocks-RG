@@ -1,0 +1,35 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="fr">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Importing a foreign library</title>
+</head>
+
+<body>
+
+<h2>Importing a foreign library</h2>
+<p>The format of the import libraries of lcc-win32 differs from the Microsoft
+format. You can convert an import library by using this option in the
+&quot;Utils&quot; menu of Wedit.</p>
+<p>In the dialog box you should enter the name of the source library and the
+name of the output library (the one with the lcc-win32 format).</p>
+<p>This process is executed by the utility pedump. The editor starts</p>
+<p><font face="Courier New">pedump /exp &lt;input lib&gt;</font></p>
+<p>This produces an ascii list of exports in the same format as the .exp files
+that are stored in your \lcc\buildlib directory. This list is passed then to the
+&quot;buildlib&quot; utility that builds a library to the lcc-win32 format that
+will be understood by the linker lcclnk. This is equivalent to</p>
+<p><font face="Courier New">buildlib input.exp output.lib</font></p>
+<p>It is better to store the library in the \lcc\lib directory to avoid path
+problems.</p>
+<p>Note that all this is for <b>import</b> libraries, i.e. libraries that allow
+you to link with a DLL. For other types of libraries this process will not work,
+because in general, it is not possible to run object code compiled for another
+run time environment and with other run time structure.</p>
+
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="fr">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Spin Control</title>
+</head>
+
+<body>
+
+<h2>Spin Control</h2>
+<p>A sin control, also called up-down control, is a pair of arrow buttons that
+the user can click to increment or decrement a value, such as a scroll position
+or a number displayed in a companion control. The value associated with an
+up-down control is called its current position. An up-down control is most often
+used with a companion control, which is called a buddy window</p>
+<p>Styles</p>
+<ul>
+  <li><b>Select buddy automatically</b>.If this style is specified, the up-down
+    control automatically selects the previous window in the z-order as its
+    buddy window. This window might be the previous control in a dialog box
+    template. You can use <b>UDM_SETBUDDY</b> to assign a specific buddy window
+    to an up-down control. To determine an up-down control's current buddy
+    window, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_UDM_GETBUDDY_cpp">
+    UDM_GETBUDDY</MSHelp:link>
+    message. An up-down control and its buddy window must have the same parent
+    window.</li>
+  <li><b>No thousands</b>. An up-down control with this</MSHelp:link>
+    style sets the caption of its buddy window whenever the current position
+    changes. The control inserts a thousands separator between every three
+    digits of a decimal string unless the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="UDS_NOTHOUSANDS">
+    UDS_NOTHOUSANDS</MSHelp:link>
+    style is specified. If the buddy window is a list box, an up-down control
+    sets its current selection instead of its caption.</li>
+  <li><b>Set buddy integer</b>. An up-down control with this</MSHelp:link>
+    style sets the caption of its buddy window whenever the current position
+    changes.</li>
+  <li><b>Wrap beyond selected range</b>. By default, the current position does
+    not change if the user attempts to increment it or decrement it beyond the
+    maximum or minimum value. You can change this behavior by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="UDS_WRAP">
+    UDS_WRAP</MSHelp:link>
+    style, so the position &quot;wraps&quot; to the opposite extreme. For
+    example, incrementing past the upper limit wraps the position back to the
+    lower limit.</li>
+  <li><b>Use arrow keys</b>. You can specify this</MSHelp:link>
+    style to provide a keyboard interface for an up-down control. If this style
+    is specified, the control processes the and keys. The control also
+    subclasses the buddy window so that it can process these keys when the buddy
+    window has the focus.</li>
+  <li><b>Alignment</b>. An up-down control with the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="UDS_ALIGNLEFT">
+    UDS_ALIGNLEFT</MSHelp:link>
+    or <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="UDS_ALIGNRIGHT">
+    UDS_ALIGNRIGHT</MSHelp:link>
+    style aligns with the left or right edge of its buddy window. The width of
+    the buddy window is decreased to accommodate the width of the up-down
+    control.</li>
+</ul>
+
+</body>
+
+</html>

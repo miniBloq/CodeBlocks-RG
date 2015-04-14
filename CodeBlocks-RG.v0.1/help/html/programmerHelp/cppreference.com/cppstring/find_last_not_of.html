@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/cppstring/find_last_not_of.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:56 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>find_last_not_of</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C++ Strings</a> &gt; <a href=
+    "find_last_not_of.html">find_last_not_of</a>
+  </div>
+
+  <div class="name-format">
+    find_last_not_of
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  <strong>size_type</strong> find_last_not_of( const string&amp; str, <strong>size_type</strong> index = npos );
+  <strong>size_type</strong> find_last_not_of( const char* str, <strong>size_type</strong> index = npos);
+  <strong>size_type</strong> find_last_not_of( const char* str, <strong>size_type</strong> index, <strong>size_type</strong> num );
+  <strong>size_type</strong> find_last_not_of( char ch, <strong>size_type</strong> index = npos );
+</pre>
+
+  <p>The find_last_not_of() function either:</p>
+
+  <ul>
+    <li>returns the index of the last character within the current
+    string that does not match any character in <em>str</em>, doing a
+    reverse search from <em>index</em>, string::npos if nothing is
+    found,</li>
+
+    <li>does a reverse search in the current string, beginning at
+    <em>index</em>, for any character that does not match the first
+    <em>num</em> characters in <em>str</em>, returning the index in
+    the current string of the first character found that meets this
+    criteria, otherwise returning string::npos,</li>
+
+    <li>or returns the index of the last occurrence of a character
+    that does not match <em>ch</em> in the current string, doing a
+    reverse search from <em>index</em>, string::npos if nothing is
+    found.</li>
+  </ul>
+
+  <p>For example, the following code searches for the last
+  non-lower-case character in a mixed string of characters:</p>
+<pre class="prettyprint">
+  string lower_case = &quot;abcdefghijklmnopqrstuvwxyz&quot;;
+  string str = &quot;abcdefgABCDEFGhijklmnop&quot;;
+  cout &lt;&lt; &quot;last non-lower-case letter in str at: &quot; &lt;&lt; str.find_last_not_of(lower_case) &lt;&lt; endl;              
+</pre>
+
+  <p>This code displays the following output:</p>
+<pre class="prettyprint">
+  last non-lower-case letter in str at: 13               
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="find.html">find</a><br>
+    <a href="find_first_not_of.html">find_first_not_of</a><br>
+    <a href="find_first_of.html">find_first_of</a><br>
+    <a href="find_last_of.html">find_last_of</a><br>
+    <a href="rfind.html">rfind</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/find_last_not_of.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:56 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

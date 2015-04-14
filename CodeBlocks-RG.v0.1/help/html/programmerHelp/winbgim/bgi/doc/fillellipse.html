@@ -1,0 +1,89 @@
+<TITLE>BGI Documentation for 
+fillellipse
+</TITLE>
+<H2>
+fillellipse
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void fillellipse(int x, int y, int xradius, int yradius);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+Draws an ellipse using (x,y) as a center point and xradius and yradius as the horizontal and vertical axes, and fills it with the current fill color and fill pattern.
+
+
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="arc.html"> arc </A>
+<DD><A HREF="circle.html"> circle </A>
+<DD><A HREF="ellipse.html"> ellipse </A>
+<DD><A HREF="pieslice.html"> pieslice </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* fillellipse example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int midx, midy, i;
+   int xradius = 100, yradius = 50;
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+
+   /* loop through the fill patterns */
+   for (i = EMPTY_FILL; i &lt; USER_FILL; i++) {
+      /* set fill pattern */
+      setfillstyle(i, getmaxcolor());
+
+      /* draw a filled ellipse */
+      fillellipse(midx, midy, xradius, yradius);
+      getch();
+   }
+
+   /* clean up */
+   closegraph();
+
+   return 0;
+}
+</PRE>
+
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

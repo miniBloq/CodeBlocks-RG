@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="MAKEFILES%20Variable">MAKEFILES Variable</a>,
+Next:<a rel="next" accesskey="n" href="MAKEFILE_LIST-Variable.html#MAKEFILE_LIST%20Variable">MAKEFILE_LIST Variable</a>,
+Previous:<a rel="previous" accesskey="p" href="Include.html#Include">Include</a>,
+Up:<a rel="up" accesskey="u" href="Makefiles.html#Makefiles">Makefiles</a>
+<hr><br>
+</div>
+
+<h3 class="section">The Variable <code>MAKEFILES</code></h3>
+
+   <p>If the environment variable <code>MAKEFILES</code> is defined, <code>make</code>
+considers its value as a list of names (separated by whitespace) of
+additional makefiles to be read before the others.  This works much like
+the <code>include</code> directive: various directories are searched for those
+files (see <a href="Include.html#Include">Including Other Makefiles</a>).  In addition, the
+default goal is never taken from one of these makefiles and it is not an
+error if the files listed in <code>MAKEFILES</code> are not found.
+
+   <p>The main use of <code>MAKEFILES</code> is in communication between recursive
+invocations of <code>make</code> (see <a href="Recursion.html#Recursion">Recursive Use of <code>make</code></a>).  It usually is not desirable to set the environment
+variable before a top-level invocation of <code>make</code>, because it is
+usually better not to mess with a makefile from outside.  However, if
+you are running <code>make</code> without a specific makefile, a makefile in
+<code>MAKEFILES</code> can do useful things to help the built-in implicit
+rules work better, such as defining search paths (see <a href="Directory-Search.html#Directory%20Search">Directory Search</a>).
+
+   <p>Some users are tempted to set <code>MAKEFILES</code> in the environment
+automatically on login, and program makefiles to expect this to be done. 
+This is a very bad idea, because such makefiles will fail to work if run by
+anyone else.  It is much better to write explicit <code>include</code> directives
+in the makefiles.  See <a href="Include.html#Include">Including Other Makefiles</a>.
+
+   </body></html>
+

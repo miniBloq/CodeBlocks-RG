@@ -1,0 +1,741 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Getting started">
+		<param name="Local" value="lccdoc.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Getting started">
+			<param name="Local" value="getting_started.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Installing">
+			<param name="Local" value="installing_lcc.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Troubleshooting">
+			<param name="Local" value="troubleshooting.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Keyboard shortcuts">
+			<param name="Local" value="keyboard_shortcuts.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Projects">
+			<param name="Local" value="projects.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Compilation system">
+		<param name="Local" value="compilation_system.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Configuring the compiler">
+			<param name="Local" value="configuring_the_compiler.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Configuring the linker">
+			<param name="Local" value="configuring_the_linker.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Using the command line tools">
+			<param name="Local" value="commandline.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Compiler command line options">
+			<param name="Local" value="Options.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Compiler pragmas">
+			<param name="Local" value="Pragma.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Runtime organization">
+			<param name="Local" value="runtime_organization.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Registry use">
+			<param name="Local" value="registry_use_of_lcc.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Predefined preprocessor symbols">
+			<param name="Local" value="predefined_preprocessor_symbols.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Header files provided">
+			<param name="Local" value="standard_header_files_of_the_lcc.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Special features of lcc-win32">
+		<param name="Local" value="special_features_of_lcc.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="The garbage collector (memory manager)">
+			<param name="Local" value="memory_manager.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Operator overloading">
+			<param name="Local" value="operator_overloading.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="References">
+			<param name="Local" value="references.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Generic functions">
+			<param name="Local" value="generic_functions.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Intrinsic functions">
+			<param name="Local" value="intrinsic_functions.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Other enhancements">
+			<param name="Local" value="other_syntactic_enhancements.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="128 bit integers">
+			<param name="Local" value="128_bit_integers.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Qfloats: 350 bit floats">
+			<param name="Local" value="qfloat.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Bignums">
+			<param name="Local" value="bignum_library.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Structured exception handling">
+			<param name="Local" value="seh.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="The linker">
+		<param name="Local" value="linker.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Linker command line options">
+			<param name="Local" value="linkeroptions.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Libraries of lcc-win32">
+			<param name="Local" value="libraries.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Importing a foreign library">
+			<param name="Local" value="importing_a_foreign_library.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Other libraries">
+			<param name="Local" value="other_libraries.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Other command line utilities">
+		<param name="Local" value="othercmds.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="The resource compiler lrc.exe">
+			<param name="Local" value="resource_compiler.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="The pedump utility">
+			<param name="Local" value="pedump_utility.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="The browsegen utility">
+			<param name="Local" value="browsegen_utility.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="The buildlib utility">
+			<param name="Local" value="buildlib_utility.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="The librarian lcclib.exe">
+			<param name="Local" value="lcclib_utility.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="The bind utility">
+			<param name="Local" value="bind_utility.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="The message compiler">
+			<param name="Local" value="message_compiler.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="The md5 utility">
+			<param name="Local" value="md5_utility.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="The profiler display">
+			<param name="Local" value="profilerdisplay.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Wedit">
+		<param name="Local" value="weditgeneral.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="User interface">
+			<param name="Local" value="wedit_user_interface.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Main menu">
+			<param name="Local" value="wedit_menu.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Command line options">
+			<param name="Local" value="weditcmdline.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Project management">
+		<param name="Local" value="projects.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Creating a project">
+			<param name="Local" value="CreatingProjects.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Opening/Deleting an existing project">
+			<param name="Local" value="openingProjects.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Importing a project">
+			<param name="Local" value="importing_a_project.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Adding/Deleting files">
+			<param name="Local" value="addingFilesToProject.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Custom build options">
+			<param name="Local" value="custom_build_options.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Configuring lcc-win32">
+		<param name="Local" value="configuring_the_system.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="General">
+			<param name="Local" value="general_configuration_options.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Workspace">
+			<param name="Local" value="workspace_options.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Macros">
+			<param name="Local" value="creating_macros.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Debugger">
+			<param name="Local" value="debugger_configuration.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Compiler">
+			<param name="Local" value="configuring_the_compiler.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Linker">
+			<param name="Local" value="configuring_the_linker.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Language">
+			<param name="Local" value="language_keywords.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Starting program execution">
+			<param name="Local" value="starting_program_execution.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Searching/Editing text">
+		<param name="Local" value="searching.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Selecting/Moving text">
+			<param name="Local" value="selecting_and_moving_text.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Searching">
+			<param name="Local" value="searching_text.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Replacing text">
+			<param name="Local" value="replacing_text.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Find in files (GREP)">
+			<param name="Local" value="grep_utility.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Bookmarks">
+			<param name="Local" value="bookmarks.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Syntax oriented editing">
+		<param name="Local" value="syntax_oriented_editing.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Name completion">
+			<param name="Local" value="name_completion_feature.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Go to definition">
+			<param name="Local" value="go_to_definition.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Matching parentheses or brackets">
+			<param name="Local" value="matching_parentheses.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Displaying the function index">
+			<param name="Local" value="displaying_the_function_index.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Searchinng for a function">
+			<param name="Local" value="searching_for_a_function.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Hiding #ifdefs">
+			<param name="Local" value="hiding_the_preprocessor_conditio.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="History display">
+			<param name="Local" value="history_display.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="The debugger">
+		<param name="Local" value="debugging.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Configuring">
+			<param name="Local" value="debugger_configuration.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Basic usage">
+			<param name="Local" value="using_the_debugger.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Switching displays">
+			<param name="Local" value="switching_displays.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Breakpoints">
+			<param name="Local" value="settingBreakpoints.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Display program information">
+			<param name="Local" value="settingBreakpoints.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="CPU">
+			<param name="Local" value="cpu.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Machine instructions">
+			<param name="Local" value="machine_instructions.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Stack display">
+			<param name="Local" value="stack_display.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Locals display">
+			<param name="Local" value="locals_display.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Events display">
+			<param name="Local" value="events_display.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Memory window">
+			<param name="Local" value="memory_window.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Watch window">
+			<param name="Local" value="watch_window.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Automatic window">
+			<param name="Local" value="autowindow.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Evaluating an expression">
+			<param name="Local" value="evaluating_an_expression.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Data breakpoints">
+			<param name="Local" value="setting_data_breakpoints.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Wedit as default debugger">
+			<param name="Local" value="auto_calling_up_the_debugger.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Other utilities within Wedit">
+		<param name="Local" value="other_utilities.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="The profiler">
+			<param name="Local" value="profiler.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="The binary editor">
+			<param name="Local" value="binary_editor.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="The software metrics module">
+			<param name="Local" value="software_metrics_module.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Identifier slicing">
+			<param name="Local" value="analysis_of_a_function.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Generating a string table">
+			<param name="Local" value="generatingCharStringTable_.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="The diff utility">
+			<param name="Local" value="diff.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Standard commentaries">
+			<param name="Local" value="inserting_special_commentaries.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="The &quot;tree&quot; utility">
+			<param name="Local" value="tree_utility.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Object file cross referencing">
+			<param name="Local" value="objxref.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Writing the prototypes">
+			<param name="Local" value="writing_the_prototype.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Relationships between two modules">
+			<param name="Local" value="relationships.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Executable statistics">
+			<param name="Local" value="exestats.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Printing">
+			<param name="Local" value="printing.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Statistics">
+			<param name="Local" value="statistics.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="The application generator (wizard)">
+			<param name="Local" value="wizard.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="The windows user interface">
+		<param name="Local" value="windows_user_interface.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Controls">
+			<param name="Local" value="wres/controls.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Predefined controls">
+			<param name="Local" value="wres/predefined_controls.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Animation controls">
+			<param name="Local" value="wres/animation_controls.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Buttons">
+			<param name="Local" value="wres/buttons_desc.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Combo boxes">
+			<param name="Local" value="wres/combo_boxes_desc.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="ComboboxEx controls">
+			<param name="Local" value="wres/comboboxex_controls.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Date and time picker controls">
+			<param name="Local" value="wres/date_and_time_picker_controls.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Edit controls">
+			<param name="Local" value="wres/edit_controls_desc.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Image lists">
+			<param name="Local" value="wres/image_lists.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="IP Address controls">
+			<param name="Local" value="wres/ip_address_controls.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="List boxes">
+			<param name="Local" value="wres/list_boxes_desc.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="List views">
+			<param name="Local" value="wres/list_view_desc.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Header controls">
+			<param name="Local" value="wres/header_controls.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Month/calendar controls">
+			<param name="Local" value="wres/month_calendar_controls.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Progress bars">
+			<param name="Local" value="wres/progress_bar_control.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Property sheets">
+			<param name="Local" value="wres/property_sheets.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Rich edit controls">
+			<param name="Local" value="wres/rich_edit_controls.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Scroll bars">
+			<param name="Local" value="wres/scroll_bars.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Static controls">
+			<param name="Local" value="wres/static_controls.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Status bars">
+			<param name="Local" value="wres/status_bars.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Tab controls">
+			<param name="Local" value="wres/tab_controls.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Toolbar controls">
+			<param name="Local" value="wres/toolbar_controls.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Tooltip controls">
+			<param name="Local" value="wres/tooltip_controls.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Trackbar controls">
+			<param name="Local" value="wres/trackbar_controls.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Tree controls">
+			<param name="Local" value="wres/tree_controls_desc.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Up/Down controls">
+			<param name="Local" value="wres/up_down_desc.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Common dialogs">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Color dialog">
+				<param name="Local" value="wres/color_dialog_box.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Find and replace">
+				<param name="Local" value="wres/find_and_replace_dialog_boxes.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Font dialog">
+				<param name="Local" value="wres/font_dialog_box.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="File open/File save as">
+				<param name="Local" value="wres/open_and_save_as_dialog_boxes.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Page setup dialog">
+				<param name="Local" value="wres/page_setup_dialog_box.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Print dialog box">
+				<param name="Local" value="wres/print_dialog_box.htm">
+				</OBJECT>
+		</UL>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="The framework">
+		<param name="Local" value="framework_provided_by_lcc.htm">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Methods">
+			<param name="Local" value="wres/fnindex.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="The resource editor">
+		<param name="Local" value="wres/editor.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="The resource editor">
+			<param name="Local" value="wres/editor.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Adding a dialog box">
+			<param name="Local" value="wres/adding_a_dialog_box.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Adding controls to the dialog">
+			<param name="Local" value="wres/adding_controls_to_the_dialog.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Selecting controls">
+			<param name="Local" value="wres/managing_the_selection.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Moving/Fixing objects">
+			<param name="Local" value="wres/moving_and_nailing_down_objects.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Editing the symbol table">
+			<param name="Local" value="wres/editing_the_symbol_table.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Setting the group order">
+			<param name="Local" value="wres/group_order.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Output of the editor">
+			<param name="Local" value="wres/output_of_the_editor.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Controls">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Common features">
+				<param name="Local" value="wres/general_properties_of_controls.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Buttons">
+				<param name="Local" value="wres/buttons.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Check boxes">
+				<param name="Local" value="wres/check_boxes.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Combo boxes">
+				<param name="Local" value="wres/combo_boxes.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Dialog boxes">
+				<param name="Local" value="wres/dialog_box_properties.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Edit fields">
+				<param name="Local" value="wres/edit_fields.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Group boxes">
+				<param name="Local" value="wres/group_boxes.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="List boxes">
+				<param name="Local" value="wres/list_boxes.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="List views">
+				<param name="Local" value="wres/list_views.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Month/Calendar control">
+				<param name="Local" value="wres/month_calendar.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Progress control">
+				<param name="Local" value="wres/progress_controls.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Radio buttons">
+				<param name="Local" value="wres/radio_buttons.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Slider control">
+				<param name="Local" value="wres/slider_control.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Spin controls">
+				<param name="Local" value="wres/spin_control.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Tree control">
+				<param name="Local" value="wres/tree_control.htm">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Editing other resources">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Accelerators">
+				<param name="Local" value="wres/accelerator_table_editor.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="The menu editor">
+				<param name="Local" value="wres/menu_editor.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="String table editor">
+				<param name="Local" value="wres/string_table_editor.htm">
+				</OBJECT>
+		</UL>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="FAQ">
+		<param name="Local" value="FAQ.htm">
+		</OBJECT>
+</UL>
+</BODY></HTML>

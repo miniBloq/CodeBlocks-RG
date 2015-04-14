@@ -1,0 +1,4613 @@
+<TDMInstallManifest>
+    <Component id="binutils" name="binutils">
+        <Version id="binutils-2.19.1" default="true" name="MinGW Stable: 2.19.1" unsize="21547030" prev="true">
+            <Entry>
+                <![CDATA[bin/]]>
+</Entry>
+            <Entry>
+                <![CDATA[bin/addr2line.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[bin/ar.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[bin/as.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[bin/c++filt.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[bin/dlltool.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[bin/dllwrap.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[bin/gprof.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[bin/ld.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[bin/nm.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[bin/objcopy.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[bin/objdump.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[bin/ranlib.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[bin/readelf.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[bin/size.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[bin/strings.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[bin/strip.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[bin/windmc.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[bin/windres.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ansidecl.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/bfd.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/bfdlink.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/dis-asm.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/symcat.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[info/]]>
+</Entry>
+            <Entry>
+                <![CDATA[info/as.info]]>
+</Entry>
+            <Entry>
+                <![CDATA[info/bfd.info]]>
+</Entry>
+            <Entry>
+                <![CDATA[info/binutils.info]]>
+</Entry>
+            <Entry>
+                <![CDATA[info/configure.info]]>
+</Entry>
+            <Entry>
+                <![CDATA[info/gprof.info]]>
+</Entry>
+            <Entry>
+                <![CDATA[info/ld.info]]>
+</Entry>
+            <Entry>
+                <![CDATA[info/standards.info]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libbfd.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libbfd.la]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libiberty.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libopcodes.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libopcodes.la]]>
+</Entry>
+            <Entry>
+                <![CDATA[man/]]>
+</Entry>
+            <Entry>
+                <![CDATA[man/man1/]]>
+</Entry>
+            <Entry>
+                <![CDATA[man/man1/addr2line.1]]>
+</Entry>
+            <Entry>
+                <![CDATA[man/man1/ar.1]]>
+</Entry>
+            <Entry>
+                <![CDATA[man/man1/as.1]]>
+</Entry>
+            <Entry>
+                <![CDATA[man/man1/c++filt.1]]>
+</Entry>
+            <Entry>
+                <![CDATA[man/man1/dlltool.1]]>
+</Entry>
+            <Entry>
+                <![CDATA[man/man1/gprof.1]]>
+</Entry>
+            <Entry>
+                <![CDATA[man/man1/ld.1]]>
+</Entry>
+            <Entry>
+                <![CDATA[man/man1/nlmconv.1]]>
+</Entry>
+            <Entry>
+                <![CDATA[man/man1/nm.1]]>
+</Entry>
+            <Entry>
+                <![CDATA[man/man1/objcopy.1]]>
+</Entry>
+            <Entry>
+                <![CDATA[man/man1/objdump.1]]>
+</Entry>
+            <Entry>
+                <![CDATA[man/man1/ranlib.1]]>
+</Entry>
+            <Entry>
+                <![CDATA[man/man1/readelf.1]]>
+</Entry>
+            <Entry>
+                <![CDATA[man/man1/size.1]]>
+</Entry>
+            <Entry>
+                <![CDATA[man/man1/strings.1]]>
+</Entry>
+            <Entry>
+                <![CDATA[man/man1/strip.1]]>
+</Entry>
+            <Entry>
+                <![CDATA[man/man1/windmc.1]]>
+</Entry>
+            <Entry>
+                <![CDATA[man/man1/windres.1]]>
+</Entry>
+            <Entry>
+                <![CDATA[mingw32/]]>
+</Entry>
+            <Entry>
+                <![CDATA[mingw32/bin/]]>
+</Entry>
+            <Entry>
+                <![CDATA[mingw32/bin/ar.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[mingw32/bin/as.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[mingw32/bin/dlltool.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[mingw32/bin/ld.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[mingw32/bin/nm.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[mingw32/bin/objcopy.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[mingw32/bin/objdump.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[mingw32/bin/ranlib.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[mingw32/bin/strip.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[mingw32/lib/]]>
+</Entry>
+            <Entry>
+                <![CDATA[mingw32/lib/ldscripts/]]>
+</Entry>
+            <Entry>
+                <![CDATA[mingw32/lib/ldscripts/i386pe.x]]>
+</Entry>
+            <Entry>
+                <![CDATA[mingw32/lib/ldscripts/i386pe.xa]]>
+</Entry>
+            <Entry>
+                <![CDATA[mingw32/lib/ldscripts/i386pe.xbn]]>
+</Entry>
+            <Entry>
+                <![CDATA[mingw32/lib/ldscripts/i386pe.xn]]>
+</Entry>
+            <Entry>
+                <![CDATA[mingw32/lib/ldscripts/i386pe.xr]]>
+</Entry>
+            <Entry>
+                <![CDATA[mingw32/lib/ldscripts/i386pe.xu]]>
+</Entry>
+        </Version>
+    </Component>
+    <Component id="mingw-runtime" name="mingw-runtime">
+        <Version id="mingw-runtime-3.16" default="true" name="MinGW Stable: 3.16" unsize="7403172" prev="true">
+            <Entry>
+                <![CDATA[doc/]]>
+</Entry>
+            <Entry>
+                <![CDATA[doc/runtime/]]>
+</Entry>
+            <Entry>
+                <![CDATA[doc/runtime/CONTRIBUTORS]]>
+</Entry>
+            <Entry>
+                <![CDATA[doc/runtime/DISCLAIMER]]>
+</Entry>
+            <Entry>
+                <![CDATA[doc/runtime/README]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/assert.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/complex.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/conio.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ctype.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/dir.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/direct.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/dirent.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/dos.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/errno.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/excpt.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/fcntl.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/fenv.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/float.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/getopt.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/gmon.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/inttypes.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/io.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/libgen.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/limits.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/locale.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/malloc.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/math.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/mbctype.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/mbstring.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/mem.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/memory.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/process.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/profil.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/profile.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/search.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/setjmp.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/share.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/signal.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/stdint.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/stdio.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/stdlib.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/string.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/strings.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/sys/]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/sys/fcntl.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/sys/file.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/sys/locking.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/sys/param.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/sys/stat.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/sys/time.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/sys/timeb.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/sys/types.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/sys/unistd.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/sys/utime.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/tchar.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/time.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/unistd.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/utime.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/values.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/varargs.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/wchar.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/wctype.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/_mingw.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/binmode.o]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/crt1.o]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/crt2.o]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/crtmt.o]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/crtst.o]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/CRT_fp10.o]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/CRT_fp8.o]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/CRT_noglob.o]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/dllcrt1.o]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/dllcrt2.o]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/gcrt1.o]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/gcrt2.o]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libcoldname.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libcrtdll.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libgmon.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libm.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmingw32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmingwex.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmingwthrd.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmoldname.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmoldname70.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmoldname70d.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmoldname71.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmoldname71d.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmoldname80.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmoldname80d.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmoldname90.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmoldname90d.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmoldnamed.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmsvcr70.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmsvcr70d.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmsvcr71.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmsvcr71d.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmsvcr80.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmsvcr80d.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmsvcr90.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmsvcr90d.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmsvcrt.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmsvcrtd.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/txtmode.o]]>
+</Entry>
+            <Entry>
+                <![CDATA[share/]]>
+</Entry>
+            <Entry>
+                <![CDATA[share/man/]]>
+</Entry>
+            <Entry>
+                <![CDATA[share/man/man3/]]>
+</Entry>
+            <Entry>
+                <![CDATA[share/man/man3/basename.3]]>
+</Entry>
+            <Entry>
+                <![CDATA[share/man/man3/dirname.3]]>
+</Entry>
+            <Entry>
+                <![CDATA[bin/mingwm10.dll]]>
+</Entry>
+        </Version>
+    </Component>
+    <Component id="w32api" name="w32api">
+        <Version id="w32api-3.13" default="true" name="MinGW Stable: 3.13" unsize="14411209" prev="true">
+            <Entry>
+                <![CDATA[include/]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/accctrl.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/aclapi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/aclui.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/adsprop.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/afxres.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/amaudio.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/amvideo.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/audevcod.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/aviriff.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/aygshell.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/basetsd.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/basetyps.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/bdatypes.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/cderr.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/cguid.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/cmnquery.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/comcat.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/commctrl.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/commdlg.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/control.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/cpl.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/cplext.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/custcntl.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/d3d9.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/d3d9caps.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/d3d9types.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/dbt.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/dde.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddeml.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/atm.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/batclass.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/cfg.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/cfgmgr32.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/d4drvif.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/d4iface.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ddkmapi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/hidclass.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/hidpi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/hidsdi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/hidusage.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/kbdmou.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/mcd.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/miniport.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/minitape.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/mountdev.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/mountmgr.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ndis.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ndisguid.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ndistapi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ndiswan.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/netevent.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/netpnp.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/newdev.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntapi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntdd8042.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntddbeep.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntddcdrm.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntddcdvd.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntddchgr.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntdddisk.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntddk.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntddkbd.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntddmou.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntddndis.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntddpar.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntddpcm.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntddscsi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntddser.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntddstor.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntddtape.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntddtdi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntddvdeo.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntddvol.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntifs.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntpoapi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ntstatus.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/parallel.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/pfhook.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/poclass.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/scsi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/scsiscan.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/scsiwmi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/smbus.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/srb.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/storport.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/tdi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/tdiinfo.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/tdikrnl.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/tdistat.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/tvout.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/upssvc.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/usb.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/usb100.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/usbcamdi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/usbdi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/usbioctl.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/usbiodef.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/usbscan.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/usbuser.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/video.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/videoagp.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/win2k.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/winddi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/winddk.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/winnt4.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/winxp.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/ws2san.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ddk/xfilter.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/devguid.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/dhcpcsdk.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/dlgs.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/docobj.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/dsadmin.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/dsclient.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/dsgetdc.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/dshow.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/dsquery.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/dsrole.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/dvdevcod.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/dvdmedia.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/dxerr8.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/dxerr9.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/edevdefs.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/errorrep.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/errors.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/evcode.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/exdisp.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/exdispid.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/fltdefs.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/GL/]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/GL/gl.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/GL/glext.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/GL/glu.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/httpext.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/icm.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/idispids.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/il21dec.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/imagehlp.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/imm.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/initguid.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/intshcut.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ipexport.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/iphlpapi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ipifcons.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ipinfoid.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/iprtrmib.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/iptypes.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ipxconst.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ipxrtdef.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ipxtfflt.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/isguids.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ks.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ksmedia.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/largeint.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lm.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmaccess.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmalert.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmapibuf.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmat.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmaudit.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmbrowsr.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmchdev.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmconfig.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmcons.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmerr.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmerrlog.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmmsg.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmremutl.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmrepl.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmserver.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmshare.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmsname.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmstats.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmsvc.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmuse.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmuseflg.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lmwksta.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/lzexpand.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/mapi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/mciavi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/mcx.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/mgm.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/mgmtapi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/mlang.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/mmreg.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/mmsystem.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/mpegtype.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/mprapi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/mq.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/msacm.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/mshtml.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/mswsock.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/nb30.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/nddeapi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/nspapi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ntdef.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ntdll.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ntdsapi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ntdsbcli.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ntldap.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ntsecapi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ntsecpkg.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/oaidl.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/objbase.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/objfwd.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/objidl.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/objsafe.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/objsel.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ocidl.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/odbcinst.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ole.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ole2.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ole2ver.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/oleacc.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/oleauto.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/olectl.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/olectlid.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/oledlg.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/oleidl.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/pbt.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/poppack.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/powrprof.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/prsht.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/psapi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/pshpack1.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/pshpack2.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/pshpack4.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/pshpack8.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/qedit.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/rapi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ras.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/rasdlg.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/raserror.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/rassapi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/reason.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/regstr.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/richedit.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/richole.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/routprot.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/rpc.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/rpcdce.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/rpcdce2.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/rpcdcep.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/rpcndr.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/rpcnsi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/rpcnsip.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/rpcnterr.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/rpcproxy.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/rtutils.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/schannel.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/schnlsp.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/scrnsave.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/sddl.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/secext.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/security.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/servprov.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/setupapi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/shellapi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/shldisp.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/shlguid.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/shlobj.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/shlwapi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/snmp.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/specstrings.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/sql.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/sqlext.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/sqltypes.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/sqlucode.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/sspi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/stm.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/strmif.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/subauth.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/svcguid.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/tlhelp32.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/tmschema.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/unknwn.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/userenv.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/usp10.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/uxtheme.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/vfw.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/vidcap.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/vmr9.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/vptype.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/w32api.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/winable.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/winbase.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/winber.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/wincon.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/wincrypt.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/windef.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/windns.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/windows.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/windowsx.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/winerror.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/wingdi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/wininet.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/winioctl.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/winldap.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/winnetwk.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/winnls.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/winnt.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/winperf.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/winreg.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/winresrc.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/winsnmp.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/winsock.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/winsock2.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/winspool.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/winsvc.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/winuser.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/winver.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ws2spi.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/ws2tcpip.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/wsahelp.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/wsipx.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/wsnetbs.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/wtsapi32.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/wtypes.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/xprtdefs.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[include/zmouse.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libaclui.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libadvapi32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libapcups.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libavicap32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libavifil32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libbthprops.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libcap.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libcfgmgr32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libcomctl32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libcomdlg32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libcrypt32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libctl3d32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libd3d8.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libd3d9.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libd3dim.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libd3drm.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libd3dx8d.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libd3dx9d.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libd3dxof.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libddraw.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libdhcpcsvc.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libdinput.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libdinput8.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libdlcapi.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libdmoguids.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libdnsapi.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libdplayx.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libdpnaddr.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libdpnet.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libdpnlobby.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libdpvoice.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libdsetup.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libdsound.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libdxapi.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libdxerr8.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libdxerr9.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libdxguid.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libfaultrep.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libgdi32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libglaux.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libglu32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libhal.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libhid.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libhidparse.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libicmui.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libigmpagnt.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libimagehlp.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libimm32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libiphlpapi.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libkernel32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libksproxy.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libksuser.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/liblargeint.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/liblz32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmapi32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmcd.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmfcuia32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmgmtapi.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmpr.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmprapi.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmqrt.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmsacm32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmscms.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmsdmo.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmsimg32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmsvcp60.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmsvfw32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libmswsock.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libnddeapi.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libndis.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libnetapi32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libnewdev.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libntdll.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libntoskrnl.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libodbc32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libodbccp32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libole32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/liboleacc.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/liboleaut32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libolecli32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/liboledlg.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libolepro32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libolesvr32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libopengl32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libpenwin32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libpkpd32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libpowrprof.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libpsapi.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libquartz.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/librapi.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/librasapi32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/librasdlg.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/librpcdce4.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/librpcns4.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/librpcrt4.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/librtm.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/librtutils.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libscrnsave.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libscrnsavw.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libscsiport.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libsecur32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libsetupapi.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libshell32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libshfolder.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libshlwapi.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libsnmpapi.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libstrmiids.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libsvrapi.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libtapi32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libtdi.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libth32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libthunk32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/liburl.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libusbcamd.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libusbcamd2.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libuser32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libuserenv.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libusp10.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libuuid.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libuxtheme.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libvdmdbg.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libversion.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libvfw32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libvideoprt.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libwin32k.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libwin32spl.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libwininet.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libwinmm.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libwinspool.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libwinstrm.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libwldap32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libwow32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libws2_32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libwsnmp32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libwsock32.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libwst.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[lib/libwtsapi32.a]]>
+</Entry>
+        </Version>
+    </Component>
+    <Component id="mingw32-make" name="mingw32-make">
+        <Version id="mingw32-make-3.81-20080326-3" default="true" name="MinGW Stable: 3.81-20080326-3" unsize="706940" prev="true">
+            <Entry>
+                <![CDATA[bin/]]>
+</Entry>
+            <Entry>
+                <![CDATA[bin/mingw32-make.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[doc/]]>
+</Entry>
+            <Entry>
+                <![CDATA[doc/mingw32-make/]]>
+</Entry>
+            <Entry>
+                <![CDATA[doc/mingw32-make/README.mingw]]>
+</Entry>
+            <Entry>
+                <![CDATA[share/]]>
+</Entry>
+            <Entry>
+                <![CDATA[share/info/]]>
+</Entry>
+            <Entry>
+                <![CDATA[share/info/dir]]>
+</Entry>
+            <Entry>
+                <![CDATA[share/info/make.info]]>
+</Entry>
+            <Entry>
+                <![CDATA[share/info/make.info-1]]>
+</Entry>
+            <Entry>
+                <![CDATA[share/info/make.info-2]]>
+</Entry>
+            <Entry>
+                <![CDATA[share/man/]]>
+</Entry>
+            <Entry>
+                <![CDATA[share/man/man1/]]>
+</Entry>
+            <Entry>
+                <![CDATA[share/man/man1/mingw32-make.1]]>
+</Entry>
+        </Version>
+    </Component>
+    <Component id="gdb" name="gdb">
+        <Version id="gdb-6.8-3" default="true" name="MinGW Unstable: 6.8-3" unsize="6619504" prev="true">
+            <Entry>
+                <![CDATA[./]]>
+</Entry>
+            <Entry>
+                <![CDATA[./._.DS_Store]]>
+</Entry>
+            <Entry>
+                <![CDATA[./.DS_Store]]>
+</Entry>
+            <Entry>
+                <![CDATA[./bin/]]>
+</Entry>
+            <Entry>
+                <![CDATA[./bin/gdb.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[./bin/gdbserver.exe]]>
+</Entry>
+            <Entry>
+                <![CDATA[./include/]]>
+</Entry>
+            <Entry>
+                <![CDATA[./include/ansidecl.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[./include/bfd.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[./include/bfdlink.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[./include/dis-asm.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[./include/symcat.h]]>
+</Entry>
+            <Entry>
+                <![CDATA[./info/]]>
+</Entry>
+            <Entry>
+                <![CDATA[./info/annotate.info]]>
+</Entry>
+            <Entry>
+                <![CDATA[./info/bfd.info]]>
+</Entry>
+            <Entry>
+                <![CDATA[./info/configure.info]]>
+</Entry>
+            <Entry>
+                <![CDATA[./info/dir]]>
+</Entry>
+            <Entry>
+                <![CDATA[./info/gdb.info]]>
+</Entry>
+            <Entry>
+                <![CDATA[./info/gdb.info-1]]>
+</Entry>
+            <Entry>
+                <![CDATA[./info/gdb.info-2]]>
+</Entry>
+            <Entry>
+                <![CDATA[./info/gdb.info-3]]>
+</Entry>
+            <Entry>
+                <![CDATA[./info/gdb.info-4]]>
+</Entry>
+            <Entry>
+                <![CDATA[./info/gdbint.info]]>
+</Entry>
+            <Entry>
+                <![CDATA[./info/gdbint.info-1]]>
+</Entry>
+            <Entry>
+                <![CDATA[./info/gdbint.info-2]]>
+</Entry>
+            <Entry>
+                <![CDATA[./info/stabs.info]]>
+</Entry>
+            <Entry>
+                <![CDATA[./info/standards.info]]>
+</Entry>
+            <Entry>
+                <![CDATA[./lib/]]>
+</Entry>
+            <Entry>
+                <![CDATA[./lib/libbfd.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[./lib/libbfd.la]]>
+</Entry>
+            <Entry>
+                <![CDATA[./lib/libiberty.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[./lib/libopcodes.a]]>
+</Entry>
+            <Entry>
+                <![CDATA[./lib/libopcodes.la]]>
+</Entry>
+            <Entry>
+                <![CDATA[./man/]]>
+</Entry>
+            <Entry>
+                <![CDATA[./man/man1/]]>
+</Entry>
+            <Entry>
+                <![CDATA[./man/man1/gdb.1]]>
+</Entry>
+            <Entry>
+                <![CDATA[./man/man1/gdbserver.1]]>
+</Entry>
+        </Version>
+    </Component>
+    <Category id="gcc" name="gcc">
+        <Version id="gcc-4.4.1-tdm-2" name="TDM Unstable: 4.4.1-tdm-2">
+            <Component id="gcc-core-4.4.1-tdm-2" base="gcc-core" name="core" unsize="23015314" prev="true">
+                <Entry>
+                    <![CDATA[bin/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[bin/cpp.exe]]>
+</Entry>
+                <Entry>
+                    <![CDATA[bin/gcc.exe]]>
+</Entry>
+                <Entry>
+                    <![CDATA[bin/gccbug]]>
+</Entry>
+                <Entry>
+                    <![CDATA[bin/gcov.exe]]>
+</Entry>
+                <Entry>
+                    <![CDATA[bin/libgcc_s_sjlj-1.dll]]>
+</Entry>
+                <Entry>
+                    <![CDATA[bin/mingw32-gcc-4.4.1.exe]]>
+</Entry>
+                <Entry>
+                    <![CDATA[bin/mingw32-gcc.exe]]>
+</Entry>
+                <Entry>
+                    <![CDATA[bin/pthreadGC2.dll]]>
+</Entry>
+                <Entry>
+                    <![CDATA[bin/pthreadGCE2.dll]]>
+</Entry>
+                <Entry>
+                    <![CDATA[CHANGELOG-gcc-4.4.1-tdm-2.txt]]>
+</Entry>
+                <Entry>
+                    <![CDATA[COPYING-gcc-tdm.txt]]>
+</Entry>
+                <Entry>
+                    <![CDATA[COPYING.lib-gcc-tdm.txt]]>
+</Entry>
+                <Entry>
+                    <![CDATA[include/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[include/pthread.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[include/sched.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[include/semaphore.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[info/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[info/cpp.info]]>
+</Entry>
+                <Entry>
+                    <![CDATA[info/cppinternals.info]]>
+</Entry>
+                <Entry>
+                    <![CDATA[info/gcc.info]]>
+</Entry>
+                <Entry>
+                    <![CDATA[info/gccinstall.info]]>
+</Entry>
+                <Entry>
+                    <![CDATA[info/gccint.info]]>
+</Entry>
+                <Entry>
+                    <![CDATA[info/libgomp.info]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/mingw32/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/mingw32/4.4.1/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/mingw32/4.4.1/cc1.exe]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/mingw32/4.4.1/collect2.exe]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/mingw32/4.4.1/install-tools/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/mingw32/4.4.1/install-tools/fixinc.sh]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/mingw32/4.4.1/install-tools/fixincl.exe]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/mingw32/4.4.1/install-tools/mkheaders]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/mingw32/4.4.1/install-tools/mkinstalldirs]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/mingw32/4.4.1/libcloog-0.dll]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/mingw32/4.4.1/libgmp-3.dll]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/mingw32/4.4.1/libgmpxx-4.dll]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/mingw32/4.4.1/libiconv-2.dll]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/mingw32/4.4.1/libmpfr-1.dll]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/mingw32/4.4.1/libppl-7.dll]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/mingw32/4.4.1/libppl_c-2.dll]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/crtbegin.o]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/crtend.o]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/crtfastmath.o]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include-fixed/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include-fixed/limits.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include-fixed/README]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include-fixed/syslimits.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/ammintrin.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/avxintrin.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/bmmintrin.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/cpuid.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/cross-stdarg.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/emmintrin.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/float.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/immintrin.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/iso646.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/mm3dnow.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/mmintrin-common.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/mmintrin.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/mm_malloc.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/nmmintrin.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/omp.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/pmmintrin.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/smmintrin.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/ssp/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/ssp/ssp.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/ssp/stdio.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/ssp/string.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/ssp/unistd.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/stdarg.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/stdbool.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/stddef.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/stdfix.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/tgmath.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/tmmintrin.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/unwind.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/varargs.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/wmmintrin.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/x86intrin.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/xmmintrin.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/install-tools/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/install-tools/fixinc_list]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/install-tools/gsyslimits.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/install-tools/include/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/install-tools/include/limits.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/install-tools/include/README]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/install-tools/macro_list]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/install-tools/mkheaders.conf]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/libgcc.a]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/libgcc_s.a]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/libgcov.a]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/libgomp.a]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/libgomp.dll.a]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/libgomp.la]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/libgomp.spec]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/libiberty.a]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/libssp.a]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/libssp.dll.a]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/libssp.la]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/libssp_nonshared.a]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/libssp_nonshared.la]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/bin/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/bin/libgomp-1.dll]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/bin/libssp-0.dll]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/libpthread.a]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/libpthreadGC2-static.a]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/libpthreadGCE2.a]]>
+</Entry>
+                <Entry>
+                    <![CDATA[man/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[man/man1/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[man/man1/cpp.1]]>
+</Entry>
+                <Entry>
+                    <![CDATA[man/man1/gcc.1]]>
+</Entry>
+                <Entry>
+                    <![CDATA[man/man1/gcov.1]]>
+</Entry>
+                <Entry>
+                    <![CDATA[man/man7/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[man/man7/fsf-funding.7]]>
+</Entry>
+                <Entry>
+                    <![CDATA[man/man7/gfdl.7]]>
+</Entry>
+                <Entry>
+                    <![CDATA[man/man7/gpl.7]]>
+</Entry>
+                <Entry>
+                    <![CDATA[pthreads-win32-README]]>
+</Entry>
+                <Entry>
+                    <![CDATA[README-gcc-tdm.txt]]>
+</Entry>
+            </Component>
+            <Component id="gcc-g++-4.4.1-tdm-2" base="gcc-g++" name="g++" unsize="17807956" prev="true">
+                <Entry>
+                    <![CDATA[COPYING-gcc-tdm.txt]]>
+</Entry>
+                <Entry>
+                    <![CDATA[COPYING.lib-gcc-tdm.txt]]>
+</Entry>
+                <Entry>
+                    <![CDATA[bin/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[bin/c++.exe]]>
+</Entry>
+                <Entry>
+                    <![CDATA[bin/g++.exe]]>
+</Entry>
+                <Entry>
+                    <![CDATA[bin/mingw32-c++.exe]]>
+</Entry>
+                <Entry>
+                    <![CDATA[bin/mingw32-g++.exe]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/algorithm]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/array]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/backward/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/backward/auto_ptr.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/backward/backward_warning.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/backward/binders.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/backward/hashtable.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/backward/hash_fun.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/backward/hash_map]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/backward/hash_set]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/backward/strstream]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/algorithmfwd.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/allocator.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/atomicfwd_c.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/atomicfwd_cxx.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/atomic_0.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/atomic_2.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/basic_ios.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/basic_ios.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/basic_string.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/basic_string.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/boost_concept_check.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/char_traits.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/cmath.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/codecvt.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/concept_check.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/cpp_type_traits.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/deque.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/forward_list.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/forward_list.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/fstream.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/functexcept.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/functional_hash.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/gslice.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/gslice_array.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/hashtable.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/indirect_array.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/ios_base.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/istream.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/list.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/localefwd.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/locale_classes.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/locale_classes.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/locale_facets.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/locale_facets.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/locale_facets_nonio.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/locale_facets_nonio.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/mask_array.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/move.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/ostream.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/ostream_insert.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/postypes.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/shared_ptr.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/slice_array.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/sstream.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_algo.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_algobase.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_bvector.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_construct.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_deque.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_function.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_heap.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_iterator.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_iterator_base_funcs.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_iterator_base_types.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_list.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_map.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_multimap.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_multiset.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_numeric.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_pair.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_queue.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_raw_storage_iter.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_relops.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_set.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_stack.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_tempbuf.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_tree.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_uninitialized.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stl_vector.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/streambuf.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/streambuf_iterator.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stream_iterator.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/stringfwd.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/unique_ptr.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/valarray_after.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/valarray_array.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/valarray_array.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/valarray_before.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bits/vector.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/bitset]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/c++0x_warning.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/cassert]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ccomplex]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/cctype]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/cerrno]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/cfenv]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/cfloat]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/chrono]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/cinttypes]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ciso646]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/climits]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/clocale]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/cmath]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/complex]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/complex.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/condition_variable]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/csetjmp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/csignal]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/cstdarg]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/cstdatomic]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/cstdbool]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/cstddef]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/cstdint]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/cstdio]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/cstdlib]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/cstring]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ctgmath]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ctime]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/cwchar]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/cwctype]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/cxxabi-forced.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/cxxabi.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/bitset]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/debug.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/deque]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/formatter.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/functions.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/list]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/macros.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/map]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/map.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/multimap.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/multiset.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/safe_base.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/safe_iterator.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/safe_iterator.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/safe_sequence.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/set]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/set.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/string]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/unordered_map]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/unordered_set]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/debug/vector]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/deque]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/exception]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/exception_defines.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/exception_ptr.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/algorithm]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/array_allocator.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/atomicity.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/bitmap_allocator.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/cast.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/codecvt_specializations.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/concurrence.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/debug_allocator.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/enc_filebuf.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/extptr_allocator.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/functional]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/hash_map]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/hash_set]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/iterator]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/malloc_allocator.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/memory]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/mt_allocator.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/new_allocator.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/numeric]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/numeric_traits.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/assoc_container.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/basic_tree_policy/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/basic_tree_policy/basic_tree_policy_base.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/basic_tree_policy/null_node_metadata.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/basic_tree_policy/traits.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/basic_types.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binary_heap_/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binary_heap_/binary_heap_.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binary_heap_/constructors_destructor_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binary_heap_/const_iterator.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binary_heap_/const_point_iterator.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binary_heap_/debug_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binary_heap_/entry_cmp.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binary_heap_/entry_pred.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binary_heap_/erase_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binary_heap_/find_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binary_heap_/info_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binary_heap_/insert_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binary_heap_/iterators_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binary_heap_/policy_access_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binary_heap_/resize_policy.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binary_heap_/split_join_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binary_heap_/trace_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binomial_heap_/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binomial_heap_/binomial_heap_.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binomial_heap_/constructors_destructor_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binomial_heap_/debug_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binomial_heap_base_/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binomial_heap_base_/binomial_heap_base_.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binomial_heap_base_/constructors_destructor_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binomial_heap_base_/debug_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binomial_heap_base_/erase_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binomial_heap_base_/find_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binomial_heap_base_/insert_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/binomial_heap_base_/split_join_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/bin_search_tree_/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/bin_search_tree_/bin_search_tree_.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/bin_search_tree_/cond_dtor_entry_dealtor.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/bin_search_tree_/cond_key_dtor_entry_dealtor.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/bin_search_tree_/constructors_destructor_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/bin_search_tree_/debug_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/bin_search_tree_/erase_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/bin_search_tree_/find_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/bin_search_tree_/info_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/bin_search_tree_/insert_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/bin_search_tree_/iterators_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/bin_search_tree_/node_iterators.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/bin_search_tree_/point_iterators.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/bin_search_tree_/policy_access_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/bin_search_tree_/rotate_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/bin_search_tree_/r_erase_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/bin_search_tree_/split_join_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/bin_search_tree_/traits.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/cc_ht_map_.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/cmp_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/cond_key_dtor_entry_dealtor.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/constructor_destructor_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/constructor_destructor_no_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/constructor_destructor_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/debug_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/debug_no_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/debug_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/entry_list_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/erase_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/erase_no_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/erase_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/find_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/find_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/info_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/insert_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/insert_no_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/insert_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/iterators_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/policy_access_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/resize_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/resize_no_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/resize_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/size_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/standard_policies.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cc_hash_table_map_/trace_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/cond_dealtor.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/constructors_destructor_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/container_base_dispatch.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/debug_map_base.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/eq_fn/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/eq_fn/eq_by_less.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/eq_fn/hash_eq_fn.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/constructor_destructor_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/constructor_destructor_no_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/constructor_destructor_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/debug_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/debug_no_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/debug_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/erase_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/erase_no_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/erase_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/find_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/find_no_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/find_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/gp_ht_map_.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/info_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/insert_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/insert_no_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/insert_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/iterator_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/policy_access_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/resize_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/resize_no_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/resize_store_hash_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/standard_policies.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/gp_hash_table_map_/trace_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/hash_fn/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/hash_fn/direct_mask_range_hashing_imp.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/hash_fn/direct_mod_range_hashing_imp.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/hash_fn/linear_probe_fn_imp.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/hash_fn/mask_based_range_hashing.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/hash_fn/mod_based_range_hashing.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/hash_fn/probe_fn_base.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/hash_fn/quadratic_probe_fn_imp.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/hash_fn/ranged_hash_fn.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/hash_fn/ranged_probe_fn.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/hash_fn/sample_probe_fn.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/hash_fn/sample_ranged_hash_fn.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/hash_fn/sample_ranged_probe_fn.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/hash_fn/sample_range_hashing.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/left_child_next_sibling_heap_/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/left_child_next_sibling_heap_/constructors_destructor_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/left_child_next_sibling_heap_/const_iterator.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/left_child_next_sibling_heap_/const_point_iterator.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/left_child_next_sibling_heap_/debug_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/left_child_next_sibling_heap_/erase_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/left_child_next_sibling_heap_/info_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/left_child_next_sibling_heap_/insert_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/left_child_next_sibling_heap_/iterators_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/left_child_next_sibling_heap_/left_child_next_sibling_heap_.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/left_child_next_sibling_heap_/node.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/left_child_next_sibling_heap_/null_metadata.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/left_child_next_sibling_heap_/policy_access_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/left_child_next_sibling_heap_/trace_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/list_update_map_/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/list_update_map_/constructor_destructor_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/list_update_map_/debug_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/list_update_map_/entry_metadata_base.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/list_update_map_/erase_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/list_update_map_/find_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/list_update_map_/info_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/list_update_map_/insert_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/list_update_map_/iterators_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/list_update_map_/lu_map_.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/list_update_map_/trace_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/list_update_policy/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/list_update_policy/counter_lu_metadata.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/list_update_policy/counter_lu_policy_imp.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/list_update_policy/mtf_lu_policy_imp.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/list_update_policy/sample_update_policy.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/ov_tree_map_/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/ov_tree_map_/cond_dtor.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/ov_tree_map_/constructors_destructor_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/ov_tree_map_/debug_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/ov_tree_map_/erase_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/ov_tree_map_/info_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/ov_tree_map_/insert_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/ov_tree_map_/iterators_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/ov_tree_map_/node_iterators.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/ov_tree_map_/ov_tree_map_.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/ov_tree_map_/policy_access_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/ov_tree_map_/split_join_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/ov_tree_map_/traits.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pairing_heap_/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pairing_heap_/constructors_destructor_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pairing_heap_/debug_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pairing_heap_/erase_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pairing_heap_/find_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pairing_heap_/insert_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pairing_heap_/pairing_heap_.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pairing_heap_/split_join_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/child_iterator.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/cond_dtor_entry_dealtor.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/constructors_destructor_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/const_child_iterator.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/debug_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/erase_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/find_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/head.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/info_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/insert_join_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/internal_node.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/iterators_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/leaf.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/node_base.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/node_iterators.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/node_metadata_base.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/pat_trie_.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/point_iterators.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/policy_access_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/rotate_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/r_erase_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/split_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/split_join_branch_bag.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/synth_e_access_traits.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/trace_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/traits.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/pat_trie_/update_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/priority_queue_base_dispatch.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/rb_tree_map_/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/rb_tree_map_/constructors_destructor_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/rb_tree_map_/debug_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/rb_tree_map_/erase_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/rb_tree_map_/find_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/rb_tree_map_/info_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/rb_tree_map_/insert_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/rb_tree_map_/node.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/rb_tree_map_/rb_tree_.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/rb_tree_map_/split_join_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/rb_tree_map_/traits.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/rc_binomial_heap_/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/rc_binomial_heap_/constructors_destructor_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/rc_binomial_heap_/debug_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/rc_binomial_heap_/erase_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/rc_binomial_heap_/insert_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/rc_binomial_heap_/rc.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/rc_binomial_heap_/rc_binomial_heap_.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/rc_binomial_heap_/split_join_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/rc_binomial_heap_/trace_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/resize_policy/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/resize_policy/cc_hash_max_collision_check_resize_trigger_imp.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/resize_policy/hash_exponential_size_policy_imp.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/resize_policy/hash_load_check_resize_trigger_imp.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/resize_policy/hash_load_check_resize_trigger_size_base.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/resize_policy/hash_prime_size_policy_imp.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/resize_policy/hash_standard_resize_policy_imp.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/resize_policy/sample_resize_policy.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/resize_policy/sample_resize_trigger.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/resize_policy/sample_size_policy.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/splay_tree_/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/splay_tree_/constructors_destructor_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/splay_tree_/debug_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/splay_tree_/erase_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/splay_tree_/find_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/splay_tree_/info_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/splay_tree_/insert_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/splay_tree_/node.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/splay_tree_/splay_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/splay_tree_/splay_tree_.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/splay_tree_/split_join_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/splay_tree_/traits.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/standard_policies.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/thin_heap_/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/thin_heap_/constructors_destructor_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/thin_heap_/debug_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/thin_heap_/erase_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/thin_heap_/find_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/thin_heap_/insert_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/thin_heap_/split_join_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/thin_heap_/thin_heap_.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/thin_heap_/trace_fn_imps.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/tree_policy/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/tree_policy/node_metadata_selector.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/tree_policy/null_node_update_imp.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/tree_policy/order_statistics_imp.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/tree_policy/sample_tree_node_update.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/tree_trace_base.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/trie_policy/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/trie_policy/node_metadata_selector.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/trie_policy/null_node_update_imp.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/trie_policy/order_statistics_imp.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/trie_policy/prefix_search_node_update_imp.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/trie_policy/sample_trie_e_access_traits.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/trie_policy/sample_trie_node_update.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/trie_policy/string_trie_e_access_traits_imp.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/trie_policy/trie_policy_base.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/types_traits.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/type_utils.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/unordered_iterator/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/unordered_iterator/const_iterator.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/unordered_iterator/const_point_iterator.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/unordered_iterator/iterator.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/detail/unordered_iterator/point_iterator.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/exception.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/hash_policy.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/list_update_policy.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/priority_queue.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/tag_and_trait.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/tree_policy.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pb_ds/trie_policy.hpp]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pod_char_traits.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pointer.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/pool_allocator.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/rb_tree]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/rc_string_base.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/rope]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/ropeimpl.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/slist]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/sso_string_base.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/stdio_filebuf.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/stdio_sync_filebuf.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/string_conversions.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/throw_allocator.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/typelist.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/type_traits.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/vstring.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/vstring.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/vstring_fwd.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ext/vstring_util.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/fenv.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/forward_list]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/fstream]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/functional]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/initializer_list]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/iomanip]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ios]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/iosfwd]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/iostream]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/istream]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/iterator]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/limits]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/list]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/locale]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/map]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/memory]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/atomic_word.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/basic_file.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/c++allocator.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/c++config.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/c++io.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/c++locale.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/cpu_defines.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/ctype_base.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/ctype_inline.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/ctype_noninline.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/cxxabi_tweaks.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/error_constants.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/extc++.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/gthr-default.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/gthr-posix.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/gthr-single.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/gthr-tpf.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/gthr.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/messages_members.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/os_defines.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/stdc++.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/stdtr1c++.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mingw32/bits/time_members.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/mutex]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/new]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/numeric]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ostream]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/algo.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/algobase.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/algorithm]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/algorithmfwd.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/balanced_quicksort.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/base.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/basic_iterator.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/checkers.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/compatibility.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/compiletime_settings.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/equally_split.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/features.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/find.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/find_selectors.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/for_each.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/for_each_selectors.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/iterator.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/list_partition.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/losertree.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/merge.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/multiseq_selection.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/multiway_merge.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/multiway_mergesort.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/numeric]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/numericfwd.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/omp_loop.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/omp_loop_static.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/parallel.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/partial_sum.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/partition.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/par_loop.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/queue.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/quicksort.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/random_number.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/random_shuffle.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/search.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/settings.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/set_operations.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/sort.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/tags.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/types.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/unique_copy.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/parallel/workstealing.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/queue]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/random]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/ratio]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/regex]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/set]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/sstream]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/stack]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/stdatomic.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/stdexcept]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/streambuf]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/string]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/system_error]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tgmath.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/thread]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/array]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/bessel_function.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/beta_function.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/ccomplex]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/cctype]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/cfenv]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/cfloat]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/cinttypes]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/climits]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/cmath]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/complex]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/complex.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/cstdarg]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/cstdbool]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/cstdint]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/cstdio]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/cstdlib]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/ctgmath]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/ctime]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/ctype.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/cwchar]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/cwctype]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/ell_integral.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/exp_integral.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/fenv.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/float.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/functional]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/functional_hash.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/gamma.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/hashtable.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/hypergeometric.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/inttypes.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/legendre_function.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/limits.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/math.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/memory]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/modified_bessel_func.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/poly_hermite.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/poly_laguerre.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/random]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/regex]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/riemann_zeta.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/shared_ptr.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/special_function_util.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/stdarg.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/stdbool.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/stdint.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/stdio.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/stdlib.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/tgmath.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/tuple]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/type_traits]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/unordered_map]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/unordered_set]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/utility]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/wchar.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1/wctype.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/array]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/boost_sp_counted_base.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/cctype]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/cfenv]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/cinttypes]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/cmath]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/complex]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/cstdint]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/cstdio]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/cstdlib]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/cwchar]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/cwctype]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/functional]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/functional_hash.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/hashtable]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/hashtable_policy.h]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/random]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/random.tcc]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/regex]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/type_traits]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/unordered_map]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/unordered_set]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tr1_impl/utility]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/tuple]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/typeinfo]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/type_traits]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/unordered_map]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/unordered_set]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/utility]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/valarray]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/include/c++/vector]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/libstdc++.a]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/libstdc++.la]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/libsupc++.a]]>
+</Entry>
+                <Entry>
+                    <![CDATA[lib/gcc/mingw32/4.4.1/libsupc++.la]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/mingw32/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/mingw32/4.4.1/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[libexec/gcc/mingw32/4.4.1/cc1plus.exe]]>
+</Entry>
+                <Entry>
+                    <![CDATA[man/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[man/man1/]]>
+</Entry>
+                <Entry>
+                    <![CDATA[man/man1/g++.1]]>
+</Entry>
+            </Component>
+        </Version>
+    </Category>
+    <Component id="MiscFiles">
+        <Entry>
+            <![CDATA[downloaded/]]>
+</Entry>
+        <Entry>
+            <![CDATA[installed_man.txt]]>
+</Entry>
+        <Entry>
+            <![CDATA[mingwvars.bat]]>
+</Entry>
+        <Entry>
+            <![CDATA[tdm-mingw-1.908.0-4.4.1-2.exe]]>
+</Entry>
+    </Component>
+</TDMInstallManifest>

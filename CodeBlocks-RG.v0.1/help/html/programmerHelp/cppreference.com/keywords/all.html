@@ -1,0 +1,2942 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>C/C++ Keywords</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C/C++ Keywords</a>
+  </div>
+<hr>
+
+  <div class="name-format">
+    asm
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  asm( &quot;instruction&quot; );
+</pre>
+
+  <p>The asm command allows you to insert assembly language commands
+  directly into your code. Various different compilers allow differing
+  forms for this command, such as</p>
+<pre class="prettyprint">
+   asm {
+     instruction-sequence
+   }            
+</pre>
+
+  <p>or</p>
+<pre class="prettyprint">
+   asm( instruction );          
+</pre>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    auto
+  </div>
+
+  <p>The keyword auto is used to declare local variables, and is purely
+  optional.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="register.html">register</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    bool
+  </div>
+
+  <p>The keyword bool is used to declare Boolean logic variables; that
+  is, variables which can be either true or false.</p>
+
+  <p>For example, the following code declares a boolean variable called
+  <em>done</em>, initializes it to false, and then loops until that
+  variable is set to true.</p>
+<pre class="prettyprint">
+   bool done = false;
+   while( !done ) {
+   ...
+   }            
+</pre>
+
+  <p>Also see the <a href="../data_types.html">data types</a> page.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="char.html">char</a><br>
+    <a href="double.html">double</a><br>
+    <a href="false.html">false</a><br>
+    <a href="float.html">float</a><br>
+    <a href="int.html">int</a><br>
+    <a href="long.html">long</a><br>
+    <a href="short.html">short</a><br>
+    <a href="signed.html">signed</a><br>
+    <a href="true.html">true</a><br>
+    <a href="unsigned.html">unsigned</a><br>
+    <a href="wchar_t.html">wchar_t</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    break
+  </div>
+
+  <p>The break keyword is used to break out of a <a href=
+  "do.html">do</a>, <a href="for.html">for</a>, or <a href=
+  "while.html">while</a> loop. It is also used to finish each clause of
+  a <a href="switch.html">switch</a> statement, keeping the program
+  from &quot;falling through&quot; to the next case in the code. An
+  example:</p>
+<pre class="prettyprint">
+   while( x &lt; 100 ) {
+     if( x &lt; 0 )
+       break;
+     cout &lt;&lt; x &lt;&lt; endl;
+     x++;
+   }            
+</pre>
+
+  <p>A given break statement will break out of only the closest loop,
+  no further. If you have a triply-nested for loop, for example, you
+  might want to include extra logic or a <a href="goto.html">goto</a>
+  statement to break out of the loop.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="continue.html">continue</a><br>
+    <a href="do.html">do</a><br>
+    <a href="for.html">for</a><br>
+    <a href="goto.html">goto</a><br>
+    <a href="switch.html">switch</a><br>
+    <a href="while.html">while</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    case
+  </div>
+
+  <p>The case keyword is used to test a variable against a certain
+  value in a <a href="switch.html">switch</a> statement.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="default.html">default</a><br>
+    <a href="switch.html">switch</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    catch
+  </div>
+
+  <p>The catch statement handles exceptions generated by the <a href=
+  "throw.html">throw</a> statement.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="throw.html">throw</a><br>
+    <a href="try.html">try</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    char
+  </div>
+
+  <p>The char keyword is used to declare character variables. For more
+  information about variable types, see the <a href=
+  "../data_types.html">data types</a> page.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="bool.html">bool</a><br>
+    <a href="double.html">double</a><br>
+    <a href="float.html">float</a><br>
+    <a href="int.html">int</a><br>
+    <a href="long.html">long</a><br>
+    <a href="short.html">short</a><br>
+    <a href="signed.html">signed</a><br>
+    <a href="unsigned.html">unsigned</a><br>
+    <a href="void.html">void</a><br>
+    <a href="wchar_t.html">wchar_t</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    class
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  class class-name : inheritance-list {
+  private-members-list;    
+  protected:
+  protected-members-list;
+  public:
+  public-members-list;
+  } object-list;
+</pre>
+
+  <p>The class keyword allows you to create new classes.
+  <em>class-name</em> is the name of the class that you wish to create,
+  and <em>inheritance-list</em> is an optional list of classes
+  inherited by the new class. Members of the class are private by
+  default, unless listed under either the protected or public labels.
+  <em>object-list</em> can be used to immediately instantiate one or
+  more instances of the class, and is also optional. For example:</p>
+<pre class="prettyprint">
+   class Date {
+     int Day;
+     int Month;
+     int Year;
+   public:
+     void display();
+   };           
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="friend.html">friend</a><br>
+    <a href="private.html">private</a><br>
+    <a href="protected.html">protected</a><br>
+    <a href="public.html">public</a><br>
+    <a href="struct.html">struct</a><br>
+    <a href="this.html">this</a><br>
+    <a href="typename.html">typename</a><br>
+    <a href="union.html">union</a><br>
+    <a href="virtual.html">virtual</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    const
+  </div>
+
+  <p>The const keyword can be used to tell the compiler that a certain
+  variable should not be modified once it has been initialized.</p>
+
+  <p>It can also be used to declare functions of a class that do not
+  alter any class data.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="const_cast.html">const_cast</a><br>
+    <a href="mutable.html">mutable</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    const_cast
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  const_cast&lt;type&gt; (object);
+</pre>
+
+  <p>The const_cast keyword can be used to remove the
+  <strong>const</strong> or <strong>volatile</strong> property from
+  some variable.  The target data type must be the same as the source
+  type, except (of course) that the target type doesn&#39;t have to be
+  <a href="const.html">const</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="const.html">const</a><br>
+    <a href="dynamic_cast.html">dynamic_cast</a><br>
+    <a href="reinterpret_cast.html">reinterpret_cast</a><br>
+    <a href="static_cast.html">static_cast</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    continue
+  </div>
+
+  <p>The continue statement can be used to bypass iterations of a given
+  loop.</p>
+
+  <p>For example, the following code will display all of the numbers
+  between 0 and 20 except 10:</p>
+<pre class="prettyprint">
+   for( int i = 0; i &lt; 21; i++ ) {
+     if( i == 10 ) {
+       continue;
+     }
+     cout &lt;&lt; i &lt;&lt; &quot; &quot;;
+   }            
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="break.html">break</a><br>
+    <a href="do.html">do</a><br>
+    <a href="for.html">for</a><br>
+    <a href="while.html">while</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    default
+  </div>
+
+  <p>A default <a href="case.html">case</a> in the <a href=
+  "switch.html">switch</a> statement.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="case.html">case</a><br>
+    <a href="switch.html">switch</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    delete
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  delete p;
+  delete[] pArray;
+</pre>
+
+  <p>The delete operator frees the memory pointed to by <em>p</em>. The
+  argument should have been previously allocated by a call to <a href=
+  "new.html">new</a>. The second form of delete should be used to
+  delete an array.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    (Standard C Memory) <a href="../stdmem/free.html">free</a><br>
+    (Standard C Memory) <a href="../stdmem/malloc.html">malloc</a><br>
+    <a href="new.html">new</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    do
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  do {
+  statement-list;
+  } while( condition );
+</pre>
+
+  <p>The do construct evaluates the given <em>statement-list</em>
+  repeatedly, until <em>condition</em> becomes false. Note that every
+  do loop will evaluate its statement list at least once, because the
+  terminating condition is tested at the end of the loop.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="break.html">break</a><br>
+    <a href="continue.html">continue</a><br>
+    <a href="for.html">for</a><br>
+    <a href="while.html">while</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    double
+  </div>
+
+  <p>The double keyword is used to declare double precision
+  floating-point variables. Also see the <a href=
+  "../data_types.html">data types</a> page.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="bool.html">bool</a><br>
+    <a href="char.html">char</a><br>
+    <a href="float.html">float</a><br>
+    <a href="int.html">int</a><br>
+    <a href="long.html">long</a><br>
+    <a href="short.html">short</a><br>
+    <a href="signed.html">signed</a><br>
+    <a href="unsigned.html">unsigned</a><br>
+    <a href="void.html">void</a><br>
+    <a href="wchar_t.html">wchar_t</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    dynamic_cast
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  dynamic_cast&lt;type&gt; (object);
+</pre>
+
+  <p>The dynamic_cast keyword casts a datum from one type to another,
+  performing a runtime check to ensure the validity of the cast. If you
+  attempt to cast between incompatible types, the result of the cast
+  will be <strong>NULL</strong>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="const_cast.html">const_cast</a><br>
+    <a href="reinterpret_cast.html">reinterpret_cast</a><br>
+    <a href="static_cast.html">static_cast</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    else
+  </div>
+
+  <p>The else keyword is used as an alternative case for the <a href=
+  "if.html">if</a> statement.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="if.html">if</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    enum
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  enum name {name-list} var-list;
+</pre>
+
+  <p>The enum keyword is used to create an enumerated type named name
+  that consists of the elements in <em>name-list</em>. The
+  <em>var-list</em> argument is optional, and can be used to create
+  instances of the type along with the declaration.  For example, the
+  following code creates an enumerated type for colors:</p>
+
+  <div class="related-examples">
+<pre class="prettyprint">
+   enum ColorT {red, orange, yellow, green, blue, indigo, violet};
+   ...
+   ColorT c1 = indigo;
+   if( c1 == indigo ) {
+     cout &lt;&lt; &quot;c1 is indigo&quot; &lt;&lt; endl;
+   }            
+</pre>
+</div>
+
+  <p>In the above example, the effect of the enumeration is to
+  introduce several new constants named <em>red</em>, <em>orange</em>,
+  <em>yellow</em>, etc.  By default, these constants are assigned
+  consecutive integer values starting at zero.  You can change the
+  values of those constants, as shown by the next example:</p>
+
+  <div class="related-examples">
+<pre class="prettyprint">
+   enum ColorT { red = 10, blue = 15, green };
+   ...
+   ColorT c = green;
+   cout << "c is " << c << endl;
+</pre>
+</div>
+
+  <p>When executed, the above code will display the following
+  output:</p>
+
+  <div class="related-examples">
+<pre class="prettyprint">
+   c is 16
+</pre>
+</div>
+
+  <p>Note that the above examples will only work with C++ compilers.
+  If you're working in regular C, you will need to specify the
+  <em>enum</em> keyword whenever you create an instance of an
+  enumerated type:
+
+  <div class="related-examples">
+<pre class="prettyprint">
+   enum ColorT { red = 10, blue = 15, green };
+   ...
+   enum ColorT c = green;   // note the aditional enum keyword
+   printf( "c is %d\n", c );
+</pre>
+</div>
+
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    explicit
+  </div>
+
+  <p>When a constructor is specified as explicit, no automatic
+  conversion will be used with that constructor -- but parameters passed to the constructor may still be converted.  For example:</p>
+<pre class="prettyprint">
+  struct foo {
+    explicit foo( int a )
+      : a_( a )
+    { }
+
+    int a_;
+  };
+
+  int bar( const foo & f ) {
+    return f.a_; 
+  }
+
+  bar( 1 );  // fails because an implicit conversion from int to foo
+             // is forbidden by explicit.
+
+  bar( foo( 1 ) );  // works -- explicit call to explicit constructor.
+
+  bar( foo( 1.0 ) );  // works -- explicit call to explicit constructor
+                      // with automatic conversion from float to int.
+</pre>
+
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    export
+  </div>
+
+  <p>The export keyword is intended to allow definitions of C++
+  templates to be separated from their declarations.  While officially
+  part of the C++ standard, the export keyword is only supported by a
+  few compilers (such as the Comeau C++ compiler) and is not supported
+  by such mainstream compilers as GCC and Visual C++.
+  </p>
+
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    extern
+  </div>
+
+  <p>The extern keyword is used to inform the compiler about variables
+  declared outside of the current scope. Variables described by extern
+  statements will not have any space allocated for them, as they should
+  be properly defined elsewhere.</p>
+
+  <p>Extern statements are frequently used to allow data to span the
+  scope of multiple files.</p>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    false
+  </div>
+
+  <p>The Boolean value of &quot;false&quot;.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="bool.html">bool</a><br>
+    <a href="true.html">true</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    float
+  </div>
+
+  <p>The float keyword is used to declare floating-point variables.
+  Also see the <a href="../data_types.html">data types</a> page.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="bool.html">bool</a><br>
+    <a href="char.html">char</a><br>
+    <a href="double.html">double</a><br>
+    <a href="int.html">int</a><br>
+    <a href="long.html">long</a><br>
+    <a href="short.html">short</a><br>
+    <a href="signed.html">signed</a><br>
+    <a href="unsigned.html">unsigned</a><br>
+    <a href="void.html">void</a><br>
+    <a href="wchar_t.html">wchar_t</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    for
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  for( initialization; test-condition; increment ) {
+  statement-list;
+  }
+</pre>
+
+  <p>The for construct is a general looping mechanism consisting of 4
+  parts:</p>
+
+  <ol>
+    <li>the initialization, which consists of 0 or more comma-delimited
+    variable initialization statements</li>
+
+    <li>the test-condition, which is evaluated to determine if the
+    execution of the for loop will continue</li>
+
+    <li>the increment, which consists of 0 or more comma-delimited
+    statements that increment variables</li>
+
+    <li>and the statement-list, which consists of 0 or more statements
+    that will be executed each time the loop is executed.</li>
+  </ol>
+
+  <p>For example:</p>
+<pre class="prettyprint">
+   for( int i = 0; i &lt; 10; i++ ) {
+     cout &lt;&lt; &quot;i is &quot; &lt;&lt; i &lt;&lt; endl;
+   }
+   int j, k;
+   for( j = 0, k = 10;
+        j &lt; k;
+        j++, k-- ) {
+     cout &lt;&lt; &quot;j is &quot; &lt;&lt; j &lt;&lt; &quot; and k is &quot; &lt;&lt; k &lt;&lt; endl;
+   }
+   for( ; ; ) {
+     // loop forever!
+   }            
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="break.html">break</a><br>
+    <a href="continue.html">continue</a><br>
+    <a href="do.html">do</a><br>
+    <a href="if.html">if</a><br>
+    <a href="while.html">while</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    friend
+  </div>
+
+  <p>The friend keyword allows classes or functions not normally
+  associated with a given class to have access to the private data of
+  that class.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="class.html">class</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    goto
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  goto labelA;
+  ...
+  labelA:
+</pre>
+
+  <p>The goto statement causes the current thread of execution to jump
+  to the specified label. While the use of the goto statement is
+  generally <a href="http://www.acm.org/classics/oct95/">considered
+  harmful</a>, it can occasionally be useful. For example, it may be
+  cleaner to use a goto to break out of a deeply-nested <a href=
+  "for.html">for</a> loop, compared to the space and time that extra
+  <a href="break.html">break</a> logic would consume.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="break.html">break</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    if
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  if( conditionA ) {
+    statement-listA;
+  }
+  else if( conditionB ) {
+    statement-listB;
+  }
+  ...
+  else {
+    statement-listN;
+  }
+</pre>
+
+  <p>The if construct is a branching mechanism that allows different
+  code to execute under different conditions. The conditions are
+  evaluated in order, and the statement-list of the first condition to
+  evaluate to true is executed. If no conditions evaluate to true and
+  an <a href="else.html">else</a> statement is present, then the
+  statement list within the else block will be executed. All of the
+  <a href="else.html">else</a> blocks are optional.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="else.html">else</a><br>
+    <a href="for.html">for</a><br>
+    <a href="switch.html">switch</a><br>
+    <a href="while.html">while</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    inline
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  inline int functionA( int i ) {
+  ...
+  }
+</pre>
+
+  <p>The inline keyword requests that the compiler expand a given
+  function in place, as opposed to inserting a call to that function.
+  The inline keyword is a request, not a command, and the compiler is
+  free to ignore it for whatever reason.</p>
+
+  <p>When a function declaration is included in a class
+  definition, the compiler should try to automatically inline that
+  function.  No inline keyword is necessary in this case.</p>
+
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    int
+  </div>
+
+  <p>The int keyword is used to declare integer variables. Also see the
+  <a href="../data_types.html">data types</a> page.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="bool.html">bool</a><br>
+    <a href="char.html">char</a><br>
+    <a href="double.html">double</a><br>
+    <a href="float.html">float</a><br>
+    <a href="long.html">long</a><br>
+    <a href="short.html">short</a><br>
+    <a href="signed.html">signed</a><br>
+    <a href="unsigned.html">unsigned</a><br>
+    <a href="void.html">void</a><br>
+    <a href="wchar_t.html">wchar_t</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    long
+  </div>
+
+  <p>The long keyword is a data type modifier that is used to declare
+  long integer variables. For more information on long, see the
+  <a href="../data_types.html">data types</a> page.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="bool.html">bool</a><br>
+    <a href="char.html">char</a><br>
+    <a href="double.html">double</a><br>
+    <a href="float.html">float</a><br>
+    <a href="int.html">int</a><br>
+    <a href="short.html">short</a><br>
+    <a href="signed.html">signed</a><br>
+    <a href="void.html">void</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    mutable
+  </div>
+
+  <p>The mutable keyword overrides any enclosing <a href=
+  "const.html">const</a> statement. A mutable member of a <a href=
+  "const.html">const</a> object can be modified.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="const.html">const</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    namespace
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  namespace name {
+  declaration-list;
+  }
+</pre>
+
+  <p>The namespace keyword allows you to create a new scope. The name
+  is optional, and can be omitted to create an unnamed namespace. Once
+  you create a namespace, you&#39;ll have to refer to it explicitly or
+  use the <a href="using.html">using</a> keyword.</p>
+
+  <div class="related-examples-format">
+    Example code:
+  </div>
+
+  <div class="related-examples">
+<pre class="prettyprint">
+   namespace CartoonNameSpace {
+     int HomersAge;
+     void incrementHomersAge() {
+       HomersAge++;
+     }
+   }
+   int main() {
+     ...
+     CartoonNameSpace::HomersAge = 39;
+     CartoonNameSpace::incrementHomersAge();
+     cout &lt;&lt; CartoonNameSpace::HomersAge &lt;&lt; endl;
+     ...
+   }            
+</pre>
+  </div>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="using.html">using</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    new
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  pointer = new type;
+  pointer = new type( initializer );
+  pointer = new type[size];
+  pointer = new( arg-list ) type...
+</pre>
+
+  <p>The new operator (valid only in C++) allocates a new chunk of
+  memory to hold a variable of type <em>type</em> and returns a
+  pointer to that memory.  An optional initializer can be used to
+  initialize the memory.  Allocating arrays can be accomplished by
+  providing a <em>size</em> parameter in brackets.</p>
+
+  <p>The optional <em>arg-list</em> parameter can be used with any of
+  the other formats to pass a variable number of arguments to an
+  overloaded version of new().  For example, the following code shows
+  how the new() function can be overloaded for a class and then passed
+  arbitrary arguments:</p>
+
+<pre class="prettyprint">
+  class Base {
+  public:
+    Base() { }
+
+    void *operator new( unsigned int size, string str ) {
+      cout &lt;&lt; "Logging an allocation of " &lt;&lt; size &lt;&lt; " bytes for new object '" &lt;&lt; str &lt;&lt; "'" &lt;&lt; endl;
+      return malloc( size );
+    }
+
+    int var;
+    double var2;
+  };
+
+  ...
+
+  Base* b = new ("Base instance 1") Base;
+</pre>
+
+  <p>If an int is 4 bytes and a double is 8 bytes, the above code
+  generates the following output when run:</p>
+
+<pre class="prettyprint">
+  Logging an allocation of 12 bytes for new object 'Base instance 1'
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="delete.html">delete</a><br>
+    (Standard C Memory) <a href="../stdmem/free.html">free</a><br>
+    (Standard C Memory) <a href="../stdmem/malloc.html">malloc</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    operator
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  return-type class-name::operator#(parameter-list) {
+  ...
+  }
+  return-type operator#(parameter-list) {
+  ...
+  }
+</pre>
+
+  <p>The operator keyword is used to overload operators. The sharp sign
+  (#) listed above in the syntax description represents the operator
+  which will be overloaded. If part of a class, the <em>class-name</em>
+  should be specified. For unary operators, <em>parameter-list</em>
+  should be empty, and for binary operators, <em>parameter-list</em>
+  should contain the operand on the right side of the operator (the
+  operand on the left side is passed as <a href=
+  "this.html">this</a>).</p>
+
+  <p>For the non-member operator overload function, the operand on the
+  left side should be passed as the first parameter and the operand on
+  the right side should be passed as the second parameter.</p>
+
+  <p>You cannot overload the #, ##, ., :, .*, or ? tokens.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="this.html">this</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    private
+  </div>
+
+  <p>Private data of a class can only be accessed by members of that
+  class, except when <a href="friend.html">friend</a> is used. The
+  <a href="private.html">private</a> keyword can also be used to
+  inherit a base class privately, which causes all <a href=
+  "public.html">public</a> and <a href="protected.html">protected</a>
+  members of the base class to become private members of the derived
+  class.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="class.html">class</a><br>
+    <a href="protected.html">protected</a><br>
+    <a href="public.html">public</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    protected
+  </div>
+
+  <p>Protected data are private to their own class but can be inherited
+  by derived classes. The protected keyword can also be used as an
+  inheritance specifier, which causes all <a href=
+  "public.html">public</a> and protected members of the base class to
+  become protected members of the derived class.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="class.html">class</a><br>
+    <a href="private.html">private</a><br>
+    <a href="public.html">public</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    public
+  </div>
+
+  <p>Public data in a class are accessible to everyone. The public
+  keyword can also be used as an inheritance specifier, which causes
+  all public and <a href="protected.html">protected</a> members of the
+  base class to become public and protected members of the derived
+  class.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="class.html">class</a><br>
+    <a href="private.html">private</a><br>
+    <a href="protected.html">protected</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    register
+  </div>
+
+  <p>The register keyword requests that a variable be optimized for
+  speed, and fell out of common use when computers became better at
+  most code optimizations than humans.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="auto.html">auto</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    reinterpret_cast
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  reinterpret_cast&lt;type&gt; (object);
+</pre>
+
+  <p>The reinterpret_cast operator changes one data type into another.
+  It should be used to cast between incompatible pointer types.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="const_cast.html">const_cast</a><br>
+    <a href="dynamic_cast.html">dynamic_cast</a><br>
+    <a href="static_cast.html">static_cast</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    return
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  return;
+  return( value );
+</pre>
+
+  <p>The return statement causes execution to jump from the current
+  function to whatever function called the current function. An
+  optional <em>value</em> can be returned. A function may have more
+  than one return statement.</p>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    short
+  </div>
+
+  <p>The short keyword is a data type modifier that is used to declare
+  short integer variables. See the <a href="../data_types.html">data
+  types</a> page.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="bool.html">bool</a><br>
+    <a href="char.html">char</a><br>
+    <a href="double.html">double</a><br>
+    <a href="float.html">float</a><br>
+    <a href="int.html">int</a><br>
+    <a href="long.html">long</a><br>
+    <a href="signed.html">signed</a><br>
+    <a href="unsigned.html">unsigned</a><br>
+    <a href="void.html">void</a><br>
+    <a href="wchar_t.html">wchar_t</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    signed
+  </div>
+
+  <p>The signed keyword is a data type modifier that is usually used to
+  declare signed char variables. See the <a href=
+  "../data_types.html">data types</a> page.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="bool.html">bool</a><br>
+    <a href="char.html">char</a><br>
+    <a href="double.html">double</a><br>
+    <a href="float.html">float</a><br>
+    <a href="int.html">int</a><br>
+    <a href="long.html">long</a><br>
+    <a href="short.html">short</a><br>
+    <a href="unsigned.html">unsigned</a><br>
+    <a href="void.html">void</a><br>
+    <a href="wchar_t.html">wchar_t</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    sizeof
+  </div>
+
+  <p>The sizeof operator is a compile-time operator that returns the
+  size of the argument passed to it.  The size is a multiple of the
+  size of a <code>char</code>, which on many personal computers is 1
+  byte (or 8 bits).  The number of bits in a <code>char</code> is
+  stored in the <code>CHAR_BIT</code> constant defined in
+  the <code>&lt;climits&gt;</code> header file.</p>
+
+  <p>For example, the following code uses sizeof to display the
+  sizes of a number of variables:</p>
+
+<pre class="prettyprint">
+  struct EmployeeRecord {
+    int ID;
+    int age;
+    double salary;
+    EmployeeRecord* boss;
+  };
+
+  ...
+
+  cout &lt;&lt; "sizeof(int): " &lt;&lt; sizeof(int) &lt;&lt; endl
+       &lt;&lt; "sizeof(float): " &lt;&lt; sizeof(float) &lt;&lt; endl
+       &lt;&lt; "sizeof(double): " &lt;&lt; sizeof(double) &lt;&lt; endl
+       &lt;&lt; "sizeof(char): " &lt;&lt; sizeof(char) &lt;&lt; endl
+       &lt;&lt; "sizeof(EmployeeRecord): " &lt;&lt; sizeof(EmployeeRecord) &lt;&lt; endl;
+
+  int i;
+  float f;
+  double d;
+  char c;
+  EmployeeRecord er;
+
+  cout &lt;&lt; "sizeof(i): " &lt;&lt; sizeof(i) &lt;&lt; endl
+       &lt;&lt; "sizeof(f): " &lt;&lt; sizeof(f) &lt;&lt; endl
+       &lt;&lt; "sizeof(d): " &lt;&lt; sizeof(d) &lt;&lt; endl
+       &lt;&lt; "sizeof(c): " &lt;&lt; sizeof(c) &lt;&lt; endl
+       &lt;&lt; "sizeof(er): " &lt;&lt; sizeof(er) &lt;&lt; endl;
+</pre>
+
+  <p>On some machines, the above code displays this output:</p>
+
+<pre class="prettyprint">
+  sizeof(int): 4
+  sizeof(float): 4
+  sizeof(double): 8
+  sizeof(char): 1
+  sizeof(EmployeeRecord): 20
+  sizeof(i): 4
+  sizeof(f): 4
+  sizeof(d): 8
+  sizeof(c): 1
+  sizeof(er): 20
+</pre>
+
+  <p>Note that sizeof can either take a variable type (such as
+  <strong>int</strong>) or a variable name (such as <strong>i</strong>
+  in the example above).</p>
+
+  <p>It is also important to note that the sizes of various types of
+  variables can change depending on what system you're on.  Check out
+  <a href="../data_types.html">a description
+  of the C and C++ data types</a> for more information.</p>
+
+  <p>The parentheses around the argument are not required if you are
+  using sizeof with a variable type (e.g. sizeof(int)).</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="../data_types.html">C/C++ Data Types</a>
+  </div>
+
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    static
+  </div>
+
+  <p>The static data type modifier is used to create permanent storage
+  for variables. Static variables keep their value between function
+  calls. When used in a <a href="class.html">class</a>, all
+  instantiations of that class share one copy of the variable.</p>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    static_cast
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  static_cast&lt;type&gt; (object);
+</pre>
+
+  <p>The static_cast keyword can be used for any normal conversion
+  between types. No runtime checks are performed.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="const_cast.html">const_cast</a><br>
+    <a href="dynamic_cast.html">dynamic_cast</a><br>
+    <a href="reinterpret_cast.html">reinterpret_cast</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    struct
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  struct struct-name : inheritance-list {
+  public-members-list;    
+  protected:
+  protected-members-list;
+  private:
+  private-members-list;
+  } object-list;
+</pre>
+
+  <p>Structs are like `classes`, except that by default members of a
+  struct are <a href="public.html">public</a> rather than <a href=
+  "private.html">private</a>. In C, structs can only contain data and
+  are not permitted to have inheritance lists. For example:</p>
+<pre class="prettyprint">
+   struct Date {
+     int Day;
+     int Month;
+     int Year;
+   };           
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="class.html">class</a><br>
+    <a href="union.html">union</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    switch
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  switch( expression ) {
+  case A:
+  statement list;
+  break;
+  case B:
+  statement list;
+  break;
+  ...
+  case N:
+  statement list;
+  break;
+  default:
+  statement list;
+  break;
+  }
+</pre>
+
+  <p>The switch statement allows you to test an expression for many
+  values, and is commonly used as a replacement for multiple <a href=
+  "if.html">if</a>()...<a href="else.html">else</a> <a href=
+  "if.html">if</a>()...<a href="else.html">else</a> <a href=
+  "if.html">if</a>()... statements. <a href="break.html">break</a>
+  statements are required between each <a href="case.html">case</a>
+  statement, otherwise execution will &quot;fall-through&quot; to the
+  next <a href="case.html">case</a> statement. The <a href=
+  "default.html">default</a> case is optional. If provided, it will
+  match any case not explicitly covered by the preceding cases in the
+  switch statement. For example:</p>
+<pre class="prettyprint">
+   char keystroke = getch();
+   switch( keystroke ) {
+     case &#39;a&#39;:
+     case &#39;b&#39;:
+     case &#39;c&#39;:
+     case &#39;d&#39;:
+       KeyABCDPressed();
+       break;
+     case &#39;e&#39;:
+       KeyEPressed();
+       break;
+     default:
+       UnknownKeyPressed();
+       break;
+   }            
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="break.html">break</a><br>
+    <a href="case.html">case</a><br>
+    <a href="default.html">default</a><br>
+    <a href="if.html">if</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    template
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  template &lt;class data-type&gt; return-type name( parameter-list ) {
+  statement-list;
+  }
+</pre>
+
+  <p>Templates are used to create generic functions and can operate on
+  data without knowing the nature of that data. They accomplish this by
+  using a placeholder data-type for which many other <a href=
+  "../data_types.html">data types</a> can be substituted.</p>
+
+  <div class="related-examples-format">
+    Example code:
+  </div>
+
+  <div class="related-examples">
+    <p>For example, the following code uses a template to define a
+    generic swap function that can swap two variables of any type:</p>
+<pre class="prettyprint">
+   template&lt;class X&gt; void genericSwap( X &amp;a, X &amp;b ) {
+     X tmp;             
+
+     tmp = a;
+     a = b;
+     b = tmp;
+   }
+   int main(void) {
+     ...
+     int num1 = 5;
+     int num2 = 21;
+     cout &lt;&lt; &quot;Before, num1 is &quot; &lt;&lt; num1 &lt;&lt; &quot; and num2 is &quot; &lt;&lt; num2 &lt;&lt; endl;
+     genericSwap( num1, num2 );
+     cout &lt;&lt; &quot;After, num1 is &quot; &lt;&lt; num1 &lt;&lt; &quot; and num2 is &quot; &lt;&lt; num2 &lt;&lt; endl;
+     char c1 = &#39;a&#39;;
+     char c2 = &#39;z&#39;;
+     cout &lt;&lt; &quot;Before, c1 is &quot; &lt;&lt; c1 &lt;&lt; &quot; and c2 is &quot; &lt;&lt; c2 &lt;&lt; endl;
+     genericSwap( c1, c2 );
+     cout &lt;&lt; &quot;After, c1 is &quot; &lt;&lt; c1 &lt;&lt; &quot; and c2 is &quot; &lt;&lt; c2 &lt;&lt; endl;
+     ...
+     return( 0 );
+   }            
+</pre>
+  </div>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="typename.html">typename</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    this
+  </div>
+
+  <p>The this keyword is a pointer to the current object. All member
+  functions of a <a href="class.html">class</a> have a this
+  pointer.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="class.html">class</a><br>
+    <a href="operator.html">operator</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    throw
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  try {
+  statement list;
+  }
+  catch( typeA arg ) {
+  statement list;
+  }
+  catch( typeB arg ) {
+  statement list;
+  }
+  ...
+  catch( typeN arg ) {
+  statement list;
+  }
+</pre>
+
+  <p>The throw statement is part of the C++ mechanism for exception
+  handling. This statement, together with the <a href=
+  "try.html">try</a> and <a href="catch.html">catch</a> statements, the
+  C++ exception handling system gives programmers an elegant mechanism
+  for error recovery.</p>
+
+  <p>You will generally use a <a href="try.html">try</a> block to
+  execute potentially error-prone code. Somewhere in this code, a throw
+  statement can be executed, which will cause execution to jump out of
+  the <a href="try.html">try</a> block and into one of the <a href=
+  "catch.html">catch</a> blocks. For example:</p>
+<pre class="prettyprint">
+   try {
+     cout &lt;&lt; &quot;Before throwing exception&quot; &lt;&lt; endl;
+     throw 42;
+     cout &lt;&lt; &quot;Shouldn&#39;t ever see this&quot; &lt;&lt; endl;
+   }
+   catch( int error ) {
+     cout &lt;&lt; &quot;Error: caught exception &quot; &lt;&lt; error &lt;&lt; endl;
+   }            
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="catch.html">catch</a><br>
+    <a href="try.html">try</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    true
+  </div>
+
+  <p>The Boolean value of &quot;true&quot;.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="bool.html">bool</a><br>
+    <a href="false.html">false</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    try
+  </div>
+
+  <p>The try statement attempts to execute exception-generating code.
+  See the <a href="throw.html">throw</a> statement for more
+  details.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="catch.html">catch</a><br>
+    <a href="throw.html">throw</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    typedef
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  typedef existing-type new-type;
+</pre>
+
+  <p>The typedef keyword allows you to create a new type from an
+  existing type.</p>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    typeid
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  typeid( object );
+</pre>
+
+  <p>The typeid operator returns a reference to a type_info object that
+  describes `object`.</p>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    typename
+  </div>
+
+  <p>The typename keyword can be used to describe an undefined type or
+  in place of the <a href="class.html">class</a> keyword in a <a href=
+  "template.html">template</a> declaration.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="class.html">class</a><br>
+    <a href="template.html">template</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    union
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  union union-name {
+  public-members-list;    
+  private:
+  private-members-list;
+  } object-list;
+</pre>
+
+  <p>A union is like a <a href="class.html">class</a>, except that all
+  members of a union share the same memory location and are by default
+  <a href="public.html">public</a> rather than <a href=
+  "private.html">private</a>. For example:</p>
+<pre class="prettyprint">
+   union Data {
+     int i;
+     char c;
+   };           
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="class.html">class</a><br>
+    <a href="struct.html">struct</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    unsigned
+  </div>
+
+  <p>The unsigned keyword is a data type modifier that is usually used
+  to declare unsigned <a href="int.html">int</a> variables. See the
+  <a href="../data_types.html">data types</a> page.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="bool.html">bool</a><br>
+    <a href="char.html">char</a><br>
+    <a href="double.html">double</a><br>
+    <a href="float.html">float</a><br>
+    <a href="int.html">int</a><br>
+    <a href="short.html">short</a><br>
+    <a href="signed.html">signed</a><br>
+    <a href="void.html">void</a><br>
+    <a href="wchar_t.html">wchar_t</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    using
+  </div>
+
+  <p>The using keyword is used to import a <a href=
+  "namespace.html">namespace</a> (or parts of a namespace) into the
+  current scope.</p>
+
+  <div class="related-examples-format">
+    Example code:
+  </div>
+
+  <div class="related-examples">
+    <p>For example, the following code imports the entire <em>std</em>
+    namespace into the current scope so that items within that
+    namespace can be used without a preceeding &quot;std::&quot;.</p>
+<pre class="prettyprint">
+ using namespace std;           
+</pre>
+
+    <p>Alternatively, the next code snippet just imports a single
+    element of the <em>std</em> namespace into the current
+    namespace:</p>
+<pre class="prettyprint">
+ using std::cout;               
+</pre>
+  </div>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="namespace.html">namespace</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    virtual
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  virtual return-type name( parameter-list );
+  virtual return-type name( parameter-list ) = 0;
+</pre>
+
+  <p>The virtual keyword can be used to create virtual functions, which
+  can be overridden by derived classes.</p>
+
+  <ul>
+    <li>A virtual function indicates that a function can be overridden
+    in a subclass, and that the overridden function will actually be
+    used.</li>
+
+    <li>When a base object pointer points to a derived object that
+    contains a virtual function, the decision about which version of
+    that function to call is based on the type of object pointed to by
+    the pointer, and this process happens at runtime.</li>
+
+    <li>A base object can point to different derived objects and have
+    different versions of the virtual function run.</li>
+  </ul>
+
+  <p>If the function is specified as a pure virtual function (denoted
+  by the = 0), it must be overridden by a derived class.</p>
+
+  <div class="related-examples-format">
+    Example code:
+  </div>
+
+  <div class="related-examples">
+    <p>For example, the following code snippet shows how a child class
+    can override a virtual method of its parent, and how a non-virtual
+    method in the parent cannot be overridden:</p>
+<pre class="prettyprint">
+class Base {
+public:
+ void nonVirtualFunc() {
+   cout &lt;&lt; &quot;Base: non-virtual function&quot; &lt;&lt; endl;
+ }
+ virtual void virtualFunc() {
+   cout &lt;&lt; &quot;Base: virtual function&quot; &lt;&lt; endl;
+ }
+};              
+
+class Child : public Base {
+public:
+ void nonVirtualFunc() {
+   cout &lt;&lt; &quot;Child: non-virtual function&quot; &lt;&lt; endl;
+ }
+ void virtualFunc() {
+   cout &lt;&lt; &quot;Child: virtual function&quot; &lt;&lt; endl;
+ }
+};              
+
+int main() {
+ Base* basePointer = new Child();
+ basePointer-&gt;nonVirtualFunc();
+ basePointer-&gt;virtualFunc();
+ return 0;
+}               
+</pre>
+
+    <p>When run, the above code displays:</p>
+<pre class="prettyprint">
+Base: non-virtual function
+Child: virtual function         
+</pre>
+  </div>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="class.html">class</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    void
+  </div>
+
+  <p>The void keyword is used to denote functions that return no value,
+  or generic variables which can point to any type of data. Void can
+  also be used to declare an empty parameter list. Also see the
+  <a href="../data_types.html">data types</a> page.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="char.html">char</a><br>
+    <a href="double.html">double</a><br>
+    <a href="float.html">float</a><br>
+    <a href="int.html">int</a><br>
+    <a href="long.html">long</a><br>
+    <a href="short.html">short</a><br>
+    <a href="signed.html">signed</a><br>
+    <a href="unsigned.html">unsigned</a><br>
+    <a href="wchar_t.html">wchar_t</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    volatile
+  </div>
+
+  <p>The volatile keyword is an implementation-dependent modifier, used
+  when declaring variables, which prevents the compiler from optimizing
+  those variables. Volatile should be used with variables whose value
+  can change in unexpected ways (i.e. through an interrupt), which
+  could conflict with optimizations that the compiler might
+  perform.</p>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    wchar_t
+  </div>
+
+  <p>The keyword wchar_t is used to declare wide character variables.
+  Also see the <a href="../data_types.html">data types</a> page.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="bool.html">bool</a><br>
+    <a href="char.html">char</a><br>
+    <a href="double.html">double</a><br>
+    <a href="float.html">float</a><br>
+    <a href="int.html">int</a><br>
+    <a href="short.html">short</a><br>
+    <a href="signed.html">signed</a><br>
+    <a href="unsigned.html">unsigned</a><br>
+    <a href="void.html">void</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    while
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  while( condition ) {
+  statement-list;
+  }
+</pre>
+
+  <p>The while keyword is used as a looping construct that will
+  evaluate the <em>statement-list</em> as long as <em>condition</em> is
+  true. Note that if the <em>condition</em> starts off as false, the
+  <em>statement-list</em> will never be executed. (You can use a
+  <a href="do.html">do</a> loop to guarantee that the statement-list
+  will be executed at least once.) For example:</p>
+<pre class="prettyprint">
+   bool done = false;
+   while( !done ) {
+     ProcessData();
+     if( StopLooping() ) {
+       done = true;
+     }
+   }            
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="break.html">break</a><br>
+    <a href="continue.html">continue</a><br>
+    <a href="do.html">do</a><br>
+    <a href="for.html">for</a><br>
+    <a href="if.html">if</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+</body>
+<!-- Mirrored from cppreference.com/keywords/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

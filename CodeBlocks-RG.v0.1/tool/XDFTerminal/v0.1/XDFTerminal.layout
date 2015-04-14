@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release" />
+	<File name="..\..\..\sdk\ctb-0.13\src\fifo.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="379" topLine="0" />
+	</File>
+	<File name="dlgMain.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="22791" topLine="436" />
+	</File>
+	<File name="dlgMain.h" open="0" top="0" tabpos="4">
+		<Cursor position="176" topLine="0" />
+	</File>
+	<File name="wxsmith\dlgMain.wxs" open="0" top="0" tabpos="0">
+		<Cursor position="16490" topLine="410" />
+	</File>
+</CodeBlocks_layout_file>

@@ -1,0 +1,2 @@
+<area shape="rect" href="$classwx_grid_cell_string_renderer.html" title="This class may be used to format string data in a cell; it is the default for string..." alt="" coords="11,89,189,121">
+<area shape="rect" href="$classwx_grid_cell_renderer.html" title="This class is responsible for actually drawing the cell in the grid." alt="" coords="28,7,172,39">

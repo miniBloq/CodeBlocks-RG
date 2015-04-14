@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Avoiding%20Compilation">Avoiding Compilation</a>,
+Next:<a rel="next" accesskey="n" href="Overriding.html#Overriding">Overriding</a>,
+Previous:<a rel="previous" accesskey="p" href="Instead-of-Execution.html#Instead%20of%20Execution">Instead of Execution</a>,
+Up:<a rel="up" accesskey="u" href="Running.html#Running">Running</a>
+<hr><br>
+</div>
+
+<h3 class="section">Avoiding Recompilation of Some Files</h3>
+
+   <p>Sometimes you may have changed a source file but you do not want to
+recompile all the files that depend on it.  For example, suppose you add
+a macro or a declaration to a header file that many other files depend
+on.  Being conservative, <code>make</code> assumes that any change in the
+header file requires recompilation of all dependent files, but you know
+that they do not need to be recompiled and you would rather not waste
+the time waiting for them to compile.
+
+   <p>If you anticipate the problem before changing the header file, you can
+use the <code>-t</code> flag.  This flag tells <code>make</code> not to run the
+commands in the rules, but rather to mark the target up to date by
+changing its last-modification date.  You would follow this procedure:
+
+     <ol type=1 start=1>
+<li>Use the command <code>make</code> to recompile the source files that really
+need recompilation, ensuring that the object files are up-to-date
+before you begin.
+
+     <li>Make the changes in the header files.
+
+     <li>Use the command <code>make -t</code> to mark all the object files as
+up to date.  The next time you run <code>make</code>, the changes in the
+header files will not cause any recompilation.
+        </ol>
+
+   <p>If you have already changed the header file at a time when some files
+do need recompilation, it is too late to do this.  Instead, you can
+use the <code>-o&nbsp;</code><var>file</var><code></code> flag, which marks a specified file as
+"old" (see <a href="Options-Summary.html#Options%20Summary">Summary of Options</a>).  This means
+that the file itself will not be remade, and nothing else will be
+remade on its account.  Follow this procedure:
+
+     <ol type=1 start=1>
+<li>Recompile the source files that need compilation for reasons independent
+of the particular header file, with <code>make -o </code><var>headerfile</var><code></code>. 
+If several header files are involved, use a separate <code>-o</code> option
+for each header file.
+
+     <li>Touch all the object files with <code>make -t</code>.
+        </ol>
+
+   </body></html>
+

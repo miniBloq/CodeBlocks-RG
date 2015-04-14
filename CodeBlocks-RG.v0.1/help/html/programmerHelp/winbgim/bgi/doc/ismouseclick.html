@@ -1,0 +1,117 @@
+<TITLE>BGI Documentation for 
+ismouseclick
+</TITLE>
+<H2>
+ismouseclick
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include "graphics.h"
+bool ismouseclick(int kind);
+</PRE>
+
+
+
+<DT><B>Description</B><IMG SRC="win.gif" ALT="[WIN]"><DD>
+The 
+ismouseclick
+function is available in the
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation of BGI
+graphics.
+   This function returns true if there is an unprocessed mouse event of
+   the specified kind.
+   The argument to <CODE>ismouseclick</CODE> is
+   one of these constants from the <CODE>graphics.h</CODE> file:
+   <DL>
+   <DT><CODE>WM_MOUSEMOVE</CODE>
+   <DD>if you want to detect a mouse movement
+   <DT><CODE>WM_LBUTTONDBLCLK</CODE>
+   <DD>...detect when the left mouse button is double clicked
+   <DT><CODE>WM_LBUTTONDOWN</CODE>
+   <DD>...detect when the left mouse button is clicked down
+   <DT><CODE>WM_LBUTTONUP</CODE>
+   <DD>...detect when the left mouse button is released up
+   <DT><CODE>WM_MBUTTONDBLCLK</CODE>
+   <DD>...detect when the middle mouse button is double clicked
+   <DT><CODE>WM_MBUTTONDOWN</CODE>
+   <DD>...detect when the middle mouse button is clicked down
+   <DT><CODE>WM_MBUTTONUP</CODE>
+   <DD>...detect when the middle mouse button is released up
+   <DT><CODE>WM_RBUTTONDBLCLK</CODE>
+   <DD>...detect when the right mouse button is double clicked
+   <DT><CODE>WM_RBUTTONDOWN</CODE>
+   <DD>...detect when the right mouse button is clicked down
+   <DT><CODE>WM_RBUTTONUP</CODE>
+   <DD>...detect when the right mouse button is released up
+   </DL>
+   <P>
+   The middle mouse button handlers aren't working on my machine.
+   I haven't yet tracked down the reason--it could be a broken mouse
+   or it could be a bug in my programming.
+   <P>A mouse event can be processed by calling
+   <CODE><A HREF="getmouseclick.html">getmouseclick</A></CODE>
+   (which gets the coordinates of the event), or by calling
+   <CODE><A HREF="clearmouseclick.html">clearmouseclick</A></CODE>
+   (which processes the event without providing its coordinates).
+
+<P><DT><B>Return Value</B><DD>
+True if there is an unprocessed mouse event of the specified kind;
+otherwise false.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="getmouseclick.html"> getmouseclick </A>
+<DD><A HREF="clearmouseclick.html"> clearmouseclick </A>
+
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* mouse example */ 
+#include "graphics.h"
+
+void main(void)
+{
+    int maxx, maxy;  // Maximum x and y pixel coordinates
+    int x, y;        // Coordinates of the mouse click
+    int divisor;     // Divisor for the length of a triangle side
+
+    // Put the machine into graphics mode and get the maximum coordinates:
+    initwindow(450, 300);         
+    maxx = getmaxx( );
+    maxy = getmaxy( );
+
+    // Draw a white circle with red inside and a radius of 50 pixels:
+    setfillstyle(SOLID_FILL, RED);
+    setcolor(WHITE);
+    fillellipse(maxx/2, maxy/2, 50, 50);
+    
+    // Print a message and wait for a red pixel to be double clicked:
+    settextstyle(DEFAULT_FONT, HORIZ_DIR, 2);
+    outtextxy(20, 20, "Left click in to end.");
+    setcolor(BLUE);
+    divisor = 2;
+    while (!ismouseclick(WM_LBUTTONDOWN))
+    {
+        triangle(maxx/divisor, maxy/divisor);
+        delay(500);
+        divisor++;
+    }
+
+    getmouseclick(WM_LBUTTONDOWN, x, y);
+    cout &lt;&lt; "The mouse was clicked at: ";
+    cout &lt;&lt; "x=" &lt;&lt; x;
+    cout &lt;&lt; " y=" &lt;&lt; y &lt;&lt; endl;
+    
+    // Switch back to text mode:
+    closegraph( );
+}
+</PRE>
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

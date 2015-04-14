@@ -1,0 +1,7 @@
+<area shape="rect" href="$classwx_archive_input_stream.html" title="This is an abstract base class which serves as a common interface to archive input..." alt="" coords="69,255,221,287">
+<area shape="rect" href="$classwx_buffered_input_stream.html" title="This stream acts as a cache." alt="" coords="245,255,403,287">
+<area shape="rect" href="$classwx_zlib_input_stream.html" title="This filter stream decompresses a stream that is in zlib or gzip format." alt="" coords="427,255,557,287">
+<area shape="rect" href="$classwx_input_stream.html" title="wxInputStream is an abstract base class which may not be used directly." alt="" coords="271,89,377,121">
+<area shape="rect" href="$classwx_stream_base.html" title="This class is the base class of most stream related classes in wxWidgets." alt="" coords="268,7,380,39">
+<area shape="rect" href="$classwx_tar_input_stream.html" title="Input stream for reading tar files." alt="" coords="5,337,133,369">
+<area shape="rect" href="$classwx_zip_input_stream.html" title="Input stream for reading zip files." alt="" coords="157,337,285,369">

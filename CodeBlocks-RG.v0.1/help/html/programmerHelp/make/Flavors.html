@@ -1,0 +1,174 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Flavors">Flavors</a>,
+Next:<a rel="next" accesskey="n" href="Advanced.html#Advanced">Advanced</a>,
+Previous:<a rel="previous" accesskey="p" href="Reference.html#Reference">Reference</a>,
+Up:<a rel="up" accesskey="u" href="Using-Variables.html#Using%20Variables">Using Variables</a>
+<hr><br>
+</div>
+
+<h3 class="section">The Two Flavors of Variables</h3>
+
+   <p>There are two ways that a variable in GNU <code>make</code> can have a value;
+we call them the two <dfn>flavors</dfn> of variables.  The two flavors are
+distinguished in how they are defined and in what they do when expanded.
+
+   <p>The first flavor of variable is a <dfn>recursively expanded</dfn> variable. 
+Variables of this sort are defined by lines using <code>=</code>
+(see <a href="Setting.html#Setting">Setting Variables</a>) or by the <code>define</code> directive
+(see <a href="Defining.html#Defining">Defining Variables Verbatim</a>).  The value you specify
+is installed verbatim; if it contains references to other variables,
+these references are expanded whenever this variable is substituted (in
+the course of expanding some other string).  When this happens, it is
+called <dfn>recursive expansion</dfn>.
+
+   <p>For example,
+
+<pre class="example">     foo = $(bar)
+     bar = $(ugh)
+     ugh = Huh?
+     
+     all:;echo $(foo)
+     </pre>
+
+<p>will echo <code>Huh?</code>: <code>$(foo)</code> expands to <code>$(bar)</code> which
+expands to <code>$(ugh)</code> which finally expands to <code>Huh?</code>.
+
+   <p>This flavor of variable is the only sort supported by other versions of
+<code>make</code>.  It has its advantages and its disadvantages.  An advantage
+(most would say) is that:
+
+<pre class="example">     CFLAGS = $(include_dirs) -O
+     include_dirs = -Ifoo -Ibar
+     </pre>
+
+<p>will do what was intended: when <code>CFLAGS</code> is expanded in a command,
+it will expand to <code>-Ifoo -Ibar -O</code>.  A major disadvantage is that you
+cannot append something on the end of a variable, as in
+
+<pre class="example">     CFLAGS = $(CFLAGS) -O
+     </pre>
+
+<p>because it will cause an infinite loop in the variable expansion. 
+(Actually <code>make</code> detects the infinite loop and reports an error.)
+
+   <p>Another disadvantage is that any functions
+(see <a href="Functions.html#Functions">Functions for Transforming Text</a>)
+referenced in the definition will be executed every time the variable is
+expanded.  This makes <code>make</code> run slower; worse, it causes the
+<code>wildcard</code> and <code>shell</code> functions to give unpredictable results
+because you cannot easily control when they are called, or even how many
+times.
+
+   <p>To avoid all the problems and inconveniences of recursively expanded
+variables, there is another flavor: simply expanded variables.
+
+   <p><dfn>Simply expanded variables</dfn> are defined by lines using <code>:=</code>
+(see <a href="Setting.html#Setting">Setting Variables</a>). 
+The value of a simply expanded variable is scanned
+once and for all, expanding any references to other variables and
+functions, when the variable is defined.  The actual value of the simply
+expanded variable is the result of expanding the text that you write. 
+It does not contain any references to other variables; it contains their
+values <em>as of the time this variable was defined</em>.  Therefore,
+
+<pre class="example">     x := foo
+     y := $(x) bar
+     x := later
+     </pre>
+
+<p>is equivalent to
+
+<pre class="example">     y := foo bar
+     x := later
+     </pre>
+
+   <p>When a simply expanded variable is referenced, its value is substituted
+verbatim.
+
+   <p>Here is a somewhat more complicated example, illustrating the use of
+<code>:=</code> in conjunction with the <code>shell</code> function. 
+(See <a href="Shell-Function.html#Shell%20Function">The <code>shell</code> Function</a>.)  This example
+also shows use of the variable <code>MAKELEVEL</code>, which is changed
+when it is passed down from level to level. 
+(See <a href="Variables-Recursion.html#Variables%2fRecursion">Communicating Variables to a Sub-<code>make</code></a>, for information about <code>MAKELEVEL</code>.)
+
+<pre class="example">     ifeq (0,${MAKELEVEL})
+     cur-dir   := $(shell pwd)
+     whoami    := $(shell whoami)
+     host-type := $(shell arch)
+     MAKE := ${MAKE} host-type=${host-type} whoami=${whoami}
+     endif
+     </pre>
+
+<p>An advantage of this use of <code>:=</code> is that a typical
+`descend into a directory' command then looks like this:
+
+<pre class="example">     ${subdirs}:
+           ${MAKE} cur-dir=${cur-dir}/$@ -C $@ all
+     </pre>
+
+   <p>Simply expanded variables generally make complicated makefile programming
+more predictable because they work like variables in most programming
+languages.  They allow you to redefine a variable using its own value (or
+its value processed in some way by one of the expansion functions) and to
+use the expansion functions much more efficiently
+(see <a href="Functions.html#Functions">Functions for Transforming Text</a>).
+
+   <p>You can also use them to introduce controlled leading whitespace into
+variable values.  Leading whitespace characters are discarded from your
+input before substitution of variable references and function calls;
+this means you can include leading spaces in a variable value by
+protecting them with variable references, like this:
+
+<pre class="example">     nullstring :=
+     space := $(nullstring) # end of the line
+     </pre>
+
+<p>Here the value of the variable <code>space</code> is precisely one space.  The
+comment <code>#&nbsp;end&nbsp;of&nbsp;the&nbsp;line</code> is included here just for clarity. 
+Since trailing space characters are <em>not</em> stripped from variable
+values, just a space at the end of the line would have the same effect
+(but be rather hard to read).  If you put whitespace at the end of a
+variable value, it is a good idea to put a comment like that at the end
+of the line to make your intent clear.  Conversely, if you do <em>not</em>
+want any whitespace characters at the end of your variable value, you
+must remember not to put a random comment on the end of the line after
+some whitespace, such as this:
+
+<pre class="example">     dir := /foo/bar    # directory to put the frobs in
+     </pre>
+
+<p>Here the value of the variable <code>dir</code> is <code>/foo/bar&nbsp;&nbsp;&nbsp;&nbsp;</code>
+(with four trailing spaces), which was probably not the intention. 
+(Imagine something like <code>$(dir)/file</code> with this definition!)
+
+   <p>There is another assignment operator for variables, <code>?=</code>.  This
+is called a conditional variable assignment operator, because it only
+has an effect if the variable is not yet defined.  This statement:
+
+<pre class="example">     FOO ?= bar
+     </pre>
+
+<p>is exactly equivalent to this
+(see <a href="Origin-Function.html#Origin%20Function">The <code>origin</code> Function</a>):
+
+<pre class="example">     ifeq ($(origin FOO), undefined)
+       FOO = bar
+     endif
+     </pre>
+
+   <p>Note that a variable set to an empty value is still defined, so
+<code>?=</code> will not set that variable.
+
+   </body></html>
+

@@ -1,0 +1,1166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/all_c_functions.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:22:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>All C Functions</title>
+  <link href="cppreference.css" rel="stylesheet" type="text/css">
+  <link href="prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="index-2.html">cppreference.com</a> &gt; All C Functions
+  </div>
+
+  <div class="name-format">
+    All C Functions
+  </div>
+
+  <table class="category-table">
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "preprocessor/sharp.html">#, ##</a></td>
+
+      <td class="category-table-td">manipulate strings</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "preprocessor/define.html">#define</a></td>
+
+      <td class="category-table-td">define variables</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "preprocessor/error.html">#error</a></td>
+
+      <td class="category-table-td">display an error message</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "preprocessor/preprocessor_if.html">#if, #ifdef, #ifndef, #else,
+      #elif, #endif</a></td>
+
+      <td class="category-table-td">conditional operators</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "preprocessor/include.html">#include</a></td>
+
+      <td class="category-table-td">insert the contents of another
+      file</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "preprocessor/line.html">#line</a></td>
+
+      <td class="category-table-td">set line and file information</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "preprocessor/pragma.html">#pragma</a></td>
+
+      <td class="category-table-td">implementation specific
+      command</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "preprocessor/undef.html">#undef</a></td>
+
+      <td class="category-table-td">used to undefine variables</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "preprocessor/preprocessor_vars.html">Predefined preprocessor
+      variables</a></td>
+
+      <td class="category-table-td">miscellaneous preprocessor
+      variables</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdother/abort.html">abort</a></td>
+
+      <td class="category-table-td">stops the program</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdmath/abs.html">abs</a></td>
+
+      <td class="category-table-td">absolute value</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdmath/acos.html">acos</a></td>
+
+      <td class="category-table-td">arc cosine</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stddate/asctime.html">asctime</a></td>
+
+      <td class="category-table-td">a textual version of the time</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdmath/asin.html">asin</a></td>
+
+      <td class="category-table-td">arc sine</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdother/assert.html">assert</a></td>
+
+      <td class="category-table-td">stops the program if an expression
+      isn&#39;t true</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdmath/atan.html">atan</a></td>
+
+      <td class="category-table-td">arc tangent</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdmath/atan2.html">atan2</a></td>
+
+      <td class="category-table-td">arc tangent, using signs to
+      determine quadrants</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdother/atexit.html">atexit</a></td>
+
+      <td class="category-table-td">sets a function to be called when
+      the program exits</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/atof.html">atof</a></td>
+
+      <td class="category-table-td">converts a string to a double</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdstring/atoi.html">atoi</a></td>
+
+      <td class="category-table-td">converts a string to an
+      integer</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/atol.html">atol</a></td>
+
+      <td class="category-table-td">converts a string to a long</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdother/bsearch.html">bsearch</a></td>
+
+      <td class="category-table-td">perform a binary search</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdmem/calloc.html">calloc</a></td>
+
+      <td class="category-table-td">allocates and clears a
+      two-dimensional chunk of memory</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdmath/ceil.html">ceil</a></td>
+
+      <td class="category-table-td">the smallest integer not less than
+      a certain value</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdio/clearerr.html">clearerr</a></td>
+
+      <td class="category-table-td">clears errors</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stddate/clock.html">clock</a></td>
+
+      <td class="category-table-td">returns the amount of time that the
+      program has been running</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdmath/cos.html">cos</a></td>
+
+      <td class="category-table-td">cosine</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdmath/cosh.html">cosh</a></td>
+
+      <td class="category-table-td">hyperbolic cosine</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stddate/ctime.html">ctime</a></td>
+
+      <td class="category-table-td">returns a specifically formatted
+      version of the time</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stddate/difftime.html">difftime</a></td>
+
+      <td class="category-table-td">the difference between two
+      times</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdmath/div.html">div</a></td>
+
+      <td class="category-table-td">returns the quotient and remainder
+      of a division</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdother/exit.html">exit</a></td>
+
+      <td class="category-table-td">stop the program</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdmath/exp.html">exp</a></td>
+
+      <td class="category-table-td">returns &quot;e&quot; raised to a
+      given power</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdmath/fabs.html">fabs</a></td>
+
+      <td class="category-table-td">absolute value for floating-point
+      numbers</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdio/fclose.html">fclose</a></td>
+
+      <td class="category-table-td">close a file</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/feof.html">feof</a></td>
+
+      <td class="category-table-td">true if at the end-of-file</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdio/ferror.html">ferror</a></td>
+
+      <td class="category-table-td">checks for a file error</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/fflush.html">fflush</a></td>
+
+      <td class="category-table-td">writes the contents of the output
+      buffer</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdio/fgetc.html">fgetc</a></td>
+
+      <td class="category-table-td">get a character from a stream</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/fgetpos.html">fgetpos</a></td>
+
+      <td class="category-table-td">get the file position
+      indicator</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdio/fgets.html">fgets</a></td>
+
+      <td class="category-table-td">get a string of characters from a
+      stream</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdmath/floor.html">floor</a></td>
+
+      <td class="category-table-td">returns the largest integer not
+      greater than a given value</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdmath/fmod.html">fmod</a></td>
+
+      <td class="category-table-td">returns the remainder of a
+      division</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/fopen.html">fopen</a></td>
+
+      <td class="category-table-td">open a file</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdio/fprintf.html">fprintf</a></td>
+
+      <td class="category-table-td">print formatted output to a
+      file</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/fputc.html">fputc</a></td>
+
+      <td class="category-table-td">write a character to a file</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdio/fputs.html">fputs</a></td>
+
+      <td class="category-table-td">write a string to a file</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/fread.html">fread</a></td>
+
+      <td class="category-table-td">read from a file</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdmem/free.html">free</a></td>
+
+      <td class="category-table-td">returns previously allocated memory
+      to the operating system</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/freopen.html">freopen</a></td>
+
+      <td class="category-table-td">open an existing stream with a
+      different name</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdmath/frexp.html">frexp</a></td>
+
+      <td class="category-table-td">decomposes a number into scientific
+      notation</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/fscanf.html">fscanf</a></td>
+
+      <td class="category-table-td">read formatted input from a
+      file</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdio/fseek.html">fseek</a></td>
+
+      <td class="category-table-td">move to a specific location in a
+      file</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/fsetpos.html">fsetpos</a></td>
+
+      <td class="category-table-td">move to a specific location in a
+      file</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdio/ftell.html">ftell</a></td>
+
+      <td class="category-table-td">returns the current file position
+      indicator</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/fwrite.html">fwrite</a></td>
+
+      <td class="category-table-td">write to a file</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdio/getc.html">getc</a></td>
+
+      <td class="category-table-td">read a character from a file</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/getchar.html">getchar</a></td>
+
+      <td class="category-table-td">read a character from
+      <strong>STDIN</strong></td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdother/getenv.html">getenv</a></td>
+
+      <td class="category-table-td">get enviornment information about a
+      variable</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/gets.html">gets</a></td>
+
+      <td class="category-table-td">read a string from
+      <strong>STDIN</strong></td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stddate/gmtime.html">gmtime</a></td>
+
+      <td class="category-table-td">returns a pointer to the current
+      Greenwich Mean Time</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdstring/isalnum.html">isalnum</a></td>
+
+      <td class="category-table-td">true if a character is
+      alphanumeric</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/isalpha.html">isalpha</a></td>
+
+      <td class="category-table-td">true if a character is
+      alphabetic</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdstring/iscntrl.html">iscntrl</a></td>
+
+      <td class="category-table-td">true if a character is a control
+      character</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/isdigit.html">isdigit</a></td>
+
+      <td class="category-table-td">true if a character is a digit</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdstring/isgraph.html">isgraph</a></td>
+
+      <td class="category-table-td">true if a character is a graphical
+      character</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/islower.html">islower</a></td>
+
+      <td class="category-table-td">true if a character is
+      lowercase</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdstring/isprint.html">isprint</a></td>
+
+      <td class="category-table-td">true if a character is a printing
+      character</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/ispunct.html">ispunct</a></td>
+
+      <td class="category-table-td">true if a character is
+      punctuation</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdstring/isspace.html">isspace</a></td>
+
+      <td class="category-table-td">true if a character is a space
+      character</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/isupper.html">isupper</a></td>
+
+      <td class="category-table-td">true if a character is an uppercase
+      character</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdstring/isxdigit.html">isxdigit</a></td>
+
+      <td class="category-table-td">true if a character is a
+      hexidecimal character</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdmath/labs.html">labs</a></td>
+
+      <td class="category-table-td">absolute value for long
+      integers</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdmath/ldexp.html">ldexp</a></td>
+
+      <td class="category-table-td">computes a number in scientific
+      notation</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdmath/ldiv.html">ldiv</a></td>
+
+      <td class="category-table-td">returns the quotient and remainder
+      of a division, in long integer form</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stddate/localtime.html">localtime</a></td>
+
+      <td class="category-table-td">returns a pointer to the current
+      time</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdmath/log.html">log</a></td>
+
+      <td class="category-table-td">natural logarithm</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdmath/log10.html">log10</a></td>
+
+      <td class="category-table-td">natural logarithm, in base 10</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdother/longjmp.html">longjmp</a></td>
+
+      <td class="category-table-td">start execution at a certain point
+      in the program</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdmem/malloc.html">malloc</a></td>
+
+      <td class="category-table-td">allocates memory</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/memchr.html">memchr</a></td>
+
+      <td class="category-table-td">searches an array for the first
+      occurance of a character</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdstring/memcmp.html">memcmp</a></td>
+
+      <td class="category-table-td">compares two buffers</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/memcpy.html">memcpy</a></td>
+
+      <td class="category-table-td">copies one buffer to another</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdstring/memmove.html">memmove</a></td>
+
+      <td class="category-table-td">moves one buffer to another</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/memset.html">memset</a></td>
+
+      <td class="category-table-td">fills a buffer with a
+      character</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stddate/mktime.html">mktime</a></td>
+
+      <td class="category-table-td">returns the calendar version of a
+      given time</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdmath/modf.html">modf</a></td>
+
+      <td class="category-table-td">decomposes a number into integer
+      and fractional parts</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/perror.html">perror</a></td>
+
+      <td class="category-table-td">displays a string version of the
+      current error to <strong>STDERR</strong></td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdmath/pow.html">pow</a></td>
+
+      <td class="category-table-td">returns a given number raised to
+      another number</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/printf.html">printf</a></td>
+
+      <td class="category-table-td">write formatted output to
+      <strong>STDOUT</strong></td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdio/putc.html">putc</a></td>
+
+      <td class="category-table-td">write a character to a stream</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/putchar.html">putchar</a></td>
+
+      <td class="category-table-td">write a character to
+      <strong>STDOUT</strong></td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdio/puts.html">puts</a></td>
+
+      <td class="category-table-td">write a string to
+      <strong>STDOUT</strong></td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdother/qsort.html">qsort</a></td>
+
+      <td class="category-table-td">perform a quicksort</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdother/raise.html">raise</a></td>
+
+      <td class="category-table-td">send a signal to the program</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdother/rand.html">rand</a></td>
+
+      <td class="category-table-td">returns a pseudorandom number</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdmem/realloc.html">realloc</a></td>
+
+      <td class="category-table-td">changes the size of previously
+      allocated memory</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/remove.html">remove</a></td>
+
+      <td class="category-table-td">erase a file</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdio/rename.html">rename</a></td>
+
+      <td class="category-table-td">rename a file</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/rewind.html">rewind</a></td>
+
+      <td class="category-table-td">move the file position indicator to
+      the beginning of a file</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdio/scanf.html">scanf</a></td>
+
+      <td class="category-table-td">read formatted input from
+      <strong>STDIN</strong></td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/setbuf.html">setbuf</a></td>
+
+      <td class="category-table-td">set the buffer for a specific
+      stream</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdother/setjmp.html">setjmp</a></td>
+
+      <td class="category-table-td">set execution to start at a certain
+      point</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stddate/setlocale.html">setlocale</a></td>
+
+      <td class="category-table-td">sets the current locale</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdio/setvbuf.html">setvbuf</a></td>
+
+      <td class="category-table-td">set the buffer and size for a
+      specific stream</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdother/signal.html">signal</a></td>
+
+      <td class="category-table-td">register a function as a signal
+      handler</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdmath/sin.html">sin</a></td>
+
+      <td class="category-table-td">sine</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdmath/sinh.html">sinh</a></td>
+
+      <td class="category-table-td">hyperbolic sine</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdio/sprintf.html">sprintf</a></td>
+
+      <td class="category-table-td">write formatted output to a
+      buffer</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdmath/sqrt.html">sqrt</a></td>
+
+      <td class="category-table-td">square root</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdother/srand.html">srand</a></td>
+
+      <td class="category-table-td">initialize the random number
+      generator</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/sscanf.html">sscanf</a></td>
+
+      <td class="category-table-td">read formatted input from a
+      buffer</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/strcat.html">strcat</a></td>
+
+      <td class="category-table-td">concatenates two strings</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdstring/strchr.html">strchr</a></td>
+
+      <td class="category-table-td">finds the first occurance of a
+      character in a string</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/strcmp.html">strcmp</a></td>
+
+      <td class="category-table-td">compares two strings</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdstring/strcoll.html">strcoll</a></td>
+
+      <td class="category-table-td">compares two strings in accordance
+      to the current locale</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/strcpy.html">strcpy</a></td>
+
+      <td class="category-table-td">copies one string to another</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdstring/strcspn.html">strcspn</a></td>
+
+      <td class="category-table-td">searches one string for any
+      characters in another</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/strerror.html">strerror</a></td>
+
+      <td class="category-table-td">returns a text version of a given
+      error code</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stddate/strftime.html">strftime</a></td>
+
+      <td class="category-table-td">returns individual elements of the
+      date and time</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/strlen.html">strlen</a></td>
+
+      <td class="category-table-td">returns the length of a given
+      string</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdstring/strncat.html">strncat</a></td>
+
+      <td class="category-table-td">concatenates a certain amount of
+      characters of two strings</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/strncmp.html">strncmp</a></td>
+
+      <td class="category-table-td">compares a certain amount of
+      characters of two strings</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdstring/strncpy.html">strncpy</a></td>
+
+      <td class="category-table-td">copies a certain amount of
+      characters from one string to another</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/strpbrk.html">strpbrk</a></td>
+
+      <td class="category-table-td">finds the first location of any
+      character in one string, in another string</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdstring/strrchr.html">strrchr</a></td>
+
+      <td class="category-table-td">finds the last occurance of a
+      character in a string</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/strspn.html">strspn</a></td>
+
+      <td class="category-table-td">returns the length of a substring
+      of characters of a string</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdstring/strstr.html">strstr</a></td>
+
+      <td class="category-table-td">finds the first occurance of a
+      substring of characters</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/strtod.html">strtod</a></td>
+
+      <td class="category-table-td">converts a string to a double</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdstring/strtok.html">strtok</a></td>
+
+      <td class="category-table-td">finds the next token in a
+      string</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/strtol.html">strtol</a></td>
+
+      <td class="category-table-td">converts a string to a long</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdstring/strtoul.html">strtoul</a></td>
+
+      <td class="category-table-td">converts a string to an unsigned
+      long</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/strxfrm.html">strxfrm</a></td>
+
+      <td class="category-table-td">converts a substring so that it can
+      be used by string comparison functions</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdother/system.html">system</a></td>
+
+      <td class="category-table-td">perform a system call</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdmath/tan.html">tan</a></td>
+
+      <td class="category-table-td">tangent</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdmath/tanh.html">tanh</a></td>
+
+      <td class="category-table-td">hyperbolic tangent</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stddate/time.html">time</a></td>
+
+      <td class="category-table-td">returns the current calendar time
+      of the system</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/tmpfile.html">tmpfile</a></td>
+
+      <td class="category-table-td">return a pointer to a temporary
+      file</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdio/tmpnam.html">tmpnam</a></td>
+
+      <td class="category-table-td">return a unique filename</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdstring/tolower.html">tolower</a></td>
+
+      <td class="category-table-td">converts a character to
+      lowercase</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdstring/toupper.html">toupper</a></td>
+
+      <td class="category-table-td">converts a character to
+      uppercase</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/ungetc.html">ungetc</a></td>
+
+      <td class="category-table-td">puts a character back into a
+      stream</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "stdother/va_arg.html">va_arg</a></td>
+
+      <td class="category-table-td">use variable length parameter
+      lists</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "stdio/vprintf_vfprintf_vsprintf.html">vprintf, vfprintf, and
+      vsprintf</a></td>
+
+      <td class="category-table-td">write formatted output with
+      variable argument lists</td>
+    </tr>
+  </table>
+  </div>
+  </td>
+  
+<td width="120" valign="top">
+<script type="text/javascript"><!--
+  google_ad_client = "pub-6243170425937584";
+  google_ad_width = 120;
+  google_ad_height = 600;
+  google_ad_format = "120x600_as";
+  google_ad_type = "text";
+  google_ad_channel ="";
+  google_color_border = "EEEEFF";
+  google_color_bg = "FFFFFF";
+  google_color_link = "000000";
+  google_color_url = "336699html.html";
+  google_color_text = "333333";
+  //--></script>
+<script type="text/javascript"
+  src="../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</td>
+
+
+<script src="../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/all_c_functions.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:22:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,240 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Command Line Options Syntax</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509456966"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc426387068">Command
+Line Options Syntax</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoNormal" style="mso-list:skip">Options are introduced with the
+character '-' or the character '/'.</p>
+<p class="MsoNormal" style="mso-list:skip">Example:</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="font-family:&quot;Courier New&quot;">-map</span>
+or <span style="font-family:&quot;Courier New&quot;">/map</span></p>
+<p class="MsoNormal" style="mso-list:skip">are identical options.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal" style="mso-list:skip">Registry keys used</p>
+<p class="MsoNormal" style="mso-list:skip">To find the libraries, lcclnk uses
+the registry key:<span style="mso-bidi-font-size:12.0pt;font-family:Courier;mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></p>
+<p class="MsoHeader" style="mso-list:skip;tab-stops:36.0pt center 8.0cm right 16.0cm"><span style="mso-bidi-font-size:12.0pt;font-family:Courier;mso-ansi-language:EN-US">HKEY_LOCAL_MACHINE\SOFTWARE\lcc\lcclnk\libpath<o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</p>
+<p class="MsoNormal" style="mso-list:skip">This is an ASCII_Z key that contains
+the full path of the libraries directory. If the linker does not find this key,
+you will be prompted for it at the command line. If you enter a correct path,
+lcclnk will always use it later.</p>
+<h2><a name="_Toc509456967"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc426387069">Command
+Li</span></a><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc426387069">ne
+Switches</span><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</h2>
+<p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal">-o
+&lt;filename&gt;<o:p>
+</o:p>
+</b></p>
+<p class="MsoNormal" style="mso-list:skip">Sets the name of the output file to
+file name. Insert a space between the o and the name of the file.</p>
+<p class="MsoNormal" style="mso-list:skip">Example:</p>
+<p class="MsoNormal" style="mso-list:skip">lcclnk -o myexe.exe</p>
+<p class="MsoNormal" style="mso-list:skip">If this option is absent, the name of
+the first file will be used.</p>
+<p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal">-errout
+&lt;filename&gt;<o:p>
+</o:p>
+</b></p>
+<p class="MsoNormal" style="mso-list:skip">Write all warnings/error messages to
+the indicated file name.</p>
+<p class="MsoNormal" style="mso-list:skip">-subsystem &lt;subsystem&gt;</p>
+<p class="MsoNormal" style="mso-list:skip">Indicate the type of output file.
+Subsystem can be one of:</p>
+<p class="MsoNormal" style="mso-list:skip">1. Console</p>
+<p class="MsoNormal" style="mso-list:skip">2. Windows</p>
+<p class="MsoNormal" style="mso-list:skip">If you specify console, a console
+application is created. The standard input, standard error, and standard output
+are opened. When the program is started, Windows automatically creates a console
+window.</p>
+<p class="MsoNormal" style="mso-list:skip">If you specify Windows, a windowed
+application is created. No console window is created, and stdin, stdout, and
+stderr are NOT initialized.</p>
+<p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal">-stack-commit
+&lt;number&gt;<o:p>
+</o:p>
+</b></p>
+<p class="MsoNormal" style="mso-list:skip">The default stack reserves 1MB of
+stack space, and commits 4096 bytes of it. With this option, you can commit more
+pages than one (4096 bytes). This means that a slight improvement in execution
+speed can be attained with programs that use a lot of stack.</p>
+<p class="MsoNormal" style="mso-list:skip">Example:</p>
+<p class="MsoNormal" style="mso-list:skip">-stack-commit 27000</p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal" style="mso-list:skip"><b>-stack-reserve &lt;number&gt;<o:p>
+</o:p>
+</b></p>
+<p class="MsoNormal" style="mso-list:skip">The default stack size is 1MB. This
+changes this limit within the bounds of the operating system of course.
+Reserving 200GIGs of stack will not work</p>
+<p class="MsoToc1"><b>-reloc</b></p>
+<p class="MsoNormal" style="mso-list:skip">This option instructs the linker to
+build a .reloc section. This section is a table of relocations to apply if the
+executable cannot be loaded at its preferred load address. This option is
+necessary under Win32s.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span>This option is automatically turned on for DLLs.<o:p>
+&nbsp;
+</p>
+<p class="MsoNormal" style="mso-list:skip"><b>-dynamic</b>
+</p>
+<p class="MsoNormal" style="mso-list:skip">Use lcclibc.dll instead of libc.lib,
+the static library.</o:p>
+</p>
+<p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal">-dll<o:p>
+</o:p>
+</b></p>
+<p class="MsoNormal" style="mso-list:skip">This option indicates to the linker
+that a .dll should be created instead of an .exe. The process of building a DLL
+is very simple:</p>
+<p class="MsoNormal" style="mso-list:skip">1. Compile the source(s) files for
+your DLL as you would compile normal sources.</p>
+<p class="MsoNormal" style="mso-list:skip">2. Link the resulting object files
+using the option -DLL and provide the linker with the names of the functions
+exported in a .def file that you include in the link.</p>
+<p class="MsoNormal" style="mso-list:skip">3. Produce an import library using
+the implib utility.</p>
+<p class="MsoNormal" style="mso-list:skip">EXAMPLE:</p>
+<p class="MsoNormal" style="mso-list:skip">lcc mylib.c</p>
+<p class="MsoNormal" style="mso-list:skip">lcclnk -DLL mylib.obj mylib.def</p>
+<p class="MsoNormal" style="mso-list:skip">implib mydll.dll</p>
+<p class="MsoNormal" style="mso-list:skip">The format of the .def file is as
+follows:</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="font-family:Courier">EXPORTS<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-list:skip"><span style="font-family:Courier"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Function<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-list:skip"><span style="font-family:Courier"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>AnotherFunction<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-list:skip"><span style="font-family:Courier"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>YetAnotherFunction<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-list:skip">You write the EXPORTS keyword,
+followed by the name of each function of the DLL you want to export (i.e., to
+make visible for use in another executable) in a single line.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal">-map
+&lt;filename&gt;<o:p>
+</o:p>
+</b></p>
+<p class="MsoNormal" style="mso-list:skip">This indicates the name of the map
+file. In the map file, you will find the addresses of all symbols used in the
+link and the line number information, if available. The format for the line
+numbers is simple:<span style="mso-spacerun: yes">&nbsp; </span>Address:line.
+The address is written in 8 characters prefixed by the '0x', and the line number
+is written in 4 characters in decimal form. This option allows you to find out
+where in your program a fault occurred by reading the address from the dialog
+box that the system displays when a program crashes.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal" style="mso-list:skip">This option is not compatible with
+the -s option, i.e., if you ask to strip all symbols, no line number information
+can be generated.</p>
+<p class="MsoNormal" style="mso-list:skip">When creating an executable with the
+-s option to ship to customers, it is better to do the link twice: One with the
+debugging information and a mapfile; the other stripped. First create the
+stripped version and then the full one. The reason behind this is that when both
+options -s and -map are specified, the linker writes a smaller link file without
+any line number information. If you create the full link first, and then the
+stripped, this smaller map file will overwrite the good one.</p>
+<p class="MsoNormal" style="mso-list:skip">Example:</p>
+<p class="MsoNormal" style="mso-list:skip">-map myexe.map<o:p>
+&nbsp;
+</p>
+<p class="MsoNormal" style="mso-list:skip"><b>-nolibc</b>
+</p>
+<p class="MsoNormal" style="mso-list:skip">Do not link the standard libc
+library.</o:p>
+</p>
+<p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal">-s<o:p>
+</o:p>
+</b></p>
+<p class="MsoNormal">This option indicates that the linker should strip all
+symbolic and debugging information from the executable. This means the
+executable cannot be debugged with a debugger, but that its size will be
+considerably smaller. In addition, the linking speed is increased because the
+linker has less work to do. Use this option with debugged programs if you
+believe this to exist.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal">-version
+nn.nn<o:p>
+</o:p>
+</b></p>
+<p class="MsoNormal" style="mso-list:skip">This option adds the version number
+to the executable. The numbers are the major version number and the minor
+version number. A period character separates them.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal" style="mso-list:skip">Example:</p>
+<p class="MsoNormal" style="mso-list:skip">-version 3.8 or -version 99.01<o:p>
+</o:p>
+</p>
+<p class="MsoNormal" style="mso-list:skip"><b>-x</b></p>
+<p class="MsoNormal" style="mso-list:skip">Analyzes the symbols that are
+declared 'extern', but which are never referenced in any other object in the
+link. There are two cases:</p>
+<p class="MsoNormal" style="mso-list:skip">1. The symbol is in the .text section
+(code section).</p>
+<p class="MsoNormal" style="mso-list:skip">Even if this symbol is not used in
+other modules, it can be used in the same module. The linker cannot determine
+this (without disassembling the whole object file), but you can easily check
+this. Declare the function 'static' and recompile your source. If it is not
+used, the compiler will issue a warning.</p>
+<p class="MsoNormal" style="mso-list:skip">2. The symbol is in the .data or .bss
+section.</p>
+<p class="MsoNormal" style="mso-list:skip">This is a data item and it is surely
+not used. Delete it from your source.</p>
+<p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal">errout=&lt;filename&gt;<o:p>
+</o:p>
+</b></p>
+<p class="MsoNormal" style="mso-list:skip">Write all warnings or errors to the
+file name indicated. Do not include any spaces between the equals sign and the
+name of the file.</p>
+<p class="MsoNormal" style="mso-list:skip">Example:</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span>errout=link.err</p>
+<p class="MsoNormal" style="mso-list:skip">Lcclnk writes the errors to stderr by
+default. If you want the errors in the standard output use:</p>
+<p class="MsoNormal" style="mso-list:skip">errout=stdout</p>
+<p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal">nounderscores<o:p>
+</o:p>
+</b></p>
+<p class="MsoNormal"><span style="mso-bidi-font-family:Arial">When creating a
+DLL for Visual Basic for instance, it is better to export names without
+underscores from a DLL. This option will allow this.<o:p>
+</o:p>
+</span></p>
+
+</body>
+
+</html>

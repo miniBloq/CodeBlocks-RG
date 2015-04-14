@@ -1,0 +1,8 @@
+<area shape="rect" href="$classwx_box_sizer.html" title="The basic idea behind a box sizer is that windows will most often be laid out in..." alt="" coords="233,172,327,204">
+<area shape="rect" href="$classwx_grid_sizer.html" title="A grid sizer is a sizer which lays out its children in a two&#45;dimensional table with..." alt="" coords="437,172,533,204">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="301,7,376,39">
+<area shape="rect" href="$classwx_static_box_sizer.html" title="wxStaticBoxSizer is a sizer derived from wxBoxSizer but adds a static box around..." alt="" coords="5,255,131,287">
+<area shape="rect" href="$classwx_std_dialog_button_sizer.html" title="This class creates button layouts which conform to the standard button spacing and..." alt="" coords="155,255,320,287">
+<area shape="rect" href="$classwx_wrap_sizer.html" title="A wrap sizer lays out its items in a single line, like a box sizer &#45;&#45; as long as..." alt="" coords="344,255,445,287">
+<area shape="rect" href="$classwx_flex_grid_sizer.html" title="A flex grid sizer is a sizer which lays out its children in a two&#45;dimensional table..." alt="" coords="469,255,589,287">
+<area shape="rect" href="$classwx_grid_bag_sizer.html" title="A wxSizer that can lay out items in a virtual grid like a wxFlexGridSizer but in..." alt="" coords="469,337,589,369">

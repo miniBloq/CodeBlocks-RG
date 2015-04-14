@@ -1,0 +1,324 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The pedump Utility</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509456972"><span lang="FR" style="mso-bookmark: _Toc430329260">The
+pedu</span></a><span lang="FR" style="mso-bookmark: _Toc430329260">mp Utility</span></h2>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;mso-list:skip"><span style="mso-ansi-language:EN-US">This
+utility has been the workhorse of lcc-win32. Without it, the linker and the
+debugger would not exist. To be able to generate something, you must be able to
+see what you are generating. See the technical documentation for more
+information about pedump.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm;mso-list:skip"><span style="mso-ansi-language:EN-US">Files
+types dumped are:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo3"><span style="font-family:Symbol;mso-ansi-language:EN-US">·</span><span style="mso-ansi-language:EN-US">EXE<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Executable files<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo3"><span style="font-family:Symbol;mso-ansi-language:EN-US">·</span><span style="mso-ansi-language:EN-US">OBJ<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Object files<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo3"><span style="font-family:Symbol;mso-ansi-language:EN-US">·</span><span style="mso-ansi-language:EN-US">RES<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Resource files<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo3"><span style="font-family:Symbol;mso-ansi-language:EN-US">·</span><span style="mso-ansi-language:EN-US">DLL<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>DLLs<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo3"><span style="font-family:Symbol;mso-ansi-language:EN-US">·</span><span style="mso-ansi-language:EN-US">OCX<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Type libraries+dlls<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo3"><span style="font-family:Symbol;mso-ansi-language:EN-US">·</span><span style="mso-ansi-language:EN-US">LIB<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Libraries<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo3"><span style="font-family:Symbol;mso-ansi-language:EN-US">·</span><span style="mso-ansi-language:EN-US">TLB/OCA<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Type libraries<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo3"><span style="font-family:Symbol;mso-ansi-language:EN-US">·</span><span style="mso-ansi-language:EN-US">DBG<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>DLLs debug info<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent"><span style="mso-ansi-language:EN-US">&nbsp;<o:p>
+</o:p>
+</span></p>
+<table border="1" cellspacing="0" cellpadding="0" width="605" style="width:16.0cm;
+ margin-left:3.5pt;border-collapse:collapse;border:none;mso-border-alt:solid windowtext 1.5pt;
+ mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr>
+    <td width="113" valign="top" style="width:3.0cm;border-top:1.5pt;border-left:
+  1.5pt;border-bottom:.75pt;border-right:.75pt;border-color:windowtext;
+  border-style:solid;padding:0cm 3.5pt 0cm 3.5pt">
+      <h5 style="mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;;
+  mso-ansi-language:EN-US">Option<o:p>
+      </o:p>
+      </span></h5>
+    </td>
+    <td width="491" valign="top" style="width:13.0cm;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-left-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <h5 style="mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;;
+  mso-ansi-language:EN-US">Description<o:p>
+      </o:p>
+      </span></h5>
+    </td>
+  </tr>
+  <tr>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/A</p>
+    </td>
+    <td width="491" valign="top" style="width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Includes everything in the
+      output. All sections, all data dumps, etc. The code sections will be
+      disassembled and if debug information is available, the line numbers will
+      be annotated in the resulting output.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/D</p>
+    </td>
+    <td width="491" valign="top" style="width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Dumps the code view or gcc
+      debug information. This option supports the NB09 Standard from Microsoft,
+      and the STABS format from gcc.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/E</p>
+    </td>
+    <td width="491" valign="top" style="width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Dump the resources section.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/EXP</p>
+    </td>
+    <td width="491" valign="top" style="width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">If given an import library,
+      pedump will generate a list of the exported functions in a format suitable
+      for the buildlib utility. See FAQ question 12 for further explanation. If
+      given a DLL, pedump will print a list of the exported symbols from the
+      DLL, in the same format. If given an object file, this option will trigger
+      pedump to print a list of all public symbols defined in the object file,
+      in the same format.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/functionsize</p>
+    </td>
+    <td width="491" valign="top" style="width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Will produce a table of all
+      functions defined in the object or executable file sorted by their size in
+      bytes. The executable should have a symbol table (debug information should
+      be present).</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/H</p>
+    </td>
+    <td width="491" valign="top" style="width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Includes a hexadecimal dump of
+      the sections in the file.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/HEX</p>
+    </td>
+    <td width="491" valign="top" style="width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Dump contents in hexadecimal
+      form, without any concern for structures in the file. This allows you to
+      dump any type of file.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/L</p>
+    </td>
+    <td width="491" valign="top" style="width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Includes line number
+      information.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/OUT:file</p>
+    </td>
+    <td width="491" valign="top" style="width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Prints the output into
+      &lt;file&gt; instead of standard output. If the given file name contains
+      spaces it should be enclosed in quotes.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/REL</p>
+    </td>
+    <td width="491" valign="top" style="width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Shows the relocations.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/R</p>
+    </td>
+    <td width="491" valign="top" style="width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Shows the resources in an
+      executable.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/SUMMARY</p>
+    </td>
+    <td width="491" valign="top" style="width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Shows the sizes for the main
+      parts of the file only.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/S</p>
+    </td>
+    <td width="491" valign="top" style="width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Dumps the symbol table. All the
+      symbols are dumped with all the details. Useful if you are writing a
+      compiler.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/SP</p>
+    </td>
+    <td width="491" valign="top" style="width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Writes all the
+      exported/imported symbols from an object file or executable. This is a
+      smaller and more readable output than /S.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/T</p>
+    </td>
+    <td width="491" valign="top" style="width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Dumps a type library. This will
+      be determined automatically if you present to pedump a library that
+      contains an exported function like DllRegisterServer.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext 1.5pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/X</p>
+    </td>
+    <td width="491" valign="top" style="width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Extracts a section to a file.
+      The name of the section immediately follows the “x”. For instance /x.data
+      will create a data.scn file with the contents of the data section.</p>
+    </td>
+  </tr>
+</table>
+
+</body>
+
+</html>

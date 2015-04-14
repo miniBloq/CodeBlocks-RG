@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Cleanup">Cleanup</a>,
+Previous:<a rel="previous" accesskey="p" href="Combine-By-Prerequisite.html#Combine%20By%20Prerequisite">Combine By Prerequisite</a>,
+Up:<a rel="up" accesskey="u" href="Introduction.html#Introduction">Introduction</a>
+<hr><br>
+</div>
+
+<h3 class="section">Rules for Cleaning the Directory</h3>
+
+   <p>Compiling a program is not the only thing you might want to write rules
+for.  Makefiles commonly tell how to do a few other things besides
+compiling a program: for example, how to delete all the object files
+and executables so that the directory is <code>clean</code>.
+
+   <p>Here is how we
+could write a <code>make</code> rule for cleaning our example editor:
+
+<pre class="example">     clean:
+             rm edit $(objects)
+     </pre>
+
+   <p>In practice, we might want to write the rule in a somewhat more
+complicated manner to handle unanticipated situations.  We would do this:
+
+<pre class="example">     .PHONY : clean
+     clean :
+             -rm edit $(objects)
+     </pre>
+
+<p>This prevents <code>make</code> from getting confused by an actual file
+called <code>clean</code> and causes it to continue in spite of errors from
+<code>rm</code>.  (See <a href="Phony-Targets.html#Phony%20Targets">Phony Targets</a>, and <a href="Errors.html#Errors">Errors in Commands</a>.)
+
+<p>A rule such as this should not be placed at the beginning of the
+makefile, because we do not want it to run by default!  Thus, in the
+example makefile, we want the rule for <code>edit</code>, which recompiles
+the editor, to remain the default goal.
+
+   <p>Since <code>clean</code> is not a prerequisite of <code>edit</code>, this rule will not
+run at all if we give the command <code>make</code> with no arguments.  In
+order to make the rule run, we have to type <code>make clean</code>. 
+See <a href="Running.html#Running">How to Run <code>make</code></a>.
+
+   </body></html>
+

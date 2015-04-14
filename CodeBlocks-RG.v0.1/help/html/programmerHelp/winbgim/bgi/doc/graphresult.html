@@ -1,0 +1,117 @@
+<TITLE>BGI Documentation for 
+graphresult
+</TITLE>
+<H2>
+graphresult
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+int graphresult(void);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+graphresult returns the error code for the last graphics operation that reported an error and resets the error level to grOk.
+<P>The following table lists the error codes returned by graphresult. The enumerated type graph_errors defines the errors in this table. graph_errors is declared in graphics.h.
+<TABLE>
+<TR>
+<TD><B>code&nbsp;&nbsp;&nbsp;</B>
+<TD><B>constant</B>
+<TD><B>Corresponding error message string
+<TR><TD>0	<TD>grOk		<TD>No error
+<TR><TD>-1	<TD>grNoInitGraph	<TD>(BGI) graphics not installed (use initgraph)
+<TR><TD>-2	<TD>grNotDetected	<TD>Graphics hardware not detected
+<TR><TD>-3	<TD>grFileNotFound 	<TD>Device driver file not found
+<TR><TD>-4	<TD>grInvalidDriver	<TD>Invalid device driver file
+<TR><TD>-5	<TD>grNoLoadMem	<TD>Not enough memory to load driver
+<TR><TD>-6	<TD>grNoScanMem	<TD>Out of memory in scan fill
+<TR><TD>-7	<TD>grNoFloodMem	<TD>Out of memory in flood fill
+<TR><TD>-8	<TD>grFontNotFound&nbsp;&nbsp;&nbsp;&nbsp; 	<TD>Font file not found
+<TR><TD>-9	<TD>grNoFontMem	<TD>Not enough memory to load font
+<TR><TD>-10	<TD>grInvalidMode	<TD>Invalid graphics mode for selected driver
+<TR><TD>-11	<TD>grError		<TD>Graphics error
+<TR><TD>-12	<TD>grIOerror		<TD>Graphics I/O error
+<TR><TD>-13	<TD>grInvalidFont	<TD>Invalid font file
+<TR><TD>-14	<TD>grInvalidFontNum	<TD>Invalid font number
+<TR><TD>-15	<TD>grInvalidDeviceNum	<TD>Invalid device number
+<TR><TD>-18	<TD>grInvalidVersion	<TD>Invalid version number
+</TABLE>
+Note:	The variable maintained by graphresult is reset to 0 after
+graphresult has been called. Therefore, you should store the value of
+graphresult into a temporary variable and then test it.
+
+<P><DT><B>Return Value</B><DD>
+graphresult returns the current graphics error number, an integer in the range -15 to 0; grapherrormsg returns a pointer to a string associated with the value returned by graphresult.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="detectgraph.html"> detectgraph </A>
+<DD><A HREF="drawpoly.html"> drawpoly </A>
+<DD><A HREF="fillpoly.html"> fillpoly </A>
+<DD><A HREF="floodfill.html"> floodfill </A>
+<DD><A HREF="grapherrormsg.html"> grapherrormsg </A>
+<DD><A HREF="initgraph.html"> initgraph </A>
+<DD><A HREF="pieslice.html"> pieslice </A>
+<DD><A HREF="registerbgidriver.html"> registerbgidriver </A>
+<DD><A HREF="registerbgifont.html"> registerbgifont </A>
+<DD><A HREF="setallpalette.html"> setallpalette </A>
+<DD><A HREF="setcolor.html"> setcolor </A>
+<DD><A HREF="setfillstyle.html"> setfillstyle </A>
+<DD><A HREF="setgraphmode.html"> setgraphmode </A>
+<DD><A HREF="setlinestyle.html"> setlinestyle </A>
+<DD><A HREF="setpalette.html"> setpalette </A>
+<DD><A HREF="settextjustify.html"> settextjustify </A>
+<DD><A HREF="settextstyle.html"> settextstyle </A>
+<DD><A HREF="setusercharsize.html"> setusercharsize </A>
+<DD><A HREF="setviewport.html"> setviewport </A>
+<DD><A HREF="setvisualpage.html"> setvisualpage </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* graphresult example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   /* draw a line */
+   line(0, 0, getmaxx(), getmaxy());
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

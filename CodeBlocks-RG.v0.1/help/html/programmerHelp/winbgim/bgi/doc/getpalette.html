@@ -1,0 +1,120 @@
+<TITLE>BGI Documentation for 
+getpalette
+</TITLE>
+<H2>
+getpalette
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void getpalette(struct palettetype *palette);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+getpalette fills the palettetype structure pointed to by palette with information about the current palette's size and colors.
+<P>
+The MAXCOLORS constant and the palettetype structure used by getpalette are defined in graphics.h as follows:
+<PRE>
+#define MAXCOLORS  15
+
+struct palettetype {
+   unsigned char size;
+   signed char colors[MAXCOLORS + 1];
+};
+</PRE>
+size gives the number of colors in the palette for the current graphics driver in the current mode.
+<P>colors is an array of size bytes containing the actual raw color numbers for each entry in the palette.
+<P>getpalette cannot be used with the IBM-8514 driver.
+
+
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+The <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> version of
+getpalette returns a palettetype object of 16 colors.
+Each color is either one of the 16 BGI color numbers (0 through 15) or
+it is -1 to indicate that the location of the palette has been set to an
+<A HREF="wincolor.html">RGB color</A>.
+
+<P><DT><B>See also</B>
+<DD><A HREF="getbkcolor.html"> getbkcolor </A>
+<DD><A HREF="getcolor.html"> getcolor </A>
+<DD><A HREF="getdefaultpalette.html"> getdefaultpalette </A>
+<DD><A HREF="getmaxcolor.html"> getmaxcolor </A>
+<DD><A HREF="setallpalette.html"> setallpalette </A>
+<DD><A HREF="setpalette.html"> setpalette </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* getpalette example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main()
+{
+
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   struct palettetype pal;
+   char psize[80], pval[20];
+   int i, ht;
+   int y = 10;
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   /* grab a copy of the palette */
+   getpalette(&pal);
+
+   /* convert palette info into strings */
+   sprintf(psize, "The palette has %d modifiable entries.", pal.size);
+
+   /* display the information */
+   outtextxy(0, y, psize);
+   if (pal.size != 0) {
+      ht = textheight("W");
+
+      y += 2*ht;
+      outtextxy(0, y, "Here are the current values:");
+      y += 2*ht;
+      for (i=0; i&lt;pal.size; i++, y+=ht) {
+         sprintf(pval, "palette[%02d]: 0x%02X", i, pal.colors[i]);
+         outtextxy(0, y, pval);
+      }
+   }
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

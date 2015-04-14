@@ -1,0 +1,394 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The Binary Editor</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509457024"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc425011568">The
+Binary Editor</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;This utility allows you to
+visualize a file in binary mode. The bytes in the file are displayed without
+taking into account any line records.</p>
+<p class="MsoNormal" style="mso-list:skip">You reach this utility from the File
+-&gt; open binary menu option.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal" align="center" style="text-align:center;mso-list:skip"><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:448.5pt;
+ height:361.5pt' fillcolor="window">
+ <v:imagedata src="binary36.gif"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="binary36.gif" v:shapes="_x0000_i1025" width="598" height="482"></p>
+<p class="MsoNormal" style="mso-list:skip">The display is organized in three
+main blocks:</p>
+<p class="MsoNormal" style="mso-list:skip"><!--[if supportFields]><span
+style='mso-element:field-begin'></span>SYMBOL 183 \f &quot;Symbol&quot; \s 10
+\h<![endif]-->
+<!--[if supportFields]><span style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>The offset of the data within the file in the left column</p>
+<p class="MsoNormal" style="mso-list:skip"><!--[if supportFields]><span
+style='mso-element:field-begin'></span>SYMBOL 183 \f &quot;Symbol&quot; \s 10
+\h<![endif]-->
+<!--[if supportFields]><span style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>The 16 bytes that follow that offset displayed according to the settings
+of the 'Style' button</p>
+<p class="MsoNormal" style="mso-list:skip"><!--[if supportFields]><span
+style='mso-element:field-begin'></span>SYMBOL 183 \f &quot;Symbol&quot; \s 10
+\h<![endif]-->
+<!--[if supportFields]><span style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Their character representation (if any)</p>
+<p class="MsoNormal" style="margin-left:2.0cm;text-indent:28.4pt;mso-list:skip">&nbsp;<o:p>
+</o:p>
+</p>
+<h3><a name="_Toc435923625"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc425011569">The
+Menu Options of the Binary Editor</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h3>
+<h4 style="margin-left:0cm;text-indent:0cm;mso-list:skip"><span style="mso-ansi-language:EN-US">Style<o:p>
+</o:p>
+</span></h4>
+<p class="MsoBodyText" style="mso-list:skip">This option allows you to change
+the representation of the data in the column at the center of the display.</p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr>
+    <td width="354" valign="top" style="width:265.75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" align="center" style="text-align:center;mso-list:skip"><!--[if gte vml 1]><v:shape
+   id="_x0000_i1026" type="#_x0000_t75" style='width:187.5pt;height:181.5pt'
+   fillcolor="window">
+   <v:imagedata src="binary37.gif"
+    o:title=""/>
+  </v:shape><![endif]-->
+      <img src="binary37.gif" v:shapes="_x0000_i1026" width="250" height="242"></p>
+    </td>
+    <td width="260" valign="top" style="width:194.85pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip"><span style="font-size:8.0pt;
+  mso-bidi-font-size:12.0pt">You reach this dialog box by using the ‘Style’
+      option in the binary editor ‘File’ menu.<u><o:p>
+      </o:p>
+      </u></span></p>
+      <p class="MsoNormal" style="mso-list:skip"><u><span style="font-size:8.0pt;
+  mso-bidi-font-size:12.0pt">The representation formats available are:<o:p>
+      </o:p>
+      </span></u></p>
+      <p class="MsoNormal" style="mso-list:skip"><!--[if supportFields]><span
+  style='font-size:8.0pt;mso-bidi-font-size:12.0pt'><span style='mso-element:
+  field-begin'></span>SYMBOL 183 \f &quot;Symbol&quot; \s 10 \h</span><![endif]-->
+      <!--[if supportFields]><span
+  style='font-size:8.0pt;mso-bidi-font-size:12.0pt'><span style='mso-element:
+  field-end'></span></span><![endif]-->
+      <span style="font-size:8.0pt;mso-bidi-font-size:
+  12.0pt"> Characters shown in hex<o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal" style="mso-list:skip"><!--[if supportFields]><span
+  style='font-size:8.0pt;mso-bidi-font-size:12.0pt'><span style='mso-element:
+  field-begin'></span>SYMBOL 183 \f &quot;Symbol&quot; \s 10 \h</span><![endif]-->
+      <!--[if supportFields]><span
+  style='font-size:8.0pt;mso-bidi-font-size:12.0pt'><span style='mso-element:
+  field-end'></span></span><![endif]-->
+      <span style="font-size:8.0pt;mso-bidi-font-size:
+  12.0pt"> Integer 8 bits shown in decimal<o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal" style="mso-list:skip"><!--[if supportFields]><span
+  style='font-size:8.0pt;mso-bidi-font-size:12.0pt'><span style='mso-element:
+  field-begin'></span>SYMBOL 183 \f &quot;Symbol&quot; \s 10 \h</span><![endif]-->
+      <!--[if supportFields]><span
+  style='font-size:8.0pt;mso-bidi-font-size:12.0pt'><span style='mso-element:
+  field-end'></span></span><![endif]-->
+      <span style="font-size:8.0pt;mso-bidi-font-size:
+  12.0pt"> Integer 16 bits, unsigned or signed<o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal" style="mso-list:skip"><!--[if supportFields]><span
+  style='font-size:8.0pt;mso-bidi-font-size:12.0pt'><span style='mso-element:
+  field-begin'></span>SYMBOL 183 \f &quot;Symbol&quot; \s 10 \h</span><![endif]-->
+      <!--[if supportFields]><span
+  style='font-size:8.0pt;mso-bidi-font-size:12.0pt'><span style='mso-element:
+  field-end'></span></span><![endif]-->
+      <span style="font-size:8.0pt;mso-bidi-font-size:
+  12.0pt"> Integer 32 bits, unsigned or signed<o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal" style="mso-list:skip"><!--[if supportFields]><span
+  style='font-size:8.0pt;mso-bidi-font-size:12.0pt'><span style='mso-element:
+  field-begin'></span>SYMBOL 183 \f &quot;Symbol&quot; \s 10 \h</span><![endif]-->
+      <!--[if supportFields]><span
+  style='font-size:8.0pt;mso-bidi-font-size:12.0pt'><span style='mso-element:
+  field-end'></span></span><![endif]-->
+      <span style="font-size:8.0pt;mso-bidi-font-size:
+  12.0pt"> Bit inverted. The bits 0-31 become bits 31-0<o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal" style="mso-list:skip"><!--[if supportFields]><span
+  style='font-size:8.0pt;mso-bidi-font-size:12.0pt'><span style='mso-element:
+  field-begin'></span>SYMBOL 183 \f &quot;Symbol&quot; \s 10 \h</span><![endif]-->
+      <!--[if supportFields]><span
+  style='font-size:8.0pt;mso-bidi-font-size:12.0pt'><span style='mso-element:
+  field-end'></span></span><![endif]-->
+      <span style="font-size:8.0pt;mso-bidi-font-size:
+  12.0pt"> Float simple precision (32 bits)<o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal" style="mso-list:skip"><!--[if supportFields]><span
+  style='font-size:8.0pt;mso-bidi-font-size:12.0pt'><span style='mso-element:
+  field-begin'></span>SYMBOL 183 \f &quot;Symbol&quot; \s 10 \h</span><![endif]-->
+      <!--[if supportFields]><span
+  style='font-size:8.0pt;mso-bidi-font-size:12.0pt'><span style='mso-element:
+  field-end'></span></span><![endif]-->
+      <span style="font-size:8.0pt;mso-bidi-font-size:
+  12.0pt"> Float double precision (64 bits)<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal" align="center" style="margin-left:1.0cm;text-align:center;
+mso-list:skip">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal" style="mso-list:skip">You can choose any of the
+representations above.</p>
+<h4 style="margin-left:0cm;text-indent:0cm;mso-list:skip"><span style="mso-ansi-language:EN-US">Search<o:p>
+</o:p>
+</span></h4>
+<p class="MsoNormal" style="mso-list:skip">This option allows you to search
+either an integer or an ASCII character string.</p>
+<p class="MsoNormal" style="margin-left:2.0cm;text-indent:28.4pt;mso-list:skip">&nbsp;<o:p>
+</o:p>
+</p>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-left:3.5pt;
+ border-collapse:collapse;mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr>
+    <td width="491" valign="top" style="width:13.0cm;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-left:24.85pt;mso-list:skip"><!--[if gte vml 1]><v:shape
+   id="_x0000_i1027" type="#_x0000_t75" style='width:330.75pt;height:156pt'
+   fillcolor="window">
+   <v:imagedata src="binary38.gif"
+    o:title=""/>
+  </v:shape><![endif]-->
+      <img src="binary38.gif" v:shapes="_x0000_i1027" width="441" height="208"></p>
+    </td>
+    <td width="118" valign="top" style="width:88.55pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoBodyText"><span style="font-size:8.0pt;mso-bidi-font-size:10.0pt;
+  font-family:Arial">You reach this dialog box by choosing ‘Search’ in the
+      ‘Edit’ menu bar of the binary editor window.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal" style="margin-left:2.0cm;text-indent:28.4pt;mso-list:skip">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal" style="margin-right:-21.6pt;mso-list:skip">It is possible
+to specify the following data types:</p>
+<p class="MsoNormal" style="margin-right:-21.6pt;text-indent:28.4pt;mso-list:
+skip"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1"> </span>Integers (8, 16, or 32 bits)</p>
+<p class="MsoNormal" style="margin-right:-21.6pt;text-indent:28.4pt;mso-list:
+skip"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1"> </span>Character strings</p>
+<p class="MsoNormal" style="margin-top:0cm;margin-right:-21.6pt;margin-bottom:
+0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-indent:28.4pt;mso-list:l0 level1 lfo5"><span style="font-family:Symbol">·</span><span style="mso-tab-count:1">
+</span>ASCII</p>
+<p class="MsoNormal" style="margin-right:-21.6pt">To add to the search byte
+sequence, enter your data in one of the fields and press the ‘Add’ button.</p>
+<p class="MsoNormal">For instance, if you want to search for the binary integer
+47234 followed by the ASCII sequence «&nbsp;foo&nbsp;» you would enter the
+number 47234 in the 32 bits field, press the ‘Add’ button, and then write
+«&nbsp;foo&nbsp;» in the ‘ASCII’ entry field followed by ‘Add’ again.
+In this way, you can easily specify very complex search sequences.</p>
+<p class="MsoNormal" style="margin-right:-21.6pt">The sequence of bytes that
+will be searched for is shown at the top in the read only entry field ‘Bytes
+to search’.</p>
+<h4 style="margin-top:6.0pt;margin-right:-21.6pt;margin-bottom:0cm;margin-left:
+0cm;margin-bottom:.0001pt"><span style="mso-ansi-language:EN-US">Goto<o:p>
+</o:p>
+</span></h4>
+<p class="MsoNormal" style="margin-right:-21.6pt">This option will move the
+current point to the specified position. You can move the cursor using the arrow
+keys or the page up / page down keys. Within the small ’goto’ dialog box,
+you can enter the file offset either in decimal or hexadecimal form.</p>
+<h4><span style="mso-ansi-language:EN-US">Structures<o:p>
+</o:p>
+</span></h4>
+<p class="MsoBodyText">This option allows you to apply a data structure to the
+bytes at the current offset. Data structure means, in this context, a series of
+field descriptions composed from the elementary types and possibly a length. The
+building of that structure is done with a screen having the following sections:</p>
+<p class="MsoNormal" align="center" style="margin-left:1.0cm;text-align:center;
+text-indent:14.15pt"><!--[if gte vml 1]><v:shape id="_x0000_i1028" type="#_x0000_t75"
+ style='width:410.25pt;height:366.75pt' fillcolor="window">
+ <v:imagedata src="binary39.gif"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="binary39.gif" v:shapes="_x0000_i1028" width="547" height="489"></p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>A column
+at the left indicating the offset of each field relative to the beginning of the
+structure.</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>A 'Type'
+column that indicates the length and the representation used for this field.</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>The data
+for this field. Note that only the first few characters are shown.</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>You can
+display the data either in decimal or hexadecimal form.</p>
+<p class="MsoNormal"><u>To add a field to the structure proceed as follows:</u></p>
+<p class="MsoNormal">1. Choose the 'Add' menu option. This will open the
+following dialog box.</p>
+<p class="MsoNormal" align="center" style="margin-left:1.0cm;text-align:center;
+text-indent:14.15pt"><!--[if gte vml 1]><v:shape id="_x0000_i1029" type="#_x0000_t75"
+ style='width:189pt;height:177.75pt' fillcolor="window">
+ <v:imagedata src="binary40.gif"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="binary40.gif" v:shapes="_x0000_i1029" width="252" height="237"></p>
+<p class="MsoNormal">2. Define the base type of the new field by clicking in the
+available primitive type list on the left.</p>
+<p class="MsoNormal">3. Define its length if it is different than one.</p>
+<p class="MsoNormal">4. Give it a name if you choose to.</p>
+<p class="MsoNormal"><u>The primitive types that are available are:<o:p>
+</o:p>
+</u></p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Characters</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Integer 8
+bits</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Integer
+16 bits, signed or unsigned</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Integer
+32 bits, signed or unsigned</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Float
+simple precision (32 bits)</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Float
+double precision (64 bits)</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>ASCIIZ:
+Character string finished by a zero</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>ASCII<span style="mso-spacerun: yes">&nbsp;
+</span>Pascal. Character string with a length byte at the beginning.</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Swapped
+short: Short integer coming from a machine with inverted byte order.</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Swapped
+long. 32 bit integer coming from another machine.</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Bit
+inverted. The bits 0-31 become bits 31-0.</p>
+<p class="MsoNormal"><u>To erase a field from the structure definition:</u></p>
+<p class="MsoNormal">1. Select a field by clicking on the list.</p>
+<p class="MsoNormal">2.Choose the 'Erase' menu option.</p>
+
+</body>
+
+</html>

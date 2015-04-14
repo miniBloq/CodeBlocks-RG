@@ -1,0 +1,3 @@
+<area shape="rect" href="$classwx_window_d_c.html" title="A wxWindowDC must be constructed if an application wishes to paint on the whole area..." alt="" coords="5,172,112,204">
+<area shape="rect" href="$classwx_d_c.html" title="A wxDC is a &quot;device context&quot; onto which graphics and text can be drawn..." alt="" coords="29,89,88,121">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="21,7,96,39">

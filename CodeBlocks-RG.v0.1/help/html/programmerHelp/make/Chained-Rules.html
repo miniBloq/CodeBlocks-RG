@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Chained%20Rules">Chained Rules</a>,
+Next:<a rel="next" accesskey="n" href="Pattern-Rules.html#Pattern%20Rules">Pattern Rules</a>,
+Previous:<a rel="previous" accesskey="p" href="Implicit-Variables.html#Implicit%20Variables">Implicit Variables</a>,
+Up:<a rel="up" accesskey="u" href="Implicit-Rules.html#Implicit%20Rules">Implicit Rules</a>
+<hr><br>
+</div>
+
+<h3 class="section">Chains of Implicit Rules</h3>
+
+   <p>Sometimes a file can be made by a sequence of implicit rules.  For example,
+a file <code></code><var>n</var><code>.o</code> could be made from <code></code><var>n</var><code>.y</code> by running
+first Yacc and then <code>cc</code>.  Such a sequence is called a <dfn>chain</dfn>.
+
+   <p>If the file <code></code><var>n</var><code>.c</code> exists, or is mentioned in the makefile, no
+special searching is required: <code>make</code> finds that the object file can
+be made by C compilation from <code></code><var>n</var><code>.c</code>; later on, when considering
+how to make <code></code><var>n</var><code>.c</code>, the rule for running Yacc is
+used.  Ultimately both <code></code><var>n</var><code>.c</code> and <code></code><var>n</var><code>.o</code> are
+updated.
+
+   <p>However, even if <code></code><var>n</var><code>.c</code> does not exist and is not mentioned,
+<code>make</code> knows how to envision it as the missing link between
+<code></code><var>n</var><code>.o</code> and <code></code><var>n</var><code>.y</code>!  In this case, <code></code><var>n</var><code>.c</code> is
+called an <dfn>intermediate file</dfn>.  Once <code>make</code> has decided to use the
+intermediate file, it is entered in the data base as if it had been
+mentioned in the makefile, along with the implicit rule that says how to
+create it.
+
+   <p>Intermediate files are remade using their rules just like all other
+files.  But intermediate files are treated differently in two ways.
+
+   <p>The first difference is what happens if the intermediate file does not
+exist.  If an ordinary file <var>b</var> does not exist, and <code>make</code>
+considers a target that depends on <var>b</var>, it invariably creates
+<var>b</var> and then updates the target from <var>b</var>.  But if <var>b</var> is an
+intermediate file, then <code>make</code> can leave well enough alone.  It
+won't bother updating <var>b</var>, or the ultimate target, unless some
+prerequisite of <var>b</var> is newer than that target or there is some other
+reason to update that target.
+
+   <p>The second difference is that if <code>make</code> <em>does</em> create <var>b</var>
+in order to update something else, it deletes <var>b</var> later on after it
+is no longer needed.  Therefore, an intermediate file which did not
+exist before <code>make</code> also does not exist after <code>make</code>. 
+<code>make</code> reports the deletion to you by printing a <code>rm -f</code>
+command showing which file it is deleting.
+
+   <p>Ordinarily, a file cannot be intermediate if it is mentioned in the
+makefile as a target or prerequisite.  However, you can explicitly mark a
+file as intermediate by listing it as a prerequisite of the special target
+<code>.INTERMEDIATE</code>.  This takes effect even if the file is mentioned
+explicitly in some other way.
+
+   <p>You can prevent automatic deletion of an intermediate file by marking it
+as a <dfn>secondary</dfn> file.  To do this, list it as a prerequisite of the
+special target <code>.SECONDARY</code>.  When a file is secondary, <code>make</code>
+will not create the file merely because it does not already exist, but
+<code>make</code> does not automatically delete the file.  Marking a file as
+secondary also marks it as intermediate.
+
+   <p>You can list the target pattern of an implicit rule (such as <code>%.o</code>)
+as a prerequisite of the special target <code>.PRECIOUS</code> to preserve
+intermediate files made by implicit rules whose target patterns match
+that file's name; see <a href="Interrupts.html#Interrupts">Interrupts</a>.
+
+   <p>A chain can involve more than two implicit rules.  For example, it is
+possible to make a file <code>foo</code> from <code>RCS/foo.y,v</code> by running RCS,
+Yacc and <code>cc</code>.  Then both <code>foo.y</code> and <code>foo.c</code> are
+intermediate files that are deleted at the end.
+
+   <p>No single implicit rule can appear more than once in a chain.  This means
+that <code>make</code> will not even consider such a ridiculous thing as making
+<code>foo</code> from <code>foo.o.o</code> by running the linker twice.  This
+constraint has the added benefit of preventing any infinite loop in the
+search for an implicit rule chain.
+
+   <p>There are some special implicit rules to optimize certain cases that would
+otherwise be handled by rule chains.  For example, making <code>foo</code> from
+<code>foo.c</code> could be handled by compiling and linking with separate
+chained rules, using <code>foo.o</code> as an intermediate file.  But what
+actually happens is that a special rule for this case does the compilation
+and linking with a single <code>cc</code> command.  The optimized rule is used in
+preference to the step-by-step chain because it comes earlier in the
+ordering of rules.
+
+   </body></html>
+

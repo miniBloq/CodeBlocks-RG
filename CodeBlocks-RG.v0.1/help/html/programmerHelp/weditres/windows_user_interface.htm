@@ -1,0 +1,62 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The Windows User Interface</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc494631964">The Windows User Interface</a></h2>
+<p>The user interface functions give applications the means to create and manage
+a user interface. You use these functions to create and use windows to display
+output, prompt for user input, and carry out the other tasks necessary to
+support interaction with the user. Most applications create at least one window.</p>
+<p>Applications define the general behavior and appearance of their windows by
+creating window classes and corresponding window procedures. A window class
+identifies default characteristics such as whether the window processes mouse
+button clicks or has a menu. The corresponding window procedure contains code
+that defines the behavior of the window, carries out requested tasks, and
+processes user input.</p>
+<p>Applications generate output for a window by using the GDI functions. Because
+all windows share the display screen, applications do not receive access to the
+entire screen. Instead, the system aligns and clips all output to fit within the
+corresponding window. Applications can draw in a window in response to a request
+from the system or while processing input messages. When the size or position of
+a window changes, the system typically sends a message to the application
+requesting that it paint any previously unexposed area of its window.</p>
+<p>Applications receive mouse and keyboard input in the form of messages. The
+system translates mouse movement, mouse button clicks, and keystrokes into input
+messages and places these messages in the message queue for the application. The
+system automatically provides a queue for each application. The application uses
+message functions to extract messages from the queue and dispatch them to the
+appropriate window procedure for processing.</p>
+<p>Applications can process the mouse and keyboard input directly or let the
+system translate this low-level input into command messages by using menus and
+keyboard accelerators. You use menus to present a list of commands to the user.
+The system manages all actions required to let the user choose a command and
+then sends a message to the window identifying the choice. Keyboard accelerators
+are application-defined combinations of keystrokes that the system translates
+into messages. Accelerators typically correspond to commands in a menu and
+generate the same messages.</p>
+<p>Applications often respond to command messages by prompting the user for
+additional information with dialog boxes. A dialog box is a temporary window
+that displays information or requests input. A dialog box typically includes
+controls — small, single-purpose windows — that represent buttons and boxes
+through which the user provides information. There are controls for typing text,
+scrolling text, selecting items from a list of items, and so on. Dialog boxes
+manage and process the input from these controls, making this information
+available to the application so that it can complete the requested command.</p>
+<p>You can share useful data, such as bitmaps, icons, fonts, and strings, by
+adding this data as &quot;resources&quot; to the file for an application or DLL.
+Applications retrieve the data by using the resource functions to locate the
+resources and load them into memory.</p>
+<p>Window management functions provide other features related to windows, such
+as carets, the clipboard, cursors, hooks, icons, and menus.</p>
+<p>For more information, see the following overviews.</p>
+
+</body>
+
+</html>

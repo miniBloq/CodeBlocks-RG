@@ -1,0 +1,72 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Troubleshooting</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509456941"><span style="mso-ansi-language:EN-US">Tro</span></a><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc509456941">ubleshooting</span><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoNormal">After the copying of the system files is finished, the lcc
+setup program will call the ‘dolibs.exe’ utility to build all the import
+libraries from their ASCII descriptions. This saves download time, since the
+megabytes of import libraries are not transmitted but generated at your machine.</p>
+<p class="MsoNormal">Sometimes for various reasons<a style="mso-footnote-id:ftn1" href="#_ftn1" name="_ftnref1" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 12.0pt; mso-text-raise: 0pt" class="MsoFootnoteReference">[1]</span></a>,
+the dolibs.exe utility does not work properly. In this case you can do the work
+manually. Do the following:<o:p>
+</o:p>
+</p>
+<p class="MsoNormal"><span style="font-family:Courier">cd \lcc\buildlib</span><span style="mso-tab-count:3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt">this supposes
+you installed in \lcc<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">make</span><span style="mso-tab-count:6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt">start building
+the libraries</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">copy *.lib \lcc\lib</span><span style="mso-tab-count:3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="font-size:
+10.0pt;mso-bidi-font-size:12.0pt">copy libraries to \lcc\lib directory</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">del *.lib</span><span style="mso-tab-count:5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt">erase all libs
+from the buildlib directory</span></p>
+<p class="MsoNormal">&nbsp;The buildlib utility is called with each ASCII
+description of the import library, building the import lib. The newly created
+libraries should be moved to \lcc\lib so that the linker finds them when it
+needs them.</p>
+<p class="MsoNormal">The registry keys that lcc-win32 uses are stored under the
+key HKEY_CURRENT_USER, i.e.; if you log in under another user ID after
+installing lcc-win32, you will be forced to install it again. If you install
+under the same directory, everything will work properly.</p>
+<p class="MsoNormal">The lcc-win32 system assumes the software is under a
+directory called ‘lcc’. Please do not change this name.</p>
+<p class="MsoNormal">&nbsp;Another possible problem are paths with spaces in
+them, for instance “Program Files”. I have tried to do my best to account
+for this, and the latest versions of the software should handle those paths
+without problems, I have installed my own copy of lcc in Program Files, but there
+could be still some problems in the utilities like lcclnk or lcclib. If you find
+path related problems, reinstal lcc in a directory without spaces in it.</p>
+<p class="MsoNormal">&nbsp;</p>
+<div style="mso-element:footnote-list">
+  <br clear="all">
+  <hr align="left" size="1" width="33%">
+  <div style="mso-element:footnote" id="ftn1">
+    <p class="MsoFootnoteText" style="text-indent:0cm"><a style="mso-footnote-id:
+ftn1" href="#_ftnref1" name="_ftn1" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 10.0pt; mso-text-raise: 0pt; mso-ansi-language: EN-US" class="MsoFootnoteReference">[1]</span></a><span style="mso-ansi-language:EN-US">
+    In some systems, there is an old command.com present that gets called
+    instead of the correct win32 command interpreter. In this case, a DOS
+    session is opened and other things fail completely. The command can fail for
+    lack of disk space, or other reasons.<o:p>
+    </o:p>
+    </span></p>
+  </div>
+</div>
+
+</body>
+
+</html>

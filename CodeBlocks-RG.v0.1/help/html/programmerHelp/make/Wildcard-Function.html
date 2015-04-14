@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Wildcard%20Function">Wildcard Function</a>,
+Previous:<a rel="previous" accesskey="p" href="Wildcard-Pitfall.html#Wildcard%20Pitfall">Wildcard Pitfall</a>,
+Up:<a rel="up" accesskey="u" href="Wildcards.html#Wildcards">Wildcards</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">The Function <code>wildcard</code></h4>
+
+   <p>Wildcard expansion happens automatically in rules.  But wildcard expansion
+does not normally take place when a variable is set, or inside the
+arguments of a function.  If you want to do wildcard expansion in such
+places, you need to use the <code>wildcard</code> function, like this:
+
+<pre class="example">     $(wildcard <var>pattern</var>...)
+     </pre>
+
+<p>This string, used anywhere in a makefile, is replaced by a
+space-separated list of names of existing files that match one of the
+given file name patterns.  If no existing file name matches a pattern,
+then that pattern is omitted from the output of the <code>wildcard</code>
+function.  Note that this is different from how unmatched wildcards
+behave in rules, where they are used verbatim rather than ignored
+(see <a href="Wildcard-Pitfall.html#Wildcard%20Pitfall">Wildcard Pitfall</a>).
+
+   <p>One use of the <code>wildcard</code> function is to get a list of all the C source
+files in a directory, like this:
+
+<pre class="example">     $(wildcard *.c)
+     </pre>
+
+   <p>We can change the list of C source files into a list of object files by
+replacing the <code>.c</code> suffix with <code>.o</code> in the result, like this:
+
+<pre class="example">     $(patsubst %.c,%.o,$(wildcard *.c))
+     </pre>
+
+<p>(Here we have used another function, <code>patsubst</code>. 
+See <a href="Text-Functions.html#Text%20Functions">Functions for String Substitution and Analysis</a>.)
+
+   <p>Thus, a makefile to compile all C source files in the directory and then
+link them together could be written as follows:
+
+<pre class="example">     objects := $(patsubst %.c,%.o,$(wildcard *.c))
+     
+     foo : $(objects)
+             cc -o foo $(objects)
+     </pre>
+
+<p>(This takes advantage of the implicit rule for compiling C programs, so
+there is no need to write explicit rules for compiling the files. 
+See <a href="Flavors.html#Flavors">The Two Flavors of Variables</a>, for an explanation of
+<code>:=</code>, which is a variant of <code>=</code>.)
+
+   </body></html>
+

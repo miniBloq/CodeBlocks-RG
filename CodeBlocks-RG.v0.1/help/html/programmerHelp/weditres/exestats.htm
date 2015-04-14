@@ -1,0 +1,95 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Showing the Executable or Object File Statistics</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509457041"><span style="mso-ansi-language:EN-US">Showing the
+Executable or Obj</span></a><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc509457041">ect
+File Statistics</span><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoNormal">In the 'Utils' menu, you will find the option 'Executable
+statistics'. This option calls up the 'pedump' utility and shows the results in
+the output window. Normally, the file displayed will be the executable of the
+current project. If there is no project defined, this option will prompt you for
+an executable file name.</p>
+<p class="MsoNormal">To display statistics for an object file, use the 'File'
+and 'Open' options, then open an object file. Wedit will call pedump for the
+corresponding file. The other extensions recognized are 'OCX' for special VBASIC
+executables, and 'LIB' for library files. In the latter case, Wedit will display
+the symbols exported from the library.</p>
+<p class="MsoNormal">The output of this utility for an object file is:</p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:1.0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:1.0cm"><span style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">Summary of &quot;COMMON.OBJ&quot;:
+96549 bytes<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:1.0cm"><span style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">Time stamp: Mon Feb 08
+00:01:20 1999<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:1.0cm"><span style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:1.0cm"><span style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">Section Name<span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Size<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:1.0cm"><span style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;"><span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>01<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>.text<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>13188<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:1.0cm"><span style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;"><span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>02<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>.data<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>13676<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:1.0cm"><span style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;"><span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>03<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>.bss<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>138<span style="mso-spacerun: yes">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</span><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:1.0cm"><span style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;"><span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>04<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>.debug$S<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>12044<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:1.0cm"><span style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;"><span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>05<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>.debug$T<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>7465<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">The
+code section is traditionally called 'Text', even if its contents are not
+anything that remotely resembles normal text. The uninitialized data section is
+also called 'bss' for the same obscure historical reasons. The 'debug$S' and 'debug$T'
+sections are the debug symbols and debug types information.<o:p>
+</o:p>
+</span></p>
+
+</body>
+
+</html>

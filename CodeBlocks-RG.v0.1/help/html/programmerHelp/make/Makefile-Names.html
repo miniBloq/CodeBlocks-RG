@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Makefile%20Names">Makefile Names</a>,
+Next:<a rel="next" accesskey="n" href="Include.html#Include">Include</a>,
+Previous:<a rel="previous" accesskey="p" href="Makefile-Contents.html#Makefile%20Contents">Makefile Contents</a>,
+Up:<a rel="up" accesskey="u" href="Makefiles.html#Makefiles">Makefiles</a>
+<hr><br>
+</div>
+
+<h3 class="section">What Name to Give Your Makefile</h3>
+
+   <p>By default, when <code>make</code> looks for the makefile, it tries the
+following names, in order: <code>GNUmakefile</code>, <code>makefile</code>
+and <code>Makefile</code>.
+
+   <p>Normally you should call your makefile either <code>makefile</code> or
+<code>Makefile</code>.  (We recommend <code>Makefile</code> because it appears
+prominently near the beginning of a directory listing, right near other
+important files such as <code>README</code>.)  The first name checked,
+<code>GNUmakefile</code>, is not recommended for most makefiles.  You should
+use this name if you have a makefile that is specific to GNU
+<code>make</code>, and will not be understood by other versions of
+<code>make</code>.  Other <code>make</code> programs look for <code>makefile</code> and
+<code>Makefile</code>, but not <code>GNUmakefile</code>.
+
+   <p>If <code>make</code> finds none of these names, it does not use any makefile. 
+Then you must specify a goal with a command argument, and <code>make</code>
+will attempt to figure out how to remake it using only its built-in
+implicit rules.  See <a href="Implicit-Rules.html#Implicit%20Rules">Using Implicit Rules</a>.
+
+   <p>If you want to use a nonstandard name for your makefile, you can specify
+the makefile name with the <code>-f</code> or <code>--file</code> option.  The
+arguments <code>-f&nbsp;</code><var>name</var><code></code> or <code>--file=</code><var>name</var><code></code> tell
+<code>make</code> to read the file <var>name</var> as the makefile.  If you use
+more than one <code>-f</code> or <code>--file</code> option, you can specify several
+makefiles.  All the makefiles are effectively concatenated in the order
+specified.  The default makefile names <code>GNUmakefile</code>,
+<code>makefile</code> and <code>Makefile</code> are not checked automatically if you
+specify <code>-f</code> or <code>--file</code>.
+
+   </body></html>
+

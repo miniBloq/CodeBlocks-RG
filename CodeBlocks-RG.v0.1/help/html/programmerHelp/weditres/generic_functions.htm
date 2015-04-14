@@ -1,0 +1,404 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Generic Functions</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc499634156"><span lang="FR">Generic Functions</span></a><span lang="FR" style="mso-ansi-language:FR"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-weight: normal; mso-bidi-font-weight: bold">Generic
+functions allow you to specify different arguments list for an abstract function
+type. This allows the programmer more flexibility in specifying the argument
+list for a function.<o:p>
+</o:p>
+</span><span style="font-family:Arial;font-weight:normal;
+mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3"><span style="font-weight: normal; mso-bidi-font-weight: bold">To
+give an idea of how these functions are used here is an example:<o:p>
+</o:p>
+</span><span style="font-family:Arial;font-weight:normal;
+mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3"><span style="font-family:&quot;Courier New&quot;;font-weight:normal;
+mso-bidi-font-weight:bold">double overloaded sqrt(double);<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3"><span style="font-family:&quot;Courier New&quot;;font-weight:normal;
+mso-bidi-font-weight:bold">int overloaded sqrt(int);<o:p>
+</o:p>
+</span><span style="font-family:Arial;font-weight:normal;
+mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-weight: normal; mso-bidi-font-weight: bold">This
+declares two different functions that will get an automatic name furnished by
+the compiler. Those functions will be selected at the call site according to
+their arguments list: if the argument list is a double, the first function will
+be called and the type of the resulting expression is a double. If an integer is
+given, the second function will be selected and the resulting type is integer.<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:Arial;
+font-weight:normal;mso-bidi-font-weight:bold">&nbsp;</span><span style="font-weight: normal; mso-bidi-font-weight: bold">The
+exact syntax is:<o:p>
+</o:p>
+</span><span style="font-weight: normal; mso-bidi-font-weight: bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3"><span style="font-weight: normal; mso-bidi-font-weight: bold">1)
+Short form:<o:p>
+</o:p>
+</span><span style="font-family:Arial;font-weight:normal;
+mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3"><span style="font-family:&quot;Courier New&quot;;font-weight:normal;
+mso-bidi-font-weight:bold">&lt;return type&gt; overloaded identifier (
+argument-list )<o:p>
+</o:p>
+</span><span style="font-family:Arial;font-weight:normal;
+mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3"><span style="font-weight: normal; mso-bidi-font-weight: bold">Example:</span><span style="font-family:Arial;font-weight:normal;
+mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3"><span style="font-family:&quot;Courier New&quot;;font-weight:normal;
+mso-bidi-font-weight:bold">double overloaded sqrt(double);<o:p>
+</o:p>
+</span><span style="font-family:Arial;font-weight:normal;
+mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-weight: normal; mso-bidi-font-weight: bold">The
+compiler will supply here automatically a name for this function. The name will
+be constructed from the overloaded identifier and the argument list.</span><span style="font-family:Arial;
+font-weight:normal;mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3"><span style="font-family:Arial;font-weight:normal;
+mso-bidi-font-weight:bold">&nbsp;</span><span style="font-weight: normal; mso-bidi-font-weight: bold">Long
+form:<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3"><span style="font-family:&quot;Courier New&quot;;font-weight:normal;
+mso-bidi-font-weight:bold">&lt;return type&gt; overloaded identifier .
+identifier ( argument-list )<o:p>
+</o:p>
+</span><span style="font-family:Arial;font-weight:normal;
+mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3"><span style="font-weight: normal; mso-bidi-font-weight: bold">Example:</span><span style="font-family:Arial;font-weight:normal;
+mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span><span style="font-family:&quot;Courier New&quot;;font-weight:normal;
+mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3"><span style="font-family:&quot;Courier New&quot;;font-weight:normal;
+mso-bidi-font-weight:bold">double overloaded sqrt.DblSqrt(double);<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3"><span style="font-family:&quot;Courier New&quot;;font-weight:normal;
+mso-bidi-font-weight:bold">int overloaded sqrt.IntSqrt(int);<o:p>
+</o:p>
+</span><span style="font-family:Arial;font-weight:normal;
+mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-weight: normal; mso-bidi-font-weight: bold">The
+long form allows the programmer to override the automatic name of the function
+and furnish its own. This is important since it allows for easy interfacing of
+the software that uses this extension with other software.<o:p>
+</o:p>
+</span><span style="font-family:Arial;
+font-weight:normal;mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-weight: normal; mso-bidi-font-weight: bold">This
+extension doesn’t introduce a new keyword. You can still define<o:p>
+</o:p>
+</span><span style="font-family:Arial;
+font-weight:normal;mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">int overloaded = 0;<o:p>
+</o:p>
+</span><span style="font-family:Arial;
+font-weight:normal;mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:Arial;
+font-weight:normal;mso-bidi-font-weight:bold">or<o:p>
+</o:p>
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">int overloaded(int a);<o:p>
+</o:p>
+</span><span style="font-family:Arial;
+font-weight:normal;mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:Arial;
+font-weight:normal;mso-bidi-font-weight:bold">or even <o:p>
+</o:p>
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">typedef int *overloaded;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">overloaded foo(int a);<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:Arial;
+font-weight:normal;mso-bidi-font-weight:bold">&nbsp;</span><span style="font-weight: normal; mso-bidi-font-weight: bold">and
+this will compile as you would expect. In the last example the typedef
+definition is used, since overloaded functions can’t have an implicit
+“int” result: they must be given a full prototype.<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-weight: normal; mso-bidi-font-weight: bold">&nbsp;</span><span style="font-weight: normal; mso-bidi-font-weight: bold">If
+you need (for whatever reason) to force the compiler to choose one of the
+overloaded functions, you should use the long notation and just call the
+function in question:<o:p>
+</o:p>
+</span><span style="font-family:Arial;
+font-weight:normal;mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">double overloaded
+sqrt.DblSqrt(double);<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">int overloaded sqrt.IntSqrt(int);<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:Arial;
+font-weight:normal;mso-bidi-font-weight:bold">&nbsp;</span><span style="font-weight: normal; mso-bidi-font-weight: bold">You
+can force calling the first function just with:<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:Arial;
+font-weight:normal;mso-bidi-font-weight:bold">&nbsp;</span><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>double s = DblSqrt(4.9);<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:Arial;
+font-weight:normal;mso-bidi-font-weight:bold">&nbsp;</span><span style="font-weight: normal; mso-bidi-font-weight: bold">The
+DblSqrt function will be visible in the current scope after the “overloaded”
+declaration is seen.<o:p>
+</o:p>
+</span></p>
+<h3 style="text-align:justify"><span style="font-family:Arial;
+font-weight:normal;mso-bidi-font-weight:bold">&nbsp;</span><a name="_Toc499634157"><span lang="FR">Rules
+for using this extension</span></a></h3>
+<p class="MsoNormalIndent" style="margin-left:18.0pt;text-indent:-18.0pt;
+mso-list:l0 level1 lfo2;tab-stops:list 18.0pt"><span lang="FR" style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang="FR">You can add any number of overloaded arguments
+lists to an identifier, but once the first call to such a function is generated,
+it is impossible to add a new definition.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:18.0pt;text-indent:0cm"><span lang="FR">For
+instance&nbsp;:</span><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="margin-left:18.0pt"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">double overloaded sqrt(double);<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="margin-left:18.0pt"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">int overloaded sqrt(int);<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="margin-left:18.0pt"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">int foo(void)<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="margin-left:18.0pt"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">{<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="margin-left:18.0pt"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold"><span style="mso-tab-count:1">&nbsp;&nbsp;
+</span>double a = sqrt(2.3);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:18.0pt;text-indent:0cm"><span lang="FR">}</span></p>
+<p class="MsoNormalIndent" style="margin-left:18.0pt;text-indent:0cm"><span lang="FR" style="font-family:&quot;Courier New&quot;">double
+overloaded sqrt(complex)&nbsp;;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span lang="FR">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span lang="FR">This
+is an error. All overloaded function definitions must be present when the first
+call is generated.</span></p>
+<p class="MsoNormalIndent" style="margin-left:18.0pt;text-indent:-18.0pt;
+mso-list:l0 level1 lfo2;tab-stops:list 18.0pt"><span lang="FR" style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang="FR">You must supply the «&nbsp;overloaded&nbsp;»
+marker at the declaration <b>and</b> at the definition of the function. For
+instance, it is an error when you write&nbsp;:</span></p>
+<p class="MsoNormalIndent" style="margin-left:31.9pt;text-indent:0cm"><span lang="FR" style="font-family:&quot;Courier New&quot;">double
+overloaded sqrt(double)&nbsp;;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:31.9pt;text-indent:0cm"><span lang="FR" style="font-family:&quot;Courier New&quot;">double
+sqrt(double) // error&nbsp;: redefinition of sqrt.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:31.9pt;text-indent:0cm"><span lang="FR" style="font-family:&quot;Courier New&quot;">{<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:31.9pt;text-indent:0cm"><span lang="FR" style="font-family:&quot;Courier New&quot;">…<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:31.9pt;text-indent:0cm"><span lang="FR" style="font-family:&quot;Courier New&quot;">}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:31.9pt;text-indent:0cm"><span lang="FR">&nbsp;<o:p>
+</o:p>
+</span></p>
+<h3 style="margin-left:0cm"><a name="_Toc499634158"><span lang="FR">Applications
+of overloaded functions</span></a><span style="font-family:Arial;
+font-weight:normal;mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></h3>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-weight: normal; mso-bidi-font-weight: bold">This
+extension is very useful for constructors. For instance consider:<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">typedef struct _Person {<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>char *Name;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>int Age;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">} Person;</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-weight: normal; mso-bidi-font-weight: bold">We
+can define several overloaded constructors for this data structure:</span><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">Person * overloaded newPerson(void)<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">{<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>return (Person *)malloc(sizeof(Person));<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">}<o:p>
+</o:p>
+</span><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">Person *newPerson(char *name)<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">{<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Person *result = malloc(sizeof(Person));<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>result-&gt;Name = name;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>return result;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">}<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">Person *newPerson(char *Name,int
+age)<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">{<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Person *result = (Person *)malloc(sizeof(Person));<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>result-&gt;Name = name;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>result-&gt;Age = age;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>return result;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-family:&quot;Courier New&quot;;
+font-weight:normal;mso-bidi-font-weight:bold">}<o:p>
+</o:p>
+</span><span style="font-family:Arial;
+font-weight:normal;mso-bidi-font-weight:bold"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-weight: normal; mso-bidi-font-weight: bold">etc.</span></p>
+
+</body>
+
+</html>

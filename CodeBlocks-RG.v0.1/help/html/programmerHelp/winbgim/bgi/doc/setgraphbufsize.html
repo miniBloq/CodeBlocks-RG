@@ -1,0 +1,97 @@
+<TITLE>BGI Documentation for 
+setgraphbufsize
+</TITLE>
+<H2>
+setgraphbufsize
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+unsigned setgraphbufsize(unsigned bufsize);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+Some of the graphics routines (such as floodfill) use a memory buffer that is allocated when initgraph is called and released when closegraph is called. The default size of this buffer, allocated by _graphgetmem, is 4,096 bytes.
+<P>
+You might want to make this buffer smaller (to save memory space) or bigger (if, for example, a call to floodfill produces error -7: Out of flood memory).
+<P>
+setgraphbufsize tells initgraph how much memory to allocate for this internal graphics buffer when it calls _graphgetmem.
+<P>
+You must call setgraphbufsize before calling initgraph. Once initgraph has been called, all calls to setgraphbufsize are ignored until after the next call to closegraph.
+
+
+<P><DT><B>Return Value</B><DD>
+setgraphbufsize returns the previous size of the internal buffer.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+setgraphbufsize is not available in the <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation.
+
+<P><DT><B>See also</B>
+<DD><A HREF="closegraph.html"> closegraph </A>
+<DD><A HREF="initgraph.html"> initgraph </A>
+<DD><A HREF="sector.html"> sector </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* setgraphbufsize example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+#define BUFSIZE 1000 /* internal graphics buffer size */
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int x, y, oldsize;
+   char msg[80];
+
+   /* _set size of internal graphics buffer before calling initgraph */
+   oldsize = setgraphbufsize(BUFSIZE);
+
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   x = getmaxx() / 2;
+   y = getmaxy() / 2;
+
+   /* output some messages */
+   sprintf(msg, "Graphics buffer size: %d", BUFSIZE);
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+
+   outtextxy(x, y, msg);
+   sprintf(msg, "Old graphics buffer size: %d", oldsize);
+   outtextxy(x, y+textheight("W"), msg);
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

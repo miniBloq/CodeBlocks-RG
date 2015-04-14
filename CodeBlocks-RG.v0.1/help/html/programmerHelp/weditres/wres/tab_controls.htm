@@ -1,0 +1,918 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Tab Controls</title>
+</head>
+
+<body>
+
+<div class="clsDocBody">
+  <h2>Tab Controls</h2>
+  <hr SIZE="1">
+  <p>A tab control is analogous to the dividers in a notebook or the labels in a
+  file cabinet. By using a tab control, an application can define multiple pages
+  for the same area of a window or dialog box. Each page consists of a certain
+  type of information or a group of controls that the application displays when
+  the user selects the corresponding tab.</p>
+  <ul>
+    <li><a href="#about_tab_controls" target="_self">About Tab Controls</a>
+    <li><a href="#using_tab_controls" target="_self">Using Tab Controls</a>
+    <li><a href="#tab_updates_IE" target="_self">Tab Control Updates in Internet
+      Explorer</a></li>
+  </ul>
+  <h3><a name="about_tab_controls"></a>About Tab Controls</h3>
+  <p>You can create a tab control by calling the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+  CreateWindowEx</MSHelp:link>
+  function, specifying the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="WC_TABCONTROL">
+  WC_TABCONTROL</MSHelp:link>
+  window class. This window class is registered when the common controls
+  dynamic-link library (DLL) is loaded. To ensure that the DLL is loaded, use
+  the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_InitCommonControls_cpp">
+  InitCommonControls</MSHelp:link>
+  function.</p>
+  <p>You send messages to a tab control to add tabs and otherwise affect the
+  control's appearance and behavior. Each message has a corresponding macro that
+  you can use instead of sending the message explicitly. You cannot disable an
+  individual tab in a tab control. However, you can disable a tab control in a
+  property sheet by disabling the corresponding page.</p>
+  <h4><a name="tab_control_styles"></a>About Tab Control Styles</h4>
+  <p>You can apply certain characteristics to tab controls by specifying tab
+  control styles when the control is created. For example, you can specify the
+  alignment and general appearance of the tabs in a tab control.</p>
+  <p>You can cause the tabs to look like buttons by specifying the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TCS_BUTTONS">
+  TCS_BUTTONS</MSHelp:link>
+  style. Tabs in this type of tab control should serve the same function as
+  button controls; that is, clicking a tab should carry out a command instead of
+  displaying a page. Because the display area in a button tab control is
+  typically not used, no border is drawn around it.</p>
+  <p>You can cause a tab to receive the input focus when clicked by specifying
+  the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TCS_FOCUSONBUTTONDOWN">
+  TCS_FOCUSONBUTTONDOWN</MSHelp:link>
+  style. This style is typically used only with the TCS_BUTTONS style. You can
+  specify that a tab does not receive input focus when clicked by using the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TCS_FOCUSNEVER">
+  TCS_FOCUSNEVER</MSHelp:link>
+  style.</p>
+  <p>By default, a tab control displays only one row of tabs. If not all tabs
+  can be shown at once, the tab control displays an up-down control so that the
+  user can scroll additional tabs into view. You can cause a tab control to
+  display multiple rows of tabs, if necessary, by specifying the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TCS_MULTILINE">
+  TCS_MULTILINE</MSHelp:link>
+  style. With this style, all tabs can be displayed at once. The tabs are
+  left-aligned within each row unless you specify the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TCS_RIGHTJUSTIFY">
+  TCS_RIGHTJUSTIFY</MSHelp:link>
+  style. In this case, the width of each tab is increased so that each row of
+  tabs fills the entire width of the tab control.</p>
+  <p>A tab control automatically sizes each tab to fit its icon, if any, and its
+  label. To give all tabs the same width, you can specify the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TCS_FIXEDWIDTH">
+  TCS_FIXEDWIDTH</MSHelp:link>
+  style. The control sizes all the tabs to fit the widest label, or you can
+  assign a specific width and height by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_SETITEMSIZE_cpp">
+  TCM_SETITEMSIZE</MSHelp:link>
+  message. Within each tab, the control centers the icon and label, placing the
+  icon to the left of the label. You can force the icon to the left, leaving the
+  label centered, by specifying the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TCS_FORCEICONLEFT">
+  TCS_FORCEICONLEFT</MSHelp:link>
+  style. You can left-align both the icon and label by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TCS_FORCELABELLEFT">
+  TCS_FORCELABELLEFT</MSHelp:link>
+  style. You cannot use the TCS_FIXEDWIDTH style with the TCS_RIGHTJUSTIFY
+  style.</p>
+  <p>You can specify that the parent window draws the tabs in the control by
+  using the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TCS_OWNERDRAWFIXED">
+  TCS_OWNERDRAWFIXED</MSHelp:link>
+  style. For more information, see <a href="#owner_drawn_tabs" target="_self">Owner-Drawn
+  Tabs</a>.</p>
+  <p>You can specify that a tab control will create a ToolTip control by using
+  the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TCS_TOOLTIPS">
+  TCS_TOOLTIPS</MSHelp:link>
+  style. For more information about this, see <a href="#tc_tooltips" target="_self">Tab
+  Control ToolTips</a>.</p>
+  <h4><a name="tab_attributes"></a>Tabs and Tab Attributes</h4>
+  <p>Each tab in a tab control consists of an icon, a label, and
+  application-defined data. This information is specified by a <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCITEM_cpp">
+  TCITEM</MSHelp:link>
+  structure. You can add tabs to a tab control, retrieve the number of tabs,
+  retrieve and set the contents of a tab, and delete tabs. Tabs are identified
+  by their zero-based index.</p>
+  <p>To add tabs to a tab control, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_INSERTITEM_cpp">
+  TCM_INSERTITEM</MSHelp:link>
+  message, specifying the position of the item and the address of a <b>TCITEM</b>
+  structure. You can retrieve and set the contents of an existing tab by using
+  the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_GETITEM_cpp">
+  TCM_GETITEM</MSHelp:link>
+  and <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_SETITEM_cpp">
+  TCM_SETITEM</MSHelp:link>
+  messages. For each tab, you can specify an icon, a label, or both. You can
+  also specify application-defined data to associate with the tab.</p>
+  <p>You can retrieve the current number of tabs by using the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_GETITEMCOUNT_cpp">
+  TCM_GETITEMCOUNT</MSHelp:link>
+  message, delete a tab by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_DELETEITEM_cpp">
+  TCM_DELETEITEM</MSHelp:link>
+  message, and delete all tabs in a tab control by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_DELETEALLITEMS_cpp">
+  TCM_DELETEALLITEMS</MSHelp:link>
+  message.</p>
+  <p>You can associate application-defined data with each tab. For example, you
+  might save information about each page with its corresponding tab. By default,
+  a tab control allocates four extra bytes per tab for application-defined data.
+  You can change the number of extra bytes per tab by using the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_SETITEMEXTRA_cpp">
+  TCM_SETITEMEXTRA</MSHelp:link>
+  message. You can only use this message when the tab control is empty.</p>
+  <p>The application-defined data is specified by the <b>lParam</b> member of
+  the <b>TCITEM</b> structure. If you use more than 4 bytes of
+  application-defined data, you need to define your own structure and use it
+  instead of <b>TCITEM</b>. You can retrieve and set application-defined data
+  the same way you retrieve and set other information about a tab—by using the
+  <b>TCM_GETITEM</b> and <b>TCM_SETITEM</b> messages.</p>
+  <p>The first member of your structure must be a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCITEMHEADER_cpp">
+  TCITEMHEADER</MSHelp:link>
+  structure, and the remaining members must specify application-defined data. <b>TCITEMHEADER</b>
+  is identical to <b>TCITEM</b>, except it does not have the <b>lParam</b>
+  member. The difference between the size of your structure and the size of <b>TCITEMHEADER</b>
+  should equal the number of extra bytes per tab.</p>
+  <h4><a name="display_area"></a>Display Area</h4>
+  <p>The display area of a tab control is the area in which an application
+  displays the current page. Typically, an application creates a child window or
+  dialog box, setting the window size and position to fit the display area.
+  Given the window rectangle for a tab control, you can calculate the bounding
+  rectangle of the display area by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_ADJUSTRECT_cpp">
+  TCM_ADJUSTRECT</MSHelp:link>
+  message.</p>
+  <p>Sometimes the display area must be a particular size—for example, the
+  size of a modeless child dialog box. Given the bounding rectangle for the
+  display area, you can use <b>TCM_ADJUSTRECT</b> to calculate the corresponding
+  window rectangle for the tab control.</p>
+  <h4><a name="tab_selection"></a>Tab Selection</h4>
+  <p>When the user selects a tab, a tab control sends its parent window
+  notification messages in the form of <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_NOTIFY_cpp">
+  WM_NOTIFY</MSHelp:link>
+  messages. The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCN_SELCHANGING_cpp">
+  TCN_SELCHANGING</MSHelp:link>
+  notification message is sent before the selection changes, and the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCN_SELCHANGE_cpp">
+  TCN_SELCHANGE</MSHelp:link>
+  notification message is sent after the selection changes.</p>
+  <p>You can process <b>TCN_SELCHANGING</b> to save the state of the outgoing
+  page. You can return TRUE to prevent the selection from changing. For example,
+  you might not want to switch away from a child dialog box in which a control
+  has an invalid setting.</p>
+  <p>You must process <b>TCN_SELCHANGE</b> to display the incoming page in the
+  display area. This might simply entail changing the information displayed in a
+  child window. More often, each page consists of a child window or dialog box.
+  In this case, an application might process this notification by destroying or
+  hiding the outgoing child window or dialog box and by creating or showing the
+  incoming child window or dialog box.</p>
+  <p>You can retrieve and set the current selection by using the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_GETCURSEL_cpp">
+  TCM_GETCURSEL</MSHelp:link>
+  and <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_SETCURSEL_cpp">
+  TCM_SETCURSEL</MSHelp:link>
+  messages.</p>
+  <h4><a name="tc_image_lists"></a>Tab Control Image Lists</h4>
+  <p>Each tab can have an icon associated with it, which is specified by an
+  index in the image list for the tab control. When a tab control is created, it
+  has no image list associated with it. An application can create an image list
+  by using the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ImageList_Create_cpp">
+  ImageList_Create</MSHelp:link>
+  function and then assign it to a tab control by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_SETIMAGELIST_cpp">
+  TCM_SETIMAGELIST</MSHelp:link>
+  message.</p>
+  <p>You can add images to a tab control's image list just as you would to any
+  other image list. However, an application should remove images by using the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_REMOVEIMAGE_cpp">
+  TCM_REMOVEIMAGE</MSHelp:link>
+  message instead of the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ImageList_Remove_cpp">
+  ImageList_Remove</MSHelp:link>
+  function. This message ensures that each tab remains associated with the same
+  image as before.</p>
+  <p>Destroying a tab control does not destroy an image list that is associated
+  with it. You must destroy the image list separately. This is useful if you
+  want to assign the same image list to multiple tab controls.</p>
+  <p>To retrieve the handle to the image list currently associated with a tab
+  control, you can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_GETIMAGELIST_cpp">
+  TCM_GETIMAGELIST</MSHelp:link>
+  message.</p>
+  <h4><a name="tab_size_position"></a>Tab Size and Position</h4>
+  <p>Each tab in a tab control has a size and position. You can set the size of
+  tabs, retrieve the bounding rectangle of a tab, or determine which tab is at a
+  specified position.</p>
+  <p>For fixed-width and owner-drawn tab controls, you can set the exact width
+  and height of tabs by using the <b>TCM_SETITEMSIZE</b> message. In other tab
+  controls, each tab's size is calculated based on the icon and label for the
+  tab. The tab control includes space for a border and an additional margin. You
+  can set the thickness of the margin by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_SETPADDING_cpp">
+  TCM_SETPADDING</MSHelp:link>
+  message.</p>
+  <p>You can determine the current bounding rectangle for a tab by using the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_GETITEMRECT_cpp">
+  TCM_GETITEMRECT</MSHelp:link>
+  message. You can determine which tab, if any, is at a specified location by
+  using the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_HITTEST_cpp">
+  TCM_HITTEST</MSHelp:link>
+  message.</p>
+  <p>In a tab control with the TCS_MULTILINE style, you can determine the
+  current number of rows of tabs by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_GETROWCOUNT_cpp">
+  TCM_GETROWCOUNT</MSHelp:link>
+  message.</p>
+  <h4><a name="owner_drawn_tabs"></a>Owner-Drawn Tabs</h4>
+  <p>If a tab control has the TCS_OWNERDRAWFIXED style, the parent window must
+  paint tabs by processing the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_DRAWITEM_cpp">
+  WM_DRAWITEM</MSHelp:link>
+  message. The tab control sends this message whenever a tab needs to be
+  painted. The <i>lParam</i> parameter specifies the address of a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DRAWITEMSTRUCT_str_cpp">
+  DRAWITEMSTRUCT</MSHelp:link>
+  structure, which contains the index of the tab, its bounding rectangle, and
+  the device context (DC) in which to draw.</p>
+  <p>By default, the <b>itemData</b> member of <b>DRAWITEMSTRUCT</b> contains
+  the value of the <b>lParam</b> member of the <b>TCITEM</b> structure. However,
+  if you change the amount of application-defined data per tab, <b>itemData</b>
+  contains the address of the data instead. You can change the amount of
+  application-defined data per tab by using the <b>TCM_SETITEMEXTRA</b> message.</p>
+  <p>To specify the size of items in a tab control, the parent window must
+  process the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_MEASUREITEM_cpp">
+  WM_MEASUREITEM</MSHelp:link>
+  message. Because all tabs in an owner-drawn tab control are the same size,
+  this message is sent only once. There is no tab control style for owner-drawn
+  tabs of varying size. You can also set the width and height of tabs by using
+  the <b>TCM_SETITEMSIZE</b> message.</p>
+  <h4><a name="tc_tooltips"></a>Tab Control ToolTips</h4>
+  <p>You can use a ToolTip control to provide a brief description of each tab in
+  a tab control. A tab control that has the TCS_TOOLTIPS style creates a ToolTip
+  control when it is created and destroys the ToolTip control when it is
+  destroyed. You can also create a ToolTip control and assign it to a tab
+  control.</p>
+  <p>If you use a ToolTip control with a tab control, the parent window must
+  process the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTN_GETDISPINFO_cpp">
+  TTN_GETDISPINFO</MSHelp:link>
+  notification message to provide a description of each tab on request.</p>
+  <p>To use the same ToolTip control with more than one tab control, create the
+  ToolTip control yourself and assign it to the tab control by using the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_SETTOOLTIPS_cpp">
+  TCM_SETTOOLTIPS</MSHelp:link>
+  message. You can retrieve the handle to a tab control's current ToolTip
+  control by using the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_GETTOOLTIPS_cpp">
+  TCM_GETTOOLTIPS</MSHelp:link>
+  message. If you create your own ToolTip control, you should not use the
+  TCS_TOOLTIPS style. For more information about ToolTip controls, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Tooltip_Controls_Intro_cpp">
+  ToolTip Controls</MSHelp:link>
+  .</p>
+  <h4><a name="default_tc_msg_process"></a>Default Tab Control Message
+  Processing</h4>
+  <p>This section describes the message processing performed by a tab control.
+  Messages specific to tab controls are discussed in other sections of this
+  documentation.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>Message</th>
+        <th>Processing performed</th>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_capturechanged">
+          WM_CAPTURECHANGED</MSHelp:link>
+        </td>
+        <td>Does nothing if the tab control released the mouse capture itself.
+          If another window captured the mouse and a button is held down, the
+          command releases the button.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_create">
+          WM_CREATE</MSHelp:link>
+        </td>
+        <td>Allocates and initializes an internal data structure. The control
+          creates a ToolTip control if the TCS_TOOLTIPS style is specified.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_destroy">
+          WM_DESTROY</MSHelp:link>
+        </td>
+        <td>Frees resources allocated during <b>WM_CREATE</b> processing.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_getdlgcode">
+          WM_GETDLGCODE</MSHelp:link>
+        </td>
+        <td>Returns a combination of the DLGC_WANTARROWS and DLGC_WANTCHARS
+          values.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_getfont">
+          WM_GETFONT</MSHelp:link>
+        </td>
+        <td>Returns the handle to the font used for labels.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_keydown">
+          WM_KEYDOWN</MSHelp:link>
+        </td>
+        <td>Processes direction keys and changes the selection, if appropriate.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_killfocus">
+          WM_KILLFOCUS</MSHelp:link>
+        </td>
+        <td>Invalidates the tab that has the focus so it will be repainted to
+          reflect an unfocused state.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttondown">
+          WM_LBUTTONDOWN</MSHelp:link>
+        </td>
+        <td>Forwards the message to the ToolTip control, if any, and changes the
+          selection if the user is clicking a tab. If the user is clicking a
+          button, the control redraws the button to give a sunken appearance and
+          captures the mouse. If the user is clicking either a tab or button and
+          the TCS_FOCUSONBUTTONDOWN style is specified, the control sets the
+          focus to itself.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttonup">
+          WM_LBUTTONUP</MSHelp:link>
+        </td>
+        <td>Releases the mouse if a button was pressed. If the cursor is over
+          the button and is being held down, the control changes the selection
+          accordingly and redraws the button.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_mousemove">
+          WM_MOUSEMOVE</MSHelp:link>
+        </td>
+        <td>Forwards the message to the ToolTip control, if any. If the
+          TCS_BUTTONS style is specified and the mouse button is being held down
+          after clicking, the control may also redraw the affected button to
+          give it a raised or sunken appearance.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_NOTIFY_cpp">
+          WM_NOTIFY</MSHelp:link>
+        </td>
+        <td>Forwards notification messages sent by the ToolTip control.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_paint">
+          WM_PAINT</MSHelp:link>
+        </td>
+        <td>Draws a border around the display area (unless the TCS_BUTTONS style
+          is specified) and paints any tabs that intersect the invalid
+          rectangle. For each tab, it draws the body of the tab (or sends a <b>WM_DRAWITEM</b>
+          message to the parent window) and then draws a border around the tab.
+          If the <i>wParam</i> parameter is non-NULL, the control assumes that
+          the value is an HDC and paints using that device context.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_rbuttondown">
+          WM_RBUTTONDOWN</MSHelp:link>
+        </td>
+        <td>Sends an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NM_RCLICK_cpp">
+          NM_RCLICK</MSHelp:link>
+          notification message to the parent window.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_setfocus">
+          WM_SETFOCUS</MSHelp:link>
+        </td>
+        <td>Invalidates the tab that has the focus so that it will be repainted
+          to reflect a focused state.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_setfont">
+          WM_SETFONT</MSHelp:link>
+        </td>
+        <td>Sets the font used for labels.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_setredraw">
+          WM_SETREDRAW</MSHelp:link>
+        </td>
+        <td>Sets the state of an internal flag that determines whether the
+          control is repainted when items are inserted and deleted, when the
+          font is changed, and so on.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_size">
+          WM_SIZE</MSHelp:link>
+        </td>
+        <td>Recalculates the positions of tabs and may invalidate part of the
+          tab control to force repainting of some or all tabs.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><a name="using_tab_controls"></a>Using Tab Controls</h3>
+  <p>This section provides two examples that use tab controls. The first example
+  demonstrates how to use a tab control to switch between multiple pages of text
+  in an application's main window. The second example demonstrates how to use a
+  tab control to switch between multiple pages of controls in a dialog box.</p>
+  <h4><a name="creating_tab_control"></a>Creating a Tab Control</h4>
+  <p>The example in this section demonstrates how to create a tab control and
+  display it in the client area of the application's main window. The
+  application displays a third window (a static control) in the display area of
+  the tab control. The parent window positions and sizes the tab control and
+  static control when it processes the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_size">
+  WM_SIZE</MSHelp:link>
+  message.</p>
+  <p>There are seven tabs, one for each day of the week. When the user selects a
+  tab, the application displays the name of the corresponding day in the static
+  control. The following global variables are used in this example.</p>
+  <pre class="clsCode" AUTOHILITE="1"><font color="blue">//</font><font color="green"> Global variables </font>
+ 
+HINSTANCE g_hinst;    <font color="blue">//</font><font color="green"> handle to application instance </font>
+char g_achTemp[256];  <font color="blue">//</font><font color="green"> temporary buffer for strings </font>
+HWND g_hwndMain;      <font color="blue">//</font><font color="green"> main application window </font>
+HWND g_hwndTab;       <font color="blue">//</font><font color="green"> tab control </font>
+HWND g_hwndDisplay;   <font color="blue">//</font><font color="green"> handle to static control in </font>
+                      <font color="blue">//</font><font color="green">   tab control's display area </font>
+ </pre>
+  <p>The following function creates the tab control and adds a tab for each day
+  of the week. The names of the days are defined as string resources,
+  consecutively numbered starting with IDS_FIRSTDAY (defined in the
+  application's header file). Both the parent window and the tab control must
+  have the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Window_Styles">
+  WS_CLIPSIBLINGS</MSHelp:link>
+  window style. The application's initialization function calls this function
+  after creating the main window.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green"> DoCreateTabControl - creates a tab control, sized to fit the </font>
+<font color="blue">//</font><font color="green">     specified parent window's client area, and adds some tabs. </font>
+<font color="blue">//</font><font color="green"> Returns the handle to the tab control. </font>
+<font color="blue">//</font><font color="green"> hwndParent - parent window (the application's main window). </font>
+ 
+HWND WINAPI DoCreateTabControl(HWND hwndParent) 
+{ 
+    RECT rcClient; 
+    HWND hwndTab; 
+    TCITEM tie; 
+    int i; 
+ 
+    <font color="blue">//</font><font color="green"> Get the dimensions of the parent window's client area, and </font>
+    <font color="blue">//</font><font color="green"> create a tab control child window of that size. </font>
+    GetClientRect(hwndParent, &amp;rcClient); 
+    InitCommonControls(); 
+    hwndTab = CreateWindow( 
+        WC_TABCONTROL, &quot;&quot;, 
+        WS_CHILD | WS_CLIPSIBLINGS | WS_VISIBLE, 
+        0, 0, rcClient.right, rcClient.bottom, 
+        hwndParent, NULL, g_hinst, NULL 
+        ); 
+    if (hwndTab == NULL) 
+        return NULL; 
+ 
+    <font color="blue">//</font><font color="green"> Add tabs for each day of the week. </font>
+    tie.mask = TCIF_TEXT | TCIF_IMAGE; 
+    tie.iImage = -1; 
+    tie.pszText = g_achTemp; 
+ 
+    for (i = 0; i &lt; 7; i++) { 
+        LoadString(g_hinst, IDS_FIRSTDAY + i, 
+                g_achTemp, sizeof(g_achTemp)/sizeof(g_achTemp[0])); 
+        if (TabCtrl_InsertItem(hwndTab, i, &amp;tie) == -1) { 
+            DestroyWindow(hwndTab); 
+            return NULL; 
+        } 
+    } 
+    return hwndTab; 
+} 
+ </pre>
+  <p>The following function creates the static control that occupies the tab
+  control's display area. The application's initialization function calls this
+  function after creating the main window and the tab control.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green"> DoCreateDisplayWindow - creates a child window (a static </font>
+<font color="blue">//</font><font color="green">     control) to occupy the tab control's display area. </font>
+<font color="blue">//</font><font color="green"> Returns the handle to the static control. </font>
+<font color="blue">//</font><font color="green"> hwndParent - parent window (the application's main window). </font>
+ 
+HWND WINAPI DoCreateDisplayWindow(HWND hwndParent) 
+{ 
+    HWND hwndStatic = CreateWindow(&quot;STATIC&quot;, &quot;&quot;, 
+        WS_CHILD | WS_VISIBLE | WS_BORDER, 
+        0, 0, CW_USEDEFAULT, CW_USEDEFAULT, 
+        hwndParent, NULL, g_hinst, NULL); 
+ 
+    return hwndStatic; 
+} 
+ </pre>
+  <p>Following are the relevant portions of the application's window procedure.
+  The application processes the <b>WM_SIZE</b> message to position and size the
+  tab control and the static control. To determine the appropriate position and
+  size for the static control, this example sends the tab control a <b>TCM_ADJUSTRECT</b>
+  message (by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TabCtrl_AdjustRect_cpp">
+  TabCtrl_AdjustRect</MSHelp:link>
+  macro).</p>
+  <p>When a tab is selected, the tab control sends a <b>WM_NOTIFY</b> message,
+  specifying the <b>TCN_SELCHANGE</b> notification message. The application
+  processes this notification message by setting the text of the static control.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green"> MainWindowProc - processes the message for the main window class. </font>
+<font color="blue">//</font><font color="green"> The return value depends on the message. </font>
+<font color="blue">//</font><font color="green"> hwnd - handle to the window. </font>
+<font color="blue">//</font><font color="green"> uMsg - identifier for the message. </font>
+<font color="blue">//</font><font color="green"> wParam - message-specific parameter. </font>
+<font color="blue">//</font><font color="green"> lParam - message-specific parameter. </font>
+ 
+LRESULT CALLBACK MainWindowProc( 
+        HWND hwnd, 
+        UINT uMsg, 
+        WPARAM wParam, 
+        LPARAM lParam 
+        ) 
+{ 
+    switch (uMsg) { 
+        case WM_SIZE: { 
+                HDWP hdwp; 
+                RECT rc; 
+ 
+                <font color="blue">//</font><font color="green"> Calculate the display rectangle, assuming the </font>
+                <font color="blue">//</font><font color="green"> tab control is the size of the client area. </font>
+                SetRect(&amp;rc, 0, 0, 
+                        GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam)); 
+                TabCtrl_AdjustRect(g_hwndTab, FALSE, &amp;rc); 
+ 
+                <font color="blue">//</font><font color="green"> Size the tab control to fit the client area. </font>
+                hdwp = BeginDeferWindowPos(2); 
+                DeferWindowPos(hdwp, g_hwndTab, NULL, 0, 0, 
+                    GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam), 
+                    SWP_NOMOVE | SWP_NOZORDER 
+                    ); 
+ 
+                <font color="blue">//</font><font color="green"> Position and size the static control to fit the </font>
+                <font color="blue">//</font><font color="green"> tab control's display area, and make sure the </font>
+                <font color="blue">//</font><font color="green"> static control is in front of the tab control. </font>
+                DeferWindowPos(hdwp, 
+                    g_hwndDisplay, HWND_TOP, rc.left, rc.top, 
+                    rc.right - rc.left, rc.bottom - rc.top, 0 
+                    ); 
+                EndDeferWindowPos(hdwp); 
+            } 
+            break; 
+ 
+        case WM_NOTIFY: 
+            switch (HIWORD(wParam)) { 
+                case 0: 
+                    . 
+                    .    <font color="blue">//</font><font color="green"> menu command processing </font>
+                    . 
+ 
+                case TCN_SELCHANGE: { 
+                        int iPage = TabCtrl_GetCurSel(g_hwndTab); 
+                        LoadString(g_hinst, IDS_FIRSTDAY + iPage, 
+                            g_achTemp,
+                            sizeof(g_achTemp)/sizeof(g_achTemp[0])); 
+                        SendMessage(g_hwndDisplay, WM_SETTEXT, 0,
+                            (LPARAM) g_achTemp); 
+                    } 
+                    break; 
+            } 
+            break; 
+ 
+            . 
+            .       <font color="blue">//</font><font color="green"> additional message processing </font>
+            . 
+ 
+        default: 
+            return DefWindowProc(hwnd, uMsg, wParam, lParam); 
+    } 
+    return 0; 
+} 
+ </pre>
+  <h4><a name="creating_tab_dialog_box"></a>Creating a Tabbed Dialog Box</h4>
+  <p>The example in this section demonstrates how to create a dialog box that
+  uses tabs to provide multiple pages of controls. The main dialog box is a
+  modal dialog box. Each page of controls is defined by a dialog box template
+  that has the <b>WS_CHILD</b> style. When a tab is selected, a modeless dialog
+  box is created for the incoming page and the dialog box for the outgoing page
+  is destroyed.</p>
+  <div class="clsNote">
+    <b>Note</b>&nbsp;&nbsp;In many cases, you can implement multiple-page dialog
+    boxes more easily by using property sheets. For more information about
+    property sheets, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Property_Sheets_cpp">
+    Property Sheets</MSHelp:link>
+  </div>
+  <p>The template for the main dialog box simply defines two button controls.
+  When processing the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_initdialog">
+  WM_INITDIALOG</MSHelp:link>
+  message, the dialog box procedure creates a tab control and loads the dialog
+  box template resources for each of the child dialog boxes.</p>
+  <p>The information is saved in an application-defined structure called DLGHDR.
+  A pointer to this structure is associated with the dialog box window by using
+  the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_setwindowlong">
+  SetWindowLong</MSHelp:link>
+  function. The structure is defined in the application's header file, as
+  follows:</p>
+  <pre class="clsCode" AUTOHILITE="1">#define C_PAGES 3 
+ 
+typedef struct tag_dlghdr { 
+    HWND hwndTab;       <font color="blue">//</font><font color="green"> tab control </font>
+    HWND hwndDisplay;   <font color="blue">//</font><font color="green"> current child dialog box </font>
+    RECT rcDisplay;     <font color="blue">//</font><font color="green"> display rectangle for the tab control </font>
+    DLGTEMPLATE *apRes[C_PAGES]; 
+} DLGHDR; 
+ </pre>
+  <p>The following function processes the <b>WM_INITDIALOG</b> message for the
+  main dialog box. The function allocates the DLGHDR structure, loads the dialog
+  box template resources for the child dialog boxes, and creates the tab
+  control.</p>
+  <p>The size of each child dialog box is specified by the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_dlgtemplate_str">
+  DLGTEMPLATE</MSHelp:link>
+  structure. The function examines the size of each dialog box and uses the
+  macro for the <b>TCM_ADJUSTRECT</b> message to calculate an appropriate size
+  for the tab control. Then it sizes the dialog box and positions the two
+  buttons accordingly. This example sends <b>TCM_ADJUSTRECT</b> by using the <b>TabCtrl_AdjustRect</b>
+  macro.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">VOID WINAPI OnTabbedDialogInit(HWND hwndDlg) 
+{ 
+    DLGHDR *pHdr = (DLGHDR *) LocalAlloc(LPTR, sizeof(DLGHDR)); 
+    DWORD dwDlgBase = GetDialogBaseUnits(); 
+    int cxMargin = LOWORD(dwDlgBase) / 4; 
+    int cyMargin = HIWORD(dwDlgBase) / 8; 
+    TCITEM tie; 
+    RECT rcTab; 
+    HWND hwndButton; 
+    RECT rcButton; 
+    int i; 
+ 
+    <font color="blue">//</font><font color="green"> Save a pointer to the DLGHDR structure. </font>
+    SetWindowLong(hwndDlg, GWL_USERDATA, (LONG) pHdr); 
+ 
+    <font color="blue">//</font><font color="green"> Create the tab control. </font>
+    InitCommonControls(); 
+    pHdr-&gt;hwndTab = CreateWindow( 
+        WC_TABCONTROL, &quot;&quot;, 
+        WS_CHILD | WS_CLIPSIBLINGS | WS_VISIBLE, 
+        0, 0, 100, 100, 
+        hwndDlg, NULL, g_hinst, NULL 
+        ); 
+    if (pHdr-&gt;hwndTab == NULL) {
+        <font color="blue">//</font><font color="green"> handle error</font>
+    }
+ 
+    <font color="blue">//</font><font color="green"> Add a tab for each of the three child dialog boxes. </font>
+    tie.mask = TCIF_TEXT | TCIF_IMAGE; 
+    tie.iImage = -1; 
+    tie.pszText = &quot;First&quot;; 
+    TabCtrl_InsertItem(pHdr-&gt;hwndTab, 0, &amp;tie); 
+    tie.pszText = &quot;Second&quot;; 
+    TabCtrl_InsertItem(pHdr-&gt;hwndTab, 1, &amp;tie); 
+    tie.pszText = &quot;Third&quot;; 
+    TabCtrl_InsertItem(pHdr-&gt;hwndTab, 2, &amp;tie); 
+ 
+    <font color="blue">//</font><font color="green"> Lock the resources for the three child dialog boxes. </font>
+    pHdr-&gt;apRes[0] = DoLockDlgRes(MAKEINTRESOURCE(DLG_FIRST)); 
+    pHdr-&gt;apRes[1] = DoLockDlgRes(MAKEINTRESOURCE(DLG_SECOND)); 
+    pHdr-&gt;apRes[2] = DoLockDlgRes(MAKEINTRESOURCE(DLG_THIRD)); 
+ 
+    <font color="blue">//</font><font color="green"> Determine the bounding rectangle for all child dialog boxes. </font>
+    SetRectEmpty(&amp;rcTab); 
+    for (i = 0; i &lt; C_PAGES; i++) { 
+        if (pHdr-&gt;apRes[i]-&gt;cx &gt; rcTab.right) 
+            rcTab.right = pHdr-&gt;apRes[i]-&gt;cx; 
+        if (pHdr-&gt;apRes[i]-&gt;cy &gt; rcTab.bottom) 
+            rcTab.bottom = pHdr-&gt;apRes[i]-&gt;cy; 
+    } 
+    rcTab.right = rcTab.right * LOWORD(dwDlgBase) / 4; 
+    rcTab.bottom = rcTab.bottom * HIWORD(dwDlgBase) / 8; 
+ 
+    <font color="blue">//</font><font color="green"> Calculate how large to make the tab control, so </font>
+    <font color="blue">//</font><font color="green"> the display area can accommodate all the child dialog boxes. </font>
+    TabCtrl_AdjustRect(pHdr-&gt;hwndTab, TRUE, &amp;rcTab); 
+    OffsetRect(&amp;rcTab, cxMargin - rcTab.left, 
+            cyMargin - rcTab.top); 
+ 
+    <font color="blue">//</font><font color="green"> Calculate the display rectangle. </font>
+    CopyRect(&amp;pHdr-&gt;rcDisplay, &amp;rcTab); 
+    TabCtrl_AdjustRect(pHdr-&gt;hwndTab, FALSE, &amp;pHdr-&gt;rcDisplay); 
+ 
+    <font color="blue">//</font><font color="green"> Set the size and position of the tab control, buttons, </font>
+    <font color="blue">//</font><font color="green"> and dialog box. </font>
+    SetWindowPos(pHdr-&gt;hwndTab, NULL, rcTab.left, rcTab.top, 
+            rcTab.right - rcTab.left, rcTab.bottom - rcTab.top, 
+            SWP_NOZORDER); 
+ 
+    <font color="blue">//</font><font color="green"> Move the first button below the tab control. </font>
+    hwndButton = GetDlgItem(hwndDlg, BTN_CLOSE); 
+    SetWindowPos(hwndButton, NULL, 
+            rcTab.left, rcTab.bottom + cyMargin, 0, 0, 
+            SWP_NOSIZE | SWP_NOZORDER); 
+ 
+    <font color="blue">//</font><font color="green"> Determine the size of the button. </font>
+    GetWindowRect(hwndButton, &amp;rcButton); 
+    rcButton.right -= rcButton.left; 
+    rcButton.bottom -= rcButton.top; 
+ 
+    <font color="blue">//</font><font color="green"> Move the second button to the right of the first. </font>
+    hwndButton = GetDlgItem(hwndDlg, BTN_TEST); 
+    SetWindowPos(hwndButton, NULL, 
+        rcTab.left + rcButton.right + cxMargin, 
+        rcTab.bottom + cyMargin, 0, 0, 
+        SWP_NOSIZE | SWP_NOZORDER); 
+ 
+    <font color="blue">//</font><font color="green"> Size the dialog box. </font>
+    SetWindowPos(hwndDlg, NULL, 0, 0, 
+        rcTab.right + cyMargin + 
+        2 * GetSystemMetrics(SM_CXDLGFRAME), 
+        rcTab.bottom + rcButton.bottom + 2 * cyMargin + 
+        2 * GetSystemMetrics(SM_CYDLGFRAME) + 
+        GetSystemMetrics(SM_CYCAPTION), 
+        SWP_NOMOVE | SWP_NOZORDER); 
+ 
+    <font color="blue">//</font><font color="green"> Simulate selection of the first item. </font>
+    OnSelChanged(hwndDlg); 
+} 
+ 
+<font color="blue">//</font><font color="green"> DoLockDlgRes - loads and locks a dialog box template resource. </font>
+<font color="blue">//</font><font color="green"> Returns the address of the locked resource. </font>
+<font color="blue">//</font><font color="green"> lpszResName - name of the resource </font>
+ 
+DLGTEMPLATE * WINAPI DoLockDlgRes(LPCSTR lpszResName) 
+{ 
+    HRSRC hrsrc = FindResource(NULL, lpszResName, RT_DIALOG); 
+    HGLOBAL hglb = LoadResource(g_hinst, hrsrc); 
+    return (DLGTEMPLATE *) LockResource(hglb); 
+} 
+ </pre>
+  <p>The following function processes the <b>TCN_SELCHANGE</b> notification
+  message for the main dialog box. The function destroys the dialog box for the
+  outgoing page, if any. Then it uses the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_createdialogindirect">
+  CreateDialogIndirect</MSHelp:link>
+  function to create a modeless dialog box for the incoming page.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green"> OnSelChanged - processes the TCN_SELCHANGE notification. </font>
+<font color="blue">//</font><font color="green"> hwndDlg - handle to the parent dialog box. </font>
+ 
+VOID WINAPI OnSelChanged(HWND hwndDlg) 
+{ 
+    DLGHDR *pHdr = (DLGHDR *) GetWindowLong( 
+        hwndDlg, GWL_USERDATA); 
+    int iSel = TabCtrl_GetCurSel(pHdr-&gt;hwndTab); 
+ 
+    <font color="blue">//</font><font color="green"> Destroy the current child dialog box, if any. </font>
+    if (pHdr-&gt;hwndDisplay != NULL) 
+        DestroyWindow(pHdr-&gt;hwndDisplay); 
+ 
+    <font color="blue">//</font><font color="green"> Create the new child dialog box. </font>
+    pHdr-&gt;hwndDisplay = CreateDialogIndirect(g_hinst, 
+        pHdr-&gt;apRes[iSel], hwndDlg, ChildDialogProc); 
+} 
+ </pre>
+  <p>The following function processes the <b>WM_INITDIALOG</b> message for each
+  of the child dialog boxes. You cannot specify the position of a dialog box
+  created using the <b>CreateDialogIndirect</b> function. This function uses the
+  <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_setwindowpos">
+  SetWindowPos</MSHelp:link>
+  function to position the child dialog within the tab control's display area.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green"> OnChildDialogInit - Positions the child dialog box to fall </font>
+<font color="blue">//</font><font color="green">     within the display area of the tab control. </font>
+ 
+VOID WINAPI OnChildDialogInit(HWND hwndDlg) 
+{ 
+    HWND hwndParent = GetParent(hwndDlg); 
+    DLGHDR *pHdr = (DLGHDR *) GetWindowLong( 
+        hwndParent, GWL_USERDATA); 
+    SetWindowPos(hwndDlg, HWND_TOP, 
+        pHdr-&gt;rcDisplay.left, pHdr-&gt;rcDisplay.top, 
+        0, 0, SWP_NOSIZE); 
+} 
+ </pre>
+  <h3><a name="tab_updates_IE"></a>Tab Control Updates in Internet Explorer</h3>
+  <p>Tab controls in Microsoft® Internet Explorer support the following new
+  features.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th><b>Item States</b></th>
+        <td>Tab control items now support an item state to support the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCM_DESELECTALL_cpp">
+          TCM_DESELECTALL</MSHelp:link>
+          message. Additionally, the <b>TCITEM</b> structure supports item state
+          values. See <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Tab_Control_Item_States_cpp">
+          Tab Control Item States</MSHelp:link>
+          for more information.</td>
+      </tr>
+      <tr>
+        <td><b>Extended Styles</b></td>
+        <td>Tab controls now support extended styles that allow the controls to
+          have enhanced capabilities. See <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Tab_Control_Extended_Styles_cpp">
+          Tab Control Extended Styles</MSHelp:link>
+          for more information.</td>
+      </tr>
+      <tr>
+        <td><b>Structures Renamed</b></td>
+        <td>All structures used with tab controls have been renamed to conform
+          to current naming conventions, while maintaining backward
+          compatibility. For example, the <b>TCITEM</b> structure is now named <b>TCITEM</b>.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+
+</html>

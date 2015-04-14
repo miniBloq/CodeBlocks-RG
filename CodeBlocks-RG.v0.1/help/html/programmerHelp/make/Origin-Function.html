@@ -1,0 +1,116 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Origin%20Function">Origin Function</a>,
+Next:<a rel="next" accesskey="n" href="Shell-Function.html#Shell%20Function">Shell Function</a>,
+Previous:<a rel="previous" accesskey="p" href="Eval-Function.html#Eval%20Function">Eval Function</a>,
+Up:<a rel="up" accesskey="u" href="Functions.html#Functions">Functions</a>
+<hr><br>
+</div>
+
+<h3 class="section">The <code>origin</code> Function</h3>
+
+   <p>The <code>origin</code> function is unlike most other functions in that it does
+not operate on the values of variables; it tells you something <em>about</em>
+a variable.  Specifically, it tells you where it came from.
+
+   <p>The syntax of the <code>origin</code> function is:
+
+<pre class="example">     $(origin <var>variable</var>)
+     </pre>
+
+   <p>Note that <var>variable</var> is the <em>name</em> of a variable to inquire about;
+not a <em>reference</em> to that variable.  Therefore you would not normally
+use a <code>$</code> or parentheses when writing it.  (You can, however, use a
+variable reference in the name if you want the name not to be a constant.)
+
+   <p>The result of this function is a string telling you how the variable
+<var>variable</var> was defined:
+
+     <dl>
+<dt><code>undefined</code>
+     <dd>
+if <var>variable</var> was never defined.
+
+     <br><dt><code>default</code>
+     <dd>
+if <var>variable</var> has a default definition, as is usual with <code>CC</code>
+and so on.  See <a href="Implicit-Variables.html#Implicit%20Variables">Variables Used by Implicit Rules</a>. 
+Note that if you have redefined a default variable, the <code>origin</code>
+function will return the origin of the later definition.
+
+     <br><dt><code>environment</code>
+     <dd>
+if <var>variable</var> was defined as an environment variable and the
+<code>-e</code> option is <em>not</em> turned on (see <a href="Options-Summary.html#Options%20Summary">Summary of Options</a>).
+
+     <br><dt><code>environment override</code>
+     <dd>
+if <var>variable</var> was defined as an environment variable and the
+<code>-e</code> option <em>is</em> turned on (see <a href="Options-Summary.html#Options%20Summary">Summary of Options</a>).
+
+     <br><dt><code>file</code>
+     <dd>
+if <var>variable</var> was defined in a makefile.
+
+     <br><dt><code>command line</code>
+     <dd>
+if <var>variable</var> was defined on the command line.
+
+     <br><dt><code>override</code>
+     <dd>
+if <var>variable</var> was defined with an <code>override</code> directive in a
+makefile (see <a href="Override-Directive.html#Override%20Directive">The <code>override</code> Directive</a>).
+
+     <br><dt><code>automatic</code>
+     <dd>
+if <var>variable</var> is an automatic variable defined for the
+execution of the commands for each rule
+(see <a href="Automatic.html#Automatic">Automatic Variables</a>). 
+</dl>
+
+   <p>This information is primarily useful (other than for your curiosity) to
+determine if you want to believe the value of a variable.  For example,
+suppose you have a makefile <code>foo</code> that includes another makefile
+<code>bar</code>.  You want a variable <code>bletch</code> to be defined in <code>bar</code>
+if you run the command <code>make&nbsp;-f&nbsp;bar</code>, even if the environment contains
+a definition of <code>bletch</code>.  However, if <code>foo</code> defined
+<code>bletch</code> before including <code>bar</code>, you do not want to override that
+definition.  This could be done by using an <code>override</code> directive in
+<code>foo</code>, giving that definition precedence over the later definition in
+<code>bar</code>; unfortunately, the <code>override</code> directive would also
+override any command line definitions.  So, <code>bar</code> could
+include:
+
+<pre class="example">     ifdef bletch
+     ifeq "$(origin bletch)" "environment"
+     bletch = barf, gag, etc.
+     endif
+     endif
+     </pre>
+
+<p>If <code>bletch</code> has been defined from the environment, this will redefine
+it.
+
+   <p>If you want to override a previous definition of <code>bletch</code> if it came
+from the environment, even under <code>-e</code>, you could instead write:
+
+<pre class="example">     ifneq "$(findstring environment,$(origin bletch))" ""
+     bletch = barf, gag, etc.
+     endif
+     </pre>
+
+   <p>Here the redefinition takes place if <code>$(origin bletch)</code> returns either
+<code>environment</code> or <code>environment override</code>. 
+See <a href="Text-Functions.html#Text%20Functions">Functions for String Substitution and Analysis</a>.
+
+   </body></html>
+

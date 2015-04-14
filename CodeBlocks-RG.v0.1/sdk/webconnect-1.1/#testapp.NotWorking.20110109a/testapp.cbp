@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="testapp" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Win32 Release Unicode">
+				<Option output="..\releaseu\testapp" prefix_auto="1" extension_auto="1" />
+				<Option object_output="ReleaseUnicode" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="$(#wx)\lib\gcc_dll\mswu" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="$(#wx)\lib\gcc_dll\mswu" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="libwxmsw29u_richtext.a" />
+					<Add library="libwxmsw29u_xrc.a" />
+					<Add library="libwxmsw29u_aui.a" />
+					<Add library="libwxmsw29u_media.a" />
+					<Add library="libwxbase29u_net.a" />
+					<Add library="libwxmsw29u_gl.a" />
+					<Add library="libwxbase29u_xml.a" />
+					<Add library="libwxmsw29u_adv.a" />
+					<Add library="libwxmsw29u_html.a" />
+					<Add library="libwxmsw29u_core.a" />
+					<Add library="libwxbase29u.a" />
+					<Add library="libwxpng.a" />
+					<Add library="libwxjpeg.a" />
+					<Add library="libwxtiff.a" />
+					<Add library="libwxzlib.a" />
+					<Add library="libwxregexu.a" />
+					<Add library="libwxexpat.a" />
+					<Add library="..\releaseu\libwebconnect.a" />
+					<Add directory="$(#wx)\lib\gcc_dll" />
+				</Linker>
+			</Target>
+			<Target title="Win32 Debug Unicode">
+				<Option output="..\debugu\testapp" prefix_auto="1" extension_auto="1" />
+				<Option object_output="DebugUnicode" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-W" />
+					<Add option="-fexceptions" />
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D_MBCS" />
+					<Add option="-D_LIB" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-D__WINDOWS__" />
+					<Add option="-D__WXMSW__" />
+					<Add option="-D__WXDEBUG__" />
+					<Add option="-DWXDEBUG=1" />
+					<Add option="-D__WIN32__" />
+					<Add option="-DWINVER=0x0400" />
+					<Add option="-DSTRICT" />
+					<Add option="-DUNICODE" />
+					<Add option="-D_UNICODE" />
+					<Add directory="$(#wx)\lib\gcc_dll\mswud" />
+					<Add directory="$(#wx)\lib\gcc_dll" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="$(#wx)\lib\gcc_dll\mswud" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="winspool" />
+					<Add library="comdlg32" />
+					<Add library="advapi32" />
+					<Add library="shell32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="odbc32" />
+					<Add library="odbccp32" />
+					<Add library="comctl32" />
+					<Add library="wxmswd" />
+					<Add library="pngd" />
+					<Add library="zlibd" />
+					<Add library="freetype214MT_D" />
+					<Add library="wsock32" />
+					<Add library="rpcrt4" />
+					<Add library="..\kcl\lib\kcld" />
+					<Add library="..\paladin\lib\paladind" />
+					<Add library="wxbase28ud" />
+					<Add library="wxbase28ud_net" />
+					<Add library="wxmsw28ud_core" />
+					<Add library="wxmsw28ud_aui" />
+					<Add library="wxpngd" />
+					<Add library="wxzlibd" />
+					<Add library="..\releaseu\libwebconnect.a" />
+					<Add directory="$(#wx)\lib\gcc_dll" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-pipe" />
+			<Add option="-mthreads" />
+			<Add option='[[if (PLATFORM == PLATFORM_MSW &amp;&amp; (GetCompilerFactory().GetCompilerVersionString(_T(&quot;gcc&quot;)) &gt;= _T(&quot;4.0.0&quot;))) print(_T(&quot;-Wno-attributes&quot;));]]' />
+			<Add option="-D__GNUWIN32__" />
+			<Add option="-D__WXMSW__" />
+			<Add option="-DWXUSINGDLL" />
+			<Add option="-DwxUSE_UNICODE" />
+			<Add directory="$(#wx)\include" />
+			<Add directory="$(#wx)\contrib\include" />
+			<Add directory="." />
+			<Add directory="Resources" />
+			<Add directory="Source" />
+			<Add directory="..\webconnect" />
+		</Compiler>
+		<ResourceCompiler>
+			<Add directory="$(#wx)\include" />
+		</ResourceCompiler>
+		<Linker>
+			<Add option="-lkernel32" />
+			<Add option="-luser32" />
+			<Add option="-lgdi32" />
+			<Add option="-lcomdlg32" />
+			<Add option="-lwinspool" />
+			<Add option="-lwinmm" />
+			<Add option="-lshell32" />
+			<Add option="-lcomctl32" />
+			<Add option="-lole32" />
+			<Add option="-loleaut32" />
+			<Add option="-luuid" />
+			<Add option="-lrpcrt4" />
+			<Add option="-ladvapi32" />
+			<Add option="-lwsock32" />
+			<Add option="-lodbc32" />
+			<Add option="-lopengl32" />
+			<Add library="wxmsw29u_stc" />
+		</Linker>
+		<Unit filename="testapp.cpp" />
+		<Unit filename="testapp.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

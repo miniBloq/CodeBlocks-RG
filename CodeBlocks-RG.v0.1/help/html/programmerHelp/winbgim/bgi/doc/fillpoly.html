@@ -1,0 +1,100 @@
+<TITLE>BGI Documentation for 
+fillpoly
+</TITLE>
+<H2>
+fillpoly
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void fillpoly(int numpoints, int *polypoints);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+fillpoly draws the outline of a polygon with numpoints points in the current line style and color (just as drawpoly does), then fills the polygon using the current fill pattern and fill color.
+<P>polypoints points to a sequence of (numpoints * 2) integers. Each pair of integers gives the x- and y-coordinates of a point on the polygon.
+
+
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="drawpoly.html"> drawpoly </A>
+<DD><A HREF="floodfill.html"> floodfill </A>
+<DD><A HREF="graphresult.html"> graphresult </A>
+<DD><A HREF="setfillstyle.html"> setfillstyle </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* fillpoly example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int i, maxx, maxy;
+
+   /* our polygon array */
+   int poly[8];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   maxx = getmaxx();
+   maxy = getmaxy();
+
+   poly[0] = 20;             /* first vertex */
+   poly[1] = maxy / 2;
+   poly[2] = maxx - 20;      /* second vertex */
+   poly[3] = 20;
+   poly[4] = maxx - 50;      /* third vertex */
+   poly[5] = maxy - 20;
+   poly[6] = maxx / 2;       /* fourth, fillpoly automatically */
+   poly[7] = maxy / 2;       /* closes the polygon */
+
+
+   /* loop through the fill patterns */
+   for (i=EMPTY_FILL; i&lt;USER_FILL; i++) {
+      /* set fill pattern */
+      setfillstyle(i, getmaxcolor());
+
+      /* draw a filled polygon */
+      fillpoly(4, poly);
+      getch();
+   }
+
+   /* clean up */
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

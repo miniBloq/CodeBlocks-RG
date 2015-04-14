@@ -1,0 +1,5 @@
+<area shape="rect" href="$classwx_grid_cell_bool_editor.html" title="Grid cell editor for boolean data." alt="" coords="5,89,155,121">
+<area shape="rect" href="$classwx_grid_cell_choice_editor.html" title="Grid cell editor for string data providing the user a choice from a list of strings..." alt="" coords="179,89,344,121">
+<area shape="rect" href="$classwx_grid_cell_text_editor.html" title="Grid cell editor for string/text data." alt="" coords="368,89,517,121">
+<area shape="rect" href="$classwx_grid_cell_float_editor.html" title="The editor for floating point numbers data." alt="" coords="275,172,427,204">
+<area shape="rect" href="$classwx_grid_cell_number_editor.html" title="Grid cell editor for numeric integer data." alt="" coords="451,172,619,204">

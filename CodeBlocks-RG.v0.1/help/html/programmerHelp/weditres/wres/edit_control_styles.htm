@@ -1,0 +1,189 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Edit Control Styles</title>
+</head>
+
+<body>
+
+<div class="clsDocBody" TOPICNAME="Edit Control Styles">
+  <h2>Edit Control Styles</h2>
+  <hr SIZE="1">
+  <p>To create an edit control using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindow">
+  CreateWindow</MSHelp:link>
+  or <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+  CreateWindowEx</MSHelp:link>
+  function, specify the EDIT class, appropriate window style constants, and a
+  combination of the following edit control styles. After the control has been
+  created, these styles cannot be modified, except as noted.</p>
+  <p class="clsRef">Constants</p>
+  <blockquote>
+    <dl class="clsRef">
+      <dt><b>ES_AUTOHSCROLL</b>&nbsp;
+      <dd>Automatically scrolls text to the right by 10 characters when the user
+        types a character at the end of the line. When the user presses the
+        ENTER key, the control scrolls all text back to position zero.
+        <p>&nbsp;</p>
+        <dl class="clsRef">
+        </dl>
+      <dt><b>ES_AUTOVSCROLL</b>&nbsp;
+      <dd>Automatically scrolls text up one page when the user presses the ENTER
+        key on the last line.
+        <p>&nbsp;</p>
+        <dl class="clsRef">
+        </dl>
+      <dt><b>ES_CENTER</b>&nbsp;
+      <dd><b>Windows 98/Me, Windows 2000/XP:</b> Centers text in a single-line
+        or multiline edit control.
+        <p><b>Windows 95, Windows NT 4.0 and earlier:</b> Centers text in a
+        multiline edit control.</p>
+        <p>&nbsp;</p>
+        <dl class="clsRef">
+        </dl>
+      <dt><b>ES_LEFT</b>&nbsp;
+      <dd>Left aligns text.
+        <p>&nbsp;</p>
+        <dl class="clsRef">
+        </dl>
+      <dt><b>ES_LOWERCASE</b>&nbsp;
+      <dd>Converts all characters to lowercase as they are typed into the edit
+        control.
+        <p>To change this style after the control has been created, use <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_setwindowlong">
+        SetWindowLong</MSHelp:link>
+        .</p>
+        <p>&nbsp;</p>
+        <dl class="clsRef">
+        </dl>
+      <dt><b>ES_MULTILINE</b>&nbsp;
+      <dd>Designates a multiline edit control. The default is single-line edit
+        control.
+        <p>When the multiline edit control is in a dialog box, the default
+        response to pressing the ENTER key is to activate the default button. To
+        use the ENTER key as a carriage return, use the ES_WANTRETURN style.</p>
+        <p>When the multiline edit control is not in a dialog box and the
+        ES_AUTOVSCROLL style is specified, the edit control shows as many lines
+        as possible and scrolls vertically when the user presses the ENTER key.
+        If you do not specify ES_AUTOVSCROLL, the edit control shows as many
+        lines as possible and beeps if the user presses the ENTER key when no
+        more lines can be displayed.</p>
+        <p>If you specify the ES_AUTOHSCROLL style, the multiline edit control
+        automatically scrolls horizontally when the caret goes past the right
+        edge of the control. To start a new line, the user must press the ENTER
+        key. If you do not specify ES_AUTOHSCROLL, the control automatically
+        wraps words to the beginning of the next line when necessary. A new line
+        is also started if the user presses the ENTER key. The window size
+        determines the position of the Wordwrap. If the window size changes, the
+        Wordwrapping position changes and the text is redisplayed.</p>
+        <p>Multiline edit controls can have scroll bars. An edit control with
+        scroll bars processes its own scroll bar messages. Note that edit
+        controls without scroll bars scroll as described in the previous
+        paragraphs and process any scroll messages sent by the parent window.</p>
+        <p>&nbsp;</p>
+        <dl class="clsRef">
+        </dl>
+      <dt><b>ES_NOHIDESEL</b>&nbsp;
+      <dd>Negates the default behavior for an edit control. The default behavior
+        hides the selection when the control loses the input focus and inverts
+        the selection when the control receives the input focus. If you specify
+        ES_NOHIDESEL, the selected text is inverted, even if the control does
+        not have the focus.
+        <p>&nbsp;</p>
+        <dl class="clsRef">
+        </dl>
+      <dt><b>ES_NUMBER</b>&nbsp;
+      <dd>Allows only digits to be entered into the edit control. Note that,
+        even with this set, it is still possible to paste non-digits into the
+        edit control.
+        <p>To change this style after the control has been created, use <b>SetWindowLong</b>.</p>
+        <p>&nbsp;</p>
+        <dl class="clsRef">
+        </dl>
+      <dt><b>ES_OEMCONVERT</b>&nbsp;
+      <dd>Converts text entered in the edit control. The text is converted from
+        the Windows character set to the OEM character set and then back to the
+        Windows character set. This ensures proper character conversion when the
+        application calls the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CharToOem">
+        CharToOem</MSHelp:link>
+        function to convert a Windows string in the edit control to OEM
+        characters. This style is most useful for edit controls that contain
+        file names.
+        <p>To change this style after the control has been created, use <b>SetWindowLong</b>.</p>
+        <p>&nbsp;</p>
+        <dl class="clsRef">
+        </dl>
+      <dt><b>ES_PASSWORD</b>&nbsp;
+      <dd>Displays an asterisk (*) for each character typed into the edit
+        control. This style is valid only for single-line edit controls.
+        <p><b>Windows XP:</b> If the edit control is from user32.dll, the
+        default password character is an asterisk. However, if the edit control
+        is from comctl32.dll version 6, the default character is a black circle.</p>
+        <p>To change the characters that is displayed, or set or clear this
+        style, use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SETPASSWORDCHAR_cpp">
+        EM_SETPASSWORDCHAR</MSHelp:link>
+        message.</p>
+        <div class="clsNote">
+          <b>Note</b>&nbsp;&nbsp;Comctl32.dll version 6 is not redistributable
+          but it is included in Microsoft® Windows® XP or later. To use
+          Comctl32.dll version 6, specify it in a manifest. For more information
+          on manifests, see <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_inet_cookbook_overview_cpp">
+          Using Windows XP Visual Styles</MSHelp:link>
+          .
+        </div>
+        <p>&nbsp;</p>
+        <dl class="clsRef">
+        </dl>
+      <dt><b>ES_READONLY</b>&nbsp;
+      <dd>Prevents the user from typing or editing text in the edit control.
+        <p>To change this style after the control has been created, use the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SETREADONLY_cpp">
+        EM_SETREADONLY</MSHelp:link>
+        message.</p>
+        <p>&nbsp;</p>
+        <dl class="clsRef">
+        </dl>
+      <dt><b>ES_RIGHT</b>&nbsp;
+      <dd><b>Windows 98/Me, Windows 2000/XP:</b> Right aligns text in a
+        single-line or multiline edit control. <b>Windows 95, Windows NT 4.0 and
+        earlier:</b> Right aligns text in a multiline edit control.
+        <p>&nbsp;</p>
+        <dl class="clsRef">
+        </dl>
+      <dt><b>ES_UPPERCASE</b>&nbsp;
+      <dd>Converts all characters to uppercase as they are typed into the edit
+        control.
+        <p>To change this style after the control has been created, use <b>SetWindowLong</b>.</p>
+        <p>&nbsp;</p>
+        <dl class="clsRef">
+        </dl>
+      <dt><b>ES_WANTRETURN</b>&nbsp;
+      <dd>Specifies that a carriage return be inserted when the user presses the
+        ENTER key while entering text into a multiline edit control in a dialog
+        box. If you do not specify this style, pressing the ENTER key has the
+        same effect as pressing the dialog box's default push button. This style
+        has no effect on a single-line edit control.
+        <p>To change this style after the control has been created, use <b>SetWindowLong</b>.</p>
+        <p>&nbsp;</p>
+        <dl class="clsRef">
+        </dl>
+      </dd>
+    </dl>
+  </blockquote>
+</div>
+
+</body>
+
+</html>

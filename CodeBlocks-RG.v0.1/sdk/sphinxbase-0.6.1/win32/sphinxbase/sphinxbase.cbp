@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="sphinxbase" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Release Win32">
+				<Option output="..\..\bin\Release\sphinxbase" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Release" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-DNDEBUG" />
+					<Add option="-DWIN32" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-D_USRDLL" />
+					<Add option="-DSPHINXBASE_EXPORTS" />
+					<Add option="-DHAVE_CONFIG_H" />
+					<Add option="-DSPHINXDLL" />
+					<Add option="-D_CRT_SECURE_NO_DEPRECATE" />
+					<Add option="-W" />
+					<Add option="-O2" />
+					<Add directory="..\..\include\win32" />
+					<Add directory="..\..\include" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="..\..\include\win32" />
+					<Add directory="..\..\include" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="winmm" />
+				</Linker>
+			</Target>
+			<Target title="Debug Win32">
+				<Option output="..\..\bin\Debug\sphinxbase" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Debug" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-D_DEBUG" />
+					<Add option="-DWIN32" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-D_USRDLL" />
+					<Add option="-DSPHINXBASE_EXPORTS" />
+					<Add option="-DHAVE_CONFIG_H" />
+					<Add option="-DSPHINXDLL" />
+					<Add option="-D_CRT_SECURE_NO_DEPRECATE" />
+					<Add option="-W" />
+					<Add option="-g" />
+					<Add option="-O0" />
+					<Add directory="..\..\include\win32" />
+					<Add directory="..\..\include" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="..\..\include\win32" />
+					<Add directory="..\..\include" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="winmm" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="..\..\src\libsphinxbase\feat\agc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\bio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\bitvec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\blas_lite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\case.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\ckd_alloc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\cmd_ln.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\feat\cmn.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\feat\cmn_prior.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxad\cont_ad_base.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\dtoa.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\err.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\errno.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\f2c_lite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\fe\fe_interface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\fe\fe_sigproc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\fe\fe_warp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\fe\fe_warp_affine.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\fe\fe_warp_inverse_linear.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\fe\fe_warp_piecewise_linear.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\feat\feat.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\filename.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\fe\fixlog.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\lm\fsg_model.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\genrand.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\glist.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\hash_table.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\heap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\huff_code.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\info.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\lm\jsgf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\lm\jsgf_parser.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\lm\jsgf_scanner.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\feat\lda.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\listelem_alloc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\lm\lm3g_model.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\logmath.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\matrix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\mmio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\lm\ngram_model.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\lm\ngram_model_arpa.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\lm\ngram_model_dmp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\lm\ngram_model_dmp32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\lm\ngram_model_set.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\pio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxad\play_win32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\profile.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxad\rec_win32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\sbthread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\slamch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\slapack_lite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\strfuncs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\string_wce.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\unlimit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\util\utf8.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\libsphinxbase\fe\yin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\include\ad.h" />
+		<Unit filename="..\..\include\agc.h" />
+		<Unit filename="..\..\include\bio.h" />
+		<Unit filename="..\..\include\bitvec.h" />
+		<Unit filename="..\..\include\byteorder.h" />
+		<Unit filename="..\..\include\case.h" />
+		<Unit filename="..\..\include\ckd_alloc.h" />
+		<Unit filename="..\..\include\clapack_lite.h" />
+		<Unit filename="..\..\include\cmd_ln.h" />
+		<Unit filename="..\..\include\cmn.h" />
+		<Unit filename="..\..\include\win32\config.h" />
+		<Unit filename="..\..\include\cont_ad.h" />
+		<Unit filename="..\..\include\err.h" />
+		<Unit filename="..\..\include\f2c.h" />
+		<Unit filename="..\..\include\fe.h" />
+		<Unit filename="..\..\src\libsphinxbase\fe\fe_internal.h" />
+		<Unit filename="..\..\src\libsphinxbase\fe\fe_warp.h" />
+		<Unit filename="..\..\src\libsphinxbase\fe\fe_warp_affine.h" />
+		<Unit filename="..\..\src\libsphinxbase\fe\fe_warp_inverse_linear.h" />
+		<Unit filename="..\..\src\libsphinxbase\fe\fe_warp_piecewise_linear.h" />
+		<Unit filename="..\..\include\feat.h" />
+		<Unit filename="..\..\include\filename.h" />
+		<Unit filename="..\..\include\fixpoint.h" />
+		<Unit filename="..\..\include\fsg_model.h" />
+		<Unit filename="..\..\include\gau_cb.h" />
+		<Unit filename="..\..\include\gau_cb_float64.h" />
+		<Unit filename="..\..\include\gau_cb_int32.h" />
+		<Unit filename="..\..\include\gau_file.h" />
+		<Unit filename="..\..\include\gau_mix.h" />
+		<Unit filename="..\..\include\genrand.h" />
+		<Unit filename="..\..\include\glist.h" />
+		<Unit filename="..\..\include\hash_table.h" />
+		<Unit filename="..\..\include\heap.h" />
+		<Unit filename="..\..\include\huff_code.h" />
+		<Unit filename="..\..\include\info.h" />
+		<Unit filename="..\..\include\jsgf.h" />
+		<Unit filename="..\..\src\libsphinxbase\lm\jsgf_internal.h" />
+		<Unit filename="..\..\src\libsphinxbase\lm\jsgf_parser.h" />
+		<Unit filename="..\..\src\libsphinxbase\lm\jsgf_scanner.h" />
+		<Unit filename="..\..\include\libutil.h" />
+		<Unit filename="..\..\include\listelem_alloc.h" />
+		<Unit filename="..\..\src\libsphinxbase\lm\lm3g_model.h" />
+		<Unit filename="..\..\include\logmath.h" />
+		<Unit filename="..\..\include\matrix.h" />
+		<Unit filename="..\..\include\mmio.h" />
+		<Unit filename="..\..\include\mulaw.h" />
+		<Unit filename="..\..\include\ngram_model.h" />
+		<Unit filename="..\..\src\libsphinxbase\lm\ngram_model_arpa.h" />
+		<Unit filename="..\..\src\libsphinxbase\lm\ngram_model_dmp.h" />
+		<Unit filename="..\..\src\libsphinxbase\lm\ngram_model_internal.h" />
+		<Unit filename="..\..\src\libsphinxbase\lm\ngram_model_set.h" />
+		<Unit filename="..\..\include\pio.h" />
+		<Unit filename="..\..\include\prim_type.h" />
+		<Unit filename="..\..\include\profile.h" />
+		<Unit filename="..\..\include\s3_arraylist.h" />
+		<Unit filename="..\..\include\sbthread.h" />
+		<Unit filename="..\..\include\win32\sphinx_config.h" />
+		<Unit filename="..\..\include\sphinx_types.h" />
+		<Unit filename="..\..\include\sphinxbase_export.h" />
+		<Unit filename="..\..\include\strfuncs.h" />
+		<Unit filename="..\..\include\unlimit.h" />
+		<Unit filename="..\..\include\yin.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

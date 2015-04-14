@@ -1,0 +1,89 @@
+<TITLE>BGI Documentation for 
+getmoderange
+</TITLE>
+<H2>
+getmoderange
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void getmoderange(int graphdriver, int *lomode, int *himode);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+getmoderange gets the range of valid graphics modes for the given graphics driver, graphdriver. The lowest permissible mode value is returned in *lomode, and the highest permissible value is *himode. If graphdriver specifies an invalid graphics driver, both *lomode and *himode are set to -1. If the value of graphdriver is -1, the currently loaded driver modes are given.
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="getgraphmode.html"> getgraphmode </A>
+<DD><A HREF="getmaxmode.html"> getmaxmode </A>
+<DD><A HREF="getmodename.html"> getmodename </A>
+<DD><A HREF="initgraph.html"> initgraph </A>
+<DD><A HREF="setgraphmode.html"> setgraphmode </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* getmoderange example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int midx, midy;
+   int low, high;
+   char mrange[80];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+         printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+         printf("Press any key to halt:");
+         getch();
+         exit(1);            /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+
+   /* get the mode range for this driver */
+   getmoderange(gdriver, &low, &high);
+
+   /* convert mode range info. into strings */
+   sprintf(mrange, "This driver supports modes %d..%d", low, high);
+
+   /* display the information */
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+   outtextxy(midx, midy, mrange);
+
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

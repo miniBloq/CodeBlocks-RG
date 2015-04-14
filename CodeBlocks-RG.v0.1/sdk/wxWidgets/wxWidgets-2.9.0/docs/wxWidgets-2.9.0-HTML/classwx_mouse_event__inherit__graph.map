@@ -1,0 +1,4 @@
+<area shape="rect" href="$classwx_event.html" title="An event is a structure holding information about an event passed to a callback or..." alt="" coords="9,89,81,121">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="5,7,80,39">
+<area shape="rect" href="$classwx_mouse_state.html" title="Represents the mouse state." alt="" coords="111,89,220,121">
+<area shape="rect" href="$classwx_keyboard_state.html" title="Provides methods for testing the state of the keyboard modifier keys." alt="" coords="104,7,232,39">

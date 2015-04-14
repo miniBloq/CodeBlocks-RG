@@ -1,0 +1,48 @@
+<area shape="rect" href="$classwx_evt_handler.html" title="A class that can handle events from the windowing system." alt="" coords="155,369,259,401">
+<area shape="rect" href="$classwx_app_console.html" title="This class is essential for writing console&#45;only or hybrid apps without having to..." alt="" coords="331,5,443,37">
+<area shape="rect" href="$classwx_aui_manager.html" title="wxAuiManager is the central class of the wxAUI class framework." alt="" coords="331,61,443,93">
+<area shape="rect" href="$classwx_doc_manager.html" title="The wxDocManager class is part of the document/view framework supported by wxWidgets..." alt="" coords="328,117,445,149">
+<area shape="rect" href="$classwx_document.html" title="The document class can be used to model an application&#39;s file&#45;based data." alt="" coords="337,173,436,205">
+<area shape="rect" href="$classwx_event_blocker.html" title="This class is a special event handler which allows to discard any event (or a set..." alt="" coords="328,229,445,261">
+<area shape="rect" href="$classwx_menu.html" title="A menu is a popup (or pull down) list of items, one of which may be selected before..." alt="" coords="351,285,423,317">
+<area shape="rect" href="$classwx_notification_message.html" title="This class allows to show the user a message non intrusively." alt="" coords="307,341,467,373">
+<area shape="rect" href="$classwx_process.html" title="The objects of this class are used in conjunction with the wxExecute() function." alt="" coords="343,397,431,429">
+<area shape="rect" href="$classwx_property_grid_page.html" title="Holder of property grid page information." alt="" coords="313,453,460,485">
+<area shape="rect" href="$classwx_task_bar_icon.html" title="This class represents a taskbar icon." alt="" coords="329,509,444,541">
+<area shape="rect" href="$classwx_timer.html" title="The wxTimer class allows you to execute code at specified intervals." alt="" coords="349,565,424,597">
+<area shape="rect" href="$classwx_validator.html" title="wxValidator is the base class for a family of validator classes that mediate between..." alt="" coords="341,621,432,653">
+<area shape="rect" href="$classwx_view.html" title="The view class can be used to model the viewing and editing component of an application&#39;s..." alt="" coords="353,677,420,709">
+<area shape="rect" href="$classwx_window.html" title="wxWindow is the base class for all windows and represents any visible object om screen..." alt="" coords="343,957,431,989">
+<area shape="rect" href="$classwx_app.html" title="The wxApp class represents the application itself when wxUSE_GUI=1." alt="" coords="557,5,619,37">
+<area shape="rect" href="$classwx_generic_validator.html" title="wxGenericValidator performs data transfer (but not validation or filtering) for many..." alt="" coords="519,565,657,597">
+<area shape="rect" href="$classwx_text_validator.html" title="wxTextValidator validates text controls, providing a variety of filtering behaviours..." alt="" coords="528,621,648,653">
+<area shape="rect" href="$classwx_control.html" title="This is the base class for a control or &quot;widget&quot;." alt="" coords="548,677,628,709">
+<area shape="rect" href="$classwx_g_l_canvas.html" title="wxGLCanvas is a class for displaying OpenGL graphics." alt="" coords="536,733,640,765">
+<area shape="rect" href="$classwx_html_help_window.html" title="This class is used by wxHtmlHelpController to display help within a frame or dialog..." alt="" coords="519,789,657,821">
+<area shape="rect" href="$classwx_m_d_i_client_window.html" title="An MDI client window is a child of wxMDIParentFrame, and manages zero or more wxMDIChildFrame..." alt="" coords="516,845,660,877">
+<area shape="rect" href="$classwx_menu_bar.html" title="A menu bar is a series of menus accessible from the top of a frame." alt="" coords="543,901,633,933">
+<area shape="rect" href="$classwx_panel.html" title="A panel is a window on which controls are placed." alt="" coords="552,957,624,989">
+<area shape="rect" href="$classwx_p_g_multi_button.html" title="This class can be used to have multiple buttons in a property editor." alt="" coords="527,1013,649,1045">
+<area shape="rect" href="$classwx_sash_window.html" title="wxSashWindow allows any of its edges to have a sash which can be dragged to resize..." alt="" coords="529,1069,647,1101">
+<area shape="rect" href="$classwx_splitter_window.html" title="This class manages up to two subwindows." alt="" coords="524,1125,652,1157">
+<area shape="rect" href="$classwx_status_bar.html" title="A status bar is a narrow window that can be placed along the bottom of a frame to..." alt="" coords="540,1181,636,1213">
+<area shape="rect" href="$classwx_tip_window.html" title="Shows simple text in a popup tip window on creation." alt="" coords="535,1237,641,1269">
+<area shape="rect" href="$classwx_top_level_window.html" title="wxTopLevelWindow is a common base class for wxDialog and wxFrame." alt="" coords="516,1293,660,1325">
+<area shape="rect" href="$classwx_active_x_container.html" title="wxActiveXContainer is a host for an ActiveX control on Windows (and as such is a..." alt="" coords="719,201,860,233">
+<area shape="rect" href="$classwx_animation_ctrl.html" title="This is a static control which displays an animation." alt="" coords="731,257,848,289">
+<area shape="rect" href="$classwx_aui_notebook.html" title="wxAuiNotebook is part of the wxAUI class framework." alt="" coords="732,313,847,345">
+<area shape="rect" href="$classwx_bitmap_toggle_button.html" title="wxBitmapToggleButton is a wxToggleButton that contains a bitmap instead of text." alt="" coords="709,369,869,401">
+<area shape="rect" href="$classwx_book_ctrl_base.html" title="A book control is a convenient way of displaying multiple pages of information, displayed..." alt="" coords="728,425,851,457">
+<area shape="rect" href="$classwx_button.html" title="A button is a control that contains a text string, and is one of the most common..." alt="" coords="752,481,827,513">
+<area shape="rect" href="$classwx_calendar_ctrl.html" title="The calendar control allows the user to pick a date." alt="" coords="732,537,847,569">
+<area shape="rect" href="$classwx_check_box.html" title="A checkbox is a labelled box which by default is either on (checkmark is visible)..." alt="" coords="739,593,840,625">
+<area shape="rect" href="$classwx_collapsible_pane.html" title="A collapsible pane is a container with an embedded button&#45;like control which can..." alt="" coords="721,649,857,681">
+<area shape="rect" href="$classwx_combo_box.html" title="A combobox is like a combination of an edit control and a listbox." alt="" coords="736,705,843,737">
+<area shape="rect" href="$classwx_combo_ctrl.html" title="A combo control is a generic combobox that allows totally custom popup." alt="" coords="739,761,840,793">
+<area shape="rect" href="$classwx_control_with_items.html" title="This is convenience class that derives from both wxControl and wxItemContainer." alt="" coords="720,817,859,849">
+<area shape="rect" href="$classwx_data_view_ctrl.html" title="wxDataViewCtrl is a control to display data either in a tree like fashion or in a..." alt="" coords="731,873,848,905">
+<area shape="rect" href="$classwx_date_picker_ctrl.html" title="This control allows the user to select a date." alt="" coords="727,929,852,961">
+<area shape="rect" href="$classwx_file_ctrl.html" title="This control allows the user to select a file." alt="" coords="749,985,829,1017">
+<area shape="rect" href="$classwx_gauge.html" title="A gauge is a horizontal or vertical bar which shows a quantity (often time)." alt="" coords="749,1041,829,1073">
+<area shape="rect" href="$classwx_generic_dir_ctrl.html" title="This control can be used to place a directory listing (with optional files) on an..." alt="" coords="728,1097,851,1129">
+<area shape="rect" href="$classwx_header_ctrl.html" title="wxHeaderCtrl is the control containing the column headings which is usually used..." alt="" coords="737,1153,841,1185">

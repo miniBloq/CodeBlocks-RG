@@ -1,0 +1,846 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Open and Save As Dialog Boxes</title>
+</head>
+
+<body>
+
+<div class="clsDocBody">
+  <h2>Open and Save As Dialog Boxes</h2>
+  <hr SIZE="1">
+  <p>The <b>Open</b> dialog box lets the user specify the drive, directory, and
+  the name of a file or set of files to open. You create and display an <b>Open</b>
+  dialog box by initializing an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_OPENFILENAME_str_cpp">
+  OPENFILENAME</MSHelp:link>
+  structure and passing the structure to the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_GetOpenFileName_cpp">
+  GetOpenFileName</MSHelp:link>
+  function.</p>
+  <p>The <b>Save As</b> dialog box lets the user specify the drive, directory,
+  and name of a file to save. You create and display a <b>Save As</b> dialog box
+  by initializing an <b>OPENFILENAME</b> structure and passing the structure to
+  the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_GetSaveFileName_cpp">
+  GetSaveFileName</MSHelp:link>
+  function.</p>
+  <p>Explorer-style <b>Open</b> and <b>Save As</b> dialog boxes provide
+  user-interface features that are similar to the Microsoft® Windows®
+  Explorer. However, the system continues to support old-style <b>Open</b> and <b>Save
+  As</b> dialog boxes for applications that must be consistent with the
+  old-style user interface.</p>
+  <p>In addition to the difference in appearance, the Explorer-style and
+  old-style dialog boxes differ in their use of custom templates and hook
+  procedures for customizing the dialog boxes. However, the Explorer-style and
+  old-style dialog boxes have the same behavior for most basic operations, such
+  as specifying a file name filter, validating the user's input, and getting the
+  file name specified by the user. For more information about the Explorer-style
+  and old-style dialog boxes, see <a href="#_win32_Open_and_Save_As_Dialog_Box_Customization" target="_self">Open
+  and Save As Dialog Box Customization</a>.</p>
+  <p>The following illustration shows a typical Explorer-style <b>Open</b>
+  dialog box.</p>
+  <p><img border="0" src="open_a6.gif"></p>
+  <p>If the user specifies a file name and clicks the <b>OK</b> button, <b>GetOpenFileName</b>
+  or <b>GetSaveFileName</b> returns TRUE. The buffer pointed to by the <b>lpstrFile</b>
+  member of the <b>OPENFILENAME</b> structure contains the full path and file
+  name specified by the user.</p>
+  <p>If the user cancels the <b>Open</b> or <b>Save As</b> dialog box or an
+  error occurs, the function returns FALSE. To determine the cause of the error,
+  call the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CommDlgExtendedError_cpp">
+  CommDlgExtendedError</MSHelp:link>
+  function to retrieve the extended error value. If the <b>lpstrFile</b> buffer
+  is too small to receive the full name, <b>CommDlgExtendedError</b> returns
+  FNERR_BUFFERTOOSMALL and the first 2 bytes of the buffer pointed to by the <b>lpstrFile</b>
+  member are set to an integer value specifying the size required to receive the
+  full name.</p>
+  <p>Explorer style dialog boxes are only available to 32-bit applications.
+  16-bit applications cannot use thunking to display an Explorer-style dialog
+  box.</p>
+  <p><b>Windows 95/98/Me:</b> Win32-based applications that use the old-style
+  dialog boxes do so using a thunk. This means that any pointer passed to your
+  hook procedure is a nonpersistent copy of the data. For example, the <b>OPENFILENAME</b>
+  pointer passed in the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_INITDIALOG_cpp">
+  WM_INITDIALOG</MSHelp:link>
+  message is not a pointer to the buffer that you originally specified. If you
+  need to pass private data to your hook procedure, bundle it in a structure and
+  store a pointer to the structure in the <b>lCustData</b> member of the <b>OPENFILENAME</b>
+  structure.</p>
+  <p>The following topics are discussed in this section.</p>
+  <ul>
+    <li><a href="#_win32_File_Names_and_Directories" target="_self">File Names
+      and Directories</a>
+    <li><a href="#_win32_Filters" target="_self">Filters</a>
+    <li><a href="#_win32_File_and_Directory_Validation" target="_self">File and
+      Directory Validation</a>
+    <li><a href="#_win32_Open_and_Save_As_Dialog_Box_Customization" target="_self">Open
+      and Save As Dialog Box Customization</a>
+    <li><a href="#_win32_Explorer_Style_Hook_Procedures" target="_self">Explorer-Style
+      Hook Procedures</a>
+    <li><a href="#_win32_Explorer_Style_Custom_Templates" target="_self">Explorer-Style
+      Custom Templates</a>
+    <li><a href="#_win32_Explorer_Style_Control_Identifiers" target="_self">Explorer-Style
+      Control Identifiers</a>
+    <li><a href="#_win32_Customizing_Old_Style_Dialog_Boxes" target="_self">Customizing
+      Old-Style Dialog Boxes</a></li>
+    <li><a href="#example">Example</a></li>
+  </ul>
+  <h3><a name="_win32_File_Names_and_Directories"></a>File Names and Directories</h3>
+  <p>The information in this section applies to both Explorer-style and
+  old-style <b>Open</b> and <b>Save As</b> dialog boxes.</p>
+  <p>Before calling the <b>GetOpenFileName</b> or <b>GetSaveFileName</b>
+  functions, the <b>lpstrFile</b> member of the <b>OPENFILENAME</b> structure
+  must point to the buffer to receive the file name. The <b>nMaxFile</b> member
+  must specify the size, in <b>TCHAR</b>s, of the <b>lpstrFile</b> buffer. For
+  an ANSI function this is the number of bytes, but for a Unicode function this
+  is the number of characters.</p>
+  <p>If the user specifies a file name and clicks the <b>OK</b> button, the
+  dialog box copies the selected drive, directory, and file name to the <b>lpstrFile</b>
+  buffer. The function also sets the <b>nFileOffset</b> and <b>nFileExtension</b>
+  members to the offsets, in <b>TCHAR</b>s, from the start of the buffer to the
+  file name and to the file name extension, respectively.</p>
+  <p>To retrieve just the file name and extension, set the <b>lpstrFileTitle</b>
+  member to point to a buffer and set the <b>nMaxFileTitle</b> member to the
+  size, in <b>TCHAR</b>s, of the buffer. Alternatively, you can pass the <b>lpstrFile</b>
+  buffer in a call to the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_GetFileTitle_cpp">
+  GetFileTitle</MSHelp:link>
+  function to get the display name of the selected file. Note, however, that the
+  file name that <b>GetFileTitle</b> returns includes an extension only if that
+  is the user's preference for displaying file names.</p>
+  <p>The dialog box uses the current directory for the calling process as the
+  initial directory from which to display files and directories. Use the or
+  functions to get or change your current directory. To specify a different
+  initial directory without changing your current directory, use the <b>lpstrInitialDir</b>
+  member to specify the name of a directory. The dialog box automatically
+  changes your current directory when the user selects a different drive or
+  directory. To prevent the dialog box from changing your current directory, set
+  the OFN_NOCHANGEDIR flag. This flag does not prevent the user from changing
+  directories to find a file.</p>
+  <p>To specify a default file name extension, use the <b>lpstrDefExt</b>
+  member. If the user specifies a file name that does not have an extension, the
+  dialog box adds your default extension. If you specify a default extension and
+  the user specifies a file name with a different extension, the dialog box sets
+  the OFN_EXTENSIONDIFFERENT flag.</p>
+  <p>To let the user select more than one file from a directory, set the
+  OFN_ALLOWMULTISELECT flag. For compatibility with older applications, the
+  default multiple selection dialog box uses the old-style user interface. To
+  display an Explorer-style multiple selection dialog box, you must also set the
+  OFN_EXPLORER flag.</p>
+  <p>If the user selects more than one file, the buffer pointed to by the <b>lpstrFile</b>
+  member returns the path to the current directory followed by the file names of
+  the selected files. The <b>nFileOffset</b> member is the offset to the first
+  file name, and the <b>nFileExtension</b> member is not used. The following
+  table describes the difference between Explorer-style and old-style dialog
+  boxes in returning multiple file names.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>Dialog box style</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>Explorer-style dialog boxes</td>
+        <td>The directory and file name strings are NULL separated, with an
+          extra NULL character after the last file name. This format enables the
+          Explorer-style dialog boxes to return long file names that include
+          spaces.</td>
+      </tr>
+      <tr>
+        <td>Old-style dialog boxes</td>
+        <td>The directory and file name strings are separated by spaces. For
+          file names with spaces, the function uses short file names.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>You can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_FindFirstFile">
+  FindFirstFile</MSHelp:link>
+  function to convert between long and short file names.</p>
+  <p>If you specify OFN_ALLOWMULTISELECT and the user selects only one file, the
+  <b>lpstrFile</b> string does not have a separator between the path and file
+  name.</p>
+  <h3><a name="_win32_Filters"></a>Filters</h3>
+  <p>The information in this section applies to both Explorer-style and old
+  style <b>Open</b> and <b>Save As</b> dialog boxes.</p>
+  <p>You can provide file name filters to assist the user in limiting the file
+  names that the dialog box displays. A file name filter consists of a pair of
+  null-terminated strings, a description and a pattern, one concatenated to the
+  other. The dialog box displays the description to let the user pick which
+  filter to use; and it uses the pattern to select the files to display.</p>
+  <p>To specify the filters, set the <b>lpstrFilter</b> member of the <b>OPENFILENAME</b>
+  structure to point to a buffer that contains an array of filter string pairs.
+  The last string in the array must be followed by an extra null character.</p>
+  <p>A pattern string can be a combination of valid file name characters and the
+  asterisk (*). The asterisk is a wildcard that represents any combination of
+  valid file name characters. The dialog box displays only those files that
+  match the pattern. To specify multiple patterns for the same description, you
+  must use a semicolon (;) to separate the patterns. Note that space characters
+  in the pattern string can produce unexpected results.</p>
+  <p>The following code fragment specifies two filters. The filter with the
+  &quot;Source&quot; description has two patterns. If the user selects this
+  filter, the dialog box displays only files that have the .C and .CXX
+  extensions. Note, in the C programming language, a string enclosed in double
+  quotes is null-terminated.</p>
+  <pre class="clsCode" AUTOHILITE="1">OPENFILENAME ofn;       <font color="blue">//</font><font color="green"> common dialog box structure</font>
+
+ofn.lpstrFilter = &quot;Source\0*.C;*.CXX\0All\0*.*\0&quot;
+ofn.nFilterIndex = 1;</pre>
+  <p>The <b>nFilterIndex</b> member of the <b>OPENFILENAME</b> structure
+  specifies an index that indicates which filter the dialog box initially uses.
+  The first filter in the buffer has index 1, the second 2, and so on. If the
+  user changes the filter while using the dialog box, the <b>nFilterIndex</b>
+  member is set to the index of the selected filter on return.</p>
+  <p>You can create a custom filter by setting the <b>lpstrCustomFilter</b>
+  member to the address of a buffer that contains a single filter, and by
+  setting the <b>nMaxCustFilter</b> member to the size of the buffer, in
+  characters or bytes. The dialog box always places the custom filter at the
+  beginning of the list of filters and, on return, always updates the pattern
+  part of the filter with the pattern from the filter selected by the user.</p>
+  <p>For Explorer-style dialog boxes, the default extension may change if the
+  user selects a different filter. If the user selects a filter whose first
+  pattern is of the form *. <i>xxx</i> (that is, the extension does not include
+  a wildcard character), the dialog box uses <i>xxx</i> as the default
+  extension. This occurs only if you specified a default extension in the <b>lpstrDefExt</b>
+  member of the <b>OPENFILENAME</b> structure. For example, if the user selects
+  the &quot;Source\0*.C;*.CXX\0&quot; filter, the default extension changes to
+  &quot;C&quot;. However, if you had defined the filter as
+  &quot;Source\0*.C*\0&quot;, the default extension would not change because the
+  extension includes a wildcard.</p>
+  <p>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CDN_INCLUDEITEM_cpp">
+  CDN_INCLUDEITEM</MSHelp:link>
+  notification message provides another way to filter the names that the dialog
+  box displays. To use this message, provide an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_OFNHookProc_cpp">
+  OFNHookProc</MSHelp:link>
+  hook procedure and specify the OFN_ENABLEINCLUDENOTIFY flag in the <b>OPENFILENAME</b>
+  structure when you create the dialog box. Each time the user opens a folder,
+  the dialog box sends a <b>CDN_INCLUDEITEM</b> notification to your hook
+  procedure for each item in the newly opened folder. The return value of the
+  hook procedure indicates whether the dialog box should display the item in the
+  folder's item list.</p>
+  <h3><a name="_win32_File_and_Directory_Validation"></a>File and Directory
+  Validation</h3>
+  <p>Except as noted, the information in this section applies to both
+  Explorer-style and old-style <b>Open</b> and <b>Save As</b> dialog boxes.</p>
+  <p>The dialog box automatically validates file names typed by the user to
+  ensure that the names contain only valid characters. To override the file name
+  character validation, set the OFN_NOVALIDATE flag.</p>
+  <p>To force the dialog box to verify that the user specified the name of an
+  existing file, set the OFN_FILEMUSTEXIST flag. To force verification that the
+  specified path exists, set the OFN_PATHMUSTEXIST flag. If you set the
+  OFN_CREATEPROMPT flag, the dialog box prompts the user for permission to
+  create a nonexistent file. If this flag is set and the user chooses to create
+  a new file, the dialog box closes, and the function returns the specified
+  name. Otherwise, the dialog box remains open.</p>
+  <p>When using the <b>Save As</b> dialog box, you can direct the dialog box to
+  prompt the user for permission to overwrite an existing file by setting the
+  OFN_OVERWRITEPROMPT flag.</p>
+  <p>By default, the dialog box creates a zero-length test file to determine
+  whether a new file can be created in the selected directory. To prevent the
+  creation of this test file, set the OFN_NOTESTFILECREATE flag.</p>
+  <p>If you enable a hook procedure, the dialog box notifies your hook procedure
+  when a network sharing violation occurs for the file name specified by the
+  user. If you set the OFN_EXPLORER flag, the dialog box sends the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CDN_SHAREVIOLATION_cpp">
+  CDN_SHAREVIOLATION</MSHelp:link>
+  message to the hook procedure. If you do not set OFN_EXPLORER, the dialog box
+  sends the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_SHAREVISTRING_cpp">
+  SHAREVISTRING</MSHelp:link>
+  registered message to the hook procedure. To prevent the dialog box from
+  sending any notifications for sharing violations, set the OFN_SHAREAWARE flag.</p>
+  <p>If the user selects the read-only check box, the dialog box sets the
+  OFN_READONLY flag on return. To hide the <b>Open As Read Only</b> check box,
+  set the OFN_HIDEREADONLY flag. To prevent the dialog box from returning names
+  of existing files that have the read-only attribute, set the
+  OFN_NOREADONLYRETURN flag.</p>
+  <p>To prevent the dialog box from dereferencing link files, set the
+  OFN_NODEREFERENCELINKS value. In this case, the dialog box returns the name of
+  the link file rather than the name of the file referenced by the link file.</p>
+  <h3><a name="_win32_Open_and_Save_As_Dialog_Box_Customization"></a>Open and
+  Save As Dialog Box Customization</h3>
+  <p>You can customize an <b>Open</b> or <b>Save As</b> dialog box by providing
+  a hook procedure, a custom template, or both. However, the Explorer-style and
+  old-style versions of the dialog boxes differ in their use of custom templates
+  and hook procedures.</p>
+  <p>For information about customizing an Explorer-style dialog box, see <a href="#_win32_Explorer_Style_Hook_Procedures" target="_self">Explorer-Style
+  Hook Procedures</a>, <a href="#_win32_Explorer_Style_Custom_Templates" target="_self">Explorer-Style
+  Custom Templates</a>, and <a href="#_win32_Explorer_Style_Control_Identifiers" target="_self">Explorer-Style
+  Control Identifiers</a>. For information about customizing an old-style dialog
+  box, see <a href="#_win32_Customizing_Old_Style_Dialog_Boxes" target="_self">Customizing
+  Old-Style Dialog Boxes</a>.</p>
+  <p>The following table summarizes the differences between the two styles.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>Customization</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>Explorer-style Hook procedure</td>
+        <td>The hook procedure receives notification messages sent from the
+          common dialog box and messages for any additional controls that you
+          defined by specifying a child dialog template. The hook procedure does
+          not receive messages for the standard controls of the default dialog
+          box.</td>
+      </tr>
+      <tr>
+        <td>Explorer-style Custom template</td>
+        <td>The system uses the custom template to create a child dialog box.
+          The template can define additional controls, and can specify the
+          location of the cluster of standard controls. The custom template does
+          not replace the default template.</td>
+      </tr>
+      <tr>
+        <td>Old-style Hook procedure</td>
+        <td>The hook procedure receives all messages sent to the dialog box,
+          including messages for the standard controls and any custom controls.
+          The hook procedure also receives registered messages sent from the
+          common dialog box.</td>
+      </tr>
+      <tr>
+        <td>Old-style Custom template</td>
+        <td>The custom template replaces the default template. Create the custom
+          template by modifying the default template specified in the
+          Fileopen.dlg file.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>The default title for both Explorer-style and old-style dialog boxes is
+  either &quot; <b>Open</b>&quot; or &quot; <b>Save As</b>.&quot; To change the
+  title, specify the new title in the <b>lpstrTitle</b> member of the <b>OPENFILENAME</b>
+  structure.</p>
+  <p><b>Windows 2000/XP:</b> A user's <b>HKEY_CURRENT_USER</b> ( <b>HKCU</b>)
+  registry hive can contain values that customize the contents of the
+  Explorer-style <b>Open</b> and <b>Save</b>&nbsp;<b>As</b> dialog boxes. These
+  registry entries affect only the dialog boxes displayed for the user
+  associated with the registry hive.</p>
+  <p>To hide features of Explorer-style <b>Open</b> and <b>Save</b>&nbsp;<b>As</b>
+  dialog boxes, an administrator can set values under the following key.</p>
+  <pre class="clsCode" AUTOHILITE="1">HKCU\Software\Microsoft\Windows\CurrentVersion
+    \Policies\Comdlg32</pre>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>Value name</th>
+        <th>Value</th>
+        <th>Meaning</th>
+      </tr>
+      <tr>
+        <td>NoPlacesBar</td>
+        <td>1</td>
+        <td>Hides the places bar.</td>
+      </tr>
+      <tr>
+        <td>NoFileMRU</td>
+        <td>1</td>
+        <td>Hides the most-recently-used (MRU) list.</td>
+      </tr>
+      <tr>
+        <td>NoBackButton</td>
+        <td>1</td>
+        <td>Hides the back button.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>The contents of the places bar are determined by the contents of the
+  following key:</p>
+  <pre class="clsCode" AUTOHILITE="1">HKCU\Software\Microsoft\Windows\CurrentVersion
+    \Policies\Comdlg32\Placesbar</pre>
+  <p>Currently, there can only be five entries under this key, and the
+  value-name index is zero based. The names for the entries should be Place0,
+  Place1, Place2,Place3, and Place4. The values of the entries can be REG_DWORD,
+  REG_SZ, and REG_EXPAND_SZ values that identify locations to include in the
+  places bar.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>Value type</th>
+        <th>Meaning</th>
+      </tr>
+      <tr>
+        <td>REG_DWORD</td>
+        <td>A CSIDL value that identifies a folder. For a list of CSIDL values,
+          see the function.</td>
+      </tr>
+      <tr>
+        <td>REG_SZ or REG_EXPAND_SZ</td>
+        <td>A null-terminated string that specifies a valid path.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><a name="_win32_Explorer_Style_Hook_Procedures"></a>Explorer-Style Hook
+  Procedures</h3>
+  <p>You can customize an Explorer-style <b>Open</b> or <b>Save As</b> dialog
+  box by providing a hook procedure, a custom template, or both. If you provide
+  a hook procedure for an Explorer-style dialog box, the system creates a dialog
+  box that is a child of the default dialog box. The hook procedure acts as the
+  dialog procedure for the child dialog box. This child dialog box is based on
+  the custom template, or on a default template if none is provided. For more
+  information, see <a href="#_win32_Explorer_Style_Custom_Templates" target="_self">Explorer-Style
+  Custom Templates</a>.</p>
+  <p>To enable a hook procedure for an Explorer-style <b>Open</b> or <b>Save As</b>
+  dialog box, use the <b>OPENFILENAME</b> structure when you create the dialog
+  box. Set the OFN_ENABLEHOOK and OFN_EXPLORER flags in the <b>Flags</b> member
+  and specify the address of an <b>OFNHookProc</b> hook procedure in the <b>lpfnHook</b>
+  member. If you provide a hook procedure and omit the OFN_EXPLORER flag, you
+  must use an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_OFNHookProcOldStyle_cpp">
+  OFNHookProcOldStyle</MSHelp:link>
+  hook procedure and you will get the old-style user-interface. For more
+  information, see <a href="#_win32_Customizing_Old_Style_Dialog_Boxes" target="_self">Customizing
+  Old-Style Dialog Boxes</a>.</p>
+  <p>An Explorer-style hook procedure receives a variety of messages while the
+  dialog box is open. These include the following:</p>
+  <ul>
+    <li>The <b>WM_INITDIALOG</b> message and other standard dialog box messages
+      such as the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_CTLCOLORDLG_cpp">
+      WM_CTLCOLORDLG</MSHelp:link>
+      control color message.
+    <li>A set of <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_NOTIFY">
+      WM_NOTIFY</MSHelp:link>
+      notification messages indicating actions taken by the user or other dialog
+      box events.
+    <li>Messages for any additional controls that you defined by specifying a
+      child dialog template.</li>
+  </ul>
+  <p>In addition, there is a set of messages that you can send to an
+  Explorer-style dialog box to get information or to control the behavior and
+  appearance of the dialog box.</p>
+  <p>If you provide a hook procedure for an Explorer-style dialog box, the
+  default dialog box procedure creates a child dialog box when the default
+  dialog procedure is processing its <b>WM_INITDIALOG</b> message. The hook
+  procedure acts as the dialog procedure for the child dialog box. At this time,
+  the hook procedure receives its own <b>WM_INITDIALOG</b> message with the <i>lParam</i>
+  parameter set to the address of the <b>OPENFILENAME</b> structure used to
+  initialize the dialog box. After the child dialog finishes processing its own <b>WM_INITDIALOG</b>
+  message, the default dialog procedure moves the standard controls, if
+  necessary, to make room for any additional controls of the child dialog box.
+  The default dialog procedure then sends the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CDN_INITDONE_cpp">
+  CDN_INITDONE</MSHelp:link>
+  notification message to the hook procedure.</p>
+  <p>The hook procedure receives <b>WM_NOTIFY</b> notification messages
+  indicating actions taken by the user in the dialog box. You can use some of
+  these messages to control the behavior of the dialog box. For example, the
+  hook procedure receives the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CDN_FILEOK_cpp">
+  CDN_FILEOK</MSHelp:link>
+  message when the user chooses a file name and clicks the <b>OK</b> button. In
+  response to this message, the hook procedure can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_SetWindowLong_cpp">
+  SetWindowLong</MSHelp:link>
+  function to reject the selected name and force the dialog box to remain open.</p>
+  <p>The <i>lParam</i> parameter for each <b>WM_NOTIFY</b> message is a pointer
+  to an <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_OFNOTIFY_str_cpp">
+  OFNOTIFY</MSHelp:link>
+  or <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_OFNOTIFYEX_str_cpp">
+  OFNOTIFYEX</MSHelp:link>
+  structure that defines the action. The <b>code</b> member in the header of
+  this structure contains one of the following notification messages.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>Message</th>
+        <th>Meaning</th>
+      </tr>
+      <tr>
+        <td><b>CDN_FILEOK</b></td>
+        <td>The user clicked the <b>OK</b> button; the dialog box is about to
+          close.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CDN_FOLDERCHANGE_cpp">
+          CDN_FOLDERCHANGE</MSHelp:link>
+        </td>
+        <td>The user opened a new folder or directory.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CDN_HELP_cpp">
+          CDN_HELP</MSHelp:link>
+        </td>
+        <td>The user clicked the <b>Help</b> button.</td>
+      </tr>
+      <tr>
+        <td><b>CDN_INCLUDEITEM</b></td>
+        <td>Determines whether an item should be displayed. When the user opens
+          a new folder or directory, the system sends this notification for each
+          item in the folder or directory. The system sends this notification
+          only if the OFN_ENABLEINCLUDENOTIFY flag was set.</td>
+      </tr>
+      <tr>
+        <td><b>CDN_INITDONE</b></td>
+        <td>The system has finished initializing the dialog box, and the dialog
+          box has finished processing the <b>WM_INITDIALOG</b> message. Also,
+          the system has finished arranging controls in the common dialog box to
+          make room for the controls of the child dialog box (if any).</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CDN_SELCHANGE_cpp">
+          CDN_SELCHANGE</MSHelp:link>
+        </td>
+        <td>The user selected a new file or folder from the file list.</td>
+      </tr>
+      <tr>
+        <td><b>CDN_SHAREVIOLATION</b></td>
+        <td>The common dialog box encountered a sharing violation on the file
+          about to be returned.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CDN_TYPECHANGE_cpp">
+          CDN_TYPECHANGE</MSHelp:link>
+        </td>
+        <td>The user selected a new file type from the list of file types.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>These <b>WM_NOTIFY</b> messages supersede the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_FILEOKSTRING_cpp">
+  FILEOKSTRING</MSHelp:link>
+  , <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LBSELCHSTRING_cpp">
+  LBSELCHSTRING</MSHelp:link>
+  , <b>SHAREVISTRING</b>, and <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HELPMSGSTRING_cpp">
+  HELPMSGSTRING</MSHelp:link>
+  registered messages used by previous versions of the <b>Open</b> and <b>Save
+  As</b> dialog boxes. However, the hook procedure also receives the superseded
+  message after the <b>WM_NOTIFY</b> message if the <b>WM_NOTIFY</b> processing
+  does not use <b>SetWindowLong</b> to set a nonzero DWL_MSGRESULT value.</p>
+  <p>To retrieve information about the status of the dialog box or to control
+  the behavior and appearance of the dialog box, the hook procedure can send the
+  following messages to the dialog box.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>Message</th>
+        <th>Meaning</th>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CDM_GETFILEPATH_cpp">
+          CDM_GETFILEPATH</MSHelp:link>
+        </td>
+        <td>Retrieves the path and file name of the selected file.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CDM_GETFOLDERIDLIST_cpp">
+          CDM_GETFOLDERIDLIST</MSHelp:link>
+        </td>
+        <td>Retrieves the item identifier list corresponding to the current
+          folder that the dialog box has open. For more information about item
+          identifier lists, see <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_shell_namespace">
+          Item IDs</MSHelp:link>
+          .</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CDM_GETFOLDERPATH_cpp">
+          CDM_GETFOLDERPATH</MSHelp:link>
+        </td>
+        <td>Retrieves the path of the current folder or directory for the dialog
+          box.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CDM_GETSPEC_cpp">
+          CDM_GETSPEC</MSHelp:link>
+        </td>
+        <td>Retrieves the file name (not including the path) of the file
+          currently selected in the dialog box.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CDM_HIDECONTROL_cpp">
+          CDM_HIDECONTROL</MSHelp:link>
+        </td>
+        <td>Hides the specified control.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CDM_SETCONTROLTEXT_cpp">
+          CDM_SETCONTROLTEXT</MSHelp:link>
+        </td>
+        <td>Sets the text in the specified control.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CDM_SETDEFEXT_cpp">
+          CDM_SETDEFEXT</MSHelp:link>
+        </td>
+        <td>Sets the default file name extension for the dialog box.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><a name="_win32_Explorer_Style_Custom_Templates"></a>Explorer-Style Custom
+  Templates</h3>
+  <p>To define additional controls for an Explorer-style <b>Open</b> or <b>Save
+  As</b> dialog box, use the <b>OPENFILENAME</b> structure to specify a template
+  for a child dialog box that contains the additional controls. If your child
+  dialog template is a resource in an application or dynamic-link library, set
+  the OFN_ENABLETEMPLATE flag in the <b>Flags</b> member and use the <b>hInstance</b>
+  and <b>lpTemplateName</b> members of the structure to identify the module and
+  resource name. If the template is already in memory, set the
+  OFN_ENABLETEMPLATEHANDLE flag and use the <b>hInstance</b> member to identify
+  the memory object that contains the template. When providing a child dialog
+  template for an Explorer-style dialog box, you must also set the OFN_EXPLORER
+  flag; otherwise, the system assumes you are providing a replacement template
+  for an old-style dialog box. Typically, if you provide additional controls,
+  you must also provide an <a href="#_win32_Explorer_Style_Hook_Procedures" target="_self">Explorer-style
+  hook procedure</a> to process messages for the new controls.</p>
+  <p>You can create your child dialog box template as you do any other template,
+  except that you must specify the WS_CHILD and WS_CLIPSIBLINGS styles and
+  should specify the DS_3DLOOK and DS_CONTROL styles. The system requires the
+  WS_CHILD style because your template defines a child dialog of the default <b>Open</b>
+  or <b>Save As</b> dialog box. The WS_CLIPSIBLINGS style ensures that the child
+  dialog box does not paint over any of the controls in the default dialog box.
+  The DS_3DLOOK style makes sure that the appearance of the controls in the
+  child dialog box is consistent with the controls in the default dialog box.
+  The DS_CONTROL style makes sure that the user can use the TAB and other
+  navigation keys to move between all controls, default or custom, in the
+  customized dialog box.</p>
+  <p>To make room for the new controls, the system expands the default dialog
+  box by the width and height of the custom dialog box. By default, all controls
+  from the custom dialog box are positioned <i>below</i> the controls in the
+  default dialog box. However, you can override this default positioning by
+  including a static text control in your custom dialog box template and
+  assigning it the control identifier value of stc32. (This value is defined in
+  the DLG.H header file.) In this case, the system uses the control as the point
+  of reference for determining where to position the new controls. All new
+  controls above and to the left of the stc32 control are positioned the same
+  amount above and to the left of the controls in the default dialog box. New
+  controls below and to the right of the stc32 control are positioned below and
+  to the right of the default controls. In general, each new control is
+  positioned so that it has the same position relative to the default controls
+  as it had to the stc32 control. To make room for these new controls, the
+  system adds space to the left, right, bottom, and top of the default dialog
+  box as needed.</p>
+  <p>The system requires the hook procedure to process all messages intended for
+  the custom dialog box and therefore sends the same window messages to the hook
+  procedure as to any other dialog box procedure. For example, the hook
+  procedure receives <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_COMMAND_cpp">
+  WM_COMMAND</MSHelp:link>
+  messages when the user clicks on button controls in the custom dialog box. The
+  hook procedure is responsible for initializing these controls and retrieving
+  values from the controls when the dialog box is closed. Note that when the
+  hook procedure receives the <b>WM_INITDIALOG</b> message, the system has not
+  yet moved the controls to their final positions.</p>
+  <p>The default dialog box procedure handles messages for all the controls in
+  the default dialog box, but the hook procedure receives the notification
+  messages for user actions on these controls as described in <a href="#_win32_Explorer_Style_Hook_Procedures" target="_self">Explorer-Style
+  Hook Procedures</a>.</p>
+  <h3><a name="_win32_Explorer_Style_Control_Identifiers"></a>Explorer-Style
+  Control Identifiers</h3>
+  <p>The Platform SDK provides the default dialog box template for the old-style
+  dialog boxes, but does not include the default template for the Explorer-style
+  dialog boxes. This is because the Explorer-style dialog boxes allow you to add
+  your own controls but do not support modifying the template for the standard
+  controls. However, in some cases, you may need to know the control identifiers
+  used in the default templates. For example, the <b>CDM_HIDECONTROL</b> and <b>CDM_SETCONTROLTEXT</b>
+  messages require a control identifier.</p>
+  <p>The following table shows the identifiers of the standard controls in the
+  Explorer-style <b>Open</b> and <b>Save As</b> dialog boxes. The identifiers
+  are constants defined in Dlgs.h and Winuser.h.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>Control identifier</th>
+        <th>Control description</th>
+      </tr>
+      <tr>
+        <td>chx1</td>
+        <td>The <b>read-only</b> check box</td>
+      </tr>
+      <tr>
+        <td>cmb1</td>
+        <td>Drop-down combo box that displays the list of file type filters</td>
+      </tr>
+      <tr>
+        <td>stc2</td>
+        <td>Label for the cmb1 combo box</td>
+      </tr>
+      <tr>
+        <td>cmb2</td>
+        <td>Drop-down combo box that displays the current drive or folder, and
+          that allows the user to select a drive or folder to open</td>
+      </tr>
+      <tr>
+        <td>stc4</td>
+        <td>Label for the cmb2 combo box</td>
+      </tr>
+      <tr>
+        <td>cmb13</td>
+        <td>Drop-down combo box that displays the name of the current file,
+          allows the user to type the name of a file to open, and select a file
+          that has been opened or saved recently. This is for earlier
+          Explorer-compatible applications without hook or dialog template.
+          Compare with edt1.</td>
+      </tr>
+      <tr>
+        <td>edt1</td>
+        <td>Edit control that displays the name of the current file, or allows
+          the user to type the name of the file to open. Compare with cmb13.</td>
+      </tr>
+      <tr>
+        <td>stc3</td>
+        <td>Label for the cmb13 combo box and the edt1 edit control</td>
+      </tr>
+      <tr>
+        <td>lst1</td>
+        <td>List box that displays the contents of the current drive or folder</td>
+      </tr>
+      <tr>
+        <td>stc1</td>
+        <td>Label for the lst1 list box</td>
+      </tr>
+      <tr>
+        <td>IDOK</td>
+        <td>The <b>OK</b> command button (push button)</td>
+      </tr>
+      <tr>
+        <td>IDCANCEL</td>
+        <td>The <b>Cancel</b> command button (push button)</td>
+      </tr>
+      <tr>
+        <td>pshHelp</td>
+        <td>The <b>Help</b> command button (push button)</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><a name="_win32_Customizing_Old_Style_Dialog_Boxes"></a>Customizing
+  Old-Style Dialog Boxes</h3>
+  <p>You can customize an old-style <b>Open</b> or <b>Save As</b> dialog box by
+  providing an <b>OFNHookProcOldStyle</b> hook procedure that receives messages
+  or notifications intended for the default dialog box procedure. You can also
+  provide a custom template to use in place of the default template. The hook
+  procedures and templates used with the old-style dialog boxes are similar to
+  those used with the other common dialog boxes. For more information, see <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Customizing_Common_Dialog_Boxes">
+  Hook Procedures for Common Dialog Boxes</MSHelp:link>
+  and <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Customizing_Common_Dialog_Boxes">
+  Custom Templates</MSHelp:link>
+  .</p>
+  <p>To enable a hook procedure for an old-style <b>Open</b> or <b>Save As</b>
+  dialog box, use the <b>OPENFILENAME</b> structure when you create the dialog
+  box. Set the OFN_ENABLEHOOK flag in the <b>Flags</b> member and specify the
+  address of an <b>OFNHookProcOldStyle</b> hook procedure in the <b>lpfnHook</b>
+  member. The dialog box procedure sends a <b>WM_INITDIALOG</b> message to the
+  hook procedure with the <i>Param</i> parameter set to the address of the <b>OPENFILENAME</b>
+  structure used to initialize the dialog box.</p>
+  <p>You can use the <b>OPENFILENAME</b> structure to specify a custom template
+  for the <b>Open</b> or <b>Save As</b> dialog box to use in place of the
+  default template. If your custom template is a resource in an application or
+  dynamic-link library, set the OFN_ENABLETEMPLATE flag in the <b>Flags</b>
+  member and use the <b>hInstance</b> and <b>lpTemplateName</b> members of the
+  structure to identify the module and resource name. If your custom template is
+  already in memory, set the OFN_ENABLETEMPLATEHANDLE flag and use the <b>hInstance</b>
+  member to identify the memory object that contains the template. Create the
+  custom template by modifying the default template specified in the
+  Fileopen.dlg file. The control identifiers used in the default Find and
+  Replace dialog templates are defined in the Dlgs.h file.</p>
+  <p>By default, the <b>GetOpenFileName</b> and <b>GetSaveFileName</b> functions
+  display the Explorer-style dialog boxes. If you want to display an old-style
+  dialog box, you must provide an <b>OFNHookProcOldStyle</b> hook procedure and
+  ensure that the OFN_EXPLORER flag is not set in the <b>Flags</b> member of the
+  <b>OPENFILENAME</b> structure.</p>
+  <p>If you set the OFN_EXPLORER flag, the system treats a hook procedure or
+  custom template as an Explorer-style customization. For information about
+  customizing an Explorer-style dialog box, see <a href="#_win32_Explorer_Style_Custom_Templates" target="_self">Explorer-Style
+  Custom Templates</a>.</p>
+</div>
+<h3><a name="example"></a>Example</h3>
+<p>This example describes sample code that displays an <b>Open</b> dialog box so
+a user can specify the drive, directory, and name of a file to open. The sample
+code first initializes an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_OPENFILENAME_str_cpp">
+OPENFILENAME</MSHelp:link>
+ structure, and then calls the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_GetOpenFileName_cpp">
+GetOpenFileName</MSHelp:link>
+ function to display the dialog box.</p>
+<p>In this example, the <b>lpstrFilter</b> member is a pointer to a buffer that
+specifies two file name filters that the user can select to limit the file names
+that are displayed. The buffer contains a double-null terminated array of
+strings in which each pair of strings specifies a filter. The <b>nFilterIndex</b>
+member specifies that the first pattern is used when the dialog box is created.</p>
+<p>This example sets the OFN_PATHMUSTEXIST and OFN_FILEMUSTEXIST flags in the <b>Flags</b>
+member. These flags cause the dialog box to verify, before returning, that the
+path and file name specified by the user actually exist.</p>
+<p>The <b>GetOpenFileName</b> function returns TRUE if the user clicks the <b>OK</b>
+button and the specified path and file name exist. In this case, the buffer
+pointed to by the <b>lpstrFile</b> member contains the path and file name. The
+sample code uses this information in a call to the function to open the file.</p>
+<p>Although this example does not set the OFN_EXPLORER flag, it still displays
+the default Explorer-style <b>Open</b> dialog box. However, if you want to
+provide a hook procedure or a custom template and you want the Explorer user
+interface, you must set the OFN_EXPLORER flag. Note, in the C programming
+language, a string enclosed in double quotes is null-terminated.</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">OPENFILENAME ofn;       <font color="blue">//</font><font color="green"> common dialog box structure</font>
+char szFile[260];       <font color="blue">//</font><font color="green"> buffer for file name</font>
+HWND hwnd;              <font color="blue">//</font><font color="green"> owner window</font>
+HANDLE hf;              <font color="blue">//</font><font color="green"> file handle</font>
+
+<font color="blue">//</font><font color="green"> Initialize OPENFILENAME</font>
+ZeroMemory(&amp;ofn, sizeof(ofn));
+ofn.lStructSize = sizeof(ofn);
+ofn.hwndOwner = hwnd;
+ofn.lpstrFile = szFile;
+ofn.nMaxFile = sizeof(szFile);
+ofn.lpstrFilter = &quot;All\0*.*\0Text\0*.TXT\0&quot;;
+ofn.nFilterIndex = 1;
+ofn.lpstrFileTitle = NULL;
+ofn.nMaxFileTitle = 0;
+ofn.lpstrInitialDir = NULL;
+ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+
+<font color="blue">//</font><font color="green"> Display the Open dialog box. </font>
+
+if (GetOpenFileName(&amp;ofn)==TRUE) 
+    hf = CreateFile(ofn.lpstrFile, GENERIC_READ,
+        0, (LPSECURITY_ATTRIBUTES) NULL,
+        OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL,
+        (HANDLE) NULL);
+</pre>
+
+</body>
+
+</html>

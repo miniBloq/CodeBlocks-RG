@@ -1,0 +1,170 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The Resource Compiler</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509456971"><span lang="FR" style="mso-bookmark: _Toc426387070">The
+Resource Com</span></a><span lang="FR" style="mso-bookmark: _Toc426387070">piler</span></h2>
+<p class="MsoNormal" style="mso-list:skip">The resource compiler receives an .rc
+file as input that is written in a special language for describing resources. It
+will produce a binary file as output with the .res extension that can be used
+with the other object files by the linker to build an executable.</p>
+<p class="MsoNormal" style="mso-list:skip">Usage:</p>
+<p class="MsoNormal" style="mso-list:skip">lrc [options] .RC input file</p>
+<p class="MsoNormal" style="mso-list:skip">Switches:&nbsp;<o:p>
+</o:p>
+</p>
+<table border="1" cellspacing="0" cellpadding="0" width="609" style="width:457.0pt;
+ margin-left:3.5pt;border-collapse:collapse;border:none;mso-border-alt:solid windowtext .75pt;
+ mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr>
+    <td width="76" valign="top" style="width:2.0cm;border:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal">Option<o:p>
+      </o:p>
+      </b></p>
+    </td>
+    <td width="534" valign="top" style="width:400.3pt;border:solid windowtext .75pt;
+  border-left:none;mso-border-left-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal">Meaning<o:p>
+      </o:p>
+      </b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="width:2.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/r</p>
+    </td>
+    <td width="534" valign="top" style="width:400.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Build a .res file. This is
+      assumed, so this option is there just for compatibility with earlier
+      versions of rc.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="width:2.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/v</p>
+    </td>
+    <td width="534" valign="top" style="width:400.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Verbose output</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="width:2.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/m</p>
+    </td>
+    <td width="534" valign="top" style="width:400.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Build a map file. The name of
+      the map file will be the same as the output file with a .map extension.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="width:2.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/dSYM</p>
+    </td>
+    <td width="534" valign="top" style="width:400.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Define symbol. This is for
+      Lrc's pre-processor.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="width:2.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/ofile</p>
+    </td>
+    <td width="534" valign="top" style="width:400.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Write the output into
+      &lt;file&gt;. No space should be left between the o and the name of the
+      file.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="width:2.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/fo</p>
+    </td>
+    <td width="534" valign="top" style="width:400.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Same as above.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="width:2.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/l</p>
+    </td>
+    <td width="534" valign="top" style="width:400.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Default language number follows
+      in hexadecimal.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="width:2.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/I</p>
+    </td>
+    <td width="534" valign="top" style="width:400.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Add an include path.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="width:2.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/p</p>
+    </td>
+    <td width="534" valign="top" style="width:400.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Print in the standard output a
+      list of file dependencies of the given input resource file.</p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal" style="mso-list:skip">Flags are not case sensitive.</p>
+<p class="MsoNormal" style="mso-list:skip">The resource compiler defines the
+symbol</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>RC_INVOKED</p>
+<p class="MsoBodyTextIndent3" style="margin-left:0cm;mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;">To
+allow you conditional compilation of resources and to direct it to avoid much of
+the program text.<o:p>
+</o:p>
+</span></p>
+
+</body>
+
+</html>

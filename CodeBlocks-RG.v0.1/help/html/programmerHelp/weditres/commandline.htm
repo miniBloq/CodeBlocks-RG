@@ -1,0 +1,112 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Using the Compiler from the Command Line</title>
+<style>
+<!--
+a            { font-family: Arial }
+-->
+</style>
+</head>
+
+<body>
+
+<h2><a name="_Toc509456952"><span style="mso-ansi-language:EN-US">Using the
+Compiler from the Command Line</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoNormal">The compiler can be used from the command line without the
+IDE. This action assumes you have the \lcc\bin directory in your PATH
+environment variable.</p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-family:Courier;mso-ansi-language:EN-US">c:\lcc\project&gt;
+type hello.c<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-family:Courier;mso-ansi-language:EN-US">#include
+&lt;stdio.h&gt;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span lang="FR" style="font-family:Courier">int
+main(void) {<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-tab-count: 1; font-family: Courier" lang="FR">&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="font-family:Courier;mso-ansi-language:EN-US">printf(«&nbsp;hello\n&nbsp;»)&nbsp;;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-family:Courier;mso-ansi-language:EN-US"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>return 0&nbsp;;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-family:Courier;mso-ansi-language:EN-US">}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-family:Courier;mso-ansi-language:EN-US">c:\lcc\project&gt;
+lcc hello.c<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>(1)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-family:Courier;mso-ansi-language:EN-US">c:\lcc\project&gt;
+lcclnk hello.obj<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>(2)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-family:Courier;mso-ansi-language:EN-US">c:\lcc\project&gt;
+hello.exe<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>(3)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-family:Courier;mso-ansi-language:EN-US">hello<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-family:Courier;mso-ansi-language:EN-US">c:\lcc\project&gt;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">You must first compile the source file. You call up the
+compiler (lcc.exe). Next, you should link the resulting object file with lcclnk,
+the linker (2). The program can then be executed by typing its name.</p>
+<p class="MsoNormal">Below you will find the command line options for the
+compiler and the linker.</p>
+<p class="MsoNormal">To build a Windows executable using some resources, the
+sequence of commands could be:</p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-family:Courier;mso-ansi-language:EN-US">c:\lcc\project&gt;
+lcc win.c<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-family:Courier;mso-ansi-language:EN-US">c:\lcc\project&gt;
+lrc win.rc<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" align="left" style="margin-left:0cm;text-align:left;
+text-indent:0cm"><span style="font-family:Courier;mso-ansi-language:EN-US">c:\lcc\project&gt;
+lcclnk -subsystem windows win.obj win.res<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-family:Courier;mso-ansi-language:EN-US">c:\lcc\project&gt;
+win<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">The only difference is that you should compile your
+resources using the lrc resource compiler and add the resulting windows.res to
+your link command line. Please note that you should specify ‘subsystem
+Windows’ in the linker command line to avoid having a blank window appear
+whenever you start your program.</p>
+
+<p class="MsoNormal">A simpler way is to use the lc.exe command line utility. It
+will call the linker automatically, and the resource compiler if it finds an rc
+file. The above example could have been compiled with:</p>
+
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-family:Courier;mso-ansi-language:EN-US">c:\lcc\project&gt;
+lc win.c win.rc -subsystem windows
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-family:Courier;mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;</p>
+
+</body>
+
+</html>

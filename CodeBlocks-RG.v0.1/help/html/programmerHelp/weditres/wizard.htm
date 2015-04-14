@@ -1,0 +1,1433 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The Application Wizard</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509457093"><span style="mso-ansi-language: EN-US; text-decoration: none; text-underline: none; mso-bookmark: _Toc430327935">The
+Application Wizard</span></a><span style="mso-ansi-language:EN-US;text-decoration:none;text-underline:none"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoNormal">&nbsp;The purpose of this utility is to generate a skeleton
+of your Windows application. The problem with Windows programming is that, a
+large amount of code must be written just to display a window. This frustrates
+novice Windows programmers and skilled professionals alike. Normally, a
+‘generic’ skeleton is used, which is modified with a text editor. This is
+cumbersome and error prone. It is better to generate a customized skeleton using
+a set of templates with a utility that is designed precisely for this operation.</p>
+<p class="MsoNormal">&nbsp;Triggering the application wizard is very simple:
+Type its name or answer ‘yes’ when Wedit asks you, when creating a new
+project.</p>
+<p class="MsoNormal">&nbsp;In the first page of the wizard, you should fill in
+the following fields:<o:p>
+</o:p>
+</p>
+<table border="1" cellspacing="0" cellpadding="0" style="margin-left:3.5pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext 1.5pt;
+ mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:1.5pt;border-left:
+  1.5pt;border-bottom:.75pt;border-right:.75pt;border-color:windowtext;
+  border-style:solid;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal"><b style="mso-bidi-font-weight:normal">Name<o:p>
+      </o:p>
+      </b></p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-left-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal"><b style="mso-bidi-font-weight:normal">Purpose<o:p>
+      </o:p>
+      </b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Name of the project</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Wedit fills this in when the wizard is called from
+      Wedit. This will be used to derive the name of the window classes and the
+      file names.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Single window</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">This is an application that displays only one main
+      window.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Multiple window</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">This is an application that uses the MDI standard. A
+      standard MDI menu will be generated and the code for resizing the main
+      window will be slightly modified when a status bar is active.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Dialog based</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">This is not implemented in this version.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Dll</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">This is a DLL application. The wizard will generate a
+      LibMain only. No window will be created or other visual controls.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Status bar at the bottom</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">The application (either MDI or SDI) will have a
+      status bar where you can display messages or other information to the
+      user. The wizard will generate code to show in the status bar an
+      explicative text of each menu option as the user moves the mouse among
+      different menu items.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Toolbar</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">The application has a toolbar, which can be floating
+      or fixed to the main application window</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">TCPIP</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">The wizard will generate code at the entry of the
+      program (after the main window is created) to call the WSAStartup API to
+      setup the network, and will generate a call to WSACleanup before the
+      program exists. If you use this option, it is imperative to add ws2_32.lib
+      to the libraries used by your project, since lcclnk does not include that
+      library by default.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">About dialog box</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">The wizard will generate code for a callback for a
+      standard ‘About’ dialog box, will modify the OnCommand function to
+      accept the IDM_ABOUT command, and before<span style="mso-spacerun: yes">&nbsp;
+      </span>generating the code, the wizard will call the resource editor to
+      allow you to edit the aspect of the dialog box. You should design a dialog
+      box that at least has a Close button and/or a button with the IDOK id (1).</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Path for the template directory</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Normally, the wizard will look for its templates in
+      the <b style="mso-bidi-font-weight:normal">\lcc\lib\wizard</b> directory.
+      If you want to customize the templates, copy them to another directory and
+      then enter the path here. It is impossible to know in advance all possible
+      needs of the users of lcc-win32. This provides an escape hatch so that you
+      can add functionality that was not foreseen at design time.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Output directory</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">The directory to which the output files will be
+      written.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">WinMain file</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">The main C source file for the generated code. It
+      defaults to &lt;ProjectName.c&gt;.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Resources file</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">The resource file. It defaults to &lt;ProjectName.rc&gt;.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Header file</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">The file containing the definitions for the symbols
+      that will be needed in the application. It defaults to &lt;ProjectNamewiz.h&gt;.</p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<h3><a name="_Toc509457094"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc430327936">Class
+Definition</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h3>
+<p class="MsoNormal">&nbsp;To be able to open a window, a window of a specific
+class has to be registered with the system. The purpose of the first page of the
+wizard is to let you define exactly the window class. If this looks too
+complicated to you, press the continue button and leave the default values. In
+most cases, the default values are appropriate to your needs.<o:p>
+</o:p>
+</p>
+<table border="1" cellspacing="0" cellpadding="0" style="margin-left:3.5pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext 1.5pt;
+ mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:1.5pt;border-left:
+  1.5pt;border-bottom:.75pt;border-right:.75pt;border-color:windowtext;
+  border-style:solid;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal"><b style="mso-bidi-font-weight:normal">Input field<o:p>
+      </o:p>
+      </b></p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-left-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal"><b style="mso-bidi-font-weight:normal">Purpose<o:p>
+      </o:p>
+      </b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Class name</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">The name of the main window class. This can be any
+      name. It will default to &lt;ProjectNameWndClass&gt;.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Byte align client area</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Aligns the Window's client area on a byte boundary
+      (in the x direction) to enhance performance during drawing operations.
+      This style affects the width of the window and its horizontal placement on
+      the display.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Global class</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-top:4.0pt;margin-right:6.0pt;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:12.0pt;mso-line-height-rule:exactly">An <i style="mso-bidi-font-style:normal">application
+      global class</i> is a window class registered by a dynamic-link library
+      (DLL) and available to all applications in the system. For example, your
+      DLL can call the <b style="mso-bidi-font-weight:normal">RegisterClassEx</b>
+      function to register a window class that defines a custom control as an
+      application global class so that all applications can create instances of
+      the custom control.</p>
+      <p class="MsoNormal" style="margin-top:0cm;margin-right:6.0pt;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:12.0pt;mso-line-height-rule:exactly">In
+      Windows, all window classes are process specific. An application can
+      create a global class by creating the window class in a DLL and listing
+      the name of the DLL in the registry under the appropriate keys.</p>
+      <p class="MsoNormal" style="margin-top:0cm;margin-right:6.0pt;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:12.0pt;mso-line-height-rule:exactly">When a
+      process starts, the system loads the specified DLL in the context of the
+      newly started process before calling the <b style="mso-bidi-font-weight:normal">main</b>
+      function in that process. The DLL must register the class during its
+      initialization procedure and must specify the CS_GLOBALCLASS style. After
+      a class has been registered, any application can use it to create any
+      number of windows belonging to that class.</p>
+      <p class="MsoNormal">Windows does not automatically destroy a class when
+      the DLL that registered it is unloaded. For this reason, the Windows exit
+      procedure of the DLL should call the <b style="mso-bidi-font-weight:normal">UnregisterClass</b>
+      function to remove the class.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Byte align window area</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-top:4.0pt;margin-right:6.0pt;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:12.0pt;mso-line-height-rule:exactly">Aligns
+      the window on a byte boundary (in the x direction) to enhance performance
+      during operations that involve moving or sizing the window. This style
+      affects the width of the window and its horizontal placement on the
+      display.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Class DC</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-top:4.0pt;margin-right:6.0pt;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:12.0pt;mso-line-height-rule:exactly">Allocates
+      one device context to be shared by all windows in the class.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Window DC</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-top:4.0pt;margin-right:6.0pt;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:12.0pt;mso-line-height-rule:exactly">Allocates
+      a unique device context for each window in the class.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Redraw when resized</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-top:4.0pt;margin-right:6.0pt;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:12.0pt;mso-line-height-rule:exactly">Specifies
+      that the entire window is to be redrawn if a movement or size adjustment
+      changes the width or height of the client area.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Save bits</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-top:4.0pt;margin-right:6.0pt;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:12.0pt;mso-line-height-rule:exactly">Saves,
+      as a bitmap, the portion of the screen image obscured by a window. Windows
+      uses the saved bitmap to re-create the screen image when the window is
+      removed. Windows displays the bitmap at its original location and does not
+      send WM_PAINT messages to windows obscured by the window if other screen
+      actions have not invalidated the stored image. Use this style for small
+      windows that are displayed briefly and then removed before other screen
+      activity takes place (for example, menus or dialog boxes). This style
+      increases the time required to display the window, because the operating
+      system must first allocate memory to store the bitmap.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Accept double-clicks</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-top:4.0pt;margin-right:6.0pt;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:12.0pt;mso-line-height-rule:exactly">Instructs
+      Windows to send a double-click message to the window procedure when the
+      user double-clicks the mouse while the cursor is within a window belonging
+      to the class.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">No ‘close’ in system menu</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-top:4.0pt;margin-right:6.0pt;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:12.0pt;mso-line-height-rule:exactly">Disables
+      the Close command on the System menu.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Callback function.</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-top:4.0pt;margin-right:6.0pt;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:12.0pt;mso-line-height-rule:exactly">The
+      name of the function that will handle the messages sent to the windows of
+      this class. Defaults to &lt;MainWndProc&gt;.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Extra bytes for the class</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-top:4.0pt;margin-right:6.0pt;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:12.0pt;mso-line-height-rule:exactly">Number
+      of bytes to allocate in the class structure to store class specific user
+      data.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Extra bytes for the window</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-top:4.0pt;margin-right:6.0pt;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:12.0pt;mso-line-height-rule:exactly">Number
+      of bytes to allocate in the window structure to store window specific
+      data.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Icon</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-top:4.0pt;margin-right:6.0pt;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:12.0pt;mso-line-height-rule:exactly">Name of
+      the icon. Using the ‘browse’ button you can enter an icon file name
+      here.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Cursor</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-top:4.0pt;margin-right:6.0pt;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:12.0pt;mso-line-height-rule:exactly">Cursor
+      to be used with this class. Using the browse button allows you to input a
+      file name here.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Background color</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-top:4.0pt;margin-right:6.0pt;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:12.0pt;mso-line-height-rule:exactly">Background
+      color of the window.</p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<h3><a name="_Toc509457095"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc430327937">Toolbar
+Definition</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span>&nbsp;<o:p>
+</o:p>
+</h3>
+<p class="MsoBodyText">You should click on the button you want to have in your
+toolbar. If you do not choose at least a single button, the toolbar will not be
+generated.<o:p>
+</o:p>
+</p>
+<h3><a name="_Toc509457096"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc430327938">Styles</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h3>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<table border="1" cellspacing="0" cellpadding="0" style="margin-left:3.5pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext 1.5pt;
+ mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:1.5pt;border-left:
+  1.5pt;border-bottom:.75pt;border-right:.75pt;border-color:windowtext;
+  border-style:solid;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal"><b style="mso-bidi-font-weight:normal">Input field<o:p>
+      </o:p>
+      </b></p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-left-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal"><b style="mso-bidi-font-weight:normal">Description<o:p>
+      </o:p>
+      </b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Floating</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Creates a toolbar detached from the main window.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Position at the top</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">The toolbar is attached to the top of the client area
+      of the main window.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Position at the bottom</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">The toolbar is attached to the bottom of the client
+      area of the main window. This cannot be used with the status bar style.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Multi line</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">The toolbar can have several lines.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Has ToolTips</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">The toolbar will show explicative strings when the
+      mouse passes above any of its buttons.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Allow customization</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">The user can add/delete toolbar buttons from the
+      toolbar. The system provides a standard dialog box for this.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Large icons</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">The bitmaps in the toolbar are large.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Small icons</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">The bitmaps in the toolbar are small.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Save tool bar position at application exit</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">The position of the toolbar will be saved in the
+      applications registry key.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="161" valign="top" style="width:120.5pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Add custom button</p>
+    </td>
+    <td width="415" valign="top" style="width:311.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">This has not yet been implemented.</p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<h3><a name="_Toc435923669"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc509457097">Creating
+a Window</span></a><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc430327939">
+</span><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h3>
+<p class="MsoNormal">The wizard generates a procedure for creating the main
+application window. If this looks too complicated, do not alter these
+parameters; simply press the Continue button. In most cases, these default
+parameters will be what you want.</p>
+<p class="MsoNormal">The documentation for each of the fields is included below.</p>
+<p class="MsoNormal">The window class should be defined in the preceding panel.
+It is displayed here for information purposes only.</p>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<table border="1" cellspacing="0" cellpadding="0" style="margin-left:3.5pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext 1.5pt;
+ mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:1.5pt;border-left:
+  1.5pt;border-bottom:.75pt;border-right:.75pt;border-color:windowtext;
+  border-style:solid;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal"><b style="mso-bidi-font-weight:normal">Input field<o:p>
+      </o:p>
+      </b></p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-left-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal"><b style="mso-bidi-font-weight:normal">Purpose<o:p>
+      </o:p>
+      </b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Registry key</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Here you should enter the registry key that the
+      application will use for storing application specific data. Currently, the
+      wizard will use and create code to handle this field only if the main
+      window or the toolbar position should be saved.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Window Title</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Here you should enter the text to be shown in the
+      frame of the window.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Border</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoHeader" style="tab-stops:36.0pt center 8.0cm right 16.0cm"><span style="font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US">Determines
+      whether the window should have a border. It corresponds to the WS_BORDER
+      window style.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Caption</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Determines whether the window should have a caption.
+      Corresponds to the WS_CAPTION window style. Implies WS_BORDER.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Child</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Determines whether the window is a child window.<span style="mso-spacerun: yes">&nbsp;
+      </span>Corresponds to the WS_CHILD window style. This style cannot be used
+      with the WS_POPUP window style.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Clip children</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Excludes the area occupied by child windows when
+      drawing occurs within the parent window. This style is used when creating
+      the parent window. It is on by default. Corresponds to the WS_CLIPCHILDREN
+      window style.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Clip siblings</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Clips child windows relative to each other; that is,
+      when a particular child window receives a WM_PAINT message, the
+      WS_CLIPSIBLINGS style clips all other overlapping child windows out of the
+      region of the child window to be updated. If WS_CLIPSIBLINGS is not
+      specified and child windows overlap, it is possible, when drawing within
+      the client area of a child window, to draw within the client area of a
+      neighboring child window. Corresponds to the WS_CLIPSIBLINGS window style.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoHeader" style="tab-stops:36.0pt center 8.0cm right 16.0cm"><span style="font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US">Disabled<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Determines whether the window should be disabled at
+      startup. Normally you should not use this option, since a disabled window
+      will receive no input.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Dialog Frame</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Creates a window that has a border of a style
+      typically used with dialog boxes. A window with this style cannot have a
+      title bar.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">H Scroll</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Determines whether the window should have a
+      horizontal scroll bar. It should not be used if you have used the status
+      bar feature, since the scroll bar will overlay the status bar.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">V scroll</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Determines whether the window should have a vertical
+      scroll bar. This option should not be used with a status bar.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Maximize</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Determines whether the window should have a maximize
+      box. Note that this is not the WS_MAXIMIZE style, but the WS_MAXIMIZEBOX.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Minimize</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Determines whether the window should have a minimize
+      box. Note that this is not the WS_MINIMIZE style but the WS_MINIMIZEBOX.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Popup</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Determines whether to create a popup window. Note
+      that this cannot be used with the WS_CHILD style.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Sizable</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Determines whether the window can be resized.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Sys menu</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Determines whether the window should have a system
+      menu.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Visible</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Determines whether the window should be visible at
+      startup. Normally this should be on.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Static edge</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="DefinitionTerm">Determines whether the window should have a
+      static edge. Normally, this style is not used with main windows.
+      Corresponds to the WS_EX_STATICEDGE style.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Window edge</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Determines whether the window should have an edge
+      around it.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Client edge</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Determines whether the window should have an edge
+      around its client area.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Left scrollbar</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Determines whether the vertical scrollbar should be
+      at the left. Normally not used.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Transparent</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Determines whether the window should let you see the
+      windows underneath it.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Accept files</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Determines whether the window should handle the
+      WM_ACCEPTFILES message.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Tool window</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Window with a smaller caption. Normally not used with
+      main windows.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Topmost</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Determines whether the window should be always
+      visible.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.35pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Save window position in registry</p>
+    </td>
+    <td width="434" valign="top" style="width:325.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Determines whether the window position in screen
+      coordinates should be saved in the registry and restored when the
+      application restarts.</p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<h3><a name="_Toc509457098"><span style="mso-ansi-language:EN-US">Using the
+Wizard</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h3>
+<p class="MsoBodyText">Once the code has been generated, it must then be
+modified. Following is a short series of technical tips to allow you to start
+off quickly.</p>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<table border="1" cellspacing="0" cellpadding="0" style="margin-left:3.5pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext 1.5pt;
+ mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr>
+    <td width="130" valign="top" style="width:97.6pt;border-top:1.5pt;border-left:
+  1.5pt;border-bottom:.75pt;border-right:.75pt;border-color:windowtext;
+  border-style:solid;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal"><b style="mso-bidi-font-weight:normal">Action<o:p>
+      </o:p>
+      </b></p>
+    </td>
+    <td width="446" valign="top" style="width:334.4pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-left-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal"><b style="mso-bidi-font-weight:normal">What to do<o:p>
+      </o:p>
+      </b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="130" valign="top" style="width:97.6pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Adding a new menu item</p>
+    </td>
+    <td width="446" valign="top" style="width:334.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-left:14.15pt;text-indent:-14.15pt;
+  mso-list:l0 level1 lfo3"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span><b style="mso-bidi-font-weight:normal">Modify the .rc file</b>
+      and add the menu item you want. The item should have a line of text and a
+      numeric identifier. See the other menu items for ideas on how this is
+      done.</p>
+      <p class="MsoNormal" style="margin-left:14.15pt;text-indent:-14.15pt;
+  mso-list:l0 level1 lfo3"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span>This new numeric identifier should be #defined in the global
+      application header file, that is #included in the .rc file.</p>
+      <p class="MsoNormal" style="margin-left:14.15pt;text-indent:-14.15pt;
+  mso-list:l0 level1 lfo3"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span>Modify the <b style="mso-bidi-font-weight:normal">MainWndProc_OnCommand</b>
+      function, adding a new case in its switch statement. This new case should
+      be the same numerical identifier you entered in the header file for this
+      menu item.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="130" valign="top" style="width:97.6pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Adding a dialog box</p>
+    </td>
+    <td width="446" valign="top" style="width:334.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-left:14.15pt;text-indent:-14.15pt;
+  mso-list:l0 level1 lfo3"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span><b style="mso-bidi-font-weight:normal">Design the dialog box
+      with Weditres</b>. Normally, you will have several dialog boxes in your
+      application.<span style="mso-spacerun: yes">&nbsp; </span>Therefore, it is
+      best to do is to start a new project and modify the .rc file with an
+      #include statement of the .dlg files generated by Weditres. Assume that
+      you name your dialog box set mydialogs. Weditres will generate a
+      mydialogs.dlg file. You should then add the line #include «&nbsp;mydialogs.dlg&nbsp;»
+      to the .rc file. This will allow you to add several dialogs later always
+      using the same names.<b style="mso-bidi-font-weight:
+  normal"><o:p>
+      </o:p>
+      </b></p>
+      <p class="MsoNormal" style="margin-left:14.15pt;text-indent:-14.15pt;
+  mso-list:l0 level1 lfo3"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span>After the design of the dialog box is finished, you have to
+      call it up using the DialogBox windows primitive.<b style="mso-bidi-font-weight:normal"><o:p>
+      </o:p>
+      </b></p>
+      <p class="MsoNormal" style="margin-left:14.15pt;text-indent:-14.15pt;
+  mso-list:l0 level1 lfo3"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span>The DialogBox primitive needs a callback function that will
+      be called up to handle the events in the dialog box. You have the choice
+      of having Weditres generate that procedure for you, or writing your own.
+      If you let Weditres do it; it will generate a file called mydialogs.c
+      containing all procedures for your dialog boxes. Include this file in the
+      project of Wedit.<b style="mso-bidi-font-weight:normal"><o:p>
+      </o:p>
+      </b></p>
+      <p class="MsoNormal" style="margin-left:14.15pt;text-indent:-14.15pt;
+  mso-list:l0 level1 lfo3"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span>Normally, a dialog box is called after the user has clicked
+      on a menu item. <b style="mso-bidi-font-weight:normal"><o:p>
+      </o:p>
+      </b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="130" valign="top" style="width:97.6pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Adding code to handle windows events</p>
+    </td>
+    <td width="446" valign="top" style="width:334.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-left:14.15pt;text-indent:-14.15pt;
+  mso-list:l0 level1 lfo3"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span>To handle the messages that Windows sends you, you should go
+      to the MainWndProc procedure and add cases to handle the messages. For
+      instance, if you are interested in the keys the user is typing at the
+      keyboard, you can handle the message WM_CHAR. To do this, add a case
+      WM_CHAR to the big message switch of the Windows procedure.<b style="mso-bidi-font-weight:normal"><o:p>
+      </o:p>
+      </b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="130" valign="top" style="width:97.6pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Updating the status bar</p>
+    </td>
+    <td width="446" valign="top" style="width:334.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-left:14.15pt;text-indent:-14.15pt;
+  mso-list:l0 level1 lfo3"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span>The status bar can be updated using the function
+      UpdateStatusBar, which is automatically generated by the wizard. Normally,
+      something similar to «&nbsp;UpdateStatusBar(«&nbsp;New text&nbsp;»,0,0)&nbsp;;&nbsp;»
+      would be written. This means that the first field of the status bar (field
+      zero) will be changed, and that there are no special flags to be given.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="130" valign="top" style="width:97.6pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Adding a new window class</p>
+    </td>
+    <td width="446" valign="top" style="width:334.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-left:14.15pt;text-indent:-14.15pt;
+  mso-list:l0 level1 lfo3"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span>You should repeat the code in the InitApplication function
+      to add a new window class. You need a new window procedure too, to handle
+      the messages to this new window, after you create it. You can use the
+      skeleton in the MainWndProc procedure as a model.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="130" valign="top" style="width:97.6pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal">Adding an icon</p>
+    </td>
+    <td width="446" valign="top" style="width:334.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-left:14.15pt;text-indent:-14.15pt;
+  mso-list:l0 level1 lfo3"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span>Add the statement myicon ICON myiconfile.ico to the .rc
+      file.</p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+
+</body>
+
+</html>

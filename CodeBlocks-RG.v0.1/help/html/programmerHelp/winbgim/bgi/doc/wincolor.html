@@ -1,0 +1,60 @@
+<html>
+<title>
+Colors for Windows BGI (winbgim)
+</title>
+
+<body>
+<h2>Colors for Windows BGI</h2>
+The <A HREF="bgi.html">winbgim</A> package supports two
+types of colors that may be used with any of the functions that expect
+colors as arguments:
+<OL>
+<LI> The sixteen ordinary BGI colors. These are the integers 0 through
+15 or you may use the symbolic names: 
+<PRE>
+     BLACK          BLUE          GREEN         CYAN
+     RED            MAGENTA       BROWN         LIGHTGRAY
+     DARKGRAY       LIGHTBLUE     LIGHTGREEN    LIGHTCYAN
+     LIGHTRED       LIGHTMAGENTA  YELLOW        WHITE
+</PRE>
+<P>
+<LI> A color may be specified from red, green and blue components
+using a new function called COLOR(r,g,b). Each of the r,g,b arguments
+must be a number in the range 0 to 255. For example, COLOR(255,100,0)
+is a mostly red color with some green and no blue. If you create
+one of these colors, it may be used as an argument to any of the BGI
+functions that expect a color. These colors may also be returned from
+BGI functions such as getbkcolor and the new function
+getdisplaycolor (which tells you what actual color will be
+displayed on the current monitor).
+</OL>
+<P>
+A function, converttorgb, and several other functions
+(RED_VALUE, GREEN_VALUE, BLUE_VALUE, IS_BGI_COLOR, and
+IS_RGB_COLOR) are explained in the examples below.
+<P>
+<B>RGB Examples:</B>
+<PRE>
+    setcolor(BLUE);             // Change drawing color to BLUE.
+    setcolor(COLOR(255,100,0)); // Change drawing color to reddish-green.
+    setpalette(4, BLUE);        // Change palette entry 4 to BLUE.
+    setpalette(4, COLOR(9,9,9));// Change palette entry 4 to nearly black.
+     
+    int current = getcolor( );  // Set current to current drawing color.
+
+    if (IS_BGI_COLOR(current))  // Check whether it is a BGI color.
+       cout &lt;&lt; "Current BGI drawing color is: " << current << endl;
+
+    if (IS_RGB_COLOR(current))  // Check whether it is an RGB color.
+       cout &lt;&lt; "Current RGB drawing color has these components:\n"
+            &lt;&lt; "Red:   " << RED_VALUE(current)   &lt;&lt; '\n'
+            &lt;&lt; "Green: " << GREEN_VALUE(current) &lt;&lt; '\n'
+            &lt;&lt; "Blue:  " << BLUE_VALUE(current)  &lt;&lt; '\n';
+
+    cout &lt;&lt; "The usual Windows RGB color int value is:\n"
+         &lt;&lt; converttorgb(current) &lt;&lt; endl;
+</PRE>
+
+
+<!-- Mirrored from www.cs.colorado.edu/~main/cs1300/doc/bgi/wincolor.html by HTTrack Website Copier/3.x [XR&CO'2004], Sat, 18 Dec 2004 07:30:41 GMT -->
+</html>

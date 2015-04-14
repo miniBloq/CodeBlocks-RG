@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Static%20versus%20Implicit">Static versus Implicit</a>,
+Previous:<a rel="previous" accesskey="p" href="Static-Usage.html#Static%20Usage">Static Usage</a>,
+Up:<a rel="up" accesskey="u" href="Static-Pattern.html#Static%20Pattern">Static Pattern</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">Static Pattern Rules versus Implicit Rules</h4>
+
+   <p>A static pattern rule has much in common with an implicit rule defined as a
+pattern rule (see <a href="Pattern-Rules.html#Pattern%20Rules">Defining and Redefining Pattern Rules</a>). 
+Both have a pattern for the target and patterns for constructing the
+names of prerequisites.  The difference is in how <code>make</code> decides
+<em>when</em> the rule applies.
+
+   <p>An implicit rule <em>can</em> apply to any target that matches its pattern,
+but it <em>does</em> apply only when the target has no commands otherwise
+specified, and only when the prerequisites can be found.  If more than one
+implicit rule appears applicable, only one applies; the choice depends on
+the order of rules.
+
+   <p>By contrast, a static pattern rule applies to the precise list of targets
+that you specify in the rule.  It cannot apply to any other target and it
+invariably does apply to each of the targets specified.  If two conflicting
+rules apply, and both have commands, that's an error.
+
+   <p>The static pattern rule can be better than an implicit rule for these
+reasons:
+
+     <ul>
+<li>You may wish to override the usual implicit rule for a few
+files whose names cannot be categorized syntactically but
+can be given in an explicit list.
+
+     <li>If you cannot be sure of the precise contents of the directories
+you are using, you may not be sure which other irrelevant files
+might lead <code>make</code> to use the wrong implicit rule.  The choice
+might depend on the order in which the implicit rule search is done. 
+With static pattern rules, there is no uncertainty: each rule applies
+to precisely the targets specified. 
+</ul>
+
+   </body></html>
+

@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Match-Anything%20Rules">Match-Anything Rules</a>,
+Next:<a rel="next" accesskey="n" href="Canceling-Rules.html#Canceling%20Rules">Canceling Rules</a>,
+Previous:<a rel="previous" accesskey="p" href="Pattern-Match.html#Pattern%20Match">Pattern Match</a>,
+Up:<a rel="up" accesskey="u" href="Pattern-Rules.html#Pattern%20Rules">Pattern Rules</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">Match-Anything Pattern Rules</h4>
+
+   <p>When a pattern rule's target is just <code>%</code>, it matches any file name
+whatever.  We call these rules <dfn>match-anything</dfn> rules.  They are very
+useful, but it can take a lot of time for <code>make</code> to think about them,
+because it must consider every such rule for each file name listed either
+as a target or as a prerequisite.
+
+   <p>Suppose the makefile mentions <code>foo.c</code>.  For this target, <code>make</code>
+would have to consider making it by linking an object file <code>foo.c.o</code>,
+or by C compilation-and-linking in one step from <code>foo.c.c</code>, or by
+Pascal compilation-and-linking from <code>foo.c.p</code>, and many other
+possibilities.
+
+   <p>We know these possibilities are ridiculous since <code>foo.c</code> is a C source
+file, not an executable.  If <code>make</code> did consider these possibilities,
+it would ultimately reject them, because files such as <code>foo.c.o</code> and
+<code>foo.c.p</code> would not exist.  But these possibilities are so
+numerous that <code>make</code> would run very slowly if it had to consider
+them.
+
+   <p>To gain speed, we have put various constraints on the way <code>make</code>
+considers match-anything rules.  There are two different constraints that
+can be applied, and each time you define a match-anything rule you must
+choose one or the other for that rule.
+
+   <p>One choice is to mark the match-anything rule as <dfn>terminal</dfn> by defining
+it with a double colon.  When a rule is terminal, it does not apply unless
+its prerequisites actually exist.  Prerequisites that could be made with
+other implicit rules are not good enough.  In other words, no further
+chaining is allowed beyond a terminal rule.
+
+   <p>For example, the built-in implicit rules for extracting sources from RCS
+and SCCS files are terminal; as a result, if the file <code>foo.c,v</code> does
+not exist, <code>make</code> will not even consider trying to make it as an
+intermediate file from <code>foo.c,v.o</code> or from <code>RCS/SCCS/s.foo.c,v</code>. 
+RCS and SCCS files are generally ultimate source files, which should not be
+remade from any other files; therefore, <code>make</code> can save time by not
+looking for ways to remake them.
+
+   <p>If you do not mark the match-anything rule as terminal, then it is
+nonterminal.  A nonterminal match-anything rule cannot apply to a file name
+that indicates a specific type of data.  A file name indicates a specific
+type of data if some non-match-anything implicit rule target matches it.
+
+   <p>For example, the file name <code>foo.c</code> matches the target for the pattern
+rule <code>%.c : %.y</code> (the rule to run Yacc).  Regardless of whether this
+rule is actually applicable (which happens only if there is a file
+<code>foo.y</code>), the fact that its target matches is enough to prevent
+consideration of any nonterminal match-anything rules for the file
+<code>foo.c</code>.  Thus, <code>make</code> will not even consider trying to make
+<code>foo.c</code> as an executable file from <code>foo.c.o</code>, <code>foo.c.c</code>,
+<code>foo.c.p</code>, etc.
+
+   <p>The motivation for this constraint is that nonterminal match-anything
+rules are used for making files containing specific types of data (such as
+executable files) and a file name with a recognized suffix indicates some
+other specific type of data (such as a C source file).
+
+   <p>Special built-in dummy pattern rules are provided solely to recognize
+certain file names so that nonterminal match-anything rules will not be
+considered.  These dummy rules have no prerequisites and no commands, and
+they are ignored for all other purposes.  For example, the built-in
+implicit rule
+
+<pre class="example">     %.p :
+     </pre>
+
+<p>exists to make sure that Pascal source files such as <code>foo.p</code> match a
+specific target pattern and thereby prevent time from being wasted looking
+for <code>foo.p.o</code> or <code>foo.p.c</code>.
+
+   <p>Dummy pattern rules such as the one for <code>%.p</code> are made for every
+suffix listed as valid for use in suffix rules (see <a href="Suffix-Rules.html#Suffix%20Rules">Old-Fashioned Suffix Rules</a>).
+
+   </body></html>
+

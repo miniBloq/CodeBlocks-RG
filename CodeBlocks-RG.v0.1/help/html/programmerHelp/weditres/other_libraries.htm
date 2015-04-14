@@ -1,0 +1,244 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Other Libraries Distributed with lcc</title>
+</head>
+
+<body>
+
+<h3><a name="_Toc509456969"><span style="mso-ansi-language:EN-US">Other
+Libraries Distributed with</span></a><a name="Other"> </a><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc509456969">lcc-win32&nbsp;:</span><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h3>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.95pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:skip"><span style="mso-ansi-language:EN-US">The <b style="mso-bidi-font-weight:
+normal">intel jpeg image processing library</b> has been adapted to lcc-win32,
+and it is distributed with the CDROM versions. It can be downloaded at no charge
+from:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.95pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:skip"><span style="mso-ansi-language:EN-US">http://www.ps.qss.cz/pub/lcc/inteljpg.exe.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.95pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:skip"><span style="mso-ansi-language:EN-US">The <b style="mso-bidi-font-weight:
+normal">fdlibm mathematical library</b> has been compiled under lcc-win32 and is
+included in the normal distribution effective May 2000.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.95pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:skip"><span style="mso-ansi-language:EN-US">This library&nbsp;is
+intended to provide a reasonably portable reference quality (below one ulp for
+major functions like sin,cos,exp,log) math library. Many of the functions in
+this library are redundant with those in crtdll.dll, so it is not needed for
+each compilation. There are, however, some functions that do NOT appear in the
+standard version of crtdll.dll, for instance lgamma, or others. When in doubt,
+include this library in the linker command line.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.95pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:skip"><u><span style="mso-ansi-language:EN-US">This library should be
+used if you intend to use the matherr function.</span></u><span style="mso-ansi-language:EN-US">
+It is NOT possible to use the matherr mechanism with the standard crtdll.lib.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.95pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:skip"><span style="mso-ansi-language:EN-US">The following mathematical
+functions need fdlibm&nbsp;:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-right:-.95pt;mso-list:skip"><span style="mso-ansi-language:EN-US">&nbsp;<o:p>
+</o:p>
+</span></p>
+<table border="1" cellspacing="0" cellpadding="0" style="margin-left:41.4pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+  <tr>
+    <td width="142" valign="top" style="width:106.2pt;border:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;mso-list:skip"><span style="mso-ansi-language:EN-US">asinh<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="197" valign="top" style="width:147.6pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;mso-list:skip"><span style="mso-ansi-language:EN-US">acosh<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="190" valign="top" style="width:142.2pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;mso-list:skip"><span style="mso-ansi-language:EN-US">atanh<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.2pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;mso-list:skip"><span style="mso-ansi-language:EN-US">cbrt<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="197" valign="top" style="width:147.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;mso-list:skip"><span style="mso-ansi-language:EN-US">erf<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="190" valign="top" style="width:142.2pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;mso-list:skip"><span style="mso-ansi-language:EN-US">erfc<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.2pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;mso-list:skip"><span style="mso-ansi-language:EN-US">expm1<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="197" valign="top" style="width:147.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;mso-list:skip"><span style="mso-ansi-language:EN-US">finite<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="190" valign="top" style="width:142.2pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;mso-list:skip"><span style="mso-ansi-language:EN-US">gamma<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.2pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;mso-list:skip"><span style="mso-ansi-language:EN-US">Ilogb<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="197" valign="top" style="width:147.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;mso-list:skip"><span style="mso-ansi-language:EN-US">lgamma<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="190" valign="top" style="width:142.2pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;mso-list:skip"><span style="mso-ansi-language:EN-US">log1p<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width:106.2pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;mso-list:skip"><span style="mso-ansi-language:EN-US">logb<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="197" valign="top" style="width:147.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;mso-list:skip"><span style="mso-ansi-language:EN-US">scalbn<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="190" valign="top" style="width:142.2pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;mso-list:skip"><span style="mso-ansi-language:EN-US">significand<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.95pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:skip"><span style="mso-ansi-language:EN-US"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.95pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:skip"><span style="mso-ansi-language:EN-US">The <b style="mso-bidi-font-weight:
+normal">regular expressions library</b>. This library, developed several years
+ago by Henry Spencer at the University of Toronto, implements the functions
+needed to compile and execute a regular expression and apply it to a character
+string. The library is called regexp.lib, and the include file is regexp.h.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.95pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:skip"><span style="mso-ansi-language:EN-US">The <b style="mso-bidi-font-weight:
+normal">arbitrary precision library</b>. This library defines the «&nbsp;bignum&nbsp;»
+data type. Bignums are numbers of arbitrary precision that can be used instead
+of integers or floating point numbers. The documentation for using this library
+is in Appendix 3. The include file<span style="mso-spacerun: yes">&nbsp; </span>is
+«&nbsp;bignums.h&nbsp;» and the library is «&nbsp;bignums.lib&nbsp;».<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.95pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:skip"><span style="mso-ansi-language:EN-US">The <b>GNU GDBM</b> library
+is a hash based (key) database package that allows you to associate arbitrary
+data with a key. To see the complete documentation for this package, go to the
+index in the “Help” tab of wedit, and then click in the GDBM link.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.95pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:skip"><span style="mso-ansi-language:EN-US">The <b>zlib2 </b>compression
+library is distributed with the examples/CD-sources distribution. This library
+allows you to compress data, so that it uses less space but keeping the same
+information (without looses).<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">The <b>Berkeley DB</b> library is distributed in a separate
+file with sources (lccdb.exe)</p>
+
+</body>
+
+</html>

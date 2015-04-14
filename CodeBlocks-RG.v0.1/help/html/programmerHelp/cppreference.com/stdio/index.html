@@ -1,0 +1,335 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/stdio/index.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:22:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>Standard C I/O</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">Standard C I/O</a>
+  </div>
+
+  <div class="name-format">
+    Standard C I/O
+  </div>
+
+  <p><a href="all.html">Display all entries</a> for Standard C I/O on
+  one page, or view entries individually:</p>
+
+  <table class="category-table">
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "clearerr.html">clearerr</a></td>
+
+      <td class="category-table-td">clears errors</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "fclose.html">fclose</a></td>
+
+      <td class="category-table-td">close a file</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href="feof.html">feof</a></td>
+
+      <td class="category-table-td">true if at the end-of-file</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "ferror.html">ferror</a></td>
+
+      <td class="category-table-td">checks for a file error</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "fflush.html">fflush</a></td>
+
+      <td class="category-table-td">writes the contents of the output
+      buffer</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href="fgetc.html">fgetc</a></td>
+
+      <td class="category-table-td">get a character from a stream</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "fgetpos.html">fgetpos</a></td>
+
+      <td class="category-table-td">get the file position
+      indicator</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href="fgets.html">fgets</a></td>
+
+      <td class="category-table-td">get a string of characters from a
+      stream</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href="fopen.html">fopen</a></td>
+
+      <td class="category-table-td">open a file</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "fprintf.html">fprintf</a></td>
+
+      <td class="category-table-td">print formatted output to a
+      file</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href="fputc.html">fputc</a></td>
+
+      <td class="category-table-td">write a character to a file</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href="fputs.html">fputs</a></td>
+
+      <td class="category-table-td">write a string to a file</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href="fread.html">fread</a></td>
+
+      <td class="category-table-td">read from a file</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "freopen.html">freopen</a></td>
+
+      <td class="category-table-td">open an existing stream with a
+      different name</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "fscanf.html">fscanf</a></td>
+
+      <td class="category-table-td">read formatted input from a
+      file</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href="fseek.html">fseek</a></td>
+
+      <td class="category-table-td">move to a specific location in a
+      file</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "fsetpos.html">fsetpos</a></td>
+
+      <td class="category-table-td">move to a specific location in a
+      file</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href="ftell.html">ftell</a></td>
+
+      <td class="category-table-td">returns the current file position
+      indicator</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "fwrite.html">fwrite</a></td>
+
+      <td class="category-table-td">write to a file</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href="getc.html">getc</a></td>
+
+      <td class="category-table-td">read a character from a file</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "getchar.html">getchar</a></td>
+
+      <td class="category-table-td">read a character from
+      <strong>stdin</strong></td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href="gets.html">gets</a></td>
+
+      <td class="category-table-td">read a string from
+      <strong>stdin</strong></td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "perror.html">perror</a></td>
+
+      <td class="category-table-td">displays a string version of the
+      current error to <strong>stderr</strong></td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "printf.html">printf</a></td>
+
+      <td class="category-table-td">write formatted output to
+      <strong>stdout</strong></td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href="putc.html">putc</a></td>
+
+      <td class="category-table-td">write a character to a stream</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "putchar.html">putchar</a></td>
+
+      <td class="category-table-td">write a character to
+      <strong>stdout</strong></td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href="puts.html">puts</a></td>
+
+      <td class="category-table-td">write a string to
+      <strong>stdout</strong></td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "remove.html">remove</a></td>
+
+      <td class="category-table-td">erase a file</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "rename.html">rename</a></td>
+
+      <td class="category-table-td">rename a file</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "rewind.html">rewind</a></td>
+
+      <td class="category-table-td">move the file position indicator to
+      the beginning of a file</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href="scanf.html">scanf</a></td>
+
+      <td class="category-table-td">read formatted input from
+      <strong>stdin</strong></td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "setbuf.html">setbuf</a></td>
+
+      <td class="category-table-td">set the buffer for a specific
+      stream</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "setvbuf.html">setvbuf</a></td>
+
+      <td class="category-table-td">set the buffer and size for a
+      specific stream</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "sprintf.html">sprintf</a></td>
+
+      <td class="category-table-td">write formatted output to a
+      buffer</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "sscanf.html">sscanf</a></td>
+
+      <td class="category-table-td">read formatted input from a
+      buffer</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "tmpfile.html">tmpfile</a></td>
+
+      <td class="category-table-td">return a pointer to a temporary
+      file</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "tmpnam.html">tmpnam</a></td>
+
+      <td class="category-table-td">return a unique filename</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "ungetc.html">ungetc</a></td>
+
+      <td class="category-table-td">puts a character back into a
+      stream</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "vprintf_vfprintf_vsprintf.html">vprintf, vfprintf, and
+      vsprintf</a></td>
+
+      <td class="category-table-td">write formatted output with
+      variable argument lists</td>
+    </tr>
+  </table>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/index.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:22:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

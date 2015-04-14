@@ -1,0 +1,563 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Header Controls</title>
+</head>
+
+<body>
+
+<h2>Header Controls</h2>
+<hr SIZE="1">
+<p>A header control is a window that is usually positioned above columns of text
+or numbers. It contains a title for each column, and it can be divided into
+parts. The user can drag the dividers that separate the parts to set the width
+of each column. The following illustration shows a header control that has
+labeled columns that give detailed information about files in a directory.</p>
+<p><img border="0" src="header6.jpg" width="314" height="153"></p>
+<ul>
+  <li><a href="#Using_Header_Control" target="_self">Using Header Controls</a>
+  <li><a href="#Header_Control_Updat" target="_self">Header Control Updates in
+    Internet Explorer</a></li>
+</ul>
+<h3><a name="Using_Header_Control"></a>Using Header Controls</h3>
+<p>You can create a header control by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+CreateWindowEx</MSHelp:link>
+ function, specifying the <b>WC_HEADER</b> window class and the appropriate <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Header_Control_Styles_cpp">
+Header Control Styles</MSHelp:link>
+. This window class is registered when the common control dynamic-link library
+(DLL) is loaded. To ensure that this DLL is loaded, use the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_InitCommonControlsEx_cpp">
+InitCommonControlsEx</MSHelp:link>
+ function. After you create a header control, you can divide it into parts, set
+the text in each part, and control the appearance of the window by using header
+window messages.</p>
+<h4><a name="Header_Control_Size_"></a>Header Control Size and Position</h4>
+<p>Typically, you must set the size and position of a header control to fit
+within the boundaries of a particular rectangle, such as the client area of a
+window. By using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDM_LAYOUT_cpp">
+HDM_LAYOUT</MSHelp:link>
+ message, you can retrieve the appropriate size and position values from the
+header control.</p>
+<p>When sending <b>HDM_LAYOUT</b>, you specify the address of an <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDLAYOUT_cpp">
+HDLAYOUT</MSHelp:link>
+ structure that contains the coordinates of the rectangle that the header
+control is to occupy and provides a pointer to a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_windowpos_str">
+WINDOWPOS</MSHelp:link>
+ structure. The control fills the <b>WINDOWPOS</b> structure with size and
+position values appropriate for positioning the control along the top of the
+specified rectangle. The height value is the sum of the heights of the control's
+horizontal borders and the average height of characters in the font currently
+selected into the control's device context.</p>
+<p>If you want to use <b>HDM_LAYOUT</b> to set the initial size and position of
+a header control, set the initial visibility state of the control so that it is
+hidden. After sending <b>HDM_LAYOUT</b> to retrieve the size and position
+values, you can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_setwindowpos">
+SetWindowPos</MSHelp:link>
+ function to set the new size, position, and visibility state.</p>
+<h4><a name="Items"></a>Items</h4>
+<p>A header control typically has several header items that define the columns
+of the control. You add an item to a header control by sending the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDM_INSERTITEM_cpp">
+HDM_INSERTITEM</MSHelp:link>
+ message to the control. The message includes the address of an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDITEM_cpp">
+HDITEM</MSHelp:link>
+ structure. This structure defines the properties of the header item, which can
+include a string, a bitmapped image, an initial size, and an application-defined
+32-bit value.</p>
+<p>The <b>fmt</b> member of an item's <b>HDITEM</b> structure can include either
+the <span class="clsLiteral">HDF_STRING</span> or <span class="clsLiteral">HDF_BITMAP</span>
+flag to indicate whether the control displays the item's string or bitmap. If
+you want to display both a string and a bitmap, create an owner-drawn item by
+setting the <b>fmt</b> member to include the <span class="clsLiteral">HDF_OWNERDRAW</span>
+flag. The <b>HDITEM</b> structure also specifies formatting flags that tell the
+control whether to center, left-align, or right-align the string or bitmap in
+the item's rectangle.</p>
+<p><b>HDM_INSERTITEM</b> returns the index of the newly added item. You can use
+the index in other messages to set properties or retrieve information about the
+item. You can delete an item by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDM_DELETEITEM_cpp">
+HDM_DELETEITEM</MSHelp:link>
+ message, specifying the index of the item to delete.</p>
+<p>You can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDM_SETITEM_cpp">
+HDM_SETITEM</MSHelp:link>
+ message to set the properties of an existing header item and the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDM_GETITEM_cpp">
+HDM_GETITEM</MSHelp:link>
+ message to retrieve the current properties of an item. To retrieve a count of
+the items in a header control, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDM_GETITEMCOUNT_cpp">
+HDM_GETITEMCOUNT</MSHelp:link>
+ message.</p>
+<h4><a name="_win32_header_owner_draw"></a>Owner-Drawn Header Controls</h4>
+<p>You can define individual items of a header control to be owner-drawn items.
+Using this technique gives you more control than you would otherwise have over
+the appearance of a header item.</p>
+<p>You can use the <b>HDM_INSERTITEM</b> message to insert a new owner-drawn
+item into a header control or the <b>HDM_SETITEM</b> message to change an
+existing item to an owner-drawn item. Both messages include the address of an <b>HDITEM</b>
+structure, which should have the <b>fmt</b> member set to the <span class="clsLiteral">HDF_OWNERDRAW</span>
+value.</p>
+<p>When a header control must draw an owner-drawn item, it sends the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_DRAWITEM_cpp">
+WM_DRAWITEM</MSHelp:link>
+ message to the parent window. The <i>wParam</i> parameter of the message is the
+child window identifier of the header control, and the <i>lParam</i> parameter
+is an address of a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DRAWITEMSTRUCT_str_cpp">
+DRAWITEMSTRUCT</MSHelp:link>
+ structure. The parent window uses the information in the structure to draw the
+item. For an owner-drawn item in a header control, the <b>DRAWITEMSTRUCT</b>
+structure contains the following information.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Member</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td><b>CtlType</b></td>
+      <td><b>ODT_HEADER</b> owner-drawn control type.</td>
+    </tr>
+    <tr>
+      <td><b>CtlID</b></td>
+      <td>Child-window identifier of the header control.</td>
+    </tr>
+    <tr>
+      <td><b>itemID</b></td>
+      <td>Index of the item to be drawn.</td>
+    </tr>
+    <tr>
+      <td><b>itemAction</b></td>
+      <td><b>ODA_DRAWENTIRE</b> drawing-action flag.</td>
+    </tr>
+    <tr>
+      <td><b>itemState</b></td>
+      <td><b>ODS_SELECTED</b> drawing-action flag if the cursor is on the item
+        and the mouse button is down. Otherwise, this member is zero.</td>
+    </tr>
+    <tr>
+      <td><b>hwndItem</b></td>
+      <td>Handle to the header control.</td>
+    </tr>
+    <tr>
+      <td><b>hDC</b></td>
+      <td>Handle to the device context of the header control.</td>
+    </tr>
+    <tr>
+      <td><b>rcItem</b></td>
+      <td>Coordinates of the header item to be drawn. The coordinates are
+        relative to the upper-left corner of the header control.</td>
+    </tr>
+    <tr>
+      <td><b>itemData</b></td>
+      <td>Application-defined 32-bit value associated with the item.</td>
+    </tr>
+  </tbody>
+</table>
+<h4><a name="Header_Control_Notif"></a>Header Control Notification Messages</h4>
+<p>A header control sends notification messages to its parent window when the
+user clicks or double-clicks an item, when the user drags an item divider, and
+when the attributes of an item change. The parent window receives the
+notifications in the form of <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_NOTIFY_cpp">
+WM_NOTIFY</MSHelp:link>
+ messages. The following notifications are used with header controls.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Notification</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDN_BEGINTRACK_cpp">
+        HDN_BEGINTRACK</MSHelp:link>
+      </td>
+      <td>Signals the start of divider dragging.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDN_DIVIDERDBLCLICK_cpp">
+        HDN_DIVIDERDBLCLICK</MSHelp:link>
+      </td>
+      <td>Indicates that the user double-clicked a divider.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDN_ENDTRACK_cpp">
+        HDN_ENDTRACK</MSHelp:link>
+      </td>
+      <td>Signals the end of divider dragging.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDN_ITEMCHANGED_cpp">
+        HDN_ITEMCHANGED</MSHelp:link>
+      </td>
+      <td>Indicates a change in the attributes of an item.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDN_ITEMCHANGING_cpp">
+        HDN_ITEMCHANGING</MSHelp:link>
+      </td>
+      <td>Indicates that the attributes of an item are about to change.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDN_ITEMCLICK_cpp">
+        HDN_ITEMCLICK</MSHelp:link>
+      </td>
+      <td>Indicates that the user clicked an item.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDN_ITEMDBLCLICK_cpp">
+        HDN_ITEMDBLCLICK</MSHelp:link>
+      </td>
+      <td>Indicates that the user double-clicked an item.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDN_TRACK_cpp">
+        HDN_TRACK</MSHelp:link>
+      </td>
+      <td>Indicates that the user dragged a divider.</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="Default_Header_Contr"></a>Default Header Control Message Processing</h3>
+<p>This section describes the window messages handled by the window procedure
+for the WC_HEADER window class.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Message</th>
+      <th>Processing performed</th>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_create">
+        WM_CREATE</MSHelp:link>
+      </td>
+      <td>Initializes the header control.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_destroy">
+        WM_DESTROY</MSHelp:link>
+      </td>
+      <td>Uninitializes the header control.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_erasebkgnd">
+        WM_ERASEBKGND</MSHelp:link>
+      </td>
+      <td>Fills the background of the header control using the control's current
+        background color.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_getdlgcode">
+        WM_GETDLGCODE</MSHelp:link>
+      </td>
+      <td>Returns a combination of the <b>DLGC_WANTTAB</b> and <b>DLGC_WANTARROWS</b>
+        values.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_getfont">
+        WM_GETFONT</MSHelp:link>
+      </td>
+      <td>Returns the handle to the current font, which is used by the header
+        control to draw its text.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttondblclk">
+        WM_LBUTTONDBLCLK</MSHelp:link>
+      </td>
+      <td>Captures mouse input. If the mouse cursor is on a divider, the control
+        sends the <b>HDN_BEGINTRACK</b> notification message and begins dragging
+        the divider. If the cursor is on an item, the item is displayed in the
+        pressed state.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttondown">
+        WM_LBUTTONDOWN</MSHelp:link>
+      </td>
+      <td>Same as the <b>WM_LBUTTONDBLCLK</b> message.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttonup">
+        WM_LBUTTONUP</MSHelp:link>
+      </td>
+      <td>Releases the mouse capture. If the control was tracking mouse
+        movement, it sends the <b>HDN_ENDTRACK</b> notification message and
+        redraws the header control. Otherwise, the control sends the <b>HDN_ITEMCLICK</b>
+        notification message and redraws the header item that was clicked.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_mousemove">
+        WM_MOUSEMOVE</MSHelp:link>
+      </td>
+      <td>If a divider is being dragged, the control sends the <b>HDN_TRACK</b>
+        notification message and displays the item at the new position. If the
+        left mouse button is down and the cursor is on an item, the item is
+        displayed in the pressed state.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_nccreate">
+        WM_NCCREATE</MSHelp:link>
+      </td>
+      <td>Allocates and initializes an internal data structure.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_ncdestroy">
+        WM_NCDESTROY</MSHelp:link>
+      </td>
+      <td>Frees the resources allocated by the header control after the header
+        control is uninitialized.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_paint">
+        WM_PAINT</MSHelp:link>
+      </td>
+      <td>Paints the invalid region of the header control. If the <i>wParam</i>
+        parameter is non-NULL, the control assumes that the value is an HDC and
+        paints using that device context.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_setcursor">
+        WM_SETCURSOR</MSHelp:link>
+      </td>
+      <td>Sets the cursor shape, depending on whether the cursor is on a divider
+        or in a header item.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_setfont">
+        WM_SETFONT</MSHelp:link>
+      </td>
+      <td>Selects a new font handle into the device context for the header
+        control.</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="Creating_a_Header_Co"></a>Creating a Header Control</h3>
+<p>The following example demonstrates how to create a header control and
+position it along the top of the parent window's client area. The control is
+initially hidden. The <b>HDM_LAYOUT</b> message is used to calculate the size
+and position of the control within the parent window. The control is then
+repositioned and made visible.</p>
+<p style="FONT-WEIGHT: bold; CURSOR: hand; TEXT-DECORATION: underline" ShowHideType="Example">Example</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green"> DoCreateHeader - creates a header control that is positioned along </font>
+<font color="blue">//</font><font color="green">     the top of the parent window's client area. </font>
+<font color="blue">//</font><font color="green"> Returns the handle to the header control. </font>
+<font color="blue">//</font><font color="green"> hwndParent - handle to the parent window. </font>
+<font color="blue">//</font><font color="green"> </font>
+<font color="blue">//</font><font color="green"> Global variable </font>
+<font color="blue">//</font><font color="green">    g_hinst - handle to the application instance </font>
+extern HINSTANCE g_hinst; 
+ 
+HWND DoCreateHeader(HWND hwndParent) 
+{ 
+        HWND hwndHeader; 
+        RECT rcParent; 
+        HDLAYOUT hdl; 
+        WINDOWPOS wp; 
+ 
+        <font color="blue">//</font><font color="green"> Ensure that the common control DLL is loaded, and then create </font>
+        <font color="blue">//</font><font color="green"> the header control. </font>
+        InitCommonControlsEx(); 
+ 
+        if ((hwndHeader = CreateWindowEx(0, WC_HEADER, (LPCTSTR) NULL, 
+                WS_CHILD | WS_BORDER | HDS_BUTTONS | HDS_HORZ, 
+                0, 0, 0, 0, hwndParent, (HMENU) ID_HEADER, g_hinst, 
+                (LPVOID) NULL)) == NULL) 
+            return (HWND) NULL; 
+ 
+        <font color="blue">//</font><font color="green"> Retrieve the bounding rectangle of the parent window's </font>
+        <font color="blue">//</font><font color="green"> client area, and then request size and position values </font>
+        <font color="blue">//</font><font color="green"> from the header control. </font>
+        GetClientRect(hwndParent, &amp;rcParent); 
+ 
+        hdl.prc = &amp;rcParent; 
+        hdl.pwpos = &amp;wp; 
+        if (!SendMessage(hwndHeader, HDM_LAYOUT, 0, (LPARAM) &amp;hdl)) 
+            return (HWND) NULL; 
+ 
+        <font color="blue">//</font><font color="green"> Set the size, position, and visibility of the header control. </font>
+        SetWindowPos(hwndHeader, wp.hwndInsertAfter, wp.x, wp.y, 
+            wp.cx, wp.cy, wp.flags | SWP_SHOWWINDOW); 
+ 
+        return hwndHeader; 
+} 
+ </pre>
+<h3><a name="Adding_an_Item_to_a_Header_ctl"></a>Adding an Item to a Header
+Control</h3>
+<p>The following example demonstrates how to use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDM_INSERTITEM_cpp">
+HDM_INSERTITEM</MSHelp:link>
+ message and the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDITEM_cpp">
+HDITEM</MSHelp:link>
+ structure to add an item to a header control. The new item consists of a string
+that is left-justified within the item rectangle.</p>
+<p style="FONT-WEIGHT: bold; CURSOR: hand; TEXT-DECORATION: underline" ShowHideType="Example">Example</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green"> DoInsertItem - inserts an item into a header control. </font>
+<font color="blue">//</font><font color="green"> Returns the index of the new item. </font>
+<font color="blue">//</font><font color="green"> hwndHeader - handle to the header control. </font>
+<font color="blue">//</font><font color="green"> iInsertAfter - index of the previous item. </font>
+<font color="blue">//</font><font color="green"> nWidth - width of the new item. </font>
+<font color="blue">//</font><font color="green"> lpsz - address of the item string. </font>
+int DoInsertItem(HWND hwndHeader, int iInsertAfter, 
+    int nWidth, LPSTR lpsz) 
+{ 
+    HDITEM hdi; 
+    int index; 
+ 
+    hdi.mask = HDI_TEXT | HDI_FORMAT | HDI_WIDTH; 
+    hdi.pszText = lpsz; 
+    hdi.cxy = nWidth; 
+    hdi.cchTextMax = sizeof(hdi.pszText)/sizeof(hdi.pszText[0]); 
+    hdi.fmt = HDF_LEFT | HDF_STRING; 
+ 
+    index = SendMessage(hwndHeader, HDM_INSERTITEM, 
+        (WPARAM) iInsertAfter, (LPARAM) &amp;hdi); 
+ 
+    return index; 
+ 
+} 
+ </pre>
+<h2><a name="Header_Control_Updat"></a>Header Control Updates in Internet
+Explorer</h2>
+<p>Header controls in Microsoft® Internet Explorer support the following new
+features.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <td><b>Image Lists</b></td>
+      <td>New messages for this feature include <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDM_GETIMAGELIST_cpp">
+        HDM_GETIMAGELIST</MSHelp:link>
+        and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDM_SETIMAGELIST_cpp">
+        HDM_SETIMAGELIST</MSHelp:link>
+        . The header control structure <b>HDITEM</b> has been updated to support
+        image lists. Image lists can be used with current bitmap support.</td>
+    </tr>
+    <tr>
+      <td><b>Callback Items</b></td>
+      <td>Currently, callback support includes header item text and images.
+        Setting an <b>HDITEM</b> structure's text to the LPSTR_TEXTCALLBACK
+        value or its image to the I_IMAGECALLBACK value will cause the control
+        to send an <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDN_GETDISPINFO_cpp">
+        HDN_GETDISPINFO</MSHelp:link>
+        message to request callback information as needed. <b>HDN_GETDISPINFO</b>
+        is supported by the new <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NMHDDISPINFO_cpp">
+        NMHDDISPINFO</MSHelp:link>
+        structure.</td>
+    </tr>
+    <tr>
+      <td><b>Custom Item Ordering</b></td>
+      <td>The new messages that support this feature are: <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDM_GETORDERARRAY_cpp">
+        HDM_GETORDERARRAY</MSHelp:link>
+        , <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDM_SETORDERARRAY_cpp">
+        HDM_SETORDERARRAY</MSHelp:link>
+        , and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDM_ORDERTOINDEX_cpp">
+        HDM_ORDERTOINDEX</MSHelp:link>
+        .</td>
+    </tr>
+    <tr>
+      <td><b>Drag-and-Drop Manipulation</b></td>
+      <td>Drag-and-drop reordering of header items is now available. Implement
+        drag-and-drop support by including the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="HDS_DRAGDROP">
+        HDS_DRAGDROP</MSHelp:link>
+        style when creating the control. By default, the header control
+        automatically handles drag-and-drop overhead and graphic effects.
+        However, the owner of the control can manually support drag-and-drop
+        manipulation by handling the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDN_BEGINDRAG_cpp">
+        HDN_BEGINDRAG</MSHelp:link>
+        and <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDN_ENDDRAG_cpp">
+        HDN_ENDDRAG</MSHelp:link>
+        notification messages. While handling these notifications, the owner
+        might need to send <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDM_CREATEDRAGIMAGE_cpp">
+        HDM_CREATEDRAGIMAGE</MSHelp:link>
+        and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HDM_SETHOTDIVIDER_cpp">
+        HDM_SETHOTDIVIDER</MSHelp:link>
+        messages.</td>
+    </tr>
+    <tr>
+      <td><b>Hot Tracking</b></td>
+      <td>When this feature is enabled, the item under the pointer will be
+        highlighted. You can check whether or not hot tracking is enabled by
+        calling <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_SystemParametersInfo">
+        SystemParametersInfo</MSHelp:link>
+        . To enable hot tracking in a header control, create it with the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="HDS_HOTTRACK">
+        HDS_HOTTRACK</MSHelp:link>
+        style.</td>
+    </tr>
+    <tr>
+      <td><b>Text, Bitmaps, and Images</b></td>
+      <td>Items can simultaneously display item text, a bitmap, and an image</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+
+</html>

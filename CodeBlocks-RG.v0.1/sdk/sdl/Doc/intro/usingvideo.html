@@ -1,0 +1,221 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Using SDL: Video</title>
+</head>
+
+<body bgcolor="#FFF8DC" text="#000000">
+<TABLE>
+<TR><!--#include file="../menu.tmpl" -->
+<TD>
+
+<p align="center">
+[<a href="usinginit.html">Prev</a>]
+<a href="toc.html"><font color="#8B0000">Table Of Contents</font> </a>
+[<a href="usingevents.html">Next</a>]
+</p>
+
+<h1><font color="#8B0000">Using the Simple DirectMedia Layer API</font></h1>
+
+<h2>Video</h2>
+
+<table border="0" cellpadding="4">
+    <tr>
+        <td valign="top"><ul>
+            <li><font size="3"><strong>Choosing and setting video
+                modes</strong> (the easy way) </font><blockquote>
+                    <p>You just choose your favorite bit-depth
+                    and resolution, and set it!</p>
+                </blockquote>
+            </li>
+        </ul>
+        </td>
+        <td valign="top" width="300" bgcolor="#D3D3D3"><b>Tip #1:</b>
+        <br>
+        You can find the fastest video depth supported by the
+        hardware with the function SDL_GetVideoInfo().<p><b>Tip
+        #2:</b> <br>
+        You can get a list of supported video resulutions at a
+        particular bit-depth using the function SDL_ListModes(). </p>
+        </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="50">
+    <tr>
+        <td valign="top"><font color="#000080"><strong>Example</strong></font><strong>:</strong><pre>
+{ SDL_Surface *screen;
+
+    screen = SDL_SetVideoMode(640, 480, 16, SDL_SWSURFACE);
+    <font color="#0000FF">if</font> ( screen == NULL ) {
+        fprintf(stderr, &quot;<font color="#000000">Unable to set 640x480 video: %s\n</font>&quot;, SDL_GetError());
+        exit(1);
+    }
+}
+</pre>
+        </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="4">
+    <tr>
+        <td valign="top"><ul>
+            <li><strong>Drawing pixels on the screen</strong> <blockquote>
+                    <p>Drawing to the screen is done by writing
+                    directly to the graphics framebuffer, and
+                    calling the screen update function.</p>
+                </blockquote>
+            </li>
+        </ul>
+        </td>
+        <td valign="top" width="300" bgcolor="#D3D3D3"><b>Tip:</b><br>
+        If you know that you will be doing a lot of drawing, it
+        is best to lock the screen (if necessary) once before
+        drawing, draw while keeping a list of areas that need to
+        be updated, and unlock the screen again before updating
+        the display. </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="50">
+    <tr>
+        <td><font color="#000080"><strong>Example</strong></font><strong>:</strong><p>Drawing
+        a pixel on a screen of arbitrary format</p>
+        <pre>
+<font color="#008000">void</font> DrawPixel(SDL_Surface *screen, <font
+color="#008000">Uint8</font> R, <font color="#008000">Uint8</font> G, <font
+color="#008000">Uint8</font> B)
+{
+    <font color="#008000">Uint32</font> color = SDL_MapRGB(screen-&gt;format, R, G, B);
+
+    <font color="#0000FF">if</font> ( SDL_MUSTLOCK(screen) ) {
+        <font color="#0000FF">if</font> ( SDL_LockSurface(screen) &lt; 0 ) {
+            return;
+        }
+    }
+    <font color="#0000FF">switch</font> (screen-&gt;format-&gt;BytesPerPixel) {
+        <font color="#0000FF">case</font> 1: { <font
+color="#FF0000">/* Assuming 8-bpp */</font>
+            <font color="#008000">Uint8 *</font>bufp;
+
+            bufp = (<font color="#008000">Uint8 *</font>)screen-&gt;pixels + y*screen-&gt;pitch + x;
+            *bufp = color;
+        }
+        break;
+
+        <font color="#0000FF">case</font> 2: { <font
+color="#FF0000">/* Probably 15-bpp or 16-bpp */</font>
+            <font color="#008000">Uint16 *</font>bufp;
+
+            bufp = (<font color="#008000">Uint16 *</font>)screen-&gt;pixels + y*screen-&gt;pitch/2 + x;
+            *bufp = color;
+        }
+        break;
+
+        <font color="#0000FF">case</font> 3: { <font
+color="#FF0000">/* Slow 24-bpp mode, usually not used */</font>
+            <font color="#008000">Uint8 *</font>bufp;
+
+            bufp = (<font color="#008000">Uint8 *</font>)screen-&gt;pixels + y*screen-&gt;pitch + x;
+            *(bufp+screen-&gt;format-&gt;Rshift/8) = R;
+            *(bufp+screen-&gt;format-&gt;Gshift/8) = G;
+            *(bufp+screen-&gt;format-&gt;Bshift/8) = B;
+        }
+        break;
+
+        <font color="#0000FF">case</font> 4: { <font
+color="#FF0000">/* Probably 32-bpp */</font>
+            <font color="#008000">Uint32 *</font>bufp;
+
+            bufp = (<font color="#008000">Uint32 *</font>)screen-&gt;pixels + y*screen-&gt;pitch/4 + x;
+            *bufp = color;
+        }
+        break;
+    }
+    <font color="#0000FF">if</font> ( SDL_MUSTLOCK(screen) ) {
+        SDL_UnlockSurface(screen);
+    }
+    SDL_UpdateRect(screen, x, y, 1, 1);
+}
+</pre>
+        </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="4">
+    <tr>
+        <td valign="top"><ul>
+            <li><strong>Loading and displaying images</strong> <blockquote>
+                    <p>SDL provides a single image loading
+                    routine for your convenience, SDL_LoadBMP().
+                    A library for image loading can be found in
+                    the SDL demos archive. </p>
+                    <p>You can display images by using
+                    SDL_BlitSurface() to blit them into the
+                    graphics framebuffer. SDL_BlitSurface()
+                    automatically clips the blit rectangle, which
+                    should be passed to SDL_UpdateRects() to
+                    update the portion of the screen which has
+                    changed.</p>
+                </blockquote>
+            </li>
+        </ul>
+        </td>
+        <td valign="top" width="300" bgcolor="#D3D3D3"><b>Tip #1:</b><br>
+        If you are loading an image to be displayed many times,
+        you can improve blitting speed by convert it to the
+        format of the screen. The function SDL_DisplayFormat()
+        does this conversion for you.<p><b>Tip #2:</b><br>
+        Many sprite images have a transparent background. You can
+        enable transparent blits (colorkey blit) with the
+        SDL_SetColorKey() function. </p>
+        </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="50">
+    <tr>
+        <td><font color="#000080"><strong>Example</strong></font><strong>:</strong>
+        <pre>
+<font color="#008000">void</font> ShowBMP(<font color="#008000">char *</font>file, SDL_Surface *screen, <font
+color="#008000">int</font> x, <font color="#008000">int</font> y)
+{
+    SDL_Surface *image;
+    SDL_Rect dest;
+
+    <font color="#FF0000">/* Load the BMP file into a surface */</font>
+    image = SDL_LoadBMP(file);
+    <font color="#0000FF">if</font> ( image == NULL ) {
+        fprintf(stderr, &quot;<font color="#000000">Couldn't load %s: %s\n</font>&quot;, file, SDL_GetError());
+        return;
+    }
+
+    <font color="#FF0000">/* Blit onto the screen surface.
+       The surfaces should not be locked at this point.
+     */</font>
+    dest.x = x;
+    dest.y = y;
+    dest.w = image-&gt;w;
+    dest.h = image-&gt;h;
+    SDL_BlitSurface(image, NULL, screen, &amp;dest);
+
+    <font color="#FF0000">/* Update the changed portion of the screen */</font>
+    SDL_UpdateRects(screen, 1, &amp;dest);
+}
+</pre>
+        </td>
+    </tr>
+</table>
+
+<p align="center">
+[<a href="usinginit.html">Prev</a>]
+<a href="toc.html"><font color="#8B0000">Table Of Contents</font> </a>
+[<a href="usingevents.html">Next</a>]
+</p>
+
+</TABLE>
+</body>
+</html>

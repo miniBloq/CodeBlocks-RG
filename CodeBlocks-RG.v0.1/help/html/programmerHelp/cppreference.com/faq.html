@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/faq.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:41 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>Questions?</title>
+  <link href="cppreference.css" rel="stylesheet" type="text/css">
+  <link href="prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="index-2.html">cppreference.com</a> &gt; FAQ
+  </div>
+
+  <h1>Frequently Asked Questions</h1>
+
+  <h3>Can I get a copy of this site?</h3>
+
+  <p>We do provide <a href=
+  "http://www.cppreference.com/cppreference-files.tar.gz">a
+  downloadable archived version of cppreference.com</a>. If you&#39;re
+  interested in getting archived versions of websites in general, you
+  might want to check out utilities like <a href=
+  "http://www.gnu.org/software/wget/wget.html">GNU&#39;s wget</a>
+  (Windows version <a href=
+  "http://pages.interlog.com/~tcharron/wgetwin.html">here</a>).</p>
+
+  <p>In addition, James Heany has compiled a PDF version of the site
+  (as of October 2007) that is available for download.  There is a <a
+  href="CppReferenceManual.pdf">C++ Reference PDF</a> and a <a
+  href="Cpp_STL_ReferenceManual.pdf">STL Reference PDF</a> available
+  for download.</p>
+
+  <h3>Can I [mirror/translate/put up my own version of/etc.] this
+  site?</h3>Sure, that would be great!  All that we would ask is that
+  you include a link back to this site so that people know where to
+  get the most up-to-date content.
+
+  <h3>Who is this site meant for?</h3>There are no &quot;Introduction
+  to Programming&quot; tutorials here. This site is meant to be used by
+  more-or-less experienced C++ programmers, who have a good idea of
+  what they want to do and simply need to look up the syntax. If
+  you&#39;re interested in learning C/C++, try one of these sites:
+
+  <ul>
+    <li><a href="http://www.howstuffworks.com/c.htm">How C Programming
+    Works</a></li>
+
+    <li><a href=
+    "http://www.its.strath.ac.uk/courses/c/">C Programming</a></li>
+
+    <li><a href="http://www.cplusplus.com/doc/tutorial/">C++ Language
+    Tutorial</a></li>
+  </ul>
+
+  <h3>Does this site contain a complete and definitive list of
+  everything I can do with C/C++?</h3>Few things in life are
+  absolute. Many C/C++ compilers have added or missing functionality.
+  If you don&#39;t find what you are looking for here, don&#39;t
+  assume that it doesn&#39;t exist. Do a search on <a
+  href="http://www.google.com/">Google</a> for it.
+
+  <h3>Some of the examples on this site don&#39;t work on my system.
+  What&#39;s going on?</h3>Most of the code on this site was compiled
+  under <a href="http://www.linux.com/">Linux</a> (<a href=
+  "http://www.redhat.com/">Red Hat</a>, <a href=
+  "http://www.debian.org/">Debian</a>, or <a
+  href="http://www.ubuntu.com/">Ubuntu</a>) with the <a href=
+  "http://www.gnu.org/">GNU</a> <a href=
+  "http://www.gnu.org/software/gcc/gcc.html">Compiler Collection</a>.
+  Since this site is merely a reference for the <a href=
+  "http://www.ncits.org/cplusplus.htm"> Standard C and C++
+  specification</a>, not every compiler will support every function
+  listed here. For example,
+
+  <ul>
+    <!-- <LI>I've never had much luck getting 
+                  <A HREF="cppbitset.html">C++ Bitsets</A>
+                  to work on my computer - but they're listed here.  not needed now -->
+
+    <li>Header files change like mad. To include the necessary support
+    for <a href="cppvector/index.html">C++ Vectors</a>, you might have
+    to use any of these:
+<pre class="prettyprint">
+  #include &lt;vector&gt;
+  #include &lt;Vector&gt;
+  #include &lt;vector.h&gt;
+</pre>(according to the spec, the first of those should work, and the
+compiler should know enough to use it to reference the real vector
+header file.)
+    </li>
+
+    <li>Another header file issue is that newer compilers can use a
+    more platform-independent commands to include standard C libraries.
+    For example, you should be able to use
+<pre class="prettyprint">
+  #include &lt;cstdio&gt;
+</pre>instead of
+<pre class="prettyprint">
+  #include &lt;stdio.h&gt;
+</pre>
+    </li>
+
+    <li>All of the code on this site assumes that the correct namespace
+    has been designated. If your compiler is a little old, then you
+    might be able to get away with using simple statements like:
+<pre class="prettyprint">
+  cout &lt;&lt; &quot;hello world!&quot;;
+</pre>However, newer compilers require that you either use
+<pre class="prettyprint">
+  std::cout &lt;&lt; &quot;hello world!&quot;;
+</pre>or declare what namespace to use with the &quot;using
+namespace&quot; command.
+    </li>
+
+    <li>Certain popular compilers (like the one shipped with
+    Microsoft&#39;s Visual C++) have added alternative or additional
+    functionality to the C++ Standard Template Library. For example,
+    the MFC in Visual C++ provides you with the string type
+    &quot;CString&quot;, which has string functionality but is not part
+    of the C++ STL.</li>
+  </ul>...The list goes on and on. In other words, individual results
+  may vary.
+
+  <h3>You&#39;ve got an error in this site.</h3>If you find any errors
+  in this reference, please feel free to <a href=
+  "mailto:comments@cppreference.com">contact us</a> -- feedback and
+  code examples are always welcome.
+
+  <h3>What&#39;s up with this site?</h3>Think of it as a community
+  service, for geeks.
+  </div>
+  </td>
+  
+
+<script src="../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/faq.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:41 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

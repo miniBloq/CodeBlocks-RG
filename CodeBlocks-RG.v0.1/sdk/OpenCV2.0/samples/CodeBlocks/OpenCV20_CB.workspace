@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="Workspace">
+		<Project filename="contours/contours.cbp" />
+		<Project filename="calibration/calibration.cbp" />
+		<Project filename="camshiftdemo/camshiftdemo.cbp" />
+		<Project filename="convert_cascade/convert_cascade.cbp" />
+		<Project filename="convexhull/convexhull.cbp" />
+		<Project filename="delaunay/delaunay.cbp" />
+		<Project filename="demhist/demhist.cbp" />
+		<Project filename="dft/dft.cbp" />
+		<Project filename="distrans/distrans.cbp" />
+		<Project filename="drawing/drawing.cbp" />
+		<Project filename="edge/edge.cbp" />
+		<Project filename="FaceDetect/FaceDetect.cbp" active="1" />
+		<Project filename="ffilldemo/ffilldemo.cbp" />
+		<Project filename="find_obj/find_obj.cbp" />
+		<Project filename="fitellipse/fitellipse.cbp" />
+		<Project filename="houghlines/houghlines.cbp" />
+		<Project filename="image/image.cbp" />
+		<Project filename="inpaint/inpaint.cbp" />
+		<Project filename="kalman/kalman.cbp" />
+		<Project filename="kmeans/kmeans.cbp" />
+		<Project filename="laplace/laplace.cbp" />
+		<Project filename="letter_recog/letter_recog.cbp" />
+		<Project filename="lkdemo/lkdemo.cbp" />
+		<Project filename="minarea/minarea.cbp" />
+		<Project filename="morphology/morphology.cbp" />
+		<Project filename="motempl/motempl.cbp" />
+		<Project filename="mushroom/mushroom.cbp" />
+		<Project filename="polar_transforms/polar_transforms.cbp" />
+		<Project filename="pyramid_segmentation/pyramid_segmentation.cbp" />
+		<Project filename="squares/squares.cbp" />
+		<Project filename="stereo_calib/stereo_calib.cbp" />
+		<Project filename="tree_engine/tree_engine.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>

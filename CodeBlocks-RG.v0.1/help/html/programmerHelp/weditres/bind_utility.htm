@@ -1,0 +1,58 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The Bind Utility</title>
+</head>
+
+<body>
+
+<h3><a name="_Toc509456977"><span lang="FR">The Bi</span></a><span lang="FR" style="mso-bookmark: _Toc509456977">nd
+Utility</span></h3>
+<p class="DefinitionTerm">This program inspects a given object file and appends
+to it a list of imported functions. This list has the following format:<o:p>
+</o:p>
+</p>
+<p class="MsoNormal"><span style="font-family:Courier">IMPORTS<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">CRTDLL.dll<o:p>
+</o:p>
+</span></p>
+<p class="MsoHeader" style="tab-stops:36.0pt center 8.0cm right 16.0cm"><span style="font-family:Courier;mso-ansi-language:EN-US">_fprintf<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>fprintf<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">USER32.dll<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">_LoadLibrary@4<span style="mso-tab-count:1">
+</span>LoadLibrary<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">... <o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">$$END$$<o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</p>
+<p class="MsoNormal">In words: The list starts with the keyword ‘IMPORTS’,
+followed by a DLL list. Each DLL starts with the name, followed by the imported
+functions from that DLL in the object file.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">Usage:</p>
+<p class="MsoNormal">The syntax is:</p>
+<p class="MsoNormal">bind &lt;file name&gt;<o:p>
+</o:p>
+</p>
+<p class="DefinitionList">The argument should be the name of an existing object
+file.</p>
+
+</body>
+
+</html>

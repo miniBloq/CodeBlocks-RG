@@ -1,0 +1,265 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Runtime Organization</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509456959"><span style="mso-ansi-language:EN-US">Runtime
+Organization</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">A
+<i style="mso-bidi-font-style:normal">stack frame</i> is an area of storage
+associated with the activation of a function. A stack frame that is allocated as
+a function is entered, and it is deallocated when the function exits. Automatic
+(</span><b style="mso-bidi-font-weight:normal"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-US">auto</span></b><span style="mso-ansi-language:EN-US">)
+variables are compiler-generated temporaries that are located in the stack
+frame. It is organized as follows:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent"><span style="mso-ansi-language:EN-US">&nbsp;<o:p>
+</o:p>
+</span></p>
+<table border="1" cellspacing="0" cellpadding="0" style="margin-left:83.4pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .75pt;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+  <tr>
+    <td width="227" valign="top" style="width:6.0cm;border:solid windowtext .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" align="center" style="margin-top:6.0pt;margin-right:
+  0cm;margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-align:center;
+  text-indent:0cm"><span style="mso-ansi-language:EN-US">second parameter <o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="66" valign="top" style="width:49.6pt;border:solid windowtext .75pt;
+  border-left:none;mso-border-left-alt:solid windowtext .75pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" align="right" style="margin-top:6.0pt;margin-right:
+  1.7pt;margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-align:
+  right;text-indent:0cm;tab-stops:8.75pt 38.8pt 129.25pt"><span style="mso-ansi-language:EN-US">ESP+8<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="227" valign="top" style="width:6.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" align="center" style="margin-top:6.0pt;margin-right:
+  0cm;margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-align:center;
+  text-indent:0cm"><span style="mso-ansi-language:EN-US">first parameter<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="66" valign="top" style="width:49.6pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" align="right" style="margin-top:6.0pt;margin-right:
+  0cm;margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-align:right;
+  text-indent:0cm;tab-stops:-5.4pt 51.3pt"><span style="mso-ansi-language:EN-US">ESP+4<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="227" valign="top" style="width:6.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" align="center" style="margin-top:6.0pt;margin-right:
+  0cm;margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-align:center;
+  text-indent:0cm"><span style="mso-ansi-language:EN-US">caller’s return
+      address<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="66" valign="top" style="width:49.6pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" align="right" style="margin-top:6.0pt;margin-right:
+  0cm;margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-align:right;
+  text-indent:0cm;tab-stops:-5.4pt 51.3pt"><span style="mso-ansi-language:EN-US">ESP+0<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="227" valign="top" style="width:6.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" align="center" style="margin-top:6.0pt;margin-right:
+  0cm;margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-align:center;
+  text-indent:0cm"><span style="mso-ansi-language:EN-US">saved frame pointer<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="66" valign="top" style="width:49.6pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" align="right" style="margin-top:6.0pt;margin-right:
+  0cm;margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-align:right;
+  text-indent:0cm;tab-stops:-5.4pt 51.3pt"><span style="mso-ansi-language:EN-US">ESP-4<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="227" valign="top" style="width:6.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" align="center" style="margin-top:6.0pt;margin-right:
+  0cm;margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-align:center;
+  text-indent:0cm"><span style="mso-ansi-language:EN-US">local variables and
+      temporaries<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="66" valign="top" style="width:49.6pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" align="right" style="margin-top:6.0pt;margin-right:
+  0cm;margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-align:right;
+  text-indent:0cm;tab-stops:-5.4pt 51.3pt"><span style="mso-ansi-language:EN-US">ESP-8
+      ESP -n<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="227" valign="top" style="width:6.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" align="center" style="margin-top:6.0pt;margin-right:
+  0cm;margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-align:center;
+  text-indent:0cm"><span style="mso-ansi-language:EN-US">saved registers (if
+      any)<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="66" valign="top" style="width:49.6pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" align="right" style="margin-top:6.0pt;margin-right:
+  0cm;margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-align:right;
+  text-indent:0cm;tab-stops:-5.4pt 51.3pt">&nbsp;<span style="mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormalIndent"><span style="mso-ansi-language:EN-US">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+tab-stops:432.0pt"><span style="mso-ansi-language:EN-US">Usually, it is the EBP
+register that points to the stack frame. This register is used to address all
+local variables and arguments. When possible, and when the user has specified
+the –O (optimization) flag, lcc will not build a full stack frame, but just a
+minimal one, consisting only of the saved return address and the registers used
+by the procedure.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent"><span style="mso-ansi-language:EN-US">&nbsp;<o:p>
+</o:p>
+</span></p>
+<h3><a name="_Toc509456960"><span style="mso-ansi-language:EN-US">Saved
+Registers, Prolog and Epilog Sequences</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h3>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+tab-stops:432.0pt"><span style="mso-ansi-language:EN-US">Lcc-win32 always saves
+the registers EBX, EBP, ESI and EDI. Under no circumstances when writing
+assembly modules should the values stored in these registers be lost.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">A
+prolog is the code executed immediately upon a function entry, i.e., the code
+that builds the stack frame for the function and saves the registers that the
+function will use. An epilog is the code executed to deallocate the stack frame,
+and restore the saved values of the registers.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">The
+prolog sequence of lcc-win32 is:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>push<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>%ebp<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>; save the frame pointer<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>movl<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>%esp,%ebp<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>; move the stack pointer to the frame pointer<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>subl<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>&lt;n&gt;,%esp<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>; allocate space in the
+stack for the function’s variables<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>push<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>%esi<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>; save registers<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>push<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>%edi<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>push<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>%ebx<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Symmetrically,
+the epilog sequence looks like this&nbsp;:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm"><span style="mso-ansi-language:
+EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>pop<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%ebx<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>; restore the saved registers<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm"><span style="mso-ansi-language:
+EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>pop<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%edi<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm"><span style="mso-ansi-language:
+EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>pop<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>%esi<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm"><span style="mso-ansi-language:
+EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>movl<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>%ebp,%esp<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>; restore the stack<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm"><span style="mso-ansi-language:
+EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>popl<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>%ebp<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>; restore the old frame pointer<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm"><span style="mso-ansi-language:
+EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>ret<span style="mso-tab-count:
+3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>;return to caller. Caller responsible for cleaning the stack.<o:p>
+</o:p>
+</span></p>
+
+</body>
+
+</html>

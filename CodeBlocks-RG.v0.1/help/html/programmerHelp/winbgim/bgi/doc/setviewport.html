@@ -1,0 +1,90 @@
+<TITLE>BGI Documentation for 
+setviewport
+</TITLE>
+<H2>
+setviewport
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void setviewport(int left, int top, int right, int bottom, int clip);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+setviewport establishes a new viewport for graphics output.
+<P>
+The viewport corners are given in absolute screen coordinates by (left,top) and (right,bottom). The current position (CP) is moved to (0,0) in the new window.
+<P>
+The parameter clip determines whether drawings are clipped (truncated) at the current viewport boundaries. If clip is nonzero, all drawings will be clipped to the current viewport.
+
+
+<P><DT><B>Return Value</B><DD>
+If invalid input is passed to setviewport, graphresult returns -11, and the current view settings remain unchanged.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="clearviewport.html"> clearviewport </A>
+<DD><A HREF="getviewsettings.html"> getviewsettings </A>
+<DD><A HREF="graphresult.html"> graphresult </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* setviewport example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+#define CLIP_ON 1            /* activates clipping in viewport */
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk)    /* an error occurred */
+   {
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   setcolor(getmaxcolor());
+
+   /* message in default full-screen viewport */
+   outtextxy(0, 0, "* &lt;-- (0, 0) in default viewport");
+
+   /* create a smaller viewport */
+   setviewport(50, 50, getmaxx()-50, getmaxy()-50, CLIP_ON);
+
+   /* display some text */
+   outtextxy(0, 0, "* &lt;-- (0, 0) in smaller viewport");
+
+   /* clean up */
+   getch();
+
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

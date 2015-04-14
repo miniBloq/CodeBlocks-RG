@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Reading%20Makefiles">Reading Makefiles</a>,
+Previous:<a rel="previous" accesskey="p" href="Overriding-Makefiles.html#Overriding%20Makefiles">Overriding Makefiles</a>,
+Up:<a rel="up" accesskey="u" href="Makefiles.html#Makefiles">Makefiles</a>
+<hr><br>
+</div>
+
+<h3 class="section">How <code>make</code> Reads a Makefile</h3>
+
+   <p>GNU <code>make</code> does its work in two distinct phases.  During the first
+phase it reads all the makefiles, included makefiles, etc. and
+internalizes all the variables and their values, implicit and explicit
+rules, and constructs a dependency graph of all the targets and their
+prerequisites.  During the second phase, <code>make</code> uses these internal
+structures to determine what targets will need to be rebuilt and to
+invoke the rules necessary to do so.
+
+   <p>It's important to understand this two-phase approach because it has a
+direct impact on how variable and function expansion happens; this is
+often a source of some confusion when writing makefiles.  Here we will
+present a summary of the phases in which expansion happens for different
+constructs within the makefile.  We say that expansion is
+<dfn>immediate</dfn> if it happens during the first phase: in this case
+<code>make</code> will expand any variables or functions in that section of a
+construct as the makefile is parsed.  We say that expansion is
+<dfn>deferred</dfn> if expansion is not performed immediately.  Expansion of
+deferred construct is not performed until either the construct appears
+later in an immediate context, or until the second phase.
+
+   <p>You may not be familiar with some of these constructs yet.  You can
+reference this section as you become familiar with them, in later
+chapters.
+
+<h4 class="subheading">Variable Assignment</h4>
+
+   <p>Variable definitions are parsed as follows:
+
+<pre class="example">     <var>immediate</var> = <var>deferred</var>
+     <var>immediate</var> ?= <var>deferred</var>
+     <var>immediate</var> := <var>immediate</var>
+     <var>immediate</var> += <var>deferred</var> or <var>immediate</var>
+     
+     define <var>immediate</var>
+       <var>deferred</var>
+     endef
+     </pre>
+
+   <p>For the append operator, <code>+=</code>, the right-hand side is considered
+immediate if the variable was previously set as a simple variable
+(<code>:=</code>), and deferred otherwise.
+
+<h4 class="subheading">Conditional Statements</h4>
+
+   <p>All instances of conditional syntax are parsed immediately, in their
+entirety; this includes the <code>ifdef</code>, <code>ifeq</code>, <code>ifndef</code>,
+and <code>ifneq</code> forms.
+
+<h4 class="subheading">Rule Definition</h4>
+
+   <p>A rule is always expanded the same way, regardless of the form:
+
+<pre class="example">     <var>immediate</var> : <var>immediate</var> ; <var>deferred</var>
+     	<var>deferred</var>
+     </pre>
+
+   <p>That is, the target and prerequisite sections are expanded immediately,
+and the commands used to construct the target are always deferred.  This
+general rule is true for explicit rules, pattern rules, suffix rules,
+static pattern rules, and simple prerequisite definitions.
+
+   </body></html>
+

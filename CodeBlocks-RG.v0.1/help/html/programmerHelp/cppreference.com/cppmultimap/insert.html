@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/cppmultimap/insert.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>insert</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C++ Multimaps</a> &gt; <a href=
+    "insert.html">insert</a>
+  </div>
+
+  <div class="name-format">
+    insert
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  iterator insert( iterator pos, const <a href=
+"../containers.html">TYPE</a>&amp; val );
+  iterator insert( const <a href=
+"../containers.html">TYPE</a>&amp; val );
+  void insert( <a href=
+"../iterators.html">input_iterator</a> start, <a href=
+"../iterators.html">input_iterator</a> end );
+</pre>
+
+  <p>The function insert() either:</p>
+
+  <ul>
+    <li>inserts <em>val</em> after the element at <em>pos</em> (where
+    <em>pos</em> is really just a suggestion as to where <em>val</em>
+    should go, since multimaps are ordered), and returns an iterator
+    to that element.</li>
+
+    <li>inserts <em>val</em> into the multimap, returning an iterator
+    to the element inserted.</li>
+
+    <li>inserts a range of elements from <em>start</em> to
+    <em>end</em>.</li>
+  </ul>
+
+  <p>For example, the following code uses the insert() function to add
+  several &lt;name,ID&gt; pairs to a employee multimap:</p>
+
+<pre class="prettyprint">
+  multimap&lt;string,int&gt; m;
+
+  int employeeID = 0;
+  m.insert( pair&lt;string,int&gt;("Bob Smith",employeeID++) );
+  m.insert( pair&lt;string,int&gt;("Bob Thompson",employeeID++) );
+  m.insert( pair&lt;string,int&gt;("Bob Smithey",employeeID++) );
+  m.insert( pair&lt;string,int&gt;("Bob Smith",employeeID++) );
+
+  cout &lt;&lt; "Number of employees named 'Bob Smith': " &lt;&lt; m.count("Bob Smith") &lt;&lt; endl;
+  cout &lt;&lt; "Number of employees named 'Bob Thompson': " &lt;&lt; m.count("Bob Thompson") &lt;&lt; endl;
+  cout &lt;&lt; "Number of employees named 'Bob Smithey': " &lt;&lt; m.count("Bob Smithey") &lt;&lt; endl;
+
+  cout &lt;&lt; "Employee list: " &lt;&lt; endl;
+  for( multimap&lt;string, int&gt;::iterator iter = m.begin(); iter != m.end(); ++iter ) {
+    cout &lt;&lt; " Name: " &lt;&lt; iter-&gt;first &lt;&lt; ", ID #" &lt;&lt; iter-&gt;second &lt;&lt; endl;
+  }
+</pre>
+
+  <p>When run, the above code produces the following output:</p>
+
+<pre class="prettyprint">
+  Number of employees named 'Bob Smith': 2
+  Number of employees named 'Bob Thompson': 1
+  Number of employees named 'Bob Smithey': 1
+  Employee list:
+   Name: Bob Smith, ID #0
+   Name: Bob Smith, ID #3
+   Name: Bob Smithey, ID #2
+   Name: Bob Thompson, ID #1
+</pre>
+
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/insert.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

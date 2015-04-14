@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release Win32" />
+	<File name="..\..\include\pocketsphinx.h" open="0" top="0" tabpos="3">
+		<Cursor position="5287" topLine="166" />
+	</File>
+	<File name="..\..\src\libpocketsphinx\acmod.c" open="0" top="0" tabpos="0">
+		<Cursor position="2020" topLine="39" />
+	</File>
+	<File name="..\..\src\libpocketsphinx\mdef.c" open="0" top="0" tabpos="5">
+		<Cursor position="6879" topLine="227" />
+	</File>
+	<File name="..\..\src\libpocketsphinx\ms_mgau.c" open="0" top="0" tabpos="2">
+		<Cursor position="4662" topLine="115" />
+	</File>
+	<File name="..\..\src\libpocketsphinx\ms_senone.c" open="0" top="0" tabpos="4">
+		<Cursor position="11523" topLine="333" />
+	</File>
+	<File name="..\..\src\libpocketsphinx\posixwin32.h" open="0" top="0" tabpos="1">
+		<Cursor position="2228" topLine="53" />
+	</File>
+	<File name="..\..\src\libpocketsphinx\s2_semi_mgau.c" open="0" top="0" tabpos="0">
+		<Cursor position="29347" topLine="907" />
+	</File>
+</CodeBlocks_layout_file>

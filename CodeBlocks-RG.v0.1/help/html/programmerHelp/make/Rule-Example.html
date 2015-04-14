@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Rule%20Example">Rule Example</a>,
+Next:<a rel="next" accesskey="n" href="Rule-Syntax.html#Rule%20Syntax">Rule Syntax</a>,
+Previous:<a rel="previous" accesskey="p" href="Rules.html#Rules">Rules</a>,
+Up:<a rel="up" accesskey="u" href="Rules.html#Rules">Rules</a>
+<hr><br>
+</div>
+
+<h3 class="section">Rule Example</h3>
+
+   <p>Here is an example of a rule:
+
+<pre class="example">     foo.o : foo.c defs.h       # module for twiddling the frobs
+             cc -c -g foo.c
+     </pre>
+
+   <p>Its target is <code>foo.o</code> and its prerequisites are <code>foo.c</code> and
+<code>defs.h</code>.  It has one command, which is <code>cc -c -g foo.c</code>. 
+The command line starts with a tab to identify it as a command.
+
+   <p>This rule says two things:
+
+     <ul>
+<li>How to decide whether <code>foo.o</code> is out of date: it is out of date
+if it does not exist, or if either <code>foo.c</code> or <code>defs.h</code> is
+more recent than it.
+
+     <li>How to update the file <code>foo.o</code>: by running <code>cc</code> as stated. 
+The command does not explicitly mention <code>defs.h</code>, but we presume
+that <code>foo.c</code> includes it, and that that is why <code>defs.h</code> was
+added to the prerequisites. 
+</ul>
+
+   </body></html>
+

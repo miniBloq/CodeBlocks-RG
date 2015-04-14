@@ -1,0 +1,149 @@
+<TITLE>BGI Documentation for 
+registermousehandler
+</TITLE>
+<H2>
+registermousehandler
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include "graphics.h"
+void registermousehandler(int kind, void h(int, int));
+</PRE>
+
+
+
+<DT><B>Description</B><IMG SRC="win.gif" ALT="[WIN]"><DD>
+The 
+registermousehandler
+function is available in the
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation of BGI
+graphics.
+   In general, you write a different "handler function"
+   to handle each different
+   kind of mouse event, and you "register" each of your
+   handlers by calling <CODE>registermousehandler</CODE>.
+   The first argument to <CODE>registermousehandler</CODE> is
+   one of these constants from the <CODE>graphics.h</CODE> file:
+   <DL>
+   <DT><CODE>WM_MOUSEMOVE</CODE>
+   <DD>if you want the handler called whenever the mouse moves
+   <DT><CODE>WM_LBUTTONDBLCLK</CODE>
+   <DD>...called whenever the left mouse button is double clicked
+   <DT><CODE>WM_LBUTTONDOWN</CODE>
+   <DD>...called whenever the left mouse button is clicked down
+   <DT><CODE>WM_LBUTTONUP</CODE>
+   <DD>...called whenever the left mouse button is released up
+   <DT><CODE>WM_MBUTTONDBLCLK</CODE>
+   <DD>...called whenever the middle mouse button is double clicked
+   <DT><CODE>WM_MBUTTONDOWN</CODE>
+   <DD>...called whenever the middle mouse button is clicked down
+   <DT><CODE>WM_MBUTTONUP</CODE>
+   <DD>...called whenever the middle mouse button is released up
+   <DT><CODE>WM_RBUTTONDBLCLK</CODE>
+   <DD>...called whenever the right mouse button is double clicked
+   <DT><CODE>WM_RBUTTONDOWN</CODE>
+   <DD>...called whenever the right mouse button is clicked down
+   <DT><CODE>WM_RBUTTONUP</CODE>
+   <DD>...called whenever the right mouse button is released up
+   </DL>
+   The second argument to <CODE>registermousehandler</CODE>
+   must be the name of the handler function that you wrote. This
+   function must be a void function with two int parameters.
+   Whenever the specified mouse event occurs, your handler will
+   be called and the two int parameters will be the x and y positions
+   where the event happened.
+   <P>
+   The middle mouse button handlers aren't working on my machine.
+   I haven't yet tracked down the reason--it could be a broken mouse
+   or it could be a bug in my programming.
+   </UL>
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="mousex.html"> mousex </A>
+<DD><A HREF="mousey.html"> mousey </A>
+
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* mouse example */ 
+#include "graphics.h"
+
+// The click_handler will be called whenever the left mouse button is
+// clicked. It checks copies the x,y coordinates of the click to
+// see if the click was on a red pixel. If so, then the boolean
+// variable red_clicked is set to true. Note that in general
+// all handlers should be quick. If they need to do more than a little
+// work, they should set a variable that will trigger the work going,
+// and then return.
+bool red_clicked = false;
+void click_handler(int x, int y)
+{
+    if (getpixel(x,y) == RED)
+        red_clicked = true;
+}
+
+// Call this function to draw an isosoles triangle with the given base and
+// height. The triangle will be drawn just above the botton of the screen.
+void triangle(int base, int height)
+{
+    int maxx = getmaxx( );
+    int maxy = getmaxy( );
+
+    line(maxx/2 - base/2, maxy - 10, maxx/2 + base/2, maxy - 10);
+    line(maxx/2 - base/2, maxy - 10, maxx/2, maxy - 10 - height);
+    line(maxx/2 + base/2, maxy - 10, maxx/2, maxy - 10 - height); 
+}
+
+void main(void)
+{
+    int maxx, maxy;  // Maximum x and y pixel coordinates
+    int divisor;     // Divisor for the length of a triangle side
+
+    // Put the machine into graphics mode and get the maximum coordinates:
+    initwindow(450, 300);         
+    maxx = getmaxx( );
+    maxy = getmaxy( );
+
+    // Register the function that handles a left mouse click
+    registermousehandler(WM_LBUTTONDOWN, click_handler);
+    
+    // Draw a white circle with red inside and a radius of 50 pixels:
+    setfillstyle(SOLID_FILL, RED);
+    setcolor(WHITE);
+    fillellipse(maxx/2, maxy/2, 50, 50);
+    
+    // Print a message and wait for a red pixel to be double clicked:
+    settextstyle(DEFAULT_FONT, HORIZ_DIR, 2);
+    outtextxy(20, 20, "Left click in RED to end.");
+    setcolor(BLUE);
+    red_clicked = false;
+    divisor = 2;
+    while (!red_clicked)
+    {
+        triangle(maxx/divisor, maxy/divisor);
+        delay(500);
+        divisor++;
+    }
+
+    cout &lt;&lt; "The mouse was clicked at: ";
+    cout &lt;&lt; "x=" &lt;&lt; mousex( );
+    cout &lt;&lt; " y=" &lt;&lt; mousey( ) &lt;&lt; endl;
+    
+    // Switch back to text mode:
+    closegraph( );
+}
+</PRE>
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

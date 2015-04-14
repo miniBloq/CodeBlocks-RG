@@ -1,0 +1,27 @@
+9 6
+SamplesData/left01.jpg
+SamplesData/right01.jpg
+SamplesData/left02.jpg
+SamplesData/right02.jpg
+SamplesData/left03.jpg
+SamplesData/right03.jpg
+SamplesData/left04.jpg
+SamplesData/right04.jpg
+SamplesData/left05.jpg
+SamplesData/right05.jpg
+SamplesData/left06.jpg
+SamplesData/right06.jpg
+SamplesData/left07.jpg
+SamplesData/right07.jpg
+SamplesData/left08.jpg
+SamplesData/right08.jpg
+SamplesData/left09.jpg
+SamplesData/right09.jpg
+SamplesData/left11.jpg
+SamplesData/right11.jpg
+SamplesData/left12.jpg
+SamplesData/right12.jpg
+SamplesData/left13.jpg
+SamplesData/right13.jpg
+SamplesData/left14.jpg
+SamplesData/right14.jpg

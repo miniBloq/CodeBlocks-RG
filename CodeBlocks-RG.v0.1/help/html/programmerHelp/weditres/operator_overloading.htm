@@ -1,0 +1,2074 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Operator Overloading</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc499634148"><span style="mso-ansi-language:EN-US;text-decoration:
+none;text-underline:none">Operator Overloading</span></a><span style="mso-ansi-language:EN-US;text-decoration:none;text-underline:none"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoNormal">Operator overloading is a powerful feature. It gives you
+the ability to replace the standard infix notation with your own, i.e., writing
+a+b will be understood as a function call to a function defined <i style="mso-bidi-font-style:normal">by
+you </i>called ‘+’. This feature has a multitude of applications. Among
+these are arrays bound checking and implementation of new numeric types, etc.
+Its usage has been utilized extensively in the C++ language; so many people
+should be familiar with it.<o:p>
+</o:p>
+</p>
+<h3><a name="_Toc499634149"><span style="mso-ansi-language:EN-US">Usage</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h3>
+<p class="MsoNormal">Operator overloading will be considered by the compiler as
+an option only for user defined types, i.e., structures. Please note that this
+makes it impossible to redefine the basic types, such as int or double.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">The following typedef is assumed in the examples below:<o:p>
+</o:p>
+</p>
+<p class="MsoBodyText"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:Courier">typedef struct tagComplex {<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText"><span style="mso-tab-count: 1; font-size: 12.0pt; mso-bidi-font-size: 10.0pt; font-family: Courier">&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span lang="FR" style="font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:Courier;
+mso-ansi-language:FR">double x;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText"><span lang="FR" style="font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:Courier;mso-ansi-language:FR"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>double y;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:Courier">} COMPLEX;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">To define a new operator, proceed as follows:<o:p>
+</o:p>
+</p>
+<p class="MsoNormal"><span style="font-family:Courier">COMPLEX operator
++(COMPLEX left, COMPLEX right) <o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">{<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>COMPLEX result;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>result.x = left.x + right.x;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>result.y = left.y + right.y;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>return result;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">Note several things here:</p>
+<ul style="margin-top:0cm" type="disc">
+  <li class="MsoNormal" style="mso-list:l0 level1 lfo3;tab-stops:list 36.0pt">This
+    declaration can happen only at the global level, like all function
+    declarations.</li>
+  <li class="MsoNormal" style="mso-list:l0 level1 lfo3;tab-stops:list 36.0pt">This
+    function returns a NEW object.</li>
+  <li class="MsoNormal" style="mso-list:l0 level1 lfo3;tab-stops:list 36.0pt">The
+    input arguments to this function are pointers to objects, or as in the
+    example, the objects themselves passed by value.</li>
+  <li class="MsoNormal" style="mso-list:l0 level1 lfo3;tab-stops:list 36.0pt">This
+    declaration is equivalent to a function you would have written with a long
+    name (see how this name is derived below). Each time the compiler finds a
+    match for this function call within an addition, it will call this function.</li>
+</ul>
+<p class="MsoNormal">&nbsp;Assume then that after this definition is seen by the
+compiler, you write the following code:</p>
+<p class="MsoNormal">&nbsp;<span style="font-family:Courier">int example(void)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">{<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>COMPLEX a = {2.0,0.0},b = {3.0,0.0},c;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>c = a+b;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">}<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText2">&nbsp;This instruction will be interpreted as:</p>
+<p class="MsoBodyText2"><span style="font-family:Courier">&nbsp;</span><span lang="FR" style="font-family:Courier;mso-ansi-language:
+FR">c = _op_plus_COMPLEX_COMPLEX(a,b);<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText2"><span lang="FR" style="mso-ansi-language:FR">&nbsp;</span>The
+name of the function is derived as follows:</p>
+<p class="MsoNormal">It starts with the prefix <span style="font-family:Courier">_op_
+</span>.</p>
+<p class="MsoNormal">Followed by the name of the operator. The names are
+documented below.</p>
+<p class="MsoNormal">Followed by an underscore to separate types, except for the
+last type.</p>
+<p class="MsoNormal">If any spaces appear in the type, they will be substituted
+by an underscore. Thus ‘unsigned int’ will become ‘unsigned_int’.</p>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<h3><a name="_Toc499634150"><span style="mso-ansi-language:EN-US">Rules</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h3>
+<ol style="margin-top:0cm" start="1" type="1">
+  <li class="MsoNormal" style="mso-list:l1 level1 lfo6;tab-stops:list 36.0pt">All
+    operators should have at least one argument that is a user-defined
+    structure.</li>
+  <li class="MsoNormal" style="mso-list:l1 level1 lfo6;tab-stops:list 36.0pt">Type
+    conversions can be realized by defining different operators for different
+    input arguments. You can write several operators +, each with different
+    arguments.</li>
+  <li class="MsoNormal" style="mso-list:l1 level1 lfo6;tab-stops:list 36.0pt">
+    <p ALIGN="JUSTIFY">For the pre-increment and the pre-decrement operators the
+    syntax to use is:</p>
+    <blockquote>
+      <blockquote>
+        <font FACE="Courier New" SIZE="2">
+        <p ALIGN="JUSTIFY">type ++operator(ARG x);</p>
+        <p ALIGN="JUSTIFY">type --operator(ARG x);</p>
+        </blockquote>
+      </blockquote>
+    </font>
+    <p>&nbsp;</li>
+</ol>
+<p class="MsoBodyText">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoBodyText"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt">Here
+is an example. We implement addition of c<span style="mso-spacerun: yes">&nbsp; </span>=
+b + double precision value in the above context.<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoBodyText"><span style="font-family:Courier">COMPLEX operator
++(const COMPLEX left, const double right)</span><a style="mso-footnote-id:ftn1" href="#_ftn1" name="_ftnref1" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 10.0pt; font-family: Courier; mso-text-raise: 0pt" class="MsoFootnoteReference">[1]</span></a><span style="font-family:Courier"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText"><span style="font-family:Courier">{<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>COMPLEX result;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText"><span style="font-family:Courier">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>result.x = left.x + right;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>result.y = left.y;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>return result;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText"><span style="font-family:Courier">}<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">Then you can write in your code:</p>
+<p class="MsoBodyText">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoBodyText"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>COMPLEX c = a + 5.9;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">and the compiler will call the right operator for you. Note
+that the compiler-generated name for this operator will be <span style="font-family:Courier">_op_plus_COMPLEX_double</span>,
+which differentiates it from the preceding example.</p>
+<h3>&nbsp;<a name="_Toc499634151"><span style="mso-ansi-language:EN-US">Operator
+Arguments</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h3>
+<p class="MsoNormal">In this table, arguments that are preceded with const
+should not be modified by the operator function. This has not yet been verified
+in lcc-win32, but you should not rely on this.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">The column titled ‘Pointer args?’ refers to the
+arguments of the operator redefining function. Can it use just pointers as
+argument or must it have at least one argument that is a structure or a
+reference to it?</p>
+<p class="MsoNormal">In general, operations that are defined by the C language
+for pointers need at least one argument that is NOT of pointer type to avoid
+ambiguities in the language. When you write<o:p>
+</o:p>
+</p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>char *p = &quot;Hello&quot;;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>p++;<o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</p>
+<p class="MsoNormal">should the compiler call the redefined operator ++ or just
+increment the pointer? There is no way to know, so an operator ++ should <i style="mso-bidi-font-style:normal">never</i>
+have a pointer as an argument. On the other side, division of pointers is not
+defined. If the redefined operator ‘/’ uses pointers as arguments, no
+problems can arise. Note that this is much more general than C++, which
+prohibits an operator to be redefined when only pointers are used as arguments.</p>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<table border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ border:none;mso-border-alt:solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><b style="mso-bidi-font-weight:normal">Name<o:p>
+      </o:p>
+      </b></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><b style="mso-bidi-font-weight:normal">Symbol<o:p>
+      </o:p>
+      </b></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><b style="mso-bidi-font-weight:normal">Arguments<o:p>
+      </o:p>
+      </b></p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><b style="mso-bidi-font-weight:normal">Pointer only
+      args?<o:p>
+      </o:p>
+      </b></p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><b style="mso-bidi-font-weight:normal"><span lang="FR" style="mso-ansi-language:FR">Comment<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="font-family:Courier;mso-ansi-language:
+  FR">binary plus<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="font-family:Courier;mso-ansi-language:
+  FR">+<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="mso-ansi-language:FR">const
+      left, <o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal">const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Yes</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Binary addition. Should return a new object with the
+      result of the operation. Arguments are const.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">unary_plus<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">+<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Yes</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Monadic plus. This is normally blank for numeric
+      arguments, but can be used for any purpose you wish with your own
+      structures. Should return a new object.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">plusasgn<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">+=<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">left,</p>
+      <p class="MsoNormal">const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">No</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Should return a reference to its (possibly modified)
+      left argument.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">increment<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">++<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">No</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Post increment. Should return a reference to a copy
+      of the unmodified value of its argument. Normally, as a side effect, the
+      argument can be modified.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">minus<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">-<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">const left,</p>
+      <p class="MsoNormal">const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">No</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Binary subtraction. Same constraints as binary +</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">unary_minus<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">-<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Yes</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Monadic minus. Should subtract its argument from
+      zero, in the numeric cases. Should return a new object.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">minusasgn<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">-=<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">left,</p>
+      <p class="MsoNormal">const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">No</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Should return a reference to its possibly modified
+      left argument</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">decrement<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">--<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">left</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">No</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Post decrement. Should return a copy of the the
+      unmodified value of its argument. As a side effect, the argument can be
+      modified.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">multiply<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">*<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">const left,</p>
+      <p class="MsoNormal">const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Yes</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Multiplication. Should return a new object with the
+      result of the operation.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">multasgn<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">*=<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">left,</p>
+      <p class="MsoNormal">const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Yes</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Should return its (possibly modified) left argument.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">bit and<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">&amp;<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">const left, const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Yes</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Should return a new object.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">bit xor<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">^<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">const right , const left</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Yes</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Should return a new object</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">divide<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">/<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">const left,</p>
+      <p class="MsoNormal">const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Yes</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Division. Should return a new object with the result
+      of the operation.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">divasgn<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">/=<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">left,</p>
+      <p class="MsoNormal">const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Yes</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Should return its (possibly modified) left argument.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">index<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">[]<a style="mso-footnote-id:
+  ftn2" href="#_ftn2" name="_ftnref2" title><span style="mso-special-character: footnote; mso-ansi-font-size: 12.0pt; mso-text-raise: 0pt" class="MsoFootnoteReference">[2]</span></a><o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">left,</p>
+      <p class="MsoNormal">right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">No</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Should return a reference to indexing the left
+      argument with its right argument, that is always an integer expression.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">indexasgn<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">[]=<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">left,</p>
+      <p class="MsoNormal">index,</p>
+      <p class="MsoNormal">right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">No</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Should be assigned to the left argument at the
+      position indicated by indexing the new value given by right.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">leftshift<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">&lt;&lt;<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">const left, const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Yes</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Should leave its right argument unmodified and return
+      a (possibly modified) left argument.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">rightshift<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">&gt;&gt;<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">const left,</p>
+      <p class="MsoNormal">const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Yes</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Should leave its right argument unmodified and return
+      a (possibly modified) left argument.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">lshasgn<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">&lt;&lt;=<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">left,</p>
+      <p class="MsoNormal">const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Yes</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Should return its (possibly modified) left argument.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">rshasgn<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">&gt;&gt;=<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">left,</p>
+      <p class="MsoNormal">const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Yes</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Should return its possibly modified left argument.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">not<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">!<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Yes</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Should return a new object. Normally it shouldn’t
+      modify its right argument.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">equal<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">==<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">const left,</p>
+      <p class="MsoNormal">const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">No</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Should return an integer other than zero if the
+      comparison succeeds, otherwise zero.<span style="mso-spacerun: yes">&nbsp;
+      </span>The arguments shouldn’t be modified.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">lessequal<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">&lt;=<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">const left,</p>
+      <p class="MsoNormal">const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">No</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Should return an integer other than zero if the
+      comparison succeeds, otherwise zero.<span style="mso-spacerun: yes">&nbsp;
+      </span>The arguments shouldn’t be modified.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">greaterequal<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">&gt;=<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">const left,</p>
+      <p class="MsoNormal">const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">No</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Should return an integer other than zero if the
+      comparison succeeds, otherwise zero.<span style="mso-spacerun: yes">&nbsp;
+      </span>The arguments shouldn’t be modified.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">less<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">&lt;<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">const left,</p>
+      <p class="MsoNormal">const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">No</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Should return an integer other than zero if the
+      comparison succeeds, otherwise zero.<span style="mso-spacerun: yes">&nbsp;
+      </span>The arguments shouldn’t be modified.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">greater<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">&gt;<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">const left,</p>
+      <p class="MsoNormal">const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">No</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Should return an integer other than zero if the
+      comparison succeeds, otherwise zero.<span style="mso-spacerun: yes">&nbsp;
+      </span>The arguments shouldn’t be modified.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">notequal<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">!=<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">const left,</p>
+      <p class="MsoNormal">const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">No</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Should return an integer other than zero if the
+      comparison fails, otherwise zero. <span style="mso-spacerun: yes">&nbsp;</span>The
+      arguments shouldn’t be modified.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">asgn<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-family:Courier">=<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">reference left, const right</p>
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Yes</p>
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Should return &quot;left&quot;, that should be a
+      reference to an object. If it is not declared as reference this operator
+      will not work.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <span style="font-family: Courier">incr</span>
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      operator++
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      right
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      Yes
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      Should emulate the post-increment operator. It should modify its argument
+      by adding one, and return a copy to the object with the old values
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      decr
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      operator--
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      right
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      Yes
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      Should emulate the post-decrement operator. It should modify its argument
+      by subtracting one, and return a copy of the object containing the old
+      value
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      preincr
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      ++operator
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      right
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      Yes
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      Should modify its argument by adding one and returning the modified
+      result.
+    </td>
+  </tr>
+  <tr>
+    <td width="139" valign="top" style="width:104.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      predecr
+    </td>
+    <td width="72" valign="top" style="width:54.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      --operator
+    </td>
+    <td width="102" valign="top" style="width:76.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      right
+    </td>
+    <td width="78" valign="top" style="width:58.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      Yes
+    </td>
+    <td width="346" valign="top" style="width:259.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      Should modify its argument by subtracting one, and return the modified
+      result.
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal">&nbsp;<o:p>
+ Note that to overload the preincrement operator (++a) or the predecrement
+operator (--a) you should write
+</p>
+<p class="MsoNormal"><font face="Courier New">int ++operator(ARG x) {...}</font>
+</p>
+<p class="MsoNormal"><font face="Times New Roman">or</font>
+</p>
+<p class="MsoNormal"><font face="Courier New">int --operator(ARG x) { ... }</font>
+</p>
+<p class="MsoNormal"></o:p>
+</p>
+<h3><a name="_Toc499634152"><span style="mso-ansi-language:EN-US">Differences to
+C++</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h3>
+<p class="MsoNormal">&nbsp;In the C++ language, you can redefine the operators <span style="font-family:Courier">&amp;&amp;</span>
+(and) <span style="font-family:
+Courier">||</span> (or) and <span style="font-family:Courier">,</span> (comma).
+You cannot do this in C. The reasons are very simple.</p>
+<p class="MsoNormal">&nbsp;In C (as in C++), logical expressions within
+conditional contexts are evaluated from left to right. If, in the context of the
+AND operator, the first expression returns a FALSE value, the others will NOT be
+evaluated. This means that once the truth or falsehood of an expression has been
+determined, evaluation of the expression ceases, even if some parts of the
+expression haven't yet been examined.</p>
+<p class="MsoNormal">&nbsp;Now, if a user wanted to redefine the operator AND or
+the operator OR, the compiler would have to generate a function call to the
+user-defined function, giving it all the arguments of BOTH expressions. To make
+the function call, the compiler would have to evaluate them both, before passing
+them to the redefined <span style="font-family:Courier">operator&amp;&amp;</span>.</p>
+<p class="MsoNormal">&nbsp;Consequence: all expressions would be evaluated and
+expressions that rely on the normal behavior of C would not work. The same
+reasoning can be applied to the operator OR. It evaluates all expressions, but
+stops at the first that returns TRUE.</p>
+<p class="MsoNormal">&nbsp;A similar problem appears with the Comma operator,
+which evaluates in sequence all the expressions separated by the comma(s), and
+returns as the value of the expression the last result evaluated.<span style="mso-spacerun: yes">&nbsp;
+</span>When passing the arguments to the overloaded function, however, there is
+no guarantee that the order of evaluation will be from left to right. The C
+standard does not specify the order for evaluating function arguments.
+Therefore, this would not work.<a style="mso-footnote-id:
+ftn3" href="#_ftn3" name="_ftnref3" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 12.0pt; mso-text-raise: 0pt" class="MsoFootnoteReference">[3]</span></a></p>
+<p class="MsoNormal">&nbsp;Another difference with C++ is that here you can
+redefine the operator <span style="font-family:Courier">[]=</span>, i.e., the
+assignment to an array is a different operation than the reference of an array
+member. The reason is simple: the C language always distinguishes between the
+operator <span style="font-family:Courier">+</span> and the operator <span style="font-family:
+Courier">+=</span>, the operator <span style="font-family:Courier">*</span> is
+different from the operator <span style="font-family:Courier">*=</span>, etc.
+There is no reason why the operator <span style="font-family:Courier">[]</span>
+should be any different.</p>
+<p class="MsoNormal">&nbsp;This simple fact allows you to do things that are
+quite impossible for C++ programmers: You can easily distinguish between the
+assignment and the reference of an array, i.e., you can specialize the operation
+for each usage. In C++ doing this implies creating a “proxy” object, i.e., a
+stand-by construct that senses when the program uses it for writing or reading
+and acts accordingly. This proxy must be defined, created, etc., and it has to
+redefine all operators to be able to function. In addition, this highly complex
+solution is not guaranteed to work! The proxies have subtle different behaviors
+in many situations because they are not the objects they stand for.</p>
+<p class="MsoNormal">&nbsp;You do not need all of these complexities in your
+software. You are in control. This is C.<a style="mso-footnote-id:ftn4" href="#_ftn4" name="_ftnref4" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 12.0pt; mso-text-raise: 0pt" class="MsoFootnoteReference">[4]</span></a></p>
+<h3><a name="_Toc499634155"><span style="mso-ansi-language:EN-US">Using Operator
+Overloading: An Example</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h3>
+<p class="MsoNormal">&nbsp;To demonstrate how to use this, a simple
+implementation of the “&lt;&lt;” syntax of C++ for output is illustrated.</p>
+<h3><span style="mso-ansi-language:EN-US;font-weight:normal">&nbsp;</span><b style="mso-bidi-font-weight:normal">Description<o:p>
+</o:p>
+</b></h3>
+<p class="MsoNormal">&nbsp;The left shift operator will be redefined with each
+of the basic types. Start by defining a structure that will contain the
+necessary information for output.</p>
+<p class="MsoNormal">&nbsp;<span style="font-family:Courier">typedef struct
+tagiostream {<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>FILE *f;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>unsigned left:1; // Left-align values<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>unsigned right:1; //<span style="mso-spacerun: yes">&nbsp;
+</span>Right-align values; pad on the left <o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>// with the fill character (default alignment).<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>unsigned dec:1; // Format numeric values in
+decimal<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>unsigned oct:1; // Format numeric values in
+base 8<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>unsigned hex:1; //Format numeric values as
+base 16 (hexadecimal).<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>unsigned showpoint:1; // Show decimal point
+and trailing zeros <o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>// for floating-point
+values.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>unsigned uppercase:1; //Display uppercase A
+through F <o:p>
+</o:p>
+</span></p>
+<p class="MsoFootnoteText"><span style="font-family:Courier;mso-ansi-language:
+EN-US"><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>//for hexadecimal values and E for<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>// scientific notation.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>unsigned showpos:1; // Show plus signs (+)
+for positive values.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>unsigned scientific:1; // Display
+floating-point numbers <o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>// in scientific format.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>unsigned unitbuf:1; //Cause flush the stream
+after each insertion. <o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>unsigned showbase:1; // Show the output base<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>unsigned char fill; //Sets or reads the
+streams fill character.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>unsigned char precision;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>unsigned char width;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">} iostream;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;This structure allows fine control of the displayed
+output.</p>
+<p class="MsoNormal">&nbsp;Start defining the different types of operator
+&lt;&lt; for the different types of right hand values. The simplest is the
+character string.</p>
+<p class="MsoNormal"><span style="font-family:Courier">&nbsp;iostream *
+operator&lt;&lt;(iostream * f,char *p)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">{<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>int n = fprintf(f-&gt;f,&quot;%s&quot;,p);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>while (n &lt; f-&gt;width) {<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>fputc(f-&gt;fill,f-&gt;f);<o:p>
+</o:p>
+</span></p>
+<p class="MsoFootnoteText" style="margin-left:36.0pt;text-indent:36.0pt"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:Courier;
+mso-ansi-language:EN-US">n++;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>return f;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;You call fprintf with the underlying value, and put
+as many of the fill chars as needed to fill the current width. Note that the
+return value is the structure iostream received in input, so that several of
+these operators can be linked together.</p>
+<p class="MsoNormal">&nbsp;The other types are similar: For instance, integers:</p>
+<p class="MsoNormal">&nbsp;<span style="font-family:Courier">iostream * operator
+&lt;&lt;(iostream *f,int i)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">{<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>unsigned char buf[50];<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>if (f-&gt;dec)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>sprintf(buf,&quot;%d&quot;,i);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>else if (f-&gt;oct) {<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>if (f-&gt;showbase)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>sprintf(buf,&quot;0%o&quot;,i);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>else<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>sprintf(buf,&quot;%o&quot;,i);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>else if (f-&gt;hex) {<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>if (f-&gt;showbase)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>sprintf(buf,&quot;0x%x&quot;,i);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>else<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>sprintf(buf,&quot;%x&quot;,i);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>return f &lt;&lt; buf;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;Fill a buffer containing the different possible
+representations of an int, and then call the previously defined operator
+&lt;&lt; for strings, that will handle the width options.</p>
+<p class="MsoNormal">&nbsp;Provide a function that will return a new iostream
+with an open file pointer as input. Allocate the new structure with the standard
+“malloc” function, set the default fields, and return it.</p>
+<p class="MsoNormal">&nbsp;<span style="font-family:Courier">iostream *new_ios(FILE
+*f)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">{<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>iostream *result = (iostream *)malloc(sizeof(iostream));<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>memset(result,0,sizeof(iostream));<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>result-&gt;f = f;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>result-&gt;precision = 6;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>result-&gt;dec = 1;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>result-&gt;fill = ‘ ‘;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>return result;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;A simple program can be used to test at this point:</p>
+<p class="MsoNormal">&nbsp;<span lang="FR" style="font-family:Courier;mso-ansi-language:
+FR">int main(void)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">{<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>iostream out = new_ios(stdout);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>int a = 7;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>out &lt;&lt; "Hello " &lt;&lt; a &lt;&lt; "\n";<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>close_ios(out);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;This will produce the output:</p>
+<p class="MsoNormal">&nbsp;<span style="font-family:Courier">Hello 7<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;If you want to change the settings (output base say),
+you must manipulate the iostream structure directly. A more elegant solution is
+to define a new structure that will be a place holder. An appearance of that
+structure in the output stream would provoke no new output, but a change to the
+settings of the underlying iostream structure. Define the new structure as
+follows:</p>
+<p class="MsoNormal">&nbsp;<span style="font-family:Courier">typedef enum {Flush,Dec,Oct,Hex}
+controlsequences;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">typedef struct _control {<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>controlsequences val;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">} Control;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">Control flush = {Flush};<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">Control dec = {Dec};<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">Control oct = {Oct};<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">Control hex = {Hex};<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;Define a structure that contains just one field: a
+member of the enumeration of possible actions to perform. With this defined, you
+only have to add a new <span style="font-family:Courier">operator&lt;&lt;</span>
+to assign meaning to those structures embedded in the output stream:</p>
+<p class="MsoNormal">&nbsp;<span style="font-family:Courier">iostream *
+operator&lt;&lt;(iostream *f,Control e)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">{<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>switch (e.val) {<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>case eflush:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="text-indent:36.0pt"><span style="font-family:Courier"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>fflush(f-&gt;f);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="text-indent:36.0pt"><span style="font-family:Courier"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>break;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>case edec:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>f-&gt;dec = 1;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>f-&gt;oct = 0;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="text-indent:36.0pt"><span style="font-family:Courier"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>f-&gt;hex = 0;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>break;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>case eoct:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>f-&gt;dec = 0;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>f-&gt;oct = 1;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="text-indent:36.0pt"><span style="font-family:Courier"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>f-&gt;hex = 0;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>break;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>case ehex:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>f-&gt;dec = 0;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>f-&gt;oct = 0;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="text-indent:36.0pt"><span style="font-family:Courier"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>f-&gt;hex = 1;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>break;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>return f;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;No output is performed, but the settings of the
+stream are changed. Use the following program to test this:</p>
+<p class="MsoNormal"><span style="font-family:Courier">&nbsp;</span><span lang="FR" style="font-family:Courier;mso-ansi-language:
+FR">int main(void)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">{<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>iostream out = new_ios(stdout);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>int a = 12345;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>cout &lt;&lt; &quot;Dec: &quot; &lt;&lt; a
+&lt;&lt; oct &lt;&lt; &quot; Octal &quot; &lt;&lt; a &lt;&lt; <o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:36.0pt;text-indent:36.0pt"><span style="font-family:Courier">&quot;
+Hex: &quot; &lt;&lt; hex &lt;&lt; a &lt;&lt; nl;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>close_ios(out);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;This will produce the output:</p>
+<p class="MsoNormal">&nbsp;<span style="font-family:Courier">Dec: 12345 Octal
+30071 Hex: 3039<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;See the iostream library documentation for a more
+detailed description of this feature and the source code of iostream.c in
+\lcc\src\iostream.</p>
+<p class="MsoNormal">&nbsp;Another example of operator overloading is in the
+doubledouble directory, where a new numeric type (doubledouble) is introduced,
+which replaces the normal floating point data type and has extended precision.</p>
+<p class="MsoNormal">&nbsp;</p>
+<div style="mso-element:footnote-list">
+  <br clear="all">
+  <hr align="left" size="1" width="33%">
+  <div style="mso-element:footnote" id="ftn1">
+    <p class="MsoFootnoteText" style="margin-left:0cm"><a style="mso-footnote-id:
+ftn1" href="#_ftnref1" name="_ftn1" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 10.0pt; mso-text-raise: 0pt; mso-ansi-language: EN-US" class="MsoFootnoteReference">[1]</span></a><span style="mso-ansi-language:EN-US">
+    In lcc-win32 you can use pointers or references, and the ‘const’
+    attribute is not required. You can modify the arguments to a plus operator,
+    but that could cause problems.<o:p>
+    </o:p>
+    </span></p>
+  </div>
+  <div style="mso-element:footnote" id="ftn2">
+    <p class="MsoFootnoteText"><a style="mso-footnote-id:ftn2" href="#_ftnref2" name="_ftn2" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 10.0pt; mso-text-raise: 0pt; mso-ansi-language: EN-US" class="MsoFootnoteReference">[2]</span></a><span style="mso-ansi-language:EN-US">
+    Note that in C++ the operator [ ]<span style="mso-spacerun: yes">&nbsp; </span>can
+    only be redefined at the class level. Since there are no classes here, this
+    restriction does NOT apply.<o:p>
+    </o:p>
+    </span></p>
+  </div>
+  <div style="mso-element:footnote" id="ftn3">
+    <p class="MsoNormal"><a style="mso-footnote-id:ftn3" href="#_ftnref3" name="_ftn3" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 12.0pt; mso-text-raise: 0pt" class="MsoFootnoteReference">[3]</span></a>
+    Note that this does not work in C++ either. Lengthy explanations are
+    required to dissuade users from redefining these operators, the best one is
+    in Scott Meyer’s book “Effective C++”, see “Item 7: Never overload <span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;" class="CODE">&amp;&amp;</span>,
+    <span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:
+&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;" class="CODE">||</span>,
+    or <span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:
+&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;" class="CODE">,”</span>.
+    Personally, I do not understand why things should be present in a language
+    only to then have to write lengthy explanations on why these features are
+    not useful or are risky. A cleaner design would omit those features.</p>
+  </div>
+  <div style="mso-element:footnote" id="ftn4">
+    <p class="MsoFootnoteText" style="margin-left:0cm"><a style="mso-footnote-id:
+ftn4" href="#_ftnref4" name="_ftn4" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 10.0pt; font-family: Times New Roman; mso-text-raise: 0pt; mso-ansi-language: EN-US" class="MsoFootnoteReference">[4]</span></a><span style="font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US">
+    In a (rather lively) discussion in the comp.std.c newsgroup jepler epler
+    pointed that in Python:<o:p>
+    </o:p>
+    </span></p>
+    <p class="MsoFootnoteText" style="margin-left:0cm"><span style="font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-US">“The expression<span style="mso-spacerun: yes">&nbsp;
+    </span>i = x[j] will call the method x.__getitem__(j) and assign the
+    returned value to i. The expression<span style="mso-spacerun: yes">&nbsp; </span>x[j]
+    = i will call the method x.__setitem__(j, i)<o:p>
+    </o:p>
+    </span></p>
+    <p class="MsoFootnoteText" style="margin-left:0cm"><span style="font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-US">I make the first out as being analogous to operator [],
+    and the second as the proposed operator []=.”<o:p>
+    </o:p>
+    </span></p>
+  </div>
+</div>
+
+</body>
+
+</html>

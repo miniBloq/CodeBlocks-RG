@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Commands">Commands</a>,
+Next:<a rel="next" accesskey="n" href="Using-Variables.html#Using%20Variables">Using Variables</a>,
+Previous:<a rel="previous" accesskey="p" href="Rules.html#Rules">Rules</a>,
+Up:<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr><br>
+</div>
+
+<h2 class="chapter">Writing the Commands in Rules</h2>
+
+   <p>The commands of a rule consist of shell command lines to be executed one
+by one.  Each command line must start with a tab, except that the first
+command line may be attached to the target-and-prerequisites line with a
+semicolon in between.  Blank lines and lines of just comments may appear
+among the command lines; they are ignored.  (But beware, an apparently
+"blank" line that begins with a tab is <em>not</em> blank!  It is an
+empty command; see <a href="Empty-Commands.html#Empty%20Commands">Empty Commands</a>.)
+
+   <p>Users use many different shell programs, but commands in makefiles are
+always interpreted by <code>/bin/sh</code> unless the makefile specifies
+otherwise.  See <a href="Execution.html#Execution">Command Execution</a>.
+
+   <p>The shell that is in use determines whether comments can be written on
+command lines, and what syntax they use.  When the shell is
+<code>/bin/sh</code>, a <code>#</code> starts a comment that extends to the end of
+the line.  The <code>#</code> does not have to be at the beginning of a line. 
+Text on a line before a <code>#</code> is not part of the comment.
+
+<ul class="menu">
+<li><a accesskey="1" href="Echoing.html#Echoing">Echoing</a>:                      How to control when commands are echoed. 
+<li><a accesskey="2" href="Execution.html#Execution">Execution</a>:                    How commands are executed. 
+<li><a accesskey="3" href="Parallel.html#Parallel">Parallel</a>:                     How commands can be executed in parallel. 
+<li><a accesskey="4" href="Errors.html#Errors">Errors</a>:                       What happens after a command execution error. 
+<li><a accesskey="5" href="Interrupts.html#Interrupts">Interrupts</a>:                   What happens when a command is interrupted. 
+<li><a accesskey="6" href="Recursion.html#Recursion">Recursion</a>:                    Invoking <code>make</code> from makefiles. 
+<li><a accesskey="7" href="Sequences.html#Sequences">Sequences</a>:                    Defining canned sequences of commands. 
+<li><a accesskey="8" href="Empty-Commands.html#Empty%20Commands">Empty Commands</a>:               Defining useful, do-nothing commands. 
+</ul>
+
+   </body></html>
+

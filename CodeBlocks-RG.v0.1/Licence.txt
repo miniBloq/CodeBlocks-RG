@@ -1,0 +1,8 @@
+Licensing of Code::Blocks
+
+Code::Blocks and Code::Blocks EDU-Portable are distributed under the GPL v3.0 license which means they can be used freely by anyone!
+
+The only exception is the SDK which is allowed to be linked by closed-source plugins.
+
+Full license text of the GPL version 3.0:
+  http://www.codeblocks.org/license/3

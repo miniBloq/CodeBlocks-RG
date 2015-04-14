@@ -1,0 +1,193 @@
+<TITLE>BGI Documentation for 
+initgraph
+</TITLE>
+<H2>
+initgraph
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void initgraph(int *graphdriver, int *graphmode, char *pathtodriver);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+initgraph initializes the graphics system by loading a graphics driver
+from disk (or validating a registered driver), and putting the system into graphics mode.
+<P>
+To start the graphics system, first call the initgraph function. initgraph loads the graphics driver and puts the system into graphics mode. You can tell initgraph to use a particular graphics driver and mode, or to autodetect the attached video adapter at run time and pick the corresponding driver.
+<P>If you tell initgraph to autodetect, it calls detectgraph to select a graphics driver and mode. initgraph also resets all graphics settings to their defaults (current position, palette, color, viewport, and so on) and resets graphresult to 0.
+<P>
+Normally, initgraph loads a graphics driver by allocating memory for the driver (through _graphgetmem), then loading the appropriate .BGI file from disk. As an alternative to this dynamic loading scheme, you can link a graphics driver file (or several of them) directly into your executable program file. 
+<P>
+pathtodriver specifies the directory path where initgraph looks for graphics drivers. initgraph first looks in the path specified in pathtodriver, then (if they are not there) in the current directory. Accordingly, if pathtodriver is null, the driver files (*.BGI) must be in the current directory. This is also the path settextstyle searches for the stroked character font files (*.CHR).
+<P>
+*graphdriver is an integer that specifies the graphics driver to be used. You can give it a value using a constant of the graphics_drivers enumeration type, which is defined in graphics.h and listed below.
+<TABLE>
+<TR><TD><B>graphics_drivers constant&nbsp;&nbsp;&nbsp;&nbsp;</B><TD><B>Numeric value</B>
+<TR><TD>DETECT<TD>0 (requests autodetect)
+<TR><TD>CGA<TD>1
+<TR><TD>MCGA<TD>2
+<TR><TD>EGA<TD>3
+<TR><TD>EGA64<TD>4
+<tr><td>EGAMONO<td>5
+<tr><td>IBM8514<td>6
+<tr><td>HERCMONO<td>7
+<tr><td>ATT400<td>8
+<tr><td>VGA<td>9
+<tr><td>PC3270<TD>10
+</TABLE>
+<P>
+*graphmode is an integer that specifies the initial graphics mode (unless *graphdriver equals DETECT; in which case, *graphmode is set by initgraph to the highest resolution available for the detected driver). You can give *graphmode a value using a constant of the graphics_modes enumeration type, which is defined in graphics.h and listed below.
+<P>
+graphdriver and graphmode must be set to valid values from the following tables, or you will get unpredictable results. The exception is graphdriver = DETECT.
+<P>
+Palette listings C0, C1, C2, and C3 refer to the four predefined four-color palettes available on CGA (and compatible) systems. You can select the background color (entry #0) in each of these palettes, but the other colors are fixed. 
+<TABLE>
+<TR><TD><B>Palette Number&nbsp;&nbsp;&nbsp;</B>
+<TD><B>Three Colors</B>
+<TR><TD>0	<TD>LIGHTGREEN&nbsp;&nbsp;	<TD>LIGHTRED	<TD>YELLOW
+<TR><TD>1	<TD>LIGHTCYAN	<TD>LIGHTMAGENTA&nbsp;&nbsp;	<TD>WHITE
+<TR><TD>2	<TD>GREEN	<TD>RED	<TD>BROWN
+<TR><TD>3	<TD>CYAN	<TD>MAGENTA	<TD>LIGHTGRAY
+</TABLE>
+After a call to initgraph, *graphdriver is set to the current graphics
+driver, and *graphmode is set to the current graphics mode.
+<TABLE>
+<TR><TD><B>Graphics&nbsp;&nbsp;&nbsp;</B><TD>&nbsp;<TD>&nbsp;<TD><B>Columns&nbsp;&nbsp;&nbsp;</B>
+<TR><TD><B>Driver</B><TD><B>graphics_mode&nbsp;&nbsp;&nbsp;</B><TD><B>Value&nbsp;&nbsp;&nbsp;</B><TD><B>&nbsp;x
+Rows</B><TD><B>Palette&nbsp;&nbsp;&nbsp;</B><TD><B>Pages</B>
+<TR><TD>CGA<TD>CGAC0<td>0<td>320 x 200<td>C0<td>1
+<TR><TD>        <TD>CGAC1	<TD>1	<TD>320 x 200	<TD>C1	<TD>1
+<TR><TD>	<TD>CGAC2	<TD>2	<TD>320 x 200	<TD>C2	<TD>1
+<TR><TD>	<TD>CGAC3	<TD>3	<TD>320 x 200	<TD>C3	<TD>1
+<TR><TD>	<TD>CGAHI	<TD>4	<TD>640 x 200	<TD>2 color	<TD>1
+<TR><TD>&nbsp;
+<TR><TD>MCGA	<TD>MCGAC0	<TD>0	<TD>320 x 200	<TD>C0	<TD>1
+<TR><TD>&nbsp;
+<TR><TD>        <TD>MCGAC1	<TD>1	<TD>320 x 200	<TD>C1	<TD>1
+<TR><TD>	<TD>MCGAC2	<TD>2	<TD>320 x 200	<TD>C2	<TD>1
+<TR><TD>	<TD>MCGAC3	<TD>3	<TD>320 x 200	<TD>C3	<TD>1
+<TR><TD>	<TD>MCGAMED	<TD>4	<TD>640 x 200	<TD>2 color	<TD>1
+<TR><TD>	<TD>MCGAHI	<TD>5	<TD>640 x 480	<TD>2 color	<TD>1
+<TR><TD>&nbsp;
+<TR><TD>EGA	<TD>EGALO	<TD>0	<TD>640 x 200	<TD>16 color	<TD>4
+<TR><TD>&nbsp;
+<TR><TD>        <TD>EGAHI	<TD>1	<TD>640 x 350	<TD>16 color	<TD>2
+<TR><TD>&nbsp;
+<TR><TD>EGA64	<TD>EGA64LO	<TD>0	<TD>640 x 200	<TD>16 color	<TD>1
+<TR><TD>&nbsp;
+<TR><TD>        <TD>EGA64HI	<TD>1	<TD>640 x 350	<TD>4 color	<TD>1
+<TR><TD>&nbsp;
+<TR><TD>EGA-MONO<TD>EGAMONOHI	<TD>3	<TD>640 x 350	<TD>2 color 	<TD>1 w/64K
+<TR><TD>        <TD>EGAMONOHI	<TD>3	<TD>640 x 350	<TD>2 color 	<TD>2 w/256K
+<TR><TD>&nbsp;
+<TR><TD>HERC	<TD>HERCMONOHI	<TD>0	<TD>720 x 348	<TD>2 color <TD>2
+<TR><TD>&nbsp;
+<TR><TD>ATT400	<TD>ATT400C0	<TD>0	<TD>320 x 200	<TD>C0	<TD>1
+<TR><TD>        <TD>ATT400C1	<TD>1	<TD>320 x 200	<TD>C1	<TD>1
+<TR><TD>	<TD>ATT400C2	<TD>2	<TD>320 x 200	<TD>C2	<TD>1
+<TR><TD>	<TD>ATT400C3	<TD>3	<TD>320 x 200	<TD>C3	<TD>1
+<TR><TD>	<TD>ATT400MED	<TD>4	<TD>640 x 200	<TD>2 color	<TD>1
+<TR><TD>	<TD>ATT400HI	<TD>5	<TD>640 x 400	<TD>2 color	<TD>1
+<TR><TD>&nbsp;
+<TR><TD>VGA	<TD>VGALO	<TD>0	<TD>640 x 200	<TD>16 color	<TD>2
+<TR><TD>        <TD>VGAMED	<TD>1	<TD>640 x 350	<TD>16 color	<TD>2
+<TR><TD>	<TD>VGAHI	<TD>2	<TD>640 x 480	<TD>16 color	<TD>1
+<TR><TD>&nbsp;
+<TR><TD>PC3270	<TD>PC3270HI	<TD>0	<TD>720 x 350	<TD>2 color	<TD>1
+<TR><TD>
+<TR><TD>IBM8514	<TD>IBM8514HI	<TD>0	<TD>640 x 480	<TD>256 color	<TD>?
+<TR><TD>        <TD>IBM8514LO	<TD>0	<TD>1024 x 768	<TD>256 color   <TD>?
+
+</TABLE>
+
+
+<P><DT><B>Return Value</B><DD>
+initgraph always sets the internal error code; on success, it sets the code to 0. If an error occurred, *graphdriver is set to -2, -3, -4, or -5, and graphresult returns the same value as listed below:
+<TABLE>
+<TR><TD><B>Constant Name&nbsp;&nbsp;&nbsp;&nbsp;</B>
+<TD><B>Number</B>&nbsp;&nbsp;&nbsp;
+<TD><B>Meaning</B>
+
+<TR><TD>grNotDetected	<TD>-2	<TD>Cannot detect a graphics card
+<TR><TD>grFileNotFound	<TD>-3	<TD>Cannot find driver file
+<TR><TD>grInvalidDriver	<TD>-4	<TD>Invalid driver
+<TR><TD>grNoLoadMem 	<TD>-5	<TD>Insufficient memory to load driver
+</TABLE>
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+The <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> version of
+initgraph uses its parameters only to determine the size of
+the window that will be created. For example,
+initgraph(CGA,&nbsp;CGAC3)
+will create a 320&nbsp;x&nbsp;200 window.
+As an alternative, the user may call 
+<A HREF="initwindow.html">initwindow(width,&nbsp;height)</A>
+instead of initgraph.
+
+<P><DT><B>See also</B>
+<DD><A HREF="closegraph.html"> closegraph </A>
+<DD><A HREF="detectgraph.html"> detectgraph </A>
+<DD><A HREF="getdefaultpalette.html"> getdefaultpalette </A>
+<DD><A HREF="getdrivername.html"> getdrivername </A>
+<DD><A HREF="getgraphmode.html"> getgraphmode </A>
+<DD><A HREF="getmoderange.html"> getmoderange </A>
+<DD><A HREF="graphdefaults.html"> graphdefaults </A>
+<DD><A HREF="graphresult.html"> graphresult </A>
+<DD><A HREF="installuserdriver.html"> installuserdriver </A>
+<DD><A HREF="registerbgidriver.html"> registerbgidriver </A>
+<DD><A HREF="registerbgifont.html"> registerbgifont </A>
+<DD><A HREF="restorecrtmode.html"> restorecrtmode </A>
+<DD><A HREF="setgraphbufsize.html"> setgraphbufsize </A>
+<DD><A HREF="setgraphmode.html"> setgraphmode </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* initgraph example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+
+   /* initialize graphics mode */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+
+   if (errorcode != grOk)    /* an error occurred */
+   {
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+
+      getch();
+      exit(1);               /* return with error code */
+   }
+
+   /* draw a line */
+   line(0, 0, getmaxx(), getmaxy());
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

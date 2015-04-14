@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Utilities%20in%20Makefiles">Utilities in Makefiles</a>,
+Next:<a rel="next" accesskey="n" href="Command-Variables.html#Command%20Variables">Command Variables</a>,
+Previous:<a rel="previous" accesskey="p" href="Makefile-Basics.html#Makefile%20Basics">Makefile Basics</a>,
+Up:<a rel="up" accesskey="u" href="Makefile-Conventions.html#Makefile%20Conventions">Makefile Conventions</a>
+<hr><br>
+</div>
+
+<h3 class="section">Utilities in Makefiles</h3>
+
+   <p>Write the Makefile commands (and any shell scripts, such as
+<code>configure</code>) to run in <code>sh</code>, not in <code>csh</code>.  Don't use any
+special features of <code>ksh</code> or <code>bash</code>.
+
+   <p>The <code>configure</code> script and the Makefile rules for building and
+installation should not use any utilities directly except these:
+
+<pre class="example">     cat cmp cp diff echo egrep expr false grep install-info
+     ln ls mkdir mv pwd rm rmdir sed sleep sort tar test touch true
+     </pre>
+
+   <p>The compression program <code>gzip</code> can be used in the <code>dist</code> rule.
+
+   <p>Stick to the generally supported options for these programs.  For
+example, don't use <code>mkdir -p</code>, convenient as it may be, because
+most systems don't support it.
+
+   <p>It is a good idea to avoid creating symbolic links in makefiles, since a
+few systems don't support them.
+
+   <p>The Makefile rules for building and installation can also use compilers
+and related programs, but should do so via <code>make</code> variables so that the
+user can substitute alternatives.  Here are some of the programs we
+mean:
+
+<pre class="example">     ar bison cc flex install ld ldconfig lex
+     make makeinfo ranlib texi2dvi yacc
+     </pre>
+
+   <p>Use the following <code>make</code> variables to run those programs:
+
+<pre class="example">     $(AR) $(BISON) $(CC) $(FLEX) $(INSTALL) $(LD) $(LDCONFIG) $(LEX)
+     $(MAKE) $(MAKEINFO) $(RANLIB) $(TEXI2DVI) $(YACC)
+     </pre>
+
+   <p>When you use <code>ranlib</code> or <code>ldconfig</code>, you should make sure
+nothing bad happens if the system does not have the program in question. 
+Arrange to ignore an error from that command, and print a message before
+the command to tell the user that failure of this command does not mean
+a problem.  (The Autoconf <code>AC_PROG_RANLIB</code> macro can help with
+this.)
+
+   <p>If you use symbolic links, you should implement a fallback for systems
+that don't have symbolic links.
+
+   <p>Additional utilities that can be used via Make variables are:
+
+<pre class="example">     chgrp chmod chown mknod
+     </pre>
+
+   <p>It is ok to use other utilities in Makefile portions (or scripts)
+intended only for particular systems where you know those utilities
+exist.
+
+   </body></html>
+

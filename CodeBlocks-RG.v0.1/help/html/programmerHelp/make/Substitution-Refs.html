@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Substitution%20Refs">Substitution Refs</a>,
+Next:<a rel="next" accesskey="n" href="Computed-Names.html#Computed%20Names">Computed Names</a>,
+Previous:<a rel="previous" accesskey="p" href="Advanced.html#Advanced">Advanced</a>,
+Up:<a rel="up" accesskey="u" href="Advanced.html#Advanced">Advanced</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">Substitution References</h4>
+
+   <p>A <dfn>substitution reference</dfn> substitutes the value of a variable with
+alterations that you specify.  It has the form
+<code>$(</code><var>var</var><code>:</code><var>a</var><code>=</code><var>b</var><code>)</code> (or
+<code>${</code><var>var</var><code>:</code><var>a</var><code>=</code><var>b</var><code>}</code>) and its meaning is to take the value
+of the variable <var>var</var>, replace every <var>a</var> at the end of a word with
+<var>b</var> in that value, and substitute the resulting string.
+
+   <p>When we say "at the end of a word", we mean that <var>a</var> must appear
+either followed by whitespace or at the end of the value in order to be
+replaced; other occurrences of <var>a</var> in the value are unaltered.  For
+example:
+
+<pre class="example">     foo := a.o b.o c.o
+     bar := $(foo:.o=.c)
+     </pre>
+
+<p>sets <code>bar</code> to <code>a.c b.c c.c</code>.  See <a href="Setting.html#Setting">Setting Variables</a>.
+
+   <p>A substitution reference is actually an abbreviation for use of the
+<code>patsubst</code> expansion function (see <a href="Text-Functions.html#Text%20Functions">Functions for String Substitution and Analysis</a>).  We provide
+substitution references as well as <code>patsubst</code> for compatibility with
+other implementations of <code>make</code>.
+
+   <p>Another type of substitution reference lets you use the full power of
+the <code>patsubst</code> function.  It has the same form
+<code>$(</code><var>var</var><code>:</code><var>a</var><code>=</code><var>b</var><code>)</code> described above, except that now
+<var>a</var> must contain a single <code>%</code> character.  This case is
+equivalent to <code>$(patsubst </code><var>a</var><code>,</code><var>b</var><code>,$(</code><var>var</var><code>))</code>. 
+See <a href="Text-Functions.html#Text%20Functions">Functions for String Substitution and Analysis</a>,
+for a description of the <code>patsubst</code> function.
+
+<pre class="example"><br>For example:<br>
+     
+     foo := a.o b.o c.o
+     bar := $(foo:%.o=%.c)
+     </pre>
+
+<p>sets <code>bar</code> to <code>a.c b.c c.c</code>.
+
+   </body></html>
+

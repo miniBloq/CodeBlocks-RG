@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Defining">Defining</a>,
+Next:<a rel="next" accesskey="n" href="Environment.html#Environment">Environment</a>,
+Previous:<a rel="previous" accesskey="p" href="Override-Directive.html#Override%20Directive">Override Directive</a>,
+Up:<a rel="up" accesskey="u" href="Using-Variables.html#Using%20Variables">Using Variables</a>
+<hr><br>
+</div>
+
+<h3 class="section">Defining Variables Verbatim</h3>
+
+   <p>Another way to set the value of a variable is to use the <code>define</code>
+directive.  This directive has an unusual syntax which allows newline
+characters to be included in the value, which is convenient for defining
+both canned sequences of commands
+(see <a href="Sequences.html#Sequences">Defining Canned Command Sequences</a>), and also
+sections of makefile syntax to use with <code>eval</code> (see <a href="Eval-Function.html#Eval%20Function">Eval Function</a>).
+
+   <p>The <code>define</code> directive is followed on the same line by the name of the
+variable and nothing more.  The value to give the variable appears on the
+following lines.  The end of the value is marked by a line containing just
+the word <code>endef</code>.  Aside from this difference in syntax, <code>define</code>
+works just like <code>=</code>: it creates a recursively-expanded variable
+(see <a href="Flavors.html#Flavors">The Two Flavors of Variables</a>). 
+The variable name may contain function and variable references, which
+are expanded when the directive is read to find the actual variable name
+to use.
+
+   <p>You may nest <code>define</code> directives: <code>make</code> will keep track of
+nested directives and report an error if they are not all properly
+closed with <code>endef</code>.  Note that lines beginning with tab
+characters are considered part of a command script, so any
+<code>define</code> or <code>endef</code> strings appearing on such a line will
+not be considered <code>make</code> operators.
+
+<pre class="example">     define two-lines
+     echo foo
+     echo $(bar)
+     endef
+     </pre>
+
+   <p>The value in an ordinary assignment cannot contain a newline; but the
+newlines that separate the lines of the value in a <code>define</code> become
+part of the variable's value (except for the final newline which precedes
+the <code>endef</code> and is not considered part of the value).
+
+   <p>When used in a command script, the previous example is functionally
+equivalent to this:
+
+<pre class="example">     two-lines = echo foo; echo $(bar)
+     </pre>
+
+<p>since two commands separated by semicolon behave much like two separate
+shell commands.  However, note that using two separate lines means
+<code>make</code> will invoke the shell twice, running an independent subshell
+for each line.  See <a href="Execution.html#Execution">Command Execution</a>.
+
+   <p>If you want variable definitions made with <code>define</code> to take
+precedence over command-line variable definitions, you can use the
+<code>override</code> directive together with <code>define</code>:
+
+<pre class="example">     override define two-lines
+     foo
+     $(bar)
+     endef
+     </pre>
+
+<p>See <a href="Override-Directive.html#Override%20Directive">The <code>override</code> Directive</a>.
+
+   </body></html>
+

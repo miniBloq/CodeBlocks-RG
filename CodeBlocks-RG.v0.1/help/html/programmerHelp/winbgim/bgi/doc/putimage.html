@@ -1,0 +1,120 @@
+<TITLE>BGI Documentation for 
+putimage
+</TITLE>
+<H2>
+putimage
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void putimage(int left, int top, void *bitmap, int op);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+putimage puts the bit image previously saved with getimage back onto the screen, with the upper left corner of the image placed at (left,top). bitmap points to the area in memory where the source image is stored.
+<P>
+The op parameter to putimage specifies a combination operator that controls how the color for each destination pixel onscreen is computed, based on the pixel already onscreen and the corresponding source pixel in memory. The enumeration putimage_ops, as defined in graphics.h, gives names to these operators.
+<TABLE>
+<TR><TD><B>Name</B><TD><B>Value&nbsp;&nbsp;&nbsp;</B><TD><B>Description
+<TR><TD>COPY_PUT&nbsp;&nbsp;&nbsp;	<TD>0		<TD>Copy
+<TR><TD>XOR_PUT	<TD>1		<TD>Exclusive or
+<TR><TD>OR_PUT	<TD>2		<TD>Inclusive or
+<TR><TD>AND_PUT	<TD>3		<TD>And
+<TR><TD>NOT_PUT	<TD>4		<TD>Copy the inverse of the source
+</TABLE>
+In other words, COPY_PUT copies the source bitmap image onto the screen, XOR_PUT XORs the source image with the image already onscreen, OR_PUT ORs the source image with that onscreen, and so on.
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="getimage.html"> getimage </A>
+<DD><A HREF="imagesize.html"> imagesize </A>
+<DD><A HREF="putpixel.html"> putpixel </A>
+<DD><A HREF="setvisualpage.html"> setvisualpage </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* putimage example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+#define ARROW_SIZE 10
+
+void draw_arrow(int x, int y);
+
+int main()
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   void *arrow;
+   int x, y, maxx;
+   unsigned int size;
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   errorcode = graphresult();
+   if (errorcode != grOk)    /* an error occurred */
+   {
+
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   maxx = getmaxx();
+   x = 0;
+   y = getmaxy() / 2;
+   draw_arrow(x, y);
+
+   /* calculate the size of the image and allocate space for it */
+   size = imagesize(x, y-ARROW_SIZE, x+(4*ARROW_SIZE), y+ARROW_SIZE);
+   arrow = malloc(size);
+
+   /* grab the image */
+   getimage(x, y-ARROW_SIZE, x+(4*ARROW_SIZE), y+ARROW_SIZE, arrow);
+
+
+   /* repeat until a key is pressed */
+   while (!kbhit()) {
+      /* erase old image */
+      putimage(x, y-ARROW_SIZE, arrow, XOR_PUT);
+      x += ARROW_SIZE;
+      if (x &gt;= maxx)
+         x = 0;
+
+      /* plot new image */
+      putimage(x, y-ARROW_SIZE, arrow, XOR_PUT);
+   }
+
+   free(arrow);
+   closegraph();
+   return 0;
+}
+void draw_arrow(int x, int y) {
+   moveto(x, y);
+   linerel(4*ARROW_SIZE, 0);
+   linerel(-2*ARROW_SIZE, -1*ARROW_SIZE);
+   linerel(0, 2*ARROW_SIZE);
+
+   linerel(2*ARROW_SIZE, -1*ARROW_SIZE);
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

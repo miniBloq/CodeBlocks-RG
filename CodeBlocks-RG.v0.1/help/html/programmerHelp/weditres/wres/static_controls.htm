@@ -1,0 +1,305 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>About Static Controls</title>
+</head>
+
+<body>
+
+<div class="clsDocBody">
+  <h2>About Static Controls</h2>
+  <hr SIZE="1">
+  Applications often use static controls to label other controls or to separate
+  a group of controls. Although static controls are child windows, they cannot
+  be selected. Therefore, they cannot receive the keyboard focus and cannot have
+  a keyboard interface. A static control that has the SS_NOTIFY style receives
+  mouse input, notifying the parent window when the user clicks or double clicks
+  the control. Static controls belong to the STATIC window class.
+  <p>Although static controls can be used in overlapped, pop-up, and child
+  windows, they are designed for use in dialog boxes, where the system
+  standardizes their behavior. By using static controls outside dialog boxes, a
+  developer increases the risk that the application might behave in a
+  nonstandard fashion. Typically, a developer either uses static controls in
+  dialog boxes or uses the SS_OWNERDRAW style to create customized static
+  controls.</p>
+  <p>For more information about dialog boxes, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_dialog_boxes">
+  Dialog Boxes</MSHelp:link>
+  . For more information about window classes, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Window_Classes">
+  Window Classes</MSHelp:link>
+  . For more information about window subclassing, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Window_Procedures">
+  Window Procedures</MSHelp:link>
+  .</p>
+  <div class="clsNote">
+    <b>Note</b>&nbsp;&nbsp;To use visual styles with static controls, an
+    application must include a manifest and must call <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_InitCommonControls_cpp">
+    InitCommonControls</MSHelp:link>
+    at the beginning of the program. For information on visual styles, see <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_inet_themes_overview_cpp">
+    Visual Styles</MSHelp:link>
+    . For information on manifests, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_inet_cookbook_overview_cpp">
+    Using Windows XP Visual Styles</MSHelp:link>
+    .
+  </div>
+  <p>The following topics are discussed in this section.</p>
+  <ul>
+    <li><a href="#static_control_types" target="_self">Static Control Types</a>
+    <li><a href="#static_control_default_message_processing" target="_self">Static
+      Control Default Message Processing</a></li>
+  </ul>
+  <h3><a name="static_control_types"></a>Static Control Types</h3>
+  <p>There are four types of static controls. Each type has one or more styles.</p>
+  <ul>
+    <li><a href="#simple_static_control" target="_self">Simple Graphics Static
+      Control</a>
+    <li><a href="#text_static_control" target="_self">Text Static Control</a>
+    <li><a href="#image_static_control" target="_self">Image Static Controls</a>
+    <li><a href="#owner_drawn_static_control" target="_self">Owner-Drawn Static
+      Control</a></li>
+  </ul>
+  <p>For a table of static control styles, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Static_Control_Styles">
+  Static Control Styles</MSHelp:link>
+  .</p>
+  <h4><a name="simple_static_control"></a>Simple Graphics Static Control</h4>
+  <p>A simple graphics static control displays a frame or a filled rectangle. A
+  frame can be drawn in a number of styles, included black, gray, or white. In
+  addition, a frame can be drawn with an etched style to give it a
+  three-dimensional appearance. The frame styles include SS_BLACKFRAME,
+  SS_GRAYFRAME, SS_WHITEFRAME, SS_ETCHEDHORZ, SS_ETCHEDVERT, and SS_ETCHEDFRAME.</p>
+  <p>A rectangle can be filled with color in one of three styles: black, gray,
+  or white. These styles are defined by the constants SS_BLACKRECT, SS_GRAYRECT,
+  and SS_WHITERECT.</p>
+  <h4><a name="text_static_control"></a>Text Static Control</h4>
+  <p>A text static control displays text in a rectangle in one of five styles:</p>
+  <ul>
+    <li>left-aligned without word wrap
+    <li>left-aligned with word wrap
+    <li>centered
+    <li>right-aligned
+    <li>simple</li>
+  </ul>
+  <p>These styles are defined by the constants SS_LEFTNOWORDWRAP, SS_LEFT,
+  SS_CENTER, SS_RIGHT, and SS_SIMPLE, respectively. The system rearranges the
+  text in these controls in predefined ways, except for &quot;simple&quot; text,
+  which is not rearranged.</p>
+  <p>An application can change the text in a text static control at any time by
+  using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_setwindowtext">
+  SetWindowText</MSHelp:link>
+  function or the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_settext">
+  WM_SETTEXT</MSHelp:link>
+  message.</p>
+  <p>The system displays as much text as it can in the static control and clips
+  whatever does not fit. To calculate an appropriate size for the control,
+  retrieve the font metrics for the text. For more information about fonts and
+  font metrics, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Fonts_and_Text">
+  Fonts and Text</MSHelp:link>
+  .</p>
+  <h4><a name="image_static_control"></a>Image Static Controls</h4>
+  <p>An image static control can display bitmaps, icons (including animated
+  icons), or enhanced metafiles. The type of graphic that a particular static
+  control displays depends on the control's style: SS_BITMAP, SS_ICON, or
+  SS_ENHMETAFILE. An application specifies the style when it creates the control
+  and also specifies a handle to the bitmap, icon, or metafile for the control
+  to display. After the control is created, an application can associate a
+  different graphic with the control by sending it an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_STM_SETIMAGE_cpp">
+  STM_SETIMAGE</MSHelp:link>
+  message, specifying a handle to the new graphic object. An application can
+  retrieve a handle to the graphic object currently associated with a static
+  control by sending it an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_STM_GETIMAGE_cpp">
+  STM_GETIMAGE</MSHelp:link>
+  message. An application sends messages to a static control by using the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_SendDlgItemMessage">
+  SendDlgItemMessage</MSHelp:link>
+  function.</p>
+  <h4><a name="owner_drawn_static_control"></a>Owner-Drawn Static Control</h4>
+  <p>By using the SS_OWNERDRAW style, an application can take responsibility for
+  painting a static control. The parent window of an owner-drawn static control
+  (its owner) receives a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_DRAWITEM_cpp">
+  WM_DRAWITEM</MSHelp:link>
+  message whenever the static control needs to be painted. The message includes
+  a pointer to a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DRAWITEMSTRUCT_str_cpp">
+  DRAWITEMSTRUCT</MSHelp:link>
+  structure that contains information that the owner window uses when drawing
+  the control.</p>
+  <h3><a name="static_control_default_message_processing"></a>Static Control
+  Default Message Processing</h3>
+  <p>The window procedure for the predefined static control window class
+  performs default processing for all messages that the static control procedure
+  does not process. When the static control returns FALSE for any message, the
+  predefined window procedure checks the messages and carries out the default
+  action described in the following table. In the table, a text static control
+  is a static control with the style SS_LEFTNOWORDWRAP, SS_LEFT, SS_CENTER,
+  SS_RIGHT, or SS_SIMPLE.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>Message</th>
+        <th>Default action</th>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_create">
+          WM_CREATE</MSHelp:link>
+        </td>
+        <td>Loads the graphic object and sizes the window to the object's size,
+          for graphic static controls. Takes no action for other static
+          controls.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_destroy">
+          WM_DESTROY</MSHelp:link>
+        </td>
+        <td>Frees and destroys any graphic object, for graphic static controls.
+          Takes no action for other static controls.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_enable">
+          WM_ENABLE</MSHelp:link>
+        </td>
+        <td>Repaints visible static controls.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_erasebkgnd">
+          WM_ERASEBKGND</MSHelp:link>
+        </td>
+        <td>Returns TRUE, indicating the control erases the background.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_getdlgcode">
+          WM_GETDLGCODE</MSHelp:link>
+        </td>
+        <td>Returns DLGC_STATIC.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_getfont">
+          WM_GETFONT</MSHelp:link>
+        </td>
+        <td>Returns a handle to the font for text static controls.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_gettext">
+          WM_GETTEXT</MSHelp:link>
+        </td>
+        <td>Returns the number of characters copied.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_gettextlength">
+          WM_GETTEXTLENGTH</MSHelp:link>
+        </td>
+        <td>Returns the length, in characters, of the text for a text static
+          control.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttondblclk">
+          WM_LBUTTONDBLCLK</MSHelp:link>
+        </td>
+        <td>Sends the parent window an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_STN_DBLCLK_cpp">
+          STN_DBLCLK</MSHelp:link>
+          notification message if the control style is SS_NOTIFY.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttondown">
+          WM_LBUTTONDOWN</MSHelp:link>
+        </td>
+        <td>Sends the parent window an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_STN_CLICKED_cpp">
+          STN_CLICKED</MSHelp:link>
+          notification message if the control style is SS_NOTIFY.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_NCLBUTTONDBLCLK">
+          WM_NCLBUTTONDBLCLK</MSHelp:link>
+        </td>
+        <td>Sends the parent window an <b>STN_DBLCLK</b> notification message if
+          the control style is SS_NOTIFY.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_NCLBUTTONDOWN">
+          WM_NCLBUTTONDOWN</MSHelp:link>
+        </td>
+        <td>Sends the parent window an <b>STN_CLICKED</b> notification message
+          if the control style is SS_NOTIFY.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_nchittest">
+          WM_NCHITTEST</MSHelp:link>
+        </td>
+        <td>Returns HTCLIENT if the control style is SS_NOTIFY; otherwise,
+          returns HTTRANSPARENT.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_paint">
+          WM_PAINT</MSHelp:link>
+        </td>
+        <td>Repaints the control.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_setfont">
+          WM_SETFONT</MSHelp:link>
+        </td>
+        <td>Sets the font and repaints for text static controls.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_settext">
+          WM_SETTEXT</MSHelp:link>
+        </td>
+        <td>Sets the text and repaints for text static controls.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>The predefined window procedure passes all other messages to <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DefWindowProc">
+  DefWindowProc</MSHelp:link>
+  for default processing.</p>
+</div>
+
+</body>
+
+</html>

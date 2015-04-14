@@ -1,0 +1,94 @@
+<TITLE>BGI Documentation for 
+getmaxcolor
+</TITLE>
+<H2>
+getmaxcolor
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+int getmaxcolor(void);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+getmaxcolor returns the highest valid color value for the current graphics driver and mode that can be passed to setcolor.
+<P>
+For example, on a 256K EGA, getmaxcolor always returns 15, which means that any call to setcolor with a value from 0 to 15 is valid. On a CGA in high-resolution mode or on a Hercules monochrome adapter, getmaxcolor returns a value of 1.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+The <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> version of
+getmaxcolor returns
+15 for the
+maximum color. However, in addition to the usual BGI colors (0 through
+15), the programmer may also use 
+<A HREF="wincolor.html">RGB colors</A>.
+
+<P><DT><B>Return Value</B><DD>
+getmaxcolor returns the highest available color value.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="getbkcolor.html"> getbkcolor </A>
+<DD><A HREF="getcolor.html"> getcolor </A>
+<DD><A HREF="getpalette.html"> getpalette </A>
+<DD><A HREF="getpalettesize.html"> getpalettesize </A>
+<DD><A HREF="setcolor.html"> setcolor </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* getmaxcolor example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int midx, midy;
+   char colstr[80];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+
+   /* grab the color info. and convert it to a string */
+   sprintf(colstr, "This mode supports colors 0..%d", getmaxcolor());
+
+   /* display the information */
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+   outtextxy(midx, midy, colstr);
+
+   /* clean up */
+   getch();
+   closegraph();
+
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="MAKEFILE_LIST%20Variable">MAKEFILE_LIST Variable</a>,
+Next:<a rel="next" accesskey="n" href="Special-Variables.html#Special%20Variables">Special Variables</a>,
+Previous:<a rel="previous" accesskey="p" href="MAKEFILES-Variable.html#MAKEFILES%20Variable">MAKEFILES Variable</a>,
+Up:<a rel="up" accesskey="u" href="Makefiles.html#Makefiles">Makefiles</a>
+<hr><br>
+</div>
+
+<h3 class="section">The Variable <code>MAKEFILE_LIST</code></h3>
+
+   <p>As <code>make</code> reads various makefiles, including any obtained from the
+<code>MAKEFILES</code> variable, the command line, the default files, or
+from <code>include</code> directives, their names will be automatically
+appended to the <code>MAKEFILE_LIST</code> variable.  They are added right
+before <code>make</code> begins to parse them.
+
+   <p>This means that if the first thing a makefile does is examine the last
+word in this variable, it will be the name of the current makefile. 
+Once the current makefile has used <code>include</code>, however, the last
+word will be the just-included makefile.
+
+   <p>If a makefile named <code>Makefile</code> has this content:
+
+<pre class="example">     name1 := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
+     
+     include inc.mk
+     
+     name2 := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
+     
+     all:
+             @echo name1 = $(name1)
+             @echo name2 = $(name2)
+     </pre>
+
+<p>then you would expect to see this output:
+
+<pre class="example">     name1 = Makefile
+     name2 = inc.mk
+     </pre>
+
+   <p>See <a href="Text-Functions.html#Text%20Functions">Text Functions</a>, for more information on the <code>word</code> and
+<code>words</code> functions used above.  See <a href="Flavors.html#Flavors">The Two Flavors of Variables</a>, for more information on simply-expanded (<code>:=</code>)
+variable definitions.
+
+   </body></html>
+

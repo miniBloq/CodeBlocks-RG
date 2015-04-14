@@ -1,0 +1,85 @@
+<TITLE>BGI Documentation for 
+getdrivername
+</TITLE>
+<H2>
+getdrivername
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+char *getdrivername(void);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+After a call to initgraph, getdrivername returns the name of the driver that is currently loaded.
+
+
+<P><DT><B>Return Value</B><DD>
+getdrivername returns a pointer to a string with the name of the currently loaded graphics driver.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+The <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> version of
+getdrivername returns "EGAVGA" for the driver name,
+regardless of how 
+<A HREF="initgraph.html">initgraph</A> was called. 
+
+<P><DT><B>See also</B>
+<DD><A HREF="initgraph.html"> initgraph </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* getdrivername example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main()
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+
+   /* stores the device driver name */
+   char *drivername;
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) { /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+   setcolor(getmaxcolor());
+
+   /* get the name of the device driver in use */
+   drivername = getdrivername();
+
+   /* for centering text onscreen */
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+
+   /* output the name of the driver */
+   outtextxy(getmaxx() / 2, getmaxy() / 2, drivername);
+
+   /* clean up */
+   getch();
+   closegraph();
+
+   return 0;
+}
+</PRE>
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

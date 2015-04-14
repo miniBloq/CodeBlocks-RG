@@ -1,0 +1,96 @@
+<TITLE>BGI Documentation for 
+textwidth
+</TITLE>
+<H2>
+textwidth
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+int textwidth(char *textstring);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+The graphics function textwidth takes the string length, current font size, and multiplication factor, and determines the width of textstring in pixels.
+<P>
+This function is useful for computing viewport widths, sizing a title to make it fit on a graph or in a box, and so on.
+<P>
+Use textwidth to compute the width of strings, instead of doing the computations manually. When you use this function, no source code modifications have to be made when different fonts are selected.
+
+
+<P><DT><B>Return Value</B><DD>
+textwidth returns the text width in pixels.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="gettextsettings.html"> gettextsettings </A>
+<DD><A HREF="outtext.html"> outtext </A>
+<DD><A HREF="outtextxy.html"> outtextxy </A>
+<DD><A HREF="settextstyle.html"> settextstyle </A>
+<DD><A HREF="textheight.html"> textheight </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* textwidth example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int x = 0, y = 0;
+   int i;
+   char msg[80];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   y = getmaxy() / 2;
+   settextjustify(LEFT_TEXT, CENTER_TEXT);
+   for (i = 1; i &lt; 11; i++) {
+      /* select the text style, direction, and size */
+      settextstyle(TRIPLEX_FONT, HORIZ_DIR, i);
+
+      /* create a message string */
+      sprintf(msg, "Size: %d", i);
+
+      /* output the message */
+      outtextxy(x, y, msg);
+
+      /* advance to the end of the text */
+
+      x += textwidth(msg);
+   }
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

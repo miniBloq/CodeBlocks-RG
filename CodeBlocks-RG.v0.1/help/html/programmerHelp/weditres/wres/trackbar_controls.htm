@@ -1,0 +1,574 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Trackbar Controls</title>
+</head>
+
+<body>
+
+<h2>Trackbar Controls</h2>
+<hr SIZE="1">
+<p>A trackbar is a window that contains a slider and optional tick marks. When
+the user moves the slider, using either the mouse or the direction keys, the
+trackbar sends notification messages to indicate the change.</p>
+<ul>
+  <li><a href="#About_Trackbar_Contr" target="_self">About Trackbar Controls</a>
+  <li><a href="#Using_Trackbar_Contr" target="_self">Using Trackbar Controls</a>
+  <li><a href="#tkb_updates" target="_self">Trackbar Control Updates in Internet
+    Explorer</a></li>
+</ul>
+<h3><a name="About_Trackbar_Contr"></a>About Trackbar Controls</h3>
+<p>Trackbars are useful when you want the user to select a discrete value or a
+set of consecutive values in a range. For example, you might use a trackbar to
+allow the user to set the repeat rate of the keyboard by moving the slider to a
+given tick mark. The following illustration shows a typical trackbar.</p>
+<p><img border="0" src="trackb25.gif" width="228" height="48"></p>
+<p>The slider in a trackbar moves in increments that you specify when you create
+it. The values in this range are referred to as logical units. For example, if
+you specify that the trackbar should have logical units that range from zero to
+five, the slider can occupy only six positions: a position at the left side of
+the trackbar and one position for each increment in the range. Typically, each
+of these positions is identified by a tick mark.</p>
+<p>You create a trackbar by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+CreateWindowEx</MSHelp:link>
+ function, specifying the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TRACKBAR_CLASS">
+TRACKBAR_CLASS</MSHelp:link>
+ window class. After you have created a trackbar, you can use trackbar messages
+to set and retrieve many of its properties. Changes that you can make include
+setting the minimum and maximum positions for the slider, drawing tick marks,
+setting a selection range, and repositioning the slider.</p>
+<h3><a name="Trackbar_Messages"></a>Trackbar Messages</h3>
+<p>The logical units of a trackbar are the set of contiguous values that the
+trackbar can represent. They are usually defined by specifying the range of
+possible values with a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_SETRANGE_cpp">
+TBM_SETRANGE</MSHelp:link>
+ message when the trackbar is first created. Applications can dynamically alter
+the range by using the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_SETRANGEMAX_cpp">
+TBM_SETRANGEMAX</MSHelp:link>
+ and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_SETRANGEMIN_cpp">
+TBM_SETRANGEMIN</MSHelp:link>
+ messages. An application that allows the range to be changed dynamically
+retrieves the final range settings when the user has finished working with the
+trackbar. To retrieve these settings, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_GETRANGEMAX_cpp">
+TBM_GETRANGEMAX</MSHelp:link>
+ and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_GETRANGEMIN_cpp">
+TBM_GETRANGEMIN</MSHelp:link>
+ messages.</p>
+<p>An application can send messages to the trackbar to retrieve information
+about the window and to change its characteristics. To retrieve the position of
+the slider (that is, the value the user has chosen), use the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_GETPOS_cpp">
+TBM_GETPOS</MSHelp:link>
+ message. To set the position of the slider, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_SETPOS_cpp">
+TBM_SETPOS</MSHelp:link>
+ message.</p>
+<p>A trackbar automatically displays tick marks at its beginning and end, unless
+you specify the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TBS_NOTICKS">
+TBS_NOTICKS</MSHelp:link>
+ style. You can use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TBS_AUTOTICKS">
+TBS_AUTOTICKS</MSHelp:link>
+ style to automatically display additional tick marks at regular intervals along
+the trackbar. By default, a TBS_AUTOTICKS trackbar displays a tick mark at each
+increment of the trackbar's range. To specify a different interval for the
+automatic tick marks, send the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_SETTICFREQ_cpp">
+TBM_SETTICFREQ</MSHelp:link>
+ message to the trackbar. For example, you could use this message to display
+only 10 tick marks in a range of 1 through 100.</p>
+<p>To set the position of a single tick mark, send the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_SETTIC_cpp">
+TBM_SETTIC</MSHelp:link>
+ message. A trackbar maintains an array of DWORD values that stores the position
+of each tick mark. The array does not include the first and last tick marks that
+the trackbar creates automatically. You can specify an index in this array when
+you send the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_GETTIC_cpp">
+TBM_GETTIC</MSHelp:link>
+ message to retrieve the position of the corresponding tick mark. Alternatively,
+you can send the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_GETPTICS_cpp">
+TBM_GETPTICS</MSHelp:link>
+ message to retrieve a pointer to the array. The number of elements in the array
+is equal to two less than the tick count returned by the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_GETNUMTICS_cpp">
+TBM_GETNUMTICS</MSHelp:link>
+ message. This is because the count returned by <b>TBM_GETNUMTICS</b> includes
+the first and last tick marks that are not included in the array. To retrieve
+the physical position of a tick mark, in client coordinates of the trackbar's
+window, send the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_GETTICPOS_cpp">
+TBM_GETTICPOS</MSHelp:link>
+ message. The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_CLEARTICS_cpp">
+TBM_CLEARTICS</MSHelp:link>
+ message removes all but the first and last of a trackbar's tick marks.</p>
+<p>A trackbar's line size determines how far the slider moves in response to
+keyboard input from the arrow keys, such as the RIGHT ARROW or DOWN ARROW key.
+To retrieve or set the line size, send the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_GETLINESIZE_cpp">
+TBM_GETLINESIZE</MSHelp:link>
+ and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_SETLINESIZE_cpp">
+TBM_SETLINESIZE</MSHelp:link>
+ messages. The trackbar also sends the <b>TB_LINEUP</b> and <b>TB_LINEDOWN</b>
+notification messages to its parent window when the user presses the arrow keys.</p>
+<p>A trackbar's page size determines how far the slider moves in response to
+keyboard input, such as the PAGE UP or PAGE DOWN key, or mouse input, such as
+clicks in the trackbar channel. To retrieve or set the page size, send the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_GETPAGESIZE_cpp">
+TBM_GETPAGESIZE</MSHelp:link>
+ and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_SETPAGESIZE_cpp">
+TBM_SETPAGESIZE</MSHelp:link>
+ messages. The trackbar also sends the <b>TB_PAGEUP</b> and <b>TB_PAGEDOWN</b>
+notification messages to its parent window when it receives keyboard or mouse
+input that scrolls the page. For more information, see <a href="#tkb_notifications" target="_self">Trackbar
+Notification Messages</a>.</p>
+<p>An application can send messages to retrieve the dimensions of a trackbar.
+The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_GETTHUMBRECT_cpp">
+TBM_GETTHUMBRECT</MSHelp:link>
+ message retrieves the bounding rectangle for the slider. The <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_GETTHUMBLENGTH_cpp">
+TBM_GETTHUMBLENGTH</MSHelp:link>
+ message retrieves the length of the slider. The <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_GETCHANNELRECT_cpp">
+TBM_GETCHANNELRECT</MSHelp:link>
+ message retrieves the bounding rectangle for the trackbar's channel, which is
+the area over which the slider moves. It contains the highlight when a range is
+selected. If a trackbar has the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TBS_FIXEDLENGTH">
+TBS_FIXEDLENGTH</MSHelp:link>
+ style, you can send the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_SETTHUMBLENGTH_cpp">
+TBM_SETTHUMBLENGTH</MSHelp:link>
+ message to change the length of the slider.</p>
+<p>If you create a trackbar with the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TBS_ENABLESELRANGE">
+TBS_ENABLESELRANGE</MSHelp:link>
+ style, you can specify a &quot;selection range,&quot; which restricts the user
+to a specified portion of the total range. The logical units do not change, but
+only a subset of them are available for use. The trackbar highlights the
+available range and displays triangular tick marks at the start and end.
+Typically, an application handles the trackbar's notification messages and sets
+the trackbar's selection range according to the user's input.</p>
+<p>You retrieve or set the selection range by sending messages to the trackbar.
+Use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_SETSEL_cpp">
+TBM_SETSEL</MSHelp:link>
+ message to set the starting and ending positions of a selection. To set just
+the starting position or just the ending position of a selection, send a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_SETSELSTART_cpp">
+TBM_SETSELSTART</MSHelp:link>
+ or <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_SETSELEND_cpp">
+TBM_SETSELEND</MSHelp:link>
+ message. To retrieve the starting or ending positions of a selection range,
+send a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_GETSELSTART_cpp">
+TBM_GETSELSTART</MSHelp:link>
+ or <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_GETSELEND_cpp">
+TBM_GETSELEND</MSHelp:link>
+ message. To clear a selection range and restore the trackbar to its original
+range, send the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_CLEARSEL_cpp">
+TBM_CLEARSEL</MSHelp:link>
+ message.</p>
+<h3><a name="tkb_notifications"></a>Trackbar Notification Messages</h3>
+<p>A trackbar notifies its parent window of user actions by sending the parent a
+<MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_HSCROLL_cpp">
+WM_HSCROLL</MSHelp:link>
+ or <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_VSCROLL_cpp">
+WM_VSCROLL</MSHelp:link>
+ message. A trackbar with the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TBS_HORZ">
+TBS_HORZ</MSHelp:link>
+ style sends <b>WM_HSCROLL</b> messages. A trackbar with the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TBS_VERT">
+TBS_VERT</MSHelp:link>
+ style sends <b>WM_VSCROLL</b> messages. The low-order word of the <i>wParam</i>
+parameter of <b>WM_HSCROLL</b> or <b>WM_VSCROLL</b> contains the notification
+code. For the <b>TB_THUMBPOSITION</b> and <b>TB_THUMBTRACK</b> notifications,
+the high-order word of the <i>wParam</i> parameter specifies the position of the
+slider. For all other notifications, the high-order word is zero; send the <b>TBM_GETPOS</b>
+message to determine the slider position. The <i>lParam</i> parameter is the
+handle to the trackbar.</p>
+<p>The system sends the <b>TB_BOTTOM</b>, <b>TB_LINEDOWN</b>, <b>TB_LINEUP</b>,
+and <b>TB_TOP</b> notification messages only when the user interacts with a
+trackbar by using the keyboard. The <b>TB_THUMBPOSITION</b> and <b>TB_THUMBTRACK</b>
+notification messages are only sent when the user is using the mouse. The <b>TB_ENDTRACK</b>,
+<b>TB_PAGEDOWN</b>, and <b>TB_PAGEUP</b> notification messages are sent in both
+cases. The following table lists the trackbar notification messages and the
+events (virtual key codes or mouse events) that cause the notifications to be
+sent.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Notification message</th>
+      <th>Reason sent</th>
+    </tr>
+    <tr>
+      <td>TB_BOTTOM</td>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_virtual_key_codes">
+        VK_END</MSHelp:link>
+      </td>
+    </tr>
+    <tr>
+      <td>TB_ENDTRACK</td>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_keyup">
+        WM_KEYUP</MSHelp:link>
+        (the user released a key that sent a relevant virtual key code)</td>
+    </tr>
+    <tr>
+      <td>TB_LINEDOWN</td>
+      <td><b>VK_RIGHT</b> or <b>VK_DOWN</b></td>
+    </tr>
+    <tr>
+      <td>TB_LINEUP</td>
+      <td><b>VK_LEFT</b> or <b>VK_UP</b></td>
+    </tr>
+    <tr>
+      <td>TB_PAGEDOWN</td>
+      <td><b>VK_NEXT</b> (the user clicked the channel below or to the right of
+        the slider)</td>
+    </tr>
+    <tr>
+      <td>TB_PAGEUP</td>
+      <td><b>VK_PRIOR</b> (the user clicked the channel above or to the left of
+        the slider)</td>
+    </tr>
+    <tr>
+      <td>TB_THUMBPOSITION</td>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttonup">
+        WM_LBUTTONUP</MSHelp:link>
+        following a TB_THUMBTRACK notification message</td>
+    </tr>
+    <tr>
+      <td>TB_THUMBTRACK</td>
+      <td>Slider movement (the user dragged the slider)</td>
+    </tr>
+    <tr>
+      <td>TB_TOP</td>
+      <td><b>VK_HOME</b></td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="Default_Trackbar_Mes"></a>Default Trackbar Message Processing</h3>
+<p>This section describes the window message processing performed by a trackbar.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Message</th>
+      <th>Processing performed</th>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_capturechanged">
+        WM_CAPTURECHANGED</MSHelp:link>
+      </td>
+      <td>Kills the timer if one was set during <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttondown">
+        WM_LBUTTONDOWN</MSHelp:link>
+        processing and sends the <b>TB_THUMBPOSITION</b> notification message,
+        if necessary. It always sends the <b>TB_ENDTRACK</b> notification
+        message.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_create">
+        WM_CREATE</MSHelp:link>
+      </td>
+      <td>Performs additional initialization, such as setting the line size,
+        page size, and tick mark frequency to default values.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_destroy">
+        WM_DESTROY</MSHelp:link>
+      </td>
+      <td>Frees resources.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_enable">
+        WM_ENABLE</MSHelp:link>
+      </td>
+      <td>Repaints the trackbar window.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_erasebkgnd">
+        WM_ERASEBKGND</MSHelp:link>
+      </td>
+      <td>Erases the window background, using the current background color for
+        the trackbar.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_getdlgcode">
+        WM_GETDLGCODE</MSHelp:link>
+      </td>
+      <td>Returns the DLGC_WANTARROWS value.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_keydown">
+        WM_KEYDOWN</MSHelp:link>
+      </td>
+      <td>Processes the direction keys and sends the <b>TB_TOP</b>, <b>TB_BOTTOM</b>,
+        <b>TB_PAGEUP</b>, <b>TB_PAGEDOWN</b>, <b>TB_LINEUP</b>, and <b>TB_LINEDOWN</b>
+        notification messages, as appropriate.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_keyup">
+        WM_KEYUP</MSHelp:link>
+      </td>
+      <td>Sends the <b>TB_ENDTRACK</b> notification message if the key was one
+        of the direction keys.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_killfocus">
+        WM_KILLFOCUS</MSHelp:link>
+      </td>
+      <td>Repaints the trackbar window.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttondown">
+        WM_LBUTTONDOWN</MSHelp:link>
+      </td>
+      <td>Sets the focus and the mouse capture to the trackbar. When necessary,
+        it sets a timer that determines how quickly the slider moves toward the
+        mouse cursor when the user holds down the mouse button in the window.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttonup">
+        WM_LBUTTONUP</MSHelp:link>
+      </td>
+      <td>Releases the mouse capture and kills the timer if one was set during <b>WM_LBUTTONDOWN</b>
+        processing. It sends the <b>TB_THUMBPOSITION</b> notification message,
+        if necessary. It always sends the <b>TB_ENDTRACK</b> notification
+        message.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_mousemove">
+        WM_MOUSEMOVE</MSHelp:link>
+      </td>
+      <td>Moves the slider and sends the <b>TB_THUMBTRACK</b> notification
+        message when tracking the mouse (see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_timer">
+        WM_TIMER</MSHelp:link>
+        ).</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_paint">
+        WM_PAINT</MSHelp:link>
+      </td>
+      <td>Paints the trackbar. If the wParam parameter is non-NULL, the control
+        assumes that the value is an HDC and paints using that device context.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_setfocus">
+        WM_SETFOCUS</MSHelp:link>
+      </td>
+      <td>Repaints the trackbar window.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_size">
+        WM_SIZE</MSHelp:link>
+      </td>
+      <td>Sets the dimensions of the trackbar, removing the slider if there is
+        not enough room to display it.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_timer">
+        WM_TIMER</MSHelp:link>
+      </td>
+      <td>Retrieves the mouse position and updates the position of the slider.
+        (It is received only when the user is dragging the slider.)</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_wininichange">
+        WM_WININICHANGE</MSHelp:link>
+      </td>
+      <td>Initializes slider dimensions.</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="Creating_a_Trackbar"></a>Creating a Trackbar</h3>
+<p>The following example shows how to create a trackbar with the TBS_AUTOTICKS
+and TBS_ENABLESELRANGE styles. When the trackbar is created, both its range and
+its selection range are initialized. The page size is also set at this time.</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green"> CreateTrackbar - creates and initializes a trackbar. </font>
+<font color="blue">//</font><font color="green"> </font>
+<font color="blue">//</font><font color="green"> Global variable </font>
+<font color="blue">//</font><font color="green">     g_hinst - instance handle </font>
+HWND WINAPI CreateTrackbar( 
+    HWND hwndDlg,  <font color="blue">//</font><font color="green"> handle of dialog box (parent window) </font>
+    UINT iMin,     <font color="blue">//</font><font color="green"> minimum value in trackbar range </font>
+    UINT iMax,     <font color="blue">//</font><font color="green"> maximum value in trackbar range </font>
+    UINT iSelMin,  <font color="blue">//</font><font color="green"> minimum value in trackbar selection </font>
+    UINT iSelMax)  <font color="blue">//</font><font color="green"> maximum value in trackbar selection </font>
+{ 
+
+    InitCommonControls(); <font color="blue">//</font><font color="green"> loads common control's DLL </font>
+
+    hwndTrack = CreateWindowEx( 
+        0,                             <font color="blue">//</font><font color="green"> no extended styles </font>
+        TRACKBAR_CLASS,                <font color="blue">//</font><font color="green"> class name </font>
+        &quot;Trackbar Control&quot;,            <font color="blue">//</font><font color="green"> title (caption) </font>
+        WS_CHILD | WS_VISIBLE | 
+        TBS_AUTOTICKS | TBS_ENABLESELRANGE,  <font color="blue">//</font><font color="green"> style </font>
+        10, 10,                        <font color="blue">//</font><font color="green"> position </font>
+        200, 30,                       <font color="blue">//</font><font color="green"> size </font>
+        hwndDlg,                       <font color="blue">//</font><font color="green"> parent window </font>
+        ID_TRACKBAR,             <font color="blue">//</font><font color="green"> control identifier </font>
+        g_hinst,                       <font color="blue">//</font><font color="green"> instance </font>
+        NULL                           <font color="blue">//</font><font color="green"> no WM_CREATE parameter </font>
+        ); 
+
+    SendMessage(hwndTrack, TBM_SETRANGE, 
+        (WPARAM) TRUE,                   <font color="blue">//</font><font color="green"> redraw flag </font>
+        (LPARAM) MAKELONG(iMin, iMax));  <font color="blue">//</font><font color="green"> min. &amp; max. positions </font>
+    SendMessage(hwndTrack, TBM_SETPAGESIZE, 
+        0, (LPARAM) 4);                  <font color="blue">//</font><font color="green"> new page size </font>
+
+    SendMessage(hwndTrack, TBM_SETSEL, 
+        (WPARAM) FALSE,                  <font color="blue">//</font><font color="green"> redraw flag </font>
+        (LPARAM) MAKELONG(iSelMin, iSelMax); 
+    SendMessage(hwndTrack, TBM_SETPOS, 
+        (WPARAM) TRUE,                   <font color="blue">//</font><font color="green"> redraw flag </font>
+        (LPARAM) iSelMin); 
+
+    SetFocus(hwndTrack); 
+
+    return hwndTrack; 
+} </pre>
+<h3><a name="Processing_Trackbar_"></a>Processing Trackbar Notification Messages</h3>
+<p>The following example is a function that is called whenever a <b>WM_HSCROLL</b>
+message is received by the dialog box containing the trackbar. The trackbar has
+the TBS_ENABLESELRANGE style. The position of the slider is compared against the
+selection range, and the slider is moved to the starting or ending position of
+the selection range, when necessary.</p>
+<p>A dialog containing a trackbar with the TBS_VERT style could use this
+function when it receives a <b>WM_VSCROLL</b> message.</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green"> TBNotifications - handles trackbar notifications received </font>
+<font color="blue">//</font><font color="green"> in the wParam parameter of WM_HSCROLL. This function simply </font>
+<font color="blue">//</font><font color="green"> ensures that the slider remains within the selection range. </font>
+
+VOID WINAPI TBNotifications( 
+    WPARAM wParam,  <font color="blue">//</font><font color="green"> wParam of WM_HSCROLL message </font>
+    HWND hwndTrack, <font color="blue">//</font><font color="green"> handle of trackbar window </font>
+    UINT iSelMin,   <font color="blue">//</font><font color="green"> minimum value of trackbar selection </font>
+    UINT iSelMax)   <font color="blue">//</font><font color="green"> maximum value of trackbar selection </font>
+    { 
+    DWORD dwPos;    <font color="blue">//</font><font color="green"> current position of slider </font>
+
+    switch (LOWORD(wParam)) { 
+        case TB_ENDTRACK: 
+            dwPos = SendMessage(hwndTrack, TBM_GETPOS, 0, 0); 
+            if (dwPos &gt; iSelMax) 
+                SendMessage(hwndTrack, TBM_SETPOS, 
+                    (WPARAM) TRUE,       <font color="blue">//</font><font color="green"> redraw flag </font>
+                    (LPARAM) iSelMax); 
+            else if (dwPos &lt; iSelMin) 
+                SendMessage(hwndTrack, TBM_SETPOS, 
+                    (WPARAM) TRUE,       <font color="blue">//</font><font color="green"> redraw flag </font>
+                    (LPARAM) iSelMin); 
+            break; 
+
+        default: 
+            break; 
+
+        } 
+} </pre>
+<h3><a name="tkb_updates"></a>Trackbar Control Updates in Internet Explorer</h3>
+<p>Trackbar controls in Microsoft® Internet Explorer support the following new
+features.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <td>Buddy Windows</td>
+      <td>Trackbar controls now provide support for up to two buddy windows.
+        Trackbar buddy windows are automatically positioned by the control to
+        appear centered at the ends of the trackbar control. To assign an
+        existing window to a trackbar, use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_SETBUDDY_cpp">
+        TBM_SETBUDDY</MSHelp:link>
+        message. To retrieve the handle to a given buddy window, send the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_GETBUDDY_cpp">
+        TBM_GETBUDDY</MSHelp:link>
+        message.</td>
+    </tr>
+    <tr>
+      <td>ToolTips</td>
+      <td>Trackbar controls now support ToolTips. A trackbar creates a default
+        ToolTip control when created with the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TBS_TOOLTIPS">
+        TBS_TOOLTIPS</MSHelp:link>
+        style. However, you can assign a new ToolTip control to a trackbar by
+        sending the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_SETTOOLTIPS_cpp">
+        TBM_SETTOOLTIPS</MSHelp:link>
+        message. To retrieve the handle to an assigned ToolTip control, use the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBM_GETTOOLTIPS_cpp">
+        TBM_GETTOOLTIPS</MSHelp:link>
+        message.</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+
+</html>

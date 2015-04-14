@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Libraries%2fSearch">Libraries/Search</a>,
+Previous:<a rel="previous" accesskey="p" href="Implicit-Search.html#Implicit%2fSearch">Implicit/Search</a>,
+Up:<a rel="up" accesskey="u" href="Directory-Search.html#Directory%20Search">Directory Search</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">Directory Search for Link Libraries</h4>
+
+   <p>Directory search applies in a special way to libraries used with the
+linker.  This special feature comes into play when you write a prerequisite
+whose name is of the form <code>-l</code><var>name</var><code></code>.  (You can tell something
+strange is going on here because the prerequisite is normally the name of a
+file, and the <em>file name</em> of a library generally looks like
+<code>lib</code><var>name</var><code>.a</code>, not like <code>-l</code><var>name</var><code></code>.)
+
+   <p>When a prerequisite's name has the form <code>-l</code><var>name</var><code></code>, <code>make</code>
+handles it specially by searching for the file <code>lib</code><var>name</var><code>.so</code> in
+the current directory, in directories specified by matching <code>vpath</code>
+search paths and the <code>VPATH</code> search path, and then in the
+directories <code>/lib</code>, <code>/usr/lib</code>, and <code></code><var>prefix</var><code>/lib</code>
+(normally <code>/usr/local/lib</code>, but MS-DOS/MS-Windows versions of
+<code>make</code> behave as if <var>prefix</var> is defined to be the root of the
+DJGPP installation tree).
+
+   <p>If that file is not found, then the file <code>lib</code><var>name</var><code>.a</code> is
+searched for, in the same directories as above.
+
+   <p>For example, if there is a <code>/usr/lib/libcurses.a</code> library on your
+system (and no <code>/usr/lib/libcurses.so</code> file), then
+
+<pre class="example">     foo : foo.c -lcurses
+             cc $^ -o $@
+     </pre>
+
+<p>would cause the command <code>cc foo.c /usr/lib/libcurses.a -o foo</code> to
+be executed when <code>foo</code> is older than <code>foo.c</code> or than
+<code>/usr/lib/libcurses.a</code>.
+
+   <p>Although the default set of files to be searched for is
+<code>lib</code><var>name</var><code>.so</code> and <code>lib</code><var>name</var><code>.a</code>, this is customizable
+via the <code>.LIBPATTERNS</code> variable.  Each word in the value of this
+variable is a pattern string.  When a prerequisite like
+<code>-l</code><var>name</var><code></code> is seen, <code>make</code> will replace the percent in
+each pattern in the list with <var>name</var> and perform the above directory
+searches using that library filename.  If no library is found, the next
+word in the list will be used.
+
+   <p>The default value for <code>.LIBPATTERNS</code> is "<code>lib%.so lib%.a</code>",
+which provides the default behavior described above.
+
+   <p>You can turn off link library expansion completely by setting this
+variable to an empty value.
+
+   </body></html>
+

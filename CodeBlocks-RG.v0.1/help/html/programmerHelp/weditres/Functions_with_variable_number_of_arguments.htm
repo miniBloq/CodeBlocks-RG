@@ -1,0 +1,87 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="content">
+<meta name="ProgId" content="Document">
+<title>Functions with variable number of arguments</title>
+</head>
+
+<body>
+
+<font FACE="Arial">
+</font>
+<font FACE="Arial"><font FACE="Arial" COLOR="#800000"></font><font FACE="Arial">
+<b>
+<h3>Functions with variable number of arguments</h3>
+</b>
+<blockquote>
+  <p ALIGN="left">To access the unnamed, extra arguments you should include the
+  &lt;stdarg.h&gt; include file. To access the additional arguments, you should
+  execute the
+</font>
+</font>
+<font face="Courier New" size="2">va_start,</font>
+<font FACE="Arial"> then, for each argument,
+  you should execute a
+</font>
+<font face="Courier New" size="2"> va_arg</font><font FACE="Arial">. Note that if you
+  have executed the macro
+</font>
+<font face="Courier New" size="2">va_start,</font>
+<font FACE="Arial"> you should
+  always execute the
+</font>
+<font face="Courier New" size="2">va_end</font>
+<font FACE="Arial"> macro before the
+  function exits. Here is an example that will add any number of integers passed
+  to it. The first integer passed is the number of integers that follow.</p>
+  <blockquote>
+    <p ALIGN="JUSTIFY">&nbsp;</p>
+</font>
+<p ALIGN="JUSTIFY"><font face="Courier New" size="2">#include &lt;stdarg.h&gt;</font></p>
+<p ALIGN="JUSTIFY"><font face="Courier New" size="2">int va_add(int numberOfArgs,
+...)</font></p>
+<p ALIGN="JUSTIFY"><font face="Courier New" size="2">{</font></p>
+<blockquote>
+  <blockquote>
+    <p ALIGN="JUSTIFY"><font face="Courier New" size="2">va_list ap;</font></p>
+    <p ALIGN="JUSTIFY"><font face="Courier New" size="2">int n = numberOfArgs;</font></p>
+    <p ALIGN="JUSTIFY"><font face="Courier New" size="2">int sum = 0;</font></p>
+    <p ALIGN="JUSTIFY"><font face="Courier New" size="2">va_start(ap,numberOfArgs);</font></p>
+    <p ALIGN="JUSTIFY"><font face="Courier New" size="2">while (n--) {</font></p>
+    <blockquote>
+      <blockquote>
+        <p ALIGN="JUSTIFY"><font face="Courier New" size="2">sum += va_arg(ap,int);</font></p>
+      </blockquote>
+    </blockquote>
+    <p ALIGN="JUSTIFY"><font face="Courier New" size="2">}</font></p>
+    <p ALIGN="JUSTIFY"><font face="Courier New" size="2">va_end(ap);</font></p>
+    <p ALIGN="JUSTIFY"><font face="Courier New" size="2">return sum;</font></p>
+  </blockquote>
+</blockquote>
+<p ALIGN="JUSTIFY"><font face="Courier New" size="2">}</font></p>
+<font FACE="Arial">
+<p ALIGN="JUSTIFY">We would call this function with</p>
+</font>
+
+<blockquote>
+  <blockquote>
+    <p ALIGN="JUSTIFY"><font face="Courier New" size="2">va_add(3,987,876,567);</font></p>
+  </blockquote>
+</blockquote>
+<font FACE="Arial">
+<p ALIGN="JUSTIFY">or</p>
+</font>
+
+<blockquote>
+  <blockquote>
+    <p ALIGN="JUSTIFY"><font face="Courier New" size="2">va_add(2,456,789);</font></p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+</blockquote>
+
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+<?xml version="1.0" ?>
+<!-- $Id: test.bkl 59820 2009-03-24 23:13:02Z FM $ -->
+
+<makefile>
+    <!--
+        The use of PCH is disabled for samples by default but we do want to use
+        them for the test as this dramatically speeds up its compilation.
+     -->
+    <set var="WX_ENABLE_PRECOMP_HEADERS">1</set>
+
+    <include file="../build/bakefiles/common_samples.bkl"/>
+
+    <template id="wx_test">
+        <cppflags>$(CPPUNIT_CFLAGS)</cppflags>
+        <ldflags>$(CPPUNIT_LIBS)</ldflags>
+
+        <if cond="WX_DISABLE_PRECOMP_HEADERS=='0'">
+            <if cond="FORMAT!='autoconf' and TOOLKIT=='MSW'">
+                <sources>dummy.cpp</sources>
+                <precomp-headers-gen>dummy.cpp</precomp-headers-gen>
+            </if>
+            <precomp-headers-header>testprec.h</precomp-headers-header>
+            <precomp-headers>on</precomp-headers>
+            <precomp-headers-file>testprec_$(id)</precomp-headers-file>
+        </if>
+    </template>
+
+    <exe id="test" template="wx_sample_console,wx_test"
+                   template_append="wx_append_base">
+        <sources>
+            test.cpp
+            archive/archivetest.cpp
+            archive/ziptest.cpp
+            archive/tartest.cpp
+            arrays/arrays.cpp
+            base64/base64.cpp
+            cmdline/cmdlinetest.cpp
+            config/fileconf.cpp
+            datetime/datetimetest.cpp
+            events/evthandler.cpp
+            events/timertest.cpp
+            exec/exec.cpp
+            filekind/filekind.cpp
+            filename/filenametest.cpp
+            filesys/filesystest.cpp
+            fontmap/fontmaptest.cpp
+            formatconverter/formatconvertertest.cpp
+            hashes/hashes.cpp
+            intl/intltest.cpp
+            lists/lists.cpp
+            longlong/longlongtest.cpp
+            mbconv/convautotest.cpp
+            mbconv/mbconvtest.cpp
+            misc/misctests.cpp
+            net/ipc.cpp
+            net/socket.cpp
+            regex/regextest.cpp
+            regex/wxregextest.cpp
+            scopeguard/scopeguardtest.cpp
+            strings/iostream.cpp
+            strings/strings.cpp
+            strings/stdstrings.cpp
+            strings/tokenizer.cpp
+            strings/unichar.cpp
+            strings/unicode.cpp
+            strings/vararg.cpp
+            strings/crt.cpp
+            strings/vsnprintf.cpp
+            streams/bstream.cpp
+            streams/datastreamtest.cpp
+            streams/ffilestream.cpp
+            streams/fileback.cpp
+            streams/filestream.cpp
+            streams/iostreams.cpp
+            streams/largefile.cpp
+            streams/memstream.cpp
+            streams/socketstream.cpp
+            streams/sstream.cpp
+            streams/tempfile.cpp
+            streams/textstreamtest.cpp
+            streams/zlibstream.cpp
+            textfile/textfiletest.cpp
+            thread/atomic.cpp
+            thread/queue.cpp
+            thread/tls.cpp
+            uris/uris.cpp
+            vectors/vectors.cpp
+            weakref/evtconnection.cpp
+            weakref/weakref.cpp
+            xlocale/xlocale.cpp
+            xml/xmltest.cpp
+        </sources>
+        <wx-lib>net</wx-lib>
+        <wx-lib>base</wx-lib>
+        <wx-lib>xml</wx-lib>
+    </exe>
+
+
+    <exe id="test_gui" template="wx_sample,wx_test"
+                       template_append="wx_append"
+         cond="USE_GUI=='1'">
+
+        <!-- link against GUI libraries, but be a console app: -->
+        <app-type>console</app-type>
+
+        <sources>
+            test.cpp
+            geometry/rect.cpp
+            geometry/size.cpp
+            geometry/point.cpp
+            config/config.cpp
+            controls/comboboxtest.cpp
+            controls/headerctrltest.cpp
+            controls/listctrltest.cpp
+            controls/textctrltest.cpp
+            controls/textentrytest.cpp
+            controls/treectrltest.cpp
+            events/clone.cpp
+            events/propagation.cpp
+            font/fonttest.cpp
+            image/rawbmp.cpp
+            html/htmlwindow.cpp
+            misc/guifuncs.cpp
+            misc/selstoretest.cpp
+            misc/garbage.cpp
+            misc/settings.cpp
+            <!--
+                This one is intentionally duplicated here (it is also part of
+                non-GUI test) as sockets behave differently in console and GUI
+                applications.
+             -->
+            net/socket.cpp
+            window/clientsize.cpp
+            window/setsize.cpp
+        </sources>
+        <wx-lib>media</wx-lib>
+        <wx-lib>xrc</wx-lib>
+        <wx-lib>xml</wx-lib>
+        <wx-lib>adv</wx-lib>
+        <wx-lib>html</wx-lib>
+        <wx-lib>core</wx-lib>
+        <wx-lib>net</wx-lib>
+        <wx-lib>base</wx-lib>
+    </exe>
+
+
+    <wx-data id="data">
+        <files>testdata.fc</files>
+    </wx-data>
+
+    <template id="catalog">
+        <dstdir>$(BUILDDIR)/intl/$(id)</dstdir>
+        <srcdir>$(SRCDIR)/intl/$(id)</srcdir>
+        <files>internat.po internat.mo</files>
+    </template>
+
+    <wx-data id="fr" template="catalog"/>
+
+
+    <!-- BENCHMARKS -->
+
+    <exe id="printfbench" template="wx_sample_console,wx_test"
+                          template_append="wx_append_base">
+        <sources>
+            benchmarks/printfbench.cpp
+        </sources>
+        <wx-lib>base</wx-lib>
+    </exe>
+
+
+</makefile>

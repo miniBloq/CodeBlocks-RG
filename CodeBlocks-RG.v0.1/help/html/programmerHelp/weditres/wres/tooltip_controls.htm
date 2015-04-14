@@ -1,0 +1,876 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>About ToolTip Controls</title>
+</head>
+
+<body>
+
+<h2>About ToolTip Controls</h2>
+<hr SIZE="1">
+<p>ToolTips are hidden most of the time. They appear automatically, or pop up,
+when the user pauses the mouse pointer over a tool. The ToolTip appears near the
+pointer and disappears when the user clicks a mouse button or moves the pointer
+away from the tool.</p>
+<ul>
+  <li><a href="#Tooltip_Appearance" target="_self">ToolTip Behavior and
+    Appearance</a>
+  <li><a href="#Tooltip_Creation" target="_self">Creating ToolTip Controls</a>
+  <li><a href="#Activation" target="_self">Activating ToolTip Controls</a>
+  <li><a href="#Tooltip_Types" target="_self">Supporting Tools</a>
+  <li><a href="#Tool_Text" target="_self">Displaying Text</a>
+  <li><a href="#Relaying_Mouse_Messa" target="_self">Messaging and Notification</a>
+  <li><a href="#Tooltip_Hit_Testing" target="_self">Hit Testing</a>
+  <li><a href="#Default_Tooltip_Cont" target="_self">Default Message Processing</a></li>
+</ul>
+<h3><a name="Tooltip_Appearance"></a>ToolTip Behavior and Appearance</h3>
+<p>ToolTip controls can display a single line of text or multiple lines. Their
+corners can be rounded or square. They might or might not have a stem that
+points to the tools like a cartoon balloon. ToolTip text can be stationary or
+can move with the mouse pointer, called tracking. Stationary text can be
+displayed adjacent to a tool or it can be displayed over a tool, which is
+referred to as in-place. Standard ToolTips are stationary, display a single line
+of text, have square corners, and have no stem pointing to the tool.</p>
+<p>Tracking ToolTips, which are supported by <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Shell_Versions">
+version 4.70</MSHelp:link>
+ of the common controls, change position on the screen dynamically. By rapidly
+updating the position, these ToolTip controls appear to move smoothly, or
+&quot;track.&quot; These are useful when you want ToolTip text to follow the
+position of the mouse pointer as it moves. For more information about tracking
+ToolTips and an example with code that shows how you create them, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Using_Tooltip_Contro_cpp">
+Tracking ToolTips</MSHelp:link>
+.</p>
+<p>Multiline ToolTips, which are also supported by <b>version 4.70</b> of the
+common controls, display text on more than one line. These are useful for
+displaying lengthy messages. For more information and an example that shows how
+to create multiline ToolTips, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Using_Tooltip_Contro_cpp">
+Multiline ToolTips</MSHelp:link>
+.</p>
+<p>Balloon ToolTips are displayed in a cartoon-style &quot;balloon,&quot; with
+rounded corners and a stem pointing to the tool. They can be either single-line
+or multiline. The following illustration shows a multiline balloon ToolTip with
+the stem and rectangle in their default positions. For more information about
+balloon ToolTips and an example that shows how you create them, see <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Using_Tooltip_Contro_cpp">
+Balloon ToolTips</MSHelp:link>
+.</p>
+<p><img border="0" src="toolti18.gif" width="507" height="321"></p>
+<p>Sometimes text strings that are long enough to display useful information get
+clipped because they are too long to be displayed completely in a small window
+or frame. This diminishes the usefulness of the text strings. In-place ToolTips
+are used to display text strings for objects that have been clipped, such as the
+folder names shown on the right in the following graphic. For an example that
+shows how to create in-place ToolTips, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Using_Tooltip_Contro_cpp">
+In-Place ToolTips</MSHelp:link>
+.</p>
+<p><img border="0" src="toolti19.gif" width="325" height="122"></p>
+<p>The cursor must hover over a tool for a period of time before the ToolTip is
+displayed. The default duration of this timeout is controlled by the user's
+double click time and is typically about one-half second. To specify a
+non-default timeout value, send the ToolTip control a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_SETDELAYTIME_cpp">
+TTM_SETDELAYTIME</MSHelp:link>
+ message.</p>
+<h3><a name="Tooltip_Creation"></a>Creating ToolTip Controls</h3>
+<p>To create a ToolTip control, call <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+CreateWindowEx</MSHelp:link>
+ and specify the TOOLTIPS_CLASS window class. This class is registered when the
+common control dynamic-link library (DLL) is loaded. To ensure that this DLL is
+loaded, include the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_InitCommonControlsEx_cpp">
+InitCommonControlsEx</MSHelp:link>
+ function in your application. You must explicitly define a ToolTip control as
+topmost. Otherwise, it might be covered by the parent window. The following code
+fragment shows how to create a ToolTip control.</p>
+<pre class="clsCode" AUTOHILITE="1">HWND hwndTip = CreateWindowEx(NULL, TOOLTIPS_CLASS, NULL,
+                            WS_POPUP | TTS_NOPREFIX | TTS_ALWAYSTIP,
+                            CW_USEDEFAULT, CW_USEDEFAULT,
+                            CW_USEDEFAULT, CW_USEDEFAULT,
+                            hwndParent, NULL, hinstMyDll,
+                            NULL);
+
+SetWindowPos(hwndTip, HWND_TOPMOST,0, 0, 0, 0,
+             SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);</pre>
+<p>The window procedure for the ToolTip control automatically sets the size,
+position, and visibility of the control. The height of the ToolTip window is
+based on the height of the font currently selected into the device context for
+the ToolTip control. The width varies based on the length of the string
+currently in the ToolTip window.</p>
+<h3><a name="Activation"></a>Activating ToolTip Controls</h3>
+<p>A ToolTip control can be either active or inactive. When it is active, the
+ToolTip text appears when the mouse pointer is on a tool. When it is inactive,
+the ToolTip text does not appear, even if the pointer is on a tool. The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_ACTIVATE_cpp">
+TTM_ACTIVATE</MSHelp:link>
+ message activates and deactivates a ToolTip control.</p>
+<h3><a name="Tooltip_Types"></a>Supporting Tools</h3>
+<p>A ToolTip control can support any number of tools. To support a particular
+tool, you must register the tool with the ToolTip control by sending the control
+the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_ADDTOOL_cpp">
+TTM_ADDTOOL</MSHelp:link>
+ message. The message includes the address of a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TOOLINFO_cpp">
+TOOLINFO</MSHelp:link>
+ structure, which provides information the ToolTip control needs to display text
+for the tool. The <b>uID</b> member of the <b>TOOLINFO</b> structure is defined
+by the application. Each time you add a tool, your application provides a unique
+identifier. The <b>cbSize</b> member of the <b>TOOLINFO</b> structure is
+required, and must specify the size of the structure.</p>
+<p>A ToolTip control supports tools implemented as windows (such as child
+windows or control windows) and as rectangular areas within a window's client
+area. When you add a tool implemented as a rectangular area, the <b>hwnd</b>
+member of the <b>TOOLINFO</b> structure must specify the handle to the window
+that contains the area, and the <b>rect</b> member must specify the client
+coordinates of the area's bounding rectangle. In addition, the <b>uID</b> member
+must specify the application-defined identifier for the tool.</p>
+<p>When you add a tool implemented as a window, the <b>uID</b> member of the <b>TOOLINFO</b>
+structure must contain the window handle to the tool. Also, the <b>uFlags</b>
+member must specify the <span class="clsLiteral">TTF_IDISHWND</span> value,
+which tells the ToolTip control to interpret the <b>uID</b> member as a window
+handle.</p>
+<h3><a name="Tool_Text"></a>Displaying Text</h3>
+<p>When you add a tool to a ToolTip control, the <b>lpszText</b> member of the <b>TOOLINFO</b>
+structure must specify the address of the string to display for the tool. After
+you add a tool, you can change the text using the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_UPDATETIPTEXT_cpp">
+TTM_UPDATETIPTEXT</MSHelp:link>
+ message.</p>
+<p>If the high-order word of <b>lpszText</b> is zero, the low-order word must be
+the identifier of a string resource. When the ToolTip control needs the text,
+the system loads the specified string resource from the application instance
+identified by the <b>hinst</b> member of the <b>TOOLINFO</b> structure.</p>
+<p>If you specify the LPSTR_TEXTCALLBACK value in the <b>lpszText</b> member,
+the ToolTip control notifies the window specified in the <b>hwnd</b> member of
+the <b>TOOLINFO</b>structure whenever the ToolTip control needs to display text
+for the tool. The ToolTip control sends the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTN_GETDISPINFO_cpp">
+TTN_GETDISPINFO</MSHelp:link>
+ notification message to the window. The message includes the address of a <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NMTTDISPINFO_cpp">
+NMTTDISPINFO</MSHelp:link>
+ structure, which contains the window handle as well as the application-defined
+identifier for the tool. The window examines the structure to determine the tool
+for which text is needed, and it fills the appropriate structure members with
+information that the ToolTip control needs in order to display the string.</p>
+<div class="clsNote">
+  <b>Note</b>&nbsp;&nbsp; The maximum length for standard ToolTip text is 80
+  characters. For more information, see the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NMTTDISPINFO_cpp">
+  NMTTDISPINFO</MSHelp:link>
+  structure. Multiline ToolTip text can be longer.
+</div>
+<p>Many applications create toolbars containing tools that correspond to menu
+commands. For such tools, it is convenient for the ToolTip control to display
+the same text as the corresponding menu item. The system automatically strips
+the ampersand (&amp;) accelerator characters from all strings passed to a
+ToolTip control, unless the control has the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TTS_NOPREFIX">
+TTS_NOPREFIX</MSHelp:link>
+ style.</p>
+<p>To retrieve the text for a tool, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_GETTEXT_cpp">
+TTM_GETTEXT</MSHelp:link>
+ message.</p>
+<h3><a name="Relaying_Mouse_Messa"></a>Messaging and Notification</h3>
+<p>ToolTip text is normally displayed when the mouse pointer hovers over an
+area, typically the rectangle defined by a tool such as a button control.
+However, Microsoft® Windows® only sends mouse-related messages to the window
+that contains the pointer, not the ToolTip control itself. Mouse-related
+information must be relayed to the ToolTip control in order for it to display
+the ToolTip text at the appropriate time and place.</p>
+<p>You can have messages relayed automatically if:</p>
+<ul>
+  <li>The tool is a control or is defined as a rectangle in the tool's <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TOOLINFO_cpp">
+    TOOLINFO</MSHelp:link>
+    structure.
+  <li>The window associated with the tool is in the same thread as the ToolTip
+    control.</li>
+</ul>
+<p>If these two conditions are met, set the <span class="clsLiteral">TTF_SUBCLASS</span>
+flag in the <b>uFlags</b> member of the tool's <b>TOOLINFO</b> structure when
+you add the tool to the ToolTip control with <b>TTM_ADDTOOL</b>. The necessary
+mouse messages then will be relayed automatically to the ToolTip control.</p>
+<p>Setting <span class="clsLiteral">TTF_SUBCLASS</span> to have mouse messages
+relayed to the control is sufficient for most purposes.However, it will not work
+in cases where there is no direct connection between the ToolTip control and the
+tool's window. For example, if a tool is implemented as a rectangular area in an
+application-defined window, the window procedure receives the mouse messages.
+Setting <span class="clsLiteral">TTF_SUBCLASS</span> is sufficient to ensure
+that they are passed to the control. However, if a tool is implemented as a
+system-defined window, mouse messages are sent to that window and are not
+directly available to the application. In this case, you must either subclass
+the window or use a message hook to access the mouse messages. You must then
+explicitly relay mouse messages to the ToolTip control with <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_RELAYEVENT_cpp">
+TTM_RELAYEVENT</MSHelp:link>
+. For an example of how to use <b>TTM_RELAYEVENT</b>, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Using_Tooltip_Contro_cpp">
+Tracking ToolTips</MSHelp:link>
+.</p>
+<p>When a ToolTip control receives a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_mousemove">
+WM_MOUSEMOVE</MSHelp:link>
+ message, it determines whether the mouse pointer is in the bounding rectangle
+of a tool. If it is, the ToolTip control sets a timer. At the end of the
+time-out interval, the ToolTip control checks the position of the pointer to see
+if it has moved. If it hasn't, the ToolTip control retrieves the text for the
+tool and displays the ToolTip. The ToolTip control continues to show the window
+until it receives a relayed button-up or button-down message or until a <b>WM_MOUSEMOVE</b>
+message indicates that the pointer has moved outside the bounding rectangle of
+the tool.</p>
+<p>A ToolTip control actually has three time-out durations associated with it.
+The initial duration is the length of time that the mouse pointer must remain
+stationary within the bounding rectangle of a tool before the ToolTip window is
+displayed. The reshow duration is the length of the delay before subsequent
+ToolTip windows are displayed when the pointer moves from one tool to another.
+The pop-up duration is the length of time that the ToolTip window remains
+displayed before it is hidden. That is, if the pointer remains stationary within
+the bounding rectangle afterthe ToolTip window is displayed, the ToolTip window
+is automatically hidden at the end of the pop-up duration. You can adjust all of
+the time-out durations by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_SETDELAYTIME_cpp">
+TTM_SETDELAYTIME</MSHelp:link>
+ message.</p>
+<p>If an application includes a tool implemented as a rectangular area and the
+size or position of the control changes, the application can use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_NEWTOOLRECT_cpp">
+TTM_NEWTOOLRECT</MSHelp:link>
+ message to report the change to the ToolTip control. An application does not
+need to report size and position changes for a tool implemented as a window
+because the ToolTip control uses the tool's window handle to determine if the
+mouse pointer is on the tool, not the tool's bounding rectangle.</p>
+<p>When a ToolTip is about to be displayed, the ToolTip control sends the owner
+window a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTN_SHOW_cpp">
+TTN_SHOW</MSHelp:link>
+ notification message. The owner window receives a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTN_POP_cpp">
+TTN_POP</MSHelp:link>
+ notification when a ToolTip is about to be hidden. Each notification is sent in
+the context of a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_NOTIFY_cpp">
+WM_NOTIFY</MSHelp:link>
+ message.</p>
+<h3><a name="Tooltip_Hit_Testing"></a>Hit Testing</h3>
+<p>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_HITTEST_cpp">
+TTM_HITTEST</MSHelp:link>
+ message allows you to retrieve information that a ToolTip control maintains
+about the tool occupying a particular point. The message includes a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTHITTESTINFO_cpp">
+TTHITTESTINFO</MSHelp:link>
+ structure that contains a window handle, the coordinates of a point, and the
+address of a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TOOLINFO_cpp">
+TOOLINFO</MSHelp:link>
+ structure. The ToolTip control determines whether a tool occupies the point
+and, if it does, fills <b>TOOLINFO</b> with information about the tool.</p>
+<h3><a name="Default_Tooltip_Cont"></a>Default Message Processing</h3>
+<p>The following table describes the messages handled by the window procedure
+for the ToolTip control.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Message</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_create">
+        WM_CREATE</MSHelp:link>
+      </td>
+      <td>Ensures that the ToolTip control has the <b>WS_EX_TOOLWINDOW</b> and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Window_Styles">
+        WS_POPUP</MSHelp:link>
+        window styles. It also allocates memory and initializes internal
+        variables.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_destroy">
+        WM_DESTROY</MSHelp:link>
+      </td>
+      <td>Frees resources allocated for the ToolTip control.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_getfont">
+        WM_GETFONT</MSHelp:link>
+      </td>
+      <td>Returns the handle of the font that the ToolTip control will use to
+        draw text.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_mousemove">
+        WM_MOUSEMOVE</MSHelp:link>
+      </td>
+      <td>Hides the ToolTip window.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_paint">
+        WM_PAINT</MSHelp:link>
+      </td>
+      <td>Draws the ToolTip window.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_setfont">
+        WM_SETFONT</MSHelp:link>
+      </td>
+      <td>Sets the handle of the font that the ToolTip control will use to draw
+        text.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_timer">
+        WM_TIMER</MSHelp:link>
+      </td>
+      <td>Hides the ToolTip window if the tool has changed position or if the
+        mouse pointer has moved outside the tool. Otherwise, it shows the
+        ToolTip window.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_wininichange">
+        WM_WININICHANGE</MSHelp:link>
+      </td>
+      <td>Resets internal variables that are based on system metrics.</td>
+    </tr>
+  </tbody>
+</table>
+<div class="clsDocBody">
+  <h3>Using ToolTip Controls</h3>
+  <hr SIZE="1">
+  <p>This section contains examples that demonstrate how to create different
+  types of ToolTips.</p>
+  <ul>
+    <li><a href="#tooltip_sample_rect" target="_self">ToolTips for Rectangular
+      Areas</a>
+    <li><a href="#tooltip_sample_tracking" target="_self">Tracking ToolTips</a>
+    <li><a href="#tooltip_sample_multiline" target="_self">Multiline ToolTips</a>
+    <li><a href="#tooltip_sample_balloon" target="_self">Balloon ToolTips</a>
+    <li><a href="#tooltip_sample_inplace" target="_self">In-Place ToolTips</a></li>
+  </ul>
+  <h3><a name="tooltip_sample_rect"></a>ToolTips for Rectangular Areas</h3>
+  <p>The following example demonstrates how to create a standard ToolTip control
+  and add a tool to it. The example creates a rectangular area, which consists
+  of a window's entire client area, and then uses the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_ADDTOOL_cpp">
+  TTM_ADDTOOL</MSHelp:link>
+  message to add a ToolTip control to the rectangular area. The <span class="clsLiteral">TTF_SUBCLASS</span>
+  flag is set in the <b>uFlags</b> member of the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TOOLINFO_cpp">
+  TOOLINFO</MSHelp:link>
+  structure to have mouse messages automatically passed to the ToolTip control.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">/*</font><font color="green"> CREATE A TOOLTIP CONTROL OVER THE ENTIRE WINDOW AREA </font><font color="blue">*/</font>
+void CreateMyTooltip (HWND hwnd)
+{
+                 <font color="blue">//</font><font color="green"> struct specifying control classes to register</font>
+    INITCOMMONCONTROLSEX iccex; 
+    HWND hwndTT;                 <font color="blue">//</font><font color="green"> handle to the ToolTip control</font>
+          <font color="blue">//</font><font color="green"> struct specifying info about tool in ToolTip control</font>
+    TOOLINFO ti;
+    unsigned int uid = 0;       <font color="blue">//</font><font color="green"> for ti initialization</font>
+    char strTT[30] = &quot;This is your ToolTip string.&quot;;
+    LPTSTR lptstr = strTT;
+    RECT rect;                  <font color="blue">//</font><font color="green"> for client area coordinates</font>
+
+    <font color="blue">/*</font><font color="green"> INITIALIZE COMMON CONTROLS </font><font color="blue">*/</font>
+    iccex.dwICC = ICC_WIN95_CLASSES;
+    iccex.dwSize = sizeof(INITCOMMONCONTROLSEX);
+    InitCommonControlsEx(&amp;iccex);
+
+    <font color="blue">/*</font><font color="green"> CREATE A TOOLTIP WINDOW </font><font color="blue">*/</font>
+    hwndTT = CreateWindowEx(WS_EX_TOPMOST,
+        TOOLTIPS_CLASS,
+        NULL,
+        WS_POPUP | TTS_NOPREFIX | TTS_ALWAYSTIP,		
+        CW_USEDEFAULT,
+        CW_USEDEFAULT,
+        CW_USEDEFAULT,
+        CW_USEDEFAULT,
+        hwnd,
+        NULL,
+        ghThisInstance,
+        NULL
+        );
+
+    SetWindowPos(hwndTT,
+        HWND_TOPMOST,
+        0,
+        0,
+        0,
+        0,
+        SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+
+    <font color="blue">/*</font><font color="green"> GET COORDINATES OF THE MAIN CLIENT AREA </font><font color="blue">*/</font>
+    GetClientRect (hwnd, &amp;rect);
+
+    <font color="blue">/*</font><font color="green"> INITIALIZE MEMBERS OF THE TOOLINFO STRUCTURE </font><font color="blue">*/</font>
+    ti.cbSize = sizeof(TOOLINFO);
+    ti.uFlags = TTF_SUBCLASS;
+    ti.hwnd = hwnd;
+    ti.hinst = ghThisInstance;
+    ti.uId = uid;
+    ti.lpszText = lptstr;
+        <font color="blue">//</font><font color="green"> ToolTip control will cover the whole window</font>
+    ti.rect.left = rect.left;    
+    ti.rect.top = rect.top;
+    ti.rect.right = rect.right;
+    ti.rect.bottom = rect.bottom;
+
+    <font color="blue">/*</font><font color="green"> SEND AN ADDTOOL MESSAGE TO THE TOOLTIP CONTROL WINDOW </font><font color="blue">*/</font>
+    SendMessage(hwndTT, TTM_ADDTOOL, 0, (LPARAM) (LPTOOLINFO) &amp;ti);	
+
+} </pre>
+  <p>The output window for this sample looks like this.</p>
+  <p><img border="0" src="toolti20.gif" width="385" height="183"></p>
+  <h3><a name="tooltip_sample_tracking"></a>Tracking ToolTips</h3>
+  <p>Tracking ToolTips change position on the screen dynamically. They are
+  supported by <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Shell_Versions">
+  version 4.70</MSHelp:link>
+  and later of the common controls. To create a tracking ToolTip, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_ADDTOOL_cpp">
+  TTM_ADDTOOL</MSHelp:link>
+  message, including the TTF_TRACK flag in the <b>uFlags</b> member of the
+  accompanying <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TOOLINFO_cpp">
+  TOOLINFO</MSHelp:link>
+  structure.</p>
+  <p>Your application must manually activate and deactivate a tracking ToolTip
+  by sending a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_TRACKACTIVATE_cpp">
+  TTM_TRACKACTIVATE</MSHelp:link>
+  message. Activation or deactivation also shows or hides the ToolTip,
+  respectively. While a tracking ToolTip is active, your application must
+  specify the location of the ToolTip by sending <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_TRACKPOSITION_cpp">
+  TTM_TRACKPOSITION</MSHelp:link>
+  messages to the ToolTip control. Because the application handles tasks such as
+  positioning the ToolTip, tracking ToolTips do not use the <span class="clsLiteral">TTF_SUBCLASS</span>
+  flag or the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_RELAYEVENT_cpp">
+  TTM_RELAYEVENT</MSHelp:link>
+  message.</p>
+  <p>The <b>TTM_TRACKPOSITION</b> message causes the ToolTip control to display
+  the window using one of two placement styles:</p>
+  <ul>
+    <li>By default, the ToolTip is displayed next to the corresponding tool in a
+      position the control chooses. The location chosen is relative to the
+      coordinates you provide using this message. In this case, the ToolTip
+      window appears to move beside the corresponding tool.
+    <li>If you include the <span class="clsLiteral">TTF_ABSOLUTE</span> value in
+      the <b>uFlags</b> member of the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TOOLINFO_cpp">
+      TOOLINFO</MSHelp:link>
+      structure, the ToolTip will be displayed at the pixel location specified
+      in the message. In this case, the control does not attempt to change the
+      ToolTip window's location from the coordinates you provide.</li>
+  </ul>
+  <h3><a name="tooltips_sample_assigntools"></a>Example</h3>
+  <p>The following example demonstrates how to create a ToolTip control and
+  assign a tool to it. The example specifies the main window's entire client
+  area as the tool, but you could specify distinct portions of the client area
+  or specify a different window altogether.</p>
+  <p>The example uses the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_ADDTOOL_cpp">
+  TTM_ADDTOOL</MSHelp:link>
+  message to add the tool to the ToolTip control. The <b>uFlags</b> member of
+  the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TOOLINFO_cpp">
+  TOOLINFO</MSHelp:link>
+  structure used in the example includes the <span class="clsLiteral">TTF_ABSOLUTE</span>
+  flag. This flag causes the ToolTip control to display ToolTip text at the
+  exact coordinates the application provides when it sends the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_TRACKPOSITION_cpp">
+  TTM_TRACKPOSITION</MSHelp:link>
+  message. Without the <span class="clsLiteral">TTF_ABSOLUTE</span> flag, the
+  ToolTip control chooses a location to display the ToolTip text based on the
+  coordinates you provide. This causes ToolTip text to appear next to the
+  corresponding tool, but not necessarily at the exact coordinates the
+  application provided.</p>
+  <p>For additional information about using the <b>TTM_TRACKPOSITION</b>
+  message, see <a href="#tt_supporting_tracking" target="_self">Supporting
+  Tracking ToolTips</a>.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">HWND WINAPI CreateTT(HWND hwndOwner)
+{
+    INITCOMMONCONTROLSEX icex;
+    HWND        hwndTT;
+    TOOLINFO    ti;
+    <font color="blue">//</font><font color="green"> Load the ToolTip class from the DLL.</font>
+    icex.dwSize = sizeof(icex);
+    icex.dwICC  = ICC_BAR_CLASSES;
+
+    if(!InitCommonControlsEx(&amp;icex))
+       return NULL;
+	   
+    <font color="blue">//</font><font color="green"> Create the ToolTip control.</font>
+    hwndTT = CreateWindow(TOOLTIPS_CLASS, TEXT(&quot;&quot;),
+                          WS_POPUP,
+                          CW_USEDEFAULT, CW_USEDEFAULT,
+                          CW_USEDEFAULT, CW_USEDEFAULT,
+                          NULL, (HMENU)NULL, g_hinst,
+                          NULL);
+
+    <font color="blue">//</font><font color="green"> Prepare TOOLINFO structure for use as tracking ToolTip.</font>
+    ti.cbSize = sizeof(TOOLINFO);
+    ti.uFlags = TTF_IDISHWND | TTF_TRACK | TTF_ABSOLUTE;
+    ti.hwnd   = hwndOwner;
+    ti.uId    = (UINT)g_hwndMain;
+    ti.hinst  = g_hinst;
+    ti.lpszText  = LPSTR_TEXTCALLBACK;
+    ti.rect.left = ti.rect.top = ti.rect.bottom = ti.rect.right = 0; 
+
+    <font color="blue">//</font><font color="green"> Add the tool to the control, displaying an error if needed.</font>
+    if(!SendMessage(hwndTT,TTM_ADDTOOL,0,(LPARAM)&amp;ti)){
+        MessageBox(hwndOwner,&quot;Couldn't create the ToolTip control.&quot;,
+                   &quot;Error&quot;,MB_OK);
+        return NULL;
+    }
+
+    <font color="blue">//</font><font color="green"> Activate (display) the tracking ToolTip. Then, set a global</font>
+    <font color="blue">//</font><font color="green"> flag value to indicate that the ToolTip is active, so other</font>
+    <font color="blue">//</font><font color="green"> functions can check to see if it's visible.</font>
+    SendMessage(hwndTT,TTM_TRACKACTIVATE,(WPARAM)TRUE,(LPARAM)&amp;ti);
+    g_bIsVisible = TRUE;
+
+    return(hwndTT);    
+}</pre>
+  <h3><a name="tt_supporting_tracking"></a>Supporting Tracking ToolTips</h3>
+  <p>The following example is a simple window process function that supports
+  tracking ToolTips. It requests the current position of the mouse pointer by
+  using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_getcursorpos">
+  GetCursorPos</MSHelp:link>
+  function and then adds 15 pixels to the x- and y-coordinates, so the ToolTip
+  appears slightly below and to the right of the pointer. <b>GetCursorPos</b>
+  returns the screen coordinates of the cursor in a <b>POINT</b> structure.</p>
+  <p>Note that the example relies on the value of a global variable,
+  g_bIsVisible, to determine whether the application should send the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_TRACKPOSITION_cpp">
+  TTM_TRACKPOSITION</MSHelp:link>
+  message. For the purpose of this example, g_bIsVisible is a Boolean variable
+  that another function sets to TRUE upon sending the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_TRACKACTIVATE_cpp">
+  TTM_TRACKACTIVATE</MSHelp:link>
+  message to activate the ToolTip. This way, if the ToolTip is inactive, the
+  additional overhead to calculate and send a message is not incurred.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">LRESULT CALLBACK WndProc (HWND hwnd, UINT msg, 
+                               WPARAM wParam, LPARAM lParam)
+{
+  switch(msg){
+    case WM_MOUSEMOVE:
+      if(g_bIsVisible){
+
+#define X_OFFSET 15
+#define Y_OFFSET X_OFFSET
+
+        SendMessage(g_hwndTT,
+                    TTM_TRACKPOSITION,
+                    0,
+                    (LPARAM)MAKELPARAM(GET_X_LPARAM(lParam) + X_OFFSET,
+                                       GET_Y_LPARAM(lParam) + Y_OFFSET));
+      }
+      break;
+
+<font color="blue">/*</font>
+<font color="green"> *
+ *  Other standard window messages can be handled here.
+ *
+ </font><font color="blue">*/</font>
+  }
+  return 0;
+}</pre>
+  <h3><a name="tooltip_sample_multiline"></a>Multiline ToolTips</h3>
+  <p>Multiline ToolTips allow text to be displayed on more than one line. They
+  are supported by <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Shell_Versions">
+  version 4.70</MSHelp:link>
+  and later of the common controls. Your application creates a multiline ToolTip
+  by responding to a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTN_GETDISPINFO_cpp">
+  TTN_GETDISPINFO</MSHelp:link>
+  notification message. To force the ToolTip control to use multiple lines, send
+  a <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_SETMAXTIPWIDTH_cpp">
+  TTM_SETMAXTIPWIDTH</MSHelp:link>
+  message, specifying the width of the display rectangle. Text that exceeds this
+  width will wrap to the next line rather than widening the display region. The
+  rectangle height will be increased as needed to accommodate the additional
+  lines. The ToolTip control will wrap the lines automatically, or you can use a
+  carriage return/line feed combination, \r\n, to force line breaks at
+  particular locations.</p>
+  <p>Note that the text buffer specified by the <b>szText</b> member of the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NMTTDISPINFO_cpp">
+  NMTTDISPINFO</MSHelp:link>
+  structure can accommodate only 80 characters. If you need to use a longer
+  string, point the <b>lpszText</b> member of <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NMTTDISPINFO_cpp">
+  NMTTDISPINFO</MSHelp:link>
+  to a buffer containing the desired text.</p>
+  <p>The following code fragment is an example of a simple <b>TTN_GETDISPINFO</b>
+  notification handler. It creates a multiline ToolTip by setting the display
+  rectangle to 300 pixels and setting the <b>lpszText</b> member of <b>NMTTDISPINFO</b>
+  to point to a buffer with the desired text.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">char szLongMessage[ ] =
+&quot;This is a long message for the ToolTip, which will automatically &quot;
+&quot;be wrapped when it exceeds the maximum tip width.  &quot;
+&quot;Alternatively, you can use a \r\n&quot;
+&quot;carriage return/line feed combination\r\n&quot;
+&quot;to force line breaks at specific\r\n&quot;
+&quot;locations.&quot;;
+
+switch (lpnmhdr-&gt;code) {
+  case TTN_GETDISPINFO:
+    lpttd = (LPNMTTDISPINFO)lpnmhdr;
+    SendMessage(lpnmhdr-&gt;hwndFrom, TTM_SETMAXTIPWIDTH, 0, 300);
+    lpttd-&gt;lpszText = szLongMessage;
+    return 0;
+
+	...
+ <font color="blue">//</font><font color="green">Other notification handlers go here, as needed.</font>
+}</pre>
+  <h3><a name="tooltip_sample_balloon"></a>Balloon ToolTips</h3>
+  <p>Balloon ToolTips are similar to standard ToolTips, but are displayed in a
+  cartoon-style &quot;balloon&quot; with a stem pointing to the tool. Balloon
+  ToolTips can be either single-line or multiline. They are created and handled
+  in much the same way as standard ToolTips.</p>
+  <p>The default position of the stem and rectangle is shown below. If the tool
+  is too close to the top of the screen, the ToolTip appears below and to the
+  right of the tool's rectangle. If the tool is too close to the right side of
+  the screen, similar principles apply, but the ToolTip appears to the left of
+  the tool's rectangle.</p>
+  <p><img border="0" src="toolti21.gif" width="325" height="122"></p>
+  <p>You can change the default positioning by setting the <span class="clsLiteral">TTF_CENTERTIP</span>
+  flag in the <b>uFlags</b> member of the ToolTip's <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TOOLINFO_cpp">
+  TOOLINFO</MSHelp:link>
+  structure. In that case, the stem normally will point to the center of the
+  lower edge of the tool's rectangle, and the text rectangle will be displayed
+  directly below the tool. The stem will attach to the text rectangle at the
+  center of the upper edge. If the tool is too close to the bottom of the
+  screen, the text rectangle will be centered above the tool, and the stem will
+  attach to the center of the lower edge.</p>
+  <p>If you want to specify where the stem points, set the <span class="clsLiteral">TTF_TRACK</span>
+  flag in the <b>uFlags</b> member of the ToolTip's <b>TOOLINFO</b> structure.
+  You then specify the coordinate by sending a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_TRACKPOSITION_cpp">
+  TTM_TRACKPOSITION</MSHelp:link>
+  message, with the x- and y-coordinates in the <i>lParam</i> value. If <span class="clsLiteral">TTF_CENTERTIP</span>
+  is also set, the stem still points to the position specified by the <b>TTM_TRACKPOSITION</b>
+  message.</p>
+  <p>The following code fragment illustrates how to implement a centered balloon
+  ToolTip.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">hwndToolTips = CreateWindow(TOOLTIPS_CLASS,
+                            NULL,
+                            WS_POPUP | TTS_NOPREFIX | TTS_BALLOON,
+                            0, 0,
+                            0, 0,
+                            NULL, NULL,
+                            g_hinst,
+                            NULL);
+if (hwndTooltip)
+{
+<font color="blue">//</font><font color="green"> Do the standard ToolTip coding. </font>
+    TOOLINFO ti;
+
+    ti.cbSize = sizeof(ti);
+    ti.uFlags = TTF_TRANSPARENT | TTF_CENTERTIP;
+    ti.hwnd = hwnd;
+    ti.uId = 0;
+    ti.hinst = NULL;
+    ti.lpszText = LPSTR_TEXTCALLBACK;
+
+    GetClientRect(hwnd, &amp;ti.rect);
+    SendMessage(hwndToolTips, TTM_ADDTOOL, 0, (LPARAM) &amp;ti );
+}</pre>
+  <h3><a name="tooltips_sample_statusbar"></a>Balloon ToolTips for Status Bar
+  Icons</h3>
+  <p>A nonintrusive way to display an explanatory message for a status bar icon
+  is to implement a balloon ToolTip with its stem pointing to the icon. The
+  ToolTip will disappear when clicked, but you can also specify a time-out
+  value. The ToolTip will look similar to the following illustration.</p>
+  <p><img border="0" src="toolti22.gif" width="383" height="135"></p>
+  <p>For a detailed discussion of the status bar, see the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" keywords="_win32_Taskbar">
+  The Taskbar</MSHelp:link>
+  documentation.</p>
+  <p>The following code fragment illustrates how to add a balloon ToolTip to a
+  status bar icon.</p>
+  <p>To display a balloon ToolTip, you need to set the <span class="clsLiteral">NIF_INFO</span>
+  flag in the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NOTIFYICONDATA_cpp">
+  NOTIFYICONDATA</MSHelp:link>
+  structure, and use the <b>szInfo</b> and <b>uTimeout</b> members to specify
+  the ToolTip text and time-out duration.</p>
+  <p style="FONT-WEIGHT: bold; CURSOR: hand; TEXT-DECORATION: underline" ShowHideType="Example">Show
+  Example</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">#define ARRAYSIZE(a) (sizeof(a)/sizeof(a[0]))
+
+NOTIFYICONDATA IconData = {0};
+
+IconData.cbSize = SIZEOF(IconData);
+IconData.hWnd = hwndNI;
+IconData.uFlags = NIF_INFO;
+
+HRESULT hr = StringCchCopy(IconData.szInfo, ARRAYSIZE(IconData.szInfo), TEXT(&quot;Your message text goes here.&quot;));
+if(FAILED(hr))
+{
+<font color="blue">//</font><font color="green"> TODO: Write an error handler in case the call to StringCchCopy fails.</font>
+}
+IconData.uTimeout = 15000; <font color="blue">//</font><font color="green"> in milliseconds</font>
+
+Shell_NotifyIcon(NIM_MODIFY, &amp;IconData);</pre>
+  <h3><a name="tooltip_sample_inplace"></a>In-Place ToolTips</h3>
+  <p>In-place ToolTips are used to display text strings for objects that have
+  been clipped, such as the folder names shown below in Microsoft® Windows®
+  Explorer. In this illustration, information concerning the scribble folder is
+  shown in the tooltip.</p>
+  <p><img border="0" src="toolti23.gif" width="568" height="267"></p>
+  <p>The difference between ordinary and in-place ToolTips is positioning. By
+  default, when the mouse pointer hovers over a region that has a ToolTip
+  associated with it, the ToolTip is displayed adjacent to the region. However,
+  ToolTips are windows, and they can be positioned anywhere you choose by
+  calling <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_setwindowpos">
+  SetWindowPos</MSHelp:link>
+  . Creating an in-place ToolTip is a matter of positioning the ToolTip window
+  so that it overlays the text string.</p>
+  <h3><a name="tooltips_sample_inplace_pos"></a>Positioning an In-Place ToolTip</h3>
+  <p>You need to keep track of three rectangles when positioning an in-place
+  ToolTip:</p>
+  <ul>
+    <li>The rectangle that surrounds the complete label text.
+    <li>The rectangle that surrounds the ToolTip text. The ToolTip text is
+      identical to the complete label text, and normally is the same size and
+      font. The two text rectangles will thus usually be the same size.
+    <li>The ToolTip's window rectangle. This rectangle is somewhat larger than
+      the ToolTip text rectangle that it encloses.</li>
+  </ul>
+  <p>The three rectangles are shown schematically in the following illustration.
+  The hidden portion of the label text is indicated by a gray background.</p>
+  <p><img border="0" src="toolti24.gif" width="349" height="248"></p>
+  <p>To create an in-place ToolTip, you must position the ToolTip text rectangle
+  so that it overlays the label text rectangle. The procedure for aligning the
+  two rectangles is relatively straightforward:</p>
+  <ol>
+    <li>Define the label text rectangle.
+    <li>Position the ToolTip window so that the ToolTip text rectangle overlays
+      the label text rectangle</li>
+  </ol>
+  <p>In practice, it is usually sufficient to align the upper-left corner of the
+  two text rectangles. Attempting to resize the ToolTip text rectangle to
+  exactly match the label text rectangle could cause problems with the ToolTip
+  display.</p>
+  <p>The problem with this simple scheme is that you can't position the ToolTip
+  text rectangle directly. Instead, you must position the ToolTip window
+  rectangle just far enough above and to the left of the label text rectangle so
+  that the corners of the two text rectangles coincide. In other words, you need
+  to know the offset between the ToolTip window rectangle and its enclosed text
+  rectangle. In general, there is no simple way to determine this offset.</p>
+  <h4><a name="tooltips_sample_TTM_ADJUSTRECT"></a>Using TTM_ADJUSTRECT to
+  Position a ToolTip</h4>
+  <p>Common controls <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Shell_Versions">
+  version 5.80</MSHelp:link>
+  simplifies the use of in-place ToolTips by the addition of a new message, <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTM_ADJUSTRECT_cpp">
+  TTM_ADJUSTRECT</MSHelp:link>
+  . Send this message with the coordinates of the label text rectangle that you
+  want the ToolTip to overlay, and it will return the coordinates of an
+  appropriately positioned ToolTip window rectangle.</p>
+  <p>The following code fragment illustrates how to use <b>TTM_ADJUSTRECT</b> in
+  a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTN_SHOW_cpp">
+  TTN_SHOW</MSHelp:link>
+  handler to display an in-place ToolTip. Your application indicates that the
+  label text is truncated by setting the private fMyStringIsTruncated variable
+  to TRUE. The handler calls an application-defined function, GetMyItemRect, to
+  retrieve the label text rectangle. This rectangle is passed to the ToolTip
+  control with <b>TTM_ADJUSTRECT</b>, which returns the corresponding window
+  rectangle. <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_setwindowpos">
+  SetWindowPos</MSHelp:link>
+  is then called to position the ToolTip over the label.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">case TTN_SHOW:
+
+if (fMyStringIsTruncated) {
+    RECT rc;
+
+    GetMyItemRect(&amp;rc);
+    SendMessage(hwndToolTip, TTM_ADJUSTRECT, TRUE, (LPARAM)&amp;rc);
+    SetWindowPos(hwndToolTip,
+                 NULL,
+                 rc.left, rc.top,
+                 0, 0,
+                 SWP_NOSIZE|SWP_NOZORDER|SWP_NOACTIVATE);
+}</pre>
+  <p>This example does not change the size of the ToolTip, just its position.
+  The two text rectangles will be aligned at their upper-left corners, but not
+  necessarily with the same dimensions. In practice, the difference is usually
+  small, and this approach is recommended for most purposes. While you can, in
+  principle, use <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_setwindowpos">
+  SetWindowPos</MSHelp:link>
+  to resize as well as reposition the ToolTip, doing so might have unpredictable
+  consequences.</p>
+</div>
+
+</body>
+
+</html>

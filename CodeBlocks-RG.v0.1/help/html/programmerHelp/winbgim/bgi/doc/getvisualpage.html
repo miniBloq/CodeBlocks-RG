@@ -1,0 +1,49 @@
+<TITLE>BGI Documentation for 
+getvisualpage
+</TITLE>
+<H2>
+getvisualpage
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include "graphics.h"
+int getvisualpage(void);
+</PRE>
+
+
+
+<DT><B>Description</B><IMG SRC="win.gif" ALT="[WIN]"><DD>
+The 
+getvisualpage
+function is available in the
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation of BGI
+graphics.
+getvisualpage gets the page number of the currently visable page (which
+is visible on the screen).
+<P>
+The visual graphics page might not be the one where drawing currnetly
+takes place.
+<P>
+The original winbgi was designed to support up to 16 pages, but I have
+only used pages 1 and 2 myself.  NOTE: Using page number 0 might
+mess up the colors. I use pages 1-2 for double buffering. 
+
+
+<P><DT><B>Return Value</B><DD>
+The page number of the currently visible page.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="getactivepage.html"> getactivepage </A>
+<DD><A HREF="setvisualpage.html"> setvisualpage </A>
+<DD><A HREF="swapbuffers.html"> swapbuffers </A>
+
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

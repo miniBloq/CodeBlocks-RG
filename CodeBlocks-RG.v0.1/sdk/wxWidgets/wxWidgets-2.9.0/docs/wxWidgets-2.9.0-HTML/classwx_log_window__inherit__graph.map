@@ -1,0 +1,3 @@
+<area shape="rect" href="$classwx_log_interposer.html" title="A special version of wxLogChain which uses itself as the new log target." alt="" coords="5,172,125,204">
+<area shape="rect" href="$classwx_log_chain.html" title="This simple class allows you to chain log sinks, that is to install a new sink but..." alt="" coords="17,89,113,121">
+<area shape="rect" href="$classwx_log.html" title="wxLog class defines the interface for the log targets used by wxWidgets logging functions..." alt="" coords="35,7,96,39">

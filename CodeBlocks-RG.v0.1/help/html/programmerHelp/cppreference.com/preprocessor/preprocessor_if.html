@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/preprocessor/preprocessor_if.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:05 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>#if, #ifdef, #ifndef, #else, #elif, #endif</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C/C++ Pre-processor Commands</a> &gt; <a href=
+    "preprocessor_if.html">#if, #ifdef, #ifndef, #else, #elif,
+    #endif</a>
+  </div>
+
+  <div class="name-format">
+    #if, #ifdef, #ifndef, #else, #elif, #endif
+  </div>
+
+  <p>These commands give simple logic control to the compiler. As a
+  file is being compiled, you can use these commands to cause certain
+  lines of code to be included or not included.</p>
+<pre class="prettyprint">
+   #if expression               
+</pre>
+
+  <p>If the value of expression is true, then the code that immediately
+  follows the command will be compiled.</p>
+<pre class="prettyprint">
+   #ifdef macro         
+</pre>
+
+  <p>If the <em>macro</em> has been defined by a <a href=
+  "define.html">#define</a> statement, then the code immediately
+  following the command will be compiled.</p>
+<pre class="prettyprint">
+   #ifndef macro                
+</pre>
+
+  <p>If the <em>macro</em> has not been defined by a <a href=
+  "define.html">#define</a> statement, then the code immediately
+  following the command will be compiled.</p>
+
+  <p>A few side notes: The command #elif is simply a horribly truncated
+  way to say &quot;elseif&quot; and works like you think it would. You
+  can also throw in a &quot;defined&quot; or &quot;!defined&quot; after
+  an #if to get added functionality.</p>
+
+  <div class="related-examples-format">
+    Example code:
+  </div>
+
+  <div class="related-examples">
+    <p>Here&#39;s an example of all these:</p>
+<pre class="prettyprint">
+   #ifdef DEBUG
+     cout &lt;&lt; &quot;This is the test version, i=&quot; &lt;&lt; i &lt;&lt; endl;
+   #else
+     cout &lt;&lt; &quot;This is the production version!&quot; &lt;&lt; endl;
+   #endif               
+</pre>
+
+    <p>You might notice how that second example could make debugging a
+    lot easier than inserting and removing a million &quot;cout&quot;s
+    in your code.</p>
+  </div>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="define.html">#define</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/preprocessor/preprocessor_if.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:05 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

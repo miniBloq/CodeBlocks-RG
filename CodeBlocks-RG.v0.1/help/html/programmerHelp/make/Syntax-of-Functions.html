@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Syntax%20of%20Functions">Syntax of Functions</a>,
+Next:<a rel="next" accesskey="n" href="Text-Functions.html#Text%20Functions">Text Functions</a>,
+Previous:<a rel="previous" accesskey="p" href="Functions.html#Functions">Functions</a>,
+Up:<a rel="up" accesskey="u" href="Functions.html#Functions">Functions</a>
+<hr><br>
+</div>
+
+<h3 class="section">Function Call Syntax</h3>
+
+   <p>A function call resembles a variable reference.  It looks like this:
+
+<pre class="example">     $(<var>function</var> <var>arguments</var>)
+     </pre>
+
+<p>or like this:
+
+<pre class="example">     ${<var>function</var> <var>arguments</var>}
+     </pre>
+
+   <p>Here <var>function</var> is a function name; one of a short list of names
+that are part of <code>make</code>.  You can also essentially create your own
+functions by using the <code>call</code> builtin function.
+
+   <p>The <var>arguments</var> are the arguments of the function.  They are
+separated from the function name by one or more spaces or tabs, and if
+there is more than one argument, then they are separated by commas. 
+Such whitespace and commas are not part of an argument's value.  The
+delimiters which you use to surround the function call, whether
+parentheses or braces, can appear in an argument only in matching pairs;
+the other kind of delimiters may appear singly.  If the arguments
+themselves contain other function calls or variable references, it is
+wisest to use the same kind of delimiters for all the references; write
+<code>$(subst&nbsp;a,b,$(x))</code>, not <code>$(subst&nbsp;a,b,${x})</code>.  This
+is because it is clearer, and because only one type of delimiter is
+matched to find the end of the reference.
+
+   <p>The text written for each argument is processed by substitution of
+variables and function calls to produce the argument value, which
+is the text on which the function acts.  The substitution is done in the
+order in which the arguments appear.
+
+   <p>Commas and unmatched parentheses or braces cannot appear in the text of an
+argument as written; leading spaces cannot appear in the text of the first
+argument as written.  These characters can be put into the argument value
+by variable substitution.  First define variables <code>comma</code> and
+<code>space</code> whose values are isolated comma and space characters, then
+substitute these variables where such characters are wanted, like this:
+
+<pre class="example">     comma:= ,
+     empty:=
+     space:= $(empty) $(empty)
+     foo:= a b c
+     bar:= $(subst $(space),$(comma),$(foo))
+     # bar is now `a,b,c'.
+     </pre>
+
+<p>Here the <code>subst</code> function replaces each space with a comma, through
+the value of <code>foo</code>, and substitutes the result.
+
+   </body></html>
+

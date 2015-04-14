@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/stdstring/strtok.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:03 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>strtok</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">Standard C String and Character</a> &gt; <a href=
+    "strtok.html">strtok</a>
+  </div>
+
+  <div class="name-format">
+    strtok
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstring&gt;
+  char *strtok( char *str1, const char *str2 );
+</pre>
+
+  <p>The strtok() function returns a pointer to the next
+  &quot;token&quot; in <em>str1</em>, where <em>str2</em> contains the
+  delimiters that determine the token. strtok() returns
+  <strong>NULL</strong> if no token is found. In order to convert a
+  string to tokens, the first call to strtok() should have
+  <em>str1</em> point to the string to be tokenized. All calls after
+  this should have <em>str1</em> be <strong>NULL</strong>.</p>
+
+  <p>For example:</p>
+<pre class="prettyprint">
+   char str[] = &quot;now # is the time for all # good men to come to the # aid of their country&quot;;
+   char delims[] = &quot;#&quot;;
+   char *result = <strong>NULL</strong>;
+   result = strtok( str, delims );
+   while( result != <strong>NULL</strong> ) {
+       printf( &quot;result is \&quot;%s\&quot;\n&quot;, result );
+       result = strtok( <strong>NULL</strong>, delims );
+   }            
+</pre>
+
+  <p>The above code will display the following output:</p>
+<pre class="prettyprint">
+   result is &quot;now &quot;
+   result is &quot; is the time for all &quot;
+   result is &quot; good men to come to the &quot;
+   result is &quot; aid of their country&quot;          
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="strchr.html">strchr</a><br>
+    <a href="strcspn.html">strcspn</a><br>
+    <a href="strpbrk.html">strpbrk</a><br>
+    <a href="strrchr.html">strrchr</a><br>
+    <a href="strspn.html">strspn</a><br>
+    <a href="strstr.html">strstr</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdstring/strtok.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:03 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

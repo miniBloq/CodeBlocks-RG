@@ -1,0 +1,122 @@
+<TITLE>BGI Documentation for 
+getimage
+</TITLE>
+<H2>
+getimage
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void getimage(int left, int top, int right, int bottom, void *bitmap);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+getimage copies an image from the screen to memory.
+<P>
+left, top, right, and bottom define the screen area to which the rectangle is copied. bitmap points to the area in memory where the bit image is stored. The first two words of this area are used for the width and height of the rectangle; the remainder holds the image itself.
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="getpixel.html"> getpixel </A>
+<DD><A HREF="imagesize.html"> imagesize </A>
+<DD><A HREF="putimage.html"> putimage </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* getimage example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+#include &lt;alloc.h&gt;
+
+void save_screen(void *buf[4]);
+void restore_screen(void *buf[4]);
+
+int maxx, maxy;
+int main(void)
+{
+   int gdriver=DETECT, gmode, errorcode;
+   void *ptr[4];
+
+   /* autodetect the graphics driver and mode */
+   initgraph(&gdriver, &gmode, "");
+   errorcode = graphresult();  /* check for any errors */
+   if (errorcode != grOk) {
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);
+   }
+
+   maxx = getmaxx();
+   maxy = getmaxy();
+
+   /* draw an image on the screen */
+   rectangle(0, 0, maxx, maxy);
+   line(0, 0, maxx, maxy);
+   line(0, maxy, maxx, 0);
+   save_screen(ptr);           /* save the current screen */
+   getch();                    /* pause screen */
+   cleardevice();              /* clear screen */
+   restore_screen(ptr);        /* restore the screen */
+   getch();                    /* pause screen */
+
+   closegraph();
+   return 0;
+}
+
+void save_screen(void *buf[4])
+{
+   unsigned size;
+   int ystart=0, yend, yincr, block;
+   yincr = (maxy+1) / 4;
+   yend = yincr;
+
+   /* get byte size of image */
+   size = imagesize(0, ystart, maxx, yend);
+   for (block=0; block&lt;=3; block++) {
+      if ((buf[block] = farmalloc(size)) == NULL) {
+         closegraph();
+         printf("Error: not enough heap space in save_screen().\n");
+         exit(1);
+      }
+     getimage(0, ystart, maxx, yend, buf[block]);
+
+     ystart = yend + 1;
+     yend += yincr + 1;
+   }
+}
+
+void restore_screen(void *buf[4])
+{
+   int ystart=0, yend, yincr, block;
+   yincr = (maxy+1) / 4;
+   yend = yincr;
+   for (block=0; block&lt;=3; block++) {
+      putimage(0, ystart, buf[block], COPY_PUT);
+      farfree(buf[block]);
+      ystart = yend + 1;
+
+      yend += yincr + 1;
+   }
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

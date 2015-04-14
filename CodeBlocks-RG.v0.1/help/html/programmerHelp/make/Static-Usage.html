@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Static%20Usage">Static Usage</a>,
+Next:<a rel="next" accesskey="n" href="Static-versus-Implicit.html#Static%20versus%20Implicit">Static versus Implicit</a>,
+Previous:<a rel="previous" accesskey="p" href="Static-Pattern.html#Static%20Pattern">Static Pattern</a>,
+Up:<a rel="up" accesskey="u" href="Static-Pattern.html#Static%20Pattern">Static Pattern</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">Syntax of Static Pattern Rules</h4>
+
+   <p>Here is the syntax of a static pattern rule:
+
+<pre class="example">     <var>targets</var> ...: <var>target-pattern</var>: <var>prereq-patterns</var> ...
+             <var>commands</var>
+             ...
+     </pre>
+
+<p>The <var>targets</var> list specifies the targets that the rule applies to. 
+The targets can contain wildcard characters, just like the targets of
+ordinary rules (see <a href="Wildcards.html#Wildcards">Using Wildcard Characters in File Names</a>).
+
+   <p>The <var>target-pattern</var> and <var>prereq-patterns</var> say how to compute the
+prerequisites of each target.  Each target is matched against the
+<var>target-pattern</var> to extract a part of the target name, called the
+<dfn>stem</dfn>.  This stem is substituted into each of the <var>prereq-patterns</var>
+to make the prerequisite names (one from each <var>prereq-pattern</var>).
+
+   <p>Each pattern normally contains the character <code>%</code> just once.  When the
+<var>target-pattern</var> matches a target, the <code>%</code> can match any part of
+the target name; this part is called the <dfn>stem</dfn>.  The rest of the
+pattern must match exactly.  For example, the target <code>foo.o</code> matches
+the pattern <code>%.o</code>, with <code>foo</code> as the stem.  The targets
+<code>foo.c</code> and <code>foo.out</code> do not match that pattern.
+
+   <p>The prerequisite names for each target are made by substituting the stem
+for the <code>%</code> in each prerequisite pattern.  For example, if one
+prerequisite pattern is <code>%.c</code>, then substitution of the stem
+<code>foo</code> gives the prerequisite name <code>foo.c</code>.  It is legitimate
+to write a prerequisite pattern that does not contain <code>%</code>; then this
+prerequisite is the same for all targets.
+
+   <p><code>%</code> characters in pattern rules can be quoted with preceding
+backslashes (<code>\</code>).  Backslashes that would otherwise quote <code>%</code>
+characters can be quoted with more backslashes.  Backslashes that quote
+<code>%</code> characters or other backslashes are removed from the pattern
+before it is compared to file names or has a stem substituted into it. 
+Backslashes that are not in danger of quoting <code>%</code> characters go
+unmolested.  For example, the pattern <code>the\%weird\\%pattern\\</code> has
+<code>the%weird\</code> preceding the operative <code>%</code> character, and
+<code>pattern\\</code> following it.  The final two backslashes are left alone
+because they cannot affect any <code>%</code> character.
+
+   <p>Here is an example, which compiles each of <code>foo.o</code> and <code>bar.o</code>
+from the corresponding <code>.c</code> file:
+
+<pre class="example">     objects = foo.o bar.o
+     
+     all: $(objects)
+     
+     $(objects): %.o: %.c
+             $(CC) -c $(CFLAGS) $&lt; -o $@
+     </pre>
+
+<p>Here <code>$&lt;</code> is the automatic variable that holds the name of the
+prerequisite and <code>$@</code> is the automatic variable that holds the name
+of the target; see <a href="Automatic.html#Automatic">Automatic Variables</a>.
+
+   <p>Each target specified must match the target pattern; a warning is issued
+for each target that does not.  If you have a list of files, only some of
+which will match the pattern, you can use the <code>filter</code> function to
+remove nonmatching file names (see <a href="Text-Functions.html#Text%20Functions">Functions for String Substitution and Analysis</a>):
+
+<pre class="example">     files = foo.elc bar.o lose.o
+     
+     $(filter %.o,$(files)): %.o: %.c
+             $(CC) -c $(CFLAGS) $&lt; -o $@
+     $(filter %.elc,$(files)): %.elc: %.el
+             emacs -f batch-byte-compile $&lt;
+     </pre>
+
+<p>In this example the result of <code>$(filter %.o,$(files))</code> is
+<code>bar.o lose.o</code>, and the first static pattern rule causes each of
+these object files to be updated by compiling the corresponding C source
+file.  The result of <code>$(filter&nbsp;%.elc,$(files))</code> is
+<code>foo.elc</code>, so that file is made from <code>foo.el</code>.
+
+   <p>Another example shows how to use <code>$*</code> in static pattern rules:
+
+<pre class="example">     bigoutput littleoutput : %output : text.g
+             generate text.g -$* &gt; $@
+     </pre>
+
+<p>When the <code>generate</code> command is run, <code>$*</code> will expand to the
+stem, either <code>big</code> or <code>little</code>.
+
+   </body></html>
+

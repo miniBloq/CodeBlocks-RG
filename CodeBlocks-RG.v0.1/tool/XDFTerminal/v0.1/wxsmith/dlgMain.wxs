@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxDialog" name="dlgMain">
+		<title>XDFTerminal v0.1</title>
+		<size>432,226</size>
+		<minsize>-1,-1</minsize>
+		<maxsize>-1,-1</maxsize>
+		<id_arg>0</id_arg>
+		<style>wxCAPTION|wxDEFAULT_DIALOG_STYLE|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMAXIMIZE_BOX|wxMINIMIZE_BOX</style>
+		<handler function="OnInit" entry="EVT_INIT_DIALOG" />
+		<handler function="OnPaint" entry="EVT_PAINT" />
+		<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
+			<cols>3</cols>
+			<rows>2</rows>
+			<growablecols>3</growablecols>
+			<growablerows>0</growablerows>
+			<object class="sizeritem">
+				<object class="wxNotebook" name="ID_NOTEBOOK1" variable="noteRxTx" member="yes">
+					<size>287,190</size>
+					<minsize>-1,-1</minsize>
+					<object class="notebookpage">
+						<object class="wxPanel" name="ID_PANEL2" variable="Panel2" member="yes">
+							<size>139,87</size>
+							<object class="wxBoxSizer" variable="boxRxTx" member="no">
+								<object class="sizeritem">
+									<object class="wxTextCtrl" name="ID_TEXTCTRL1" subclass="MyTextCtrl" variable="txtTxRx" member="yes">
+										<size>269,113</size>
+										<style>wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_RICH2</style>
+									</object>
+									<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_BOTTOM</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+							</object>
+						</object>
+						<label>Single Tx/Rx</label>
+					</object>
+					<object class="notebookpage">
+						<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
+							<size>142,87</size>
+							<minsize>-1,30</minsize>
+							<object class="wxBoxSizer" variable="boxTxRx" member="yes">
+								<orient>wxVERTICAL</orient>
+								<object class="sizeritem">
+									<object class="wxSplitterWindow" name="ID_SPLITRXTX" variable="splitRxTx" member="yes">
+										<sashpos>90</sashpos>
+										<minsize>10</minsize>
+										<minsize>10,10</minsize>
+										<style>wxSP_3D|wxSP_3DSASH</style>
+										<object class="wxTextCtrl" name="ID_TEXTCTRL4" subclass="MyTextCtrl" variable="txtTx" member="yes">
+											<pos>-113,0</pos>
+											<size>269,180</size>
+											<minsize>-1,30</minsize>
+											<style>wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_RICH2</style>
+										</object>
+										<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="txtRx" member="yes">
+											<pos>0,152</pos>
+											<size>269,180</size>
+											<minsize>-1,30</minsize>
+											<style>wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY|wxTE_RICH2</style>
+										</object>
+									</object>
+									<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+							</object>
+						</object>
+						<label>Separated Tx/Rx</label>
+					</object>
+				</object>
+				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxPanel" name="ID_PANEL3" variable="pnlControls" member="yes">
+					<size>188,115</size>
+					<minsize>-1,-1</minsize>
+					<style>wxRAISED_BORDER|wxTAB_TRAVERSAL</style>
+					<object class="wxFlexGridSizer" variable="flexControls" member="yes">
+						<cols>1</cols>
+						<rows>1</rows>
+						<object class="sizeritem">
+							<object class="wxBoxSizer" variable="BoxSizer2" member="no">
+								<object class="sizeritem">
+									<object class="wxCheckBox" name="ID_CHECKSTAYONTOP" variable="chkStayOnTop" member="yes">
+										<label>Stay on top</label>
+										<size>84,13</size>
+										<handler function="OnchkStayOnTopClick" entry="EVT_CHECKBOX" />
+									</object>
+									<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+								<object class="sizeritem">
+									<object class="wxCheckBox" name="ID_CHECKSHOWCONFIG" variable="chkShowConfig" member="yes">
+										<label>Show config</label>
+										<checked>1</checked>
+										<handler function="OnchkShowConfigClick" entry="EVT_CHECKBOX" />
+									</object>
+									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+							</object>
+							<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>5</border>
+							<option>1</option>
+						</object>
+						<object class="sizeritem">
+							<object class="wxPanel" name="ID_PANEL_FLAGS" variable="pnlFlags" member="yes">
+								<size>190,59</size>
+								<style>wxRAISED_BORDER|wxTAB_TRAVERSAL</style>
+								<object class="wxGridSizer" variable="GridSizer1" member="no">
+									<cols>4</cols>
+									<rows>4</rows>
+									<object class="sizeritem">
+										<object class="wxButton" name="ID_BUTTONDTR" variable="btnDTR" member="yes">
+											<label>DTR</label>
+											<size>40,23</size>
+											<enabled>0</enabled>
+											<handler function="OnbtnDTRClick" entry="EVT_BUTTON" />
+										</object>
+										<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+										<border>5</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
+										<object class="wxCheckBox" name="ID_CHECKDTR" variable="chkDTR" member="yes">
+											<label>DTR</label>
+											<enabled>0</enabled>
+										</object>
+										<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+										<border>5</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
+										<object class="wxCheckBox" name="ID_CHECKDSR" variable="chkDSR" member="yes">
+											<label>DSR</label>
+											<enabled>0</enabled>
+										</object>
+										<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+										<border>5</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
+										<object class="wxCheckBox" name="ID_CHECKDCD" variable="chkDCD" member="yes">
+											<label>DCD</label>
+											<enabled>0</enabled>
+										</object>
+										<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+										<border>5</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
+										<object class="wxButton" name="ID_BUTTONRTS" variable="btnRTS" member="yes">
+											<label>RTS</label>
+											<size>40,23</size>
+											<enabled>0</enabled>
+											<handler function="OnbtnRTSClick" entry="EVT_BUTTON" />
+										</object>
+										<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+										<border>5</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
+										<object class="wxCheckBox" name="ID_CHECKRTS" variable="chkRTS" member="yes">
+											<label>RTS</label>
+											<enabled>0</enabled>
+										</object>
+										<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+										<border>5</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
+										<object class="wxCheckBox" name="ID_CHECKCTS" variable="chkCTS" member="yes">
+											<label>CTS</label>
+											<enabled>0</enabled>
+										</object>
+										<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+										<border>5</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
+										<object class="wxCheckBox" name="ID_CHECKRING" variable="chkRING" member="yes">
+											<label>RING</label>
+											<enabled>0</enabled>
+										</object>
+										<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+										<border>5</border>
+										<option>1</option>
+									</object>
+								</object>
+							</object>
+							<flag>wxEXPAND|wxALIGN_BOTTOM|wxALIGN_CENTER_HORIZONTAL</flag>
+							<border>5</border>
+							<option>1</option>
+						</object>
+						<object class="sizeritem">
+							<object class="wxFlexGridSizer" variable="flexHandshaking" member="yes">
+								<cols>2</cols>
+								<object class="sizeritem">
+									<object class="wxStaticText" name="ID_STATICTEXT4" variable="staticHandshaking" member="yes">
+										<label>Handshaking:</label>
+										<size>75,13</size>
+									</object>
+									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+								<object class="sizeritem">
+									<object class="wxChoice" name="ID_CHCHANDSHAKING" variable="chcHandshaking" member="yes">
+										<content>
+											<item>None</item>
+											<item>RTS/CTS</item>
+											<item>XON/XOFF</item>
+											<item>RTS/CTS + XON/XOFF</item>
+											<item>RTS on Tx</item>
+										</content>
+										<selection>0</selection>
+										<size>114,21</size>
+										<enabled>0</enabled>
+										<handler function="OnchcBaudRateSelect" entry="EVT_CHOICE" />
+									</object>
+									<flag>wxALL|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+							</object>
+							<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>5</border>
+							<option>1</option>
+						</object>
+						<object class="sizeritem">
+							<object class="wxFlexGridSizer" variable="flexDataBits" member="no">
+								<cols>2</cols>
+								<object class="sizeritem">
+									<object class="wxStaticText" name="ID_STATICDATABITS" variable="staticDataBits" member="yes">
+										<label>Data bits:</label>
+										<size>75,13</size>
+									</object>
+									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+								<object class="sizeritem">
+									<object class="wxChoice" name="ID_CHCDATABITS" variable="chcDataBits" member="yes">
+										<content>
+											<item>5</item>
+											<item>6</item>
+											<item>7</item>
+											<item>8</item>
+										</content>
+										<selection>3</selection>
+										<size>114,21</size>
+										<enabled>0</enabled>
+										<handler function="OnchcBaudRateSelect" entry="EVT_CHOICE" />
+									</object>
+									<flag>wxALL|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+							</object>
+							<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>5</border>
+							<option>1</option>
+						</object>
+						<object class="sizeritem">
+							<object class="wxFlexGridSizer" variable="flexParity" member="no">
+								<cols>2</cols>
+								<object class="sizeritem">
+									<object class="wxStaticText" name="ID_STATICPARITY" variable="staticParity" member="yes">
+										<label>Parity:</label>
+										<size>75,13</size>
+									</object>
+									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+								<object class="sizeritem">
+									<object class="wxChoice" name="ID_CHCPARITY" variable="chcParity" member="yes">
+										<content>
+											<item>None</item>
+											<item>Even</item>
+											<item>Odd</item>
+										</content>
+										<selection>0</selection>
+										<size>114,21</size>
+										<enabled>0</enabled>
+										<handler function="OnchcBaudRateSelect" entry="EVT_CHOICE" />
+									</object>
+									<flag>wxALL|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+							</object>
+							<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>5</border>
+							<option>1</option>
+						</object>
+						<object class="sizeritem">
+							<object class="wxFlexGridSizer" variable="flexStopBits" member="no">
+								<cols>2</cols>
+								<object class="sizeritem">
+									<object class="wxStaticText" name="ID_STATICSTOPBITS" variable="staticStopBits" member="yes">
+										<label>Stop bits:</label>
+										<size>75,13</size>
+									</object>
+									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+								<object class="sizeritem">
+									<object class="wxChoice" name="ID_CHOICSTOPBITS" variable="chcStopBits" member="yes">
+										<content>
+											<item>1</item>
+											<item>2</item>
+										</content>
+										<selection>0</selection>
+										<size>114,21</size>
+										<enabled>0</enabled>
+										<handler function="OnchcBaudRateSelect" entry="EVT_CHOICE" />
+									</object>
+									<flag>wxALL|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+							</object>
+							<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>5</border>
+							<option>1</option>
+						</object>
+						<object class="sizeritem">
+							<object class="wxFlexGridSizer" variable="flexBaudrate" member="no">
+								<cols>2</cols>
+								<object class="sizeritem">
+									<object class="wxStaticText" name="ID_STATICBAUDRATE" variable="staticBaudrate" member="yes">
+										<label>Baudrate:</label>
+										<size>75,13</size>
+									</object>
+									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+								<object class="sizeritem">
+									<object class="wxChoice" name="ID_CHCBAUDRATE" variable="chcBaudRate" member="yes">
+										<content>
+											<item>1200</item>
+											<item>2400</item>
+											<item>4800</item>
+											<item>9600</item>
+											<item>19200</item>
+											<item>38400</item>
+											<item>57600</item>
+											<item>115200</item>
+											<item>230400</item>
+											<item>460800</item>
+											<item>921600</item>
+										</content>
+										<selection>7</selection>
+										<size>114,21</size>
+										<handler function="OnchcBaudRateSelect" entry="EVT_CHOICE" />
+									</object>
+									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+							</object>
+							<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_BOTTOM</flag>
+							<border>5</border>
+							<option>1</option>
+						</object>
+						<object class="sizeritem">
+							<object class="wxFlexGridSizer" variable="flexCommNumber" member="no">
+								<cols>3</cols>
+								<object class="sizeritem">
+									<object class="wxStaticText" name="ID_STATICCOMM" variable="staticCommNumber" member="yes">
+										<label>COM:</label>
+										<size>30,13</size>
+									</object>
+									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+								<object class="sizeritem">
+									<object class="wxTextCtrl" name="ID_TEXTCOMM" variable="txtCommNumber" member="yes">
+										<size>109,21</size>
+										<style>wxTE_READONLY|wxTE_RIGHT</style>
+									</object>
+									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+								<object class="sizeritem">
+									<object class="wxSpinButton" name="ID_SPINCOMM" variable="spinCommNumber" member="yes">
+										<min>1</min>
+										<max>1000</max>
+										<handler function="OnspinCommNumberChange" entry="EVT_SPIN" />
+									</object>
+									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+							</object>
+							<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_BOTTOM</flag>
+							<border>5</border>
+							<option>1</option>
+						</object>
+						<object class="sizeritem">
+							<object class="wxBoxSizer" variable="BoxSizer3" member="no">
+								<object class="sizeritem">
+									<object class="wxButton" name="ID_BUTTONOPEN" variable="btnOpenComm" member="yes">
+										<label>&amp;Open</label>
+										<handler function="OnbtnOpenCommClick" entry="EVT_BUTTON" />
+									</object>
+									<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+								<object class="sizeritem">
+									<object class="wxButton" name="ID_BUTTONCLOSE" variable="btnCloseComm" member="yes">
+										<label>&amp;Close</label>
+										<enabled>0</enabled>
+										<handler function="OnbtnCloseCommClick" entry="EVT_BUTTON" />
+									</object>
+									<flag>wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL</flag>
+									<border>5</border>
+									<option>1</option>
+								</object>
+							</object>
+							<flag>wxALL|wxEXPAND|wxALIGN_BOTTOM|wxALIGN_CENTER_HORIZONTAL</flag>
+							<border>5</border>
+							<option>1</option>
+						</object>
+					</object>
+				</object>
+				<flag>wxALL|wxEXPAND|wxALIGN_LEFT|wxALIGN_BOTTOM</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+		</object>
+	</object>
+</wxsmith>

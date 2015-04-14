@@ -1,0 +1,496 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>ComboBoxEx Controls</title>
+</head>
+
+<body>
+
+<div class="clsDocBody">
+  <h2>ComboBoxEx Controls</h2>
+  <hr SIZE="1">
+  <p><b>ComboBoxEx Controls</b> are an extension of the combo box control that
+  provides native support for item images. To make item images easily
+  accessible, the control provides image list support. By using this control,
+  you can provide the functionality of a combo box without having to manually
+  draw item graphics.</p>
+  <h3><a name="About_ComboBoxEx_Con"></a>About ComboBoxEx Controls</h3>
+  <p>Effectively, a ComboBoxEx control creates a child combo box and performs
+  owner draw tasks for you based on an assigned image list. Therefore, the
+  CBS_OWNERDRAWFIXED style is implied and you need not use it when creating the
+  control. Because image lists are used to provide item graphics, the
+  CBS_OWNERDRAWVARIABLE style cannot be used.</p>
+  <p>A ComboBoxEx control must be initialized by calling the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_InitCommonControlsEx_cpp">
+  InitCommonControlsEx</MSHelp:link>
+  function, specifying ICC_USEREX_CLASSES in the accompanying <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_INITCOMMONCONTROLSEX_4vvx_cpp">
+  INITCOMMONCONTROLSEX</MSHelp:link>
+  structure.</p>
+  <p>You can create a ComboBoxEx control by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+  CreateWindowEx</MSHelp:link>
+  function and specifying WC_COMBOBOXEX as the window class. The class is
+  registered when the <b>InitCommonControlsEx</b> function is called as
+  explained above.</p>
+  <p>ComboBoxEx controls are created without a default image list. To use item
+  images, you must create an image list for the ComboBoxEx control and assign it
+  to the control using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CBEM_SETIMAGELIST_cpp">
+  CBEM_SETIMAGELIST</MSHelp:link>
+  message. If you do not assign an image list to the ComboBoxEx control, the
+  control displays item text only.</p>
+  <h3><a name="ComboBoxEx_Control_S"></a>ComboBoxEx Control Styles</h3>
+  <p>ComboBoxEx controls support only the following ComboBox styles:</p>
+  <ul>
+    <li>CBS_SIMPLE
+    <li>CBS_DROPDOWN
+    <li>CBS_DROPDOWNLIST
+    <li>WS_CHILD</li>
+  </ul>
+  <p>There are also several <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ComboBoxEx_control_extended_styles_cpp">
+  ComboBoxEx Control Extended Styles</MSHelp:link>
+  that are used only by ComboBoxEx.</p>
+  <div class="clsNote">
+    <b>Note</b>&nbsp;&nbsp; The CBS_SIMPLE style may not work properly in some
+    cases.
+  </div>
+  <p>Because the ComboBoxEx control performs owner draw tasks for you based on
+  an assigned image list, the CBS_OWNERDRAWFIXED style is implied; you need not
+  use it when creating the control. Because image lists are used to provide item
+  graphics, the CBS_OWNERDRAWVARIABLE style cannot be used. The ComboBoxEx
+  control also supports <b>ComboBoxEx Control Extended Styles</b> that provide
+  additional features.</p>
+  <h3><a name="ComboBoxEx_Control_I"></a>ComboBoxEx Control Items</h3>
+  <p>ComboBoxEx controls maintain item information using a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_COMBOBOXEXITEM_cpp">
+  COMBOBOXEXITEM</MSHelp:link>
+  structure. This structure includes members for item indexes, image indexes
+  (normal, selection state, and overlay), indentation values, text strings, and
+  item-specific values.</p>
+  <p>The ComboBoxEx control provides easy access to and manipulation of items
+  through messaging. To add or delete an item, send the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CBEM_INSERTITEM_cpp">
+  CBEM_INSERTITEM</MSHelp:link>
+  or <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CBEM_DELETEITEM_cpp">
+  CBEM_DELETEITEM</MSHelp:link>
+  message. You can modify items currently in the control using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CBEM_SETITEM_cpp">
+  CBEM_SETITEM</MSHelp:link>
+  message.</p>
+  <h3><a name="Callback_Items"></a>Callback Items</h3>
+  <p>ComboBoxEx controls support callback item attributes. You can specify an
+  item as a callback item when you add it to the control using <b>CBEM_INSERTITEM</b>.
+  When you assign values to an item's <b>COMBOBOXEXITEM</b> structure, you must
+  specify the appropriate callback flag values. The following are <b>COMBOBOXEXITEM</b>
+  structure members and their corresponding callback flag values.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>Member</th>
+        <th>Callback value</th>
+      </tr>
+      <tr>
+        <td><b>pszText</b></td>
+        <td>LPSTR_TEXTCALLBACK</td>
+      </tr>
+      <tr>
+        <td><b>iImage</b></td>
+        <td>I_IMAGECALLBACK</td>
+      </tr>
+      <tr>
+        <td><b>iSelectedImage</b></td>
+        <td>I_IMAGECALLBACK</td>
+      </tr>
+      <tr>
+        <td><b>iOverlay</b></td>
+        <td>I_IMAGECALLBACK</td>
+      </tr>
+      <tr>
+        <td><b>iIndent</b></td>
+        <td>I_INDENTCALLBACK</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>The control will request information about callback items by sending <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CBEN_GETDISPINFO_cpp">
+  CBEN_GETDISPINFO</MSHelp:link>
+  notification messages. This notification is sent in the form of a <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_NOTIFY_cpp">
+  WM_NOTIFY</MSHelp:link>
+  message. When your application processes this message, it must provide the
+  requested information for the control. If you set the <b>mask</b> member of
+  the accompanying <b>COMBOBOXEXITEM</b> structure to CBEIF_DI_SETITEM, the
+  control will store the item data and will not request it again.</p>
+  <h3><a name="combo_and_imagelists"></a>ComboBoxEx Control Image Lists</h3>
+  <p>If you want a ComboBoxEx control to display icons with items, you must
+  provide an image list. ComboBoxEx controls support up to three images for an
+  item—one for its selected state, one for its nonselected state, and one for
+  an overlay image. Assign an existing image list to a ComboBoxEx control using
+  the <b>CBEM_SETIMAGELIST</b> message.</p>
+  <p>The <b>COMBOBOXEXITEM</b> structure contains members that represent the
+  image indexes for each image list (selected, unselected, and overlay). For
+  each item, set these members to display the desired images. It is not
+  necessary to specify image indexes for each type of image. You can mix and
+  match image types as you like, but always set the <b>mask</b> member of the <b>COMBOBOXEXITEM</b>
+  structure to indicate which members are being used. The control ignores
+  members that have not been flagged as valid.</p>
+  <div class="clsNote">
+    <b>Note</b>&nbsp;&nbsp; If you use the CBS_SIMPLE style, icons are not
+    displayed.
+  </div>
+  <h3><a name="About_ComboBoxEx_Not"></a>About ComboBoxEx Control Notification
+  Messages</h3>
+  <p>A ComboBoxEx control sends notification messages to report changes within
+  itself or to request callback item information. The parent of the control
+  receives all <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_command">
+  WM_COMMAND</MSHelp:link>
+  messages from the combo box contained within the ComboBoxEx control. The
+  ComboBoxEx control sends its own notifications using <b>WM_NOTIFY</b>
+  messages. As a result, the control's owner must be prepared to process both
+  forms of notification messages.</p>
+  <p>Following are the ComboBoxEx-specific notification messages.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>Notification</th>
+        <th><b>Description</b></th>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CBEN_BEGINEDIT_cpp">
+          CBEN_BEGINEDIT</MSHelp:link>
+        </td>
+        <td>Signals that the user has activated the drop-down list or clicked in
+          the control's edit box.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CBEN_ENDEDIT_cpp">
+          CBEN_ENDEDIT</MSHelp:link>
+        </td>
+        <td>Signals that the user has selected an item from the drop-down list
+          or has concluded an edit operation within the edit box.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CBEN_DELETEITEM_cpp">
+          CBEN_DELETEITEM</MSHelp:link>
+        </td>
+        <td>Reports that an item was deleted.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CBEN_GETDISPINFO_cpp">
+          CBEN_GETDISPINFO</MSHelp:link>
+        </td>
+        <td>Requests information about an item's attributes.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CBEN_INSERTITEM_cpp">
+          CBEN_INSERTITEM</MSHelp:link>
+        </td>
+        <td>Signals that an item was inserted in the control.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><a name="ComboBoxEx_Control_M"></a>ComboBoxEx Control Message Forwarding</h3>
+  <p>The following are the standard combo box messages that a ComboBoxEx control
+  forwards to its child combo box. Some of these messages may be processed by
+  the ComboBoxEx control either before or after the message has been forwarded.</p>
+  <ul>
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_DELETESTRING_cpp">
+      CB_DELETESTRING</MSHelp:link>
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_FINDSTRINGEXACT_cpp">
+      CB_FINDSTRINGEXACT</MSHelp:link>
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_GETCOUNT_cpp">
+      CB_GETCOUNT</MSHelp:link>
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_GETCURSEL_cpp">
+      CB_GETCURSEL</MSHelp:link>
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_GETDROPPEDCONTROLRECT_cpp">
+      CB_GETDROPPEDCONTROLRECT</MSHelp:link>
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_GETDROPPEDSTATE_cpp">
+      CB_GETDROPPEDSTATE</MSHelp:link>
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_GETITEMDATA_cpp">
+      CB_GETITEMDATA</MSHelp:link>
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_GETITEMHEIGHT_cpp">
+      CB_GETITEMHEIGHT</MSHelp:link>
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_GETLBTEXT_cpp">
+      CB_GETLBTEXT</MSHelp:link>
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_GETLBTEXTLEN_cpp">
+      CB_GETLBTEXTLEN</MSHelp:link>
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_GETEXTENDEDUI_cpp">
+      CB_GETEXTENDEDUI</MSHelp:link>
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_LIMITTEXT_cpp">
+      CB_LIMITTEXT</MSHelp:link>
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_RESETCONTENT_cpp">
+      CB_RESETCONTENT</MSHelp:link>
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_SETCURSEL_cpp">
+      CB_SETCURSEL</MSHelp:link>
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_SETDROPPEDWIDTH_cpp">
+      CB_SETDROPPEDWIDTH</MSHelp:link>
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_SETEXTENDEDUI_cpp">
+      CB_SETEXTENDEDUI</MSHelp:link>
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_SETITEMDATA_cpp">
+      CB_SETITEMDATA</MSHelp:link>
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_SETITEMHEIGHT_cpp">
+      CB_SETITEMHEIGHT</MSHelp:link>
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_SHOWDROPDOWN_cpp">
+      CB_SHOWDROPDOWN</MSHelp:link>
+    </li>
+  </ul>
+  <p>Following are the windows messages that a ComboBoxEx control forwards to
+  its parent window:</p>
+  <ul>
+    <li><b>WM_COMMAND</b> (This includes all of the CBN_ notifications.)
+    <li><b>WM_NOTIFY</b></li>
+  </ul>
+  <h2><a name="Using_ComboBoxEx_Con"></a>Using ComboBoxEx Controls</h2>
+  <p>This section contains sample code and information about the following
+  topics related to ComboBoxEx controls:</p>
+  <ul>
+    <li><a href="#Creating_a_ComboBoxE" target="_self">Creating a ComboBoxEx
+      Control</a>
+    <li><a href="#Preparing_ComboBoxEx" target="_self">Preparing ComboBoxEx
+      Items and Images</a>
+    <li><a href="#Supporting_Callback_" target="_self">Supporting Callback Items</a>
+    <li><a href="#Processing_ComboBoxE" target="_self">Processing ComboBoxEx
+      Notifications</a></li>
+  </ul>
+  <h3><a name="Creating_a_ComboBoxE"></a>Creating a ComboBoxEx Control</h3>
+  <p>To create a ComboBoxEx control, call the <b>CreateWindowEx</b> function,
+  using WC_COMBOBOXEX as the window class. You must first register the window
+  class by calling the <b>InitCommonControlsEx</b> function, while specifying
+  the ICC_USEREX_CLASSES bit in the accompanying <b>INITCOMMONCONTROLSEX</b>
+  structure.</p>
+  <p>The following application-defined function creates a ComboBoxEx control
+  with the CBS_DROPDOWN style in the main window.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">	
+<font color="blue">//</font><font color="green"> CreateComboEx - Registers the ComboBoxEx window class and creates</font>
+<font color="blue">//</font><font color="green"> a ComboBoxEx control in the client area of the main window.</font>
+<font color="blue">//</font>
+<font color="blue">//</font><font color="green"> g_hwndMain - A handle to the main window.</font>
+<font color="blue">//</font><font color="green"> g_hinst    - A handle to the program instance.</font>
+
+HWND WINAPI CreateComboEx(void)
+{
+    HWND hwnd;
+    INITCOMMONCONTROLSEX icex;
+
+    icex.dwSize = sizeof(INITCOMMONCONTROLSEX);
+    icex.dwICC = ICC_USEREX_CLASSES;
+
+    InitCommonControlsEx(&amp;icex);
+
+    hwnd = CreateWindowEx(0, WC_COMBOBOXEX, NULL,
+					WS_BORDER | WS_VISIBLE |
+					WS_CHILD | CBS_DROPDOWN,
+					<font color="blue">//</font><font color="green"> No size yet--resize after setting image list.</font>
+					0,      <font color="blue">//</font><font color="green"> Vertical position of Combobox</font>
+					0,      <font color="blue">//</font><font color="green"> Horizontal position of Combobox</font>
+					0,      <font color="blue">//</font><font color="green"> Sets the width of Combobox</font>
+					100,    <font color="blue">//</font><font color="green"> Sets the height of Combobox</font>
+					g_hwndMain,
+					NULL,
+					g_hinst,
+					NULL);
+
+    return (hwnd);
+}
+
+	</pre>
+  <h3><a name="Preparing_ComboBoxEx"></a>Preparing ComboBoxEx Items and Images</h3>
+  <p>To add an item to a ComboBoxEx control, first define a <b>COMBOBOXEXITEM</b>
+  structure. Set the <b>mask</b> member of the structure to indicate which
+  members you want the control to use. Set the specified members of the
+  structure to the values you want, and then send the <b>CBEM_INSERTITEM</b>
+  message to add the item to the control.</p>
+  <p>The following application-defined function adds 15 items to an existing
+  ComboBoxEx control. Note that the <b>mask</b> member of the <b>COMBOBOXEXITEM</b>
+  structure includes flag values that tell the control to display images for
+  each item.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">	
+#define MAX_ITEMS 15
+
+<font color="blue">//</font><font color="green"> AddItems - Uses the CBEM_INSERTITEM message to add items to an</font>
+<font color="blue">//</font><font color="green"> existing ComboBoxEx control.</font>
+
+BOOL WINAPI AddItems(HWND hwndCB)
+{
+    <font color="blue">//</font><font color="green">  Declare and init locals.</font>
+    COMBOBOXEXITEM cbei;
+    int iCnt;
+
+    typedef struct {
+        int iImage;
+        int iSelectedImage;
+        int iIndent;
+        LPTSTR pszText;
+    } ITEMINFO, *PITEMINFO;
+
+    ITEMINFO IInf[ ] = {
+        { 0, 3,  0, &quot;first&quot;}, 
+        { 1, 4,  1, &quot;second&quot;},
+        { 2, 5,  2, &quot;third&quot;},
+        { 0, 3,  0, &quot;fourth&quot;},
+        { 1, 4,  1, &quot;fifth&quot;},
+        { 2, 5,  2, &quot;sixth&quot;},
+        { 0, 3,  0, &quot;seventh&quot;},
+        { 1, 4,  1, &quot;eighth&quot;},
+        { 2, 5,  2, &quot;ninth&quot;},
+        { 0, 3,  0, &quot;tenth&quot;},
+        { 1, 4,  1, &quot;eleventh&quot;},
+        { 2, 5,  2, &quot;twelfth&quot;},
+        { 0, 3,  0, &quot;thirteenth&quot;},
+        { 1, 4,  1, &quot;fourteenth&quot;},
+        { 2, 5,  2, &quot;fifteenth&quot;}
+    };
+
+    <font color="blue">//</font><font color="green"> Set the mask common to all items.</font>
+    cbei.mask = CBEIF_TEXT | CBEIF_INDENT |
+                CBEIF_IMAGE| CBEIF_SELECTEDIMAGE;
+
+    for(iCnt=0;iCnt&lt;MAX_ITEMS;iCnt++){
+        <font color="blue">//</font><font color="green"> Initialize the COMBOBOXEXITEM struct.</font>
+        cbei.iItem          = iCnt;
+        cbei.pszText        = IInf[iCnt].pszText;
+        cbei.cchTextMax     = sizeof(IInf[iCnt].pszText);
+        cbei.iImage         = IInf[iCnt].iImage;
+        cbei.iSelectedImage = IInf[iCnt].iSelectedImage;
+        cbei.iIndent        = IInf[iCnt].iIndent;
+
+        <font color="blue">//</font><font color="green"> Tell the ComboBoxEx to add the item. Return FALSE if </font>
+        <font color="blue">//</font><font color="green"> this fails.</font>
+        if(SendMessage(hwndCB,CBEM_INSERTITEM,0,(LPARAM)&amp;cbei) == -1)
+            return FALSE;
+    }
+
+    <font color="blue">//</font><font color="green"> Assign the existing image list to the ComboBoxEx control </font>
+    <font color="blue">//</font><font color="green"> and return TRUE.</font>
+    SendMessage(hwndCB,CBEM_SETIMAGELIST,0,(LPARAM)g_himl);
+
+    <font color="blue">//</font><font color="green"> Set size of control to make sure it's displayed correctly now</font>
+    <font color="blue">//</font><font color="green"> that the image list is set.</font>
+    SetWindowPos(hwndCB,NULL,20,20,250,120,SWP_NOACTIVATE);
+
+    return TRUE;    
+}
+	</pre>
+  <h3><a name="Supporting_Callback_"></a>Supporting Callback Items</h3>
+  <p>If your application is going to use callback items in a ComboBoxEx control,
+  it must be prepared to handle the <b>CBEN_GETDISPINFO</b> notification
+  message. A ComboBoxEx control sends this notification whenever it needs the
+  owner to provide specific item information. For more information about
+  callback items, see <b>Callback Items</b>.</p>
+  <p>The following application-defined function processes <b>CBEN_GETDISPINFO</b>
+  by providing attributes for a given item. Note that it sets the <b>mask</b>
+  member of the incoming <b>COMBOBOXEXITEM</b> structure to CBEIF_DI_SETITEM.
+  Setting <b>mask</b> to this value makes the control retain the item
+  information so it will not need to request the information again.</p>
+  <p style="FONT-WEIGHT: bold; CURSOR: hand; TEXT-DECORATION: underline" ShowHideType="Example">Show
+  Example</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">	
+<font color="blue">//</font><font color="green"> DoItemCallback - Processes CBEN_GETDISPINFO by providing item</font>
+<font color="blue">//</font><font color="green"> attributes for a given callback item.</font>
+
+void WINAPI DoItemCallback(PNMCOMBOBOXEX pNMCBex)
+{
+    DWORD dwMask = pNMCBex-&gt;ceItem.mask;
+
+    if(dwMask &amp; CBEIF_TEXT)
+        ;<font color="blue">//</font><font color="green"> Provide item text.</font>
+
+    if(dwMask &amp; CBEIF_IMAGE)
+        ;<font color="blue">//</font><font color="green"> Provide an item image index.</font>
+
+    <font color="blue">/*</font>
+<font color="green">     * Provide other callback information as desired.
+     </font><font color="blue">*/</font>
+
+    <font color="blue">//</font><font color="green"> Make the ComboBoxEx control hold onto the item information.</font>
+    pNMCBex-&gt;ceItem.mask = CBEIF_DI_SETITEM;
+}
+	</pre>
+  <h3><a name="Processing_ComboBoxE"></a>Processing ComboBoxEx Notifications</h3>
+  <p>A ComboBoxEx control notifies its parent window of events by sending <b>WM_NOTIFY</b>
+  messages. Because the control uses a child combo box, it forwards all <b>WM_COMMAND</b>
+  notification messages it receives to the parent window to be processed.
+  Therefore, your application must be prepared to process <b>WM_NOTIFY</b>
+  messages from the ComboBoxEx and <b>WM_COMMAND</b> messages forwarded from the
+  ComboBoxEx child combo box control.</p>
+  <p>The example in this section handles the <b>WM_NOTIFY</b> and <b>WM_COMMAND</b>
+  messages from a ComboBoxEx control by calling a corresponding
+  application-defined function to process them.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">	
+LRESULT CALLBACK WndProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+    switch(msg){
+
+        case WM_COMMAND:
+            <font color="blue">//</font><font color="green"> If this is an &quot;old style&quot; combo box notification, handle it.</font>
+            if((HWND)lParam == g_hwndCB)
+                DoOldNotify(hwnd,  wParam);  
+            break;
+
+        case WM_NOTIFY:
+            return (DoCBEXNotify(hwnd, lParam));
+
+        case WM_PAINT:
+            hdc = BeginPaint(hwnd, &amp;ps);
+            EndPaint(hwnd, &amp;ps);
+            break;
+
+        case WM_DESTROY:
+            PostQuitMessage(0);
+            break;
+
+        default:
+            return DefWindowProc(hwnd, msg, wParam, lParam);
+            break;
+    }
+
+    return FALSE;
+}
+
+	</pre>
+</div>
+
+</body>
+
+</html>

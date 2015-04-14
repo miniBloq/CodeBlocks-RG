@@ -1,0 +1,105 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Missing">Missing</a>,
+Next:<a rel="next" accesskey="n" href="Makefile-Conventions.html#Makefile%20Conventions">Makefile Conventions</a>,
+Previous:<a rel="previous" accesskey="p" href="Features.html#Features">Features</a>,
+Up:<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr><br>
+</div>
+
+<h2 class="chapter">Incompatibilities and Missing Features</h2>
+
+   <p>The <code>make</code> programs in various other systems support a few features
+that are not implemented in GNU <code>make</code>.  The POSIX.2 standard
+(<cite>IEEE Standard 1003.2-1992</cite>) which specifies <code>make</code> does not
+require any of these features.
+
+     <ul>
+<li>A target of the form <code></code><var>file</var><code>((</code><var>entry</var><code>))</code> stands for a member
+of archive file <var>file</var>.  The member is chosen, not by name, but by
+being an object file which defines the linker symbol <var>entry</var>.
+
+     <p>This feature was not put into GNU <code>make</code> because of the
+nonmodularity of putting knowledge into <code>make</code> of the internal
+format of archive file symbol tables. 
+See <a href="Archive-Symbols.html#Archive%20Symbols">Updating Archive Symbol Directories</a>.
+
+     </p><li>Suffixes (used in suffix rules) that end with the character <code>~</code>
+have a special meaning to System V <code>make</code>;
+they refer to the SCCS file that corresponds
+to the file one would get without the <code>~</code>.  For example, the
+suffix rule <code>.c~.o</code> would make the file <code></code><var>n</var><code>.o</code> from
+the SCCS file <code>s.</code><var>n</var><code>.c</code>.  For complete coverage, a whole
+series of such suffix rules is required. 
+See <a href="Suffix-Rules.html#Suffix%20Rules">Old-Fashioned Suffix Rules</a>.
+
+     <p>In GNU <code>make</code>, this entire series of cases is handled by two
+pattern rules for extraction from SCCS, in combination with the
+general feature of rule chaining. 
+See <a href="Chained-Rules.html#Chained%20Rules">Chains of Implicit Rules</a>.
+
+     </p><li>In System V and 4.3 BSD <code>make</code>, files found by <code>VPATH</code> search
+(see <a href="Directory-Search.html#Directory%20Search">Searching Directories for Prerequisites</a>) have their names changed inside command
+strings.  We feel it is much cleaner to always use automatic variables
+and thus make this feature obsolete.
+
+     <li>In some Unix <code>make</code>s, the automatic variable <code>$*</code> appearing in
+the prerequisites of a rule has the amazingly strange "feature" of
+expanding to the full name of the <em>target of that rule</em>.  We cannot
+imagine what went on in the minds of Unix <code>make</code> developers to do
+this; it is utterly inconsistent with the normal definition of <code>$*</code>.
+
+     <li>In some Unix <code>make</code>s, implicit rule search
+(see <a href="Implicit-Rules.html#Implicit%20Rules">Using Implicit Rules</a>) is apparently done for
+<em>all</em> targets, not just those without commands.  This means you can
+do:
+
+     <pre class="example">          foo.o:
+                  cc -c foo.c
+          </pre>
+
+     <p>and Unix <code>make</code> will intuit that <code>foo.o</code> depends on
+<code>foo.c</code>.
+
+     <p>We feel that such usage is broken.  The prerequisite properties of
+<code>make</code> are well-defined (for GNU <code>make</code>, at least),
+and doing such a thing simply does not fit the model.
+
+     </p><li>GNU <code>make</code> does not include any built-in implicit rules for
+compiling or preprocessing EFL programs.  If we hear of anyone who is
+using EFL, we will gladly add them.
+
+     <li>It appears that in SVR4 <code>make</code>, a suffix rule can be specified with
+no commands, and it is treated as if it had empty commands
+(see <a href="Empty-Commands.html#Empty%20Commands">Empty Commands</a>).  For example:
+
+     <pre class="example">          .c.a:
+          </pre>
+
+     <p>will override the built-in <code>.c.a</code> suffix rule.
+
+     <p>We feel that it is cleaner for a rule without commands to always simply
+add to the prerequisite list for the target.  The above example can be
+easily rewritten to get the desired behavior in GNU <code>make</code>:
+
+     <pre class="example">          .c.a: ;
+          </pre>
+
+     </p><li>Some versions of <code>make</code> invoke the shell with the <code>-e</code> flag,
+except under <code>-k</code> (see <a href="Testing.html#Testing">Testing the Compilation of a Program</a>).  The <code>-e</code> flag tells the shell to exit as soon as any
+program it runs returns a nonzero status.  We feel it is cleaner to
+write each shell command line to stand on its own and not require this
+special treatment. 
+</ul>
+
+   </body></html>
+

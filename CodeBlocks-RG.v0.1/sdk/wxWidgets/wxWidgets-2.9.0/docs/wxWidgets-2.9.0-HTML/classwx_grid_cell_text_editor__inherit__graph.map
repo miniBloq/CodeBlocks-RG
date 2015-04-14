@@ -1,0 +1,3 @@
+<area shape="rect" href="$classwx_grid_cell_float_editor.html" title="The editor for floating point numbers data." alt="" coords="5,172,157,204">
+<area shape="rect" href="$classwx_grid_cell_number_editor.html" title="Grid cell editor for numeric integer data." alt="" coords="181,172,349,204">
+<area shape="rect" href="$classwx_grid_cell_editor.html" title="This class is responsible for providing and manipulating the in&#45;place edit controls..." alt="" coords="112,7,235,39">

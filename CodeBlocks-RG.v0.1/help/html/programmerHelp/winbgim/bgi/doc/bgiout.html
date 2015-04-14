@@ -1,0 +1,57 @@
+<html>
+<title>
+Output Stream Functions for Windows BGI (winbgim)
+</title>
+
+<body>
+<h2>Output Stream Functions for Windows BGI</h2>
+
+<HR>
+<DL>
+<DT><B>Syntax</B><DD>
+<PRE>
+#include "graphics.h"
+extern ostringstream bgiout;
+void outstream(ostringstream&amp; out=bgiout);
+void outstreamsy(int x, int y, ostringstream&amp; out=bgiout);
+</PRE>
+
+<DT><B>Description</B><DD>
+
+The <A HREF="bgi.html">winbgim</A> package supports a globally defined output stream
+called <CODE>bgiout</CODE>.  This output stream can be written to just
+like <CODE>cout</CODE> or any other output stream.  However, the
+information written to bgiout does not appear in the graphics window
+until the program calls <CODE>outstream</CODE> or
+<CODE>outstreamxy</CODE>.
+<p>
+The <CODE>outstream</CODE> and <CODE>outstreamxy</CODE> functions work
+like <CODE>outtext</CODE> and <CODE>outtextxy</CODE> functions
+except that they print from an <CODE>ostringstream</CODE> rather than
+from an ordinary string.  The <CODE>outstream</CODE> function prints
+its information in the active graphics window at the current pointer.
+The <CODE>outstreamxy</CODE> function prints its information in the
+active graphics window at coordinates (x,y).  
+<P>
+Both functions clear
+the ostreamstream after printing its information.
+<p>
+Both functions use the global <CODE>bgiout</CODE> as the default value
+for the <CODE>ostringstream</CODE>.
+<P>
+<DT><B>bgiout Examples:</B>
+<DD>
+<PRE>
+    #include "graphics.h"
+    
+    initwindow(400, 400);
+    bgiout &lt;&lt; "Hello, World!" &lt;&lt; endl;
+    bgiout &lt;&lt; 42 &lt;&lt; endl;
+    outstreamxy(100, 100);
+    getch( );
+    closegraph( );
+</PRE>
+
+
+<!-- Mirrored from www.cs.colorado.edu/~main/cs1300/doc/bgi/bgiout.html by HTTrack Website Copier/3.x [XR&CO'2004], Sat, 18 Dec 2004 07:30:41 GMT -->
+</html>

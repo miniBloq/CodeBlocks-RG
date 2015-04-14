@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Implicit%20Rules">Implicit Rules</a>,
+Next:<a rel="next" accesskey="n" href="Archives.html#Archives">Archives</a>,
+Previous:<a rel="previous" accesskey="p" href="Running.html#Running">Running</a>,
+Up:<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr><br>
+</div>
+
+<h2 class="chapter">Using Implicit Rules</h2>
+
+   <p>Certain standard ways of remaking target files are used very often.  For
+example, one customary way to make an object file is from a C source file
+using the C compiler, <code>cc</code>.
+
+   <p><dfn>Implicit rules</dfn> tell <code>make</code> how to use customary techniques so
+that you do not have to specify them in detail when you want to use
+them.  For example, there is an implicit rule for C compilation.  File
+names determine which implicit rules are run.  For example, C
+compilation typically takes a <code>.c</code> file and makes a <code>.o</code> file. 
+So <code>make</code> applies the implicit rule for C compilation when it sees
+this combination of file name endings.
+
+   <p>A chain of implicit rules can apply in sequence; for example, <code>make</code>
+will remake a <code>.o</code> file from a <code>.y</code> file by way of a <code>.c</code> file.
+
+   <p>The built-in implicit rules use several variables in their commands so
+that, by changing the values of the variables, you can change the way the
+implicit rule works.  For example, the variable <code>CFLAGS</code> controls the
+flags given to the C compiler by the implicit rule for C compilation.
+
+   <p>You can define your own implicit rules by writing <dfn>pattern rules</dfn>.
+
+   <p><dfn>Suffix rules</dfn> are a more limited way to define implicit rules. 
+Pattern rules are more general and clearer, but suffix rules are
+retained for compatibility.
+
+<ul class="menu">
+<li><a accesskey="1" href="Using-Implicit.html#Using%20Implicit">Using Implicit</a>:               How to use an existing implicit rule
+                                  to get the commands for updating a file. 
+<li><a accesskey="2" href="Catalogue-of-Rules.html#Catalogue%20of%20Rules">Catalogue of Rules</a>:           A list of built-in implicit rules. 
+<li><a accesskey="3" href="Implicit-Variables.html#Implicit%20Variables">Implicit Variables</a>:           How to change what predefined rules do. 
+<li><a accesskey="4" href="Chained-Rules.html#Chained%20Rules">Chained Rules</a>:                How to use a chain of implicit rules. 
+<li><a accesskey="5" href="Pattern-Rules.html#Pattern%20Rules">Pattern Rules</a>:                How to define new implicit rules. 
+<li><a accesskey="6" href="Last-Resort.html#Last%20Resort">Last Resort</a>:                  How to defining commands for rules
+                                  which cannot find any. 
+<li><a accesskey="7" href="Suffix-Rules.html#Suffix%20Rules">Suffix Rules</a>:                 The old-fashioned style of implicit rule. 
+<li><a accesskey="8" href="Implicit-Rule-Search.html#Implicit%20Rule%20Search">Implicit Rule Search</a>:         The precise algorithm for applying
+                                  implicit rules. 
+</ul>
+
+   </body></html>
+

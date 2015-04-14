@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/stdstring/atoi.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>atoi</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">Standard C String and Character</a> &gt; <a href=
+    "atoi.html">atoi</a>
+  </div>
+
+  <div class="name-format">
+    atoi
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdlib&gt;
+  int atoi( const char *str );
+</pre>
+
+  <p>The atoi() function converts <em>str</em> into an integer, and
+  returns that integer. <em>str</em> should start with whitespace or
+  some sort of number, and atoi() will stop reading from <em>str</em>
+  as soon as a non-numerical character has been read.  For example:</p>
+
+<pre class="prettyprint">
+  int i;
+  i = atoi( &quot;512&quot; );
+  i = atoi( &quot;512.035&quot; );
+  i = atoi( &quot;   512.035&quot; );
+  i = atoi( &quot;   512+34&quot; );
+  i = atoi( &quot;   512 bottles of beer on the wall&quot; );
+</pre>
+
+  <p>All five of the above assignments to the variable <em>i</em> would
+  result in it being set to 512.</p>
+
+  <p>If the conversion cannot be performed, then atoi() will return
+  zero:</p>
+<pre class="prettyprint">
+  int i = atoi( &quot; does not work: 512&quot; );  // results in i == 0
+</pre>
+
+  <p>You can use <a href= "../stdio/sprintf.html">sprintf</a>() to
+  convert a number into a string.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="atof.html">atof</a><br>
+    <a href="atol.html">atol</a><br>
+    (Standard C I/O) <a href="../stdio/sprintf.html">sprintf</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdstring/atoi.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

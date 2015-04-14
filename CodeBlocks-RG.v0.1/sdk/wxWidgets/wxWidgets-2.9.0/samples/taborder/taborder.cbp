@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="taborder" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Win32 DLL Release">
+				<Option output="DLLRelease\auidemo" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\DLLRelease" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add option="-DWIN32" />
+					<Add option="-D__WXMSW__" />
+					<Add option="-D_UNICODE" />
+					<Add option="-DWXUSINGDLL" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-DNOPCH" />
+					<Add directory="." />
+					<Add directory=".\..\..\include" />
+					<Add directory=".\..\..\samples" />
+					<Add directory="$(#wx)\lib\gcc_dll\mswu" />
+					<Add directory="$(#wx)\lib\gcc_dll" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="." />
+					<Add directory=".\..\..\include" />
+					<Add directory=".\..\..\samples" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="libwxmsw29u_richtext.a" />
+					<Add library="libwxmsw29u_xrc.a" />
+					<Add library="libwxmsw29u_aui.a" />
+					<Add library="libwxmsw29u_media.a" />
+					<Add library="libwxbase29u_net.a" />
+					<Add library="libwxmsw29u_gl.a" />
+					<Add library="libwxbase29u_xml.a" />
+					<Add library="libwxmsw29u_adv.a" />
+					<Add library="libwxmsw29u_html.a" />
+					<Add library="libwxmsw29u_core.a" />
+					<Add library="libwxbase29u.a" />
+					<Add library="libwxpng.a" />
+					<Add library="libwxjpeg.a" />
+					<Add library="libwxtiff.a" />
+					<Add library="libwxzlib.a" />
+					<Add library="libwxregexu.a" />
+					<Add library="libwxexpat.a" />
+					<Add directory="$(#wx)\lib\gcc_dll" />
+				</Linker>
+			</Target>
+			<Target title="Win32 DLL Debug">
+				<Option output="vc_mswuddll\taborder" prefix_auto="1" extension_auto="1" />
+				<Option object_output="vc_mswuddll\taborder" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-Wall" />
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D__WXMSW__" />
+					<Add option="-D__WXDEBUG__" />
+					<Add option="-D_UNICODE" />
+					<Add option="-DWXUSINGDLL" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-DNOPCH" />
+					<Add directory=".\..\..\lib\vc_dll\mswud" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\samples" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory=".\..\..\lib\vc_dll\mswud" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\samples" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="wxmsw29ud_core" />
+					<Add library="wxbase29ud" />
+					<Add library="wxtiffd" />
+					<Add library="wxjpegd" />
+					<Add library="wxpngd" />
+					<Add library="wxzlibd" />
+					<Add library="wxregexud" />
+					<Add library="wxexpatd" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="comdlg32" />
+					<Add library="winspool" />
+					<Add library="winmm" />
+					<Add library="shell32" />
+					<Add library="comctl32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="rpcrt4" />
+					<Add library="advapi32" />
+					<Add library="wsock32" />
+					<Add library="wininet" />
+					<Add directory=".\..\..\lib\vc_dll" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="..\..\samples\sample.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="taborder.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

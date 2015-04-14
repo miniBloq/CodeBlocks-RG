@@ -1,0 +1,126 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Execution">Execution</a>,
+Next:<a rel="next" accesskey="n" href="Parallel.html#Parallel">Parallel</a>,
+Previous:<a rel="previous" accesskey="p" href="Echoing.html#Echoing">Echoing</a>,
+Up:<a rel="up" accesskey="u" href="Commands.html#Commands">Commands</a>
+<hr><br>
+</div>
+
+<h3 class="section">Command Execution</h3>
+
+   <p>When it is time to execute commands to update a target, they are executed
+by making a new subshell for each line.  (In practice, <code>make</code> may
+take shortcuts that do not affect the results.)
+
+   <p><strong>Please note:</strong> this implies that shell commands such as <code>cd</code>
+that set variables local to each process will not affect the following
+command lines. <a rel="footnote" href="#fn-1"><sup>1</sup></a>  If you want to use <code>cd</code>
+to affect the next command, put the two on a single line with a
+semicolon between them.  Then <code>make</code> will consider them a single
+command and pass them, together, to a shell which will execute them in
+sequence.  For example:
+
+<pre class="example">     foo : bar/lose
+             cd bar; gobble lose &gt; ../foo
+     </pre>
+
+   <p>If you would like to split a single shell command into multiple lines of
+text, you must use a backslash at the end of all but the last subline. 
+Such a sequence of lines is combined into a single line, by deleting the
+backslash-newline sequences, before passing it to the shell.  Thus, the
+following is equivalent to the preceding example:
+
+<pre class="example">     foo : bar/lose
+             cd bar;  \
+             gobble lose &gt; ../foo
+     </pre>
+
+   <p>The program used as the shell is taken from the variable <code>SHELL</code>. 
+By default, the program <code>/bin/sh</code> is used.
+
+   <p>On MS-DOS, if <code>SHELL</code> is not set, the value of the variable
+<code>COMSPEC</code> (which is always set) is used instead.
+
+   <p>The processing of lines that set the variable <code>SHELL</code> in Makefiles
+is different on MS-DOS.  The stock shell, <code>command.com</code>, is
+ridiculously limited in its functionality and many users of <code>make</code>
+tend to install a replacement shell.  Therefore, on MS-DOS, <code>make</code>
+examines the value of <code>SHELL</code>, and changes its behavior based on
+whether it points to a Unix-style or DOS-style shell.  This allows
+reasonable functionality even if <code>SHELL</code> points to
+<code>command.com</code>.
+
+   <p>If <code>SHELL</code> points to a Unix-style shell, <code>make</code> on MS-DOS
+additionally checks whether that shell can indeed be found; if not, it
+ignores the line that sets <code>SHELL</code>.  In MS-DOS, GNU <code>make</code>
+searches for the shell in the following places:
+
+     <ol type=1 start=1>
+<li>In the precise place pointed to by the value of <code>SHELL</code>.  For
+example, if the makefile specifies <code>SHELL = /bin/sh</code>, <code>make</code>
+will look in the directory <code>/bin</code> on the current drive.
+
+     <li>In the current directory.
+
+     <li>In each of the directories in the <code>PATH</code> variable, in order.
+
+        </ol>
+
+   <p>In every directory it examines, <code>make</code> will first look for the
+specific file (<code>sh</code> in the example above).  If this is not found,
+it will also look in that directory for that file with one of the known
+extensions which identify executable files.  For example <code>.exe</code>,
+<code>.com</code>, <code>.bat</code>, <code>.btm</code>, <code>.sh</code>, and some others.
+
+   <p>If any of these attempts is successful, the value of <code>SHELL</code> will
+be set to the full pathname of the shell as found.  However, if none of
+these is found, the value of <code>SHELL</code> will not be changed, and thus
+the line that sets it will be effectively ignored.  This is so
+<code>make</code> will only support features specific to a Unix-style shell if
+such a shell is actually installed on the system where <code>make</code> runs.
+
+   <p>Note that this extended search for the shell is limited to the cases
+where <code>SHELL</code> is set from the Makefile; if it is set in the
+environment or command line, you are expected to set it to the full
+pathname of the shell, exactly as things are on Unix.
+
+   <p>The effect of the above DOS-specific processing is that a Makefile that
+says <code>SHELL = /bin/sh</code> (as many Unix makefiles do), will work
+on MS-DOS unaltered if you have e.g. <code>sh.exe</code> installed in some
+directory along your <code>PATH</code>.
+
+   <p>Unlike most variables, the variable <code>SHELL</code> is never set from the
+environment.  This is because the <code>SHELL</code> environment variable is
+used to specify your personal choice of shell program for interactive
+use.  It would be very bad for personal choices like this to affect the
+functioning of makefiles.  See <a href="Environment.html#Environment">Variables from the Environment</a>.  However, on MS-DOS and MS-Windows the value of
+<code>SHELL</code> in the environment <strong>is</strong> used, since on those systems
+most users do not set this variable, and therefore it is most likely set
+specifically to be used by <code>make</code>.  On MS-DOS, if the setting of
+<code>SHELL</code> is not suitable for <code>make</code>, you can set the variable
+<code>MAKESHELL</code> to the shell that <code>make</code> should use; this will
+override the value of <code>SHELL</code>.
+
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4>
+<ol type="1">
+<li><a name="fn-1"></a>
+<p>On MS-DOS, the value of current working
+directory is <strong>global</strong>, so changing it <em>will</em> affect the
+following command lines on those systems.</p>
+
+   </ol><hr></div>
+
+   </body></html>
+

@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Using%20Variables">Using Variables</a>,
+Next:<a rel="next" accesskey="n" href="Conditionals.html#Conditionals">Conditionals</a>,
+Previous:<a rel="previous" accesskey="p" href="Commands.html#Commands">Commands</a>,
+Up:<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr><br>
+</div>
+
+<h2 class="chapter">How to Use Variables</h2>
+
+   <p>A <dfn>variable</dfn> is a name defined in a makefile to represent a string
+of text, called the variable's <dfn>value</dfn>.  These values are
+substituted by explicit request into targets, prerequisites, commands,
+and other parts of the makefile.  (In some other versions of <code>make</code>,
+variables are called <dfn>macros</dfn>.)
+
+   <p>Variables and functions in all parts of a makefile are expanded when
+read, except for the shell commands in rules, the right-hand sides of
+variable definitions using <code>=</code>, and the bodies of variable
+definitions using the <code>define</code> directive.
+
+   <p>Variables can represent lists of file names, options to pass to compilers,
+programs to run, directories to look in for source files, directories to
+write output in, or anything else you can imagine.
+
+   <p>A variable name may be any sequence of characters not containing <code>:</code>,
+<code>#</code>, <code>=</code>, or leading or trailing whitespace.  However,
+variable names containing characters other than letters, numbers, and
+underscores should be avoided, as they may be given special meanings in the
+future, and with some shells they cannot be passed through the environment to a
+sub-<code>make</code>
+(see <a href="Variables-Recursion.html#Variables%2fRecursion">Communicating Variables to a Sub-<code>make</code></a>).
+
+   <p>Variable names are case-sensitive.  The names <code>foo</code>, <code>FOO</code>,
+and <code>Foo</code> all refer to different variables.
+
+   <p>It is traditional to use upper case letters in variable names, but we
+recommend using lower case letters for variable names that serve internal
+purposes in the makefile, and reserving upper case for parameters that
+control implicit rules or for parameters that the user should override with
+command options (see <a href="Overriding.html#Overriding">Overriding Variables</a>).
+
+   <p>A few variables have names that are a single punctuation character or
+just a few characters.  These are the <dfn>automatic variables</dfn>, and
+they have particular specialized uses.  See <a href="Automatic.html#Automatic">Automatic Variables</a>.
+
+<ul class="menu">
+<li><a accesskey="1" href="Reference.html#Reference">Reference</a>:                    How to use the value of a variable. 
+<li><a accesskey="2" href="Flavors.html#Flavors">Flavors</a>:                      Variables come in two flavors. 
+<li><a accesskey="3" href="Advanced.html#Advanced">Advanced</a>:                     Advanced features for referencing a variable. 
+<li><a accesskey="4" href="Values.html#Values">Values</a>:                       All the ways variables get their values. 
+<li><a accesskey="5" href="Setting.html#Setting">Setting</a>:                      How to set a variable in the makefile. 
+<li><a accesskey="6" href="Appending.html#Appending">Appending</a>:                    How to append more text to the old value
+                                  of a variable. 
+<li><a accesskey="7" href="Override-Directive.html#Override%20Directive">Override Directive</a>:           How to set a variable in the makefile even if
+                                  the user has set it with a command argument. 
+<li><a accesskey="8" href="Defining.html#Defining">Defining</a>:                     An alternate way to set a variable
+                                  to a verbatim string. 
+<li><a accesskey="9" href="Environment.html#Environment">Environment</a>:                  Variable values can come from the environment. 
+<li><a href="Target-specific.html#Target-specific">Target-specific</a>:              Variable values can be defined on a per-target
+                                  basis. 
+<li><a href="Pattern-specific.html#Pattern-specific">Pattern-specific</a>:             Target-specific variable values can be applied
+                                  to a group of targets that match a pattern. 
+</ul>
+
+   </body></html>
+

@@ -1,0 +1,744 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Lcc</title>
+</head>
+
+<body>
+
+<h1 align="left"><span style="color:maroon;mso-ansi-language:EN-US" class="MsoHyperlink">Lcc-win32
+User’s Manual<o:p>
+</o:p></span>&nbsp;<o:p>
+</o:p>
+</h1>
+<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; mso-border-alt: solid windowtext .5pt; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt; border-style: none; border-width: medium; margin-left: 20.0pt" height="3357" width="545">
+  <tr>
+    <td width="249" valign="top" style="border: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="38">
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="organization_of_the_documentation.htm">Organization
+      of the Documentation</a></span></p>
+    </td>
+    <td width="265" valign="top" style="mso-border-left-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: .5pt solid windowtext; border-top: .5pt solid windowtext; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="38">
+      <p class="MsoToc3">Explains which documents are available, and how to get
+      them</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="249" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="107">
+      <p class="MsoToc2"><span class="MsoHyperlink"><a href="installing_lcc.htm">Installing
+      lcc-win32<span style="color:windowtext;display:none;mso-hide:screen;
+  text-decoration:none;text-underline:none"><span style="mso-tab-count:1">&nbsp;
+      </span><span style="mso-field-code:&quot;PAGEREF _Toc509456940 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900340030000000</w:data>
+  </xml><![endif]-->
+      </span></span></a></span><span style="mso-bidi-font-size:
+  12.0pt"><o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="troubleshooting.htm">Troubleshooting<span style="color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+  text-underline:none"><span style="mso-tab-count:1">&nbsp; </span></span></a></span></p>
+      <p class="MsoNormal"><span style="font-family:&quot;Times New Roman&quot;"><a href="configuring_the_compiler.htm">Configuring
+      the compiler</a><o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal"><span style="font-family:&quot;Times New Roman&quot;"><a href="configuring_the_linker.htm">Configuring
+      the linker</a><o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoToc3"><a href="keyboard_shortcuts.htm">Keyboard shortcuts</a></p>
+      <p class="MsoNormal"><span style="font-family: Times New Roman"><a href="getting_started.htm">Getting
+      started</a> </span><span style="font-family:&quot;Times New Roman&quot;"></o:p>
+      </span></p>
+    </td>
+    <td width="265" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="107">
+      <p class="MsoToc3">Installing, installation problems, directory
+      organization, and a small example to get you up and running</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="529" colspan="2" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="20">
+      <p class="MsoToc3" align="center"><font size="4" color="#0000FF">The compiler</font>
+    </td>
+  </tr>
+  <tr>
+    <td width="249" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="190">
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="commandline.htm">Using
+      the Compiler from the Command Line<span style="color:windowtext;display:none;
+  mso-hide:screen;text-decoration:none;text-underline:none"><span style="mso-tab-count:1">&nbsp;
+      </span></span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="compiler_driver.htm">The
+      compiler driver<span style="mso-tab-count:1"> </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="Options.htm">lcc-win32
+      Command Line Options<span style="mso-tab-count:1">&nbsp;
+      </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="Pragma.htm">Pragma
+      Directives of lcc-win32<span style="color:windowtext;display:none;mso-hide:
+  screen;text-decoration:none;text-underline:none"><span style="mso-tab-count:
+  1">&nbsp;</span><span style="mso-field-code:&quot;PAGEREF _Toc509456958 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900350038000000</w:data>
+  </xml><![endif]-->
+      </span></span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="runtime_organization.htm">Runtime
+      Organization<span style="color:windowtext;display:none;mso-hide:screen;
+  text-decoration:none;text-underline:none"><span style="mso-tab-count:1">&nbsp;</span><span style="mso-field-code:&quot;PAGEREF _Toc509456959 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900350039000000</w:data>
+  </xml><![endif]-->
+      </span></span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="registry_use_of_lcc.htm">Registry
+      Use of lcc-win32<span style="mso-field-code:&quot;PAGEREF _Toc509456961 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900360031000000</w:data>
+  </xml><![endif]-->
+      </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="predefined_preprocessor_symbols.htm">Predefined
+      Preprocessor Symbols<span style="color:windowtext;display:none;mso-hide:screen;
+  text-decoration:none;text-underline:none"><span style="mso-tab-count:1">&nbsp;</span><span style="mso-field-code:&quot;PAGEREF _Toc509456962 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900360032000000</w:data>
+  </xml><![endif]-->
+      </span></span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="predefined_compiler_symbols.htm">Predefined
+      Compiler Symbols<span style="mso-field-code:&quot;PAGEREF _Toc509456963 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900360033000000</w:data>
+  </xml><![endif]-->
+      </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="standard_header_files_of_the_lcc.htm">Standard
+      Header Files of the lcc-win32 System<span style="mso-tab-count:1">&nbsp;&nbsp;</span></a></span></p>
+    </td>
+    <td width="265" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="190">
+      <p class="MsoToc3">Command line arguments of the compiler, and other
+      documentation about the run-time organization of the generated code.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="529" colspan="2" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="45">
+      <p class="MsoToc3" align="center" style="text-align:center"><a href="special_features_of_lcc.htm"><span style="mso-bidi-font-size: 12.0pt"><font size="4">Language extensions of lcc-win32 and special features/enhancements</font></span></a></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="249" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="375">
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="../manualhtml/MemoryManager.html">The
+      Memory Manager (Garbage collector)<span style="color:windowtext;display:none;
+  mso-hide:screen;text-decoration:none;text-underline:none"><span style="mso-tab-count:1">
+      </span></span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="operator_overloading.htm">Operator
+      Overloading<span style="color:windowtext;display:none;mso-hide:screen;
+  text-decoration:none;text-underline:none"><span style="mso-tab-count:1">&nbsp;
+      </span></span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="references.htm">References<span style="color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+  text-underline:none"><span style="mso-tab-count:1">&nbsp; </span></span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="generic_functions.htm">Generic
+      Functions<span style="color:windowtext;display:none;mso-hide:screen;
+  text-decoration:none;text-underline:none"><span style="mso-tab-count:1">&nbsp;
+      </span></span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="other_syntactic_enhancements.htm">Other
+      Syntactic Enhancements<span style="mso-tab-count:
+  1">&nbsp;</span></a>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal"><span style="font-family:&quot;Times New Roman&quot;" class="MsoHyperlink"><a href="intrinsic_functions.htm">The
+      Intrinsic Functions<span style="mso-tab-count:1">&nbsp; </span></a></o:p>
+      </span></p>
+      <p class="MsoNormal"><span style="font-family:&quot;Times New Roman&quot;" class="MsoHyperlink"><a href="qfloat.htm">The
+      qfloat library</a><o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal"><span style="font-family:&quot;Times New Roman&quot;" class="MsoHyperlink"><a href="bignum_library.htm">The
+      bignum library</a><o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal"><span style="font-family:&quot;Times New Roman&quot;" class="MsoHyperlink"><a href="../manualhtml/mmx.htm">Support
+      for MMX</a><o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal"><span style="font-family:&quot;Times New Roman&quot;" class="MsoHyperlink"><a href="../manualhtml/AMD.htm">Support
+      for AMD 3DNOW</a></span><span style="font-family:
+  &quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="265" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="375">
+      <p class="MsoToc3">Extensions of lcc-win32 to the C language, and how to
+      use them</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="529" colspan="2" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="22">
+      <p class="MsoToc3" align="center" style="text-align:center"><a href="linker.htm"><span style="mso-bidi-font-size: 12.0pt" class="MsoHyperlink"><font size="4"><span style="mso-bidi-font-size:13.0pt">The
+      Linker</span><span style="color: windowtext; display: none; mso-hide: screen; text-decoration: none; text-underline: none; mso-tab-count: 1">
+      </span></font></span><span style="font-size:
+  12.0pt"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900360035000000</w:data>
+  </xml><![endif]-->
+      </span></a></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="249" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="52">
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="linkeroptions.htm">Command
+      Line Switches<span style="color:windowtext;display:none;mso-hide:screen;
+  text-decoration:none;text-underline:none"><span style="mso-tab-count:1">&nbsp;
+      </span><span style="mso-field-code:&quot;PAGEREF _Toc509456967 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900360037000000</w:data>
+  </xml><![endif]-->
+      </span></span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="libraries.htm">Libraries
+      Distributed with lcc-win32<span style="color:windowtext;display:none;
+  mso-hide:screen;text-decoration:none;text-underline:none"><span style="mso-tab-count:1">&nbsp;</span><span style="mso-field-code:&quot;PAGEREF _Toc509456968 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900360038000000</w:data>
+  </xml><![endif]-->
+      </span></span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="other_libraries.htm">Other
+      Libraries Distributed with lcc-win32&nbsp;</a></span></p>
+    </td>
+    <td width="265" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="52">
+      <p class="MsoToc3">How to link, libraries description, and related topics</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="529" colspan="2" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="22">
+      <p class="MsoToc3" align="center" style="text-align:center"><span style="mso-bidi-font-size: 12.0pt; mso-field-code: PAGEREF _Toc509456970 \\h; color: windowtext; display: none; mso-hide: screen; text-decoration: none; text-underline: none" class="MsoHyperlink"><font size="4">Other
+      command line utilities</font></span><span style="font-size:16.0pt;mso-bidi-font-size:12.0pt" class="MsoHyperlink"><a href="../manualhtml/OtherCmdLine.htm"><span style="font-size:12.0pt"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900370030000000</w:data>
+  </xml><![endif]-->
+      </span></a></span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="249" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="284">
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="resource_compiler.htm">The
+      Resource Compiler<span style="mso-field-code:&quot;PAGEREF _Toc509456971 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900370031000000</w:data>
+  </xml><![endif]-->
+      </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="pedump_utility.htm">The
+      pedump Utility<span style="mso-field-code:&quot;PAGEREF _Toc509456972 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900370032000000</w:data>
+  </xml><![endif]-->
+      </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="f2c.htm">F2C
+      — The Fortran Compiler<span style="mso-field-code:&quot;PAGEREF _Toc509456973 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900370033000000</w:data>
+  </xml><![endif]-->
+      </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="browsegen_utility.htm">The
+      browsegen Utility<span style="color:windowtext;display:none;mso-hide:screen;
+  text-decoration:none;text-underline:none"><span style="mso-tab-count:1">&nbsp;</span><span style="mso-field-code:&quot;PAGEREF _Toc509456974 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900370034000000</w:data>
+  </xml><![endif]-->
+      </span></span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="buildlib_utility.htm">The
+      buildlib Utility<span style="mso-field-code:&quot;PAGEREF _Toc509456975 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900370035000000</w:data>
+  </xml><![endif]-->
+      </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="lcclib_utility.htm">The
+      lcclib Utility<span style="mso-field-code:&quot;PAGEREF _Toc509456976 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900370036000000</w:data>
+  </xml><![endif]-->
+      </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="bind_utility.htm">The
+      Bind Utility<span style="mso-tab-count:1">&nbsp;</span></a>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal"><span style="font-family:&quot;Times New Roman&quot;"><a href="mergeasm_utility.htm">The
+      mergeasm utility</a><o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="265" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="284">
+      <p class="MsoToc3">Resources, and other less command line utilities</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="529" colspan="2" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="20">
+      <p class="MsoToc3" align="center" style="text-align:center"><font size="4">The
+      integrated development environment: wedit</font></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="249" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="132">
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="weditcmdline.htm">Command
+      Line Arguments<span style="color:windowtext;display:none;mso-hide:screen;
+  text-decoration:none;text-underline:none"><span style="mso-tab-count:1">&nbsp;</span><span style="mso-field-code:&quot;PAGEREF _Toc509456979 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900370039000000</w:data>
+  </xml><![endif]-->
+      </span></span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="wedit_menu.htm">The
+      Main Menu<span style="mso-field-code:&quot;PAGEREF _Toc509456980 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900380030000000</w:data>
+  </xml><![endif]-->
+      </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="wedit_user_interface.htm">U<span style="mso-field-code:&quot;PAGEREF _Toc509456981 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900380031000000</w:data>
+  </xml><![endif]--></span>ser interface</a></span></p>
+      <p class="MsoToc3">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="265" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="132">
+      <p class="MsoToc3">Introduction to the IDE, the description of the main
+      menu, and the user interface.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="529" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" colspan="2" height="20">
+      <p align="center"><font size="4">Project management</font>
+    </td>
+  </tr>
+  <tr>
+    <td width="249" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1">
+      <p class="MsoToc2"><span class="MsoHyperlink"><a href="projects.htm"><span style="mso-bidi-font-style:italic">Projects</span></a></span></p>
+      <p class="MsoToc2"><span style="mso-bidi-font-style: italic" class="MsoHyperlink"><a href="CreatingProjects.htm">Creating
+      a project</a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="importing_a_project.htm">Importing
+      Projects<span style="mso-field-code:&quot;PAGEREF _Toc509456984 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900380034000000</w:data>
+  </xml><![endif]-->
+      </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="custom_build_options.htm">C<span style="mso-field-code:&quot;PAGEREF _Toc509456985 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900380035000000</w:data>
+  </xml><![endif]--></span>ustom build options</a></span></p>
+      <p class="MsoToc3">&nbsp;<span class="MsoHyperlink"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="265" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1">
+      <p class="MsoToc3">Project management: how to create a project, import a
+      project, creating custom build options, etc.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="529" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" colspan="2" height="20">
+      <p align="center"><font size="4">Configuring Wedit</font>
+    </td>
+  </tr>
+  <tr>
+    <td width="249" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="193">
+      <p><span class="MsoHyperlink"><a href="general_configuration_options.htm">General</a></span></p>
+      <p><span class="MsoHyperlink"><a href="workspace_options.htm">Workspace</a></span></p>
+      <p><span class="MsoHyperlink"><a href="creating_macros.htm">Macros<span style="mso-tab-count:1">&nbsp;</span></a></span></p>
+      <p><span class="MsoHyperlink"><a href="debugger_configuration.htm">Debugger<span style="color:windowtext;display:none;mso-hide:screen;
+  text-decoration:none;text-underline:none"><span style="mso-tab-count:1">&nbsp;</span><span style="mso-field-code:&quot;PAGEREF _Toc509456989 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900380039000000</w:data>
+  </xml><![endif]-->
+      </span></span></a></span></p>
+      <p><a href="language_keywords.htm"><span class="MsoHyperlink">Language</span></a></p>
+      <p><span class="MsoHyperlink"><a href="configuring_the_compiler.htm">Compiler&nbsp;</a></span></p>
+      <p><span class="MsoHyperlink"><a href="configuring_the_linker.htm">Linker</a></span></p>
+      <p><span class="MsoHyperlink"><a href="adding_a_utility.htm">Utilities</a></span></p>
+    </td>
+    <td width="265" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="193">
+      <p class="MsoToc3">The configuration tab, how to change fonts, colors,
+      configure the compiler, etc.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="529" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" colspan="2" height="20">
+      <p align="center"><font size="4">Searching/Editing text</font>
+    </td>
+  </tr>
+  <tr>
+    <td width="249" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1">
+      <span class="MsoHyperlink"><a href="selecting_and_moving_text.htm">Selecting
+      and Moving Text<span style="color:windowtext;display:none;mso-hide:screen;
+  text-decoration:none;text-underline:none"><span style="mso-tab-count:1"> </span></span></a></span>
+      <p><span class="MsoHyperlink"><a href="searching_text.htm">Searching
+      Text<span style="mso-tab-count:1"> </span></a></span></p>
+      <p><a href="replacing_text.htm">Replacing text</a></p>
+      <p><a href="grep_utility.htm">Find in files (GREP)</a></p>
+      <p><a href="goto.htm">Go to</a></p>
+      <p><a href="bookmarks.htm">Bookmarks</a>
+    </td>
+    <td width="265" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1">
+      Doing elementary text operations
+    </td>
+  </tr>
+  <tr>
+    <td width="529" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" colspan="2" height="20">
+      <p align="center"><font size="4" color="#0000FF">Syntax oriented editing</font>
+    </td>
+  </tr>
+  <tr>
+    <td width="249" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="33">
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="name_completion_feature.htm">The
+      ‘Name Completion’ Feature<span style="mso-field-code:&quot;PAGEREF _Toc509456990 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900390030000000</w:data>
+  </xml><![endif]-->
+      </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="go_to_definition.htm">G<span style="mso-field-code:&quot;PAGEREF _Toc509456991 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900390031000000</w:data>
+  </xml><![endif]--></span>o to definition</a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="matching_parentheses.htm">Matching
+      Parentheses, Brackets, etc.<span style="mso-field-code:&quot;PAGEREF _Toc509456992 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900390032000000</w:data>
+  </xml><![endif]-->
+      </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="displaying_the_function_index.htm">Displaying
+      the List of Functions in the Current File</a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><span style="mso-field-code: PAGEREF _Toc509456993 \\h; color: windowtext; display: none; mso-hide: screen; text-decoration: none; text-underline: none"><a href="searching_for_a_function.htm">Searching
+      for a function</a></span><a href="displaying_the_function_index.htm"><span style="mso-field-code:&quot;PAGEREF _Toc509456993 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350036003900390033000000</w:data>
+  </xml><![endif]-->
+      </span></a></span></p>
+    </td>
+    <td width="265" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="33">
+      <p class="MsoToc3">How Wedit aids you to find definitions, usages,
+      functions defined, etc.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="529" colspan="2" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="23">
+      <p class="MsoToc2" align="center" style="text-align:center"><b><font size="4"><a href="debugging.htm">The
+      debugger</a></font></b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="249" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="600">
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="debugger_configuration.htm">Configuring
+      the Debugger<span style="mso-field-code:&quot;PAGEREF _Toc509457003 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350037003000300033000000</w:data>
+  </xml><![endif]-->
+      </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="using_the_debugger.htm">Using
+      the Debugger: The Basics<span style="color:windowtext;display:none;mso-hide:screen;
+  text-decoration:none;text-underline:none"><span style="mso-tab-count:1">&nbsp;</span><span style="mso-field-code:&quot;PAGEREF _Toc509457004 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350037003000300034000000</w:data>
+  </xml><![endif]-->
+      </span></span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="switching_displays.htm">Switching
+      between the Different Displays<span style="color:windowtext;display:none;
+  mso-hide:screen;text-decoration:none;text-underline:none"><span style="mso-tab-count:1">&nbsp;</span><span style="mso-field-code:&quot;PAGEREF _Toc509457005 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350037003000300035000000</w:data>
+  </xml><![endif]-->
+      </span></span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="settingBreakpoints.htm">Setting/Unsetting
+      Breakpoints<span style="mso-field-code:&quot;PAGEREF _Toc509457006 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350037003000300036000000</w:data>
+  </xml><![endif]-->
+      </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="displayingProgramInfo.htm">Displaying
+      Information about the Program<span style="color:windowtext;display:none;
+  mso-hide:screen;text-decoration:none;text-underline:none"><span style="mso-tab-count:1">&nbsp;</span><span style="mso-field-code:&quot;PAGEREF _Toc509457007 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350037003000300037000000</w:data>
+  </xml><![endif]-->
+      </span></span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="cpu.htm">CPU<span style="mso-field-code:&quot;PAGEREF _Toc509457008 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350037003000300038000000</w:data>
+  </xml><![endif]-->
+      </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="machine_instructions.htm">Machine
+      Instructions<span style="mso-field-code:&quot;PAGEREF _Toc509457009 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350037003000300039000000</w:data>
+  </xml><![endif]-->
+      </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="locals_display.htm">The
+      Stack Display<span style="mso-field-code:&quot;PAGEREF _Toc509457010 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350037003000310030000000</w:data>
+  </xml><![endif]-->
+      </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="locals_display.htm">The
+      Locals Display<span style="mso-tab-count:1">&nbsp;</span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="events_display.htm">The
+      Events Display</a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="memory_window.htm">The
+      Memory Window<span style="mso-tab-count:1">&nbsp;</span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="watch_window.htm">The
+      Watch Window<span style="mso-tab-count:1">&nbsp;</span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="autowindow.htm">The
+      ‘Auto’ Window<span style="mso-tab-count:1">&nbsp;</span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="evaluating_an_expression.htm">Evaluating
+      an Expression</a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="setting_data_breakpoints.htm">Setting
+      Data Breakpoints<span style="mso-tab-count:1">&nbsp;</span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="auto_calling_up_the_debugger.htm">Calling
+      Up the Debugger if your Program Crashes<span style="mso-tab-count:1">&nbsp;
+      </span></a></o:p>
+      </span></p>
+    </td>
+    <td width="265" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="600">
+      <p class="MsoToc3">How to use Wedit’s debugger. How to read the
+      different windows, and to interpret the different displays.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="529" colspan="2" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="9">
+      <p class="MsoToc2" align="center" style="text-align:center"><span style="mso-bidi-font-size:12.0pt"><b><font size="4"><font color="#0000FF">Other
+      utilities</font></o:p>
+      </font></b>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="249" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1">
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="profiler.htm">The
+      Profiler<span style="mso-tab-count:1"> </span></a>
+      </o:p>
+      </span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="binary_editor.htm">The
+      Binary Editor<span style="mso-tab-count:1"> &nbsp; </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="software_metrics_module.htm">The
+      Software Metrics Module<span style="mso-tab-count:
+  1">&nbsp;</span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="identifying_an_executable.htm">Identifying
+      an Executable or an Object File<span style="mso-tab-count:1">&nbsp;&nbsp;</span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="analysis_of_a_function.htm"><span style="mso-field-code: PAGEREF _Toc509457027 \\h; display: none; mso-hide: screen; text-decoration: none; text-underline: none"><u>Analysis
+      of a function's identifiers</u></span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="generatingCharStringTable_.htm">Generating
+      a Table of Character Strings<span style="mso-tab-count:1">&nbsp;&nbsp;</span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="diff.htm">The
+      &quot;DIFF&quot; Utility<span style="mso-tab-count:1">&nbsp;&nbsp;</span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="inserting_special_commentaries.htm">Inserting
+      Special Commentaries<span style="mso-tab-count:1">&nbsp;</span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="inserting_a_comment_at_the_begin.htm">Inserting
+      a Comment at the Beginning of a Function</a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="tree_utility.htm">The
+      'TREE' Utility<span style="mso-tab-count:1">&nbsp; </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="objxref.htm">The
+      Object File Cross-Reference Utility<span style="mso-tab-count:1">&nbsp;
+      </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="writing_the_prototype.htm">Writing
+      the Prototype of all Functions Defined in the Current File<span style="mso-tab-count:1">&nbsp; </span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="relationships.htm">Showing
+      the Relationships between Two Modules<span style="color:windowtext;
+  display:none;mso-hide:screen;text-decoration:none;text-underline:none"><span style="mso-tab-count:1">&nbsp;
+      </span></span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="exestats.htm">Showing
+      the Executable or Object File Statistics<span style="color:windowtext;
+  display:none;mso-hide:screen;text-decoration:none;text-underline:none"><span style="mso-tab-count:1">&nbsp;
+      </span></span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="genhlp.htm">Automatically
+      Generating the Program's Technical Documentation<span style="color:windowtext;
+  display:none;mso-hide:screen;text-decoration:none;text-underline:none"><span style="mso-tab-count:1">&nbsp;
+      </span></span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="printing.htm">Printing
+      Your Files<span style="mso-tab-count:1">&nbsp;
+      </span></a></o:p>
+      </span></p>
+    </td>
+    <td width="265" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1">
+      <p class="MsoToc3">How to edit files in binary mode, measure the code with
+      the software metrics module, and many other built in utilities</p>
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <p align="center"><a href="wres/editor.html"><font size="4">The resource
+      editor</font></a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/adding_a_dialog_box.htm">Adding a dialog box</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/adding_controls_to_the_dialog.htm">Adding controls</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/managing_the_selection.htm">Managing the selection</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/moving_and_nailing_down_objects.htm">Moving and fixing
+      objects</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/editing_the_symbol_table.htm">Editing the symbol table</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/group_order.htm">Setting the group order</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/output_of_the_editor.htm">Output of the editor</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <h4><a href="wres/general_properties_of_controls.htm"><font size="3">Controls</font></a></h4>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/buttons.htm">Buttons</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/check_boxes.htm">Check boxes</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/combo_boxes.htm">Combo boxes</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/dialog_box_properties.htm">Dialog boxes</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/edit_fields.htm">Edit fields</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/group_boxes.htm">Group boxes</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/list_boxes.htm">List boxes</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/list_views.htm">List views</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/month_calendar.htm">Month/Calendar</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/progress_controls.htm">Progress control</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/radio_buttons.htm">Radio buttons</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/slider_control.htm">Slider</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/spin_control.htm">Spin control</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/tree_control.htm">Tree control</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <h4><font color="#0000FF">Editing other resources</font></h4>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/accelerator_table_editor.htm">Accelerators</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/menu_editor.htm">The menu editor</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="wres/string_table_editor.htm">String table editor</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <h3 align="center"><a href="clang/an_overview_of_the_whole_languag.htm"><font size="4">C
+      language overview</font></a></h3>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="clang/statements.htm">Statements</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="clang/declarations.htm">Declarations</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="clang/preprocessor.htm">Preprocessor</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="clang/control_flow.htm">Control flow</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="514" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1" colspan="2">
+      <a href="clang/windows_specific_syntax.htm">Windows specific syntax</a>
+    </td>
+  </tr>
+  <tr>
+    <td width="529" colspan="2" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="28">
+      <p class="MsoToc2" align="center"><font size="4"><a href="wizard.htm"><span style="mso-bidi-font-size: 13.0pt" class="MsoHyperlink">The
+      Application Wizard<span style="mso-tab-count:1">&nbsp;</span></span></a></font><span style="mso-bidi-font-size:12.0pt">
+      <font size="4"> </font>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="249" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="86">
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="compiling_a_dll.htm">Compiling
+      a DLL<span style="color:windowtext;display:none;mso-hide:screen;text-decoration:
+  none;text-underline:none"><span style="mso-tab-count:1">&nbsp;</span><span style="mso-field-code:&quot;PAGEREF _Toc509457100 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350037003100300030000000</w:data>
+  </xml><![endif]-->
+      </span></span></a></span></p>
+      <p class="MsoToc3"><span class="MsoHyperlink"><a href="dynamic_loader.htm">The
+      Dynamic Loader<span style="mso-field-code:&quot;PAGEREF _Toc509457102 \\h&quot;"><!--[if gte mso 9]><xml>
+   <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003500300039003400350037003100300032000000</w:data>
+  </xml><![endif]--></span></a></o:p>
+      </span></p>
+      <p class="MsoNormal"><span style="font-family:&quot;Times New Roman&quot;"><a href="../manualhtml/DirectXWithlcc.htm">DirectX8
+      with lcc-win32</a><o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="265" valign="top" style="mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; border-left-style: none; border-left-width: medium; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="86">
+      <p class="MsoToc3">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="529" colspan="2" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="1">
+      <p class="MsoToc2" align="center" style="text-align:center"><a href="FAQ.htm"><span style="mso-bidi-font-style: italic; mso-bidi-font-size: 13.0pt" class="MsoHyperlink"><font size="4">Frequently
+      Asked Questions (FAQs)</font></span></a></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="529" colspan="2" valign="top" style="mso-border-top-alt: solid windowtext .5pt; border-left: .5pt solid windowtext; border-right: .5pt solid windowtext; border-top-style: none; border-top-width: medium; border-bottom: .5pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm" height="87">
+      <p class="MsoToc2"><span class="MsoHyperlink"><a href="examples.htm">The Programming Examples<span style="mso-tab-count:1">&nbsp;</span></a></span></p>
+      <p class="MsoToc2"><span class="MsoHyperlink"><a href="limits.htm"><span lang="FR" style="mso-ansi-language:FR">Implementation Limits</span></a></span></p>
+    </td>
+  </tr>
+</table>
+
+</body>
+
+</html>

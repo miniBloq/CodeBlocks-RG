@@ -1,0 +1,100 @@
+<TITLE>BGI Documentation for 
+getbkcolor
+</TITLE>
+<H2>
+getbkcolor
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+int getbkcolor(void);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+getbkcolor returns the current background color. (See the table in <A
+HREF="setbkcolor.html">setbkcolor</A> for details.)
+
+
+<P><DT><B>Return Value</B><DD>
+getbkcolor returns the current background color.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+In the <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> version, the user
+might set the background color to an
+<A HREF="wincolor.html">RGB color</A>. Therefore, the return value
+from getbkcolor might be an ordinary BGI color (integer from 0 to 15)
+or an RGB color.
+
+<P><DT><B>See also</B>
+<DD><A HREF="getcolor.html"> getcolor </A>
+<DD><A HREF="getmaxcolor.html"> getmaxcolor </A>
+<DD><A HREF="getpalette.html"> getpalette </A>
+<DD><A HREF="setbkcolor.html"> setbkcolor </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* getbkcolor example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int bkcolor, midx, midy;
+   char bkname[35];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+   setcolor(getmaxcolor());
+
+   /* for centering text on the display */
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+
+   /* get the current background color */
+   bkcolor = getbkcolor();
+
+   /* convert color value into a string */
+   itoa(bkcolor, bkname, 10);
+   strcat(bkname, " is the current background color.");
+
+
+
+   /* display a message */
+   outtextxy(midx, midy, bkname);
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

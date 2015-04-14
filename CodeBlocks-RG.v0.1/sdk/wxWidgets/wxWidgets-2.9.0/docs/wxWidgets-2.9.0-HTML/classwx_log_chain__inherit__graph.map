@@ -1,0 +1,4 @@
+<area shape="rect" href="$classwx_log_interposer.html" title="A special version of wxLogChain which uses itself as the new log target." alt="" coords="5,172,125,204">
+<area shape="rect" href="$classwx_log_interposer_temp.html" title="A special version of wxLogChain which uses itself as the new log target." alt="" coords="149,172,304,204">
+<area shape="rect" href="$classwx_log.html" title="wxLog class defines the interface for the log targets used by wxWidgets logging functions..." alt="" coords="115,7,176,39">
+<area shape="rect" href="$classwx_log_window.html" title="This class represents a background log window: to be precise, it collects all log..." alt="" coords="11,255,120,287">

@@ -1,0 +1,1683 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>C++ I/O</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C++ I/O</a>
+  </div>
+
+  <div class="name-format">
+    bad
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  bool bad();
+</pre>
+
+  <p>The bad() function returns true if a fatal error with the current
+  stream has occurred, false otherwise.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="eof.html">eof</a><br>
+    <a href="fail.html">fail</a><br>
+    <a href="good.html">good</a><br>
+    <a href="rdstate.html">rdstate</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    clear
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  void clear( iostate flags = ios::goodbit );
+</pre>
+
+  <p>The function clear() does two things:</p>
+
+  <ul>
+    <li>it clears all <a href="../io_flags.html#state_flags">io stream
+    state flag</a>s associated with the current stream,</li>
+
+    <li>and sets the flags denoted by <em>flags</em></li>
+  </ul>
+
+  <p>The <em>flags</em> argument defaults to ios::goodbit, which means
+  that by default, all flags will be cleared and ios::goodbit will be
+  set.</p>
+
+  <div class="related-examples-format">
+    Example code:
+  </div>
+
+  <div class="related-examples">
+    <p>For example, the following code uses the clear() function to
+    reset the flags of an output file stream, after an attempt is made
+    to read from that output stream:</p>
+<pre class="prettyprint">
+ fstream outputFile( &quot;output.txt&quot;, fstream::out );            
+
+ // try to read from the output stream; this shouldn&#39;t work
+ int val;
+ outputFile &gt;&gt; val;
+ if( outputFile.fail() ) {
+   cout &lt;&lt; &quot;Error reading from the output stream&quot; &lt;&lt; endl;
+   // reset the flags associated with the stream
+   outputFile.clear();
+ }              
+                
+
+ for( int i = 0; i &lt; 10; i++ ) {
+   outputFile &lt;&lt; i &lt;&lt; &quot; &quot;;
+ }
+ outputFile &lt;&lt; endl;              
+</pre>
+  </div>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="eof.html">eof</a><br>
+    <a href="fail.html">fail</a><br>
+    <a href="good.html">good</a><br>
+    <a href="rdstate.html">rdstate</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    close
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  void close();
+</pre>
+
+  <p>The close() function closes the associated file stream.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="constructors.html">I/O Constructors</a><br>
+    <a href="open.html">open</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    I/O Constructors
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  fstream( const char *filename, openmode mode );
+  ifstream( const char *filename, openmode mode );
+  ofstream( const char *filename, openmode mode );
+</pre>
+
+  <p>The fstream, ifstream, and ofstream objects are used to do file
+  I/O. The optional <em>mode</em> defines how the file is to be opened,
+  according to the <a href="../io_flags.html#mode_flags">io stream mode
+  flag</a>s. The optional <em>filename</em> specifies the file to be
+  opened and associated with the stream.</p>
+
+  <p>Input and output file streams can be used in a similar manner to
+  C++ predefined I/O streams, cin and cout.</p>
+
+  <div class="related-examples-format">
+    Example code:
+  </div>
+
+  <div class="related-examples">
+    <p>The following code reads input data and appends the result to an
+    output file.</p>
+<pre class="prettyprint">
+  ifstream fin( &quot;/tmp/data.txt&quot; );
+  ofstream fout( &quot;/tmp/results.txt&quot;, ios::app );
+  while( fin &gt;&gt; temp )
+    fout &lt;&lt; temp + 2 &lt;&lt; endl;
+  fin.close();
+  fout.close();         
+</pre>
+  </div>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="close.html">close</a><br>
+    <a href="open.html">open</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    eof
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  bool eof();
+</pre>
+
+  <p>The function eof() returns true if the end of the associated input
+  file has been reached, false otherwise.</p>
+
+  <p>For example, the following code reads data from an input stream
+  <em>in</em> and writes it to an output stream <em>out</em>, using
+  eof() at the end to check if an error occurred:</p>
+<pre class="prettyprint">
+ char buf[BUFSIZE];
+ do {
+   in.read( buf, BUFSIZE );
+   std::streamsize n = in.gcount();
+   out.write( buf, n );
+ } while( in.good() );
+ if( in.bad() || !in.eof() ) {
+   // fatal error occurred
+ }
+ in.close();            
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="bad.html">bad</a><br>
+    <a href="clear.html">clear</a><br>
+    <a href="fail.html">fail</a><br>
+    <a href="good.html">good</a><br>
+    <a href="rdstate.html">rdstate</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    C++ I/O Examples
+  </div>
+
+  <h2>Reading From Files</h2>
+
+  <p>Assume that we have a file named <em>data.txt</em> that
+  contains this text:</p>
+
+  <pre class="example-data">
+  Fry: One Jillion dollars.
+  [Everyone gasps.]
+  Auctioneer: Sir, that's not a number.
+  [Everyone gasps.] 
+</pre>
+
+  <p>We could use this code to read data from the file, word by word:</p>
+
+<pre class="prettyprint">
+  ifstream fin("data.txt");
+  string s;
+  while( fin &gt;&gt; s ) {
+    cout &lt;&lt; "Read from file: " &lt;&lt; s &lt;&lt; endl;
+  }
+</pre>
+
+  <p>When used in this manner, we'll get space-delimited bits of text
+  from the file:</p>
+
+  <pre class="example-output">
+  Read from file: Fry:
+  Read from file: One
+  Read from file: Jillion
+  Read from file: dollars.
+  Read from file: [Everyone
+  Read from file: gasps.]
+  Read from file: Auctioneer:
+  Read from file: Sir,
+  Read from file: that's
+  Read from file: not
+  Read from file: a
+  Read from file: number.
+  Read from file: [Everyone
+  Read from file: gasps.]
+</pre>
+
+  <p>Note that in the previous example, all of the whitespace that
+  separated words (including newlines) was lost.  If we were
+  interested in preserving whitespace, we could read the file in
+  line-by-line using the <a href="getline.html">I/O getline() function</a>.</p>
+
+<pre class="prettyprint">
+  ifstream fin("data.txt");
+  const int LINE_LENGTH = 100;
+  char str[LINE_LENGTH];
+
+  while( fin.getline(str,LINE_LENGTH) ) {
+    cout &lt;&lt; "Read from file: " &lt;&lt; str &lt;&lt; endl;
+  }
+</pre>
+
+  <p>Reading line-by-line produces the following output:</p>
+
+  <pre class="example-output">
+  Read from file: Fry: One Jillion dollars.
+  Read from file: [Everyone gasps.]
+  Read from file: Auctioneer: Sir, that's not a number.
+  Read from file: [Everyone gasps.]
+</pre>
+
+  <p>If you want to avoid reading into character arrays, you can use
+  the <a href="../cppstring/getline.html">C++ string getline()</a> function
+  to read lines into <a href="../cppstring/index-2.html">strings</a>:</p>
+
+<pre class="prettyprint">
+  ifstream fin("data.txt");
+  string s;
+  while( getline(fin,s) ) {
+    cout &lt;&lt; "Read from file: " &lt;&lt; s &lt;&lt; endl;
+  }
+</pre>
+
+  <h2>Checking For Errors</h2>
+
+  <p>Simply evaluating an I/O object in a boolean context will return
+  false if any errors have occurred:</p>
+
+<pre class="prettyprint">
+  string filename = "data.txt";
+  ifstream fin( filename.c_str() );
+  if( !fin ) {
+    cout &lt;&lt; "Error opening " &lt;&lt; filename &lt;&lt; " for input" &lt;&lt; endl;
+    exit(-1);
+  }
+</pre>
+
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    fail
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  bool fail();
+</pre>
+
+  <p>The fail() function returns true if an error has occurred with the
+  current stream, false otherwise.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="bad.html">bad</a><br>
+    <a href="clear.html">clear</a><br>
+    <a href="eof.html">eof</a><br>
+    <a href="good.html">good</a><br>
+    <a href="rdstate.html">rdstate</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    fill
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  char fill();
+  char fill( char ch );
+</pre>
+
+  <p>The function fill() either returns the current fill character, or
+  sets the current fill character to <em>ch</em>.</p>
+
+  <p>The fill character is defined as the character that is used for
+  padding when a number is smaller than the specified <a href=
+  "width.html">width</a>(). The default fill character is the space
+  character.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="precision.html">precision</a><br>
+    <a href="width.html">width</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    flags
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  fmtflags flags();
+  fmtflags flags( fmtflags f );
+</pre>
+
+  <p>The flags() function either returns the <a href=
+  "../io_flags.html#format_flags">io stream format flag</a>s for the
+  current stream, or sets the flags for the current stream to be
+  <em>f</em>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="setf.html">setf</a><br>
+    <a href="unsetf.html">unsetf</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    flush
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  ostream&amp; flush();
+</pre>
+
+  <p>The flush() function causes the buffer for the current output
+  stream to be actually written out to the attached device.</p>
+
+  <p>This function is useful for printing out debugging information,
+  because sometimes programs abort before they have a chance to write
+  their output buffers to the screen. Judicious use of flush() can
+  ensure that all of your debugging statements actually get
+  printed.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="put.html">put</a><br>
+    <a href="write.html">write</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    gcount
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  streamsize gcount();
+</pre>
+
+  <p>The function gcount() is used with input streams, and returns the
+  number of characters read by the last input operation.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="get.html">get</a><br>
+    <a href="getline.html">getline</a><br>
+    <a href="read.html">read</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    get
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  int get();
+  istream&amp; get( char&amp; ch );
+  istream&amp; get( char* buffer, streamsize num );
+  istream&amp; get( char* buffer, streamsize num, char delim );
+  istream&amp; get( streambuf&amp; buffer );
+  istream&amp; get( streambuf&amp; buffer, char delim );
+</pre>
+
+  <p>The get() function is used with input streams, and either:</p>
+
+  <ul>
+    <li>reads a character and returns that value,</li>
+
+    <li>reads a character and stores it as <em>ch</em>,</li>
+
+    <li>reads characters into <em>buffer</em> until <em>num</em> - 1
+    characters have been read, or <strong>EOF</strong> or newline
+    encountered,</li>
+
+    <li>reads characters into <em>buffer</em> until <em>num</em> - 1
+    characters have been read, or <strong>EOF</strong> or the
+    <em>delim</em> character encountered (<em>delim</em> is not read
+    until next time),</li>
+
+    <li>reads characters into buffer until a newline or
+    <strong>EOF</strong> is encountered,</li>
+
+    <li>or reads characters into buffer until a newline,
+    <strong>EOF</strong>, or <em>delim</em> character is encountered
+    (again, <em>delim</em> isn&#39;t read until the next get() ).</li>
+  </ul>
+
+  <p>For example, the following code displays the contents of a file
+  called temp.txt, character by character:</p>
+<pre class="prettyprint">
+   char ch;
+   ifstream fin( &quot;temp.txt&quot; );
+   while( fin.get(ch) )
+     cout &lt;&lt; ch;
+   fin.close();         
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="gcount.html">gcount</a><br>
+    <a href="getline.html">getline</a><br>
+    (C++ Strings) <a href="../cppstring/getline.html">getline</a><br>
+    <a href="ignore.html">ignore</a><br>
+    <a href="peek.html">peek</a><br>
+    <a href="put.html">put</a><br>
+    <a href="read.html">read</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    getline
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  istream&amp; getline( char* buffer, streamsize num );
+  istream&amp; getline( char* buffer, streamsize num, char delim );
+</pre>
+
+  <p>The getline() function is used with input streams, and reads
+  characters into <em>buffer</em> until either:</p>
+
+  <ul>
+    <li><em>num</em> - 1 characters have been read,</li>
+
+    <li>a newline is encountered,</li>
+
+    <li>an <strong>EOF</strong> is encountered,</li>
+
+    <li>or, optionally, until the character <em>delim</em> is read. The
+    <em>delim</em> character is not put into buffer.</li>
+  </ul>
+
+  <p>For example, the following code uses the getline function to
+  display the first 100 characters from each line of a text file:</p>
+
+<pre class="prettyprint">
+  ifstream fin("tmp.dat");
+
+  int MAX_LENGTH = 100;
+  char line[MAX_LENGTH];
+
+  while( fin.getline(line, MAX_LENGTH) ) {
+    cout << "read line: " << line << endl;
+  }
+</pre>
+
+  <p>If you'd like to read lines from a file into <a
+  href="../cppstring/index-2.html">strings</a> instead of character arrays,
+  consider using the <a href="../cppstring/getline.html">string
+  getline</a> function.</p>
+
+  <p>Those using a Microsoft compiler may find that getline() reads an
+  extra character, and should consult the documentation on the <a href=
+  "http://support.microsoft.com/default.aspx?scid=kb;EN-US;q240015">Microsoft
+  getline bug</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="gcount.html">gcount</a><br>
+    <a href="get.html">get</a><br>
+    (C++ Strings) <a href="../cppstring/getline.html">getline</a><br>
+    <a href="ignore.html">ignore</a><br>
+    <a href="read.html">read</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    good
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  bool good();
+</pre>
+
+  <p>The function good() returns true if no errors have occurred with
+  the current stream, false otherwise.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="bad.html">bad</a><br>
+    <a href="clear.html">clear</a><br>
+    <a href="eof.html">eof</a><br>
+    <a href="fail.html">fail</a><br>
+    <a href="rdstate.html">rdstate</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    ignore
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  istream&amp; ignore( streamsize num=1, int delim=<strong>EOF</strong> );
+</pre>
+
+  <p>The ignore() function is used with input streams. It reads and
+  throws away characters until <em>num</em> characters have been read
+  (where <em>num</em> defaults to 1) or until the character
+  <em>delim</em> is read (where <em>delim</em> defaults to
+  <strong>EOF</strong>).</p>
+
+  <p>The ignore() function can sometimes be useful when using the
+  getline() function together with the &gt;&gt; operator.  For
+  example, if you read some input that is followed by a newline using
+  the &gt;&gt; operator, the newline will remain in the input as the
+  next thing to be read.  Since getline() will by default stop reading
+  input when it reaches a newline, a subsequent call to getline() will
+  return an empty string.  In this case, the ignore() function could
+  be called before getline() to "throw away" the newline.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="get.html">get</a><br>
+    <a href="getline.html">getline</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    open
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  void open( const char *filename );
+  void open( const char *filename, openmode mode = default_mode );
+</pre>
+
+  <p>The function open() is used with file streams. It opens
+  <em>filename</em> and associates it with the current stream. The
+  optional <a href="../io_flags.html#mode_flags">io stream mode
+  flag</a> <em>mode</em> defaults to ios::in for ifstream, ios::out for
+  ofstream, and ios::in|ios::out for fstream.</p>
+
+  <p>If open() fails, the resulting stream will evaluate to false when
+  used in a Boolean expression. For example:</p>
+<pre class="prettyprint">
+ ifstream inputStream;
+ inputStream.open(&quot;file.txt&quot;);
+ if( !inputStream ) {
+   cerr &lt;&lt; &quot;Error opening input stream&quot; &lt;&lt; endl;
+   return;
+ }              
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="constructors.html">I/O Constructors</a><br>
+    <a href="close.html">close</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    peek
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  int peek();
+</pre>
+
+  <p>The function peek() is used with input streams, and returns the
+  next character in the stream or <strong>EOF</strong> if the end of
+  file is read. peek() does not remove the character from the
+  stream.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="get.html">get</a><br>
+    <a href="putback.html">putback</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    precision
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  streamsize precision();
+  streamsize precision( streamsize p );
+</pre>
+
+  <p>The precision() function either sets or returns the current number
+  of digits that is displayed for floating-point variables.</p>
+
+  <p>For example, the following code sets the precision of the cout
+  stream to 5:</p>
+<pre class="prettyprint">
+   float num = 314.15926535;
+   cout.precision( 5 );
+   cout &lt;&lt; num;           
+</pre>
+
+  <p>This code displays the following output:</p>
+<pre class="prettyprint">
+   314.16               
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fill.html">fill</a><br>
+    <a href="width.html">width</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    put
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  ostream&amp; put( char ch );
+</pre>
+
+  <p>The function put() is used with output streams, and writes the
+  character <em>ch</em> to the stream.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="flush.html">flush</a><br>
+    <a href="get.html">get</a><br>
+    <a href="write.html">write</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    putback
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  istream&amp; putback( char ch );
+</pre>
+
+  <p>The putback() function is used with input streams, and returns the
+  previously-read character <em>ch</em> to the input stream.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="peek.html">peek</a><br>
+    (Standard C I/O) <a href="../stdio/ungetc.html">ungetc</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    rdstate
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  iostate rdstate();
+</pre>
+
+  <p>The rdstate() function returns the <a href=
+  "../io_flags.html#state_flags">io stream state flag</a>s of the
+  current stream.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="bad.html">bad</a><br>
+    <a href="clear.html">clear</a><br>
+    <a href="eof.html">eof</a><br>
+    <a href="fail.html">fail</a><br>
+    <a href="good.html">good</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    read
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  istream&amp; read( char* buffer, streamsize num );
+</pre>
+
+  <p>The function read() is used with input streams, and reads
+  <em>num</em> bytes from the stream before placing them in
+  <em>buffer</em>. If <strong>EOF</strong> is encountered, read()
+  stops, leaving however many bytes it put into <em>buffer</em> as they
+  are.</p>
+
+  <p>For example:</p>
+<pre class="prettyprint">
+   struct {
+     int height;
+     int width;
+   } rectangle;         
+
+   input_file.read( (char *)(&amp;rectangle), sizeof(rectangle) );
+   if( input_file.bad() ) {
+     cerr &lt;&lt; &quot;Error reading data&quot; &lt;&lt; endl;
+     exit( 0 );
+   }            
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="gcount.html">gcount</a><br>
+    <a href="get.html">get</a><br>
+    <a href="getline.html">getline</a><br>
+    <a href="write.html">write</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    seekg
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  istream&amp; seekg( off_type offset, ios::seekdir origin );
+  istream&amp; seekg( pos_type position );
+</pre>
+
+  <p>The function seekg() is used with input streams, and it
+  repositions the &quot;get&quot; pointer for the current stream to
+  <em>offset</em> bytes away from <em>origin</em>, or places the
+  &quot;get&quot; pointer at <em>position</em>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="seekp.html">seekp</a><br>
+    <a href="tellg.html">tellg</a><br>
+    <a href="tellp.html">tellp</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    seekp
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  ostream&amp; seekp( off_type offset, ios::seekdir origin );
+  ostream&amp; seekp( pos_type position );
+</pre>
+
+  <p>The seekp() function is used with output streams, but is otherwise
+  very similar to <a href="seekg.html">seekg</a>().</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="seekg.html">seekg</a><br>
+    <a href="tellg.html">tellg</a><br>
+    <a href="tellp.html">tellp</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    setf
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  fmtflags setf( fmtflags flags );
+  fmtflags setf( fmtflags flags, fmtflags needed );
+</pre>
+
+  <p>The function setf() sets the <a href=
+  "../io_flags.html#format_flags">io stream format flag</a>s of the
+  current stream to <em>flags</em>. The optional <em>needed</em>
+  argument specifies that only the flags that are in both
+  <em>flags</em> and <em>needed</em> should be set. The return value is
+  the previous configuration of <a href=
+  "../io_flags.html#format_flags">io stream format flag</a>s.</p>
+
+  <p>For example:</p>
+<pre class="prettyprint">
+   int number = 0x3FF;
+   cout.setf( ios::dec );
+   cout &lt;&lt; &quot;Decimal: &quot; &lt;&lt; number &lt;&lt; endl;
+   cout.unsetf( ios::dec );
+   cout.setf( ios::hex );
+   cout &lt;&lt; &quot;Hexadecimal: &quot; &lt;&lt; number &lt;&lt; endl;               
+</pre>
+
+  <p>Note that the preceding code is functionally identical to:</p>
+<pre class="prettyprint">
+   int number = 0x3FF;
+   cout &lt;&lt; &quot;Decimal: &quot; &lt;&lt; number &lt;&lt; endl &lt;&lt; hex &lt;&lt; &quot;Hexadecimal: &quot; &lt;&lt; number &lt;&lt; dec &lt;&lt; endl;                
+</pre>
+
+  <p>thanks to <a href="../io_flags.html#manipulators">io stream
+  manipulator</a>s.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="flags.html">flags</a><br>
+    <a href="unsetf.html">unsetf</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    sync_with_stdio
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  static bool sync_with_stdio( bool sync=true );
+</pre>
+
+  <p>The sync_with_stdio() function allows you to turn on and off the
+  ability for the C++ I/O system to work with the C I/O system.</p>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    tellg
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  pos_type tellg();
+</pre>
+
+  <p>The tellg() function is used with input streams, and returns the
+  current &quot;get&quot; position of the pointer in the stream.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="seekg.html">seekg</a><br>
+    <a href="seekp.html">seekp</a><br>
+    <a href="tellp.html">tellp</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    tellp
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  pos_type tellp();
+</pre>
+
+  <p>The tellp() function is used with output streams, and returns the
+  current &quot;put&quot; position of the pointer in the stream.</p>
+
+  <p>For example, the following code displays the file pointer as it
+  writes to a stream:</p>
+<pre class="prettyprint">
+ string s(&quot;In Xanadu did Kubla Khan...&quot;);
+ ofstream fout(&quot;output.txt&quot;);
+ for( int i=0; i &lt; s.length(); i++ ) {
+   cout &lt;&lt; &quot;File pointer: &quot; &lt;&lt; fout.tellp();
+   fout.put( s[i] );
+   cout &lt;&lt; &quot; &quot; &lt;&lt; s[i] &lt;&lt; endl;
+ }
+ fout.close();          
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="seekg.html">seekg</a><br>
+    <a href="seekp.html">seekp</a><br>
+    <a href="tellg.html">tellg</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    unsetf
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  void unsetf( fmtflags flags );
+</pre>
+
+  <p>The function unsetf() uses <em>flags</em> to clear the <a href=
+  "../io_flags.html#format_flags">io stream format flag</a>s associated
+  with the current stream.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="flags.html">flags</a><br>
+    <a href="setf.html">setf</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    width
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  int width();
+  int width( int w );
+</pre>
+
+  <p>The function width() returns the current width, which is defined
+  as the minimum number of characters to display with each output. The
+  optional argument <em>w</em> can be used to set the width.</p>
+
+  <p>For example:</p>
+<pre class="prettyprint">
+   cout.width( 5 );
+   cout &lt;&lt; &quot;2&quot;;         
+</pre>
+
+  <p>displays</p>
+<pre class="prettyprint">
+       2                
+</pre>
+
+  <p>(that&#39;s four spaces followed by a &#39;2&#39;)</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fill.html">fill</a><br>
+    <a href="precision.html">precision</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    write
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  ostream&amp; write( const char* buffer, streamsize num );
+</pre>
+
+  <p>The write() function is used with output streams, and writes
+  <em>num</em> bytes from <em>buffer</em> to the current output
+  stream.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="flush.html">flush</a><br>
+    <a href="put.html">put</a><br>
+    <a href="read.html">read</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+</body>
+<!-- Mirrored from cppreference.com/cppio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:44 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

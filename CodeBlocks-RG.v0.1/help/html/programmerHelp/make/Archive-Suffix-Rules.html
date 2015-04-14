@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Archive%20Suffix%20Rules">Archive Suffix Rules</a>,
+Previous:<a rel="previous" accesskey="p" href="Archive-Pitfalls.html#Archive%20Pitfalls">Archive Pitfalls</a>,
+Up:<a rel="up" accesskey="u" href="Archives.html#Archives">Archives</a>
+<hr><br>
+</div>
+
+<h3 class="section">Suffix Rules for Archive Files</h3>
+
+   <p>You can write a special kind of suffix rule for dealing with archive
+files.  See <a href="Suffix-Rules.html#Suffix%20Rules">Suffix Rules</a>, for a full explanation of suffix rules. 
+Archive suffix rules are obsolete in GNU <code>make</code>, because pattern
+rules for archives are a more general mechanism (see <a href="Archive-Update.html#Archive%20Update">Archive Update</a>).  But they are retained for compatibility with other
+<code>make</code>s.
+
+   <p>To write a suffix rule for archives, you simply write a suffix rule
+using the target suffix <code>.a</code> (the usual suffix for archive files). 
+For example, here is the old-fashioned suffix rule to update a library
+archive from C source files:
+
+<pre class="example">     .c.a:
+             $(CC) $(CFLAGS) $(CPPFLAGS) -c $&lt; -o $*.o
+             $(AR) r $@ $*.o
+             $(RM) $*.o
+     </pre>
+
+<p>This works just as if you had written the pattern rule:
+
+<pre class="example">     (%.o): %.c
+             $(CC) $(CFLAGS) $(CPPFLAGS) -c $&lt; -o $*.o
+             $(AR) r $@ $*.o
+             $(RM) $*.o
+     </pre>
+
+   <p>In fact, this is just what <code>make</code> does when it sees a suffix rule
+with <code>.a</code> as the target suffix.  Any double-suffix rule
+<code>.</code><var>x</var><code>.a</code> is converted to a pattern rule with the target
+pattern <code>(%.o)</code> and a prerequisite pattern of <code>%.</code><var>x</var><code></code>.
+
+   <p>Since you might want to use <code>.a</code> as the suffix for some other kind
+of file, <code>make</code> also converts archive suffix rules to pattern rules
+in the normal way (see <a href="Suffix-Rules.html#Suffix%20Rules">Suffix Rules</a>).  Thus a double-suffix rule
+<code>.</code><var>x</var><code>.a</code> produces two pattern rules: <code>(%.o):
+%.</code><var>x</var><code></code> and <code>%.a: %.</code><var>x</var><code></code>.
+
+   </body></html>
+

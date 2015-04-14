@@ -1,0 +1,799 @@
+-------------------
+
+Error occured on Sunday, April 11, 2010 at 22:12:00.
+
+J:\Apps\CodeBlocks-EP\codeblocks.exe caused an Access Violation at location 030878e2 Reading from location 0000006e.
+
+Registers:
+eax=030ba850 ebx=0023eaf8 ecx=00050828 edx=000303b8 esi=030ba850 edi=00000000
+eip=030878e2 esp=0023e7cd ebp=0023ead4 iopl=0         nv up ei pl nz na po nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=003b  gs=0000             efl=00010206
+
+Call stack:
+030878E2
+628802C6  J:\Apps\CodeBlocks-EP\wxmsw28u_gcc_custom.dll:628802C6  _ZN12wxWindowBase8NavigateEi
+62880316  J:\Apps\CodeBlocks-EP\wxmsw28u_gcc_custom.dll:62880316  _ZN12wxWindowBase17NotifyCaptureLostEv
+627C4C49  J:\Apps\CodeBlocks-EP\wxmsw28u_gcc_custom.dll:627C4C49  _ZN8wxWindow20HandleCaptureChangedEPv
+627C9F78  J:\Apps\CodeBlocks-EP\wxmsw28u_gcc_custom.dll:627C9F78  _ZN8wxWindow13MSWWindowProcEjjl
+62812A11  J:\Apps\CodeBlocks-EP\wxmsw28u_gcc_custom.dll:62812A11  _ZN10wxTreeCtrl13MSWWindowProcEjjl
+627C3378  J:\Apps\CodeBlocks-EP\wxmsw28u_gcc_custom.dll:627C3378  _Z9wxWndProcP6HWND__jjl@16
+7E418734  C:\WINDOWS\system32\USER32.dll:7E418734  GetDC
+7E418816  C:\WINDOWS\system32\USER32.dll:7E418816  GetDC
+7E428EA0  C:\WINDOWS\system32\USER32.dll:7E428EA0  DefWindowProcW
+7E428EEC  C:\WINDOWS\system32\USER32.dll:7E428EEC  DefWindowProcW
+7C90E473  C:\WINDOWS\system32\ntdll.dll:7C90E473  KiUserCallbackDispatcher
+77409E5E  C:\WINDOWS\WinSxS\X86_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.2600.5512_x-ww_35d4ce83\COMCTL32.DLL:77409E5E  Ordinal384
+7740A485  C:\WINDOWS\WinSxS\X86_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.2600.5512_x-ww_35d4ce83\COMCTL32.DLL:7740A485  Ordinal384
+7740AB8F  C:\WINDOWS\WinSxS\X86_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.2600.5512_x-ww_35d4ce83\COMCTL32.DLL:7740AB8F  Ordinal384
+7E418734  C:\WINDOWS\system32\USER32.dll:7E418734  GetDC
+7E418816  C:\WINDOWS\system32\USER32.dll:7E418816  GetDC
+7E42A013  C:\WINDOWS\system32\USER32.dll:7E42A013  IsWindowUnicode
+7E42A039  C:\WINDOWS\system32\USER32.dll:7E42A039  CallWindowProcW
+627C354C  J:\Apps\CodeBlocks-EP\wxmsw28u_gcc_custom.dll:627C354C  _ZN8wxWindow16MSWDefWindowProcEjjl
+627CA245  J:\Apps\CodeBlocks-EP\wxmsw28u_gcc_custom.dll:627CA245  _ZN8wxWindow13MSWWindowProcEjjl
+62812A11  J:\Apps\CodeBlocks-EP\wxmsw28u_gcc_custom.dll:62812A11  _ZN10wxTreeCtrl13MSWWindowProcEjjl
+627C3378  J:\Apps\CodeBlocks-EP\wxmsw28u_gcc_custom.dll:627C3378  _Z9wxWndProcP6HWND__jjl@16
+7E418734  C:\WINDOWS\system32\USER32.dll:7E418734  GetDC
+7E418816  C:\WINDOWS\system32\USER32.dll:7E418816  GetDC
+7E4189CD  C:\WINDOWS\system32\USER32.dll:7E4189CD  GetWindowLongW
+7E418A10  C:\WINDOWS\system32\USER32.dll:7E418A10  DispatchMessageW
+627AC64A  J:\Apps\CodeBlocks-EP\wxmsw28u_gcc_custom.dll:627AC64A  _ZN11wxEventLoop14ProcessMessageEP6tagMSG
+627AC350  J:\Apps\CodeBlocks-EP\wxmsw28u_gcc_custom.dll:627AC350  _ZN11wxEventLoop8DispatchEv
+62837376  J:\Apps\CodeBlocks-EP\wxmsw28u_gcc_custom.dll:62837376  _ZN17wxEventLoopManual3RunEv
+62818883  J:\Apps\CodeBlocks-EP\wxmsw28u_gcc_custom.dll:62818883  _ZN9wxAppBase8MainLoopEv
+0040436E  J:\Apps\CodeBlocks-EP\codeblocks.exe:0040436E
+6273088D  J:\Apps\CodeBlocks-EP\wxmsw28u_gcc_custom.dll:6273088D  _Z12wxInitializeiPPw
+627821AD  J:\Apps\CodeBlocks-EP\wxmsw28u_gcc_custom.dll:627821AD  _Z7wxEntryP11HINSTANCE__S0_Pci
+00401A51  J:\Apps\CodeBlocks-EP\codeblocks.exe:00401A51
+00450736  J:\Apps\CodeBlocks-EP\codeblocks.exe:00450736
+004010B6  J:\Apps\CodeBlocks-EP\codeblocks.exe:004010B6
+00401128  J:\Apps\CodeBlocks-EP\codeblocks.exe:00401128
+7C817077  C:\WINDOWS\system32\kernel32.dll:7C817077  RegisterWaitForInputIdle
+
+
+-------------------
+
+Error occured on Monday, August 23, 2010 at 23:16:35.
+
+C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe caused an Access Violation at location 76b2ce08 in module C:\Windows\system32\msvcrt.dll Reading from location 00000000.
+
+Registers:
+eax=00000000 ebx=617e9401 ecx=7052668c edx=00000000 esi=617e9476 edi=02687158
+eip=76b2ce08 esp=0022e8e4 ebp=0022ec20 iopl=0         nv up ei pl zr na po nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=003b  gs=0000             efl=00010246
+
+Call stack:
+76B2CE08  C:\Windows\system32\msvcrt.dll:76B2CE08  strcmp
+70502590  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\projectsimporter.dll:70502590
+70501F61  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\projectsimporter.dll:70501F61
+7051286C  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\projectsimporter.dll:7051286C
+705120E1  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\projectsimporter.dll:705120E1
+00423FA8  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00423FA8
+00429329  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00429329
+00429A4C  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00429A4C
+00429B03  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00429B03
+6277AF91  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277AF91  _ZN12wxEvtHandler21ProcessEventIfMatchesERK21wxEventTableEntryBasePS_R7wxEvent
+6277C6BB  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C6BB  _ZN16wxEventHashTable11HandleEventER7wxEventP12wxEvtHandler
+6277C78C  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C78C  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6283EA65  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6283EA65  _ZN11wxFrameBase14ProcessCommandEi
+627E5C1A  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627E5C1A  _ZN7wxFrame13HandleCommandEttPv
+627E742B  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627E742B  _ZN7wxFrame13MSWWindowProcEjjl
+627C3378  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627C3378  _Z9wxWndProcP6HWND__jjl@16
+7697F8D2  C:\Windows\system32\USER32.dll:7697F8D2  GetMessageW
+7697F794  C:\Windows\system32\USER32.dll:7697F794  GetWindowLongW
+76980008  C:\Windows\system32\USER32.dll:76980008  PeekMessageW
+76980060  C:\Windows\system32\USER32.dll:76980060  DispatchMessageW
+627AC64A  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627AC64A  _ZN11wxEventLoop14ProcessMessageEP6tagMSG
+627AC350  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627AC350  _ZN11wxEventLoop8DispatchEv
+62837376  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:62837376  _ZN17wxEventLoopManual3RunEv
+62818883  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:62818883  _ZN9wxAppBase8MainLoopEv
+0040436E  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:0040436E
+6273088D  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6273088D  _Z12wxInitializeiPPw
+627821AD  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627821AD  _Z7wxEntryP11HINSTANCE__S0_Pci
+00401A51  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00401A51
+00450736  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00450736
+004010B6  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:004010B6
+00401128  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00401128
+77974911  C:\Windows\system32\kernel32.dll:77974911  BaseThreadInitThunk
+77B1E4B6  C:\Windows\system32\ntdll.dll:77B1E4B6  RtlInitializeExceptionChain
+77B1E489  C:\Windows\system32\ntdll.dll:77B1E489  RtlInitializeExceptionChain
+
+
+-------------------
+
+Error occured on Monday, August 23, 2010 at 23:16:55.
+
+C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe caused an Access Violation at location 76b2ce08 in module C:\Windows\system32\msvcrt.dll Reading from location 00000000.
+
+Registers:
+eax=00000000 ebx=617e9401 ecx=7052668c edx=00000000 esi=617e9476 edi=026f7158
+eip=76b2ce08 esp=0022e08c ebp=0022e3c8 iopl=0         nv up ei pl zr na po nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=003b  gs=0000             efl=00010246
+
+Call stack:
+76B2CE08  C:\Windows\system32\msvcrt.dll:76B2CE08  strcmp
+70502590  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\projectsimporter.dll:70502590
+70501F61  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\projectsimporter.dll:70501F61
+7051286C  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\projectsimporter.dll:7051286C
+705120E1  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\projectsimporter.dll:705120E1
+00423FA8  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00423FA8
+00429329  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00429329
+00429A4C  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00429A4C
+00429B03  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00429B03
+6277AF91  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277AF91  _ZN12wxEvtHandler21ProcessEventIfMatchesERK21wxEventTableEntryBasePS_R7wxEvent
+6277C6BB  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C6BB  _ZN16wxEventHashTable11HandleEventER7wxEventP12wxEvtHandler
+6277C78C  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C78C  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+62880570  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:62880570  _ZN12wxWindowBase9TryParentER7wxEvent
+62879FB0  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:62879FB0  _ZN13wxToolBarBase11OnLeftClickEib
+62806AF0  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:62806AF0  _ZN9wxToolBar10MSWCommandEjt
+627E742B  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627E742B  _ZN7wxFrame13MSWWindowProcEjjl
+627C3378  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627C3378  _Z9wxWndProcP6HWND__jjl@16
+7697F8D2  C:\Windows\system32\USER32.dll:7697F8D2  GetMessageW
+7697F794  C:\Windows\system32\USER32.dll:7697F794  GetWindowLongW
+76980817  C:\Windows\system32\USER32.dll:76980817  ReleaseDC
+76980A65  C:\Windows\system32\USER32.dll:76980A65  GetWindowThreadProcessId
+77B399CE  C:\Windows\system32\ntdll.dll:77B399CE  KiUserCallbackDispatcher
+76980AFA  C:\Windows\system32\USER32.dll:76980AFA  SendMessageW
+7505F74A  C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.6001.18000_none_5cdbaa5a083979cc\COMCTL32.DLL:7505F74A  DllGetVersion
+7505F63B  C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.6001.18000_none_5cdbaa5a083979cc\COMCTL32.DLL:7505F63B  DllGetVersion
+75057020  C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.6001.18000_none_5cdbaa5a083979cc\COMCTL32.DLL:75057020  Ordinal395
+7697F8D2  C:\Windows\system32\USER32.dll:7697F8D2  GetMessageW
+7697F794  C:\Windows\system32\USER32.dll:7697F794  GetWindowLongW
+769806F6  C:\Windows\system32\USER32.dll:769806F6  CallWindowProcW
+7698069C  C:\Windows\system32\USER32.dll:7698069C  CallWindowProcW
+627C354C  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627C354C  _ZN8wxWindow16MSWDefWindowProcEjjl
+627CA245  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627CA245  _ZN8wxWindow13MSWWindowProcEjjl
+627C3378  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627C3378  _Z9wxWndProcP6HWND__jjl@16
+7697F8D2  C:\Windows\system32\USER32.dll:7697F8D2  GetMessageW
+7697F794  C:\Windows\system32\USER32.dll:7697F794  GetWindowLongW
+76980008  C:\Windows\system32\USER32.dll:76980008  PeekMessageW
+76980060  C:\Windows\system32\USER32.dll:76980060  DispatchMessageW
+627AC64A  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627AC64A  _ZN11wxEventLoop14ProcessMessageEP6tagMSG
+627AC350  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627AC350  _ZN11wxEventLoop8DispatchEv
+62837376  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:62837376  _ZN17wxEventLoopManual3RunEv
+62818883  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:62818883  _ZN9wxAppBase8MainLoopEv
+0040436E  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:0040436E
+6273088D  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6273088D  _Z12wxInitializeiPPw
+627821AD  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627821AD  _Z7wxEntryP11HINSTANCE__S0_Pci
+00401A51  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00401A51
+00450736  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00450736
+004010B6  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:004010B6
+00401128  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00401128
+77974911  C:\Windows\system32\kernel32.dll:77974911  BaseThreadInitThunk
+77B1E4B6  C:\Windows\system32\ntdll.dll:77B1E4B6  RtlInitializeExceptionChain
+77B1E489  C:\Windows\system32\ntdll.dll:77B1E489  RtlInitializeExceptionChain
+
+
+-------------------
+
+Error occured on Monday, August 23, 2010 at 23:17:55.
+
+C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe caused an Access Violation at location 76b2ce08 in module C:\Windows\system32\msvcrt.dll Reading from location 00000000.
+
+Registers:
+eax=00000000 ebx=617e9401 ecx=7052668c edx=00000000 esi=617e9476 edi=024d73d8
+eip=76b2ce08 esp=0022ebb4 ebp=0022eef0 iopl=0         nv up ei pl zr na po nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=003b  gs=0000             efl=00010246
+
+Call stack:
+76B2CE08  C:\Windows\system32\msvcrt.dll:76B2CE08  strcmp
+70502590  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\projectsimporter.dll:70502590
+70501F61  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\projectsimporter.dll:70501F61
+7051286C  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\projectsimporter.dll:7051286C
+705120E1  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\projectsimporter.dll:705120E1
+00423FA8  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00423FA8
+0042A829  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:0042A829
+6277AF91  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277AF91  _ZN12wxEvtHandler21ProcessEventIfMatchesERK21wxEventTableEntryBasePS_R7wxEvent
+6277C6BB  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C6BB  _ZN16wxEventHashTable11HandleEventER7wxEventP12wxEvtHandler
+6277C78C  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C78C  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6283EA65  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6283EA65  _ZN11wxFrameBase14ProcessCommandEi
+627E5C1A  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627E5C1A  _ZN7wxFrame13HandleCommandEttPv
+627E742B  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627E742B  _ZN7wxFrame13MSWWindowProcEjjl
+627C3378  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627C3378  _Z9wxWndProcP6HWND__jjl@16
+7697F8D2  C:\Windows\system32\USER32.dll:7697F8D2  GetMessageW
+7697F794  C:\Windows\system32\USER32.dll:7697F794  GetWindowLongW
+76980008  C:\Windows\system32\USER32.dll:76980008  PeekMessageW
+76980060  C:\Windows\system32\USER32.dll:76980060  DispatchMessageW
+627AC64A  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627AC64A  _ZN11wxEventLoop14ProcessMessageEP6tagMSG
+627AC350  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627AC350  _ZN11wxEventLoop8DispatchEv
+62837376  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:62837376  _ZN17wxEventLoopManual3RunEv
+62818883  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:62818883  _ZN9wxAppBase8MainLoopEv
+0040436E  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:0040436E
+6273088D  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6273088D  _Z12wxInitializeiPPw
+627821AD  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627821AD  _Z7wxEntryP11HINSTANCE__S0_Pci
+00401A51  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00401A51
+00450736  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00450736
+004010B6  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:004010B6
+00401128  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00401128
+77974911  C:\Windows\system32\kernel32.dll:77974911  BaseThreadInitThunk
+77B1E4B6  C:\Windows\system32\ntdll.dll:77B1E4B6  RtlInitializeExceptionChain
+77B1E489  C:\Windows\system32\ntdll.dll:77B1E489  RtlInitializeExceptionChain
+
+
+-------------------
+
+Error occured on Sunday, August 29, 2010 at 15:37:26.
+
+C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe caused an Access Violation at location 68e20b5d in module C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\DoxyBlocks.dll Reading from location 00000000.
+
+Registers:
+eax=00000000 ebx=04357c28 ecx=62b3d90c edx=ffffffff esi=00000001 edi=025c7008
+eip=68e20b5d esp=0022e938 ebp=0022e980 iopl=0         nv up ei pl nz ac po nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=003b  gs=0000             efl=00010216
+
+Call stack:
+68E20B5D  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\DoxyBlocks.dll:68E20B5D-------------------
+
+Error occured on Sunday, August 29, 2010 at 15:41:07.
+
+C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe caused an Access Violation at location 68e20b5d in module C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\DoxyBlocks.dll Reading from location 00000000.
+
+Registers:
+eax=00000000 ebx=04306d70 ecx=62b3d90c edx=ffffffff esi=00000001 edi=025e7008
+eip=68e20b5d esp=0022e958 ebp=0022e9a0 iopl=0         nv up ei pl nz na pe nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=003b  gs=0000             efl=00010202
+
+Call stack:
+68E20B5D  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\DoxyBlocks.dll:68E20B5D-------------------
+
+Error occured on Sunday, August 29, 2010 at 15:42:19.
+
+C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe caused an Access Violation at location 68e20b5d in module C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\DoxyBlocks.dll Reading from location 00000000.
+
+Registers:
+eax=00000000 ebx=043029c8 ecx=62b3d90c edx=ffffffff esi=00000001 edi=02657008
+eip=68e20b5d esp=0022e958 ebp=0022e9a0 iopl=0         nv up ei pl nz na pe nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=003b  gs=0000             efl=00010202
+
+Call stack:
+68E20B5D  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\DoxyBlocks.dll:68E20B5D-------------------
+
+Error occured on Sunday, August 29, 2010 at 15:47:45.
+
+C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe caused an Access Violation at location 6196ff6e in module C:\Apps\CodeBlocks-RG.v1.0\codeblocks.dll Reading from location 000001ac.
+
+Registers:
+eax=00000000 ebx=0022eb30 ecx=0022eb30 edx=0022e3c4 esi=61893474 edi=0269ea64
+eip=6196ff6e esp=0022e34c ebp=0022e34c iopl=0         nv up ei pl nz ac po nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=003b  gs=0000             efl=00010216
+
+Call stack:
+6196FF6E  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.dll:6196FF6E  _ZN9cbProject27GetCurrentlyCompilingTargetEv
+618934A7  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.dll:618934A7  _ZN14ProjectManager9OnKeyDownER11wxTreeEvent
+6277AF91  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277AF91  _ZN12wxEvtHandler21ProcessEventIfMatchesERK21wxEventTableEntryBasePS_R7wxEvent
+6277C6BB  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C6BB  _ZN16wxEventHashTable11HandleEventER7wxEventP12wxEvtHandler
+6277C78C  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C78C  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+62880570  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:62880570  _ZN12wxWindowBase9TryParentER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+62880570  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:62880570  _ZN12wxWindowBase9TryParentER7wxEvent
+62813A00  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:62813A00  _ZN10wxTreeCtrl11MSWOnNotifyEilPl
+627CA811  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627CA811  _ZN8wxWindow13MSWWindowProcEjjl
+627C3378  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627C3378  _Z9wxWndProcP6HWND__jjl@16
+75C0F8D2  C:\Windows\system32\USER32.dll:75C0F8D2  GetMessageW
+75C0F794  C:\Windows\system32\USER32.dll:75C0F794  GetWindowLongW
+75C10817  C:\Windows\system32\USER32.dll:75C10817  ReleaseDC
+75C10A65  C:\Windows\system32\USER32.dll:75C10A65  GetWindowThreadProcessId
+770D99CE  C:\Windows\system32\ntdll.dll:770D99CE  KiUserCallbackDispatcher
+75C10AFA  C:\Windows\system32\USER32.dll:75C10AFA  SendMessageW
+745E6B28  C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.6001.18000_none_5cdbaa5a083979cc\COMCTL32.DLL:745E6B28  Ordinal393
+74697CA2  C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.6001.18000_none_5cdbaa5a083979cc\COMCTL32.DLL:74697CA2  DllInstall
+7462E86F  C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.6001.18000_none_5cdbaa5a083979cc\COMCTL32.DLL:7462E86F  TaskDialogIndirect
+75C0F8D2  C:\Windows\system32\USER32.dll:75C0F8D2  GetMessageW
+75C0F794  C:\Windows\system32\USER32.dll:75C0F794  GetWindowLongW
+75C106F6  C:\Windows\system32\USER32.dll:75C106F6  CallWindowProcW
+75C1069C  C:\Windows\system32\USER32.dll:75C1069C  CallWindowProcW
+627C354C  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627C354C  _ZN8wxWindow16MSWDefWindowProcEjjl
+627CA245  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627CA245  _ZN8wxWindow13MSWWindowProcEjjl
+62812A11  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:62812A11  _ZN10wxTreeCtrl13MSWWindowProcEjjl
+627C3378  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627C3378  _Z9wxWndProcP6HWND__jjl@16
+75C0F8D2  C:\Windows\system32\USER32.dll:75C0F8D2  GetMessageW
+75C0F794  C:\Windows\system32\USER32.dll:75C0F794  GetWindowLongW
+75C10008  C:\Windows\system32\USER32.dll:75C10008  PeekMessageW
+75C10060  C:\Windows\system32\USER32.dll:75C10060  DispatchMessageW
+627AC64A  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627AC64A  _ZN11wxEventLoop14ProcessMessageEP6tagMSG
+627AC350  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627AC350  _ZN11wxEventLoop8DispatchEv
+62837376  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:62837376  _ZN17wxEventLoopManual3RunEv
+62818883  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:62818883  _ZN9wxAppBase8MainLoopEv
+0040436E  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:0040436E
+6273088D  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6273088D  _Z12wxInitializeiPPw
+627821AD  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627821AD  _Z7wxEntryP11HINSTANCE__S0_Pci
+00401A51  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00401A51
+00450736  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00450736
+004010B6  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:004010B6
+00401128  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00401128
+76FE4911  C:\Windows\system32\kernel32.dll:76FE4911  BaseThreadInitThunk
+770BE4B6  C:\Windows\system32\ntdll.dll:770BE4B6  RtlInitializeExceptionChain
+770BE489  C:\Windows\system32\ntdll.dll:770BE489  RtlInitializeExceptionChain
+
+
+-------------------
+
+-------------------
+
+Error occured on Monday, August 30, 2010 at 01:02:56.
+
+C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe caused an Access Violation at location 00280027 Writing to location 0842e87c.
+
+Registers:
+eax=04434840 ebx=00000006 ecx=00280024 edx=044345ac esi=040bc702 edi=025fcdf0
+eip=00280027 esp=0022dc34 ebp=0022dc50 iopl=0         nv up ei ng nz na pe nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=003b  gs=0000             efl=00010282
+
+Call stack:
+00280027
+6184D05A  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.dll:6184D05A  _ZN14TextCtrlLogger6AppendERK8wxStringN6Logger5levelE
+040F6112  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\compiler.dll:040F6112
+040F6166  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\compiler.dll:040F6166
+040BB6E9  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\compiler.dll:040BB6E9
+040BCC4B  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\compiler.dll:040BCC4B
+040BC73C  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\compiler.dll:040BC73C
+6277AF91  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277AF91  _ZN12wxEvtHandler21ProcessEventIfMatchesERK21wxEventTableEntryBasePS_R7wxEvent
+6277C6BB  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C6BB  _ZN16wxEventHashTable11HandleEventER7wxEventP12wxEvtHandler
+6277C78C  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C78C  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C22E  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C22E  _ZN12wxEvtHandler20ProcessPendingEventsEv
+627014F0  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627014F0  _ZN12wxAppConsole20ProcessPendingEventsEv
+62ACD4D5  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:62ACD4D5  _ZN18wxHtmlSearchEngineD1Ev
+75BF8CFF  C:\Windows\system32\USER32.dll:75BF8CFF  CallNextHookEx
+75C09597  C:\Windows\system32\USER32.dll:75C09597  GetDC
+75C0968C  C:\Windows\system32\USER32.dll:75C0968C  CharPrevW
+770D99CE  C:\Windows\system32\ntdll.dll:770D99CE  KiUserCallbackDispatcher
+627AC2CB  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627AC2CB  _ZN11wxEventLoop8DispatchEv
+62776A1E  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:62776A1E  _ZN8wxThread4KillEv
+62776B2A  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:62776B2A  _ZN8wxThread6DeleteEPPv
+65E970CC  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\codecompletion.dll:65E970CC
+6287F04D  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6287F04D  _ZN12wxWindowBase7DestroyEv
+65EAD497  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\codecompletion.dll:65EAD497
+65EA27D8  C:\Apps\CodeBlocks-RG.v1.0\share\codeblocks\plugins\codecompletion.dll:65EA27D8
+617D8732  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.dll:617D8732  _ZN8cbPlugin7ReleaseEb
+61866D4D  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.dll:61866D4D  _ZN13PluginManager12DetachPluginEP8cbPlugin
+6186C8C7  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.dll:6186C8C7  _ZN13PluginManager12UnloadPluginEP8cbPlugin
+6186C876  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.dll:6186C876  _ZN13PluginManager16UnloadAllPluginsEv
+61866BC2  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.dll:61866BC2  _ZN13PluginManagerD0Ev
+61932430  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.dll:61932430  _ZN3MgrI13PluginManagerE4FreeEv
+61858CF6  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.dll:61858CF6  _ZN7Manager8ShutdownEv
+0042B30A  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:0042B30A
+6277AF91  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277AF91  _ZN12wxEvtHandler21ProcessEventIfMatchesERK21wxEventTableEntryBasePS_R7wxEvent
+6277C6BB  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C6BB  _ZN16wxEventHashTable11HandleEventER7wxEventP12wxEvtHandler
+6277C78C  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C78C  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+628804DF  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:628804DF  _ZN12wxWindowBase5CloseEb
+627E7448  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627E7448  _ZN7wxFrame13MSWWindowProcEjjl
+627C3378  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627C3378  _Z9wxWndProcP6HWND__jjl@16
+75C0F8D2  C:\Windows\system32\USER32.dll:75C0F8D2  GetMessageW
+75C0F794  C:\Windows\system32\USER32.dll:75C0F794  GetWindowLongW
+75C10817  C:\Windows\system32\USER32.dll:75C10817  ReleaseDC
+75C10A65  C:\Windows\system32\USER32.dll:75C10A65  GetWindowThreadProcessId
+770D99CE  C:\Windows\system32\ntdll.dll:770D99CE  KiUserCallbackDispatcher
+75C104B4  C:\Windows\system32\USER32.dll:75C104B4  MsgWaitForMultipleObjectsEx
+7434AF85  C:\Windows\system32\uxtheme.dll:7434AF85  GetThemeBool
+7435B5CA  C:\Windows\system32\uxtheme.dll:7435B5CA  HitTestThemeBackground
+7434865F  C:\Windows\system32\uxtheme.dll:7434865F  IsThemeBackgroundPartiallyTransparent
+743425F4  C:\Windows\system32\uxtheme.dll:743425F4  Ordinal45
+75C10CD2  C:\Windows\system32\USER32.dll:75C10CD2  IsWindowEnabled
+627C3572  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627C3572  _ZN8wxWindow16MSWDefWindowProcEjjl
+627CA245  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627CA245  _ZN8wxWindow13MSWWindowProcEjjl
+627E73D2  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627E73D2  _ZN7wxFrame13MSWWindowProcEjjl
+627C3378  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627C3378  _Z9wxWndProcP6HWND__jjl@16
+75C0F8D2  C:\Windows\system32\USER32.dll:75C0F8D2  GetMessageW
+75C01912  C:\Windows\system32\USER32.dll:75C01912  PostThreadMessageW
+75C10817  C:\Windows\system32\USER32.dll:75C10817  ReleaseDC
+75C10A65  C:\Windows\system32\USER32.dll:75C10A65  GetWindowThreadProcessId
+770D99CE  C:\Windows\system32\ntdll.dll:770D99CE  KiUserCallbackDispatcher
+75C10AFA  C:\Windows\system32\USER32.dll:75C10AFA  SendMessageW
+7435D715  C:\Windows\system32\uxtheme.dll:7435D715  GetWindowTheme
+7434865F  C:\Windows\system32\uxtheme.dll:7434865F  IsThemeBackgroundPartiallyTransparent
+743425F4  C:\Windows\system32\uxtheme.dll:743425F4  Ordinal45
+75C10CD2  C:\Windows\system32\USER32.dll:75C10CD2  IsWindowEnabled
+627C3572  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627C3572  _ZN8wxWindow16MSWDefWindowProcEjjl
+627CA245  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627CA245  _ZN8wxWindow13MSWWindowProcEjjl
+627E73D2  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627E73D2  _ZN7wxFrame13MSWWindowProcEjjl
+627C3378  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627C3378  _Z9wxWndProcP6HWND__jjl@16
+75C0F8D2  C:\Windows\system32\USER32.dll:75C0F8D2  GetMessageW
+75C0F794  C:\Windows\system32\USER32.dll:75C0F794  GetWindowLongW
+75C10008  C:\Windows\system32\USER32.dll:75C10008  PeekMessageW
+75C10060  C:\Windows\system32\USER32.dll:75C10060  DispatchMessageW
+627AC64A  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627AC64A  _ZN11wxEventLoop14ProcessMessageEP6tagMSG
+627AC350  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627AC350  _ZN11wxEventLoop8DispatchEv
+62837376  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:62837376  _ZN17wxEventLoopManual3RunEv
+62818883  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:62818883  _ZN9wxAppBase8MainLoopEv
+0040436E  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:0040436E
+6273088D  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:6273088D  _Z12wxInitializeiPPw
+627821AD  C:\Apps\CodeBlocks-RG.v1.0\wxmsw28u_gcc_custom.dll:627821AD  _Z7wxEntryP11HINSTANCE__S0_Pci
+00401A51  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00401A51
+00450736  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00450736
+004010B6  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:004010B6
+00401128  C:\Apps\CodeBlocks-RG.v1.0\codeblocks.exe:00401128
+76FE4911  C:\Windows\system32\kernel32.dll:76FE4911  BaseThreadInitThunk
+770BE4B6  C:\Windows\system32\ntdll.dll:770BE4B6  RtlInitializeExceptionChain
+770BE489  C:\Windows\system32\ntdll.dll:770BE489  RtlInitializeExceptionChain
+
+
+-------------------
+
+Error occured on Monday, November 1, 2010 at 14:07:52.
+
+C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.exe caused an Access Violation at location 65ee10b9 in module C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\share\codeblocks\plugins\codecompletion.dll Reading from location 0000004c.
+
+Registers:
+eax=0000004c ebx=0022f9c8 ecx=0022f914 edx=00000040 esi=65f14890 edi=0022fd50
+eip=65ee10b9 esp=0022f840 ebp=0022f858 iopl=0         nv up ei pl nz na pe nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=003b  gs=0000             efl=00010202
+
+Call stack:
+65EE10B9  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\share\codeblocks\plugins\codecompletion.dll:65EE10B9
+65EE1126  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\share\codeblocks\plugins\codecompletion.dll:65EE1126
+65EE114F  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\share\codeblocks\plugins\codecompletion.dll:65EE114F
+65EAEB28  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\share\codeblocks\plugins\codecompletion.dll:65EAEB28
+65EAE6E9  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\share\codeblocks\plugins\codecompletion.dll:65EAE6E9
+65EAF176  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\share\codeblocks\plugins\codecompletion.dll:65EAF176
+65EAEF4F  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\share\codeblocks\plugins\codecompletion.dll:65EAEF4F
+65EA66B7  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\share\codeblocks\plugins\codecompletion.dll:65EA66B7
+65EA6520  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\share\codeblocks\plugins\codecompletion.dll:65EA6520
+65EE464C  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\share\codeblocks\plugins\codecompletion.dll:65EE464C  _ZN12cbToolPlugin9BuildMenuEP9wxMenuBar
+61858DBA  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.dll:61858DBA  _ZN7Manager12ProcessEventER15CodeBlocksEvent
+00403FDE  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.exe:00403FDE
+004569D8  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.exe:004569D8  _ZN12cbToolPlugin9BuildMenuEP9wxMenuBar
+6273086A  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:6273086A  _Z12wxInitializeiPPw
+627821AD  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:627821AD  _Z7wxEntryP11HINSTANCE__S0_Pci
+00401A51  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.exe:00401A51
+00450736  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.exe:00450736
+004010B6  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.exe:004010B6
+00401128  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.exe:00401128
+76EE4911  C:\Windows\system32\kernel32.dll:76EE4911  BaseThreadInitThunk
+771BE4B6  C:\Windows\system32\ntdll.dll:771BE4B6  RtlInitializeExceptionChain
+771BE489  C:\Windows\system32\ntdll.dll:771BE489  RtlInitializeExceptionChain
+
+
+-------------------
+
+-------------------
+
+Error occured on Tuesday, January 25, 2011 at 11:30:49.
+
+C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.exe caused an Access Violation at location 00000000 Reading from location 00000000.
+
+Registers:
+eax=00000000 ebx=62ce77e0 ecx=01a21158 edx=0022e73c esi=02625ca0 edi=0022e89c
+eip=00000000 esp=0022e720 ebp=0022e78c iopl=0         nv up ei pl nz na po nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=003b  gs=0000             efl=00010206
+
+Call stack:
+00000000
+629944E5  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:629944E5  _ZN12wxAuiManager20OnFloatingPaneClosedEP8wxWindowR12wxCloseEvent
+629A3B66  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:629A3B66  _ZN18wxAuiFloatingFrame7OnCloseER12wxCloseEvent
+6277AF91  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:6277AF91  _ZN12wxEvtHandler21ProcessEventIfMatchesERK21wxEventTableEntryBasePS_R7wxEvent
+6277C6BB  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:6277C6BB  _ZN16wxEventHashTable11HandleEventER7wxEventP12wxEvtHandler
+6277C78C  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:6277C78C  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C729  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:6277C729  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+628804DF  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:628804DF  _ZN12wxWindowBase5CloseEb
+6277AF91  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:6277AF91  _ZN12wxEvtHandler21ProcessEventIfMatchesERK21wxEventTableEntryBasePS_R7wxEvent
+6277C6BB  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:6277C6BB  _ZN16wxEventHashTable11HandleEventER7wxEventP12wxEvtHandler
+6277C78C  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:6277C78C  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+627C4919  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:627C4919  _ZN8wxWindow16HandleEndSessionEbl
+627CA968  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:627CA968  _ZN8wxWindow13MSWWindowProcEjjl
+627E73D2  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:627E73D2  _ZN7wxFrame13MSWWindowProcEjjl
+627C3378  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:627C3378  _Z9wxWndProcP6HWND__jjl@16
+777BF8D2  C:\Windows\system32\USER32.dll:777BF8D2  GetMessageW
+777BF794  C:\Windows\system32\USER32.dll:777BF794  GetWindowLongW
+777C0817  C:\Windows\system32\USER32.dll:777C0817  ReleaseDC
+777C0A65  C:\Windows\system32\USER32.dll:777C0A65  GetWindowThreadProcessId
+77BA99CE  C:\Windows\system32\ntdll.dll:77BA99CE  KiUserCallbackDispatcher
+777C04B4  C:\Windows\system32\USER32.dll:777C04B4  MsgWaitForMultipleObjectsEx
+777C0511  C:\Windows\system32\USER32.dll:777C0511  DefWindowProcW
+750AEAB2  C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.6001.18000_none_5cdbaa5a083979cc\COMCTL32.DLL:750AEAB2  DPA_DeleteAllPtrs
+750BD3AE  C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.6001.18000_none_5cdbaa5a083979cc\COMCTL32.DLL:750BD3AE  DefSubclassProc
+777BF8D2  C:\Windows\system32\USER32.dll:777BF8D2  GetMessageW
+777BF794  C:\Windows\system32\USER32.dll:777BF794  GetWindowLongW
+777C0817  C:\Windows\system32\USER32.dll:777C0817  ReleaseDC
+777C0A65  C:\Windows\system32\USER32.dll:777C0A65  GetWindowThreadProcessId
+77BA99CE  C:\Windows\system32\ntdll.dll:77BA99CE  KiUserCallbackDispatcher
+750936EF  C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.6001.18000_none_5cdbaa5a083979cc\COMCTL32.DLL:750936EF  GetWindowSubclass
+777BF8D2  C:\Windows\system32\USER32.dll:777BF8D2  GetMessageW
+777BF794  C:\Windows\system32\USER32.dll:777BF794  GetWindowLongW
+777C06F6  C:\Windows\system32\USER32.dll:777C06F6  CallWindowProcW
+777C069C  C:\Windows\system32\USER32.dll:777C069C  CallWindowProcW
+627C354C  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:627C354C  _ZN8wxWindow16MSWDefWindowProcEjjl
+627CA245  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:627CA245  _ZN8wxWindow13MSWWindowProcEjjl
+627C3378  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:627C3378  _Z9wxWndProcP6HWND__jjl@16
+777BF8D2  C:\Windows\system32\USER32.dll:777BF8D2  GetMessageW
+777B1912  C:\Windows\system32\USER32.dll:777B1912  PostThreadMessageW
+777C0817  C:\Windows\system32\USER32.dll:777C0817  ReleaseDC
+777B148F  C:\Windows\system32\USER32.dll:777B148F  MonitorFromWindow
+77BA99CE  C:\Windows\system32\ntdll.dll:77BA99CE  KiUserCallbackDispatcher
+627DB836  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:627DB836  _ZN8wxChoiceD0Ev
+6287F074  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:6287F074  _ZN12wxWindowBase15DestroyChildrenEv
+627C950F  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:627C950F  _ZN8wxWindowD2Ev
+62807FC1  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:62807FC1  _ZN9wxToolBarD0Ev
+6287F074  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:6287F074  _ZN12wxWindowBase15DestroyChildrenEv
+627C950F  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:627C950F  _ZN8wxWindowD2Ev
+0041CFD3  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.exe:0041CFD3
+62818739  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:62818739  _ZN9wxAppBase20DeletePendingObjectsEv
+628187E2  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:628187E2  _ZN9wxAppBase11ProcessIdleEv
+62837335  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:62837335  _ZN17wxEventLoopManual3RunEv
+62818883  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:62818883  _ZN9wxAppBase8MainLoopEv
+0040436E  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.exe:0040436E
+6273088D  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:6273088D  _Z12wxInitializeiPPw
+627821AD  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:627821AD  _Z7wxEntryP11HINSTANCE__S0_Pci
+00401A51  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.exe:00401A51
+00450736  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.exe:00450736
+004010B6  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.exe:004010B6
+00401128  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.exe:00401128
+77284911  C:\Windows\system32\kernel32.dll:77284911  BaseThreadInitThunk
+77B8E4B6  C:\Windows\system32\ntdll.dll:77B8E4B6  RtlInitializeExceptionChain
+77B8E489  C:\Windows\system32\ntdll.dll:77B8E489  RtlInitializeExceptionChain
+
+
+-------------------
+
+Error occured on Thursday, February 3, 2011 at 14:15:03.
+
+C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.exe caused an Access Violation at location 04188ace in module C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\share\codeblocks\plugins\compiler.dll Reading from location 00000040.
+
+Registers:
+eax=00000000 ebx=00000000 ecx=62b3d918 edx=0022f700 esi=0414c702 edi=025c7da0
+eip=04188ace esp=0022f804 ebp=0022f804 iopl=0         nv up ei pl nz ac po nc
+cs=001b  ss=0023  ds=0023  es=0023  fs=003b  gs=0000             efl=00010216
+
+Call stack:
+04188ACE  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\share\codeblocks\plugins\compiler.dll:04188ACE  _ZN12cbToolPlugin9BuildMenuEP9wxMenuBar
+041456D1  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\share\codeblocks\plugins\compiler.dll:041456D1
+04145A94  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\share\codeblocks\plugins\compiler.dll:04145A94
+0414CA8A  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\share\codeblocks\plugins\compiler.dll:0414CA8A
+0414C73C  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\share\codeblocks\plugins\compiler.dll:0414C73C
+6277AF91  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:6277AF91  _ZN12wxEvtHandler21ProcessEventIfMatchesERK21wxEventTableEntryBasePS_R7wxEvent
+6277C6BB  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:6277C6BB  _ZN16wxEventHashTable11HandleEventER7wxEventP12wxEvtHandler
+6277C78C  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:6277C78C  _ZN12wxEvtHandler12ProcessEventER7wxEvent
+6277C22E  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:6277C22E  _ZN12wxEvtHandler20ProcessPendingEventsEv
+627014F0  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:627014F0  _ZN12wxAppConsole20ProcessPendingEventsEv
+62ACD4D5  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:62ACD4D5  _ZN18wxHtmlSearchEngineD1Ev
+76978CFF  C:\Windows\system32\USER32.dll:76978CFF  CallNextHookEx
+76989597  C:\Windows\system32\USER32.dll:76989597  GetDC
+7698968C  C:\Windows\system32\USER32.dll:7698968C  CharPrevW
+779199CE  C:\Windows\system32\ntdll.dll:779199CE  KiUserCallbackDispatcher
+627AC2CB  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:627AC2CB  _ZN11wxEventLoop8DispatchEv
+62837376  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:62837376  _ZN17wxEventLoopManual3RunEv
+62818883  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:62818883  _ZN9wxAppBase8MainLoopEv
+0040436E  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.exe:0040436E
+6273088D  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:6273088D  _Z12wxInitializeiPPw
+627821AD  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\wxmsw28u_gcc_custom.dll:627821AD  _Z7wxEntryP11HINSTANCE__S0_Pci
+00401A51  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.exe:00401A51
+00450736  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.exe:00450736
+004010B6  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.exe:004010B6
+00401128  C:\Projects\Multiplo\Soft\CodeBlocks-RG\v1.0\Soft\codeblocks.exe:00401128
+76594911  C:\Windows\system32\kernel32.dll:76594911  BaseThreadInitThunk
+778FE4B6  C:\Windows\system32\ntdll.dll:778FE4B6  RtlInitializeExceptionChain
+778FE489  C:\Windows\system32\ntdll.dll:778FE489  RtlInitializeExceptionChain
+
+

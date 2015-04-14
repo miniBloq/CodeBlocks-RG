@@ -1,0 +1,102 @@
+<TITLE>BGI Documentation for 
+getviewsettings
+</TITLE>
+<H2>
+getviewsettings
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void getviewsettings(struct viewporttype *viewport);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+getviewsettings fills the viewporttype structure pointed to by viewport with information about the current viewport.
+<P>
+The viewporttype structure used by getviewport is defined in graphics.h as follows:
+<PRE>
+struct viewporttype {
+   int left, top, right, bottom;
+   int clip;
+};
+</PRE>
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="clearviewport.html"> clearviewport </A>
+<DD><A HREF="getx.html"> getx </A>
+<DD><A HREF="gety.html"> gety </A>
+<DD><A HREF="setviewport.html"> setviewport </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* getviewsettings example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+char *clip[] = { "OFF", "ON" };
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   struct viewporttype viewinfo;
+   int midx, midy, ht;
+   char topstr[80], botstr[80], clipstr[80];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+
+   /* get information about current viewport */
+   getviewsettings(&viewinfo);
+
+   /* convert text information into strings */
+  sprintf(topstr, "(%d, %d) is the upper left viewport corner.",viewinfo.left, viewinfo.top);
+
+  sprintf(botstr, "(%d, %d) is the lower right viewport corner.",viewinfo.right, viewinfo.bottom);
+   sprintf(clipstr, "Clipping is turned %s.", clip[viewinfo.clip]);
+
+   /* display the information */
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+   ht = textheight("W");
+   outtextxy(midx, midy, topstr);
+   outtextxy(midx, midy+2*ht, botstr);
+   outtextxy(midx, midy+4*ht, clipstr);
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

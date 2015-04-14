@@ -1,0 +1,85 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Configuring the linker</title>
+</head>
+
+<body>
+
+<h3><span lang="FR">Configuring the linker</span></h3>
+<p class="MsoNormalIndent"><span lang="FR" style="mso-ansi-language:FR">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" align="center"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:318pt;
+ height:335.25pt'>
+ <v:imagedata src="config2.gif"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="config2.gif" v:shapes="_x0000_i1025" width="424" height="447"></p>
+<p class="MsoNormalIndent">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormalIndent" style="margin-left:72.0pt;text-indent:-18.0pt;
+mso-list:l2 level1 lfo8;tab-stops:list 72.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Output file name. This defaults to a file under the sources
+directory where the binary files are stored. You can put another path if you
+wish that the linker output goes somewhere else</p>
+<p class="MsoNormalIndent" style="margin-left:72.0pt;text-indent:-18.0pt;
+mso-list:l2 level1 lfo8;tab-stops:list 72.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Additional libraries. Here you put a series of libraries you may
+need separated by spaces.</p>
+<p class="MsoNormalIndent" style="margin-left:72.0pt;text-indent:-18.0pt;
+mso-list:l2 level1 lfo8;tab-stops:list 72.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Generate a map file. A file containing the address of each
+procedure will be generated and helps you out to decipher cryptic addresses when
+a trap occurs.</p>
+<p class="MsoNormalIndent" style="margin-left:72.0pt;text-indent:-18.0pt;
+mso-list:l2 level1 lfo8;tab-stops:list 72.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Do not include underscores in dll exports. This is useful for DLLs
+that will be used by VB.</p>
+<p class="MsoNormalIndent" style="margin-left:72.0pt;text-indent:-18.0pt;
+mso-list:l2 level1 lfo8;tab-stops:list 72.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Type of output. It can be one of: &quot;windows application&quot;,
+i.e. a
+windows program, a &quot;console&quot; application that runs under a shell
+window, a DLL or a static library.</p>
+<p class="MsoNormalIndent" style="margin-left:72.0pt;text-indent:-18.0pt;
+mso-list:l2 level1 lfo8;tab-stops:list 72.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Additional arguments. Here you should add the .def file if you are
+building a DLL</p>
+
+<p class="MsoNormalIndent" style="margin-left:72.0pt;text-indent:-18.0pt;
+mso-list:l2 level1 lfo8;tab-stops:list 72.0pt">The entry point can be changed if
+the output of the linker is a DLL. Otherwise the entry point is fixed: main()
+for a console application, and WinMain for a windows application.</p>
+<p class="MsoNormalIndent" style="margin-left:72.0pt;text-indent:-18.0pt;
+mso-list:l2 level1 lfo8;tab-stops:list 72.0pt">&nbsp;</p>
+<p class="MsoNormalIndent" style="margin-left:72.0pt;text-indent:-18.0pt;
+mso-list:l2 level1 lfo8;tab-stops:list 72.0pt">&nbsp;</p>
+
+</body>
+
+</html>

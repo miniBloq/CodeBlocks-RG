@@ -1,0 +1,137 @@
+<TITLE>BGI Documentation for 
+setbkcolor
+</TITLE>
+<H2>
+setbkcolor
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void setbkcolor(int color);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+setbkcolor sets the background to the color specified by color. The
+argument color can be a name or a number as listed below. (These
+symbolic names are defined in graphics.h.) 
+<TABLE>
+<TR><TD><B>Name</B><TD><B>Value</B>
+<TR><TD>BLACK <TD>0
+<TR><TD>BLUE<TD>1
+<TR><TD>GREEN<TD>2
+<TR><TD>CYAN<TD>3
+<TR><TD>RED<TD>4
+<TR><TD>MAGENTA<TD>5
+<TR><TD>BROWN<TD>6
+<TR><TD>LIGHTGRAY<TD>7
+<TR><TD>DARKGRAY<TD>8
+<TR><TD>LIGHTBLUE<TD>9
+<TR><TD>LIGHTGREEN<TD>10
+<TR><TD>LIGHTCYAN<TD>11
+<TR><TD>LIGHTRED<TD>12
+<TR><TD>LIGHTMAGENTA<TD>13
+<TR><TD>YELLOW<TD>14
+<TR><TD>WHITE<TD>15
+</TABLE>
+For example, if you want to set the background color to blue, you can call
+<PRE>
+   setbkcolor(BLUE) /* or */ setbkcolor(1)
+</PRE>
+On CGA and EGA systems, setbkcolor changes the background color by changing the first entry in the palette.
+<P>
+If you use an EGA or a VGA, and you change the palette colors with setpalette or setallpalette, the defined symbolic constants might not give you the correct color. This is because the parameter to setbkcolor indicates the entry number in the current palette rather than a specific color (unless the parameter passed is 0, which always sets the background color to black).
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+The <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> version allows the
+color
+argument to be an ordinary BGI color (from 0 to 15) or an
+<A HREF="wincolor.html">RGB color</A>.
+Also, only future drawing will use the new background color (anything
+currently drawn in the old background color will stay in the old
+color). Calling setbkcolor(0) will change the background color to the
+current color at index [0] of the palette (rather than always changing
+the background to black).
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="getbkcolor.html"> getbkcolor </A>
+<DD><A HREF="setallpalette.html"> setallpalette </A>
+<DD><A HREF="setcolor.html"> setcolor </A>
+<DD><A HREF="setpalette.html"> setpalette </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* setbkcolor example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* _select driver and mode that supports multiple background colors*/
+   int gdriver = EGA, gmode = EGAHI, errorcode;
+   int bkcol, maxcolor, x, y;
+   char msg[80];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {   /* an error occurred */
+
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   /* maximum color index supported */
+   maxcolor = getmaxcolor();
+
+   /* for centering text messages */
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+   x = getmaxx() / 2;
+   y = getmaxy() / 2;
+
+   /* loop through the available colors */
+   for (bkcol=0; bkcol&lt;=maxcolor; bkcol++) {
+
+
+      /* clear the screen */
+      cleardevice();
+
+      /* select a new background color */
+      setbkcolor(bkcol);
+
+      /* output a messsage */
+      if (bkcol == WHITE)
+         setcolor(EGA_BLUE);
+      sprintf(msg, "Background color: %d", bkcol);
+      outtextxy(x, y, msg);
+      getch();
+   }
+
+   /* clean up */
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

@@ -1,0 +1,9 @@
+<area shape="rect" href="$classwx_log_buffer.html" title="wxLogBuffer is a very simple implementation of log sink which simply collects all..." alt="" coords="5,89,101,121">
+<area shape="rect" href="$classwx_log_chain.html" title="This simple class allows you to chain log sinks, that is to install a new sink but..." alt="" coords="125,89,221,121">
+<area shape="rect" href="$classwx_log_gui.html" title="This is the default log target for the GUI wxWidgets applications." alt="" coords="245,89,328,121">
+<area shape="rect" href="$classwx_log_stderr.html" title="This class can be used to redirect the log messages to a C file stream (not to be..." alt="" coords="352,89,448,121">
+<area shape="rect" href="$classwx_log_stream.html" title="This class can be used to redirect the log messages to a C++ stream." alt="" coords="472,89,576,121">
+<area shape="rect" href="$classwx_log_text_ctrl.html" title="Using these target all the log messages can be redirected to a text control." alt="" coords="600,89,707,121">
+<area shape="rect" href="$classwx_log_interposer.html" title="A special version of wxLogChain which uses itself as the new log target." alt="" coords="32,172,152,204">
+<area shape="rect" href="$classwx_log_interposer_temp.html" title="A special version of wxLogChain which uses itself as the new log target." alt="" coords="176,172,331,204">
+<area shape="rect" href="$classwx_log_window.html" title="This class represents a background log window: to be precise, it collects all log..." alt="" coords="37,255,147,287">

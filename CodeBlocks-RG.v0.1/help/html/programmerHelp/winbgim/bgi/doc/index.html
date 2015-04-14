@@ -1,0 +1,169 @@
+<html>
+<title>
+Borland Graphics Interface (BGI) Documentation
+</title>
+
+<body>
+<h2>Borland Graphics Interface (BGI) for Windows</b></h2>
+Version 6.0, August 9, 2004
+<P>
+The following functions are mostly from the original
+Borland Graphics Interface for DOS programs.
+The BGI graphics functions may also be used with Windows programs
+created by the Borland 5.0 compiler, the free 
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/cs1300/README.html">GNU C++ compiler</A>,
+and possibly other compilers. Extra Windows
+functions are also available, described in
+<A HREF="bgi.html">www.cs.colorado.edu/~main/cs1300/doc/bgi/bgi.html</A>.
+These extra functions are indicated below by 
+<IMG SRC="win.gif" ALT="[WIN]">. Also, any of the
+functions
+that use colors can use 
+<A HREF="wincolor.html">RGB colors</A> in addition to the 16-color BGI palette.
+<P>
+<B>Functions:</B>
+<PRE>
+<BR>               void <A HREF="arc.html">arc</A> (int x, int y, int stangle, int endangle, int radius);
+
+<BR>               void <A HREF="bar.html">bar</A> (int left, int top, int right, int bottom);
+<BR>               void <A HREF="bar3d.html">bar3d</A> (int left, int top, int right, int bottom, int depth, int topflag);
+<BR>      ostringstream <A HREF="bgiout.html">bgiout</A>; <IMG SRC="win.gif" ALT="[WIN"]>
+
+<BR>               void <A HREF="circle.html">circle</A> (int x, int y, int radius);
+<BR>               void <A HREF="cleardevice.html">cleardevice</A> (void);
+<BR>               void <A HREF="clearmouseclick.html">clearmouseclick</A>(int kind); <IMG SRC="win.gif" ALT="[WIN"]>
+<BR>               void <A HREF="clearviewport.html">clearviewport</A> (void);
+<BR>               void <A HREF="closegraph.html">closegraph</A> (int window=ALL_WINDOWS); <IMG SRC="win.gif" ALT="[WIN"]>
+<BR>                int <A HREF="wincolor.html">converttorgb</A> (int color); <IMG SRC="win.gif" ALT="[WIN"]>
+
+<BR>               void <A HREF="delay.html">delay</A> (int millisec); <IMG SRC="win.gif" ALT="[WIN"]>
+<BR>               void <A HREF="detectgraph.html">detectgraph</A> (int *graphdriver, int *graphmode);
+<BR>               void <A HREF="drawpoly.html">drawpoly</A> (int numpoints, int *polypoints);
+
+<BR>               void <A HREF="ellipse.html">ellipse</A> (int x, int y, int stangle, int endangle, int xradius, int yradius);
+
+<BR>               void <A HREF="fillellipse.html">fillellipse</A> (int x, int y, int xradius, int yradius);
+<BR>               void <A HREF="fillpoly.html">fillpoly</A> (int numpoints, int *polypoints);
+<BR>               void <A HREF="floodfill.html">floodfill</A> (int x, int y, int border);
+
+<BR>                int <A HREF="getactivepage.html">getactivepage</A> (void); <IMG SRC="win.gif" ALT="[WIN"]>
+<BR>               void <A HREF="getarccoords.html">getarccoords</A> (struct arccoordstype *arccoords);
+<BR>               void <A HREF="getaspectratio.html">getaspectratio</A> (int *xasp, int *yasp);
+<BR>                int <A HREF="getbkcolor.html">getbkcolor</A> (void);
+<BR>                int <A HREF="getch.html">getch</A> (void); <IMG SRC="win.gif" ALT="[WIN"]>
+<BR>                int <A HREF="getcolor.html">getcolor</A> (void);
+<BR>                int <A HREF="getcurrentwindow.html">getcurrentwindow</A> (void); <IMG SRC="win.gif" ALT="[WIN]">
+<BR>struct palettetype* <A HREF="getdefaultpalette.html">getdefaultpalette</A> (void);
+<BR>                int <A HREF="getdisplaycolor.html">getdisplaycolor</A> (int color); <IMG SRC="win.gif" ALT="[WIN"]>
+<BR>              char* <A HREF="getdrivername.html">getdrivername</A> (void);
+<BR>               void <A HREF="getfillpattern.html">getfillpattern</A> (char *pattern); 
+<BR>               void <A HREF="getfillsettings.html">getfillsettings</A> (struct fillsettingstype *fillinfo);
+<BR>                int <A HREF="getgraphmode.html">getgraphmode</A> (void);
+<BR>               void <A HREF="getimage.html">getimage</A> (int left, int top, int right, int bottom, void *bitmap);
+<BR>               void <A HREF="getlinesettings.html">getlinesettings</A> (struct linesettingstype *lineinfo);
+<BR>                int <A HREF="getmaxcolor.html">getmaxcolor</A> (void);
+<BR>                int <A HREF="getmaxmode.html">getmaxmode</A> (void); 
+<BR>                int <A HREF="getmaxheight.html">getmaxheight</A> (void); <IMG SRC="win.gif" ALT="[WIN"]>
+<BR>                int <A HREF="getmaxwidth.html">getmaxwidth</A> (void); <IMG SRC="win.gif" ALT="[WIN"]>
+<BR>                int <A HREF="getmaxx.html">getmaxx</A> (void);
+<BR>                int <A HREF="getmaxy.html">getmaxy</A> (void);
+<BR>              char* <A HREF="getmodename.html">getmodename</A> (int mode_number);
+<BR>               void <A HREF="getmoderange.html">getmoderange</A> (int graphdriver, int *lomode, int *himode);
+<BR>               void <A HREF="getmouseclick.html">getmouseclick</A>(int kind, int&amp; x, int&amp; y); <IMG SRC="win.gif" ALT="[WIN"]>
+<BR>               void <A HREF="getpalette.html">getpalette</A> (struct palettetype *palette);
+<BR>                int <A HREF="getpalettesize.html">getpalettesize</A> (void); 
+<BR>                int <A HREF="getpixel.html">getpixel</A> (int x, int y);
+<BR>               void <A HREF="gettextsettings.html">gettextsettings</A> (struct textsettingstype *texttypeinfo);
+<BR>               void <A HREF="getviewsettings.html">getviewsettings</A> (struct viewporttype *viewport);
+<BR>                int <A HREF="getvisualpage.html">getvisualpage</A> (void); <IMG SRC="win.gif" ALT="[WIN"]>
+<BR>                int <A HREF="getwindowheight.html">getwindowheight</A> (void); <IMG SRC="win.gif" ALT="[WIN"]>
+<BR>                int <A HREF="getwindowwidth.html">getwindowwidth</A> (void); <IMG SRC="win.gif" ALT="[WIN"]>
+<BR>                int <A HREF="getx.html">getx</A> (void);
+<BR>                int <A HREF="gety.html">gety</A> (void);
+<BR>               void <A HREF="graphdefaults.html">graphdefaults</A> (void);
+<BR>              char* <A HREF="grapherrormsg.html">grapherrormsg</A> (int errorcode);
+<BR>                int <A HREF="graphresult.html">graphresult</A>(void);
+
+<BR>           unsigned <A HREF="imagesize.html">imagesize</A> (int left, int top, int right, int bottom);
+<BR>               void <A HREF="initgraph.html">initgraph</A> (int *graphdriver, int *graphmode, char *pathtodriver);
+<BR>                int <A HREF="initwindow.html">initwindow</A> (int width, int height, const char* title="Windows BGI", int left=0, int top=0, bool dbflag=false, bool closeflag=true); <IMG SRC="win.gif" ALT="[WIN]">
+<BR>                int <A HREF="installuserdriver.html">installuserdriver</A> (char *name, int huge (*detect)(void)); 
+<BR>                int <A HREF="installuserfont.html">installuserfont</A> (char *name); 
+<BR>               bool <A HREF="ismouseclick.html">ismouseclick</A>(int kind); <IMG SRC="win.gif" ALT="[WIN"]>
+
+<BR>                int <A HREF="kbhit.html">kbhit</A> (void); <IMG SRC="win.gif" ALT="[WIN"]>
+
+<BR>               void <A HREF="line.html">line</A> (int x1, int y1, int x2, int y2);
+<BR>               void <A HREF="linerel.html">linerel</A> (int dx, int dy);
+<BR>               void <A HREF="lineto.html">lineto</A> (int x, int y);
+
+<BR>                int <A HREF="mousex.html">mousex</A> (void); <IMG SRC="win.gif" ALT="[WIN"]>
+<BR>                int <A HREF="mousey.html">mousey</A> (void); <IMG SRC="win.gif" ALT="[WIN"]>
+<BR>               void <A HREF="moverel.html">moverel</A> (int dx, int dy);
+<BR>               void <A HREF="moveto.html">moveto</A> (int x, int y);
+
+<BR>               void <A HREF="outtext.html">outtext</A> (char *textstring);
+<BR>               void <A HREF="outtextxy.html">outtextxy</A> (int x, int y, char *textstring);
+
+<BR>               void <A HREF="pieslice.html">pieslice</A> (int x, int y, int stangle, int endangle, int radius);
+<BR>               void <A HREF="printimage.html">printimage</A> (
+<BR>                        const char* title=NULL, double width_inches=7, 
+<BR>                        double border_left_inches=0.75, double border_top_inches=0.75,
+<BR>                        int left=0, int right=0, int right=INT_MAX, int bottom=INT_MAX
+<BR>                        ); <IMG SRC="win.gif" ALT="[WIN]">
+<BR>               void <A HREF="putimage.html">putimage</A> (int left, int top, void *bitmap, int op);
+<BR>               void <A HREF="putpixel.html">putpixel</A> (int x, int y, int color); 
+
+<BR>               void <A HREF="readimagefile.html">readimagefile</A> (
+<BR>                        const char* filename=NULL,
+<BR>                        int left=0, int top=0, int right=INT_MAX, int bottom=INT_MAX
+<BR>                        );
+<BR>               void <A HREF="rectangle.html">rectangle</A> (int left, int top, int right, int bottom);
+<BR>                int <A HREF="registerbgidriver.html">registerbgidriver</A> (void (*driver)(void)); 
+<BR>                int <A HREF="registerbgifont.html">registerbgifont</A> (void (*font)(void)); 
+<BR>               void <A HREF="registermousehandler.html">registermousehandler</A> (int kind, void h(int, int)); <IMG SRC="win.gif" ALT="[WIN"]>
+<BR>               void <A HREF="restorecrtmode.html">restorecrtmode</A> (void); 
+
+<BR>                    <A HREF="wincolor.html">RGB functions:</A> <IMG SRC="win.gif" ALT="[WIN"]>
+<BR>                      COLOR(r,g,b), 
+<BR>                      RED_VALUE(v), GREEN_VALUE(v), BLUE_VALUE(v), 
+<BR>                      IS_BGI_COLOR(v), IS_RGB_COLOR(v)
+
+<BR>               void <A HREF="sector.html">sector</A> (int x, int y, int stangle, int endangle, int xradius, int yradius);
+<BR>               void <A HREF="setactivepage.html">setactivepage</A> (int page);
+<BR>               void <A HREF="setallpalette.html">setallpalette</A> (struct palettetype *palette); 
+<BR>               void <A HREF="setaspectratio.html">setaspectratio</A> (int xasp, int yasp);
+<BR>               void <A HREF="setbkcolor.html">setbkcolor</A> (int color);
+<BR>               void <A HREF="setcolor.html">setcolor</A> (int color); 
+<BR>               void <A HREF="setcurrentwindow.html">setcurrentwindow</A> (int window); <IMG SRC="win.gif" ALT="[WIN]">
+<BR>               void <A HREF="setmousequeuestatus.html">setmousequeuestatus</A>(int kind, bool status=true); <IMG SRC="win.gif" ALT="[WIN"]>
+<BR>               void <A HREF="setfillpattern.html">setfillpattern</A> (char *upattern, int color); 
+<BR>               void <A HREF="setfillstyle.html">setfillstyle</A> (int pattern, int color); 
+<BR>           unsigned <A HREF="setgraphbufsize.html">setgraphbufsize</A> (unsigned bufsize); 
+<BR>               void <A HREF="setgraphmode.html">setgraphmode</A> (int mode); 
+<BR>               void <A HREF="setlinestyle.html">setlinestyle</A> (int linestyle, unsigned upattern, int thickness);
+<BR>               void <A HREF="setpalette.html">setpalette</A> (int colornum, int color); 
+<BR>               void <A HREF="setrgbpalette.html">setrgbpalette</A> (int colornum, int red, int green, int blue); 
+<BR>               void <A HREF="settextjustify.html">settextjustify</A> (int horiz, int vert);
+<BR>               void <A HREF="settextstyle.html">settextstyle</A> (int font, int direction, int charsize);
+<BR>               void <A HREF="setusercharsize.html">setusercharsize</A> (int multx, int divx, int multy, int divy);
+<BR>               void <A HREF="setviewport.html">setviewport</A> (int left, int top, int right, int bottom, int clip);
+<BR>               void <A HREF="setvisualpage.html">setvisualpage</A> (int page);
+<BR>               void <A HREF="setwritemode.html">setwritemode</A> (int mode);
+<BR>                int <A HREF="showerrorbox.html">showerrorbox</A> (const char *message); <IMG SRC="win.gif" ALT="[WIN"]>
+<BR>                int <A HREF="swapbuffers.html">swapbuffers</A> (void); <IMG SRC="win.gif" ALT="[WIN]">
+
+<BR>                int <A HREF="textheight.html">textheight</A> (char *textstring);
+<BR>                int <A HREF="textwidth.html">textwidth</A> (char *textstring);
+
+<BR>               void <A HREF="writeimagefile.html">writeimagefile</A> (
+<BR>                        const char* filename=NULL,
+<BR>                        double width_inches=7, double border_left_inches=0.75, double border_top_inches=0.75,
+<BR>                        int left=0, int top=0, int right=INT_MAX, int bottom=INT_MAX
+<BR>                        ); <IMG SRC="win.gif" ALT="[WIN"]>
+
+</PRE>
+</body>
+
+<!-- Mirrored from www.cs.colorado.edu/~main/cs1300/doc/bgi/index.html by HTTrack Website Copier/3.x [XR&CO'2004], Sat, 18 Dec 2004 07:30:53 GMT -->
+</html>

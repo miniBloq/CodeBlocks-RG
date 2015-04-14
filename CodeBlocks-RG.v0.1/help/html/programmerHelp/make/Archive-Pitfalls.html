@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Archive%20Pitfalls">Archive Pitfalls</a>,
+Next:<a rel="next" accesskey="n" href="Archive-Suffix-Rules.html#Archive%20Suffix%20Rules">Archive Suffix Rules</a>,
+Previous:<a rel="previous" accesskey="p" href="Archive-Update.html#Archive%20Update">Archive Update</a>,
+Up:<a rel="up" accesskey="u" href="Archives.html#Archives">Archives</a>
+<hr><br>
+</div>
+
+<h3 class="section">Dangers When Using Archives</h3>
+
+   <p>It is important to be careful when using parallel execution (the
+<code>-j</code> switch; see <a href="Parallel.html#Parallel">Parallel Execution</a>) and archives. 
+If multiple <code>ar</code> commands run at the same time on the same archive
+file, they will not know about each other and can corrupt the file.
+
+   <p>Possibly a future version of <code>make</code> will provide a mechanism to
+circumvent this problem by serializing all commands that operate on the
+same archive file.  But for the time being, you must either write your
+makefiles to avoid this problem in some other way, or not use <code>-j</code>.
+
+   </body></html>
+

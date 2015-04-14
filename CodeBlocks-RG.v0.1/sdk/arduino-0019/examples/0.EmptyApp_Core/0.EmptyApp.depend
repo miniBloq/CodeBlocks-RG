@@ -1,0 +1,41 @@
+# depslib dependency file v1.0
+1285108707 source:c:\projects\multiplo\soft\codeblocks-rg\v1.0\soft\sdk\arduino-0019\examples\0.emptyapp_core\main.cpp
+	"WProgram.h"
+	"main.pde"
+
+1284914082 c:\projects\multiplo\soft\codeblocks-rg\v1.0\soft\sdk\arduino-0019\hardware\arduino\cores\arduino\wprogram.h
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	<avr/interrupt.h>
+	"wiring.h"
+	"WString.h"
+	"HardwareSerial.h"
+
+1284914087 c:\projects\multiplo\soft\codeblocks-rg\v1.0\soft\sdk\arduino-0019\hardware\arduino\cores\arduino\wiring.h
+	<avr/io.h>
+	<stdlib.h>
+	"binary.h"
+
+1284914084 c:\projects\multiplo\soft\codeblocks-rg\v1.0\soft\sdk\arduino-0019\hardware\arduino\cores\arduino\binary.h
+
+1284914997 c:\projects\multiplo\soft\codeblocks-rg\v1.0\soft\sdk\arduino-0019\hardware\arduino\cores\arduino\wstring.h
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1284914077 c:\projects\multiplo\soft\codeblocks-rg\v1.0\soft\sdk\arduino-0019\hardware\arduino\cores\arduino\hardwareserial.h
+	<inttypes.h>
+	"Stream.h"
+
+1284914079 c:\projects\multiplo\soft\codeblocks-rg\v1.0\soft\sdk\arduino-0019\hardware\arduino\cores\arduino\stream.h
+	<inttypes.h>
+	"Print.h"
+
+1284914078 c:\projects\multiplo\soft\codeblocks-rg\v1.0\soft\sdk\arduino-0019\hardware\arduino\cores\arduino\print.h
+	<inttypes.h>
+	<stdio.h>
+	"WString.h"
+
+1285101243 c:\projects\multiplo\soft\codeblocks-rg\v1.0\soft\sdk\arduino-0019\examples\0.emptyapp_core\main.pde
+

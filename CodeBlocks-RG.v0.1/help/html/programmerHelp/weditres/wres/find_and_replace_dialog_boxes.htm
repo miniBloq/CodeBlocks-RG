@@ -1,0 +1,330 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Find and Replace Dialog Boxes</title>
+</head>
+
+<body>
+
+<div class="clsDocBody">
+  <h2>Find and Replace Dialog Boxes</h2>
+  <hr SIZE="1">
+  <p>The <b>Find</b> dialog box lets the user specify a string to search for, as
+  well as options to use when searching for text in a document. The <b>Replace</b>
+  dialog box lets the user specify a string to search for and a replacement
+  string, as well as options to control the operation.</p>
+  <p>You create and display a <b>Find</b> dialog box by initializing a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_FINDREPLACE_str_cpp">
+  FINDREPLACE</MSHelp:link>
+  structure and passing the structure to the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_FindText_cpp">
+  FindText</MSHelp:link>
+  function. You create and display a <b>Replace</b> dialog box by initializing a
+  <b>FINDREPLACE</b> structure and passing the structure to the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ReplaceText_cpp">
+  ReplaceText</MSHelp:link>
+  function.</p>
+  <p>The following illustration shows a typical <b>Find</b> dialog box.</p>
+  <p><img border="0" src="find_a3.gif" width="360" height="126"></p>
+  <p>The following illustration shows a typical <b>Replace</b> dialog box.</p>
+  <p><img border="0" src="find_a4.gif" width="351" height="178"></p>
+  <p>Unlike other common dialog boxes, the <b>Find</b> and <b>Replace</b> dialog
+  boxes are modeless. A modeless dialog box allows the user to switch between
+  the dialog box and the window that created it. This is useful for letting the
+  user search for a string, switch to the application window to work on the
+  string, and switch back to the dialog box to search for another string without
+  repeating the command needed to open the dialog box.</p>
+  <p>If the <b>FindText</b> or <b>ReplaceText</b> function successfully creates
+  the dialog box, it returns a handle to the dialog box. You can use this handle
+  to move and communicate with the dialog box. If the function cannot create the
+  dialog box, it returns NULL. You can determine the cause of an error by
+  calling the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CommDlgExtendedError_cpp">
+  CommDlgExtendedError</MSHelp:link>
+  function to retrieve the extended error value.</p>
+  <p>This section discusses the following topics.</p>
+  <ul>
+    <li><a href="#_win32_The_FINDMSGSTRING_Registered_Message" target="_self">The
+      FINDMSGSTRING Registered Message</a>
+    <li><a href="#_win32_Customizing_the_Find_or_Replace_Dialog_Box" target="_self">Customizing
+      the Find or Replace Dialog Box</a></li>
+    <li><a href="#example">Example.</a></li>
+  </ul>
+  <h3><a name="_win32_The_FINDMSGSTRING_Registered_Message"></a>The
+  FINDMSGSTRING Registered Message</h3>
+  <p>Before creating a <b>Find</b> or <b>Replace</b> dialog box, you must call
+  the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_RegisterWindowMessage_cpp">
+  RegisterWindowMessage</MSHelp:link>
+  function to get a message identifier for the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_FINDMSGSTRING_cpp">
+  FINDMSGSTRING</MSHelp:link>
+  registered message. You can then use the identifier to detect and process
+  messages sent from the dialog box. When the user clicks the <b>Find Next</b>, <b>Replace</b>,
+  or <b>Replace All</b> button in a dialog box, the dialog box procedure sends a
+  <b>FINDMSGSTRING</b> message to the window procedure of the owner window. When
+  you create the dialog box, the <b>hwndOwner</b> member of the <b>FINDREPLACE</b>
+  structure identifies the owner window.</p>
+  <p>The <i>lParam</i> parameter of a <b>FINDMSGSTRING</b> message is a pointer
+  to the <b>FINDREPLACE</b> structure that you specified when you created the
+  dialog box. Before sending the message, the dialog box sets the members of
+  this structure with the latest user input, including the string to search for,
+  the replacement string (if any), and options for the find-and-replace
+  operation.</p>
+  <p>In a <b>FINDMSGSTRING</b> message, the <b>Flags</b> member of the <b>FINDREPLACE</b>
+  structure includes one of the following flags to indicate the event that
+  caused the message.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>Flag</th>
+        <th>Meaning</th>
+      </tr>
+      <tr>
+        <td>FR_DIALOGTERM</td>
+        <td>The dialog box is closing. After the owner window processes this
+          message, a handle to the dialog box is no longer valid.</td>
+      </tr>
+      <tr>
+        <td>FR_FINDNEXT</td>
+        <td>The user clicked the <b>Find Next</b> button in a <b>Find</b> or <b>Replace</b>
+          dialog box. The <b>lpstrFindWhat</b> member specifies the string to
+          search for.</td>
+      </tr>
+      <tr>
+        <td>FR_REPLACE</td>
+        <td>The user clicked the <b>Replace</b> button in a <b>Replace</b>
+          dialog box. The <b>lpstrFindWhat</b> member specifies the string to
+          replace and the <b>lpstrReplaceWith</b> member specifies the
+          replacement string.</td>
+      </tr>
+      <tr>
+        <td>FR_REPLACEALL</td>
+        <td>The user clicked the <b>Replace All</b> button in a <b>Replace</b>
+          dialog box. The <b>lpstrFindWhat</b> member specifies the string to
+          replace and the <b>lpstrReplaceWith</b> member specifies the
+          replacement string.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>For a <b>Find Next</b> or <b>Replace All</b> message, the <b>Flags</b>
+  member can include any combination of the following flags to indicate the
+  search options.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>Flag</th>
+        <th>Meaning</th>
+      </tr>
+      <tr>
+        <td>FR_DOWN</td>
+        <td>If set, the <b>Down</b> button of the direction radio buttons is
+          selected, indicating that user wants to search from the current
+          location to the end of the document. If FR_DOWN is not set, the <b>Up</b>
+          button is selected so the user wants to search to the beginning of the
+          document.</td>
+      </tr>
+      <tr>
+        <td>FR_MATCHCASE</td>
+        <td>If set, the <b>Match Case</b> check box is selected, indicating that
+          the user wants the search to be case sensitive. If FR_MATCHCASE is not
+          set, the check box is unselected so that the search can be case
+          insensitive.</td>
+      </tr>
+      <tr>
+        <td>FR_WHOLEWORD</td>
+        <td>If set, the <b>Match Whole Word Only</b> check box is selected,
+          indicating that the user wants to search only for whole words that
+          match the search string. If FR_WHOLEWORD is not set, the check box is
+          unselected so you should also search for word fragments that match the
+          search string.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><a name="_win32_Customizing_the_Find_or_Replace_Dialog_Box"></a>Customizing
+  the Find or Replace Dialog Box</h3>
+  <p>To customize a <b>Find</b> or <b>Replace</b> dialog box, you can use any of
+  the following methods:</p>
+  <ul>
+    <li>Specify values in the <b>FINDREPLACE</b> structure when you create the
+      dialog box
+    <li>Provide a custom template
+    <li>Provide a hook procedure</li>
+  </ul>
+  <p>When you create a <b>Find</b> or <b>Replace</b> dialog box, you can set
+  flags in the <b>Flags</b> member of the <b>FINDREPLACE</b> structure to hide
+  or disable any of the search option controls. For example, you can set the
+  FR_NOMATCHCASE flag to disable the <b>Match Case</b> check box or set the
+  FR_HIDEMATCHCASE flag to hide it.</p>
+  <p>You can provide a custom template for a <b>Find</b> or <b>Replace</b>
+  dialog box, for example, if you want to include additional controls that are
+  unique to your application. The <b>FindText</b> and <b>ReplaceText</b>
+  functions use your custom template in place of the default template.</p>
+  <p><b>To provide a custom template for a Find or Replace dialog box</b></p>
+  <ol>
+    <li>Create the custom template by modifying the default template specified
+      in the Findtext.dlg file. The control identifiers used in the default <b>Find</b>
+      or <b>Replace</b> dialog template are defined in the Dlgs.h file.
+    <li>Use the <b>FINDREPLACE</b> structure to enable the template as follows:
+      <ul>
+        <ul>
+          <li>If your custom template is a resource in an application or
+            dynamic-link library, set the FR_ENABLETEMPLATE flag in the <b>Flags</b>
+            member. Use the <b>hInstance</b> and <b>lpTemplateName</b> members
+            of the structure to identify the module and resource name.
+            <p>&nbsp;
+            <p>-Or-</p>
+            <p>&nbsp;</p>
+          <li>If your custom template is already in memory, set the
+            FR_ENABLETEMPLATEHANDLE flag. Use the <b>hInstance</b> member to
+            identify the memory object that contains the template.</li>
+        </ul>
+      </ul>
+    </li>
+  </ol>
+  <p>You can provide an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_FRHookProc_cpp">
+  FRHookProc</MSHelp:link>
+  hook procedure for a <b>Find</b> or <b>Replace</b> dialog box. The hook
+  procedure can process messages sent to the dialog box. If you use a custom
+  template to define additional controls, you must provide a hook procedure to
+  process input for your controls.</p>
+  <p><b>To enable a hook procedure for a Find or Replace dialog box</b></p>
+  <ol>
+    <li>Set the FR_ENABLEHOOK flag in the <b>Flags</b> member of the <b>FINDREPLACE</b>
+      structure.
+    <li>Specify the address of the hook procedure in the <b>lpfnHook</b> member.</li>
+  </ol>
+  <p>After processing its <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_INITDIALOG_cpp">
+  WM_INITDIALOG</MSHelp:link>
+  message, the dialog box procedure sends a <b>WM_INITDIALOG</b> message to the
+  hook procedure. The <i>lParam</i> parameter of this message is a pointer to
+  the <b>FINDREPLACE</b> structure used to initialize the dialog box.</p>
+  <p>If the hook procedure returns FALSE in response to the <b>WM_INITDIALOG</b>
+  message, the dialog box will not be shown unless the hook procedure displays
+  it. To do this, first perform any other paint operations, and then call the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ShowWindow_cpp">
+  ShowWindow</MSHelp:link>
+  and <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_updatewindow">
+  UpdateWindow</MSHelp:link>
+  functions. The following code provides an example:</p>
+  <pre class="clsCode" AUTOHILITE="1"><font color="blue">//</font><font color="green"> We've returned FALSE in response to WM_INITDIALOG. </font>
+<font color="blue">//</font><font color="green"> We've performed any other paint operations. </font>
+<font color="blue">//</font><font color="green"> Now we display the dialog box. </font>
+ShowWindow(hDlg, SW_SHOWNORMAL); 
+UpdateWindow(hDlg); </pre>
+</div>
+<h3><a name="example"></a>Finding Text</h3>
+<p>This topic describes sample code that displays and manages a <b>Find</b>
+dialog box so the user can specify the parameters of a search operation. The
+dialog box sends messages to your window procedure so you can perform the search
+operation.</p>
+<p>The code for displaying and managing a <b>Replace</b> dialog box is similar,
+except that it uses the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ReplaceText_cpp">
+ReplaceText</MSHelp:link>
+ function to display the dialog box. The <b>Replace</b> dialog box also sends
+messages in response to user clicks on the <b>Replace</b> and <b>Replace All</b>
+buttons.</p>
+<p>To use the <b>Find</b> or <b>Replace</b> dialog box, you must perform three
+separate tasks:</p>
+<ol>
+  <li>Get a message identifier for the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_FINDMSGSTRING_cpp">
+    FINDMSGSTRING</MSHelp:link>
+    registered message.
+  <li>Display the dialog box.
+  <li>Process <b>FINDMSGSTRING</b> messages when the dialog box is open.</li>
+</ol>
+<p>When you initialize your application, call the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_RegisterWindowMessage_cpp">
+RegisterWindowMessage</MSHelp:link>
+ function to get a message identifier for the <b>FINDMSGSTRING</b> registered
+message.</p>
+<pre class="clsCode" AUTOHILITE="1">UINT uFindReplaceMsg;  <font color="blue">//</font><font color="green"> message identifier for FINDMSGSTRING </font>
+
+uFindReplaceMsg = RegisterWindowMessage(FINDMSGSTRING);</pre>
+<p>To display a <b>Find</b> dialog box, first initialize a <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_FINDREPLACE_str_cpp">
+FINDREPLACE</MSHelp:link>
+ structure and then call the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_FindText_cpp">
+FindText</MSHelp:link>
+ function. Note that the <b>FINDREPLACE</b> structure and the buffer for the
+search string should be a global or static variable so it does not go out of
+scope before the dialog box closes. You must set the <b>hwndOwner</b> member to
+specify the window that receives the registered messages. After you create the
+dialog box, you can move or manipulate it by using the returned handle.</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">FINDREPLACE fr;       <font color="blue">//</font><font color="green"> common dialog box structure</font>
+HWND hwnd;            <font color="blue">//</font><font color="green"> owner window</font>
+CHAR szFindWhat[80];  <font color="blue">//</font><font color="green"> buffer receiving string</font>
+HWND hdlg = NULL;     <font color="blue">//</font><font color="green"> handle to Find dialog box</font>
+
+<font color="blue">//</font><font color="green"> Initialize FINDREPLACE</font>
+ZeroMemory(&amp;fr, sizeof(fr));
+fr.lStructSize = sizeof(fr);
+fr.hwndOwner = hwnd;
+fr.lpstrFindWhat = szFindWhat;
+fr.wFindWhatLen = 80;
+fr.Flags = 0;
+
+hdlg = FindText(&amp;fr);
+</pre>
+<p>When the dialog box is open, your main message loop must include a call to
+the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_IsDialogMessage_cpp">
+IsDialogMessage</MSHelp:link>
+ function. Pass a handle to the dialog box as a parameter in the <b>IsDialogMessage</b>
+call. This ensures that the dialog box correctly processes keyboard messages.</p>
+<p>To monitor messages sent from the dialog box, your window procedure must
+check for the <b>FINDMSGSTRING</b> registered message and process the values
+passed in the <b>FINDREPLACE</b> structure as in the following example:</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">LPFINDREPLACE lpfr;
+
+if (message == uFindReplaceMsg){ 
+
+    <font color="blue">//</font><font color="green"> Get pointer to FINDREPLACE structure from lParam.</font>
+
+    lpfr = (LPFINDREPLACE)lParam;
+
+    <font color="blue">//</font><font color="green"> If the FR_DIALOGTERM flag is set, </font>
+    <font color="blue">//</font><font color="green"> invalidate the handle identifying the dialog box. </font>
+
+    if (lpfr-&gt;Flags &amp; FR_DIALOGTERM){ 
+        hdlg = NULL; 
+        return 0; 
+        } 
+
+    <font color="blue">//</font><font color="green"> If the FR_FINDNEXT flag is set, </font>
+    <font color="blue">//</font><font color="green"> call the application-defined search routine</font>
+    <font color="blue">//</font><font color="green"> to search for the requested string. </font>
+
+    if (lpfr-&gt;Flags &amp; FR_FINDNEXT) 
+        SearchFile(lpfr-&gt;lpstrFindWhat,
+                   (BOOL) (lpfr-&gt;Flags &amp; FR_DOWN), 
+                   (BOOL) (lpfr-&gt;Flags &amp; FR_MATCHCASE)); 
+
+    return 0; 
+ 
+}
+</pre>
+
+</body>
+
+</html>

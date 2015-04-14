@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release Win32" />
+	<File name="..\..\..\..\src\BulletMultiThreaded\SpuCollisionTaskProcess.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="7091" topLine="295" />
+	</File>
+</CodeBlocks_layout_file>

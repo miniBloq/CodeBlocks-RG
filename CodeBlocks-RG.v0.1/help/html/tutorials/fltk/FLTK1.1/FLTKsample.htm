@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>React: A first C++ project</title>
+<link href="../CSS/1colNheader.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.style10 {
+	color: #3C505E;
+	font-size: xx-small;
+	font-style: italic;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+h5 {
+	font-size: small;
+	color: rgb(90, 95, 102);
+}
+.style14 {color: #324E51}
+.style20 {font-size: x-small}
+.style21 {font-size: smaller}
+</style>
+</head>
+
+<body>
+<div id="wrapper">
+  <div id="header">
+    <table width="92%" border="0" align="center" cellpadding="2">
+      <tr>
+        <td width="372"><h1 align="left">Example C++ Program:</h1>
+          <p align="left"><span class="title"><span class="title">FLTK examples </span></span><br />
+        </p></td>
+        <td width="236"><span class="style14"><img src="../../../pics/Sudoku.gif" alt="image: Portion of grid" width="292" height="322" align="absmiddle" /></span></td>
+        <td width="160"><h2>60 Examples  </h2></td>
+      </tr>
+    </table>
+  </div>
+  <div id="main">
+    <p class="abstract">FLTK (pronounced &quot;fulltick&quot;) is a cross-platform C++ GUI  toolkit. FLTK programs developed under Quincy for Windows&reg; can then be easily ported to UNIX&reg;/Linux&reg; (X11) and  MacOS&reg; X. Many applications, both commercial and open-source have been developed with FLTK. </p>
+    <p class="abstract">FLTK is designed to be small and modular enough to be  statically linked, which is important in a development environment like Quincy.</p>
+    <p class="abstract">      FLTK also  includes an excellent GUI builder called FLUID that can be used  to create applications in minutes.<br />
+      The example programs offered here all come with the full distribution of the FLTK library at <a href="http://fltk.org">http://fltk.org</a><br />
+    The associated Quincy project files are provided by Christos Tsirimokos.</p>
+    <hr />
+    <br />
+    <h2>Before we start</h2>
+    <p>Create a  &quot;<em>FLTKexamples</em>&quot; subdirectory somewhere you choose to build these examples.  </p>
+    <p>Get the example from the zip file: <a href="FLTKexamples.zip">FLTKexamples.zip</a><a href="winanim.zip"></a>    </p>
+    <p>Save the archive into the new &quot;<em>FLTKexamples</em>&quot; subdirectory, and extract all the source files from the archive into that directory. The directory contains many separate examples. </p>
+    <p>You may note that the C++ source files in the examples directory have extension <em><strong>&quot;.cxx&quot;</strong></em>, and not the <em>&quot;.cpp&quot;</em> favoured by Microsoft. This does not pose a problem, as Quincy treats &quot;.cpp&quot;, &quot;.cc&quot; and &quot;.cxx&quot; in exactly the same way.</p>
+    <p>In addition to C++ source files the directory contains image files used in the various projects (.png or .xbm), Windows resource files (.rc), FLUID project files (.fl),  various icons, etc...</p>
+    <p>More  importantly the directory contains ready-made Quincy project files for these examples:<br />
+    </p>
+    <div align="center">
+      <table border="1">
+        <tr>
+          <td width="391"><span class="style21">&nbsp;&nbsp;adjuster [adjuster.exe].PRJ<br />
+  &nbsp;&nbsp;arc [arc.exe].PRJ<br />
+  &nbsp;&nbsp;ask [ask.exe].PRJ<br />
+  &nbsp;&nbsp;bitmap [bitmap.exe].PRJ<br />
+  &nbsp;&nbsp;blocks [blocks.exe].PRJ<br />
+  &nbsp;&nbsp;boxtype [boxtype.exe].PRJ<br />
+  &nbsp;&nbsp;browser [browser.exe].PRJ<br />
+  &nbsp;&nbsp;button [button.exe].PRJ<br />
+  &nbsp;&nbsp;buttons [buttons.exe].PRJ<br />
+  &nbsp;&nbsp;checkers [checkers.exe].PRJ<br />
+  &nbsp;&nbsp;clock [clock.exe].PRJ<br />
+  &nbsp;&nbsp;colbrowser [colbrowser.exe].PRJ<br />
+  &nbsp;&nbsp;cube [cube.exe].PRJ<br />
+  &nbsp;&nbsp;CubeView [CubeView.exe].PRJ<br />
+  &nbsp;&nbsp;cursor [cursor.exe].PRJ<br />
+  &nbsp;&nbsp;curve [curve.exe].PRJ<br />
+  &nbsp;&nbsp;demo [demo.exe].PRJ<br />
+  &nbsp;&nbsp;doublebuffer [doublebuffer.exe].PRJ<br />
+  &nbsp;&nbsp;editor [editor.exe].PRJ<br />
+  &nbsp;&nbsp;fast_slow [fast_slow.exe].PRJ<br />
+  &nbsp;&nbsp;file_chooser [file_chooser.exe].PRJ<br />
+  &nbsp;&nbsp;fonts [fonts.exe].PRJ<br />
+  &nbsp;&nbsp;forms [forms.exe].PRJ<br />
+  &nbsp;&nbsp;fractals [fractals.exe].PRJ<br />
+  &nbsp;&nbsp;fullscreen [fullscreen.exe].PRJ<br />
+  &nbsp;&nbsp;gl_overlay [gl_overlay.exe].PRJ<br />
+  &nbsp;&nbsp;glpuzzle [glpuzzle.exe].PRJ<br />
+  &nbsp;&nbsp;hello [hello.exe].PRJ<br />
+  &nbsp; help [help.exe].PRJ<br />
+          </span></td>
+          <td width="464"><span class="style21">&nbsp; iconize [iconize.exe].PRJ<br />
+  &nbsp; image [image.exe].PRJ<br />
+   &nbsp;&nbsp;inactive [inactive.exe].PRJ<br />
+  &nbsp;&nbsp;input [input.exe].PRJ<br />
+  &nbsp;&nbsp;input_choice [input_choice.exe].PRJ<br />
+  &nbsp;&nbsp;keyboard [keyboard.exe].PRJ<br />
+  &nbsp;&nbsp;label [label.exe].PRJ<br />
+  &nbsp;&nbsp;line_style [line_style.exe].PRJ<br />
+  &nbsp;&nbsp;mandelbrot [mandelbrot.exemessage [message.exe].PRJ<br />
+  &nbsp; minimum [minimum.exe].PRJ<br />
+  &nbsp; navigation [navigation.exe].PRJ<br />
+  &nbsp; output [output.exe].PRJ<br />
+  &nbsp;&nbsp;overlay [overlay.exe].PRJ<br />
+  &nbsp; pack [pack.exe].PRJ<br />
+  &nbsp; pixmap [pixmap.exe].PRJ<br />
+  &nbsp; preferences [preferences.exe].PRJ<br />
+  &nbsp; radio [radio.exe].PRJ<br />
+  &nbsp;&nbsp;resize [resize.exe].PRJ<br />
+  &nbsp; resizebox [resizebox.exe].PRJ<br />
+  &nbsp;    scroll [scroll.exe].PRJ<br />
+  &nbsp;&nbsp;shape [shape.exe].PRJ<br />
+  &nbsp;    subwindow [subwindow.exe].PRJ<br />
+  &nbsp;&nbsp;sudoku [sudoku.exe].PRJ<br />
+  &nbsp;    symbols [symbols.exe].PRJ<br />
+  &nbsp;    tabs [tabs.exe].PRJ<br />
+  &nbsp;&nbsp;threads [threads.exe].PRJ<br />
+  &nbsp;&nbsp;tile [tile.exe].PRJ<br />
+  &nbsp;&nbsp;tiled_image [tiled_image.exe].PRJ<br />
+  &nbsp;    valuators [valuators.exe].PRJ</span></td>
+        </tr>
+          </table>
+      </div>
+    <p>You can load these projects into Quincy, examine the project files and the source code, then build and execute the projects.<br />
+    ___________ </p>
+    <h2>Open the &quot;Cubeview&quot; project file with Quincy </h2>
+    <p>-The cubeview program is used to demonstrate how to generate a whole FLTK program using the FLUID User Interface Builder.</p>
+    <p align="center"><img src="../../../pics/cubeview.gif" alt="Cubeview screen" width="317" height="327" /><br />
+    Cubeview rotates a cube in 3 dimensions using mouse controls. </p>
+    <p align="left">Build the project with Quincy and run it. </p>
+    <h2>Studying  the &quot;Cubeview&quot; project </h2>
+    <p>- The FLTK documentation offers a tutorial dedicated to the construction of Cubeview. <br />
+    It can be accessed <a href="file:///J|/apps/quincy/html/programmerHelp/fltk/fltk1.1/fluid.html"><strong>here.</strong> </a><br />
+    This tutorial will show you how the graphical interface can be fully generated using FLUID. </p>
+    <hr />
+    <p>You can now load, build, run and study the other example FLTK projects. You will need to refer frequently to the FLTK API documentation. You can reach it from the Quincy &quot;Programmer's Help&quot; menu entry, or by following <strong>this link:</strong> <a href="file:///J|/apps/quincy/html/programmerHelp/fltk/fltk1.1/index.html">../../programmerHelp/fltk/fltk1.1/index.html</a></p>
+    <p><br />
+      </p>
+  </div>
+  <div id="footer">
+    <div align="center" class="style10"><span class="style20"> Modified: 04 February 2008</span> </div>
+  </div>
+</div>
+</body>
+</html>

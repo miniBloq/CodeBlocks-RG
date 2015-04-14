@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Archive%20Symbols">Archive Symbols</a>,
+Previous:<a rel="previous" accesskey="p" href="Archive-Update.html#Archive%20Update">Archive Update</a>,
+Up:<a rel="up" accesskey="u" href="Archive-Update.html#Archive%20Update">Archive Update</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">Updating Archive Symbol Directories</h4>
+
+   <p>An archive file that is used as a library usually contains a special member
+named <code>__.SYMDEF</code> that contains a directory of the external symbol
+names defined by all the other members.  After you update any other
+members, you need to update <code>__.SYMDEF</code> so that it will summarize the
+other members properly.  This is done by running the <code>ranlib</code> program:
+
+<pre class="example">     ranlib <var>archivefile</var>
+     </pre>
+
+   <p>Normally you would put this command in the rule for the archive file,
+and make all the members of the archive file prerequisites of that rule. 
+For example,
+
+<pre class="example">     libfoo.a: libfoo.a(x.o) libfoo.a(y.o) ...
+             ranlib libfoo.a
+     </pre>
+
+<p>The effect of this is to update archive members <code>x.o</code>, <code>y.o</code>,
+etc., and then update the symbol directory member <code>__.SYMDEF</code> by
+running <code>ranlib</code>.  The rules for updating the members are not shown
+here; most likely you can omit them and use the implicit rule which copies
+files into the archive, as described in the preceding section.
+
+   <p>This is not necessary when using the GNU <code>ar</code> program, which
+updates the <code>__.SYMDEF</code> member automatically.
+
+   </body></html>
+

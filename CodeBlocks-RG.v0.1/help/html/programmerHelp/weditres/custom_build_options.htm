@@ -1,0 +1,44 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="fr">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Custom build options</title>
+</head>
+
+<body>
+
+<h2>Custom build options</h2>
+<p class="MsoNormal">There are some situations when you need to process a file
+with another tool, not the compiler, to obtain a C source file. For instance,
+the compiler sources themselves require the ‘lburg.&nbsp;exe’ utility, which
+will build a C file from a machine description file. This machine description
+file is stored in win32.md.</p>
+<p class="MsoNormal">To describe this project to the IDE, add win32.md to the
+project files. Wedit will notice that it cannot determine how this file will be
+processed, since it does not end with the standard extensions .c, .asm, .obj. It
+will open up a dialog box asking for more information. In that dialog box, enter
+the command line that should be executed when this file changes. In this case,
+enter&nbsp;:</p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>lburg win32.md win32.c<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">You also need to specify the output of this command. The
+output in this case is a file called «&nbsp;win32.c&nbsp;», which you add to
+the project files.</p>
+<p class="MsoNormal">In a much simpler way, you can specify .asm files that will
+be processed by the compiler, assuming lcc assembler syntax. If you want your
+assembler files processed by another assembler, such as NASM, right click on the
+open file and add a ‘file processor’ for that specific file. If, for
+example, you have your assembler functions in a file called asmcalls.asm, you
+open asmcalls.asm, add it to the project, then right click somewhere in the text
+of that file. Then add «&nbsp;nasm.exe&nbsp;» as a file processor or
+\utilities\bin\nasm.exe «&nbsp; if the tool is not in the path.</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

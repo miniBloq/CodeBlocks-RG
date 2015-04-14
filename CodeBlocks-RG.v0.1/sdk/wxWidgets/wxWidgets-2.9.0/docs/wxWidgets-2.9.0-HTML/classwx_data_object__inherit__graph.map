@@ -1,0 +1,7 @@
+<area shape="rect" href="$classwx_data_object_composite.html" title="wxDataObjectComposite is the simplest wxDataObject derivation which may be used to..." alt="" coords="65,89,236,121">
+<area shape="rect" href="$classwx_data_object_simple.html" title="This is the simplest possible implementation of the wxDataObject class." alt="" coords="260,89,407,121">
+<area shape="rect" href="$classwx_bitmap_data_object.html" title="wxBitmapDataObject is a specialization of wxDataObject for bitmap data." alt="" coords="5,172,152,204">
+<area shape="rect" href="$classwx_custom_data_object.html" title="wxCustomDataObject is a specialization of wxDataObjectSimple for some application&#45;specific..." alt="" coords="176,172,328,204">
+<area shape="rect" href="$classwx_file_data_object.html" title="wxFileDataObject is a specialization of wxDataObject for file names." alt="" coords="352,172,480,204">
+<area shape="rect" href="$classwx_text_data_object.html" title="wxTextDataObject is a specialization of wxDataObjectSimple for text data." alt="" coords="504,172,635,204">
+<area shape="rect" href="$classwx_u_r_l_data_object.html" title="wxURLDataObject is a wxDataObject containing an URL and can be used e.g." alt="" coords="504,255,635,287">

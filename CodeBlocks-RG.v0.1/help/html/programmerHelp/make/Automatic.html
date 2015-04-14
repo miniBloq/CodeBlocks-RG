@@ -1,0 +1,189 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Automatic">Automatic</a>,
+Next:<a rel="next" accesskey="n" href="Pattern-Match.html#Pattern%20Match">Pattern Match</a>,
+Previous:<a rel="previous" accesskey="p" href="Pattern-Examples.html#Pattern%20Examples">Pattern Examples</a>,
+Up:<a rel="up" accesskey="u" href="Pattern-Rules.html#Pattern%20Rules">Pattern Rules</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">Automatic Variables</h4>
+
+   <p>Suppose you are writing a pattern rule to compile a <code>.c</code> file into a
+<code>.o</code> file: how do you write the <code>cc</code> command so that it operates
+on the right source file name?  You cannot write the name in the command,
+because the name is different each time the implicit rule is applied.
+
+   <p>What you do is use a special feature of <code>make</code>, the <dfn>automatic
+variables</dfn>.  These variables have values computed afresh for each rule that
+is executed, based on the target and prerequisites of the rule.  In this
+example, you would use <code>$@</code> for the object file name and <code>$&lt;</code>
+for the source file name.
+
+   <p>Here is a table of automatic variables:
+
+     <dl>
+<dt><code>$@</code>
+     <dd>The file name of the target of the rule.  If the target is an archive
+member, then <code>$@</code> is the name of the archive file.  In a pattern
+rule that has multiple targets (see <a href="Pattern-Intro.html#Pattern%20Intro">Introduction to Pattern Rules</a>), <code>$@</code> is the name of whichever target caused the
+rule's commands to be run.
+
+     <br><dt><code>$%</code>
+     <dd>The target member name, when the target is an archive member. 
+See <a href="Archives.html#Archives">Archives</a>.  For example, if the target is <code>foo.a(bar.o)</code> then
+<code>$%</code> is <code>bar.o</code> and <code>$@</code> is <code>foo.a</code>.  <code>$%</code> is
+empty when the target is not an archive member.
+
+     <br><dt><code>$&lt;</code>
+     <dd>The name of the first prerequisite.  If the target got its commands from
+an implicit rule, this will be the first prerequisite added by the
+implicit rule (see <a href="Implicit-Rules.html#Implicit%20Rules">Implicit Rules</a>).
+
+     <br><dt><code>$?</code>
+     <dd>The names of all the prerequisites that are newer than the target, with
+spaces between them.  For prerequisites which are archive members, only
+the member named is used (see <a href="Archives.html#Archives">Archives</a>).
+
+     <br><dt><code>$^</code>
+     <dd>The names of all the prerequisites, with spaces between them.  For
+prerequisites which are archive members, only the member named is used
+(see <a href="Archives.html#Archives">Archives</a>).  A target has only one prerequisite on each other file
+it depends on, no matter how many times each file is listed as a
+prerequisite.  So if you list a prerequisite more than once for a target,
+the value of <code>$^</code> contains just one copy of the name.
+
+     <br><dt><code>$+</code>
+     <dd>This is like <code>$^</code>, but prerequisites listed more than once are
+duplicated in the order they were listed in the makefile.  This is
+primarily useful for use in linking commands where it is meaningful to
+repeat library file names in a particular order.
+
+     <br><dt><code>$*</code>
+     <dd>The stem with which an implicit rule matches (see <a href="Pattern-Match.html#Pattern%20Match">How Patterns Match</a>).  If the target is <code>dir/a.foo.b</code> and the target
+pattern is <code>a.%.b</code> then the stem is <code>dir/foo</code>.  The stem is
+useful for constructing names of related files.
+
+     <p>In a static pattern rule, the stem is part of the file name that matched
+the <code>%</code> in the target pattern.
+
+     <p>In an explicit rule, there is no stem; so <code>$*</code> cannot be determined
+in that way.  Instead, if the target name ends with a recognized suffix
+(see <a href="Suffix-Rules.html#Suffix%20Rules">Old-Fashioned Suffix Rules</a>), <code>$*</code> is set to
+the target name minus the suffix.  For example, if the target name is
+<code>foo.c</code>, then <code>$*</code> is set to <code>foo</code>, since <code>.c</code> is a
+suffix.  GNU <code>make</code> does this bizarre thing only for compatibility
+with other implementations of <code>make</code>.  You should generally avoid
+using <code>$*</code> except in implicit rules or static pattern rules.
+
+     <p>If the target name in an explicit rule does not end with a recognized
+suffix, <code>$*</code> is set to the empty string for that rule. 
+</dl>
+
+   <p><code>$?</code> is useful even in explicit rules when you wish to operate on only
+the prerequisites that have changed.  For example, suppose that an archive
+named <code>lib</code> is supposed to contain copies of several object files. 
+This rule copies just the changed object files into the archive:
+
+<pre class="example">     lib: foo.o bar.o lose.o win.o
+             ar r lib $?
+     </pre>
+
+   <p>Of the variables listed above, four have values that are single file
+names, and three have values that are lists of file names.  These seven
+have variants that get just the file's directory name or just the file
+name within the directory.  The variant variables' names are formed by
+appending <code>D</code> or <code>F</code>, respectively.  These variants are
+semi-obsolete in GNU <code>make</code> since the functions <code>dir</code> and
+<code>notdir</code> can be used to get a similar effect (see <a href="File-Name-Functions.html#File%20Name%20Functions">Functions for File Names</a>).  Note, however, that the
+<code>D</code> variants all omit the trailing slash which always appears in
+the output of the <code>dir</code> function.  Here is a table of the variants:
+
+     <dl>
+<dt><code>$(@D)</code>
+     <dd>The directory part of the file name of the target, with the trailing
+slash removed.  If the value of <code>$@</code> is <code>dir/foo.o</code> then
+<code>$(@D)</code> is <code>dir</code>.  This value is <code>.</code> if <code>$@</code> does
+not contain a slash.
+
+     <br><dt><code>$(@F)</code>
+     <dd>The file-within-directory part of the file name of the target.  If the
+value of <code>$@</code> is <code>dir/foo.o</code> then <code>$(@F)</code> is
+<code>foo.o</code>.  <code>$(@F)</code> is equivalent to <code>$(notdir $@)</code>.
+
+     <br><dt><code>$(*D)</code>
+     <dd><dt><code>$(*F)</code>
+     <dd>The directory part and the file-within-directory
+part of the stem; <code>dir</code> and <code>foo</code> in this example.
+
+     <br><dt><code>$(%D)</code>
+     <dd><dt><code>$(%F)</code>
+     <dd>The directory part and the file-within-directory part of the target
+archive member name.  This makes sense only for archive member targets
+of the form <code></code><var>archive</var><code>(</code><var>member</var><code>)</code> and is useful only when
+<var>member</var> may contain a directory name.  (See <a href="Archive-Members.html#Archive%20Members">Archive Members as Targets</a>.)
+
+     <br><dt><code>$(&lt;D)</code>
+     <dd><dt><code>$(&lt;F)</code>
+     <dd>The directory part and the file-within-directory
+part of the first prerequisite.
+
+     <br><dt><code>$(^D)</code>
+     <dd><dt><code>$(^F)</code>
+     <dd>Lists of the directory parts and the file-within-directory
+parts of all prerequisites.
+
+     <br><dt><code>$(+D)</code>
+     <dd><dt><code>$(+F)</code>
+     <dd>Lists of the directory parts and the file-within-directory
+parts of all prerequisites, including multiple instances of duplicated
+prerequisites.
+
+     <br><dt><code>$(?D)</code>
+     <dd><dt><code>$(?F)</code>
+     <dd>Lists of the directory parts and the file-within-directory parts of
+all prerequisites that are newer than the target. 
+</dl>
+
+   <p>Note that we use a special stylistic convention when we talk about these
+automatic variables; we write "the value of <code>$&lt;</code>", rather than
+"the&nbsp;variable&nbsp;<code>&lt;</code>" as we would write for ordinary variables
+such as <code>objects</code> and <code>CFLAGS</code>.  We think this convention
+looks more natural in this special case.  Please do not assume it has a
+deep significance; <code>$&lt;</code> refers to the variable named <code>&lt;</code> just
+as <code>$(CFLAGS)</code> refers to the variable named <code>CFLAGS</code>. 
+You could just as well use <code>$(&lt;)</code> in place of <code>$&lt;</code>.
+
+   <p>GNU <code>make</code> provides support for the SysV <code>make</code> feature that
+allows special variable references <code>$$@</code>, <code>$$(@D)</code>, and
+<code>$$(@F)</code> (note the required double-"$"!) to appear with the
+<em>prerequisites list</em> (normal automatic variables are available
+only within a command script).  When appearing in a prerequisites
+list, these variables are expanded to the name of the target, the
+directory component of the target, and the file component of the
+target, respectively.
+
+   <p>Note that these variables are available only within explicit and
+static pattern (see <a href="Static-Pattern.html#Static%20Pattern">Static Pattern Rules</a>) rules;
+they have no special significance within implicit (suffix or pattern)
+rules.  Also note that while SysV <code>make</code> actually expands its
+entire prerequisite list <em>twice</em>, GNU <code>make</code> does not behave
+this way: instead it simply expands these special variables without
+re-expanding any other part of the prerequisites list.
+
+   <p>This somewhat bizarre feature is included only to provide some
+compatibility with SysV makefiles.  In a native GNU <code>make</code> file
+there are other ways to accomplish the same results.  This feature is
+disabled if the special pseudo target <code>.POSIX</code> is defined.
+
+   </body></html>
+

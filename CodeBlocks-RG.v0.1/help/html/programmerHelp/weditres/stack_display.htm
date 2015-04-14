@@ -1,0 +1,88 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The Stack Display</title>
+</head>
+
+<body>
+
+<h2 style="mso-list:skip"><a name="_Toc509457010"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc435923442">The
+Sta</span></a><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc435923442">ck
+Display</span><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoNormal" style="margin-right:-21.6pt;mso-list:skip">The stack window
+displays the stack of procedures that are active at a given execution point. It
+can be activated at any time by clicking in the stack button at the bottom of
+the editor.</p>
+<p class="MsoNormal" style="margin-left:1.0cm;mso-list:skip">&nbsp;<o:p>
+</o:p>
+</p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr>
+    <td width="402" valign="top" style="width:301.2pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-left:1.0cm;mso-list:skip"><!--[if gte vml 1]><v:shapetype
+   id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+   path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+   <v:stroke joinstyle="miter"/>
+   <v:formulas>
+    <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+    <v:f eqn="sum @0 1 0"/>
+    <v:f eqn="sum 0 0 @1"/>
+    <v:f eqn="prod @2 1 2"/>
+    <v:f eqn="prod @3 21600 pixelWidth"/>
+    <v:f eqn="prod @3 21600 pixelHeight"/>
+    <v:f eqn="sum @0 0 1"/>
+    <v:f eqn="prod @6 1 2"/>
+    <v:f eqn="prod @7 21600 pixelWidth"/>
+    <v:f eqn="sum @8 21600 0"/>
+    <v:f eqn="prod @7 21600 pixelHeight"/>
+    <v:f eqn="sum @10 21600 0"/>
+   </v:formulas>
+   <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+   <o:lock v:ext="edit" aspectratio="t"/>
+  </v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:252pt;
+   height:216.75pt' fillcolor="window">
+   <v:imagedata src="stack_29.gif"
+    o:title=""/>
+  </v:shape><![endif]-->
+      <img src="stack_29.gif" v:shapes="_x0000_i1025" width="336" height="289"></p>
+    </td>
+    <td width="213" valign="top" style="width:159.4pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">The ‘_MainWndProc@16’ is
+      the active procedure. Note that symbols are displayed with their
+      decorations as they appear in the executable.</p>
+      <p class="MsoNormal" style="mso-list:skip">The name of the function
+      appears, followed by the source file and line number.</p>
+      <p class="MsoNormal" style="mso-list:skip">The next lines show the
+      argument stack for the procedure with the type of each argument and their
+      values.</p>
+      <p class="MsoNormal" style="mso-list:skip">When the information is not
+      available (i.e., a system DLL), only the machine address where the call up
+      was implemented is shown.</p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal" style="margin-left:1.0cm;mso-list:skip">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal" style="margin-right:-21.6pt;mso-list:skip">Note that
+‘MainWndProc’ is a callback procedure. You can determine this because
+USER32.dll and ntdll.dl appear as active in the stack. Note that the user
+function ‘InitializeApp’ is also active. This is the normal case for
+processing a WM_CREATE message. When you call up CreateWindow, this function
+sends a WM_CREATE message to the window procedure before returning to the
+caller.</p>
+<p class="MsoNormal" style="margin-right:-21.6pt;mso-list:skip">You can view the
+code of any active stack procedure by clicking on the corresponding line. Note
+that you should click on a function name and not in the parameters. When you
+click on a function name, the debugger will bring that part of the source code
+into view.</p>
+
+</body>
+
+</html>

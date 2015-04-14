@@ -1,0 +1,407 @@
+<HTML>
+
+<!-- Mirrored from www.cs.colorado.edu/~main/cs1300/doc/bgi/bgi.html by HTTrack Website Copier/3.x [XR&CO'2004], Sat, 18 Dec 2004 07:30:33 GMT -->
+<HEAD>
+<TITLE>
+WINBGIM: Borland BGI Graphics & Mouse for Windows
+</TITLE>
+</HEAD>
+<BODY>
+<H2>
+    The WINBGIM Library -- Version 6.0 -- August 9, 2004
+    <BR>
+    Borland BGI Graphics and Mouse
+    <BR>
+    For Windows Applications
+</H2>
+The winbgim library allows you to use BGI graphics routines and
+simple mouse support for Windows applications that you write with
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/README.html">CS1300's mingw32 gnu C++ compiler</A>
+or with the
+Borland C++ compiler (version 5.02).
+It will probably work with other Windows compilers, too,
+but I haven't tried it.
+<P>
+The
+library originates from
+<A HREF="http://www.ispras.ru/~knizhnik/">
+Konstantin Knizhnik's winbgi shareware.</A>
+I spent some time adding
+a new <CODE>initwindow</CODE> function (to allow the graphics window to be
+initially opened at any size) and three new functions to allow simple
+mouse-driven processing. Mark Richardson then added some new functions
+to allow more than sixteen colors.
+<P>
+You are welcome to use and modify this library as you like. Let me know
+if you make interesting modifications.
+<P>
+<H3>How to use the winbgim library for the free mingw32 gnu C++ compiler</H3>
+<OL>  
+<P>
+<LI>Download and install the free cs1300 tools, as described in
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/README.html">
+www.cs.colorado.edu/~main/cs1300/README.html</A>.
+<P>
+<LI>The header file: Change to the cs1300\include subdirectory and check whether you
+have the file graphics.h. If not, then download this file into that
+directory
+ by holding down the left-shift key
+and clicking on this link:    
+    <A HREF="http://www.cs.colorado.edu/~main/cs1300/include/graphics.h">www.cs.colorado.edu/~main/cs1300/include/graphics.h</A>. 
+<P>
+<LI>The archieved library file: Change to the cs1300\lib subdirectory
+and check whether you have the file libbgi.a. If not, then download
+this file into that directory by holding down the left-shift key and
+clicking on this link:
+    <A HREF="http://www.cs.colorado.edu/~main/cs1300/doc/lib/libbgi.a">www.cs.colorado.edu/~main/cs1300/lib/libbgi.a</A>.
+<P>
+<LI>Write your program as you normally would, using the BGI graphics
+functions. Be sure to include
+<CODE>graphics.h</CODE>.
+<P>
+<LI>
+When you create an executable (exe) program that uses the winbgim
+library, you must add the six options <CODE>-lbgi -lgdi32 -lcomdlg32
+-luuid -loleaut32 -lole32</CODE> (in
+that order) after any other file arguments to the compiler. For
+example, to compile the <A HREF="bgidemo0.cpp">bgidemo0.cpp</A>
+program you would give the compile command:
+<PRE>
+g++ bgidemo0.cpp -lbgi -lgdi32 -lcomdlg32 -luuid -loleaut32 -lole32 -o bgidemo0.exe
+</PRE>
+Note that each of these library options begins with the letter l (not the
+number one). 
+<P>
+If you are working with the CS1300 version of the g++ compiler
+(from <a href="http://www.cs.colorado.edu/~main/cs1300/README.html">
+www.cs.colorado.edu/~main/cs1300/README.html</a>), then you can get
+all these libraries automatically by using the bgi++ command instead
+of
+g++.  For example:
+<PRE>
+bgi++ bgidemo0.cpp -o bgidemo0.exe
+</PRE>
+
+This command creates an executable file called
+bgidemo0.exe.
+Note that when it runs, it creates a small graphics window where all
+the bgi operations are performed. Any text i/o with cin and cout will
+be done in the other (console) window.
+<P>
+</OL>
+<P>
+<H3>Graphics Stuff in the Library</H3>
+<B>Usual BGI Stuff:</B> You can use any of the 
+<A HREF="index-3.html">Borland BGI graphics functions</A>.
+<P>
+<B>Initialization:</B> Normally, you initialize the BGI graphics by a call to 
+<CODE>detectgraph</CODE> and a call to <CODE>initgraph</CODE>.
+You can still use those two function calls, or you may call a
+new function named <CODE>initwindow</CODE>. The function
+has two arguments that are the size of the graphics window that you
+want to create in pixels (width and height). For example, you can
+create a window that is 450 pixels wide and 300 pixels high with
+the statement:
+<PRE>
+initwindow(450, 450);
+</PRE>
+<P>
+<B>RGB Colors:</B> 
+The winbgim package supports two
+types of colors that may be used with any of the functions that expect
+colors as arguments:
+<OL>
+<LI> The sixteen ordinary BGI colors. These are the integers 0 through
+15 or you may use the symbolic names: 
+<PRE>
+     BLACK          BLUE          GREEN         CYAN
+     RED            MAGENTA       BROWN         LIGHTGRAY
+     DARKGRAY       LIGHTBLUE     LIGHTGREEN    LIGHTCYAN
+     LIGHTRED       LIGHTMAGENTA  YELLOW        WHITE
+</PRE>
+<P>
+<LI> A color may be specified from red, green and blue components
+using a new macro called COLOR(r,g,b). Each of the r,g,b arguments
+must be a number in the range 0 to 255. For example, COLOR(255,100,0)
+is a mostly red color with some green and no blue. If you create
+one of these colors, it may be used as an argument to any of the BGI
+functions that expect a color. These colors may also be returned from
+BGI functions such as getbkcolor. 
+</OL>
+<P>
+Three other macros (RED_VALUE, GREEN_VALUE, BLUE_VALUE, IS_BGI_COLOR 
+and IS_RGB_COLOR) are explained in the examples below.
+<P>
+<B>RGB Examples:</B>
+<PRE>
+    setcolor(BLUE);             // Change drawing color to BLUE.
+    setcolor(COLOR(255,100,0);  // Change drawing color to reddish-green.
+    setpalette(4, BLUE);        // Change palette entry 4 to BLUE.
+    setpalette(4, COLOR(9,9,9));// Change palette entry 4 to nearly black.
+     
+    int current = getcolor( );  // Set current to current drawing color.
+
+    if (IS_BGI_COLOR(current))  // Check whether it is a BGI color.
+       cout &lt;&lt; "Current BGI drawing color is: " << current << end;
+
+    if (IS_RGB_COLOR(current))  // Check whether it is an RGB color.
+       cout &lt;&lt; "Current RGB drawing color has these components:\n"
+            &lt;&lt; "Red:   " << RED_VALUE(current)   &lt;&lt; '\n'
+            &lt;&lt; "Green: " << GREEN_VALUE(current) &lt;&lt; '\n'
+            &lt;&lt; "Blue:  " << BLUE_VALUE(current)  &lt;&lt; '\n'
+</PRE>
+
+
+
+
+
+<DL>
+<DT><CODE>int getdisplaycolor(int color)</CODE>
+<DD>
+The actual color placed on the screen with putpixel
+might not be this exact rgb color that you want because of video mode
+limitations.
+The return value of this function tells you what actual color will
+be put on the screen for a requested color.
+</DL>
+
+<P>
+<H3>Mouse Stuff in the Library</H3>
+There are three functions to use the mouse:
+   <UL>
+   <LI><CODE>int&nbsp;mousex(&nbsp;)</CODE> <BR> 
+       <CODE>int&nbsp;mousey(&nbsp;)</CODE><BR>
+   These return the current x and y coordinates of the mouse. If the 
+   mouse has never been in the graphics window, then both coordinates
+   are zero. If the mouse used to be in the window, but now it has
+   gone elsewhere, then the coordinates are the last known position
+   within the window.
+   <LI><CODE>bool&nbsp;ismouseclick(kind)</CODE>
+   This function returns true if there is an unprocessed mouse event of
+   the specified kind.
+   The argument to <CODE>ismouseclick</CODE> is
+   one of these constants from the <CODE>winbgim.h</CODE> file:
+   <DL>
+   <DT><CODE>WM_MOUSEMOVE</CODE>
+   <DD>if you want to detect a mouse movement
+   <DT><CODE>WM_LBUTTONDBLCLK</CODE>
+   <DD>...detect when the left mouse button is double clicked
+   <DT><CODE>WM_LBUTTONDOWN</CODE>
+   <DD>...detect when the left mouse button is clicked down
+   <DT><CODE>WM_LBUTTONUP</CODE>
+   <DD>...detect when the left mouse button is released up
+   <DT><CODE>WM_MBUTTONDBLCLK</CODE>
+   <DD>...detect when the middle mouse button is double clicked
+   <DT><CODE>WM_MBUTTONDOWN</CODE>
+   <DD>...detect when the middle mouse button is clicked down
+   <DT><CODE>WM_MBUTTONUP</CODE>
+   <DD>...detect when the middle mouse button is released up
+   <DT><CODE>WM_RBUTTONDBLCLK</CODE>
+   <DD>...detect when the right mouse button is double clicked
+   <DT><CODE>WM_RBUTTONDOWN</CODE>
+   <DD>...detect when the right mouse button is clicked down
+   <DT><CODE>WM_RBUTTONUP</CODE>
+   <DD>...detect when the right mouse button is released up
+   </DL>
+   <P>
+   The middle mouse button handlers aren't working on my machine.
+   I haven't yet tracked down the reason--it could be a broken mouse
+   or it could be a bug in my programming.
+   <LI>A mouse event can be processed by calling
+   <CODE>getmouseclick</CODE>
+   (which gets the coordinates of the event), or by calling
+   <CODE>clearmouseclick</CODE>
+   (which processes the event without providing its coordinates).
+   These two functions are described below.
+   <LI><CODE>void&nbsp;getmouseclick(kind,&nbsp;int&amp;&nbsp;xint&amp;&nbsp;y)</CODE>
+   This function sets x and y to the pixel coordinates of an
+   unprocessed event of the specified kind. If there is no such
+   event, then the function sets both x and y to -1.
+   The value of the argument kind may be any of the constants
+   listed above. After calling <CODE>getmouseclick</CODE>,
+   for a particular kind of event, the <CODE>ismouseclick</CODE>
+   will return false for that kind of event until another such event occurs.
+   <LI><CODE>void&nbsp;clearmouseclick(kind)</CODE>
+   This is just like <CODE>getmouseclick</CODE>, except it does not
+   provide the x and y coordinates of the event.
+   The value of the argument <CODE>kind</CODE> may be any of the constants
+   listed above. After calling <CODE>clearmouseclick</CODE>,
+   for a particular kind of event, the <CODE>ismouseclick</CODE>
+   will return false for that kind of event until another such event occurs.
+   <LI><CODE>void&nbsp;registermousehandler(kind,&nbsp;h)</CODE>
+   Most mouse processing can be carried out with the
+   <CODE>ismouseclick</CODE> and <CODE>getmouseclick</CODE>.
+   But sometimes you need more control.
+   In general, you can obtain more control by
+   writing a different "handler function"
+   to handle each different
+   kind of mouse event, and you "register" each of your
+   handlers by calling <CODE>registermousehandler</CODE>.
+   The first argument to <CODE>registermousehandler</CODE> is
+   one of the constants listed above.
+   The second argument to <CODE>registermousehandler</CODE>
+   must be the name of the handler function that you wrote. This
+   function must be a void function with two int parameters.
+   Whenever the specified mouse event occurs, your handler will
+   be called and the two int parameters will be the x and y positions
+   where the event happened.
+   </UL>
+<P>
+<H3>A Mouse Example with <CODE>ismouseclick</CODE> and <CODE>getmouseclick</CODE></H3>
+Suppose that you want a program to wait for a left mouse click.
+Then the program should print the x and y coordinates of the
+most recent left click. Here's a function to accomplish that:
+<PRE>
+void wait_for_left_click( )
+{
+    const int DELAY = 50; // Milliseconds of delay between checks
+    int x, y;
+
+    while (!ismouseclick(WM_LBUTTONDOWN))
+        delay(DELAY);
+    getmouseclick(WM_LBUTTONDOWN, x, y);
+    cout << "Latest left click at: " << x << " " << y << endl;
+}
+</PRE>
+<P>
+<H3>A Mouse Example with a Handler</H3>
+Suppose that whenever the right mouse button is clicked you want to
+print a message with the x and y coordinates of the click. Then you
+would start by writing your handler function, perhaps like this:
+<PRE>
+void my_right_click_handler(int x, int y)
+{
+    cout &lt;&lt; "Right mouse click at " 
+         &lt;&lt; x &lt;&lt; " and " &lt;&lt; y &lt;&lt; endl;
+}
+</PRE>
+Now, somewhere in your program (after you've initialized the
+graphics window), you must register this fine handler with the
+statement:
+<PRE>
+registermousehandler(WM_RBUTTONDOWN, my_right_click_handler);
+</PRE>
+<P>
+In general, the work carried out in a handler must be small. If you
+need to do a lot of work, have the handler change a global variable
+that will later trigger the large work. Then the handler can
+return quickly.
+<P>
+<H3>Keyboard Stuff in the Library</H3>
+There are three functions that were originally part of Borland's
+conio.h. These functions are now in winbgim.h, and you do not need
+to include conio.h to use them::
+   <UL>
+   <LI><CODE>void&nbsp;delay(int&nbsp;millisec)</CODE> <BR> 
+       <CODE>int&nbsp;getch(&nbsp;)</CODE><BR>
+       <CODE>int&nbsp;kbhit(&nbsp;)</CODE><BR>
+   <P><LI>
+   The first function delays the compuation for the specified number of
+   milliseconds. 
+   <P><LI>
+   The getch function gets a character from the keyboard
+   without waiting for any <enter> key. In order to use getch, the
+   graphics window must be active (by clicking in it or clicking on
+   its title bar). The actual return value from getch is usually the
+   ASCII value of the key that was pressed, so if you want to store
+   this into a character, you need: 
+   <CODE>c&nbsp;=&nbsp;(char)&nbsp;getch(&nbsp;);
+   If you press one of the keypad keys (arrows, Home, etc.), then 
+   getch first returns the value 0. Then, at the next call, it will
+   <DL>
+   <DT><CODE>KEY_HOME</CODE>
+   <DT><CODE>KEY_UP</CODE>
+   <DT><CODE>KEY_PGUP</CODE>
+   <DT><CODE>KEY_LEFT</CODE>
+   <DT><CODE>KEY_CENTER</CODE>
+   <DT><CODE>KEY_RIGHT</CODE>
+   <DT><CODE>KEY_END</CODE>
+   <DT><CODE>KEY_DOWN</CODE>
+   <DT><CODE>KEY_PGDN</CODE>
+   <DT><CODE>KEY_INSERT</CODE>
+   <DT><CODE>KEY_DELETE</CODE>
+   </DL>
+   <P><LI>
+   </CODE>The kbhit function returns 0 if there are no characters now waiting
+   to be read (with getch). It returns a non-zero if there are some
+   characters waiting to be read.
+   </UL>
+<P>
+<H3>Double-Buffering Support</H3>
+<BR>
+I added two functions, <CODE>getactivepage()</CODE> and
+<CODE>getvisualpage()</CODE> to help support double-buffering.
+They return the page number of the active page (where drawing is
+currently taking place) and the visual page (the one on the screen).
+The original winbgi was designed to support up to 16 pages, but I have
+only used pages 1 and 2 myself.  NOTE: Using page number 0 might
+mess up the colors. I use pages 1-2 for double buffering. 
+<P>
+<H3>Support for Writing to the Graphics Screen</H3>
+<BR>
+I added an outputstream, <CODE>bgiout</CODE>. It's
+used is described in <a href="bgiout.html">bgiout.html</a>.
+<P>
+<H3>Support for Printing, Reading and Writing Images</H3>
+<P>
+The graphics window now has a print option in the windows menu button,
+so the user can print the screen at any time. In additon, there are
+these new functions:
+<UL>
+<LI><A HREF="getimage.html">getimage</A>
+<LI><A HREF="imagesize.html">imagesize</A>
+<LI><A HREF="printimage.html">printimage</A>
+<LI><A HREF="putimage.html">putimage</A>
+<LI><A HREF="readimagefile.html">readimagefile</A> 
+<LI><A HREF="writeimagefile.html">writeimagefile</A>
+</UL>
+<P>
+<H3>Support for Multiple Windows</H3>
+<P>
+The initiwindow function can now be called multiple times to create
+more than one graphics window.  The <a
+href="initwindow.html">initwindow documentation</a> describes how
+these multiple windows are used.
+<P>
+<H3>Other Relevant Files</H3>
+<UL>
+<LI><A HREF="index-3.html">Winbgim functions documentation.</A>
+<LI><A HREF="knizhnik.txt">Konstantin Knizhnik's original documentation.</A>
+<LI>The <A HREF="http://www.cs.colorado.edu/~main/cs1300/include/graphics.h">graphics.h</A> header file.
+<LI>The <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi">source code</a>.
+<LI>Sample programs:
+<A HREF="bgidemo0.cpp">bgidemo0.cpp</A> (extensive program),
+<A HREF="bgidemo1.cpp">bgidemo1.cpp</A> (shows registermousehandler),
+<A HREF="bgidemo2.cpp">bgidemo2.cpp</A> (shows COLOR macro),
+<A HREF="bgidemo3.cpp">bgidemo3.cpp</A> (shows COLOR again),
+<A HREF="bgidemo4.cpp">bgidemo4.cpp</A> (shows getmouseclick)
+that use the winbgim library.
+<LI>A sample program
+<A HREF="testget.cpp">testget.cpp</A>
+that uses getch and also shows how to print numbers in graphics mode.
+<LI>Double-buffering Example
+<A HREF="dblbuff.cpp">dblbuff.cpp</A>.
+</UL>
+
+<P>
+<H3>Writing Windows Programs</H3>
+<P>
+You may have noticed that any program that's compiled with g++ or
+bgi++ will always open a DOS command window when the program is run.
+If you want to stop this window from opening, then add the option
+-mwindows to the compile line (just after g++ or bgi++).
+
+<HR>
+WINBGIM Version 6.0 Posted August 9, 2004
+<HR>
+<ADDRESS><A HREF="http://www.cs.colorado.edu/~main/Home.html">Michael Main</A>
+(email <A HREF="mailto:main@colorado.edu">main@colorado.edu</A>)
+<HR>
+</ADDRESS>
+
+
+</BODY>
+
+<!-- Mirrored from www.cs.colorado.edu/~main/cs1300/doc/bgi/bgi.html by HTTrack Website Copier/3.x [XR&CO'2004], Sat, 18 Dec 2004 07:30:41 GMT -->
+</HTML>
+

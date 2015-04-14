@@ -1,0 +1,104 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Simple%20Makefile">Simple Makefile</a>,
+Next:<a rel="next" accesskey="n" href="How-Make-Works.html#How%20Make%20Works">How Make Works</a>,
+Previous:<a rel="previous" accesskey="p" href="Rule-Introduction.html#Rule%20Introduction">Rule Introduction</a>,
+Up:<a rel="up" accesskey="u" href="Introduction.html#Introduction">Introduction</a>
+<hr><br>
+</div>
+
+<h3 class="section">A Simple Makefile</h3>
+
+   <p>Here is a straightforward makefile that describes the way an
+executable file called <code>edit</code> depends on eight object files
+which, in turn, depend on eight C source and three header files.
+
+   <p>In this example, all the C files include <code>defs.h</code>, but only those
+defining editing commands include <code>command.h</code>, and only low
+level files that change the editor buffer include <code>buffer.h</code>.
+
+<pre class="example">     edit : main.o kbd.o command.o display.o \
+            insert.o search.o files.o utils.o
+             cc -o edit main.o kbd.o command.o display.o \
+                        insert.o search.o files.o utils.o
+     
+     main.o : main.c defs.h
+             cc -c main.c
+     kbd.o : kbd.c defs.h command.h
+             cc -c kbd.c
+     command.o : command.c defs.h command.h
+             cc -c command.c
+     display.o : display.c defs.h buffer.h
+             cc -c display.c
+     insert.o : insert.c defs.h buffer.h
+             cc -c insert.c
+     search.o : search.c defs.h buffer.h
+             cc -c search.c
+     files.o : files.c defs.h buffer.h command.h
+             cc -c files.c
+     utils.o : utils.c defs.h
+             cc -c utils.c
+     clean :
+             rm edit main.o kbd.o command.o display.o \
+                insert.o search.o files.o utils.o
+     </pre>
+
+<p>We split each long line into two lines using backslash-newline; this is
+like using one long line, but is easier to read.
+
+   <p>To use this makefile to create the executable file called <code>edit</code>,
+type:
+
+<pre class="example">     make
+     </pre>
+
+   <p>To use this makefile to delete the executable file and all the object
+files from the directory, type:
+
+<pre class="example">     make clean
+     </pre>
+
+   <p>In the example makefile, the targets include the executable file
+<code>edit</code>, and the object files <code>main.o</code> and <code>kbd.o</code>.  The
+prerequisites are files such as <code>main.c</code> and <code>defs.h</code>. 
+In fact, each <code>.o</code> file is both a target and a prerequisite. 
+Commands include <code>cc&nbsp;-c&nbsp;main.c</code> and <code>cc&nbsp;-c&nbsp;kbd.c</code>.
+
+   <p>When a target is a file, it needs to be recompiled or relinked if any
+of its prerequisites change.  In addition, any prerequisites that are
+themselves automatically generated should be updated first.  In this
+example, <code>edit</code> depends on each of the eight object files; the
+object file <code>main.o</code> depends on the source file <code>main.c</code> and
+on the header file <code>defs.h</code>.
+
+   <p>A shell command follows each line that contains a target and
+prerequisites.  These shell commands say how to update the target file. 
+A tab character must come at the beginning of every command line to
+distinguish commands lines from other lines in the makefile.  (Bear in
+mind that <code>make</code> does not know anything about how the commands
+work.  It is up to you to supply commands that will update the target
+file properly.  All <code>make</code> does is execute the commands in the rule
+you have specified when the target file needs to be updated.)
+
+   <p>The target <code>clean</code> is not a file, but merely the name of an
+action.  Since you
+normally
+do not want to carry out the actions in this rule, <code>clean</code> is not a prerequisite of any other rule. 
+Consequently, <code>make</code> never does anything with it unless you tell
+it specifically.  Note that this rule not only is not a prerequisite, it
+also does not have any prerequisites, so the only purpose of the rule
+is to run the specified commands.  Targets that do not refer to files
+but are just actions are called <dfn>phony targets</dfn>.  See <a href="Phony-Targets.html#Phony%20Targets">Phony Targets</a>, for information about this kind of target.  See <a href="Errors.html#Errors">Errors in Commands</a>, to see how to cause <code>make</code> to ignore errors
+from <code>rm</code> or any other command.
+
+   </body></html>
+

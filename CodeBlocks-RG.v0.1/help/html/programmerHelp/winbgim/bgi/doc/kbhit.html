@@ -1,0 +1,79 @@
+<TITLE>BGI Documentation for 
+kbhit
+</TITLE>
+<H2>
+kbhit 
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include "graphics.h"
+int kbhit(void);
+</PRE>
+
+
+
+<DT><B>Description</B><IMG SRC="win.gif" ALT="[WIN]"><DD>
+The 
+kbhit
+function is available in the
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation of BGI
+graphics.
+You do not need to include conio.h; just include graphics.h.
+The function returns true (non-zero) if there is a character in the
+input buffer ready to read. Otherwise it returns false.
+In order to work, the
+user must click in the graphics window (i.e., the Windows focus must
+be in the graphics window). 
+
+<P><DT><B>Return Value</B><DD>
+True (non-zero) if there is a character in the input buffer, otherwise
+false.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="getch.html"> getch </A>
+
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+#include "graphics.h"
+#include &lt;stdio.h&gt;      // Provides sprintf
+
+void outintxy(int x, int y, int value);
+
+int main( )
+{
+    int i;
+
+    // Initialize the graphics window.
+    init_window(400, 300);
+
+    // Convert some numbers to strings and draw them in graphics window:
+    outtextxy(20, 130, "Click in this graphics window,");
+    outtextxy(20, 140, "and then press a key to stop.");
+    outtextxy(10, 10, "Here are some numbers:");
+    for (i = 0; !kbhit( ); i++)
+    {
+        outintxy(20 + (i/10)*40 , (i % 10)*+10, i);
+        delay(4000);
+    }
+
+    closegraph( );
+}
+
+void outintxy(int x, int y, int value)
+{
+   char digit_string[20];
+   sprintf(digit_string, "%d", value);
+   outtextxy(x, y, digit_string);
+}
+</PRE>
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

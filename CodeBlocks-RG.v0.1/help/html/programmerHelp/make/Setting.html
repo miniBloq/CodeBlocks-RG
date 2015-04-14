@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Setting">Setting</a>,
+Next:<a rel="next" accesskey="n" href="Appending.html#Appending">Appending</a>,
+Previous:<a rel="previous" accesskey="p" href="Values.html#Values">Values</a>,
+Up:<a rel="up" accesskey="u" href="Using-Variables.html#Using%20Variables">Using Variables</a>
+<hr><br>
+</div>
+
+<h3 class="section">Setting Variables</h3>
+
+   <p>To set a variable from the makefile, write a line starting with the
+variable name followed by <code>=</code> or <code>:=</code>.  Whatever follows the
+<code>=</code> or <code>:=</code> on the line becomes the value.  For example,
+
+<pre class="example">     objects = main.o foo.o bar.o utils.o
+     </pre>
+
+<p>defines a variable named <code>objects</code>.  Whitespace around the variable
+name and immediately after the <code>=</code> is ignored.
+
+   <p>Variables defined with <code>=</code> are <dfn>recursively expanded</dfn> variables. 
+Variables defined with <code>:=</code> are <dfn>simply expanded</dfn> variables; these
+definitions can contain variable references which will be expanded before
+the definition is made.  See <a href="Flavors.html#Flavors">The Two Flavors of Variables</a>.
+
+   <p>The variable name may contain function and variable references, which
+are expanded when the line is read to find the actual variable name to use.
+
+   <p>There is no limit on the length of the value of a variable except the
+amount of swapping space on the computer.  When a variable definition is
+long, it is a good idea to break it into several lines by inserting
+backslash-newline at convenient places in the definition.  This will not
+affect the functioning of <code>make</code>, but it will make the makefile easier
+to read.
+
+   <p>Most variable names are considered to have the empty string as a value if
+you have never set them.  Several variables have built-in initial values
+that are not empty, but you can set them in the usual ways
+(see <a href="Implicit-Variables.html#Implicit%20Variables">Variables Used by Implicit Rules</a>). 
+Several special variables are set
+automatically to a new value for each rule; these are called the
+<dfn>automatic</dfn> variables (see <a href="Automatic.html#Automatic">Automatic Variables</a>).
+
+   <p>If you'd like a variable to be set to a value only if it's not already
+set, then you can use the shorthand operator <code>?=</code> instead of
+<code>=</code>.  These two settings of the variable <code>FOO</code> are identical
+(see <a href="Origin-Function.html#Origin%20Function">The <code>origin</code> Function</a>):
+
+<pre class="example">     FOO ?= bar
+     </pre>
+
+<p>and
+
+<pre class="example">     ifeq ($(origin FOO), undefined)
+     FOO = bar
+     endif
+     </pre>
+
+   </body></html>
+

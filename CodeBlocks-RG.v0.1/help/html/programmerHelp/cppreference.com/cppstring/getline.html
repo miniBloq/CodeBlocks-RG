@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/cppstring/getline.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>getline</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C++ Strings</a> &gt; <a href=
+    "getline.html">getline</a>
+  </div>
+
+  <div class="name-format">
+    getline
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  istream&amp; getline( istream&amp; is, string&amp; s, char delimiter = &#39;\n&#39; );
+</pre>
+
+  <p>The C++ string class defines the global function getline() to read
+  strings from an I/O stream. The getline() function, which is not
+  part of the string class, reads a line from <em>is</em> and stores it
+  into <em>s</em>. If a character <em>delimiter</em> is specified, then
+  getline() will use <em>delimiter</em> to decide when to stop reading
+  data.</p>
+
+  <p>For example, the following code reads a line of text from
+  <strong>stdin</strong> and displays it to
+  <strong>stdout</strong>:</p>
+<pre class="prettyprint">
+ string s;
+ getline( cin, s );
+ cout &lt;&lt; &quot;You entered &quot; &lt;&lt; s &lt;&lt; endl;
+</pre>
+
+  <p>After getting a line of data in a string, you may find that <a
+  href="../cppsstream/index-2.html">string streams</a> are useful in extracting
+  data from that string.  For example, the following code reads
+  numbers from standard input, ignoring any "commented" lines that
+  begin with double slashes:</p>
+
+<pre class="prettyprint">
+  // expects either space-delimited numbers or lines that start with
+  // two forward slashes (//)
+  string s;
+  while( getline(cin,s) ) {
+    if( s.size() >= 2 && s[0] == '/' && s[1] == '/' ) {
+      cout << "  ignoring comment: " << s << endl;
+    } else {
+      istringstream ss(s);
+      double d;
+      while( ss >> d ) {
+        cout << "  got a number: " << d << endl;
+      }
+    }
+  }
+</pre>
+
+  <p>When run with a user supplying input, the above code might
+  produce this output:</p>
+
+<pre class="prettyprint">
+  // test
+    ignoring comment: // test
+  23.3 -1 3.14159
+    got a number: 23.3
+    got a number: -1
+    got a number: 3.14159
+  // next batch
+    ignoring comment: // next batch
+  1 2 3 4 5
+    got a number: 1
+    got a number: 2
+    got a number: 3
+    got a number: 4
+    got a number: 5
+  50
+    got a number: 50
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    (C++ I/O) <a href="../cppio/get.html">get</a><br>
+    (C++ I/O) <a href="../cppio/getline.html">getline</a><br>
+    <a href="../cppsstream/index-2.html">string streams</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/getline.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

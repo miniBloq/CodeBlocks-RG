@@ -1,0 +1,101 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Makefile%20Basics">Makefile Basics</a>,
+Next:<a rel="next" accesskey="n" href="Utilities-in-Makefiles.html#Utilities%20in%20Makefiles">Utilities in Makefiles</a>,
+Up:<a rel="up" accesskey="u" href="Makefile-Conventions.html#Makefile%20Conventions">Makefile Conventions</a>
+<hr><br>
+</div>
+
+<h3 class="section">General Conventions for Makefiles</h3>
+
+   <p>Every Makefile should contain this line:
+
+<pre class="example">     SHELL = /bin/sh
+     </pre>
+
+<p>to avoid trouble on systems where the <code>SHELL</code> variable might be
+inherited from the environment.  (This is never a problem with GNU
+<code>make</code>.)
+
+   <p>Different <code>make</code> programs have incompatible suffix lists and
+implicit rules, and this sometimes creates confusion or misbehavior.  So
+it is a good idea to set the suffix list explicitly using only the
+suffixes you need in the particular Makefile, like this:
+
+<pre class="example">     .SUFFIXES:
+     .SUFFIXES: .c .o
+     </pre>
+
+<p>The first line clears out the suffix list, the second introduces all
+suffixes which may be subject to implicit rules in this Makefile.
+
+   <p>Don't assume that <code>.</code> is in the path for command execution.  When
+you need to run programs that are a part of your package during the
+make, please make sure that it uses <code>./</code> if the program is built as
+part of the make or <code>$(srcdir)/</code> if the file is an unchanging part
+of the source code.  Without one of these prefixes, the current search
+path is used.
+
+   <p>The distinction between <code>./</code> (the <dfn>build directory</dfn>) and
+<code>$(srcdir)/</code> (the <dfn>source directory</dfn>) is important because
+users can build in a separate directory using the <code>--srcdir</code> option
+to <code>configure</code>.  A rule of the form:
+
+<pre class="smallexample">     foo.1 : foo.man sedscript
+             sed -e sedscript foo.man &gt; foo.1
+     </pre>
+
+<p>will fail when the build directory is not the source directory, because
+<code>foo.man</code> and <code>sedscript</code> are in the source directory.
+
+   <p>When using GNU <code>make</code>, relying on <code>VPATH</code> to find the source
+file will work in the case where there is a single dependency file,
+since the <code>make</code> automatic variable <code>$&lt;</code> will represent the
+source file wherever it is.  (Many versions of <code>make</code> set <code>$&lt;</code>
+only in implicit rules.)  A Makefile target like
+
+<pre class="smallexample">     foo.o : bar.c
+             $(CC) -I. -I$(srcdir) $(CFLAGS) -c bar.c -o foo.o
+     </pre>
+
+<p>should instead be written as
+
+<pre class="smallexample">     foo.o : bar.c
+             $(CC) -I. -I$(srcdir) $(CFLAGS) -c $&lt; -o $@
+     </pre>
+
+<p>in order to allow <code>VPATH</code> to work correctly.  When the target has
+multiple dependencies, using an explicit <code>$(srcdir)</code> is the easiest
+way to make the rule work well.  For example, the target above for
+<code>foo.1</code> is best written as:
+
+<pre class="smallexample">     foo.1 : foo.man sedscript
+             sed -e $(srcdir)/sedscript $(srcdir)/foo.man &gt; $@
+     </pre>
+
+   <p>GNU distributions usually contain some files which are not source
+files--for example, Info files, and the output from Autoconf, Automake,
+Bison or Flex.  Since these files normally appear in the source
+directory, they should always appear in the source directory, not in the
+build directory.  So Makefile rules to update them should put the
+updated files in the source directory.
+
+   <p>However, if a file does not appear in the distribution, then the
+Makefile should not put it in the source directory, because building a
+program in ordinary circumstances should not modify the source directory
+in any way.
+
+   <p>Try to make the build and installation targets, at least (and all their
+subtargets) work correctly with a parallel <code>make</code>.
+
+   </body></html>
+

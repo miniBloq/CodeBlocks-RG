@@ -1,0 +1,132 @@
+<TITLE>BGI Documentation for 
+getfillsettings
+</TITLE>
+<H2>
+getfillsettings
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void getfillsettings(struct fillsettingstype *fillinfo);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+getfillsettings fills in the fillsettingstype structure pointed to by fillinfo with information about the current fill pattern and fill color. The fillsettingstype structure is defined in graphics.h as follows:
+<PRE>
+struct fillsettingstype {
+   int pattern;            /* current fill pattern */
+   int color;              /* current fill color */
+};
+</PRE>
+The functions bar, bar3d, fillpoly, floodfill, and pieslice all fill
+an area with the current fill pattern in the current fill color. There
+are 11 predefined fill pattern styles (such as solid, crosshatch,
+dotted, and so on). Symbolic names for the predefined patterns are
+provided by the enumerated type fill_patterns in graphics.h, as shown
+here:
+<TABLE>
+<TR><TD><B>Name</B><TD><B>Value&nbsp;&nbsp;&nbsp;</B><TD><B>Description</B>
+<TR><TD>EMPTY_FILL	<TD>0	<TD>Fill with background color
+<TR><TD>SOLID_FILL	<TD>1	<TD>Solid fill
+<TR><TD>LINE_FILL	<TD>2	<TD>Fill with ---
+<TR><TD>LTSLASH_FILL	<TD>3	<TD>Fill with ///
+<TR><TD>SLASH_FILL	<TD>4	<TD>Fill with ///, thick lines
+<TR><TD>BKSLASH_FILL	<TD>5	<TD>Fill with \\\, thick lines
+<TR><TD>LTBKSLASH_FILL	<TD>6	<TD>Fill with \\\
+<TR><TD>HATCH_FILL	<TD>7	<TD>Light hatch fill
+<TR><TD>XHATCH_FILL	<TD>8	<TD>Heavy crosshatch fill
+<TR><TD>INTERLEAVE_FILL&nbsp;&nbsp;&nbsp;	<TD>9	<TD>Interleaving line fill
+<TR><TD>WIDE_DOT_FILL	<TD>10	<TD>Widely spaced dot fill
+<TR><TD>CLOSE_DOT_FILL	<TD>11	<TD>Closely spaced dot fill
+<TR><TD>USER_FILL	<TD>12	<TD>User-defined fill pattern
+</TABLE>
+Note: All but EMPTY_FILL fill with the current fill color; EMPTY_FILL uses the current background color.
+In addition, you can define your own fill pattern.
+If pattern equals 12 (USER_FILL), then a user-defined fill pattern is being used; otherwise, pattern gives the number of a predefined pattern.
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+In the <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> version, the user
+might set the fill color to an
+<A HREF="wincolor.html">RGB color</A>. Therefore, the color in
+the fillsettingstype struct
+might be an ordinary BGI color (integer from 0 to 15)
+or an RGB color.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="getfillpattern.html"> getfillpattern </A>
+<DD><A HREF="setfillpattern.html"> setfillpattern </A>
+<DD><A HREF="setfillstyle.html"> setfillstyle </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* getfillsettings example */ 
+
+#include <graphics.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+
+/* the names of the fill styles supported */
+char *fname[] = { "EMPTY_FILL", "SOLID_FILL", "LINE_FILL", "LTSLASH_FILL", "SLASH_FILL", "BKSLASH_FILL", "LTBKSLASH_FILL", "HATCH_FILL", "XHATCH_FILL", "INTERLEAVE_FILL", "WIDE_DOT_FILL", "CLOSE_DOT_FILL", "USER_FILL" };
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   struct fillsettingstype fillinfo;
+
+   int midx, midy;
+   char patstr[40], colstr[40];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+
+   midy = getmaxy() / 2;
+
+   /* get info about current fill pattern and color */
+   getfillsettings(&fillinfo);
+
+   /* convert fill information into strings */
+   sprintf(patstr, "%s is the fill style.", fname[fillinfo.pattern]);
+   sprintf(colstr, "%d is the fill color.", fillinfo.color);
+
+   /* display the information */
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+   outtextxy(midx, midy, patstr);
+   outtextxy(midx, midy+2*textheight("W"), colstr);
+
+   /* clean up */
+
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

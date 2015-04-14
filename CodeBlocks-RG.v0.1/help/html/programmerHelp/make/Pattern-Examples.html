@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Pattern%20Examples">Pattern Examples</a>,
+Next:<a rel="next" accesskey="n" href="Automatic.html#Automatic">Automatic</a>,
+Previous:<a rel="previous" accesskey="p" href="Pattern-Intro.html#Pattern%20Intro">Pattern Intro</a>,
+Up:<a rel="up" accesskey="u" href="Pattern-Rules.html#Pattern%20Rules">Pattern Rules</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">Pattern Rule Examples</h4>
+
+   <p>Here are some examples of pattern rules actually predefined in
+<code>make</code>.  First, the rule that compiles <code>.c</code> files into <code>.o</code>
+files:
+
+<pre class="example">     %.o : %.c
+             $(CC) -c $(CFLAGS) $(CPPFLAGS) $&lt; -o $@
+     </pre>
+
+<p>defines a rule that can make any file <code></code><var>x</var><code>.o</code> from
+<code></code><var>x</var><code>.c</code>.  The command uses the automatic variables <code>$@</code> and
+<code>$&lt;</code> to substitute the names of the target file and the source file
+in each case where the rule applies (see <a href="Automatic.html#Automatic">Automatic Variables</a>).
+
+   <p>Here is a second built-in rule:
+
+<pre class="example">     % :: RCS/%,v
+             $(CO) $(COFLAGS) $&lt;
+     </pre>
+
+<p>defines a rule that can make any file <code></code><var>x</var><code></code> whatsoever from a
+corresponding file <code></code><var>x</var><code>,v</code> in the subdirectory <code>RCS</code>.  Since
+the target is <code>%</code>, this rule will apply to any file whatever, provided
+the appropriate prerequisite file exists.  The double colon makes the rule
+<dfn>terminal</dfn>, which means that its prerequisite may not be an intermediate
+file (see <a href="Match-Anything-Rules.html#Match-Anything%20Rules">Match-Anything Pattern Rules</a>).
+
+   <p>This pattern rule has two targets:
+
+<pre class="example">     %.tab.c %.tab.h: %.y
+             bison -d $&lt;
+     </pre>
+
+<p>This tells <code>make</code> that the command <code>bison -d </code><var>x</var><code>.y</code> will
+make both <code></code><var>x</var><code>.tab.c</code> and <code></code><var>x</var><code>.tab.h</code>.  If the file
+<code>foo</code> depends on the files <code>parse.tab.o</code> and <code>scan.o</code>
+and the file <code>scan.o</code> depends on the file <code>parse.tab.h</code>,
+when <code>parse.y</code> is changed, the command <code>bison -d parse.y</code>
+will be executed only once, and the prerequisites of both
+<code>parse.tab.o</code> and <code>scan.o</code> will be satisfied.  (Presumably
+the file <code>parse.tab.o</code> will be recompiled from <code>parse.tab.c</code>
+and the file <code>scan.o</code> from <code>scan.c</code>, while <code>foo</code> is
+linked from <code>parse.tab.o</code>, <code>scan.o</code>, and its other
+prerequisites, and it will execute happily ever after.)
+
+   </body></html>
+

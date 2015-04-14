@@ -1,0 +1,106 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Suffix%20Rules">Suffix Rules</a>,
+Next:<a rel="next" accesskey="n" href="Implicit-Rule-Search.html#Implicit%20Rule%20Search">Implicit Rule Search</a>,
+Previous:<a rel="previous" accesskey="p" href="Last-Resort.html#Last%20Resort">Last Resort</a>,
+Up:<a rel="up" accesskey="u" href="Implicit-Rules.html#Implicit%20Rules">Implicit Rules</a>
+<hr><br>
+</div>
+
+<h3 class="section">Old-Fashioned Suffix Rules</h3>
+
+   <p><dfn>Suffix rules</dfn> are the old-fashioned way of defining implicit rules for
+<code>make</code>.  Suffix rules are obsolete because pattern rules are more
+general and clearer.  They are supported in GNU <code>make</code> for
+compatibility with old makefiles.  They come in two kinds:
+<dfn>double-suffix</dfn> and <dfn>single-suffix</dfn>.
+
+   <p>A double-suffix rule is defined by a pair of suffixes: the target suffix
+and the source suffix.  It matches any file whose name ends with the
+target suffix.  The corresponding implicit prerequisite is made by
+replacing the target suffix with the source suffix in the file name.  A
+two-suffix rule whose target and source suffixes are <code>.o</code> and
+<code>.c</code> is equivalent to the pattern rule <code>%.o : %.c</code>.
+
+   <p>A single-suffix rule is defined by a single suffix, which is the source
+suffix.  It matches any file name, and the corresponding implicit
+prerequisite name is made by appending the source suffix.  A single-suffix
+rule whose source suffix is <code>.c</code> is equivalent to the pattern rule
+<code>% : %.c</code>.
+
+   <p>Suffix rule definitions are recognized by comparing each rule's target
+against a defined list of known suffixes.  When <code>make</code> sees a rule
+whose target is a known suffix, this rule is considered a single-suffix
+rule.  When <code>make</code> sees a rule whose target is two known suffixes
+concatenated, this rule is taken as a double-suffix rule.
+
+   <p>For example, <code>.c</code> and <code>.o</code> are both on the default list of
+known suffixes.  Therefore, if you define a rule whose target is
+<code>.c.o</code>, <code>make</code> takes it to be a double-suffix rule with source
+suffix <code>.c</code> and target suffix <code>.o</code>.  Here is the old-fashioned
+way to define the rule for compiling a C source file:
+
+<pre class="example">     .c.o:
+             $(CC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $&lt;
+     </pre>
+
+   <p>Suffix rules cannot have any prerequisites of their own.  If they have any,
+they are treated as normal files with funny names, not as suffix rules. 
+Thus, the rule:
+
+<pre class="example">     .c.o: foo.h
+             $(CC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $&lt;
+     </pre>
+
+<p>tells how to make the file <code>.c.o</code> from the prerequisite file
+<code>foo.h</code>, and is not at all like the pattern rule:
+
+<pre class="example">     %.o: %.c foo.h
+             $(CC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $&lt;
+     </pre>
+
+<p>which tells how to make <code>.o</code> files from <code>.c</code> files, and makes all
+<code>.o</code> files using this pattern rule also depend on <code>foo.h</code>.
+
+   <p>Suffix rules with no commands are also meaningless.  They do not remove
+previous rules as do pattern rules with no commands (see <a href="Canceling-Rules.html#Canceling%20Rules">Canceling Implicit Rules</a>).  They simply enter the suffix or pair of suffixes concatenated as
+a target in the data base.
+
+   <p>The known suffixes are simply the names of the prerequisites of the special
+target <code>.SUFFIXES</code>.  You can add your own suffixes by writing a rule
+for <code>.SUFFIXES</code> that adds more prerequisites, as in:
+
+<pre class="example">     .SUFFIXES: .hack .win
+     </pre>
+
+<p>which adds <code>.hack</code> and <code>.win</code> to the end of the list of suffixes.
+
+   <p>If you wish to eliminate the default known suffixes instead of just adding
+to them, write a rule for <code>.SUFFIXES</code> with no prerequisites.  By
+special dispensation, this eliminates all existing prerequisites of
+<code>.SUFFIXES</code>.  You can then write another rule to add the suffixes you
+want.  For example,
+
+<pre class="example">     .SUFFIXES:            # Delete the default suffixes
+     .SUFFIXES: .c .o .h   # Define our suffix list
+     </pre>
+
+   <p>The <code>-r</code> or <code>--no-builtin-rules</code> flag causes the default
+list of suffixes to be empty.
+
+   <p>The variable <code>SUFFIXES</code> is defined to the default list of suffixes
+before <code>make</code> reads any makefiles.  You can change the list of suffixes
+with a rule for the special target <code>.SUFFIXES</code>, but that does not alter
+this variable.
+
+   </body></html>
+

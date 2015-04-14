@@ -1,0 +1,2346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>Standard C I/O</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">Standard C I/O</a>
+  </div>
+
+  <div class="name-format">
+    clearerr
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  void clearerr( FILE *stream );
+</pre>
+
+  <p>The clearerr function resets the error flags and
+  <strong>EOF</strong> indicator for the given <em>stream</em>. When an
+  error occurs, you can use <a href="perror.html">perror</a>() to
+  figure out which error actually occurred.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="feof.html">feof</a><br>
+    <a href="ferror.html">ferror</a><br>
+    <a href="perror.html">perror</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    fclose
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int fclose( FILE *stream );  
+</pre>
+
+  <p>The function fclose() closes the given file stream, deallocating
+  any buffers associated with that stream. fclose() returns 0 upon
+  success, and <strong>EOF</strong> otherwise.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fflush.html">fflush</a><br>
+    <a href="fopen.html">fopen</a><br>
+    <a href="freopen.html">freopen</a><br>
+    <a href="setbuf.html">setbuf</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    feof
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int feof( FILE *stream );  
+</pre>
+
+  <p>The function feof() returns a nonzero value if the end of the
+  given file <em>stream</em> has been reached.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="clearerr.html">clearerr</a><br>
+    <a href="ferror.html">ferror</a><br>
+    <a href="getc.html">getc</a><br>
+    <a href="perror.html">perror</a><br>
+    <a href="putc.html">putc</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    ferror
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int ferror( FILE *stream );
+</pre>
+
+  <p>The ferror() function looks for errors with <em>stream</em>,
+  returning zero if no errors have occured, and non-zero if there is an
+  error. In case of an error, use <a href="perror.html">perror</a>() to
+  determine which error has occured.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="clearerr.html">clearerr</a><br>
+    <a href="feof.html">feof</a><br>
+    <a href="perror.html">perror</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    fflush
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int fflush( FILE *stream );
+</pre>
+
+  <p>If the given file <em>stream</em> is an output stream, then
+  fflush() causes the output buffer to be written to the file. If the
+  given <em>stream</em> is of the input type, then fflush() causes the
+  input buffer to be cleared. fflush() is useful when debugging, if a
+  program segfaults before it has a chance to write output to the
+  screen. Calling fflush( <strong>stdout</strong> ) directly after
+  debugging output will ensure that your output is displayed at the
+  correct time.</p>
+<pre class="prettyprint">
+   printf( &quot;Before first call\n&quot; );
+   fflush( <strong>stdout</strong> );
+   shady_function();
+   printf( &quot;Before second call\n&quot; );
+   fflush( <strong>stdout</strong> );
+   dangerous_dereference();             
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fclose.html">fclose</a><br>
+    <a href="fopen.html">fopen</a><br>
+    <a href="fread.html">fread</a><br>
+    <a href="fwrite.html">fwrite</a><br>
+    <a href="getc.html">getc</a><br>
+    <a href="putc.html">putc</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    fgetc
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int fgetc( FILE *stream );
+</pre>
+
+  <p>The fgetc() function returns the next character from
+  <em>stream</em>, or <strong>EOF</strong> if the end of file is
+  reached or if there is an error.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fopen.html">fopen</a><br>
+    <a href="fputc.html">fputc</a><br>
+    <a href="fread.html">fread</a><br>
+    <a href="fwrite.html">fwrite</a><br>
+    <a href="getc.html">getc</a><br>
+    <a href="getchar.html">getchar</a><br>
+    <a href="gets.html">gets</a><br>
+    <a href="putc.html">putc</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    fgetpos
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int fgetpos( FILE *stream, fpos_t *position );
+</pre>
+
+  <p>The fgetpos() function stores the file position indicator of the
+  given file <em>stream</em> in the given <em>position</em> variable.
+  The position variable is of type fpos_t (which is defined in cstdio)
+  and is an object that can hold every possible position in a FILE.
+  fgetpos() returns zero upon success, and a non-zero value upon
+  failure.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fseek.html">fseek</a><br>
+    <a href="fsetpos.html">fsetpos</a><br>
+    <a href="ftell.html">ftell</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    fgets
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  char *fgets( char *str, int num, FILE *stream );
+</pre>
+
+  <p>The function fgets() reads up to <em>num</em> - 1 characters from
+  the given file <em>stream</em> and dumps them into <em>str</em>.
+  The string that fgets() produces is always
+  <strong>NULL</strong>-terminated.  fgets() will stop when it reaches
+  the end of a line, in which case <em>str</em> will contain that
+  newline character. Otherwise, fgets() will stop when it reaches
+  <em>num</em> - 1 characters or encounters the <strong>EOF</strong>
+  character.  fgets() returns <em>str</em> on success, and
+  <strong>NULL</strong> on an error.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fputs.html">fputs</a><br>
+    <a href="fscanf.html">fscanf</a><br>
+    <a href="gets.html">gets</a><br>
+    <a href="scanf.html">scanf</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    fopen
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  FILE *fopen( const char *fname, const char *mode );
+</pre>
+
+  <p>The fopen() function opens a file indicated by <em>fname</em> and
+  returns a stream associated with that file. If there is an error,
+  fopen() returns <strong>NULL</strong>. <em>mode</em> is used to
+  determine how the file will be treated (i.e. for input, output,
+  etc)</p>
+
+  <table class="code-table">
+    <tr>
+      <th class="code-table-th">Mode</th>
+
+      <th class="code-table-th">Meaning</th>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">&quot;r&quot;</td>
+
+      <td class="code-table-td">Open a text file for reading</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">&quot;w&quot;</td>
+
+      <td class="code-table-td">Create a text file for writing</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">&quot;a&quot;</td>
+
+      <td class="code-table-td">Append to a text file</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">&quot;rb&quot;</td>
+
+      <td class="code-table-td">Open a binary file for reading</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">&quot;wb&quot;</td>
+
+      <td class="code-table-td">Create a binary file for writing</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">&quot;ab&quot;</td>
+
+      <td class="code-table-td">Append to a binary file</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">&quot;r+&quot;</td>
+
+      <td class="code-table-td">Open a text file for read/write</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">&quot;w+&quot;</td>
+
+      <td class="code-table-td">Create a text file for read/write</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">&quot;a+&quot;</td>
+
+      <td class="code-table-td">Open a text file for read/write</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">&quot;rb+&quot;</td>
+
+      <td class="code-table-td">Open a binary file for read/write</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">&quot;wb+&quot;</td>
+
+      <td class="code-table-td">Create a binary file for
+      read/write</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">&quot;ab+&quot;</td>
+
+      <td class="code-table-td">Open a binary file for read/write</td>
+    </tr>
+  </table>
+
+  <p>An example:</p>
+<pre class="prettyprint">
+   int ch;
+   FILE *input = fopen( &quot;stuff&quot;, &quot;r&quot; );
+   ch = getc( input );          
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fclose.html">fclose</a><br>
+    <a href="fflush.html">fflush</a><br>
+    <a href="fgetc.html">fgetc</a><br>
+    <a href="fputc.html">fputc</a><br>
+    <a href="fread.html">fread</a><br>
+    <a href="freopen.html">freopen</a><br>
+    <a href="fseek.html">fseek</a><br>
+    <a href="fwrite.html">fwrite</a><br>
+    <a href="getc.html">getc</a><br>
+    <a href="getchar.html">getchar</a><br>
+    <a href="setbuf.html">setbuf</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    fprintf
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int fprintf( FILE *stream, const char *format, ... );
+</pre>
+
+  <p>The fprintf() function sends information (the arguments) according
+  to the specified <em>format</em> to the file indicated by
+  <em>stream</em>. fprintf() works just like <a href=
+  "printf.html">printf</a>() as far as the format goes. The return
+  value of fprintf() is the number of characters outputted, or a
+  negative number if an error occurs. An example:</p>
+<pre class="prettyprint">
+   char name[20] = &quot;Mary&quot;;
+   FILE *out;
+   out = fopen( &quot;output.txt&quot;, &quot;w&quot; );
+   if( out != <strong>NULL</strong> )
+     fprintf( out, &quot;Hello %s\n&quot;, name );              
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fputc.html">fputc</a><br>
+    <a href="fputs.html">fputs</a><br>
+    <a href="fscanf.html">fscanf</a><br>
+    <a href="printf.html">printf</a><br>
+    <a href="sprintf.html">sprintf</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    fputc
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int fputc( int ch, FILE *stream );
+</pre>
+
+  <p>The function fputc() writes the given character <em>ch</em> to the
+  given output <em>stream</em>. The return value is the character,
+  unless there is an error, in which case the return value is
+  <strong>EOF</strong>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fgetc.html">fgetc</a><br>
+    <a href="fopen.html">fopen</a><br>
+    <a href="fprintf.html">fprintf</a><br>
+    <a href="fread.html">fread</a><br>
+    <a href="fwrite.html">fwrite</a><br>
+    <a href="getc.html">getc</a><br>
+    <a href="getchar.html">getchar</a><br>
+    <a href="putc.html">putc</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    fputs
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int fputs( const char *str, FILE *stream );
+</pre>
+
+  <p>The fputs() function writes an array of characters pointed to by
+  <em>str</em> to the given output <em>stream</em>. The return value is
+  non-negative on success, and <strong>EOF</strong> on failure.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fgets.html">fgets</a><br>
+    <a href="fprintf.html">fprintf</a><br>
+    <a href="fscanf.html">fscanf</a><br>
+    <a href="gets.html">gets</a><br>
+    <a href="puts.html">puts</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    fread
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int fread( void *buffer, size_t size, size_t num, FILE *stream );
+</pre>
+
+  <p>The function fread() reads <em>num</em> number of objects (where
+  each object is <em>size</em> bytes) and places them into the array
+  pointed to by buffer. The data comes from the given input
+  <em>stream</em>. The return value of the function is the number of
+  things read. You can use <a href="feof.html">feof</a>() or <a href=
+  "ferror.html">ferror</a>() to figure out if an error occurs.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fflush.html">fflush</a><br>
+    <a href="fgetc.html">fgetc</a><br>
+    <a href="fopen.html">fopen</a><br>
+    <a href="fputc.html">fputc</a><br>
+    <a href="fscanf.html">fscanf</a><br>
+    <a href="fwrite.html">fwrite</a><br>
+    <a href="getc.html">getc</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    freopen
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  FILE *freopen( const char *fname, const char *mode, FILE *stream );
+</pre>
+
+  <p>The freopen() function is used to reassign an existing
+  <em>stream</em> to a different file and mode. After a call to this
+  function, the given file <em>stream</em> will refer to <em>fname</em>
+  with access given by <em>mode</em>. The return value of freopen() is
+  the new stream, or <strong>NULL</strong> if there is an error.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fclose.html">fclose</a><br>
+    <a href="fopen.html">fopen</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    fscanf
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int fscanf( FILE *stream, const char *format, ... );
+</pre>
+
+  <p>The function fscanf() reads data from the given file
+  <em>stream</em> in a manner exactly like scanf(). The return value of
+  fscanf() is the number of variables that are actually assigned
+  values, or <strong>EOF</strong> if no assignments could be made.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fgets.html">fgets</a><br>
+    <a href="fprintf.html">fprintf</a><br>
+    <a href="fputs.html">fputs</a><br>
+    <a href="fread.html">fread</a><br>
+    <a href="fwrite.html">fwrite</a><br>
+    <a href="scanf.html">scanf</a><br>
+    <a href="sscanf.html">sscanf</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    fseek
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int fseek( FILE *stream, long offset, int origin );
+</pre>
+
+  <p>The function fseek() sets the file position data for the given
+  <em>stream</em>. The origin value should have one of the following
+  values (defined in cstdio):</p>
+
+  <table class="code-table">
+    <tr>
+      <th class="code-table-th">Name</th>
+
+      <th class="code-table-th">Explanation</th>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">SEEK_SET</td>
+
+      <td class="code-table-td">Seek from the start of the file</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">SEEK_CUR</td>
+
+      <td class="code-table-td">Seek from the current location</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">SEEK_END</td>
+
+      <td class="code-table-td">Seek from the end of the file</td>
+    </tr>
+  </table>
+
+  <p>fseek() returns zero upon success, non-zero on failure. You can
+  use fseek() to move beyond a file, but not before the beginning.
+  Using fseek() clears the <strong>EOF</strong> flag associated with
+  that stream.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fgetpos.html">fgetpos</a><br>
+    <a href="fopen.html">fopen</a><br>
+    <a href="fsetpos.html">fsetpos</a><br>
+    <a href="ftell.html">ftell</a><br>
+    <a href="rewind.html">rewind</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    fsetpos
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int fsetpos( FILE *stream, const fpos_t *position );
+</pre>
+
+  <p>The fsetpos() function moves the file position indicator for the
+  given <em>stream</em> to a location specified by the
+  <em>position</em> object. fpos_t is defined in cstdio. The return
+  value for fsetpos() is zero upon success, non-zero on failure.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fgetpos.html">fgetpos</a><br>
+    <a href="fseek.html">fseek</a><br>
+    <a href="ftell.html">ftell</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    ftell
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  long ftell( FILE *stream );
+</pre>
+
+  <p>The ftell() function returns the current file position for
+  <em>stream</em>, or -1 if an error occurs.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fgetpos.html">fgetpos</a><br>
+    <a href="fseek.html">fseek</a><br>
+    <a href="fsetpos.html">fsetpos</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    fwrite
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int fwrite( const void *buffer, size_t size, size_t count, FILE *stream );
+</pre>
+
+  <p>The fwrite() function writes, from the array <em>buffer</em>,
+  <em>count</em> objects of size <em>size</em> to <em>stream</em>. The
+  return value is the number of objects written.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fflush.html">fflush</a><br>
+    <a href="fgetc.html">fgetc</a><br>
+    <a href="fopen.html">fopen</a><br>
+    <a href="fputc.html">fputc</a><br>
+    <a href="fread.html">fread</a><br>
+    <a href="fscanf.html">fscanf</a><br>
+    <a href="getc.html">getc</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    getc
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int getc( FILE *stream );
+</pre>
+
+  <p>The getc() function returns the next character from
+  <em>stream</em>, or <strong>EOF</strong> if the end of file is
+  reached. getc() is identical to <a href="fgetc.html">fgetc</a>(). For
+  example:</p>
+<pre class="prettyprint">
+   int ch;
+   FILE *input = fopen( &quot;stuff&quot;, &quot;r&quot; );             
+
+   ch = getc( input );
+   while( ch != <strong>EOF</strong> ) {
+     printf( &quot;%c&quot;, ch );
+     ch = getc( input );
+   }            
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="feof.html">feof</a><br>
+    <a href="fflush.html">fflush</a><br>
+    <a href="fgetc.html">fgetc</a><br>
+    <a href="fopen.html">fopen</a><br>
+    <a href="fputc.html">fputc</a><br>
+    <a href="fread.html">fread</a><br>
+    <a href="fwrite.html">fwrite</a><br>
+    <a href="putc.html">putc</a><br>
+    <a href="ungetc.html">ungetc</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    getchar
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int getchar( void );
+</pre>
+
+  <p>The getchar() function returns the next character from
+  <strong>stdin</strong>, or <strong>EOF</strong> if the end of file is
+  reached.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fgetc.html">fgetc</a><br>
+    <a href="fopen.html">fopen</a><br>
+    <a href="fputc.html">fputc</a><br>
+    <a href="putc.html">putc</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    gets
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  char *gets( char *str );
+</pre>
+
+  <p>The gets() function reads characters from <strong>stdin</strong>
+  and loads them into <em>str</em>, until a newline or
+  <strong>EOF</strong> is reached. The newline character is translated
+  into a null termination. The return value of gets() is the read-in
+  string, or <strong>NULL</strong> if there is an error.</p>
+
+  <p>Note that gets() does not perform bounds checking, and thus risks
+  overrunning <em>str</em>.  For a similar (and safer) function that
+  includes bounds checking, see <a href="fgets.html">fgets()</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fgetc.html">fgetc</a><br>
+    <a href="fgets.html">fgets</a><br>
+    <a href="fputs.html">fputs</a><br>
+    <a href="puts.html">puts</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    perror
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  void perror( const char *str );
+</pre>
+
+  <p>The perror() function prints <em>str</em> and an
+  implementation-defined error message corresponding to the global
+  variable <em>errno</em>.  For example:</p>
+
+<pre class="prettyprint">
+  char* input_filename = "not_found.txt";
+  FILE* input = fopen( input_filename, "r" );
+  if( input == NULL ) {
+    char error_msg[255];
+    sprintf( error_msg, "Error opening file '%s'", input_filename );
+    perror( error_msg );
+    exit( -1 );
+  }
+</pre>
+
+  <p>The the file called <em>not_found.txt</em> is not found, this
+  code will produce the following output:</p>
+
+  <pre class="example-output">
+  Error opening file 'not_found.txt': No such file or directory
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="clearerr.html">clearerr</a><br>
+    <a href="feof.html">feof</a><br>
+    <a href="ferror.html">ferror</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    printf
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int printf( const char *format, ... );
+</pre>
+
+  <p>The printf() function prints output to <strong>stdout</strong>,
+  according to <em>format</em> and other arguments passed to printf().
+  The string <em>format</em> consists of two types of items -
+  characters that will be printed to the screen, and format commands
+  that define how the other arguments to printf() are displayed.
+  Basically, you specify a format string that has text in it, as well
+  as &quot;special&quot; characters that map to the other arguments of
+  printf(). For example, this code</p>
+<pre class="prettyprint">
+   char name[20] = &quot;Bob&quot;;
+   int age = 21;
+   printf( &quot;Hello %s, you are %d years old\n&quot;, name, age );           
+</pre>
+
+  <p>displays the following output:</p>
+<pre class="prettyprint">
+   Hello Bob, you are 21 years old              
+</pre>
+
+  <p>The %s means, &quot;insert the first argument, a string, right
+  here.&quot; The %d indicates that the second argument (an integer)
+  should be placed there. There are different %-codes for different
+  variable types, as well as options to limit the length of the
+  variables and whatnot.</p>
+
+  <table class="code-table">
+    <tr>
+      <th class="code-table-th">Code</th>
+
+      <th class="code-table-th">Format</th>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%c</td>
+
+      <td class="code-table-td">character</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%d</td>
+
+      <td class="code-table-td">signed integers</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%i</td>
+
+      <td class="code-table-td">signed integers</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%e</td>
+
+      <td class="code-table-td">scientific notation, with a lowercase
+      &quot;e&quot;</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%E</td>
+
+      <td class="code-table-td">scientific notation, with a uppercase
+      &quot;E&quot;</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%f</td>
+
+      <td class="code-table-td">floating point</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%g</td>
+
+      <td class="code-table-td">use %e or %f, whichever is shorter</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%G</td>
+
+      <td class="code-table-td">use %E or %f, whichever is shorter</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%o</td>
+
+      <td class="code-table-td">octal</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%s</td>
+
+      <td class="code-table-td">a string of characters</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%u</td>
+
+      <td class="code-table-td">unsigned integer</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%x</td>
+
+      <td class="code-table-td">unsigned hexadecimal, with lowercase
+      letters</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%X</td>
+
+      <td class="code-table-td">unsigned hexadecimal, with uppercase
+      letters</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%p</td>
+
+      <td class="code-table-td">a pointer</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%n</td>
+
+      <td class="code-table-td">the argument shall be a pointer to an
+      integer into which is placed the number of characters written so
+      far</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%%</td>
+
+      <td class="code-table-td">a &#39;%&#39; sign</td>
+    </tr>
+  </table>
+
+  <p>An integer placed between a % sign and the format command acts as
+  a minimum field width specifier, and pads the output with spaces or
+  zeros to make it long enough. If you want to pad with zeros, place a
+  zero before the minimum field width specifier:</p>
+<pre class="prettyprint">
+   %012d                
+</pre>
+
+  <p>You can also include a precision modifier, in the form of a .N
+  where N is some number, before the format command:</p>
+<pre class="prettyprint">
+   %012.4d              
+</pre>
+
+  <p>The precision modifier has different meanings depending on the
+  format command being used:</p>
+
+  <ul>
+    <li>With %e, %E, and %f, the precision modifier lets you specify
+    the number of decimal places desired. For example, %12.6f will
+    display a floating number at least 12 digits wide, with six decimal
+    places.</li>
+
+    <li>With %g and %G, the precision modifier determines the maximum
+    number of significant digits displayed.</li>
+
+    <li>With %s, the precision modifer simply acts as a maximumfield
+    length, to complement the minimum field length that precedes the
+    period.</li>
+  </ul>
+
+  <p>All of printf()&#39;s output is right-justified, unless you place
+  a minus sign right after the % sign. For example,</p>
+<pre class="prettyprint">
+   %-12.4f              
+</pre>
+
+  <p>will display a floating point number with a minimum of 12
+  characters, 4 decimal places, and left justified. You may modify the
+  %d, %i, %o, %u, and %x type specifiers with the letter l and the
+  letter h to specify long and short <a href="../data_types.html">data
+  types</a> (e.g. %hd means a short integer). The %e, %f, and %g type
+  specifiers can have the letter l before them to indicate that a
+  double follows. The %g, %f, and %e type specifiers can be preceded
+  with the character &#39;#&#39; to ensure that the decimal point will
+  be present, even if there are no decimal digits. The use of the
+  &#39;#&#39; character with the %x type specifier indicates that the
+  hexidecimal number should be printed with the &#39;0x&#39; prefix.
+  The use of the &#39;#&#39; character with the %o type specifier
+  indicates that the octal value should be displayed with a 0
+  prefix.</p>
+
+  <p>Inserting a plus sign '+' into the type specifier will force
+  positive values to be preceded by a '+' sign.  Putting a space
+  character ' ' there will force positive values to be preceded by a
+  single space character.</p>
+
+  <p>You can also include <a href="../escape_sequences.html">constant
+  escape sequences</a> in the output string.</p>
+
+  <p>The return value of printf() is the number of characters printed,
+  or a negative number if an error occurred.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fprintf.html">fprintf</a><br>
+    <a href="puts.html">puts</a><br>
+    <a href="scanf.html">scanf</a><br>
+    <a href="sprintf.html">sprintf</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    putc
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int putc( int ch, FILE *stream );
+</pre>
+
+  <p>The putc() function writes the character <em>ch</em> to
+  <em>stream</em>. The return value is the character written, or
+  <strong>EOF</strong> if there is an error. For example:</p>
+<pre class="prettyprint">
+   int ch;
+   FILE *input, *output;
+   input = fopen( &quot;tmp.c&quot;, &quot;r&quot; );
+   output = fopen( &quot;tmpCopy.c&quot;, &quot;w&quot; );
+   ch = getc( input );
+   while( ch != <strong>EOF</strong> ) {
+     putc( ch, output );
+     ch = getc( input );
+   }
+   fclose( input );
+   fclose( output );            
+</pre>
+
+  <p>generates a copy of the file tmp.c called tmpCopy.c.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="feof.html">feof</a><br>
+    <a href="fflush.html">fflush</a><br>
+    <a href="fgetc.html">fgetc</a><br>
+    <a href="fputc.html">fputc</a><br>
+    <a href="getc.html">getc</a><br>
+    <a href="getchar.html">getchar</a><br>
+    <a href="putchar.html">putchar</a><br>
+    <a href="puts.html">puts</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    putchar
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int putchar( int ch );
+</pre>
+
+  <p>The putchar() function writes <em>ch</em> to
+  <strong>stdout</strong>. The code</p>
+<pre class="prettyprint">
+   putchar( ch );               
+</pre>
+
+  <p>is the same as</p>
+<pre class="prettyprint">
+   putc( ch, <strong>stdout</strong> );         
+</pre>
+
+  <p>The return value of putchar() is the written character, or
+  <strong>EOF</strong> if there is an error.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="putc.html">putc</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    puts
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int puts( char *str );
+</pre>
+
+  <p>The function puts() writes <em>str</em> to
+  <strong>stdout</strong>. puts() returns non-negative on success, or
+  <strong>EOF</strong> on failure.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fputs.html">fputs</a><br>
+    <a href="gets.html">gets</a><br>
+    <a href="printf.html">printf</a><br>
+    <a href="putc.html">putc</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    remove
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int remove( const char *fname );
+</pre>
+
+  <p>The remove() function erases the file specified by <em>fname</em>.
+  The return value of remove() is zero upon success, and non-zero if
+  there is an error.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="rename.html">rename</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    rename
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int rename( const char *oldfname, const char *newfname );
+</pre>
+
+  <p>The function rename() changes the name of the file
+  <em>oldfname</em> to <em>newfname</em>. The return value of rename()
+  is zero upon success, non-zero on error.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="remove.html">remove</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    rewind
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  void rewind( FILE *stream );
+</pre>
+
+  <p>The function rewind() moves the file position indicator to the
+  beginning of the specified <em>stream</em>, also clearing the error
+  and <strong>EOF</strong> flags associated with that stream.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fseek.html">fseek</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    scanf
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int scanf( const char *format, ... );
+</pre>
+
+  <p>The scanf() function reads input from <strong>stdin</strong>,
+  according to the given <em>format</em>, and stores the data in the
+  other arguments. It works a lot like <a href=
+  "printf.html">printf</a>(). The <em>format</em> string consists of
+  control characters, whitespace characters, and non-whitespace
+  characters. The control characters are preceded by a % sign, and are
+  as follows:</p>
+
+  <table class="code-table">
+    <tr>
+      <th class="code-table-th">Control Character</th>
+
+      <th class="code-table-th">Explanation</th>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%c</td>
+
+      <td class="code-table-td">a single character</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%d</td>
+
+      <td class="code-table-td">a decimal integer</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%i</td>
+
+      <td class="code-table-td">an integer</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%e, %f, %g</td>
+
+      <td class="code-table-td">a floating-point number</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%lf</td>
+
+      <td class="code-table-td">a double</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%o</td>
+
+      <td class="code-table-td">an octal number</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%s</td>
+
+      <td class="code-table-td">a string</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%x</td>
+
+      <td class="code-table-td">a hexadecimal number</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%p</td>
+
+      <td class="code-table-td">a pointer</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%n</td>
+
+      <td class="code-table-td">an integer equal to the number of
+      characters read so far</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%u</td>
+
+      <td class="code-table-td">an unsigned integer</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%[]</td>
+
+      <td class="code-table-td">a set of characters</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">%%</td>
+
+      <td class="code-table-td">a percent sign</td>
+    </tr>
+  </table>
+
+  <p>scanf() reads the input, matching the characters from format. When
+  a control character is read, it puts the value in the next variable.
+  Whitespace (tabs, spaces, etc) are skipped. Non-whitespace characters
+  are matched to the input, then discarded. If a number comes between
+  the % sign and the control character, then only that many characters
+  will be converted into the variable. If scanf() encounters a set of
+  characters, denoted by the %[] control character, then any characters
+  found within the brackets are read into the variable. The return
+  value of scanf() is the number of variables that were successfully
+  assigned values, or <strong>EOF</strong> if there is an error.</p>
+
+  <div class="related-examples-format">
+    Example code:
+  </div>
+
+  <div class="related-examples">
+
+    <p>This code snippet uses scanf() to read an int, float, and a
+    double from the user. Note that the variable arguments to scanf()
+    are passed in by address, as denoted by the ampersand (&amp;)
+    preceding each variable:</p>
+
+<pre class="prettyprint">
+ int i;
+ float f;               
+ double d;
+
+ printf( &quot;Enter an integer: &quot; );
+ scanf( &quot;%d&quot;, &amp;i );             
+
+ printf( &quot;Enter a float: &quot; );
+ scanf( &quot;%f&quot;, &amp;f );             
+
+ printf( &quot;Enter a double: &quot; );
+ scanf( &quot;%lf&quot;, &amp;d );             
+
+ printf( &quot;You entered %d, %f, and %f\n&quot;, i, f, d );
+</pre>
+  </div>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fgets.html">fgets</a><br>
+    <a href="fscanf.html">fscanf</a><br>
+    <a href="printf.html">printf</a><br>
+    <a href="sscanf.html">sscanf</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    setbuf
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  void setbuf( FILE *stream, char *buffer );
+</pre>
+
+  <p>The setbuf() function sets <em>stream</em> to use <em>buffer</em>,
+  or, if <em>buffer</em> is null, turns off buffering. If a
+  non-standard buffer size is used, it should be BUFSIZ characters
+  long.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fclose.html">fclose</a><br>
+    <a href="fopen.html">fopen</a><br>
+    <a href="setvbuf.html">setvbuf</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    setvbuf
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int setvbuf( FILE *stream, char *buffer, int mode, size_t size );
+</pre>
+
+  <p>The function setvbuf() sets the buffer for <em>stream</em> to be
+  <em>buffer</em>, with a size of <em>size</em>. <em>mode</em> can
+  be:</p>
+
+  <ul>
+    <li>_IOFBF, which indicates full buffering</li>
+
+    <li>_IOLBF, which means line buffering</li>
+
+    <li>_IONBF, which means no buffering</li>
+  </ul>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="setbuf.html">setbuf</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    sprintf
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int sprintf( char *buffer, const char *format, ... );
+</pre>
+
+  <p>The sprintf() function is just like <a href=
+  "printf.html">printf</a>(), except that the output is sent to
+  <em>buffer</em>. The return value is the number of characters
+  written. For example:</p>
+<pre class="prettyprint">
+   char string[50];
+   int file_number = 0;         
+
+   sprintf( string, &quot;file.%d&quot;, file_number );
+   file_number++;
+   output_file = fopen( string, &quot;w&quot; );                
+</pre>
+
+  <p>Note that sprintf() does the opposite of a function like <a
+  href="../stdstring/atoi.html">atoi</a>() -- where <a href=
+  "../stdstring/atoi.html">atoi</a>() converts a string into a number,
+  sprintf() can be used to convert a number into a string.</p>
+
+  <p>For example, the following code uses sprintf() to convert an
+  integer into a string of characters:</p>
+<pre class="prettyprint">
+   char result[100];
+   int num = 24;
+   sprintf( result, &quot;%d&quot;, num );              
+</pre>
+
+  <p>This code is similar, except that it converts a floating-point
+  number into an array of characters:</p>
+<pre class="prettyprint">
+   char result[100];
+   float fnum = 3.14159;
+   sprintf( result, &quot;%f&quot;, fnum );
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    (Standard C String and Character) <a href=
+    "../stdstring/atof.html">atof</a><br>
+    (Standard C String and Character) <a href=
+    "../stdstring/atoi.html">atoi</a><br>
+    (Standard C String and Character) <a href=
+    "../stdstring/atol.html">atol</a><br>
+    <a href="fprintf.html">fprintf</a><br>
+    <a href="printf.html">printf</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    sscanf
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int sscanf( const char *buffer, const char *format, ... );
+</pre>
+
+  <p>The function sscanf() is just like <a href=
+  "scanf.html">scanf</a>(), except that the input is read from
+  <em>buffer</em>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fscanf.html">fscanf</a><br>
+    <a href="scanf.html">scanf</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    tmpfile
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  FILE *tmpfile( void );
+</pre>
+
+  <p>The function tmpfile() opens a temporary file with an unique
+  filename and returns a pointer to that file. If there is an error,
+  null is returned.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="tmpnam.html">tmpnam</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    tmpnam
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  char *tmpnam( char *name );
+</pre>
+
+  <p>The tmpnam() function creates an unique filename and stores it in
+  <em>name</em>. tmpnam() can be called up to <strong>TMP_MAX</strong>
+  times.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="tmpfile.html">tmpfile</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    ungetc
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdio&gt;
+  int ungetc( int ch, FILE *stream );
+</pre>
+
+  <p>The function ungetc() puts the character <em>ch</em> back in
+  <em>stream</em>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="getc.html">getc</a><br>
+    (C++ I/O) <a href="../cppio/putback.html">putback</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    vprintf, vfprintf, and vsprintf
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdarg&gt;
+  #include &lt;cstdio&gt;
+  int vprintf( char *format, <strong>va_list</strong> arg_ptr );
+  int vfprintf( FILE *stream, const char *format, <strong>va_list</strong> arg_ptr );
+  int vsprintf( char *buffer, char *format, <strong>va_list</strong> arg_ptr );
+</pre>
+
+  <p>These functions are very much like <a href=
+  "printf.html">printf</a>(), <a href="fprintf.html">fprintf</a>(), and
+  <a href="sprintf.html">sprintf</a>(). The difference is that the
+  argument list is a pointer to a list of arguments.
+  <strong>va_list</strong> is defined in cstdarg, and is also used by
+  (Other Standard C Functions) <a href=
+  "../stdother/va_arg.html">va_arg</a>(). For example:</p>
+<pre class="prettyprint">
+   void error( char *fmt, ... ) {
+     <strong>va_list</strong> args;
+     va_start( args, fmt );
+     fprintf( stderr, &quot;Error: &quot; );
+     vfprintf( stderr, fmt, args );
+     fprintf( stderr, &quot;\n&quot; );
+     va_end( args );
+     exit( 1 );
+   }            
+</pre>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+</body>
+<!-- Mirrored from cppreference.com/stdio/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,555 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="fr">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Lcc</title>
+</head>
+
+<body>
+
+<h2>Lcc-win32 command line options</h2>
+<table border="0" cellspacing="0" cellpadding="0" width="653" style="border-collapse: collapse; mso-padding-alt: 0cm 3.5pt 0cm 3.5pt; margin-left: 8.75pt">
+  <tr>
+    <td width="188" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">Option<o:p>
+      </o:p>
+      </font>
+      </b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal">Meaning</b><o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="188" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoFootnoteText" style="margin-right:0cm;text-indent:4.0pt"><b style="mso-bidi-font-weight:normal"><font face="Courier New"><span style="mso-ansi-language: EN-US">-</span><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Courier New&quot;;
+  mso-ansi-language:EN-US">A</span><span style="font-family:&quot;Courier New&quot;;mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">All warnings will be active.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="188" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoFootnoteText" style="margin-right:0cm;text-indent:4.0pt"><b style="mso-bidi-font-weight:normal"><font face="Courier New"><span style="mso-ansi-language: EN-US">-</span><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Courier New&quot;;
+  mso-ansi-language:EN-US">ansic</span><span style="font-family:&quot;Courier New&quot;;mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Disallow the language extensions of lcc-win32:
+      operator overloading and references will not be accepted.<o:p>
+      Only the standard C99 syntax will be used.</o:p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="188" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <b>-C</b>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      Keep comments in the preprocessed output.
+      <p>You should be prepared for side effects when using -C; it causes the
+      preprocessor to treat comments as tokens in their own right. For example,
+      macro redefinitions that were trivial when comments were replaced by a
+      single space might become significant when comments are retained. Also,
+      comments appearing at the start of what would be a directive line have the
+      effect of turning that line into an ordinary source line, since the first
+      token on the line is no longer a #.
+    </td>
+  </tr>
+  <tr>
+    <td width="188" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">-check<o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Read all the input file without generating anything.
+      The warning level is automatically increased. This is designed for
+      checking a source file for errors and warnings.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="188" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-indent:4.0pt">&nbsp;</p>
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">-D<o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Define the symbol following the ‘D’. Example:<o:p>
+      </o:p>
+      </p>
+      <p class="MsoNormal">-DNODEBUG<o:p>
+      </o:p>
+      </p>
+      <p class="MsoNormal">The symbol NODEBUG is #defined. Note that there is NO
+      space between the D and the symbol.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <p class="MsoFootnoteText" style="margin-right:0cm;text-indent:4.0pt"><b style="mso-bidi-font-weight:normal"><span style="font-size: 12.0pt; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="Courier New">-E<o:p>
+      </o:p>
+      </font>
+      </span></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Generate an intermediate file with the output of the
+      preprocessor. The output file name will be deduced from the input file
+      name, i.e., for a compilation of foo.c you will obtain foo.i.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <p class="MsoFootnoteText" style="margin-right:0cm;text-indent:4.0pt"><b style="mso-bidi-font-weight:normal"><span style="font-size: 12.0pt; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="Courier New">-E+<o:p>
+      </o:p>
+      </font>
+      </span></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Like the -E option, but instead of generating a #line
+      xxx directive, the preprocessor generates a # xxx directive. Some systems
+      need this option, specifically some versions of gcc.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <p class="MsoFootnoteText" style="margin-right:0cm;text-indent:4.0pt"><b style="mso-bidi-font-weight:normal"><span style="font-size: 12.0pt; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="Courier New">-EP<o:p>
+      </o:p>
+      </font>
+      </span></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Like the -E option, but no #line directives will be
+      generated.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="188" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-indent:4.0pt">&nbsp;</p>
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">-errout=<o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Append the warning/error messages to the indicated
+      file. Example&nbsp;:<o:p>
+      </o:p>
+      </p>
+      <p class="MsoHeader" style="tab-stops:36.0pt center 8.0cm right 16.0cm"><span style="mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;;mso-ansi-language:
+  EN-US">errout=Myexe.err<o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal">This will <i style="mso-bidi-font-style:normal">append</i>
+      to Myexe.err all warnings and error messages.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="188" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-indent:4.0pt">&nbsp;</p>
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">-e<i style="mso-bidi-font-style:
+  normal">N</i><o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Set the maximum error count to <i style="mso-bidi-font-style:
+  normal">N</i>. Example:<o:p>
+      </o:p>
+      </p>
+      <p class="MsoNormal">-e25<o:p>
+      </o:p>
+      </p>
+      <p class="MsoNormal">The compiler will stop after 25 errors.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <p class="MsoNormal">&nbsp;</p>
+      <p class="MsoFootnoteText" style="margin-right:0cm;text-indent:4.0pt"><b style="mso-bidi-font-weight:normal"><span style="font-size: 12.0pt; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="Courier New">-fno-inline<o:p>
+      </o:p>
+      </font>
+      </span></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Disables any inling of functions. No inline expansion
+      will be performed, even if optimizations or on.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <p class="MsoNormal">&nbsp;</p>
+      <p class="MsoFootnoteText" style="margin-right:0cm;text-indent:4.0pt"><b style="mso-bidi-font-weight:normal"><span style="font-size: 12.0pt; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="Courier New">-Fo&lt;file
+      name&gt;<o:p>
+      </o:p>
+      </font>
+      </span></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">This forces the name of the output file. Normally lcc
+      deduces that name from the name of the input file, i.e., for foo.c,
+      foo.obj, or foo.asm, or foo.i will be generated.<o:p>
+      </o:p>
+      </p>
+      <p class="MsoNormal">This option allows you to specify another name.
+      Please, be careful using it, since no checks are run on the name. You can,
+      in principle, make careless errors, such as: lcc foo.c –Fogg.c and the
+      output binary object file will be called gg.c..., which is not
+      recommended.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <p class="MsoFootnoteText" style="margin-right:0cm;text-indent:4.0pt"><font face="Courier New"><b style="mso-bidi-font-weight:normal"><span style="font-size: 12.0pt; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US">-g2</span></b><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Courier New&quot;;
+  mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></font></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Generate the debugging information. Two types of
+      debug information will be generated: COFF and CodeView (NB09).<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <p class="MsoFootnoteText" style="margin-right:0cm;text-indent:0cm"><b style="mso-bidi-font-weight:normal"><span style="font-size: 12.0pt; mso-bidi-font-size: 10.0pt; mso-ansi-language: EN-US"><font face="Courier New"><span style="mso-spacerun: yes">&nbsp;</span>-g3<o:p>
+      </o:p>
+      </font>
+      </span></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Arrange for function stack tracing. If a trap occurs,
+      the function stack will be displayed.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">-g4<o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Arrange for function stack and line number tracing.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">-g5<o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Arrange for function stack, line number, and return
+      call stack corruption tracing.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="188" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-indent:4.0pt">&nbsp;</p>
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">-I<o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Add a path to the path included, i.e., to the path
+      the compiler follows to find the header files. Example:<o:p>
+      &nbsp;<br>
+      <font face="Courier New">-Ic:\project\headers<o:p>
+      &nbsp;</font><br>
+      Note that there is NO space between the I and the
+      following path.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="188" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      &nbsp;
+      <p>
+      <b><font face="Courier New">-libcdl</font></b>
+      </p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      Use the declarations needed to link with lcclibc.dll instead of libc.lib,
+      the static library. Most of the declarations are the same for both except
+      some rare exceptions like the table of the ctype.h library
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">-M<o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Print in standard output the names of all files that
+      the preprocessor has opened when processing the given input file. If the
+      Fo option is active, printing will be done in the file indicated by the Fo
+      option. No object file is generated.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">-M1<o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Print in standard output each include file
+      recursively, indicating where it is called from, and when it is closed. <o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">-nw<o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">No warnings will be emitted. Errors will be still
+      printed.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">-O<o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Optimize the output. This activates the peephole
+      optimizer and the inline keyword. Do not use this option with the -g
+      option above. <o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <b><font face="Courier New">-overflowcheck</font></b>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      Generates code to check for any overflow in integer addition, subtraction
+      and multiplication. If an overflow is detected, the user function&nbsp;<br>
+      <font face="Courier New">void _overflow(char *FunctionName, int line);</font><br>
+      is called. A default implementation that just prints the function name and
+      the line in stderr is supplied.
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">-p6<o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Enable Pentium III instructions<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <b><font face="Courier New">-profile</font></b>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      Generate profiling code. At each line, the compiler will generate code to
+      record the number of times execution passed through that line. At the end
+      of the program, a file is generated with the name
+      &quot;profile.data&quot;, that contains the profiling data for the
+      execution. This file is erased, if it exists.
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <p class="MsoNormal">&nbsp;</p>
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">-S<o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Generate an assembly file. The output file name will
+      be deduced from the input file name, i.e., for a compilation of foo.c you
+      will obtain foo.asm.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="188" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">-U<o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Undefine the symbol following the ‘U’.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">-unused<o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Warns about unused assignments and suppresses the
+      dead code. Use with care<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="188" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">-s <i>n</i><o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Set the switch density to <i>n </i>that must be a
+      value between 0.0 and 1.0. Example: <span style="font-family:&quot;Courier New&quot;">-s
+      0.1</span><o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="188" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">-v<o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Show compiler version and compilation date<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="188" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">-x<o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Generate browse information in an .xrf file.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <p class="MsoNormal">&nbsp;</p>
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">-z<o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Generate a file with the intermediate language of
+      lcc. The name of the generated file will have a ‘.lil’ extension (lcc’s
+      intermediate language).<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">-Zp[1,2,4,8,16]<o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">Set the default alignment in structures to one, two,
+      four, etc. If you set it to one, this actually means no alignment at all.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr style="mso-row-margin-left:.35pt">
+    <td style="mso-cell-special: placeholder; border-style: groove; border-width: medium; padding: 0cm" width="180">
+      <p class="MsoNormal" style="text-indent:4.0pt"><b style="mso-bidi-font-weight:
+  normal"><font face="Courier New">File.asm<o:p>
+      </o:p>
+      </font></b></p>
+    </td>
+    <td width="429" valign="top" style="border-style: groove; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal">All files with a .asm extension are assumed to be
+      files written for lcc’s assembler. Beware: the syntax of lcc’s
+      assembler is radically different from all standard assemblers. See the
+      chapter about the assembler for more information.<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

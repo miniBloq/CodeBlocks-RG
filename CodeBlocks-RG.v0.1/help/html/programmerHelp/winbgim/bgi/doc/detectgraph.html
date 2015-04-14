@@ -1,0 +1,155 @@
+<TITLE>BGI Documentation for 
+detectgraph
+</TITLE>
+<H2>
+detectgraph
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void detectgraph(int *graphdriver, int *graphmode);
+
+Description</PRE>
+detectgraph detects your system's graphics adapter and chooses the mode that provides the highest resolution for that adapter. If no graphics hardware is detected, *graphdriver is set to grNotDetected (-2), and graphresult returns grNotDetected (-2).
+<P>
+*graphdriver is an integer that specifies the graphics driver to be used. You can give it a value using a constant of the graphics_drivers enumeration type defined in graphics.h and listed as follows:
+<TABLE>
+<TR><TD><B>graphics_drivers constant&nbsp;&nbsp;&nbsp;&nbsp;</B><TD><B>Numeric value</B>
+<TR><TD>DETECT<TD>0 (requests autodetect)
+<TR><TD>CGA<TD>1
+<TR><TD>MCGA<TD>2
+<TR><TD>EGA<TD>3
+<TR><TD>EGA64<TD>4
+<tr><td>EGAMONO<td>5
+<tr><td>IBM8514<td>6
+<tr><td>HERCMONO<td>7
+<tr><td>ATT400<td>8
+<tr><td>VGA<td>9
+<tr><td>PC3270<TD>10
+</TABLE>
+<P>
+*graphmode is an integer that specifies the initial graphics mode (unless *graphdriver equals DETECT; in which case, *graphmode is set to the highest resolution available for the detected driver). You can give *graphmode a value using a constant of the graphics_modes enumeration type defined in graphics.h and listed as follows.
+<TABLE>
+<TR><TD><B>Graphics&nbsp;&nbsp;&nbsp;</B><TD>&nbsp;<TD>&nbsp;<TD><B>Columns&nbsp;&nbsp;&nbsp;</B>
+<TR><TD><B>Driver</B><TD><B>graphics_mode&nbsp;&nbsp;&nbsp;</B><TD><B>Value&nbsp;&nbsp;&nbsp;</B><TD><B>&nbsp;x
+Rows</B><TD><B>Palette&nbsp;&nbsp;&nbsp;</B><TD><B>Pages</B>
+<TR><TD>CGA<TD>CGAC0<td>0<td>320 x 200<td>C0<td>1
+<TR><TD>        <TD>CGAC1	<TD>1	<TD>320 x 200	<TD>C1	<TD>1
+<TR><TD>	<TD>CGAC2	<TD>2	<TD>320 x 200	<TD>C2	<TD>1
+<TR><TD>	<TD>CGAC3	<TD>3	<TD>320 x 200	<TD>C3	<TD>1
+<TR><TD>	<TD>CGAHI	<TD>4	<TD>640 x 200	<TD>2 color	<TD>1
+<TR><TD>&nbsp;
+<TR><TD>MCGA	<TD>MCGAC0	<TD>0	<TD>320 x 200	<TD>C0	<TD>1
+<TR><TD>&nbsp;
+<TR><TD>        <TD>MCGAC1	<TD>1	<TD>320 x 200	<TD>C1	<TD>1
+<TR><TD>	<TD>MCGAC2	<TD>2	<TD>320 x 200	<TD>C2	<TD>1
+<TR><TD>	<TD>MCGAC3	<TD>3	<TD>320 x 200	<TD>C3	<TD>1
+<TR><TD>	<TD>MCGAMED	<TD>4	<TD>640 x 200	<TD>2 color	<TD>1
+<TR><TD>	<TD>MCGAHI	<TD>5	<TD>640 x 480	<TD>2 color	<TD>1
+<TR><TD>&nbsp;
+<TR><TD>EGA	<TD>EGALO	<TD>0	<TD>640 x 200	<TD>16 color	<TD>4
+<TR><TD>&nbsp;
+<TR><TD>        <TD>EGAHI	<TD>1	<TD>640 x 350	<TD>16 color	<TD>2
+<TR><TD>&nbsp;
+<TR><TD>EGA64	<TD>EGA64LO	<TD>0	<TD>640 x 200	<TD>16 color	<TD>1
+<TR><TD>&nbsp;
+<TR><TD>        <TD>EGA64HI	<TD>1	<TD>640 x 350	<TD>4 color	<TD>1
+<TR><TD>&nbsp;
+<TR><TD>EGA-MONO<TD>EGAMONOHI	<TD>3	<TD>640 x 350	<TD>2 color 	<TD>1 w/64K
+<TR><TD>        <TD>EGAMONOHI	<TD>3	<TD>640 x 350	<TD>2 color 	<TD>2 w/256K
+<TR><TD>&nbsp;
+<TR><TD>HERC	<TD>HERCMONOHI	<TD>0	<TD>720 x 348	<TD>2 color <TD>2
+<TR><TD>&nbsp;
+<TR><TD>ATT400	<TD>ATT400C0	<TD>0	<TD>320 x 200	<TD>C0	<TD>1
+<TR><TD>        <TD>ATT400C1	<TD>1	<TD>320 x 200	<TD>C1	<TD>1
+<TR><TD>	<TD>ATT400C2	<TD>2	<TD>320 x 200	<TD>C2	<TD>1
+<TR><TD>	<TD>ATT400C3	<TD>3	<TD>320 x 200	<TD>C3	<TD>1
+<TR><TD>	<TD>ATT400MED	<TD>4	<TD>640 x 200	<TD>2 color	<TD>1
+<TR><TD>	<TD>ATT400HI	<TD>5	<TD>640 x 400	<TD>2 color	<TD>1
+<TR><TD>&nbsp;
+<TR><TD>VGA	<TD>VGALO	<TD>0	<TD>640 x 200	<TD>16 color	<TD>2
+<TR><TD>        <TD>VGAMED	<TD>1	<TD>640 x 350	<TD>16 color	<TD>2
+<TR><TD>	<TD>VGAHI	<TD>2	<TD>640 x 480	<TD>16 color	<TD>1
+<TR><TD>&nbsp;
+<TR><TD>PC3270	<TD>PC3270HI	<TD>0	<TD>720 x 350	<TD>2 color	<TD>1
+<TR><TD>
+<TR><TD>IBM8514	<TD>IBM8514HI	<TD>0	<TD>640 x 480	<TD>256 color	<TD>?
+<TR><TD>        <TD>IBM8514LO	<TD>0	<TD>1024 x 768	<TD>256 color   <TD>?
+
+</TABLE>
+Note:	The main reason to call detectgraph directly is to override the graphics mode that detectgraph recommends to initgraph.
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+The <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> version of
+detectgraph returns VGA for the graphdriver and VGAHI for the
+graphmode, regardless of the machine's hardware.
+However, the screen is not necessarily 640&nbsp;x&nbsp;480.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="graphresult.html"> graphresult </A>
+<DD><A HREF="initgraph.html"> initgraph </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* detectgraph example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+/* the names of the various cards supported */
+char *dname[] = { "requests detection",
+                  "a CGA",
+                  "an MCGA",
+                  "an EGA",
+                  "a 64K EGA",
+                  "a monochrome EGA",
+                  "an IBM 8514",
+                  "a Hercules monochrome",
+                  "an AT&T 6300 PC",
+                  "a VGA",
+
+                  "an IBM 3270 PC"
+                };
+
+int main(void)
+{
+   /* used to return detected hardware info. */
+   int gdriver, gmode, errorcode;
+
+   /* detect the graphics hardware available */
+   detectgraph(&gdriver, &gmode);
+
+   /* read result of detectgraph call */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   /* display the information detected */
+   clrscr();
+   printf("You have %s video display card.\n", dname[gdriver]);
+   printf("Press any key to halt:");
+   getch();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

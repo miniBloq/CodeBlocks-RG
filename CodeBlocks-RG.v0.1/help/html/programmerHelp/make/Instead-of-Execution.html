@@ -1,0 +1,108 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Instead%20of%20Execution">Instead of Execution</a>,
+Next:<a rel="next" accesskey="n" href="Avoiding-Compilation.html#Avoiding%20Compilation">Avoiding Compilation</a>,
+Previous:<a rel="previous" accesskey="p" href="Goals.html#Goals">Goals</a>,
+Up:<a rel="up" accesskey="u" href="Running.html#Running">Running</a>
+<hr><br>
+</div>
+
+<h3 class="section">Instead of Executing the Commands</h3>
+
+   <p>The makefile tells <code>make</code> how to tell whether a target is up to date,
+and how to update each target.  But updating the targets is not always
+what you want.  Certain options specify other activities for <code>make</code>.
+
+     <dl>
+<dt><code>-n</code>
+     <dd><dt><code>--just-print</code>
+     <dd><dt><code>--dry-run</code>
+     <dd><dt><code>--recon</code>
+     <dd>
+
+     <p>"No-op".  The activity is to print what commands would be used to make
+the targets up to date, but not actually execute them.
+
+     <br><dt><code>-t</code>
+     <dd><dt><code>--touch</code>
+     <dd>
+
+     <p>"Touch".  The activity is to mark the targets as up to date without
+actually changing them.  In other words, <code>make</code> pretends to compile
+the targets but does not really change their contents.
+
+     <br><dt><code>-q</code>
+     <dd><dt><code>--question</code>
+     <dd>
+
+     <p>"Question".  The activity is to find out silently whether the targets
+are up to date already; but execute no commands in either case.  In other
+words, neither compilation nor output will occur.
+
+     <br><dt><code>-W </code><var>file</var><code></code>
+     <dd><dt><code>--what-if=</code><var>file</var><code></code>
+     <dd><dt><code>--assume-new=</code><var>file</var><code></code>
+     <dd><dt><code>--new-file=</code><var>file</var><code></code>
+     <dd>
+
+     <p>"What if".  Each <code>-W</code> flag is followed by a file name.  The given
+files' modification times are recorded by <code>make</code> as being the present
+time, although the actual modification times remain the same. 
+You can use the <code>-W</code> flag in conjunction with the <code>-n</code> flag
+to see what would happen if you were to modify specific files. 
+</dl>
+
+   <p>With the <code>-n</code> flag, <code>make</code> prints the commands that it would
+normally execute but does not execute them.
+
+   <p>With the <code>-t</code> flag, <code>make</code> ignores the commands in the rules
+and uses (in effect) the command <code>touch</code> for each target that needs to
+be remade.  The <code>touch</code> command is also printed, unless <code>-s</code> or
+<code>.SILENT</code> is used.  For speed, <code>make</code> does not actually invoke
+the program <code>touch</code>.  It does the work directly.
+
+   <p>With the <code>-q</code> flag, <code>make</code> prints nothing and executes no
+commands, but the exit status code it returns is zero if and only if the
+targets to be considered are already up to date.  If the exit status is
+one, then some updating needs to be done.  If <code>make</code> encounters an
+error, the exit status is two, so you can distinguish an error from a
+target that is not up to date.
+
+   <p>It is an error to use more than one of these three flags in the same
+invocation of <code>make</code>.
+
+   <p>The <code>-n</code>, <code>-t</code>, and <code>-q</code> options do not affect command
+lines that begin with <code>+</code> characters or contain the strings
+<code>$(MAKE)</code> or <code>${MAKE}</code>.  Note that only the line containing
+the <code>+</code> character or the strings <code>$(MAKE)</code> or <code>${MAKE}</code>
+is run regardless of these options.  Other lines in the same rule are
+not run unless they too begin with <code>+</code> or contain <code>$(MAKE)</code> or
+<code>${MAKE}</code> (See <a href="MAKE-Variable.html#MAKE%20Variable">How the <code>MAKE</code> Variable Works</a>.)
+
+   <p>The <code>-W</code> flag provides two features:
+
+     <ul>
+<li>If you also use the <code>-n</code> or <code>-q</code> flag, you can see what
+<code>make</code> would do if you were to modify some files.
+
+     <li>Without the <code>-n</code> or <code>-q</code> flag, when <code>make</code> is actually
+executing commands, the <code>-W</code> flag can direct <code>make</code> to act
+as if some files had been modified, without actually modifying the
+files. 
+</ul>
+
+   <p>Note that the options <code>-p</code> and <code>-v</code> allow you to obtain other
+information about <code>make</code> or about the makefiles in use
+(see <a href="Options-Summary.html#Options%20Summary">Summary of Options</a>).
+
+   </body></html>
+

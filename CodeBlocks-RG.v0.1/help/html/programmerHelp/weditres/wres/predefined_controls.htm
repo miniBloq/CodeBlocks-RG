@@ -1,0 +1,138 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Predefined Controls</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc494631967">Predefined Controls</a></h2>
+<p>The system provides several predefined window classes for controls. Controls
+belonging to these window classes are called <i>predefined controls</i>. An
+application creates a predefined control of a particular type by specifying the
+appropriate window class name in either the <b>CreateWindowEx</b> function or
+the dialog box template. The following are the predefined window classes.</p>
+<table border="0" cellpadding="0" style="mso-cellspacing:1.5pt">
+  <tr>
+    <td width="30%" valign="top" style="width:30.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>Name<o:p>
+      </o:p>
+      </b></p>
+    </td>
+    <td width="70%" valign="top" style="width:70.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>Description<o:p>
+      </o:p>
+      </b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="30%" valign="top" style="width:30.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">BUTTON</p>
+    </td>
+    <td width="70%" valign="top" style="width:70.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Creates button controls. These controls typically
+      notify the parent window when the user chooses the control. For more
+      information, see <a href="/wres/buttons_desc.htm">Buttons</a>.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="30%" valign="top" style="width:30.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">COMBOBOX</p>
+    </td>
+    <td width="70%" valign="top" style="width:70.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Creates combo boxes. These controls are a combination
+      of list boxes and edit controls, letting the user choose and edit items.
+      For more information, see <a href="wres/combo_box_desc.htm">Combo
+      Boxes</a>.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="30%" valign="top" style="width:30.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">EDIT</p>
+    </td>
+    <td width="70%" valign="top" style="width:70.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Creates edit controls. These controls let the user
+      view and edit text. For more information, see <a href="/wres/edit_controls_desc.htm">Edit
+      Controls</a>.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="30%" valign="top" style="width:30.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">LISTBOX</p>
+    </td>
+    <td width="70%" valign="top" style="width:70.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Creates list boxes. These controls display a list
+      from which the user can select one or more items. For more information,
+      see <a href="../../api/api2/listbox_9s4z.htm">List Boxes</a>.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="30%" valign="top" style="width:30.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">RichEdit</p>
+    </td>
+    <td width="70%" valign="top" style="width:70.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Creates Rich Edit version 1.0 controls. These
+      controls let the user view and edit text with character and paragraph
+      formatting, and can include embedded COM objects. For more information,
+      see <a href="../../api/api2/richedit_5a7n.htm">Rich Edit Controls</a>.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="30%" valign="top" style="width:30.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">RICHEDIT_CLASS</p>
+    </td>
+    <td width="70%" valign="top" style="width:70.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Creates Rich Edit version 2.0 controls. These
+      controls let the user view and edit text with character and paragraph
+      formatting, and can include embedded COM objects. For more information,
+      see <a href="../../api/api2/richedit_5a7n.htm">Rich Edit Controls</a>.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="30%" valign="top" style="width:30.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">SCROLLBAR</p>
+    </td>
+    <td width="70%" valign="top" style="width:70.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Creates scroll bar controls. These controls let the
+      user choose the direction and distance to scroll information in a related
+      window. For more information, see <a href="/wres/scroll_bars.htm">Scroll
+      Bars</a>.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="30%" valign="top" style="width:30.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">STATIC</p>
+    </td>
+    <td width="70%" valign="top" style="width:70.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Creates static controls. These controls often act as
+      labels for other controls. For more information, see <a href="/wres/static_controls.htm">Static
+      Controls</a>.</p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<p>Each predefined window class has a corresponding set of <i>control styles</i>
+that enable an application to vary the appearance and behavior of the controls
+it creates. For example, the BUTTON class supports styles to create push
+buttons, radio buttons, check boxes, and group boxes. An application specifies
+the style when creating the control.</p>
+<p>Each predefined window class has a corresponding set of notification and
+control messages. Applications rely on the notification messages to determine
+when the user has provided input to the controls. For example, a push button
+sends a <b>BN_CLICKED</b> message
+to the parent window when the user clicks the button. Applications use the
+control messages to retrieve information from the controls and to manipulate the
+appearance and behavior of the controls. For example, an application can send a <b>BM_GETCHECK</b>
+message to a check box to determine whether it currently contains a check mark.</p>
+<p>Most applications make extensive use of predefined controls in dialog boxes
+and other windows. Because predefined controls offer many capabilities, a full
+discussion of each is beyond the scope of this topic.</p>
+
+</body>
+
+</html>

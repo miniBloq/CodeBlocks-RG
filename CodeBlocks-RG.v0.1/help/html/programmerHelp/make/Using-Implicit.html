@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Using%20Implicit">Using Implicit</a>,
+Next:<a rel="next" accesskey="n" href="Catalogue-of-Rules.html#Catalogue%20of%20Rules">Catalogue of Rules</a>,
+Previous:<a rel="previous" accesskey="p" href="Implicit-Rules.html#Implicit%20Rules">Implicit Rules</a>,
+Up:<a rel="up" accesskey="u" href="Implicit-Rules.html#Implicit%20Rules">Implicit Rules</a>
+<hr><br>
+</div>
+
+<h3 class="section">Using Implicit Rules</h3>
+
+   <p>To allow <code>make</code> to find a customary method for updating a target file,
+all you have to do is refrain from specifying commands yourself.  Either
+write a rule with no command lines, or don't write a rule at all.  Then
+<code>make</code> will figure out which implicit rule to use based on which
+kind of source file exists or can be made.
+
+   <p>For example, suppose the makefile looks like this:
+
+<pre class="example">     foo : foo.o bar.o
+             cc -o foo foo.o bar.o $(CFLAGS) $(LDFLAGS)
+     </pre>
+
+<p>Because you mention <code>foo.o</code> but do not give a rule for it, <code>make</code>
+will automatically look for an implicit rule that tells how to update it. 
+This happens whether or not the file <code>foo.o</code> currently exists.
+
+   <p>If an implicit rule is found, it can supply both commands and one or
+more prerequisites (the source files).  You would want to write a rule
+for <code>foo.o</code> with no command lines if you need to specify additional
+prerequisites, such as header files, that the implicit rule cannot
+supply.
+
+   <p>Each implicit rule has a target pattern and prerequisite patterns.  There may
+be many implicit rules with the same target pattern.  For example, numerous
+rules make <code>.o</code> files: one, from a <code>.c</code> file with the C compiler;
+another, from a <code>.p</code> file with the Pascal compiler; and so on.  The rule
+that actually applies is the one whose prerequisites exist or can be made. 
+So, if you have a file <code>foo.c</code>, <code>make</code> will run the C compiler;
+otherwise, if you have a file <code>foo.p</code>, <code>make</code> will run the Pascal
+compiler; and so on.
+
+   <p>Of course, when you write the makefile, you know which implicit rule you
+want <code>make</code> to use, and you know it will choose that one because you
+know which possible prerequisite files are supposed to exist. 
+See <a href="Catalogue-of-Rules.html#Catalogue%20of%20Rules">Catalogue of Implicit Rules</a>,
+for a catalogue of all the predefined implicit rules.
+
+   <p>Above, we said an implicit rule applies if the required prerequisites "exist
+or can be made".  A file "can be made" if it is mentioned explicitly in
+the makefile as a target or a prerequisite, or if an implicit rule can be
+recursively found for how to make it.  When an implicit prerequisite is the
+result of another implicit rule, we say that <dfn>chaining</dfn> is occurring. 
+See <a href="Chained-Rules.html#Chained%20Rules">Chains of Implicit Rules</a>.
+
+   <p>In general, <code>make</code> searches for an implicit rule for each target, and
+for each double-colon rule, that has no commands.  A file that is mentioned
+only as a prerequisite is considered a target whose rule specifies nothing,
+so implicit rule search happens for it.  See <a href="Implicit-Rule-Search.html#Implicit%20Rule%20Search">Implicit Rule Search Algorithm</a>, for the
+details of how the search is done.
+
+   <p>Note that explicit prerequisites do not influence implicit rule search. 
+For example, consider this explicit rule:
+
+<pre class="example">     foo.o: foo.p
+     </pre>
+
+<p>The prerequisite on <code>foo.p</code> does not necessarily mean that
+<code>make</code> will remake <code>foo.o</code> according to the implicit rule to
+make an object file, a <code>.o</code> file, from a Pascal source file, a
+<code>.p</code> file.  For example, if <code>foo.c</code> also exists, the implicit
+rule to make an object file from a C source file is used instead,
+because it appears before the Pascal rule in the list of predefined
+implicit rules (see <a href="Catalogue-of-Rules.html#Catalogue%20of%20Rules">Catalogue of Implicit Rules</a>).
+
+   <p>If you do not want an implicit rule to be used for a target that has no
+commands, you can give that target empty commands by writing a semicolon
+(see <a href="Empty-Commands.html#Empty%20Commands">Defining Empty Commands</a>).
+
+   </body></html>
+

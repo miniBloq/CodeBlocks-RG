@@ -1,0 +1,91 @@
+<TITLE>BGI Documentation for 
+setmousequeuestatus
+</TITLE>
+<H2>
+setmousequeuestatus
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include "graphics.h"
+voud setmousequeuestatus(int kind, bool status=true);
+</PRE>
+
+
+
+<DT><B>Description</B><IMG SRC="win.gif" ALT="[WIN]"><DD>
+The 
+setmousequeuestatus
+function is available in the
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation of BGI
+graphics.
+This function controls whether mouse events of a particular kind are
+queued for processing.  If the status parameter is false, then mouse events of
+the specified kind are not queued.  This means that each time a
+mouse event of that kind occurs, any previous events of the same
+kind are deleted.  If the status parameter is true, then mouse events
+of the specified kind are queued, and each call to getmouseclick
+returns the details about the event at the front of the queue.
+<p>
+When a window first opens, queuing is turned off for all events.
+<p>
+<P><DT><B>See also</B>
+<DD><A HREF="clearmouseclick.html"> clearmouseclick </A>
+<DD><A HREF="ismouseclick.html"> ismouseclick </A>
+<DD><A HREF="getmouseclick.html"> getmouseclick </A>
+
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* mouse example */ 
+#include <iostream>
+#include "graphics.h"
+using namespace std;
+
+int main(void)
+{
+    int maxx, maxy;  // Maximum x and y pixel coordinates
+    int x, y;        // Coordinates of the mouse click
+    int divisor;     // Divisor for the length of a triangle side
+
+    // Put the machine into graphics mode and get the maximum coordinates:
+    initwindow(450, 300);         
+    setmousequeuestatus(WM_LBUTTONDOWN);
+    maxx = getmaxx( );
+    maxy = getmaxy( );
+
+    // Draw a white circle with red inside and a radius of 50 pixels:
+    setfillstyle(SOLID_FILL, RED);
+    setcolor(WHITE);
+    fillellipse(maxx/2, maxy/2, 50, 50);
+    
+    // Print a message and wait for a red pixel to be double clicked:
+    settextstyle(DEFAULT_FONT, HORIZ_DIR, 2);
+    outtextxy(20, 20, "Left click several times!");
+    setcolor(BLUE);
+    divisor = 2;
+    while (!ismouseclick(WM_LBUTTONDOWN))
+    {
+        delay(5000); // Five second delay, so there might be a several clicks
+    }
+
+    while (ismouseclick(WM_LBUTTONDOWN))
+    {
+        getmouseclick(WM_LBUTTONDOWN, x, y);
+        cout &lt;&lt; "The mouse was clicked at: ";
+        cout &lt;&lt; "x=" &lt;&lt; x;
+        cout &lt;&lt; " y=" &lt;&lt; y &lt;&lt; endl;
+    }
+    
+    // Switch back to text mode:
+    closegraph( );
+}
+</PRE>
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

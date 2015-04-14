@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>React: A first C++ project</title>
+<link href="../CSS/1colNheader.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.style10 {
+	color: #3C505E;
+	font-size: xx-small;
+	font-style: italic;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+h5 {
+	font-size: small;
+	color: rgb(90, 95, 102);
+}
+.style14 {color: #324E51}
+.style20 {font-size: x-small}
+.style34 {font-size: 14px}
+.style44 {
+	color: #666666;
+	font-style: italic;
+	font-size: 0.9em;
+}
+</style>
+</head>
+
+<body>
+<div id="wrapper">
+  <div id="header">
+    <table width="92%" border="0" align="center" cellpadding="2">
+      <tr>
+        <td width="294"><h1 align="left">Example C++ Program:</h1>
+        <p align="left"><span class="title"><span class="title">a First C++ Project</span></span><br />
+        </p></td>
+        <td width="211"><span class="style14"><img src="GO.gif" alt="image: Portion of grid" width="192" height="159" align="absmiddle" /></span></td>
+        <td width="120"><h2>React </h2></td>
+      </tr>
+    </table>
+  </div>
+  <div id="main">
+    <p class="abstract">C++ is a hybrid language, supporting both the <u>object-oriented</u> way of designing programs using classes and objects, and the <u>procedural</u> way of building programs using functions as the basic building blocks.</p>
+    <p class="abstract">&quot;React&quot; is a typical hybrid (O-O and procedural) C++ program. The main() function uses a Stopwatch class instance (an object) to measure the user's reaction time. The rest of the program is procedural.    </p>
+    <p class="abstract">The program assesses the user's reflexes by measuring the time it takes to press a key when the word <span class="highlight">&quot;GO!&quot;</span> appears after a random time lag. The stopwatch is used to measure the reaction time very accurately. You can see a typical time in the screen capture above.<span class="style34"><br />
+      </span><br />
+    As we build React and see how the program works, we'll also learn how  to build C++ projects like this one with Quincy. </p>
+    <hr />
+    <h2><br />
+    Before we start</h2>
+    <p>Create a  &quot;<em>react</em>&quot; subdirectory somewhere you choose to build this example.  </p>
+    <p>Get the example from the zip file:<a href="react.zip"> <img src="files.gif" alt="image: files" width="169" height="73" border="0" align="middle" /> react.zip</a>    </p>
+    <p>Save the archive into the new &quot;<em>react</em>&quot; subdirectory, and extract the source files from the archive.</p>
+    <p>The zip archive contains  the 3 source files (<em>.h, .cpp</em>)  shown above. It does  not include the Quincy project file <em>react[react.exe].PRJ.</em> <br />
+      We will create that project file as part of this tutorial.<br />
+      ___________ </p>
+    <h2>Creating a new &quot;react&quot; project </h2>
+    <p>The C++ code for &quot;react&quot; is in three source files.<br />
+    Two files: <em>Stopwatch.h </em>and <em>Stopwatch.cpp </em>contain the code for the Stopwatch class. File <em>react.cpp</em> contains the code that displays the GO! sign, and uses a Stopwatch object to measure the reaction time.</p>
+    <p>Quincy can help you manage a project composed of several files like this one. For this you need to create a project definition and save it in a project file. Once this is done, you will be able to  compile files that need to be compiled, and link the result into an executable program <em>react.exe</em> with a single click of the mouse or a key press.</p>
+    <p>Creating a Quincy project is very simple, really.<br />
+      Open the menu: <em>File -&gt; New -&gt; Project</em>. The project properties window opens:</p>
+    <table width="100%" border="0" cellpadding="2">
+      <tr>
+        <td><p class="caption">For the <em>Target Name</em>,  enter &quot;<cite>react</cite>&quot; (without the quote marks, of course).</p>
+          <p class="caption">For the <em>Target path</em>, enter (or browse to) the path of your &quot;react&quot; project directory.</p>
+        <p class="caption">Leave the <em>Working directory</em> entry blank.</p>
+        <p class="caption">The <em>react</em> project <em>Type of Build</em> is a <em>WinBGIm GUI application</em>, as we use the WinBGIm graphics library for the &quot;<em>GO!</em>&quot; window.</p>
+        <p class="caption">Make sure you un-tick the &quot;<em>With Console</em>&quot; tick box; we do not want a &quot;DOS&quot; window for this project!</p>
+        <p class="caption">- Click OK. </p></td>
+        <td><p align="center"><img src="project.gif" alt="project window" width="364" height="225" /><br />
+            <span class="style44">Quincy project window </span></p>
+        </td>
+      </tr>
+    </table>
+    <p>      The &quot;react&quot; project window opens.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="reactPRJ.gif" alt="project files" width="182" height="71" align="absmiddle" /><br />
+    - Right-click into the window and <em>&quot;Insert File(s)&quot;</em> <em>Stopwatch.cpp</em> and <em>react.cpp</em>.</p>
+    <p class="abstract"><strong>Note</strong> that  &quot;.cpp&quot; files only are  included into projects. Not header files.<br />
+  Header files are never compiled directly. A header (.h) file is compiled whenever a &quot;.cpp&quot; file that #include(s) the header file is compiled. </p>
+    <p>- Now save the project into the project directory <em>file-&gt;Save (or ctrl S). </em>Use the default filename offered by Quincy. Next time you want to open the project, all you'll need to do is double-click the project file name in explorer. </p>
+    <p>___________ </p>
+    <h2>Building and running the &quot;react.exe&quot; executable </h2>
+    <p>You can open any of the files that are part of the project by double-clicking on their name in the project window. Before we do this however, let us compile and link react, and play a little with the program to get familiar with it:<br />
+    Click: <em>Project-&gt;Build</em> (or press F6). <img src="build_F6.gif" alt="menu image" width="175" height="196" align="absmiddle" /></p>
+    <p>Quincy compiles the two &quot;.cpp&quot; files, then links them to produce &quot;react.exe&quot;. The commands it uses to compile and link are displayed into a &quot;Build&quot; window. </p>
+    <p>You can now run the program(<em>after closing the &quot;Build&quot; window)</em> by clicking on the filename &quot;react.exe&quot; in Windows Explorer, or within Quincy by clicking on <em>Project-&gt;Execute </em>(or pressing F9).</p>
+    <p>The program is self-explanatory. Just follow the instructions. Pressing any key will allow you to exit when the reaction time is displayed. </p>
+    <p class="abstract">- Be patient while waiting for the &quot;GO&quot; sign! It may take up to 20 seconds to appear.</p>
+    <p>___________</p>
+    <h2>How does it work?  </h2>
+    <p>&quot;react&quot; uses a Stopwatch object to measure the time. It also uses simple functions provided by the WinBGIm graphics library (this library comes with Quincy) to display a big GO! sign in colour in the small window, and to grab the key-press. </p>
+    <p><span class="highlight"><img src="stopwatch.gif" alt="stopwatch image" width="51" height="64" align="absbottom" /> The Stopwatch</span> is a very simple C++ class. It mimics a real-world stopwatch:<br />
+      <span class="Highlight">A Stopwatch</span> variable (an object) can be created using a <code>constructor</code>, counting can be started with the <code>start()</code> member function. The time elapsed since starting can be obtained with the member function <code>getElapsedTime()</code>.<br />
+    That's all there is to it. </p>
+    <p>The time is computed accurately by using the system <code>clock()</code> function that returns the number of clock ticks since the start of the program. <br />
+      If you want to study the design of the Stopwatch class in more detail,<br /> 
+    follow <a href="stopwatch.htm">this link <img src="stopwatch.gif" alt="stopwatch image" width="51" height="64" border="0" align="texttop" /></a>. </p>
+    <p><img src="smallGO.gif" alt="small GO! image" width="82" height="35" align="absmiddle" /> The application code in <em>react.cpp</em> is almost a pure procedural program, undistinguishable from C code, except that it creates a Stopwatch class instance (an object):</p>
+    <p><code>Stopwatch watch; <span class="comment">// declare a Stopwatch variable</span></code> </p>
+    <p>After waiting a random time between 1 and 20 seconds, the program displays the GO! sign and starts the stopwatch counting by calling its member function start():</p>
+    <p><code>watch.start(); <span class="comment">//Start counting</span> </code>  </p>
+    <p>When a key is pressed, the time elapsed since the stopwatch started is obtained by the Stopwatch member function getElapsedTime():</p>
+    <p><code>reactTime = watch.getElapsedTime(); <span class="comment">// Obtain reaction time</span> </code></p>
+    <p>The reaction time is then displayed in seconds and decimal fractions of a second. <br />
+    ___________</p>
+    <h2>Graphics</h2>
+    <p>React uses a small graphics screen and coloured fonts for output. in order to do this, it uses a simple 3rd party graphics library called <span class="Highlight">WinBGIm</span>. Graphics are not part of C++, but a large choice of 3rd party software libraries is available. </p>
+    <p>WinBGIm comes ready-installed with Quincy. It offers all we need here:</p>
+    <p>- To open a graphics window with white background and black text, react calls the WinBGIm functions: </p>
+    <p><code>initwindow(320, 240, <span class="string">&quot;React&quot;</span>, 400, 300);<br />
+setbkcolor(WHITE);<br />
+setcolor(BLACK); </code></p>
+    <p class="style10">(320, 240 are the width and height of the window in pixels, 400, 300 are the x and y coordinates of the top left corner.) </p>
+    <p>- To write the GO! sign, react sets a large bold font style (size 10) and clears the graphics screen. It outputs the text at coordinates 60 for x, 25 for y, from the top left corner: </p>
+    <p> <span class="comment"><code>// Set large text and bright colour</code></span><code><br />
+settextstyle(BOLD_FONT, HORIZ_DIR, 10);<br />
+setcolor(CYAN);<br />
+cleardevice();<br />
+outtextxy(60, 25, <span class="string">&quot;GO!&quot;</span>);</code></p>
+    <p>-The following simple WinBGIm code waits for the key to be pressed. </p>
+    <p> <span class="comment"><code>// Wait until a key is pressed</code></span><code><br />
+        <span class="keyword">while</span>(!kbhit())<br />
+&nbsp;&nbsp;&nbsp;&nbsp;delay(2);</code></p>
+    <p><code>kbhit()</code> returns true if the keyboard has been hit, false otherwise. <br />
+    <code>delay(<em>n</em>)</code> waits for a number <em>n</em> of milliseconds without loading the CPU. </p>
+    <p>Basic help about these and other functions available in the WinBGIm library is given by the Quincy menu: <a href="../../programmerHelp/winbgim/bgi/doc/index.html">Help->Programmer's Help</a>.  </p>
+    <hr />
+    <p class="abstract">- <strong class="Highlight">WinGBIm</strong> is a basic graphics drawing package that emulates one of the most successful graphics libraries of all times, the Borland Graphics Interface (BGI). WinbGIm adds some extra facilities, like the possibility of catching mouse clicks and mouse position. <br />
+      The success of BGI was due to its simplicity.
+      The code of graphical programs produced with WinBGIm is very simple, compared to that of other graphics packages. <br />
+    ___________<br />
+    - You'll understand really well how this code works if you implement your own modifications and extensions to this example. </p>
+  </div>
+  <div id="footer">
+    <div align="center" class="style10"><span class="style20">Maintained by</span> <img src="email.gif" alt="image: mainainer's email" width="167" height="18" align="absmiddle" /> <span class="style20">- Modified: 6 January 2006</span> </div>
+  </div>
+</div>
+</body>
+</html>

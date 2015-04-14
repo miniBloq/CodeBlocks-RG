@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/cppalgorithm/random_sample.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>random_sample</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C++ Algorithms</a> &gt; <a href=
+    "random_sample.html">random_sample</a>
+  </div>
+
+  <div class="name-format">
+    random_sample
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator random_sample( iterator start1, iterator end1, iterator start2, iterator end2 );
+  iterator random_sample( iterator start1, iterator end1, iterator start2, iterator end2, RandomNumberGenerator&amp; rnd );
+</pre>
+
+  <p>The random_sample() algorithm randomly copies elements from
+  [<em>start1</em>,<em>end1</em>) to [<em>start2</em>,<em>end2</em>).
+  Elements are chosen with uniform probability and elements from the
+  input range will appear at most once in the output range.</p>
+
+  <p>If a random number generator function object <em>rnd</em> is
+  supplied, then it will be used instead of an internal random number
+  generator.</p>
+
+  <p>The return value of random_sample() is an iterator to the end of
+  the output range.</p>
+
+  <p>random_sample() runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="next_permutation.html">next_permutation</a><br>
+    <a href="prev_permutation.html">prev_permutation</a><br>
+    <a href="random_sample_n.html">random_sample_n</a><br>
+    <a href="random_shuffle.html">random_shuffle</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/random_sample.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

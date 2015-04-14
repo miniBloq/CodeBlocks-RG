@@ -1,0 +1,82 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="fr">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Buttons</title>
+</head>
+
+<body>
+
+<h2>Buttons</h2>
+<p>A <i>button</i> is a control the user can click to provide input to an
+application. usually the input is a command action.</p>
+<p>A <i>push button</i> is a rectangle containing application-defined text
+(label), an icon, or a bitmap that indicates what the button does when the user
+selects it. A push button can be one of two styles: standard or default, as
+defined by the constants BS_PUSHBUTTON and BS_DEFPUSHBUTTON. A standard push
+button is typically used to start an operation. It receives the keyboard focus
+when the user clicks it. A default push button, on the other hand, is typically
+used to indicate the most common or default choice. It is a button that the user
+can select by simply pressing ENTER when a dialog box has the input focus.</p>
+<p>When the user clicks a push button (of either style), it receives the
+keyboard focus. The system sends the button's parent window a <b>WM_COMMAND</b>
+message that contains the <b>BN_CLICKED</b> notification code. In response, the
+dialog box typically closes and carries out the operation indicated by the
+button.</p>
+<p>For more information about buttons please see their <a href="buttons_desc.htm">reference</a>.</p>
+<p align="left">Styles</p>
+<p>Buttons have several styles. The type can be either standard or
+&quot;Default&quot;. When a &quot;Default&quot; type of button is choosen, the
+dialog box will be closed when the user clicks on that button. This is generally
+the style used for the &quot;Ok&quot; button.</p>
+<p>A button can be &quot;owner draw&quot; too, meaning that you draw the button
+with your own drawing functions. Windows defines an interface&nbsp; with several
+messages that you should catch to draw the button.</p>
+<p>&nbsp;</p>
+<h2>Functions provided for buttons within the generated framework</h2>
+<h3>HANDLE GetImage(int type)</h3>
+<h3>HANDLE SetImage(int type,HANDLE image)</h3>
+<p>&nbsp;</p>
+<p>Retrieves the handle of the image associated with the button (bitmap or
+icon). The parameter should either IMAGE_BITMAP or IMAGE_ICON. Other values will
+provoke an undefined result.</p>
+<p><b>Example:</b></p>
+<p><font face="Courier New">ST_BUTTON *button;</font></p>
+<p><font face="Courier New">...</font></p>
+<p><font face="Courier New">HANDLE h = button-&gt;GetImage(IMAGE_BITMAP);</font></p>
+<h3>HANDLE GetBitmap(void )</h3>
+<h3>HANDLE SetBitmap(HANDLE image )</h3>
+<p>Retrieves the handle of the bitmap associated with the button (bitmap or
+icon).</p>
+<p><b>Example:</b></p>
+<p><font face="Courier New">ST_BUTTON *button;</font></p>
+<p><font face="Courier New">...</font></p>
+<p><font face="Courier New">HANDLE h = button-&gt;GetBitmap();</font></p>
+<h3>int GetState(void)</h3>
+<h3>int SetState(int state)</h3>
+<p>The return value of GetState specifies the current state of the button. You
+can use the following values to extract information about the state. For a full
+description see the <a href="/wres/button_state_values.htm">button state values</a>
+table.</p>
+<p>The argument of SetState must be one of the values in the table of <a href="/wres/button_state_values.htm">button
+state values</a>.</p>
+<p><b>Example:</b></p>
+<p><font face="Courier New">ST_BUTTON *button;</font></p>
+<p><font face="Courier New">...</font></p>
+<p><font face="Courier New">HANDLE h = button-&gt;GetClick();</font></p>
+<p>&nbsp;</p>
+<h3>void Click(void)</h3>
+<p>This will simulate a click on the button.</p>
+
+<p><b>Example:</b></p>
+<p><font face="Courier New">ST_BUTTON *button;</font></p>
+<p><font face="Courier New">...</font></p>
+<p><font face="Courier New">HANDLE h = button-&gt;Click();</font></p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

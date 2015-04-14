@@ -1,0 +1,536 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Edit Controls</title>
+</head>
+
+<body>
+
+<h2>Edit Controls</h2>
+<p>An <i>edit control</i> is a rectangular control window typically used in a
+dialog box to permit the user to enter and edit text by typing on the keyboard.</p>
+<p>Edit controls support both the Unicode character set in which characters are
+two bytes, and ANSI character sets in which characters are one byte. For more
+information about Unicode and ANSI character sets, see <a href="JavaScript:hhobj_1.Click()">Unicode
+and Character Sets</a>.</p>
+<p>The Win32 API also provides support for rich edit controls, which support
+many features not available in system edit controls. For more information, see <a href="../../api/api2/richedit_5a7n.htm">Rich
+Edit Controls</a>.</p>
+<h2>About Edit Controls</h2>
+<p>An edit control is selected and receives the input focus when a user clicks
+the mouse inside it or presses the TAB key. After it is selected, the edit
+control displays its text (if any) and a flashing caret that indicates the
+insertion point. The user can then enter text, move the insertion point, or
+select text to be edited by using the keyboard or the mouse. An edit control can
+send notification messages to its parent window in the form of <b>WM_COMMAND</b>
+messages. For more information about messages from an edit control, see <a href="../../api/api2/editcon_5bjn.htm">Edit
+Control Notification Messages</a>. A parent window can send messages to an edit
+control in a dialog box by calling the <b>SendDlgItemMessage</b> function. Each
+of the messages sent to edit controls are discussed in this overview.</p>
+<p>The system provides both single-line edit controls (sometimes called SLEs)
+and multiline edit controls (sometimes called MLEs). Edit controls belong to the
+EDIT window class.</p>
+<p>A combo box is a control that combines much of the functionality of an edit
+control and a list box. In a combo box, the edit control displays the current
+selection and the list box presents options a user can select. For more
+information about combo boxes, see <a href="/wres/combo_boxes_desc.htm">Combo
+Boxes</a>.</p>
+<p>Many developers use the dialog boxes provided in the common dialog box
+library (Comdlg32.dll) to perform tasks that otherwise might require customized
+edit controls. For information about common dialog boxes, see <a href="../../api/api2/commdlg3_04ft.htm">Common
+Dialog Box Library</a>.</p>
+<h2>Edit Control Types and Styles</h2>
+<p>There are several edit control styles. An individual edit control can have
+several styles at the same time.&nbsp; If an application creates an edit control
+using the <b>CreateWindow</b> or <b>CreateWindowEx</b> function, however, it
+must specify these edit control styles. For a table of edit control styles, see <a href="/wres/edit_control_styles.htm">Edit
+Control Styles</a>.</p>
+<p>Every edit control specifies a combination of style values that define the
+appearance and features of the edit control. The style values can establish the
+appearance of a single-line or multiline edit control; align the text in the
+control; and determine how, and even if, text appears in the edit control. The
+number and type of styles the application uses depend on the type and purpose of
+the edit control.</p>
+<p>There are two line styles for edit controls. The default is a single-line
+edit control that doesn't require an associated style. An application can also
+create a multiline edit control by using the ES_MULTILINE style.</p>
+<p>There are three styles that cause the system to align the text in an edit
+control. The ES_LEFT, ES_CENTER, and ES_RIGHT styles determine whether text is
+aligned on the left, center, or right, respectively.</p>
+<p>An application can use a style to determine how the system displays text that
+a user enters into an edit control. The ES_LOWERCASE style converts the text
+into lowercase characters; the ES_UPPERCASE style converts the text into
+uppercase characters. Some applications may need to convert the text in a string
+(such as a file name) into a specific character set. The ES_OEMCONVERT style
+ensures the proper conversion of characters in these instances. For more
+information about character sets, see <a href="JavaScript:hhobj_1.Click()">Consoles
+and Character-Mode Support</a>.</p>
+<p>When the amount of text to be displayed exceeds the size of the edit control,
+an application can use two styles to scroll the text through the edit control.
+The ES_AUTOHSCROLL style automatically scrolls text horizontally in single-line
+and multiline edit controls. When the application has a multiline edit control,
+it can also use the ES_AUTOVSCROLL style to automatically scroll text
+vertically, if necessary.</p>
+<p>Other available styles define different aspects of an edit control. The
+ES_NUMBER style restricts input to digits only in the edit control. The
+ES_NOHIDESEL style specifies that the selected text is not hidden when the edit
+control loses the keyboard focus. The ES_READONLY style makes the edit control
+read-only. The ES_PASSWORD style displays all characters in a single-line edit
+control as asterisks. An application can define a different character to display
+by using the <b>EM_SETPASSWORDCHAR</b> message, as described later in this
+topic. In multiline edit controls, an application can specify the ES_WANTRETURN
+style to request that the system insert a carriage return when the user presses
+the ENTER key in the edit control. For information on wordwrap and line breaks,
+see <a href="../../api/api2/editcon_1ann.htm">Handling Wordwrap and Line Breaks</a>.</p>
+<p>By default, an edit control has no border. To give it one, an application can
+use the WS_BORDER window style.</p>
+<h2><a name="_Toc494632117">The Text Buffer</a></h2>
+<p>The system stores edit control text in a buffer and copies it to the control,
+as necessary. The following topics discuss how the system allocates and
+initializes the buffer and changes its characteristics:</p>
+<h3>Allocating a Text Buffer</h3>
+<p>When the system creates an edit control, it automatically creates a text
+buffer, sets its initial size, and increases the size as necessary. The size can
+be up to a predefined limit of approximately 32 KB for single-line edit
+controls. Because this limit can change, it is called a soft limit. An
+application can set a hard limit to the buffer size by sending an <b>EM_SETLIMITTEXT</b>
+message to the edit control. If the buffer exceeds either limit, the system
+sends the application an <b>EN_ERRSPACE</b> message. An application can retrieve
+the current text limit by sending an <b>EM_GETLIMITTEXT</b> message.</p>
+<p>The system typically creates an edit control buffer in a dialog box, using
+memory outside the application's data segment. An application can suppress this
+default allocation behavior and create the buffer from its local heap by using
+the DS_LOCALEDIT style when creating the edit control. An application that uses
+the DS_LOCALEDIT style is responsible for all buffer allocations. To make the
+initial allocation, an application can call the <b>LocalAlloc</b>
+function and pass the returned buffer handle to the edit control by sending it
+an <b>EM_SETHANDLE</b> message. To
+make subsequent allocations (in response to an <b>EN_ERRSPACE</b> message, for
+example), an application should save the current buffer content (if necessary)
+and obtain a new buffer as follows.</p>
+<p class="proch"><b><!--[if gte vml 1]><v:shapetype id="_x0000_t75" coordsize="21600,21600"
+ o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe" filled="f"
+ stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" alt="" style='width:24pt;
+ height:24pt'/><![endif]-->
+<img border="0" src="edit_c1.gif" v:shapes="_x0000_i1025" width="32" height="32">To
+save the current buffer and obtain a new one</b></p>
+<ol start="1" type="1">
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo20;tab-stops:list 36.0pt">Retrieve the handle of the
+    memory currently allocated for the text in a multiline edit control by
+    sending the control an <b>EM_GETHANDLE</b>
+    message.</li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo20;tab-stops:list 36.0pt">Free the buffer by calling
+    the <b>LocalFree</b> function.</li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo20;tab-stops:list 36.0pt">Obtain a new buffer (and
+    buffer handle) by calling <b>LocalAlloc</b>.</li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo20;tab-stops:list 36.0pt">Give the buffer handle to
+    the system by sending the control an <b>EM_SETHANDLE</b>
+    message.</li>
+</ol>
+<p>The <b>EM_SETHANDLE</b> and <b>EM_GETHANDLE</b>
+messages apply only to multiline edit controls.</p>
+<p>An application that uses the default allocation behavior (that is, does not
+use the DS_LOCALEDIT style) must not send <b>EM_SETHANDLE</b> and <b>EM_GETHANDLE</b>
+messages to the edit control.</p>
+<p>Sending an <b>EM_SETHANDLE</b>
+message has several side effects: it clears the undo flag (making the <b>EM_CANUNDO</b>
+message return zero), it clears the modify flag (making the <b>EM_GETMODIFY</b>
+message return zero), and it redraws the edit control window.</p>
+<h3><a name="_Toc494632119">Initializing a Text Buffer</a></h3>
+<p>An application can initialize or reinitialize an edit control's text buffer
+by calling the <b>SetDlgItemText</b>
+function. An application can retrieve the content of a text buffer by calling
+the <b>GetDlgItemText</b>
+function</p>
+<h3><a name="_Toc494632120">Making a Text Buffer Read-only</a></h3>
+<p>For each edit control, the system maintains a read-only flag that indicates
+whether the control's text is read-write (the default) or read-only. An
+application can set the read-write flag or the read-only flag for the text by
+sending the control an <b>EM_SETREADONLY</b>
+message. To determine whether an edit control is read-only, an application can
+call the <b>GetWindowLong</b>
+function using the GWL_STYLE constant. The <b>EM_SETREADONLY</b> message applies
+to both single-line and multiline edit controls.</p>
+<h2>Changing the Formatting Rectangle</h2>
+<p>The visibility of an edit control's text is governed by the dimensions of its
+window rectangle and its formatting rectangle. The window rectangle is the
+client area of the window containing the edit control. The formatting rectangle
+is a construct maintained by the system for formatting the text displayed in the
+window rectangle. When an edit control is first displayed, the two rectangles
+are identical on the screen. An application can make the formatting rectangle
+larger than the window rectangle (thereby limiting the visibility of the edit
+control's text) or smaller than the window rectangle (thereby creating extra
+white space around the text).</p>
+<p>An application can set the coordinates of an edit control's formatting
+rectangle by sending it an <b>EM_SETRECT</b>
+message. The <b>EM_SETRECT</b> message also automatically redraws the edit
+control's text. To establish the coordinates of the formatting rectangle without
+redrawing the control's text, an application can send the control an <b>EM_SETRECTNP</b>
+message. To retrieve the coordinates of the formatting rectangle, an application
+can send the control an <b>EM_GETRECT</b>
+message. These messages apply to multiline edit controls only.</p>
+<h2>Text Operations</h2>
+<p>The system automatically processes all user-initiated text operations and
+notifies the application when the operations are completed. </p>
+<ul type="disc">
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l16 level1 lfo21;tab-stops:list 36.0pt"><a href="#Selecting">Selecting
+    an Edit Control</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l16 level1 lfo21;tab-stops:list 36.0pt"><a href="#Selectingtext">Selecting
+    Text</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l16 level1 lfo21;tab-stops:list 36.0pt"><a href="#ReplacingText">Replacing
+    Text</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l16 level1 lfo21;tab-stops:list 36.0pt"><a href="#Changingthefont">Changing
+    the Font Used By an Edit Control</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l16 level1 lfo21;tab-stops:list 36.0pt"><a href="#CutCopyPaste">Cut,
+    Copy, Paste, and Clear Operations</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l16 level1 lfo21;tab-stops:list 36.0pt"><a href="#Modifyingtext">Modifying
+    Text</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l16 level1 lfo21;tab-stops:list 36.0pt"><a href="#Limitingtext">Limiting
+    User-Entered Text</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l16 level1 lfo21;tab-stops:list 36.0pt"><a href="#CharacterAndLine">Character
+    and Line Operations</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l16 level1 lfo21;tab-stops:list 36.0pt"><a href="#Scrollingtext">Scrolling
+    Text in an Edit Control</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l16 level1 lfo21;tab-stops:list 36.0pt"><a href="#Tabstops">Setting
+    Tab Stops and Margins</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l16 level1 lfo21;tab-stops:list 36.0pt"><a href="#Concealinguserinput">Concealing
+    User Input</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l16 level1 lfo21;tab-stops:list 36.0pt"><a href="#UsingIntegers">Using
+    Integers</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l16 level1 lfo21;tab-stops:list 36.0pt"><a href="#undo">Undoing
+    Text Operations</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l16 level1 lfo21;tab-stops:list 36.0pt"><a href="#wordwrap">Handling
+    Wordwrap and Line Breaks</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l16 level1 lfo21;tab-stops:list 36.0pt"><a href="#Retrievingpoints">Retrieving
+    Points and Characters</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l16 level1 lfo21;tab-stops:list 36.0pt"><a href="#autocomplete">Auto
+    complete</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l16 level1 lfo21;tab-stops:list 36.0pt"><a href="#Complexscripts">Complex
+    Scripts in Edit Controls</a></li>
+</ul>
+<h3><a name="Selecting">Selecting an Edit Control</a></h3>
+<p>The user can select an edit control by clicking it with the mouse or by
+pressing the TAB key to move to it. The tabbing method is part of a predefined
+keyboard interface that the system provides. For a complete description of this
+interface, see <a href="../../api/api2/dlgboxes_7foz.htm">Dialog Boxes</a>. When
+the user selects an edit control, the system gives the control the <a href="../../api/api2/keybinpt_5z8u.htm">keyboard
+focus</a> and highlights its text by using reverse video.</p>
+<h3><a name="Selectingtext">Selecting Text</a></h3>
+<p>After selecting an edit control, the user can select text in the control by
+using the mouse or the keyboard. An application can retrieve the starting and
+ending character positions of the current selection in an edit control by
+sending the control an <b>EM_GETSEL</b>
+message. The return value for the ending position is one greater than the last
+character in the selection (that is, the position of the first character
+following the last selected character).</p>
+<p>An application can also select text in an edit control by sending the control
+an <b>EM_SETSEL</b> message with
+the starting and ending character indexes for the selection. For example, the
+application can use <b>EM_SETSEL</b> with <b>EM_REPLACESEL</b>
+to delete text from an edit control.</p>
+<p>These three messages apply to both single-line and multiline edit controls.</p>
+<h3><a name="ReplacingText">Replacing Text</a></h3>
+<p>An application can replace selected text in an edit control by sending the
+control an <b>EM_REPLACESEL</b>
+message with a pointer to the replacement text. If there is no current
+selection, <b>EM_REPLACESEL</b> inserts the replacement text at the insertion
+point. The application may receive an <b>EN_ERRSPACE</b>
+notification message if the replacement text exceeds the available memory. This
+message applies to both single-line and multiline edit controls.</p>
+<p>An application can use <b>EM_REPLACESEL</b> to replace part of an edit
+control's text or the <b>SetDlgItemText</b>
+function to replace all of it.</p>
+<h3><a name="Changingthefont">Changing the Font Used By an Edit Control</a></h3>
+<p>An application can change the font that an edit control uses by sending the <b>WM_SETFONT</b>
+message. Most applications do this while processing the <b>WM_INITDIALOG</b>
+message. Changing the font does not change the size of the edit control;
+applications that send the <b>WM_SETFONT</b> message may have to retrieve the
+font metrics for the text and recalculate the size of the edit control. For more
+information about fonts and font metrics, see <a href="JavaScript:hhobj_1.Click()">Fonts
+and Text</a>.</p>
+<h3><a name="CutCopyPaste">Cut, Copy, Paste, and Clear Operations</a></h3>
+<p>The Win32 API provides four messages for moving text between an edit control
+and the clipboard. The <b>WM_COPY</b>
+message copies the current selection (if any) from an edit control to the
+clipboard without deleting it from the edit control. The <b>WM_CUT</b>
+message deletes the current selection (if any) in the edit control and copies
+the deleted text to the clipboard. The <b>WM_CLEAR</b>
+message deletes the current selection (if any) from an edit control, but does
+not copy it to the clipboard (unless the user pressed the SHIFT key). The <b>WM_PASTE</b>
+message copies text from the clipboard into an edit control at the insertion
+point. These four messages apply to both single-line and multiline edit
+controls.</p>
+<p>With Microsoft® Windows NT® version 4.0 or later, an edit control includes
+a built-in context menu that makes it easy for the user to move text between the
+edit control and the clipboard. The context menu appears when the user
+right-clicks the control. The commands in the context menu include <b>Undo</b>, <b>Cut</b>,
+<b>Copy</b>, <b>Paste</b>, <b>Delete</b>, and <b>Select</b> <b>All</b>.</p>
+<h3><a name="Modifyingtext">Modifying Text</a></h3>
+<p>The user can select, delete, or move text in an edit control. The system
+maintains an internal flag for each edit control indicating whether the content
+of the control has been modified. The system clears this flag when it creates
+the control and sets the flag whenever the text in the control is modified. An
+application can retrieve the modification flag by sending the control an <b>EM_GETMODIFY</b>
+message. The application can then set or clear the modification flag by sending
+the control an <b>EM_SETMODIFY</b>
+message. These messages apply to both single-line and multiline edit controls.</p>
+<h3><a name="Limitingtext">Limiting User-Entered Text</a></h3>
+<p>The default limit to the amount of text a user can enter in an edit control
+is 32 KB. An application can change the default limit by sending the control an <b>EM_SETLIMITTEXT</b>
+message. This message sets a hard limit to the number of bytes the user can
+enter into an edit control, but affects neither text that is already in the
+control when the message was sent nor text copied to the control by the <b>SetDlgItemText</b>
+function or the <b>WM_SETTEXT</b>
+message. For example, suppose that the application uses the <b>SetDlgItemText</b>
+function to place 500 bytes in an edit control, and the user also enters 500
+bytes (1,000 bytes total). If the application then sends an <b>EM_SETLIMITTEXT</b>
+message limiting user-entered text to 300 bytes, the 1,000 bytes already in the
+edit control remain there, and the user cannot add any more text. On the other
+hand, if the application sends an <b>EM_SETLIMITTEXT</b> message limiting
+user-entered text to 1,300 bytes, the 1,000 bytes remain, but the user can add
+300 more bytes.</p>
+<p>When the user reaches the character limit of an edit control, the system
+sends the application a <b>WM_COMMAND</b>
+message containing an <b>EN_MAXTEXT</b>
+notification message. This notification message does not mean that memory has
+been exhausted, but that the limit for user-entered text has been reached; the
+user cannot enter any more text. To change this limit, an application must send
+the control a new <b>EM_SETLIMITTEXT</b> message with a higher limit.</p>
+<p>As an example of the use of <b>EM_SETLIMITTEXT</b> and <b>EN_MAXTEXT</b>,
+suppose that the application must limit the user to no more than four characters
+in an edit control. The application would use <b>EM_SETLIMITTEXT</b> to specify
+a four-character limit. If the user tried to enter a fifth character, the system
+would send an <b>EN_MAXTEXT</b> notification message to the application.</p>
+<h3><a name="CharacterAndLine">Character and Line Operations</a></h3>
+<p>The Win32 API provides several messages that return information about the
+characters and lines in an edit control. Most of the messages return an index,
+usually a zero-based number, to refer to a character or line. Given this, a
+single-line edit control containing <i>n</i> characters, the line index is zero
+and the characters are indexed from zero to <i>n-</i>1. In a multiline edit
+control containing <i>m</i> lines and <i>n</i> characters, the lines are indexed
+from zero to <i>m-</i>1, and the characters are indexed from zero to <i>n-</i>1.
+Note that character indexing ignores line breaks.</p>
+<p>An application can determine the number of characters in an edit control by
+sending the <b>WM_GETTEXTLENGTH</b>
+message to the edit control. This message returns the length, in characters (not
+including the terminating null character), of the text in a single-line or
+multiline edit control. The <b>EM_LINELENGTH</b>
+message returns the length, in characters, of a line specified by the character
+index of a character in the line. The returned length does not include any
+selected characters. An application can use these messages in a single-line or
+multiline edit control.</p>
+<p>The <b>EM_GETFIRSTVISIBLELINE</b>
+message returns the zero-based index of the uppermost visible line in a
+multiline edit control, or the zero-based index of the first visible character
+in a single-line edit control. An application can copy a line from an edit
+control to a buffer by sending the <b>EM_GETLINE</b>
+message to the edit control. The line is specified by its line index and the
+first word of the receiving buffer contains the maximum number of bytes to be
+copied to the buffer. The return value is the number of bytes copied. This
+message can also be used in a single-line or multiline edit control.</p>
+<p>There are unique messages available to return the information about a line in
+a multiline edit control. The <b>EM_GETLINECOUNT</b>
+message returns the number of lines in an edit control. The <b>EM_LINEFROMCHAR</b>
+message returns the index of the line containing a specified character index.
+The <b>EM_LINEINDEX</b> message
+returns the index of the first character in a specified line.</p>
+<h3><a name="Scrollingtext">Scrolling Text in an Edit Control</a></h3>
+<p>To implement scrolling in an edit control, you can use the automatic
+scrolling styles discussed in <a href="../../api/api2/editcon_912r.htm">Edit
+Control Types and Styles</a>, or you can explicitly add scroll bars to the edit
+control. To add a horizontal scroll bar, use the style WS_HSCROLL; to add a
+vertical scroll bar, use the style WS_VSCROLL. An edit control with scroll bars
+processes its own scroll bar messages. For detailed information about adding
+scroll bars to edit controls, see <a href="../../api/api2/scrolbar_3v8z.htm">Scroll
+Bars</a>.</p>
+<p>The system provides three messages that an application can send to an edit
+control with scroll bars. The <b>EM_LINESCROLL</b>
+message can scroll a multiline edit control both vertically and horizontally.
+The <i>lParam</i> parameter specifies the number of lines to scroll vertically
+starting from the current line and the <i>wParam</i> parameter specifies the
+number of characters to scroll horizontally, starting from the current
+character. The edit control doesn't acknowledge horizontal scrolling messages if
+it has the ES_CENTER or ES_RIGHT style. The <b>EM_LINESCROLL</b> message applies
+to multiline edit controls only.</p>
+<p>The <b>EM_SCROLL</b> message
+scrolls a multiline edit control vertically. The <i>wParam</i> parameter
+specifies the scrolling action. The <b>EM_SCROLL</b> message applies to
+multiline edit controls only. <b>EM_SCROLL</b> has the same effect as the <b>WM_VSCROLL</b>
+message.</p>
+<p>The <b>EM_SCROLLCARET</b>
+message scrolls the caret into view in an edit control. This was done in 16-bit
+Microsoft® Windows® by specifying <i>wParam</i> = FALSE in an <b>EM_SETSEL</b>
+message. A Win32-based application should use the <b>EM_SCROLLCARET</b> message
+for the task.</p>
+<h3><a name="Tabstops">Setting Tab Stops and Margins</a></h3>
+<p>An application can set tab stops in a multiline edit control by using the <b>EM_SETTABSTOPS</b>
+message. (The default for a tab stop is eight characters.) When an application
+adds text to the edit control, tab characters in the text automatically generate
+space up to the next tab stop. The <b>EM_SETTABSTOPS</b> message does not
+automatically cause the system to redraw the text. To do that, an application
+can call the <b>InvalidateRect</b>
+function. The <b>EM_SETTABSTOPS</b> message applies to multiline edit controls
+only.</p>
+<p>An application can set the width of the left and right margins for an edit
+control by using the <b>EM_SETMARGINS</b>
+message. After sending this message, the system redraws the edit control to
+reflect the new margin settings. An application can retrieve the width of the
+left or right margin by sending the <b>EM_GETMARGINS</b>
+message. By default, the edit control margins are set just wide enough to
+accommodate the largest character horizontal overhang (negative ABC widths) for
+the current font being used in the edit control.</p>
+<h3><a name="Concealinguserinput">Concealing User Input</a></h3>
+<p>An application can use a password character in an edit control to conceal
+user input. When a password character is set, it is displayed in place of each
+character the user types. When a password character is removed, the control
+displays the characters the user types. If the application creates a single-line
+edit control using the style ES_PASSWORD, the default password character is an
+asterisk (*). An application can use the <b>EM_SETPASSWORDCHAR</b>
+message to remove or define a different password character and the <b>EM_GETPASSWORDCHAR</b>
+message to retrieve the current password character. These messages apply to
+single-line edit controls only.</p>
+<h3><a name="UsingIntegers">Using Integers</a></h3>
+<p>The Win32 API provides two integer-conversion functions for edit controls
+designed to contain numbers only. The <b>SetDlgItemInt</b> function creates the
+string representation of a specified integer (signed or unsigned) and sends the
+string to an edit control. <b>SetDlgItemInt</b> returns no value. The <b>GetDlgItemInt</b>
+function creates an integer (signed or unsigned) from its string representation
+in an edit control. <b>GetDlgItemInt</b> returns the integer (or an error
+value).</p>
+<h3><a name="undo">Undoing Text Operations</a></h3>
+<p>Every edit control maintains an undo flag that indicates whether an
+application can reverse or undo the most recent operation on the edit control
+(undoing a text deletion, for example). The edit control sets the undo flag to
+indicate that the operation can be undone and resets it to indicate that the
+operation cannot be undone. An application can determine the setting of the undo
+flag by sending the control an <b>EM_CANUNDO</b>
+message.</p>
+<p>An application can undo the most recent operation by sending the control an <b>EM_UNDO</b>
+message. An operation can be undone provided no other edit control operation
+occurs first. For example, the user can delete text, replace the text (undo the
+deletion), and then delete the text again (undo the replacement). The <b>EM_UNDO</b>
+message applies to both single-line and multiline edit controls and always works
+for single-line edit controls.</p>
+<p>An application can reset an edit control's undo flag by sending the control
+an <b>EM_EMPTYUNDOBUFFER</b>
+message. The system automatically resets the undo flag whenever an edit control
+receives an <b>EM_SETHANDLE</b> or <b>WM_SETTEXT</b> message. The <b>SetDlgItemText</b>
+function sends a <b>WM_SETTEXT</b> message.</p>
+<h3><a name="wordwrap">Handling Wordwrap and Line Breaks</a></h3>
+<p>An application can use wordwrap functions with multiline edit controls to
+locate the word or word fragment that should be wrapped to the next line. Using
+the default wordwrap function provided by the system, lines always end at the
+spaces between words. An application can specify its own wordwrap function by
+supplying a <b>EditWordBreakProc</b>
+wordwrap function and sending the edit control an <b>EM_SETWORDBREAKPROC</b>
+message. An application can retrieve the address of the current wordwrap
+function by sending the control an <b>EM_GETWORDBREAKPROC</b>
+message.</p>
+<p>An application may direct a multiline edit control to add or remove a soft
+line break character (two carriage returns and a line feed) automatically at the
+end of wrapped-text lines. An application can turn this feature on or off by
+sending the edit control an <b>EM_FMTLINES</b>
+message. This message applies only to multiline edit controls and does not
+affect a line that ends with a hard line break (one carriage return and a line
+feed entered by the user). Also in multiline edit controls, an application can
+specify the ES_WANTRETURN style to request that the system insert a carriage
+return when the user presses the ENTER key in the edit control.</p>
+<h3><a name="Retrievingpoints">Retrieving Points and Characters</a></h3>
+<p>To determine the character closest to a specified point in the client area of
+an edit control, send the <b>EM_CHARFROMPOS</b>
+message to the control. The message returns the character index and line index
+of the character nearest the point. Similarly, you can retrieve the client area
+coordinates of a specified character by sending the <b>EM_POSFROMCHAR</b>
+message. The message returns the x and y coordinates of the upper-left corner of
+the specified character.</p>
+<h3><a name="autocomplete">Autocompletion of Strings</a></h3>
+<p>Autocompletion expands strings that have been partially entered in an edit
+control into complete strings. For example, when a user starts to enter a URL in
+the Address edit control that is embedded in the Microsoft® Internet Explorer
+toolbar, autocompletion expands the string into one or more complete URLs that
+are consistent with the existing partial string. A partial URL string such as
+&quot;mic&quot; might be expanded to &quot;http://www.microsoft.com&quot; or
+&quot;http://www.microsoft.com/windows&quot;. Autocompletion is typically used
+with edit controls or with controls that have an embedded edit control.</p>
+<p>For more information, see the <a href="JavaScript:hhobj_1.Click()">IAutoComplete</a>
+and <a href="JavaScript:hhobj_2.Click()">IAutoComplete2</a> interface
+documentation.</p>
+<h3><a name="Complexscripts">Complex Scripts in Edit Controls</a></h3>
+<p><i>A complex script</i> is a language whose printed form is not laid out in a
+simple way. For example, a complex script may allow bidirectional rendering,
+contextual shaping of glyphs, or combining characters. The standard edit
+controls have been extended to support multilingual text and complex scripts.
+This includes not only input and display, but also correct cursor movement over
+character clusters (in Thai and Devanagari script, for example).</p>
+<p>A well-written application will receive this support automatically, without
+modification. Again, you should consider adding support for right-to-left
+reading order and right alignment. In this case, toggle the extended style flags
+of the edit control window to control these attributes, as shown in the
+following example:</p>
+<pre><span style="mso-bidi-font-family:&quot;Courier New&quot;">// ID_EDITCONTROL is the control ID in the resource file.<o:p>
+</o:p>HANDLE hWndEdit = GetDlgItem(hDlg, ID_EDITCONTROL);<o:p>
+</o:p>LONG lAlign = GetWindowLong(hWndEdit, GWL_EXSTYLE) ;<o:p>
+// To toggle alignment<o:p>
+</o:p>lAlign ^= WS_EX_RIGHT ;<o:p>
+// To toggle reading order<o:p>
+</o:p>
+lAlign ^= WS_EX_RTLREADING ;<o:p>
+</o:p></span></pre>
+<p>After setting the lAlign value, enable the new display by setting the
+extended style of the edit control window as follows:</p>
+<pre><span style="mso-bidi-font-family:&quot;Courier New&quot;">// This assumes your edit control is in a dialog box. If not, <o:p>
+</o:p>// get the edit control handle from another source.<o:p>
+SetWindowLong(hWndEdit, GWL_EXSTYLE, lAlign);<o:p>
+</o:p>InvalidateRect(hWndEdit, NULL, FALSE);<o:p>
+</o:p></span></pre>
+<p>Beginning in Windows&nbsp;2000, the standard edit control supports a context
+menu that allows the user to toggle the reading order and insert/display Unicode
+bidirectional control characters.</p>
+<p>Uniscribe is another set of functions that provide fine control for
+processing complex scripts. </p>
+
+</body>
+
+</html>

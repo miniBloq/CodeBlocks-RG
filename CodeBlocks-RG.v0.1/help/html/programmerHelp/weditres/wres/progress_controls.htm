@@ -1,0 +1,57 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="fr">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Progress controls</title>
+</head>
+
+<body>
+
+<h2>Progress controls</h2>
+<p>A <i>progress bar</i> is a window that an application can use to indicate the
+progress of a lengthy operation. It consists of a rectangle that is gradually
+filled with the system highlight color as an operation progresses</p>
+<h3>Range and Current Position</h3>
+<p>A progress bar's <i>range</i> represents the entire duration of the
+operation, and the <i>current position</i> represents the progress that the
+application has made toward completing the operation. The window procedure uses
+the range and the current position to determine the percentage of the progress
+bar to fill with the highlight color. Because the range and current position
+values are expressed as unsigned integers, the highest possible range or current
+position value is 65,535.</p>
+<p>The minimum value in the range can be from 0 to 65,535. Likewise, the maximum
+value can be from 0 to 65,535. If you do not set the range values, the system
+sets the minimum value to 0 and the maximum value to 100. You can adjust the
+range to convenient integers by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PBM_SETRANGE_cpp">
+PBM_SETRANGE</MSHelp:link>
+ message.</p>
+<p>A progress bar provides several messages that you can use to set the current
+position. The <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PBM_SETPOS_cpp">
+PBM_SETPOS</MSHelp:link>
+ message sets the position to a given value. The <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PBM_DELTAPOS_cpp">
+PBM_DELTAPOS</MSHelp:link>
+ message advances the position by adding a specified value to the current
+position.</p>
+<p>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PBM_SETSTEP_cpp">
+PBM_SETSTEP</MSHelp:link>
+ message allows you to specify a step increment for a progress bar.
+Subsequently, whenever you send the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PBM_STEPIT_cpp">
+PBM_STEPIT</MSHelp:link>
+ message to the progress bar, the current position advances by the specified
+increment. By default, the step increment is set to 10.</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<TITLE>BGI Documentation for 
+closegraph
+</TITLE>
+<H2>
+closegraph
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void closegraph(int wid=ALL_WINDOWS);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+closegraph deallocates all memory allocated by the graphics system,
+then restores the screen to the mode it was in before you called
+initgraph. 
+(The graphics system deallocates memory, such as the drivers, fonts, 
+and an internal buffer, through a call to _graphfreemem.)
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+The windows version of closegraph has an optional parameter called wid
+which is the window id (returned by initwindow) of the window that
+is to be closed.  This parameter may also be one of two special
+constant values: CURRENT_WINDOW (causing
+closegraph to
+close only the current window), or ALL_WINDOWS (which is the default, 
+causing closegraph to close
+all open graphics windows).  If the current window is closed,
+then there is no longer a current window and no further drawing
+operations may be done until a new window is created or a
+current window is set by calling setcurrentwindow.
+
+<P><DT><B>See also</B>
+<DD><A HREF="initgraph.html"> initgraph </A>
+<DD><A HREF="initwindow.html"> initwindow </A>
+<DD><A HREF="setgraphbufsize.html"> setgraphbufsize </A>
+<DD><A HREF="setcurrentwindow.html"> setcurrentwindow </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* closegraph example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode, x, y;
+
+   /* initialize graphics mode */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+
+   if (errorcode != grOk) {   /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+
+      getch();
+      exit(1);               /* terminate with an error code */
+      }
+
+   x = getmaxx() / 2;
+   y = getmaxy() / 2;
+
+   /* output a message */
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+   outtextxy(x, y, "Press a key to close the graphics system:");
+
+   getch();   /* wait for a key */
+   /* closes down the graphics system */
+   closegraph();
+   printf("We're now back in text mode.\n");
+   printf("Press any key to halt:");
+   getch();
+   return 0;
+
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

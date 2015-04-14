@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Overriding%20Makefiles">Overriding Makefiles</a>,
+Next:<a rel="next" accesskey="n" href="Reading-Makefiles.html#Reading%20Makefiles">Reading Makefiles</a>,
+Previous:<a rel="previous" accesskey="p" href="Remaking-Makefiles.html#Remaking%20Makefiles">Remaking Makefiles</a>,
+Up:<a rel="up" accesskey="u" href="Makefiles.html#Makefiles">Makefiles</a>
+<hr><br>
+</div>
+
+<h3 class="section">Overriding Part of Another Makefile</h3>
+
+   <p>Sometimes it is useful to have a makefile that is mostly just like
+another makefile.  You can often use the <code>include</code> directive to
+include one in the other, and add more targets or variable definitions. 
+However, if the two makefiles give different commands for the same
+target, <code>make</code> will not let you just do this.  But there is another way.
+
+   <p>In the containing makefile (the one that wants to include the other),
+you can use a match-anything pattern rule to say that to remake any
+target that cannot be made from the information in the containing
+makefile, <code>make</code> should look in another makefile. 
+See <a href="Pattern-Rules.html#Pattern%20Rules">Pattern Rules</a>, for more information on pattern rules.
+
+   <p>For example, if you have a makefile called <code>Makefile</code> that says how
+to make the target <code>foo</code> (and other targets), you can write a
+makefile called <code>GNUmakefile</code> that contains:
+
+<pre class="example">     foo:
+             frobnicate &gt; foo
+     
+     %: force
+             @$(MAKE) -f Makefile $@
+     force: ;
+     </pre>
+
+   <p>If you say <code>make foo</code>, <code>make</code> will find <code>GNUmakefile</code>,
+read it, and see that to make <code>foo</code>, it needs to run the command
+<code>frobnicate &gt; foo</code>.  If you say <code>make bar</code>, <code>make</code> will
+find no way to make <code>bar</code> in <code>GNUmakefile</code>, so it will use the
+commands from the pattern rule: <code>make -f Makefile bar</code>.  If
+<code>Makefile</code> provides a rule for updating <code>bar</code>, <code>make</code>
+will apply the rule.  And likewise for any other target that
+<code>GNUmakefile</code> does not say how to make.
+
+   <p>The way this works is that the pattern rule has a pattern of just
+<code>%</code>, so it matches any target whatever.  The rule specifies a
+prerequisite <code>force</code>, to guarantee that the commands will be run even
+if the target file already exists.  We give <code>force</code> target empty
+commands to prevent <code>make</code> from searching for an implicit rule to
+build it--otherwise it would apply the same match-anything rule to
+<code>force</code> itself and create a prerequisite loop!
+
+   </body></html>
+

@@ -1,0 +1,503 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>About Scroll Bars</title>
+</head>
+
+<body>
+
+<h2>About Scroll Bars</h2>
+<hr SIZE="1">
+A window can display a data object, such as a document or a bitmap, that is
+larger than the window's client area. When provided with a scroll bar, the user
+can scroll a data object in the client area to bring into view the portions of
+the object that extend beyond the borders of the window.
+<p>Microsoft® Internet Explorer 4.0 introduces a new control called a <i>flat
+scroll bar</i>. Functionally, flat scroll bars behave just like standard scroll
+bars. The difference is that you can customize the appearance of flat scroll
+bars to a greater extent than standard scroll bars.</p>
+<p>Scroll bars should be included in any window for which the content of the
+client area extends beyond the window's borders. A scroll bar's orientation
+determines the direction in which scrolling occurs when the user operates the
+scroll bar. A horizontal scroll bar enables the user to scroll the content of a
+window to the left or right. A vertical scroll bar enables the user to scroll
+the content up or down.</p>
+<p>The following topics are discussed in this section.</p>
+<ul>
+  <li><a href="#parts_of_scroll_bar" target="_self">Parts of a Scroll Bar</a>
+  <li><a href="#standard_scroll_bars" target="_self">Standard Scroll Bars and
+    Scroll Bar Controls</a>
+  <li><a href="#scroll_position_and_range" target="_self">Scroll Box Position
+    and Scrolling Range</a>
+  <li><a href="#scroll_bar_visibility" target="_self">Scroll Bar Visibility</a>
+  <li><a href="#scroll_bar_requests" target="_self">Scroll Bar Requests</a>
+  <li><a href="#keyboards_and_scroll_bars" target="_self">Keyboard Interface for
+    a Scroll Bar</a>
+  <li><a href="#scrolling_the_client_area" target="_self">Scrolling the Client
+    Area</a>
+  <li><a href="#scroll_colors_and_metrics" target="_self">Scroll Bar Colors and
+    Metrics</a></li>
+</ul>
+<h3><a name="parts_of_scroll_bar"></a>Parts of a Scroll Bar</h3>
+<p>A scroll bar consists of a shaded shaft with an arrow button at each end and
+a <i>scroll box</i> (sometimes called a thumb) between the arrow buttons. A
+scroll bar represents the overall length or width of a data object in a window's
+client area; the scroll box represents the portion of the object that is visible
+in the client area. The position of the scroll box changes whenever the user
+scrolls a data object to display a different portion of it. The system also
+adjusts the size of a scroll bar's scroll box so that it indicates what portion
+of the entire data object is currently visible in the window. If most of the
+object is visible, the scroll box occupies most of the scroll bar's shaft.
+Similarly, if only a small portion of the object is visible, the scroll box
+occupies a small part of the shaft.</p>
+<p>The user scrolls the content of a window by clicking one of the arrow
+buttons, by clicking the area in the shaded shaft, or by dragging the scroll
+box. When the user clicks an arrow button, the application scrolls the content
+by one unit (typically a single line or column). When the user clicks the shaded
+areas, the application scrolls the content by one window. The amount of
+scrolling that occurs when the user drags the scroll box depends on the distance
+the user drags the scroll box and on the scrolling range of the scroll bar. For
+more information about the scrolling range, see <a href="#scroll_position_and_range" target="_self">Scroll
+Box Position and Scrolling Range</a>.</p>
+<h3><a name="standard_scroll_bars"></a>Standard Scroll Bars and Scroll Bar
+Controls</h3>
+<p>A scroll bar is included in a window either as a standard scroll bar or as a
+scroll bar control. A standard scroll bar is located in the nonclient area of a
+window. It is created with the window and displayed when the window is
+displayed. The sole purpose of a standard scroll bar is to enable the user to
+generate scrolling requests for viewing the entire content of the client area.
+You can include a standard scroll bar in a window by specifying WS_HSCROLL,
+WS_VSCROLL, or both styles when you create the window. The WS_HSCROLL style
+creates a horizontal scroll bar positioned at the bottom of the client area. The
+WS_VSCROLL style creates a vertical scroll bar positioned at the right of the
+client area. The SM_CXHSCROLL and SM_CYHSCROLL system metric values define the
+width and height of a standard horizontal scroll bar. The SM_CXVSCROLL and
+SM_CYVSCROLL values define the width and height of a standard vertical scroll
+bar. A standard scroll bar is part of its associated window and therefore does
+not have a window handle of its own.</p>
+<p>A scroll bar control is a control window that belongs to the SCROLLBAR window
+class. A scroll bar control appears and functions like a standard scroll bar,
+but it is a separate window. As a separate window, a scroll bar control receives
+direct input focus, indicated by a flashing caret displayed in the scroll box.
+Unlike a standard scroll bar, a scroll bar control also has a built-in keyboard
+interface that enables the user to direct scrolling. You can use as many scroll
+bar controls as needed in a single window. When you create a scroll bar control,
+you must specify the scroll bar's size and position. However, if a scroll bar
+control's window can be resized, adjustments to the scroll bar's size must be
+made whenever the size of the window changes.</p>
+<p>The advantage of using a standard scroll bar is that the system creates the
+scroll bar and automatically sets its size and position. However, standard
+scroll bars are sometimes too restrictive. For example, suppose that you want to
+divide a client area into quadrants and use a separate set of scroll bars to
+control the content of each quadrant. You cannot use standard scroll bars
+because you can only create one set of scroll bars for a particular window. Use
+scroll bar controls instead, because you can add as many of them to a window as
+you want.</p>
+<p>Applications can provide scroll bar controls for purposes other than
+scrolling the content of a window. For example, a screen saver application might
+provide a scroll bar for setting the speed at which graphics are moved about on
+the screen.</p>
+<p>A scroll bar control can have a number of styles that serves to control the
+orientation and position of the scroll bar. You specify the styles that you want
+when you call the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+CreateWindowEx</MSHelp:link>
+ function to create a scroll bar control. Some of the styles create a scroll bar
+control that uses a default width or height. However, you must always specify
+the x- and y-coordinates and the other dimensions of the scroll bar.</p>
+<p>For a table of scroll bar control styles, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Scroll_Bar_Control_Styles_cpp">
+Scroll Bar Control Styles</MSHelp:link>
+.</p>
+<div class="clsNote">
+  <b>Note</b>&nbsp;&nbsp; To use visual styles with scroll bars, an application
+  must include a manifest and must call <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_InitCommonControls_cpp">
+  InitCommonControls</MSHelp:link>
+  at the beginning of the program. For information on visual styles, see <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_inet_themes_overview_cpp">
+  Visual Styles</MSHelp:link>
+  . For information on manifests, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_inet_cookbook_overview_cpp">
+  Using Windows XP Visual Styles</MSHelp:link>
+  .
+</div>
+<h3><a name="scroll_position_and_range"></a>Scroll Box Position and Scrolling
+Range</h3>
+<p>The position of the scroll box is represented as an integer; it is relative
+to the left or upper end of the scroll bar, depending on whether the scroll bar
+is horizontal or vertical. The position must be within the minimum and maximum
+values of the scrolling range. For example, in a scroll bar with a range of 0
+through 100, position 50 is in the middle, with the remaining positions
+distributed equally along the scroll bar. The initial range depends on the
+scroll bar. Standard scroll bars have an initial range of 0 through 100; scroll
+bar controls have an empty range (both minimum and maximum values are zero),
+unless you supply an explicit range when the control is created. You can change
+the range at any time. You can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_SetScrollInfo_cpp">
+SetScrollInfo</MSHelp:link>
+ function to set the range values, and the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_GetScrollInfo_cpp">
+GetScrollInfo</MSHelp:link>
+ function to retrieve the current range values.</p>
+<p>An application typically adjusts the scroll range to convenient integers,
+making it easy to translate the scroll box position into a value corresponding
+to the data object to be scrolled. For example, if an application must display
+260 lines of a text file in a window that can show only 16 lines at a time, the
+vertical scroll bar range can be set to 1 through 244. If the scroll box is at
+position 1, the first line will be at the top of the window. If the scroll box
+is at position 244, the last line (line 260) will be at the bottom of the
+window. If an application attempts to specify a position value that is less than
+the minimum or more than the maximum, the minimum or maximum scrolling range
+value is used instead.</p>
+<p>You can set a page size for a scroll bar. The <i>page size</i> represents the
+number of data units that can fit in the client area of the owner window given
+its current size. For example, if the client area can hold 16 lines of text, an
+application would set the page size to 16. The system uses the page size, along
+with the scrolling range and length of the scroll shaft, to set the size of the
+scroll box. Whenever a window containing a scroll bar is resized, an application
+should call the <b>SetScrollInfo</b> function to set the page size. An
+application can retrieve the current page size by calling the sending <b>GetScrollInfo</b>
+function.</p>
+<p>To establish a useful relationship between the scroll bar range and the data
+object, an application must adjust the range whenever the size of the data
+object changes.</p>
+<p>As the user moves the scroll box in a scroll bar, the scroll bar reports the
+scroll box position as an integer in the scrolling range. If the position is the
+minimum value, the scroll box is at the top of a vertical scroll bar or at the
+left end of a horizontal scroll bar. If the position is the maximum value, the
+scroll box is at the bottom of a vertical scroll bar or at right end of a
+horizontal scroll bar.</p>
+<p>The maximum value that a scroll bar can report (that is, the maximum
+scrolling position) depends on the page size. If the scroll bar has a page size
+greater than one, the maximum scrolling position is less than the maximum range
+value. You can use the following formula to calculate the maximum scrolling
+position:</p>
+<pre class="clsCode" AUTOHILITE="1">MaxScrollPos = MaxRangeValue - (PageSize - 1) </pre>
+<p>An application must move the scroll box in a scroll bar. Although the user
+makes a request for scrolling in a scroll bar, the scroll bar does not
+automatically update the scroll box position. Instead, it passes the request to
+the parent window, which must scroll the data and update the scroll box
+position. An application uses the <b>SetScrollInfo</b> function to update the
+scroll box position; otherwise, it uses the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_SetScrollPos_cpp">
+SetScrollPos</MSHelp:link>
+ function. Because it controls the scroll box movement, the application can move
+the scroll box in increments that work best for the data being scrolled.</p>
+<h3><a name="scroll_bar_visibility"></a>Scroll Bar Visibility</h3>
+<p>The system hides and disables a standard scroll bar when equal minimum and
+maximum values are specified. The system also hides and disables a standard
+scroll bar if you specify a page size that includes the entire scroll range of
+the scroll bar. This is the way to temporarily hide a scroll bar when it is not
+needed for the content of the client area. There is no need to make scrolling
+requests through the scroll bar when it is hidden. The system enables the scroll
+bar and shows it again when you set the minimum and maximum values to unequal
+values or when the page size that does not include the entire scroll range. The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ShowScrollBar_cpp">
+ShowScrollBar</MSHelp:link>
+ function can also be used to hide or show a scroll bar. It does not affect the
+scroll bar's range, page size, or scroll box position.</p>
+<p>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EnableScrollBar_cpp">
+EnableScrollBar</MSHelp:link>
+ function can be used to disable one or both arrows of a scroll bar. An
+application displays disabled arrows in gray and does not respond to user input.</p>
+<h3><a name="scroll_bar_requests"></a>Scroll Bar Requests</h3>
+<p>The user makes scrolling requests by clicking various parts of a scroll bar.
+The system sends the request to the specified window in the form of a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_HSCROLL_cpp">
+WM_HSCROLL</MSHelp:link>
+ or <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_VSCROLL_cpp">
+WM_VSCROLL</MSHelp:link>
+ message. A horizontal scroll bar sends the <b>WM_HSCROLL</b> message; a
+vertical scroll bar sends the <b>WM_VSCROLL</b> message. Each message includes a
+request code that corresponds to the user's action, to the handle to the scroll
+bar (scroll bar controls only), and, in some cases, to the position of the
+scroll box.</p>
+<p>The following figure shows the request code that the user generates when
+clicking various parts of a scroll bar.</p>
+<p><img border="0" src="scroll11.gif" width="403" height="246"></p>
+<p>The SB_ values specify the action the user takes. An application examines the
+codes that accompany the <b>WM_HSCROLL</b> and <b>WM_VSCROLL</b> messages and
+then performs the appropriate scrolling operation. In the following table, the
+user's action is specified for each value, followed by the application's
+response. In each case, a unit is defined by the application as appropriate for
+the data. For example, the typical unit for scrolling text vertically is a line
+of text.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Request</th>
+      <th>Action</th>
+      <th>Response</th>
+    </tr>
+    <tr>
+      <td>SB_LINEUP</td>
+      <td>The user clicks the top scroll arrow.</td>
+      <td>Decrements the scroll box position; scrolls toward the top of the data
+        by one unit.</td>
+    </tr>
+    <tr>
+      <td>SB_LINEDOWN</td>
+      <td>The user clicks the bottom scroll arrow.</td>
+      <td>Increments the scroll box position; scrolls toward the bottom of the
+        data by one unit.</td>
+    </tr>
+    <tr>
+      <td>SB_LINELEFT</td>
+      <td>The user clicks the left scroll arrow.</td>
+      <td>Decrements the scroll box position; scrolls toward the left end of the
+        data by one unit.</td>
+    </tr>
+    <tr>
+      <td>SB_LINERIGHT</td>
+      <td>The user clicks the right scroll arrow.</td>
+      <td>Increments the scroll box position; scrolls toward the right end of
+        the data by one unit.</td>
+    </tr>
+    <tr>
+      <td>SB_PAGEUP</td>
+      <td>The user clicks the scroll bar shaft above the scroll box.</td>
+      <td>Decrements the scroll box position by the number of data units in the
+        window; scrolls toward the top of the data by the same number of units.</td>
+    </tr>
+    <tr>
+      <td>SB_PAGEDOWN</td>
+      <td>The user clicks the scroll bar shaft below the scroll box.</td>
+      <td>Increments the scroll box position by the number of data units in the
+        window; scrolls toward the bottom of the data by the same number of
+        units.</td>
+    </tr>
+    <tr>
+      <td>SB_PAGELEFT</td>
+      <td>The user clicks the scroll bar shaft to the left of the scroll box.</td>
+      <td>Decrements the scroll box position by the number of data units in the
+        window; scrolls toward the left end of the data by the same number of
+        units.</td>
+    </tr>
+    <tr>
+      <td>SB_PAGERIGHT</td>
+      <td>The user clicks the scroll bar shaft to the right of the scroll box.</td>
+      <td>Increments the scroll box position by the number of data units in the
+        window; scrolls toward the right end of the data by the same number of
+        units.</td>
+    </tr>
+    <tr>
+      <td>SB_THUMBPOSITION</td>
+      <td>The user releases the scroll box after dragging it.</td>
+      <td>Sets the scroll box to the position specified in the message; scrolls
+        the data by the same number of units the scroll box has moved.</td>
+    </tr>
+    <tr>
+      <td>SB_THUMBTRACK</td>
+      <td>The user drags the scroll box.</td>
+      <td>Sets the scroll box to the position specified in the message and
+        scrolls the data by the same number of units the scroll box has moved
+        for applications that draw data quickly. Applications that cannot draw
+        data quickly must wait for the SB_THUMBPOSITION request code before
+        moving the scroll box and scrolling the data.</td>
+    </tr>
+    <tr>
+      <td>SB_ENDSCROLL</td>
+      <td>The user releases the mouse after holding it on an arrow or in the
+        scroll bar shaft.</td>
+      <td>No response is needed.</td>
+    </tr>
+  </tbody>
+</table>
+<p>A scroll bar generates SB_THUMBPOSITION and SB_THUMBTRACK request code when
+the user clicks and drags the scroll box. An application should be programmed to
+process either the SB_THUMBTRACK or SB_THUMBPOSITION request code.</p>
+<p>The SB_THUMBPOSITION request code occurs when the user releases the mouse
+button after clicking the scroll box. An application that processes this message
+performs the scrolling operation after the user has dragged the scroll box to
+the desired position and released the mouse button.</p>
+<p>The SB_THUMBTRACK request code occurs as the user drags the scroll box. If an
+application processes SB_THUMBTRACK request codes, it can scroll the content of
+a window as the user drags the scroll box. However, a scroll bar can generate
+many SB_THUMBTRACK request code in a short period, so an application should
+process these request codes only if it can quickly repaint the content of the
+window.</p>
+<h3><a name="keyboards_and_scroll_bars"></a>Keyboard Interface for a Scroll Bar</h3>
+<p>A scroll bar control provides a built-in keyboard interface that enables the
+user to issue scrolling requests by using the keyboard; a standard scroll bar
+does not. When a scroll bar control has the keyboard focus, it sends <b>WM_HSCROLL</b>
+and <b>WM_VSCROLL</b> messages to its parent window when the user presses the
+arrow keys. The request code is sent with each message corresponding to the
+arrow key the user has pressed. Following are the arrow keys and their
+corresponding request codes.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Arrow key</th>
+      <th>Request code</th>
+    </tr>
+    <tr>
+      <td>DOWN</td>
+      <td>SB_LINEDOWN or SB_LINERIGHT</td>
+    </tr>
+    <tr>
+      <td>END</td>
+      <td>SB_BOTTOM</td>
+    </tr>
+    <tr>
+      <td>HOME</td>
+      <td>SB_TOP</td>
+    </tr>
+    <tr>
+      <td>LEFT</td>
+      <td>SB_LINEUP or SB_LINELEFT</td>
+    </tr>
+    <tr>
+      <td>PGDN</td>
+      <td>SB_PAGEDOWN or SB_PAGERIGHT</td>
+    </tr>
+    <tr>
+      <td>PGUP</td>
+      <td>SB_PAGEUP or SB_PAGELEFT</td>
+    </tr>
+    <tr>
+      <td>RIGHT</td>
+      <td>SB_LINEDOWN or SB_LINERIGHT</td>
+    </tr>
+    <tr>
+      <td>UP</td>
+      <td>SB_LINEUP or SB_LINELEFT</td>
+    </tr>
+  </tbody>
+</table>
+&nbsp;
+<div class="clsNote">
+  <b>Note</b>&nbsp;&nbsp;The keyboard interface of a scroll bar control sends
+  the SB_TOP and SB_BOTTOM request codes. The SB_TOP request code indicates that
+  the user has reached the top value of the scrolling range. An application
+  scrolls the window content downward so that the top of the data object is
+  visible. The SB_BOTTOM request code indicates that the user has reached the
+  bottom value of the scrolling range. If an application processes the SB_BOTTOM
+  request code, it scrolls the window content upward so that the bottom of the
+  data object is visible.
+</div>
+<p>If you want a keyboard interface for a standard scroll bar, you can create
+one yourself by processing the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_keydown">
+WM_KEYDOWN</MSHelp:link>
+ message in your window procedure and then performing the appropriate scrolling
+action based on the virtual-key code that accompanies the message. For
+information about how to create a keyboard interface for a scroll bar, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Using_Scroll_Bars_cpp">
+Creating a Keyboard Interface for a Standard Scroll Bar</MSHelp:link>
+.</p>
+<h3><a name="scrolling_the_client_area"></a>Scrolling the Client Area</h3>
+<p>The simplest way to scroll the content of a client area is to erase and then
+redraw it. This is the method an application is likely to use with SB_PAGEUP,
+SB_PAGEDOWN, and SB_TOP request codes, which typically require completely new
+content.</p>
+<p>For some request codes, such as SB_LINEUP and SB_LINEDOWN, not all the
+content need be erased, because some remains visible after scrolling occurs. The
+<MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ScrollWindowEx_cpp">
+ScrollWindowEx</MSHelp:link>
+ function preserves a portion of the client area's content, move the preserved
+portion a specified amount, and then prepares the rest of the client area for
+painting new information. <b>ScrollWindowEx</b> uses the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_BitBlt">
+BitBlt</MSHelp:link>
+ function to move a specific part of the data object to a new location within
+the client area. Any uncovered part of the client area (anything not preserved)
+is invalidated, erased, and painted when the next <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_paint">
+WM_PAINT</MSHelp:link>
+ message occurs.</p>
+<p>The <b>ScrollWindowEx</b> function can be used to exclude a portion of the
+client area from the scrolling operation. This keeps items with fixed positions,
+such as child windows, from moving within the client area. It automatically
+invalidates the portion of the client area that is to receive the new
+information, so the application does not have to compute its own clipping
+regions. For more information on clipping, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Clipping">
+Clipping</MSHelp:link>
+.</p>
+<p>Usually an application scrolls the content of a window in the direction
+opposite that indicated by the scroll bar. For example, when the user clicks the
+shaft in the area below the scroll box, an application scrolls the object in the
+window upward to reveal a portion of the object that is below the visible
+portion.</p>
+<p>You can also scroll a rectangular region using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ScrollDC_cpp">
+ScrollDC</MSHelp:link>
+ function.</p>
+<h3><a name="scroll_colors_and_metrics"></a>Scroll Bar Colors and Metrics</h3>
+<p>The system-defined color value, COLOR_SCROLLBAR, controls the color within a
+scroll bar's shaft. Use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_getsyscolor">
+GetSysColor</MSHelp:link>
+ function to determine the color of the shaft and the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_SetSysColors">
+SetSysColors</MSHelp:link>
+ function to set the color of the shaft. Note, however, that this change of
+color affects all scroll bars in the system.</p>
+<p>You can get the dimensions of the bitmaps that the system uses in standard
+scroll bars by calling the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_getsystemmetrics">
+GetSystemMetrics</MSHelp:link>
+ function. Following are the system metric values associated with scroll bars.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>System metric</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>SM_CXHSCROLL</td>
+      <td>Width of arrow bitmap on horizontal scroll bar</td>
+    </tr>
+    <tr>
+      <td>SM_CXHTHUMB</td>
+      <td>Width of scroll box on horizontal scroll bar. This value retrieves the
+        width a scroll bar that has a page size of zero.</td>
+    </tr>
+    <tr>
+      <td>SM_CXVSCROLL</td>
+      <td>Width of arrow bitmap on vertical scroll bar</td>
+    </tr>
+    <tr>
+      <td>SM_CYHSCROLL</td>
+      <td>Height of arrow bitmap on horizontal scroll bar</td>
+    </tr>
+    <tr>
+      <td>SM_CYVSCROLL</td>
+      <td>Height of arrow bitmap on vertical scroll bar</td>
+    </tr>
+    <tr>
+      <td>SM_CYVTHUMB</td>
+      <td>Height of scroll box on vertical scroll bar. This value retrieves the
+        height of a scroll bar that has a page size of zero.</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+
+</html>

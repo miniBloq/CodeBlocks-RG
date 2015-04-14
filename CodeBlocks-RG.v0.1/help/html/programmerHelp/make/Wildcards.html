@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Wildcards">Wildcards</a>,
+Next:<a rel="next" accesskey="n" href="Directory-Search.html#Directory%20Search">Directory Search</a>,
+Previous:<a rel="previous" accesskey="p" href="Prerequisite-Types.html#Prerequisite%20Types">Prerequisite Types</a>,
+Up:<a rel="up" accesskey="u" href="Rules.html#Rules">Rules</a>
+<hr><br>
+</div>
+
+<h3 class="section">Using Wildcard Characters in File Names</h3>
+
+   <p>A single file name can specify many files using <dfn>wildcard characters</dfn>. 
+The wildcard characters in <code>make</code> are <code>*</code>, <code>?</code> and
+<code>[...]</code>, the same as in the Bourne shell.  For example, <code>*.c</code>
+specifies a list of all the files (in the working directory) whose names
+end in <code>.c</code>.
+
+   <p>The character <code>~</code> at the beginning of a file name also has special
+significance.  If alone, or followed by a slash, it represents your home
+directory.  For example <code>~/bin</code> expands to <code>/home/you/bin</code>. 
+If the <code>~</code> is followed by a word, the string represents the home
+directory of the user named by that word.  For example <code>~john/bin</code>
+expands to <code>/home/john/bin</code>.  On systems which don't have a home
+directory for each user (such as MS-DOS or MS-Windows), this
+functionality can be simulated by setting the environment variable
+<var>HOME</var>.
+
+   <p>Wildcard expansion happens automatically in targets, in prerequisites,
+and in commands (where the shell does the expansion).  In other
+contexts, wildcard expansion happens only if you request it explicitly
+with the <code>wildcard</code> function.
+
+   <p>The special significance of a wildcard character can be turned off by
+preceding it with a backslash.  Thus, <code>foo\*bar</code> would refer to a
+specific file whose name consists of <code>foo</code>, an asterisk, and
+<code>bar</code>.
+
+<ul class="menu">
+<li><a accesskey="1" href="Wildcard-Examples.html#Wildcard%20Examples">Wildcard Examples</a>:            Several examples
+<li><a accesskey="2" href="Wildcard-Pitfall.html#Wildcard%20Pitfall">Wildcard Pitfall</a>:             Problems to avoid. 
+<li><a accesskey="3" href="Wildcard-Function.html#Wildcard%20Function">Wildcard Function</a>:            How to cause wildcard expansion where
+                                  it does not normally take place. 
+</ul>
+
+   </body></html>
+

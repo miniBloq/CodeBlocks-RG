@@ -1,0 +1,285 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Generating a Table of Character Strings</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509457028"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc425011570">Generating
+a Table of Character Strings</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoNormal">&nbsp;Wedit allows you to automatically generate string
+tables, either in the .rc format, or in a plain table format. All of your
+current C source files will be scanned for character strings.</p>
+<p class="MsoNormal">&nbsp;The basic idea is to replace all occurrences of</p>
+<p class="MsoToc1" style="margin-top:0cm;tab-stops:36.0pt right 453.55pt"><span style="font-family:&quot;Courier New&quot;;text-transform:none;mso-ansi-language:EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>ShowError(&quot;File not found&quot;);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="text-indent:14.2pt">by</p>
+<p class="MsoToc1" style="margin-top:0cm;tab-stops:36.0pt right 453.55pt"><span style="font-family:&quot;Courier New&quot;;text-transform:none;mso-ansi-language:EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>ShowError(GetRcString(354)); <o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="text-indent:14.2pt">or</p>
+<p class="MsoToc1" style="margin-top:0cm;tab-stops:36.0pt right 453.55pt"><span style="font-family:&quot;Courier New&quot;;text-transform:none;mso-ansi-language:EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>ShowError(StringTable[354]);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;This</p>
+<ol style="margin-top:0cm" start="1" type="1">
+  <li class="MsoNormal" style="mso-list:l6 level1 lfo18;tab-stops:list 36.0pt">Simplifies
+    the translation of your software into another language</li>
+  <li class="MsoNormal" style="mso-list:l6 level1 lfo18;tab-stops:list 36.0pt">Separates
+    programming from the writing of error messages</li>
+  <li class="MsoNormal" style="mso-list:l6 level1 lfo18;tab-stops:list 36.0pt">Reduces
+    the total size of the program in memory because the character strings use
+    memory only when they are used and total memory size of your executable
+    diminishes.</li>
+</ol>
+<p class="MsoNormal" style="margin-left:1.0cm">&nbsp;<o:p>
+</o:p>
+</p>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-left:31.85pt;
+ border-collapse:collapse;mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr>
+    <td width="567" valign="top" style="width:15.0cm;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" align="center" style="text-align:center"><!--[if gte vml 1]><v:shapetype
+   id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+   path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+   <v:stroke joinstyle="miter"/>
+   <v:formulas>
+    <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+    <v:f eqn="sum @0 1 0"/>
+    <v:f eqn="sum 0 0 @1"/>
+    <v:f eqn="prod @2 1 2"/>
+    <v:f eqn="prod @3 21600 pixelWidth"/>
+    <v:f eqn="prod @3 21600 pixelHeight"/>
+    <v:f eqn="sum @0 0 1"/>
+    <v:f eqn="prod @6 1 2"/>
+    <v:f eqn="prod @7 21600 pixelWidth"/>
+    <v:f eqn="sum @8 21600 0"/>
+    <v:f eqn="prod @7 21600 pixelHeight"/>
+    <v:f eqn="sum @10 21600 0"/>
+   </v:formulas>
+   <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+   <o:lock v:ext="edit" aspectratio="t"/>
+  </v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:408pt;
+   height:306pt' fillcolor="window">
+   <v:imagedata src="genera46.gif"
+    o:title=""/>
+  </v:shape><![endif]-->
+      <img src="genera46.gif" v:shapes="_x0000_i1025" width="544" height="408"></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="567" valign="top" style="width:15.0cm;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal"><span style="font-size:8.0pt;mso-bidi-font-size:12.0pt">&nbsp;<o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal"><span style="font-size:8.0pt;mso-bidi-font-size:12.0pt">You
+      can reach this dialog box by choosing the ‘Strings’ item in the
+      ‘Utils’ menu bar.</span></p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">This dialog box allows you to view and control the
+generation process.</p>
+<p class="MsoNormal" style="margin-left:1.0cm;text-indent:7.1pt">'Renum' option</p>
+<p class="MsoNormal">This option allows you to renumber the integers used for
+identifying each string. If you want to include the strings in another table,
+this option is essential.</p>
+<p class="MsoNormal">The following dialog box is displayed:</p>
+<p class="MsoNormal" style="margin-left:1.0cm;text-indent:7.1pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1026" type="#_x0000_t75" style='width:166.5pt;height:105.75pt'
+ fillcolor="window">
+ <v:imagedata src="genera47.gif"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="genera47.gif" v:shapes="_x0000_i1026" width="222" height="141"></p>
+<p class="MsoNormal">Here you can change either the starting number or the
+increment to be added to each string. If you want to have one numeric identifier
+for a string altering the sequence, go to the 'Edit' option below.</p>
+<p class="MsoNormal">'Edit' option</p>
+<p class="MsoNormal">This option is active only when a character string is
+selected. It will change the configuration for a particular character string.
+You can change the number or the symbolic name you will use for the string that
+is selected.</p>
+<p class="MsoNormal" style="margin-left:1.0cm;text-indent:7.1pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1027" type="#_x0000_t75" style='width:345pt;height:95.25pt'
+ fillcolor="window">
+ <v:imagedata src="genera48.gif"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="genera48.gif" v:shapes="_x0000_i1027" width="460" height="127"></p>
+<p class="MsoNormal" style="margin-left:1.0cm">Exclude:</p>
+<p class="MsoNormal">If you do not want to include a character string and leave
+it this way in the source, select the string and press the exclude button.</p>
+<p class="MsoNormal"><!--[if gte vml 1]><v:shape id="_x0000_i1028" type="#_x0000_t75"
+ style='width:109.5pt;height:36.75pt' fillcolor="window">
+ <v:imagedata src="genera49.gif"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="genera49.gif" v:shapes="_x0000_i1028" width="146" height="49"></p>
+<p class="MsoNormal">You have two options for generating the string table. The
+first is to generate it in the STRINGTABLE rc format; the second is to generate
+it in a normal character string table.</p>
+<p class="MsoNormal">The generation of a string table in the .rc format leads to
+the following dialog box:</p>
+<p class="MsoNormal" style="margin-left:1.0cm;text-indent:7.1pt">&nbsp;<o:p>
+</o:p>
+</p>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-left:3.5pt;
+ border-collapse:collapse;mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr>
+    <td width="380" valign="top" style="width:284.8pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-left:35.45pt"><!--[if gte vml 1]><v:shape
+   id="_x0000_i1029" type="#_x0000_t75" style='width:193.5pt;height:157.5pt'
+   fillcolor="window">
+   <v:imagedata src="genera50.gif"
+    o:title=""/>
+  </v:shape><![endif]-->
+      <img src="genera50.gif" v:shapes="_x0000_i1029" width="258" height="210"></p>
+    </td>
+    <td width="225" valign="top" style="width:168.8pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal"><span style="font-size:8.0pt;mso-bidi-font-size:12.0pt">You
+      reach this dialog box when you click the ‘rc’ button in the
+      ‘Strings’ dialog box. You reach the ‘Strings’ dialog box by
+      selecting the ‘Strings’ menu item in the ‘Utils’ menu bar.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal">You should enter:</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>The name
+of the output file</p>
+<p class="DefinitionTerm"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>The name
+of the function that will return a character string at runtime</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>If you
+want to have the symbolic names (#defines) or the numbers in your source file</p>
+<p class="MsoNormal">The resulting file looks like this:</p>
+<p class="MsoNormal"><span lang="FR" style="font-family:&quot;Courier New&quot;;mso-ansi-language:
+FR">STRINGTABLE<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="FR" style="font-family:&quot;Courier New&quot;;mso-ansi-language:
+FR">BEGIN<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="FR" style="font-family:&quot;Courier New&quot;;mso-ansi-language:
+FR"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>STR_0000,&quot;Aucun&quot;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="FR" style="font-family:&quot;Courier New&quot;;mso-ansi-language:
+FR"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>STR_0001,&quot;Champ
+&lt;libellé&gt; est obligatoire&quot;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="FR" style="font-family:&quot;Courier New&quot;;mso-ansi-language:
+FR"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>STR_0002,&quot;Champ
+&lt;nom&gt; est obligatoire&quot;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-tab-count: 1; font-family: Courier New; mso-ansi-language: FR" lang="FR">&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="font-family:
+&quot;Courier New&quot;">STR_0003,&quot;*&quot;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>...<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>STR_0034,&quot;<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>&quot;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>STR_0035,&quot;%7d &quot;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>STR_0036,&quot;<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>--<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>&quot;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">END<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">In the source file, instead of (for example):</p>
+<p class="MsoHeader" style="tab-stops:36.0pt center 8.0cm right 16.0cm"><span style="font-family:&quot;Courier New&quot;;mso-ansi-language:EN-US">sprintf(msg,&quot;%s
+exists already&quot;,tamponalloc);<o:p>
+</o:p>
+</span></p>
+<p class="DefinitionTerm">We have</p>
+<p class="MsoHeader" style="tab-stops:36.0pt center 8.0cm right 16.0cm"><span style="font-family:&quot;Courier New&quot;;mso-ansi-language:EN-US">sprintf(msg,GetStringFromRc(STR_0008),tamponalloc);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt"><span style="font-family:&quot;Courier New&quot;"><span style="mso-tab-count:7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>/* %s exists already */<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Times New Roman&quot;">The
+generation of a table is functionally equivalent.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:96.0pt;text-indent:-18.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1030" type="#_x0000_t75" style='width:304.5pt;height:109.5pt'
+ fillcolor="window">
+ <v:imagedata src="genera51.gif"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="genera51.gif" v:shapes="_x0000_i1030" width="406" height="146"></p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt"><span style="font-family:&quot;Times New Roman&quot;">You
+enter:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:42.5pt;text-indent:-14.15pt;mso-list:
+l2 level1 lfo20"><span style="font-family:&quot;Times New Roman&quot;">1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+</span>The name of the output file. If this file exists already and it is a
+table string file that was previously generated by Wedit, the new definitions
+will be appended to the end of the file. Automatic renumeration will occur to
+avoid destroying the definitions of previously existing strings.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:42.5pt;text-indent:-14.15pt;mso-list:
+l2 level1 lfo20"><span style="font-family:&quot;Times New Roman&quot;">2.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+</span>The ‘Name of the table’ entry field is the variable name that will be
+used in your program text to access this table. You should use names that avoid
+conflicts with any other identifier in your program.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Times New Roman&quot;">Alternatively,
+you can name a function that will return the character string given an index.
+This option is active if you choose the ‘Function’ radio button at the left.
+If not a straight index will be used.<o:p>
+</o:p>
+</span></p>
+
+</body>
+
+</html>

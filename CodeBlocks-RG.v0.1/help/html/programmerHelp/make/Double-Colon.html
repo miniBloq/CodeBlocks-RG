@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Double-Colon">Double-Colon</a>,
+Next:<a rel="next" accesskey="n" href="Automatic-Prerequisites.html#Automatic%20Prerequisites">Automatic Prerequisites</a>,
+Previous:<a rel="previous" accesskey="p" href="Static-Pattern.html#Static%20Pattern">Static Pattern</a>,
+Up:<a rel="up" accesskey="u" href="Rules.html#Rules">Rules</a>
+<hr><br>
+</div>
+
+<h3 class="section">Double-Colon Rules</h3>
+
+   <p><dfn>Double-colon</dfn> rules are rules written with <code>::</code> instead of
+<code>:</code> after the target names.  They are handled differently from
+ordinary rules when the same target appears in more than one rule.
+
+   <p>When a target appears in multiple rules, all the rules must be the same
+type: all ordinary, or all double-colon.  If they are double-colon, each
+of them is independent of the others.  Each double-colon rule's commands
+are executed if the target is older than any prerequisites of that rule. 
+If there are no prerequisites for that rule, its commands are always
+executed (even if the target already exists).  This can result in
+executing none, any, or all of the double-colon rules.
+
+   <p>Double-colon rules with the same target are in fact completely separate
+from one another.  Each double-colon rule is processed individually, just
+as rules with different targets are processed.
+
+   <p>The double-colon rules for a target are executed in the order they appear
+in the makefile.  However, the cases where double-colon rules really make
+sense are those where the order of executing the commands would not matter.
+
+   <p>Double-colon rules are somewhat obscure and not often very useful; they
+provide a mechanism for cases in which the method used to update a target
+differs depending on which prerequisite files caused the update, and such
+cases are rare.
+
+   <p>Each double-colon rule should specify commands; if it does not, an
+implicit rule will be used if one applies. 
+See <a href="Implicit-Rules.html#Implicit%20Rules">Using Implicit Rules</a>.
+
+   </body></html>
+

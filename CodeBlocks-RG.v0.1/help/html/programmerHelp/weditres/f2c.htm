@@ -1,0 +1,217 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>F2C</title>
+</head>
+
+<body>
+
+<h3><a name="_Toc509456973"><span lang="FR">F2C — The Fortr</span></a><span lang="FR" style="mso-bookmark: _Toc509456973">an
+Compiler</span></h3>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;<b style="mso-bidi-font-weight:normal">SYNOPSIS</b></p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span>f2c [option ... ] file ...</p>
+<p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal">DESCRIPTION</b></p>
+<p class="MsoNormal" style="mso-list:skip">F2c converts Fortran 77 source code
+in files with names ending in `.f' or `.F' to C source files in the current
+directory, with `.c' substituted for the final `.f' or `.F'.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span>The lcc compiler is invoked if the compilation finished
+without error and an object file is generated in the current directory.</p>
+<p class="MsoNormal" style="mso-list:skip">If no Fortran files are named, f2c
+reads Fortran from standard input and writes C on standard output.</p>
+<p class="MsoNormal" style="mso-list:skip">File names that end with `.p' or `.P'
+are taken to be prototype files, as produced by option `-P', and are read first.</p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;<span style="mso-spacerun:
+yes">&nbsp;</span>The following options have the same meaning as in other
+Fortran compilers.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-C</b> Compiles code to
+check that subscripts are within declared array limits</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-Idir</b><span style="mso-spacerun: yes">&nbsp;
+</span>Looks for a non-absolute include file first in the directory of the
+current input file, then in directories specified by -I options (one directory
+per option). Options -I2 and -I4 have precedence, thus a directory named 2
+should be specified by -I./2.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-onetrip</b><span style="mso-spacerun: yes">&nbsp;
+</span>Compiles DO loops that are performed at least once if reached. (Fortran
+77 DO loops are not performed at all if the upper limit is smaller than the
+lower limit.)</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-U</b> Honors the case
+of variable and external names. Fortran keywords must be in lower case.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-u</b> Makes the
+default type of a variable `undefined' rather than using the default Fortran
+rules.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-w</b> Suppresses all
+warning messages, or if the option is `-w66', just Fortran 66 compatibility
+warnings.</p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span>The following options are peculiar to f2c.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-A</b> Produces ANSI C.
+Default is old-style C. This option is not very useful with lcc-win32, but
+allows you to port the resulting C code to other machines.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-a</b> Makes local
+variables automatic rather than static unless they appear in a DATA,
+EQUIVALENCE, NAMELIST, or<span style="mso-spacerun: yes">&nbsp; </span>SAVE
+statement.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-C++</b> Outputs C++
+code. This will make the resulting code incompatible with lcc-win32, and object
+file generation will not work. Again, this can be useful if you are porting the
+code to another machine or you want to link the resulting code with C++.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-c</b> Includes
+original Fortran source as comments.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-cd</b> Does not
+recognize cdabs, cdcos, cdexp, cdlog, cdsin, and cdsqrt as synonyms for the
+double complex intrinsics<span style="mso-spacerun: yes">&nbsp; </span>zabs,
+zcos, zexp, zlog, zsin, and zsqrt, respectively.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-ddir</b><span style="mso-spacerun: yes">&nbsp;
+</span>Writes `.c' files in directory dir instead of the current directory.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-E</b> Declares
+uninitialized COMMON to be Extern (defined to be overwrite-capable in f2c.h as
+extern).</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-ec</b> Places
+uninitialized COMMON blocks in separate files: COMMON /ABC/ appears in file
+abc_com.c. Option `-e1c'<span style="mso-spacerun: yes">&nbsp; </span>bundles
+the separate files into the output file, with<span style="mso-spacerun: yes">&nbsp;
+</span>comments that give an unbundling sed(1) script.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-ext</b> Complains
+about f77(1) extensions. This is useful if you want to remain compatible with
+Fortran 66, the standard of more than 30 years ago.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-g</b> Includes
+original Fortran line numbers in #line lines.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-h</b> Emulates Fortran
+66's treatment of Hollerith: tries to align character strings on word (or, if
+the option is<span style="mso-spacerun: yes">&nbsp; </span>`-hd', on double
+word) boundaries.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-i90 </b>Does not
+recognize the Fortran 90 bit-manipulation intrinsics btest, iand, ibclr, ibits,
+ibset, ieor, ior,<span style="mso-spacerun: yes">&nbsp; </span>ishft, and ishftc.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-kr</b> Uses temporary
+values to enforce Fortran expression evaluation where K&amp;R (first edition)
+parenthesization<span style="mso-spacerun: yes">&nbsp; </span>rules allow
+rearrangement. If the option is `-krd',<span style="mso-spacerun: yes">&nbsp; </span>uses
+double precision temporaries even for single-precision operands.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-P </b><span style="mso-spacerun: yes">&nbsp;</span>Writes
+a file.P of ANSI (or C++) prototypes for definitions in each input file.f or
+file.F. When reading<span style="mso-spacerun: yes">&nbsp; </span>Fortran from
+standard input, writes prototypes at the<span style="mso-spacerun: yes">&nbsp; </span>beginning
+of standard output. Option -Ps implies -P<span style="mso-spacerun: yes">&nbsp; </span>and
+gives exit status 4; if rerunning f2c may change<span style="mso-spacerun: yes">&nbsp;
+</span>prototypes or declarations.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-p </b><span style="mso-spacerun: yes">&nbsp;</span>Supplies
+preprocessor definitions to make common-block members look like local variables.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-R</b> Does not promote
+REAL functions and operations to DOUBLE<span style="mso-spacerun: yes">&nbsp; </span>PRECISION.
+Option `-!R' confirms the default, which<span style="mso-spacerun: yes">&nbsp; </span>imitates
+f77.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-r</b> Casts REAL
+arguments of intrinsic functions and values of REAL functions (including
+intrinsics) to REAL.</p>
+<p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal">-r8</b>
+Promotes REAL to DOUBLE PRECISION, COMPLEX to DOUBLE COMPLEX.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-s</b> Preserves
+multidimensional subscripts. Suppressed by<span style="mso-spacerun: yes">&nbsp;
+</span>option `-C' .</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-Tdir</b><span style="mso-spacerun: yes">&nbsp;
+</span>Puts temporary files in directory dir.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-w8</b> Suppresses
+warnings when COMMON or EQUIVALENCE forces odd-word alignment of doubles.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-Wn</b> Assumes n
+characters/word (default 4) when initializing numeric variables with character
+data.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-z</b> Does not
+implicitly recognize DOUBLE COMPLEX.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-!bs </b>Does not
+recognize backslash escapes in character strings.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-!c</b> Inhibits C
+output, but produces -P output.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-!I</b> Rejects include
+statements.</p>
+<p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal">-!i8</b>
+Disallows INTEGER*8.</p>
+<p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal"><span style="mso-spacerun: yes">&nbsp;</span>-!it</b><span style="mso-spacerun: yes">&nbsp;
+</span>Does not infer types of untyped EXTERNAL procedures from use as
+parameters to previously defined or prototyped<span style="mso-spacerun: yes">&nbsp;
+</span>procedures.</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">-!P</b> Does not
+attempt to infer ANSI or C++ prototypes from usage.</p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;<b style="mso-bidi-font-weight:normal">Options
+specific to lcc-win32:</b></p>
+<p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal">-removec</b>
+Instructs f2c to remove the intermediate C file.</p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;The resulting C invokes the
+support routines of f77; object code should be linked with lcclnk specifying
+libf77.lib at the end of the command line. Wedit will automatically add this
+library when any of the project files end with .f.</p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;<span style="mso-spacerun:
+yes">&nbsp;</span><b style="mso-bidi-font-weight:normal">SEE ALSO</b> S. I.
+Feldman and P. J. Weinberger, `A Portable Fortran 77 Compiler', UNIX Time
+Sharing System Programmer's Manual, Tenth Edition, Volume 2, AT&amp;T Bell
+Laboratories, 1990. This document is distributed with the source code of f2c. It
+is a file for the Laserjet printer. To print it you should open a command shell
+and issue the command: print f2c.prt.</p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;<b style="mso-bidi-font-weight:normal">FILES</b></p>
+<p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal">f2c.h</b>
+This file is used by the generated C code. It should be in the \lcc\include
+directory.</p>
+<p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal">libf77.lib</b>
+This file is the runtime of the Fortran system. It should be in the \lcc\lib
+directory with all other libraries.</p>
+<p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal">f2c.exe</b>
+The is the compiler itself. It should be located in the \lcc\bin directory
+together with all other executables.</p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;<b style="mso-bidi-font-weight:normal">DIAGNOSTICS</b></p>
+<p class="MsoNormal" style="mso-list:skip">The diagnostics produced by f2c are
+intended to be self-explanatory. lcc-win32 will not generate any warnings when
+called from f2c. The resulting C file can be invalid, however, this provokes an
+error message from lcc-win32. This happens when you do not adhere to the
+prototypes given or you have an error in the calling sequence: you are calling a
+subroutine with different numbers of arguments within the same program. The
+error issued by lcc-win32 follows the warning of the Fortran compiler.</p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;<b style="mso-bidi-font-weight:normal">BUGS</b></p>
+<p class="MsoNormal" style="mso-list:skip">Floating-point constant expressions
+are simplified in the floating-point arithmetic of the machine running f2c, so
+that they are typically accurate to, at most 16 or 17, decimal places.</p>
+<span style="font-size: 12.0pt; mso-fareast-font-family: Times New Roman; mso-bidi-font-family: Times New Roman; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">Untypable
+EXTERNAL functions are declared int.</span>
+
+</body>
+
+</html>

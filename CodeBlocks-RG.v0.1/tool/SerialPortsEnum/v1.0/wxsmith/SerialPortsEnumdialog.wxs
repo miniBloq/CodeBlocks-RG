@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxDialog" name="SerialPortsEnumDialog">
+		<title>SerialPortsEnum v1.0</title>
+		<centered>1</centered>
+		<pos>-1,-1</pos>
+		<size>154,152</size>
+		<id_arg>0</id_arg>
+		<style>wxSTAY_ON_TOP|wxDEFAULT_DIALOG_STYLE</style>
+		<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
+			<cols>1</cols>
+			<rows>2</rows>
+			<object class="sizeritem">
+				<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="txtSerialPorts" member="yes">
+					<size>101,125</size>
+					<style>wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY</style>
+				</object>
+				<flag>wxALL|wxEXPAND|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxBoxSizer" variable="BoxSizer1" member="no">
+					<object class="sizeritem">
+						<object class="wxCheckBox" name="ID_CHKSTAYONTOP" variable="chkStayOnTop" member="yes">
+							<label>&amp;Stay on top</label>
+							<checked>1</checked>
+							<handler function="OnchkStayOnTopClick" entry="EVT_CHECKBOX" />
+						</object>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxButton" name="ID_BTNABOUT" variable="btnAbout" member="yes">
+							<label>&amp;About...</label>
+							<handler function="OnAbout" entry="EVT_BUTTON" />
+						</object>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+				</object>
+				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+		</object>
+	</object>
+</wxsmith>

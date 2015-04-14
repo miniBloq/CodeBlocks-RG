@@ -1,0 +1,100 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Selective%20Search">Selective Search</a>,
+Next:<a rel="next" accesskey="n" href="Search-Algorithm.html#Search%20Algorithm">Search Algorithm</a>,
+Previous:<a rel="previous" accesskey="p" href="General-Search.html#General%20Search">General Search</a>,
+Up:<a rel="up" accesskey="u" href="Directory-Search.html#Directory%20Search">Directory Search</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">The <code>vpath</code> Directive</h4>
+
+   <p>Similar to the <code>VPATH</code> variable, but more selective, is the
+<code>vpath</code> directive (note lower case), which allows you to specify a
+search path for a particular class of file names: those that match a
+particular pattern.  Thus you can supply certain search directories for
+one class of file names and other directories (or none) for other file
+names.
+
+   <p>There are three forms of the <code>vpath</code> directive:
+
+     <dl>
+<dt><code>vpath </code><var>pattern</var><code> </code><var>directories</var><code></code>
+     <dd>Specify the search path <var>directories</var> for file names that match
+<var>pattern</var>.
+
+     <p>The search path, <var>directories</var>, is a list of directories to be
+searched, separated by colons (semi-colons on MS-DOS and MS-Windows) or
+blanks, just like the search path used in the <code>VPATH</code> variable.
+
+     <br><dt><code>vpath </code><var>pattern</var><code></code>
+     <dd>Clear out the search path associated with <var>pattern</var>.
+
+     <br><dt><code>vpath</code>
+     <dd>
+Clear all search paths previously specified with <code>vpath</code> directives. 
+</dl>
+
+   <p>A <code>vpath</code> pattern is a string containing a <code>%</code> character.  The
+string must match the file name of a prerequisite that is being searched
+for, the <code>%</code> character matching any sequence of zero or more
+characters (as in pattern rules; see <a href="Pattern-Rules.html#Pattern%20Rules">Defining and Redefining Pattern Rules</a>).  For example, <code>%.h</code> matches files that
+end in <code>.h</code>.  (If there is no <code>%</code>, the pattern must match the
+prerequisite exactly, which is not useful very often.)
+
+   <p><code>%</code> characters in a <code>vpath</code> directive's pattern can be quoted
+with preceding backslashes (<code>\</code>).  Backslashes that would otherwise
+quote <code>%</code> characters can be quoted with more backslashes. 
+Backslashes that quote <code>%</code> characters or other backslashes are
+removed from the pattern before it is compared to file names.  Backslashes
+that are not in danger of quoting <code>%</code> characters go unmolested.
+
+   <p>When a prerequisite fails to exist in the current directory, if the
+<var>pattern</var> in a <code>vpath</code> directive matches the name of the
+prerequisite file, then the <var>directories</var> in that directive are searched
+just like (and before) the directories in the <code>VPATH</code> variable.
+
+   <p>For example,
+
+<pre class="example">     vpath %.h ../headers
+     </pre>
+
+<p>tells <code>make</code> to look for any prerequisite whose name ends in <code>.h</code>
+in the directory <code>../headers</code> if the file is not found in the current
+directory.
+
+   <p>If several <code>vpath</code> patterns match the prerequisite file's name, then
+<code>make</code> processes each matching <code>vpath</code> directive one by one,
+searching all the directories mentioned in each directive.  <code>make</code>
+handles multiple <code>vpath</code> directives in the order in which they
+appear in the makefile; multiple directives with the same pattern are
+independent of each other.
+
+   <p>Thus,
+
+<pre class="example">     vpath %.c foo
+     vpath %   blish
+     vpath %.c bar
+     </pre>
+
+<p>will look for a file ending in <code>.c</code> in <code>foo</code>, then
+<code>blish</code>, then <code>bar</code>, while
+
+<pre class="example">     vpath %.c foo:bar
+     vpath %   blish
+     </pre>
+
+<p>will look for a file ending in <code>.c</code> in <code>foo</code>, then
+<code>bar</code>, then <code>blish</code>.
+
+   </body></html>
+

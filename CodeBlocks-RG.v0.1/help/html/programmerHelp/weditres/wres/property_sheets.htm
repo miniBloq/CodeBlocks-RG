@@ -1,0 +1,596 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Property Sheets</title>
+</head>
+
+<body>
+
+<h2>Property Sheets</h2>
+<hr SIZE="1">
+<p>A <i>property sheet</i> is a window that allows the user to view and edit the
+properties of an item. For example, a spreadsheet application can use a property
+sheet to allow the user to set the font and border properties of a cell or to
+view and set the properties of a device, such as a disk drive, printer, or
+mouse.</p>
+<ul>
+  <li><a href="#About_Property_Sheet" target="_self">About Property Sheets</a>
+  <li><a href="#Using_Property_Sheet" target="_self">Using Property Sheets</a>
+  <li><a href="#Property_Sheet_Updat" target="_self">Property Sheet Updates in
+    Internet Explorer</a>
+  <li><a href="#related_topics" target="_self">Related Topics</a></li>
+</ul>
+<h3><a name="About_Property_Sheet"></a>About Property Sheets</h3>
+<p>This document assumes that you have a thorough understanding of dialog box
+templates and dialog box procedures. If you don't, read the &quot;Dialog
+Boxes&quot; chapter in the Platform SDK before continuing with this overview
+chapter.</p>
+<p>To implement property sheets in your application, include the Prsht.h header
+file in your project. Prsht.h contains all of the identifiers used with property
+sheets.</p>
+<p>A property sheet contains one or more overlapping child windows called <i>pages</i>,
+each containing control windows for setting a group of related properties. For
+example, a page can contain the controls for setting the font properties of an
+item, including the type style, point size, color, and so on. Each page has a
+tab that the user can select to bring the page to the foreground of the property
+sheet. For example, the Date-Time control panel application displays the
+following property sheet:</p>
+<p><img border="0" src="proper9.gif" width="403" height="345"></p>
+<p>There is also a special type of property sheet called a wizard. Wizards are
+designed to present pages one at a time in a sequence that is controlled by the
+application. Instead of selecting from a group of pages by clicking a tab, users
+navigate forward and backward through the sequence, one page at a time, by
+clicking Next or Back buttons located at the bottom of the wizard. For example,
+this is the compiler wizard that sets the compiler settings in Wedit:</p>
+<p><img border="0" src="proper10.gif" width="441" height="415"></p>
+<p>See <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Wizards_cpp">
+Creating Wizards</MSHelp:link>
+ for a complete discussion of wizards.</p>
+<h3><a name="Property_Sheet_Dialog"></a>Property Sheet Dialog Boxes</h3>
+<p>A property sheet and the pages it contains are actually dialog boxes. The
+property sheet is a system-defined dialog box that manages the pages and
+provides a common container for them. The property sheet dialog box can be modal
+or modeless. It includes a frame, a title bar, and four buttons: OK, Cancel,
+Apply, and Help. (The Help button may be hidden as in the preceding
+illustration.) The dialog box procedures for the pages receive notification
+messages when the user clicks the buttons.</p>
+<p>Each page in a property sheet is an application-defined modeless dialog box
+that manages the control windows used to view and edit the properties of an
+item. You provide the dialog box template used to create each page as well as
+the dialog box procedure that manages the controls and sets the properties of
+the corresponding item.</p>
+<p>A property sheet sends notification messages to the dialog box procedure for
+a page when the page is gaining or losing the activation and when the user
+clicks the OK, Cancel, Apply, or Help button. The notifications are sent in the
+form of <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_NOTIFY_cpp">
+WM_NOTIFY</MSHelp:link>
+ messages. The <i>lParam</i> parameter is the address of an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NMHDR_str_cpp">
+NMHDR</MSHelp:link>
+ structure that includes the window handle to the property sheet dialog box.</p>
+<p>Some notification messages require a page to return either TRUE or FALSE in
+response to the <b>WM_NOTIFY</b> message. To do this, the page must use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_setwindowlong">
+SetWindowLong</MSHelp:link>
+ function to set the DWL_MSGRESULT value for the page dialog box to either TRUE
+or FALSE.</p>
+<h3><a name="Pages"></a>Pages</h3>
+<p>A property sheet must contain at least one page, but it cannot contain more
+than the value of MAXPROPPAGES as defined in the Win32 header files. Each page
+has a zero-based index that the property sheet assigns according to the order in
+which the page is added to the property sheet. The indexes are used in messages
+that you send to the property sheet.</p>
+<p>A property page can contain a nested dialog box. If it does, you must include
+the WS_EX_CONTROLPARENT style for the top-level dialog box and call the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_isdialogmessage">
+IsDialogMessage</MSHelp:link>
+ function with the handle to the parent dialog box. This ensures that the user
+can use mnemonics and the dialog box navigation keys to move the focus to
+controls in the nested dialog box.</p>
+<p>Each page has a corresponding icon and label. The property sheet creates a
+tab for each page and displays the icon and label in the tab. All property sheet
+pages are expected to use a nonbold font. To ensure that the font is not bold,
+specify the DS_3DLOOK style in the dialog box template.</p>
+<p>The dialog box procedure for a page must not call the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_enddialog">
+EndDialog</MSHelp:link>
+ function. Doing so will destroy the entire property sheet, not just the page.</p>
+<p>The minimum size for a property sheet page is 212 dialog units horizontally
+and 114 dialog units vertically. If a page dialog is smaller than this, the page
+will be enlarged until it meets the minimum size. The Prsht.h header file
+contains three sets of recommended sizes for property sheet pages. PROP_SM_CXDLG
+and PROP_SM_CYDLG define the recommended dimensions for a small property sheet
+page. PROP_MED_CXDLG and PROP_MED_CYDLG define the recommended dimensions for a
+medium-sized property sheet page. PROP_LG_CXDLG and PROP_LG_CYDLG define the
+recommended dimensions for a large property sheet page. Using these recommended
+sizes will help ensure visual consistency between your application and other
+Microsoft® Windows® applications.</p>
+<p>Use the following values to set the sizes of the elements in your property
+sheet pages:</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <td>PROP_SM_CXDLG</td>
+      <td>Width, in dialog units, of a small property sheet page.</td>
+    </tr>
+    <tr>
+      <td>PROP_SM_CYDLG</td>
+      <td>Height, in dialog units, of a small property sheet page.</td>
+    </tr>
+    <tr>
+      <td>PROP_MED_CXDLG</td>
+      <td>Width, in dialog units, of a medium-sized property sheet page.</td>
+    </tr>
+    <tr>
+      <td>PROP_MED_CYDLG</td>
+      <td>Height, in dialog units, of a medium-sized property sheet page.</td>
+    </tr>
+    <tr>
+      <td>PROP_LG_CXDLG</td>
+      <td>Width, in dialog units, of a large property sheet page.</td>
+    </tr>
+    <tr>
+      <td>PROP_LG_CYDLG</td>
+      <td>Height, in dialog units, of a large property sheet page.</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="Property_Sheet_Create"></a>Property Sheet Creation</h3>
+<p>Before creating a property sheet, you must define one or more pages. This
+involves filling a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PROPSHEETPAGE_str_cpp">
+PROPSHEETPAGE</MSHelp:link>
+ structure with information about the page—its icon, label, dialog box
+template, dialog box procedure, and so on—and then specifying the address of
+the structure in a call to the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreatePropertySheetPage_cpp">
+CreatePropertySheetPage</MSHelp:link>
+ function. The function returns a handle to the HPROPSHEETPAGE type that
+uniquely identifies the page.</p>
+<p>To create a property sheet, you specify the address of a <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PROPSHEETHEADER_cpp">
+PROPSHEETHEADER</MSHelp:link>
+ structure in a call to the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PropertySheet_cpp">
+PropertySheet</MSHelp:link>
+ function. The structure defines the icon and title for the property sheet and
+also includes the address of an array of HPROPSHEETPAGE handles. When <b>PropertySheet</b>
+creates the property sheet, it includes the pages identified in the array. The
+pages appear in the property sheet in the same order that they are contained in
+the array.</p>
+<p>Another way to create a property sheet is to specify an array of <b>PROPSHEETPAGE</b>
+structures instead of an array of HPROPSHEETPAGE handles. In this case, <b>PropertySheet</b>
+creates handles for the pages before adding them to the property sheet.</p>
+<p>When a page is created, its dialog box procedure receives a <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_initdialog">
+WM_INITDIALOG</MSHelp:link>
+ message. The message's <i>lParam</i> parameter is a pointer to a copy of the <b>PROPSHEETPAGE</b>
+structure that is defined when the page is created. In particular, when a page
+is created, the structure's <b>lParam</b> member can be used to pass
+application-defined information to the dialog box procedure. With the exception
+of the <b>lParam</b> member, this structure must be treated as read-only.
+Modifying anything other than <b>lParam</b> will have unpredictable
+consequences.</p>
+<p>When the system subsequently passes a copy of the page's PROPSHEETPAGE
+structure to your application, it uses the same pointer. Any changes to the
+structure will be passed along. Because the <b>lParam</b> member is ignored by
+the system, it can be modified to send information to other parts of your
+application. You can, for instance, use <b>lParam</b> to pass information to the
+page's <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PropSheetPageProc_cpp">
+callback function</MSHelp:link>
+.</p>
+<p><b>PropertySheet</b> automatically sets the size and initial position of a
+property sheet. The position is based on the position of the owner window, and
+the size is based on the largest page specified in the array of pages when the
+property sheet was created. If you want the pages to match the width of the four
+buttons at the bottom of the property sheet, set the width of the widest page to
+190 dialog units.</p>
+<h3><a name="Adding_and_Removing_"></a>Adding and Removing Pages</h3>
+<p>After creating a property sheet, an application can add a page to the end of
+the existing set of pages by sending a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PSM_ADDPAGE_cpp">
+PSM_ADDPAGE</MSHelp:link>
+ message. To insert a page between existing pages, send a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PropSheet_InsertPage_cpp">
+PropSheet_InsertPage</MSHelp:link>
+ message. Note that the size of the property sheet cannot change after it has
+been created. Any added or inserted pages must be no larger than the largest
+page currently in the property sheet. To remove a page, send a <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PSM_REMOVEPAGE_cpp">
+PSM_REMOVEPAGE</MSHelp:link>
+ message.</p>
+<p>When you define a page, you can specify the address of a <b>PropSheetPageProc</b>
+callback function that the property sheet calls when it is creating or removing
+the page. Using <b>PropSheetPageProc</b> gives you an opportunity to perform
+initialization and cleanup operations for individual pages.</p>
+<div class="clsNote">
+  <b>Note</b>&nbsp;&nbsp;A number of messages and one function call occur while
+  the property sheet is manipulating the list of pages. While this action is
+  taking place, attempting to modify the list of pages will have unpredictable
+  results. Do not add, insert, or remove pages in your implementation of <b>PropSheetPageProc</b>,
+  or while handling the following notifications and Windows messages.
+</div>
+<ul>
+  <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PSN_APPLY_cpp">
+    PSN_APPLY</MSHelp:link>
+  <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PSN_KILLACTIVE_cpp">
+    PSN_KILLACTIVE</MSHelp:link>
+  <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PSN_RESET_cpp">
+    PSN_RESET</MSHelp:link>
+  <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PSN_SETACTIVE_cpp">
+    PSN_SETACTIVE</MSHelp:link>
+  <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PSN_WIZBACK_cpp">
+    PSN_WIZBACK</MSHelp:link>
+  <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PSN_WIZNEXT_cpp">
+    PSN_WIZNEXT</MSHelp:link>
+  <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_initdialog">
+    WM_INITDIALOG</MSHelp:link>
+  <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_destroy">
+    WM_DESTROY</MSHelp:link>
+  </li>
+</ul>
+<p>If the need to modify a property sheet page arises while you are handling one
+of these messages or while <b>PropSheetPageProc</b> is in operation, post
+yourself a private Windows message. Your application will not receive that
+message until after the property sheet manager has finished its tasks. It will
+then be safe to modify the list of pages.</p>
+<p>When a property sheet is destroyed, it automatically destroys all of the
+pages that have been added to it. The pages are destroyed in reverse order from
+that specified in the array used to create the pages. To destroy a page that was
+created by the <b>CreatePropertySheetPage</b> function but was not added to the
+property sheet, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DestroyPropertySheetPage_cpp">
+DestroyPropertySheetPage</MSHelp:link>
+ function.</p>
+<h3><a name="Property_Sheet_Title"></a>Property Sheet Title and Page Labels</h3>
+<p>You specify the title of a property sheet in the <b>PROPSHEETHEADER</b>
+structure used to create the property sheet. If the <b>dwFlags</b> member
+includes the PSH_PROPTITLE value, the property sheet adds the &quot;Properties
+for&quot; prefix to the specified title string. You can change the title after a
+property sheet is created by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PSM_SETTITLE_cpp">
+PSM_SETTITLE</MSHelp:link>
+ message.</p>
+<p>By default, a property sheet uses the name string specified in the dialog box
+template as the label for a page. You can override the name string by including
+the PSP_USETITLE value in the <b>dwFlags</b> member of the <b>PROPSHEETPAGE</b>
+structure that defines the page. When PSP_USETITLE is specified, the <b>pszTitle</b>
+member must contain the address of the label string for the page.</p>
+<h3><a name="Page_Activation"></a>Page Activation</h3>
+<p>A property sheet can have only one active page at a time. The page that has
+the activation is at the foreground of the overlapping stack of pages. The user
+activates a page by selecting its tab; an application activates a page by using
+the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PSM_SETCURSEL_cpp">
+PSM_SETCURSEL</MSHelp:link>
+ message.</p>
+<p>The property sheet sends the <b>PSN_KILLACTIVE</b> notification message to
+the page that is about to lose the activation. In response, the page must
+validate any changes that the user has made to the page. If the page requires
+additional user input before losing the activation, use the <b>SetWindowLong</b>
+function to set the DWL_MSGRESULT value of the page to TRUE. Also, the page must
+display a message box that describes the problem and provides the recommended
+action. Set DWL_MSGRESULT to FALSE when it is okay to lose the activation.</p>
+<p>Before the page that is gaining the activation is visible, the property sheet
+sends the <b>PSN_SETACTIVE</b> notification message to the page. The page must
+respond by initializing its control windows.</p>
+<h3><a name="Help_Button"></a>Help Button</h3>
+<p>Property sheets can display two Help buttons: a property sheet Help button
+that is displayed at the bottom of the frame, next to the OK/Cancel/Apply
+buttons, and a standard caption bar button that provides context-sensitive Help.</p>
+<p>The property sheet Help button is optional, and can be enabled on a page by
+page basis. To display the property sheet Help button for one or more pages:</p>
+<ul>
+  <li>Set the PSH_HASHELP flag in the <b>dwFlags</b> member of the property
+    sheet's <b>PROPSHEETHEADER</b> structure.
+  <li>For each page that will display a Help button, set the PSP_HASHELP flag in
+    the <b>dwFlags</b> member of the page's <b>PROPSHEETPAGE</b> structure.</li>
+</ul>
+<p>When the user clicks the Help button, the active page receives a <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PSN_HELP_cpp">
+PSN_HELP</MSHelp:link>
+ notification message. The page must respond by displaying Help information,
+typically by calling the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WinHelp_cpp">
+WinHelp</MSHelp:link>
+ function.</p>
+<h4><a name="remove_help_button"></a>Removing the Caption Bar Help Button</h4>
+<p>The caption bar Help button is displayed by default, so that
+context-sensitive Help is always available for the OK/Cancel/Apply buttons.
+However, this button can be removed, if necessary. To remove a property sheet's
+caption bar Help button:</p>
+<ul>
+  <li>For versions of the common controls prior to <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Shell_Versions">
+    version 5.80</MSHelp:link>
+    , you must implement a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PropSheetProc_cpp">
+    property sheet callback function</MSHelp:link>
+    .
+  <li>For <b>version 5.80</b> and later of the common controls, you can simply
+    set the PSH_NOCONTEXTHELP flag in the <b>dwFlags</b> member of the property
+    sheet's <b>PROPSHEETHEADER</b> structure. However, if you need backward
+    compatibility with earlier common control versions, you must implement the
+    callback function.</li>
+</ul>
+<p>To implement a property sheet callback function that removes the caption bar
+Help button:</p>
+<ul>
+  <li>Set the PSH_USECALLBACK flag in the <b>dwFlags</b> member of the property
+    sheet's <b>PROPSHEETHEADER</b> structure.
+  <li>Set the <b>pfnCallBack</b> member of the <b>PROPSHEETHEADER</b> structure
+    to point to the callback function.
+  <li>Implement the callback function. When this function receives the
+    PSCB_PRECREATE message, it will also receive a pointer to the property
+    sheet's dialog box template. Remove the DS_CONTEXTHELP style from this
+    template.</li>
+</ul>
+<p>The following sample illustrates how to implement such a callback function:</p>
+<p style="FONT-WEIGHT: bold; CURSOR: hand; TEXT-DECORATION: underline" ShowHideType="Example">Example</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">int CALLBACK RemoveContextHelpProc(HWND hwnd, UINT message, LPARAM lParam)
+{
+    switch (message) 
+	{
+    case PSCB_PRECREATE:
+        <font color="blue">//</font><font color="green"> Remove the DS_CONTEXTHELP style from the</font>
+        <font color="blue">//</font><font color="green"> dialog box template</font>
+        if (((LPDLGTEMPLATEEX)lParam)-&gt;signature ==    
+           0xFFFF)
+		   {
+            ((LPDLGTEMPLATEEX)lParam)-&gt;style 
+            &amp;= ~DS_CONTEXTHELP;
+        }
+        else {
+            ((LPDLGTEMPLATE)lParam)-&gt;style 
+            &amp;= ~DS_CONTEXTHELP;
+        }
+        return TRUE;
+    }
+    return TRUE;
+}
+</pre>
+<p>If the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_dlgtemplateex_str">
+DLGTEMPLATEEX</MSHelp:link>
+ structure is not defined, include the following declaration:</p>
+<p style="FONT-WEIGHT: bold; CURSOR: hand; TEXT-DECORATION: underline" ShowHideType="Example">Example</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">#include &lt;pshpack1.h&gt;
+
+typedef struct DLGTEMPLATEEX
+{
+    WORD dlgVer;
+    WORD signature;
+    DWORD helpID;
+    DWORD exStyle;
+    DWORD style;
+    WORD cDlgItems;
+    short x;
+    short y;
+    short cx;
+    short cy;
+} DLGTEMPLATEEX, *LPDLGTEMPLATEEX;
+
+#include &lt;poppack.h&gt;
+</pre>
+<h3><a name="OK__Cancel__and_Appl"></a>OK, Cancel, and Apply Buttons</h3>
+<p>The OK and Apply buttons are similar; both direct a property sheet's pages to
+validate and apply the property changes that the user has made. The only
+difference is that clicking the OK button causes the property sheet to be
+destroyed after the changes are applied.</p>
+<p>When the user clicks the OK or Apply button, the property sheet sends a <b>PSN_KILLACTIVE</b>
+notification to the active page, giving it an opportunity to validate the user's
+changes. If the changes are valid, the page must call the <b>SetWindowLong</b>
+function with the DWL_MSGRESULT value set to FALSE. If the user's changes are
+not valid, the page must set DWL_MSGRESULT to TRUE and display a dialog box
+informing the user of the problem. The page remains active until it sets
+DWL_MSGRESULT to FALSE in response to a <b>PSN_KILLACTIVE</b> message.</p>
+<p>After a page responds to a <b>PSN_KILLACTIVE</b> notification by setting
+DWL_MSGRESULT to FALSE, the property sheet will send a <b>PSN_APPLY</b>
+notification to each page. When a page receives this notification, it must apply
+the new properties to the corresponding item. To indicate to the property sheet
+that the changes are valid for the page, call <b>SetWindowLong</b> with
+DWL_MSGRESULT set to PSNRET_NOERROR. If the changes are invalid for the page,
+return an error. Doing so prevents the property sheet from being destroyed and
+returns focus to either the page that received the <b>PSN_APPLY</b> notification
+or the page that had focus when the Apply button was pressed. To return an
+error, and indicate which page will receive focus, set DWL_MSGRESULT to one of
+the following values.</p>
+<ul>
+  <li>PSNRET_INVALID. The property sheet will not be destroyed, and focus will
+    be returned to this page.
+  <li>PSNRET_INVALID_NOCHANGEPAGE. The property sheet will not be destroyed, and
+    focus will be returned to the page that had focus when the button was
+    pressed.</li>
+</ul>
+<p>An application can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PSM_APPLY_cpp">
+PSM_APPLY</MSHelp:link>
+ message to simulate the selection of the Apply button.</p>
+<p>The Apply button is initially disabled when a page becomes active, indicating
+that there are not yet any property changes to apply. When the page receives
+input through one of its controls indicating that the user has edited a
+property, the page must send the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PSM_CHANGED_cpp">
+PSM_CHANGED</MSHelp:link>
+ message to the property sheet. The message causes the property sheet to enable
+the Apply button. If the user subsequently clicks the Apply or Cancel button,
+the page must reinitialize its controls and then send the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PSM_UNCHANGED_cpp">
+PSM_UNCHANGED</MSHelp:link>
+ message to again disable the Apply button.</p>
+<p>Sometimes the Apply button causes a page to make a change to a property
+sheet, and the change cannot be undone. When this happens, the page must send
+the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PSM_CANCELTOCLOSE_cpp">
+PSM_CANCELTOCLOSE</MSHelp:link>
+ message to the property sheet. The message causes the property sheet to change
+the text of the OK button to &quot;Close,&quot; indicating that the applied
+changes cannot be canceled.</p>
+<p>Sometimes a page makes a change to the system configuration that requires
+Windows to be restarted or the system rebooted before the change can take
+effect. After making such a change, a page must send either the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PSM_RESTARTWINDOWS_cpp">
+PSM_RESTARTWINDOWS</MSHelp:link>
+ or <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PSM_REBOOTSYSTEM_cpp">
+PSM_REBOOTSYSTEM</MSHelp:link>
+ message to the property sheet. These messages cause the <b>PropertySheet</b>
+function to return the ID_PSRESTARTWINDOWS or ID_PSREBOOTSYSTEM value after the
+property sheet is destroyed.</p>
+<p>When a user clicks the Cancel button, the property sheet sends the <b>PSN_RESET</b>
+notification message to all pages, indicating that the property sheet is about
+to be destroyed. A page must use the notification to perform cleanup operations.</p>
+<h2><a name="Using_Property_Sheet"></a>Using Property Sheets</h2>
+<p>This section contains examples that demonstrate how to create a property
+sheet and process notification messages.</p>
+<h3><a name="Creating_a_Property_"></a>Creating a Property Sheet</h3>
+<p>The example in this section creates a property sheet that contains two
+pages—one for setting the font properties of a cell in a spreadsheet and
+another for setting the border properties of the cell. The example defines the
+pages by filling a pair of <b>PROPSHEETPAGE</b> structures and specifying the
+address in the <b>PROPSHEETHEADER</b> structure that is passed to the <b>PropertySheet</b>
+function. The dialog box templates, icons, and labels for the pages are loaded
+from the resources contained in the application's executable file. The icon for
+the property sheet is also loaded from the application's resources.</p>
+<p style="FONT-WEIGHT: bold; CURSOR: hand; TEXT-DECORATION: underline" ShowHideType="Example">Show
+Example</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green"> DoPropertySheet - creates a property sheet that</font>
+<font color="blue">//</font><font color="green"> contains two pages.</font>
+
+<font color="blue">//</font><font color="green"> hwndOwner - handle to the owner window of the</font>
+<font color="blue">//</font><font color="green"> property sheet.</font>
+<font color="blue">//</font>
+<font color="blue">//</font><font color="green"> Global variables</font>
+<font color="blue">//</font><font color="green">     g_hinst - instance handle</font>
+
+extern HINSTANCE g_hinst;
+
+VOID DoPropertySheet(HWND hwndOwner)
+{
+    PROPSHEETPAGE psp[2];
+    PROPSHEETHEADER psh;
+    psp[0].dwSize = sizeof(PROPSHEETPAGE);
+    psp[0].dwFlags = PSP_USEICONID | PSP_USETITLE;
+    psp[0].hInstance = g_hinst;
+    psp[0].pszTemplate = MAKEINTRESOURCE(DLG_FONT);
+    psp[0].pszIcon = MAKEINTRESOURCE(IDI_FONT);
+    psp[0].pfnDlgProc = FontDialogProc;
+    psp[0].pszTitle = MAKEINTRESOURCE(IDS_FONT)
+    psp[0].lParam = 0;
+    psp[0].pfnCallback = NULL;
+    psp[1].dwSize = sizeof(PROPSHEETPAGE);
+    psp[1].dwFlags = PSP_USEICONID | PSP_USETITLE;
+    psp[1].hInstance = g_hinst;
+    psp[1].pszTemplate =
+       MAKEINTRESOURCE(DLG_BORDER);
+    psp[1].pszIcon = MAKEINTRESOURCE(IDI_BORDER);
+    psp[1].pfnDlgProc = BorderDialogProc;
+    psp[1].pszTitle = MAKEINTRESOURCE(IDS_BORDER);
+    psp[1].lParam = 0;
+    psp[1].pfnCallback = NULL;
+    psh.dwSize = sizeof(PROPSHEETHEADER);
+    psh.dwFlags = PSH_USEICONID | PSH_PROPSHEETPAGE;
+    psh.hwndParent = hwndOwner;
+    psh.hInstance = g_hinst;
+    psh.pszIcon =
+       MAKEINTRESOURCE(IDI_CELL_PROPERTIES);
+    psh.pszCaption = (LPSTR) &quot;Cell Properties&quot;;
+    psh.nPages = sizeof(psp) /
+       sizeof(PROPSHEETPAGE);
+    psh.nStartPage = 0;
+    psh.ppsp = (LPCPROPSHEETPAGE) &amp;psp;
+    psh.pfnCallback = NULL;
+    PropertySheet(&amp;psh);
+    return;
+}
+</pre>
+<h3><a name="Processing_Notifications"></a>Processing Notification Messages</h3>
+<p>A property sheet sends <b>WM_NOTIFY</b> messages to retrieve information from
+the pages and to notify the pages of user actions. The <i>lParam</i> parameter
+of the message is the address of an <b>NMHDR</b> structure, which contains the
+handle to the property sheet dialog box, the handle to the page dialog box, and
+a notification code. The page must respond to some notification messages by
+setting the DWL_MSGRESULT value of the page to either TRUE or FALSE.</p>
+<p>The following example is a code fragment from the dialog box procedure for a
+page. It shows how to process the <b>PSN_HELP</b> notification message.</p>
+<p style="FONT-WEIGHT: bold; CURSOR: hand; TEXT-DECORATION: underline" ShowHideType="Example">Example</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">case WM_NOTIFY:
+    switch (((NMHDR FAR *) lParam)-&gt;code) 
+	{
+    case PSN_HELP:
+         {
+         char szBuf[FILE_LEN]; <font color="blue">//</font><font color="green"> Buffer for</font>
+                               <font color="blue">//</font><font color="green"> name of Help file</font>
+         <font color="blue">//</font><font color="green"> Display Help for the font properties</font>
+         <font color="blue">//</font><font color="green"> page.</font>
+
+         LoadString(g_hinst, IDS_HELPFILE, &amp;szBuf,
+         sizeof(szBuf)/sizeof(szBuf[0]));
+
+         WinHelp(((NMHDR FAR *) lParam)-&gt;hwndFrom,
+         &amp;szBuf, HELP_CONTEXT, IDH_FONT_PROPERTIES);                
+         break;
+         }
+        .
+        . <font color="blue">//</font><font color="green"> Process other property sheet</font>
+          <font color="blue">//</font><font color="green"> notifications here.</font>
+        .
+    }
+	</pre>
+<h2><a name="Property_Sheet_Updat"></a>Property Sheet Updates in Internet
+Explorer</h2>
+<p>Property sheets in Microsoft® Internet Explorer support the following new
+features.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>New Notification</th>
+      <td>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PSN_GETOBJECT_cpp">
+        PSN_GETOBJECT</MSHelp:link>
+        notification has been added to allow a page to be an OLE drop target.</td>
+    </tr>
+    <tr>
+      <th>Updated Structures</th>
+      <td>The <b>PROPSHEETHEADER</b> and <b>PROPSHEETPAGE</b> structures have
+        been updated to support new features. See the references for these
+        structures for more information.</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+
+</html>

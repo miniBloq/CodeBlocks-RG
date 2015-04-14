@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/stdstring/strcpy.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:58 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>strcpy</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">Standard C String and Character</a> &gt; <a href=
+    "strcpy.html">strcpy</a>
+  </div>
+
+  <div class="name-format">
+    strcpy
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstring&gt;
+  char *strcpy( char *to, const char *from );
+</pre>
+
+  <p>The strcpy() function copies characters in the string
+  <em>from</em> to the string <em>to</em>, including the null
+  termination. The return value is <em>to</em>.</p>
+
+  <p>Note that strcpy() does not perform bounds checking, and thus
+  risks overrunning <em>from</em> or <em>to</em>.  For a similar (and
+  safer) function that includes bounds checking, see <a
+  href="strncpy.html">strncpy()</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="memcpy.html">memcpy</a><br>
+    <a href="strcat.html">strcat</a><br>
+    <a href="strchr.html">strchr</a><br>
+    <a href="strcmp.html">strcmp</a><br>
+    <a href="strncmp.html">strncmp</a><br>
+    <a href="strncpy.html">strncpy</a>
+  </div>
+
+  <p>Another set of related (but non-standard) functions are <a
+  href="http://en.wikipedia.org/wiki/Strlcpy">strlcpy and
+  strlcat</a>.</p>
+
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdstring/strcpy.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:58 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

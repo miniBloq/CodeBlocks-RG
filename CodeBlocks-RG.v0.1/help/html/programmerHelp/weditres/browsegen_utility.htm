@@ -1,0 +1,235 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The browsegen Utility</title>
+</head>
+
+<body>
+
+<h3><a name="_Toc509456974"><span lang="FR">The browsegen U</span></a><span lang="FR" style="mso-bookmark: _Toc509456974">tility</span></h3>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;<span style="font-family:&quot;Times New Roman&quot;">This
+utility is a modified version of the compiler that will produce a browse file
+containing the position in the given source file or its included headers of the
+symbols used. The format of the generated browse files is described in the
+technical documentation. Use this utility only if you want to build browse
+information for use in another software. Normally, this utility is only used by
+the IDE (Wedit) to answer queries. A more detailed description of how it works
+is found in the technical documentation.<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText2" style="margin-left:0cm;mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;">&nbsp;Browsegen
+accepts the following command line options:<o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</p>
+<p class="MsoBodyText2" style="margin-left:0cm;text-indent:0cm;mso-list:l1 level1 lfo5;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b style="mso-bidi-font-weight:normal"><span style="font-family:&quot;Times New Roman&quot;">showifdeflines</span></b><span style="font-family:&quot;Times New Roman&quot;">.
+This will trigger line numbers of inactive lines to be printed in standard
+output or in the given output file. This is useful for finding out which lines
+in a source file are being compiled or not.<o:p>
+&nbsp;
+</span></p>
+<p class="MsoBodyText2" style="margin-left:0cm;text-indent:0cm;mso-list:l1 level1 lfo5;
+tab-stops:list 18.0pt"><span style="font-family:&quot;Times New Roman&quot;">
+</o:p></span><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-family: Times New Roman; mso-bidi-font-weight: normal"><b>writefunctions</b>
+This will write into standard output the locations of all the functions and
+types in the given file.</span></p>
+<p class="MsoBodyText2" style="margin-left:0cm;text-indent:0cm;mso-list:l1 level1 lfo5;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b style="mso-bidi-font-weight:normal"><span style="font-family:&quot;Times New Roman&quot;">M1</span></b><span style="font-family:
+&quot;Times New Roman&quot;">. This will show in the standard output all include
+files by the given input file.<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText2" style="margin-left:0cm;text-indent:0cm;mso-list:l1 level1 lfo5;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b style="mso-bidi-font-weight:normal"><span style="font-family:&quot;Times New Roman&quot;">Fo</span></b><span style="font-family:
+&quot;Times New Roman&quot;">&lt;file&gt;. Writes all output in the given file.
+This is exactly the same as the compiler option Fo.<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText2" style="margin-left:0cm;text-indent:0cm;mso-list:l1 level1 lfo5;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b style="mso-bidi-font-weight:normal"><span style="font-family:&quot;Times New Roman&quot;">-P
+–P1 –P2 –P3 –P4. </span></b><span style="font-family:&quot;Times New Roman&quot;;mso-bidi-font-weight:bold">This
+generates a C source file that contains the public or public and private
+interface for the given source file.</span><span style="font-family:&quot;Times New Roman&quot;"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText2">&nbsp;<o:p>
+</o:p>
+</p>
+<table border="1" cellspacing="0" cellpadding="0" style="margin-left:5.4pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+  <tr>
+    <td width="85" valign="top" style="width:63.8pt;border:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoBodyText2" style="margin-left:0cm"><b><span style="font-family:
+  &quot;Times New Roman&quot;">Option<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td width="498" valign="top" style="width:373.6pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoBodyText2" style="margin-left:0cm"><b><span style="font-family:
+  &quot;Times New Roman&quot;">Description<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="85" valign="top" style="width:63.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoBodyText2" style="margin-left:0cm"><span style="font-family:&quot;Times New Roman&quot;">-P
+      or –P1<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="498" valign="top" style="width:373.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoBodyText2" style="margin-left:0cm"><span style="font-family:&quot;Times New Roman&quot;">Will
+      write all the prototypes for the public (i.e. not static) functions
+      defined in the module.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="85" valign="top" style="width:63.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoBodyText2" style="margin-left:0cm"><span style="font-family:&quot;Times New Roman&quot;">-P2<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="498" valign="top" style="width:373.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoBodyText2" style="margin-left:0cm"><span style="font-family:&quot;Times New Roman&quot;">Will
+      write the public prototypes and data definitions for the given module.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="85" valign="top" style="width:63.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoBodyText2" style="margin-left:0cm"><span style="font-family:&quot;Times New Roman&quot;">-P3<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="498" valign="top" style="width:373.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoBodyText2" style="margin-left:0cm"><span style="font-family:&quot;Times New Roman&quot;">Will
+      write the prototypes for both the public and static functions, and the
+      public data dependencies.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="85" valign="top" style="width:63.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoBodyText2" style="margin-left:0cm"><span style="font-family:&quot;Times New Roman&quot;">-P4<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="498" valign="top" style="width:373.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoBodyText2" style="margin-left:0cm"><span style="font-family:&quot;Times New Roman&quot;">Will
+      write the public and static function prototypes, and the public and static
+      data definitions.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+</table>
+<p class="MsoBodyText2"><span style="font-family:&quot;Times New Roman&quot;">&nbsp;<o:p>
+</o:p>
+</span></p>
+<h3 style="margin-left:0cm"><b>The format of the .xrf files</b></h3>
+
+<p style="margin-left:0cm">This files have three sections:</p>
+
+<ol>
+  <li>
+    <p style="margin-left:0cm">A list of files that are used for building the
+    module. The first one in this list is the root file, i.e. the file that was
+    given in the command line. The others that follow are the included files,
+    directly or indirectly. When a file is referenced later in a definition, it
+    will be referenced with the index in this list. For instance a coordinate 6
+    25 means the 6th file in the list line 25. The format of the file list is as
+    follows: A letter 'f' for file, followed by the full path to the file. The
+    main file (or root file) is referenced with a capital 'F'.</li>
+  <li>
+    <p style="margin-left:0cm">A list of symbols follows. This list consists of
+    a line started with a letter that describes the type of symbol, a space,
+    then the symbol name, then the coordinates, followed by the type of the
+    symbol.</li>
+  <li>
+    <p style="margin-left:0cm">A list of types follows, numbered from T00000001
+    upwards. Each type definition is followed by a colon (<b>:</b>) then
+    optionally a '*' meaning it is a pointer, then the name of the type. If it
+    is a structure or a union, a list follows, enclosed within '{' and '}'.
+    After the opening brace, an 's' means structure, or a 'u' means union.</li>
+</ol>
+<h3 style="margin-left:0cm">The different type letters</h3>
+<p style="margin-left:0cm">'<b>A</b>': means assignment. This record references
+a preceding symbol and gives the coordinate pairs where a direct assignment to
+that symbol was done.</p>
+<p style="margin-left:0cm">'<b>C</b>': means a list of coordinates for aliases
+of this type follows.</p>
+<p style="margin-left:0cm">'<b>E</b>' means external variable name, defined in
+this module. It is followed by the file index, the starting line and the ending
+line of the definition, and its type description.</p>
+<p style="margin-left:0cm">'<b>e</b>': means external function defined in this
+module. Followed by a coordinate pair of file index, line number.</p>
+<p style="margin-left:0cm">'<b>L</b>': means local variable. This records follow
+always a function definition record and apply to the immediately preceding
+function. The format is a pair of type reference, variable name.</p>
+<p style="margin-left:0cm">'<b>M</b>': means reference to an external symbol. It
+is followed by pairs of coordinates of the references to that symbol.</p>
+<p style="margin-left:0cm">'<b>R</b>': means reference.&nbsp; It is used to mean
+references to the preceding symbol. For instance if a global variable 'x' is
+described, then the following 'R' records mean references to that variable. The
+coordinates are pairs of integers with file index and line in each pair.</p>
+<p style="margin-left:0cm">'<b>P</b>': means command line parameter. ALl command
+line parameters given to browsegen are listed with this kind of records.</p>
+<p style="margin-left:0cm">'<b>S</b>' means static global variable.&nbsp; It is
+followed by file index, starting definition line, ending definition line, and
+the type reference.</p>
+<p style="margin-left:0cm">'<b>s</b>':means static function. It is followed by a
+coordinate pair file index, line number of the start of its definition.</p>
+<p style="margin-left:0cm">'<b>T</b>': means type name defined in another
+included file. It is followed by the file index, the starting line of the
+definition, the ending line, and the type description.</p>
+<p style="margin-left:0cm">'<b>t</b>': means type name defined in the main file.
+Its format is identical to the 'T' record above.</p>
+<p style="margin-left:0cm">'<b>#</b>' means this is a preprocessor symbol.
+(macro). It is followed by the coordinate pair of file index and line number.</p>
+<p style="margin-left: 0cm">&nbsp;</p>
+<p style="margin-left: 0cm">An example of a type definition:</p>
+<p style="margin-left: 0cm"><font face="Courier New">T00000024:{s  00000023 _ptr; 00000005 _cnt; 00000023 _base; 00000005 _flag;&nbsp;<br>
+ 00000005 _file         00000023 _tmpfname; } _iobuf.</font></p>
+<p style="margin-left: 0cm">This defines a structure type with fields 's', 'ptr',
+'_cnt', '_base' , '_flag', '-file' and , '-tmpfname', named '_iobuf'.</p>
+<p style="margin-left: 0cm">The type of each field is written before the field
+name.</p>
+<p style="margin-left: 0cm">&nbsp;</p>
+
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="General%20Search">General Search</a>,
+Next:<a rel="next" accesskey="n" href="Selective-Search.html#Selective%20Search">Selective Search</a>,
+Previous:<a rel="previous" accesskey="p" href="Directory-Search.html#Directory%20Search">Directory Search</a>,
+Up:<a rel="up" accesskey="u" href="Directory-Search.html#Directory%20Search">Directory Search</a>
+<hr><br>
+</div>
+
+<h4 class="subsection"><code>VPATH</code>: Search Path for All Prerequisites</h4>
+
+   <p>The value of the <code>make</code> variable <code>VPATH</code> specifies a list of
+directories that <code>make</code> should search.  Most often, the
+directories are expected to contain prerequisite files that are not in the
+current directory; however, <code>VPATH</code> specifies a search list that
+<code>make</code> applies for all files, including files which are targets of
+rules.
+
+   <p>Thus, if a file that is listed as a target or prerequisite does not exist
+in the current directory, <code>make</code> searches the directories listed in
+<code>VPATH</code> for a file with that name.  If a file is found in one of
+them, that file may become the prerequisite (see below).  Rules may then
+specify the names of files in the prerequisite list as if they all
+existed in the current directory.  See <a href="Commands-Search.html#Commands%2fSearch">Writing Shell Commands with Directory Search</a>.
+
+   <p>In the <code>VPATH</code> variable, directory names are separated by colons or
+blanks.  The order in which directories are listed is the order followed
+by <code>make</code> in its search.  (On MS-DOS and MS-Windows, semi-colons
+are used as separators of directory names in <code>VPATH</code>, since the
+colon can be used in the pathname itself, after the drive letter.)
+
+   <p>For example,
+
+<pre class="example">     VPATH = src:../headers
+     </pre>
+
+<p>specifies a path containing two directories, <code>src</code> and
+<code>../headers</code>, which <code>make</code> searches in that order.
+
+   <p>With this value of <code>VPATH</code>, the following rule,
+
+<pre class="example">     foo.o : foo.c
+     </pre>
+
+<p>is interpreted as if it were written like this:
+
+<pre class="example">     foo.o : src/foo.c
+     </pre>
+
+<p>assuming the file <code>foo.c</code> does not exist in the current directory but
+is found in the directory <code>src</code>.
+
+   </body></html>
+

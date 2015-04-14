@@ -1,0 +1,85 @@
+<TITLE>BGI Documentation for 
+outtextxy
+</TITLE>
+<H2>
+outtextxy
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void outtextxy(int x, int y, char *textstring);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+outtextxy displays a text string in the viewport at the given position (x, y), using the current justification settings and the current font, direction, and size.
+<P>
+To maintain code compatibility when using several fonts, use textwidth and textheight to determine the dimensions of the string.
+<P>
+If a string is printed with the default font using outtext or outtextxy, any part of the string that extends outside the current viewport is truncated.
+<P>
+outtextxy is for use in graphics mode; it will not work in text mode.
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="gettextsettings.html"> gettextsettings </A> 
+<DD><A HREF="outtext.html"> outtext </A>
+<DD><A HREF="settextjustify.html"> settextjustify </A>
+<DD><A HREF="textheight.html"> textheight </A>
+<DD><A HREF="textwidth.html"> textwidth </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* outtextxy example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int midx, midy;
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+
+   /* output text at center of the screen; CP doesn't get changed */
+   outtextxy(midx, midy, "This is a test.");
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

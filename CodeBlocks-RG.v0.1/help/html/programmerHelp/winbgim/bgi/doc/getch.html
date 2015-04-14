@@ -1,0 +1,138 @@
+<TITLE>BGI Documentation for 
+getch
+</TITLE>
+<H2>
+getch 
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include "graphics.h"
+int getch(void);
+</PRE>
+
+
+
+<DT><B>Description</B><IMG SRC="win.gif" ALT="[WIN]"><DD>
+The 
+getch
+function is available in the
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation of BGI
+graphics.
+You do not need to include conio.h; just include graphics.h.
+The function reads one character from the keyboard and returns its
+ASCII value (without waiting for a return key). In order to work, the
+user must click in the graphics window (i.e., the Windows focus must
+be in the graphics window). For special keys, the getch function
+first returns ASCII 0. The next call will then return one of these
+special keys:
+<PRE>
+  #define KEY_HOME       71
+  #define KEY_UP         72
+  #define KEY_PGUP       73
+  #define KEY_LEFT       75
+  #define KEY_CENTER     76
+  #define KEY_RIGHT      77
+  #define KEY_END        79
+  #define KEY_DOWN       80
+  #define KEY_PGDN       81
+  #define KEY_INSERT     82
+  #define KEY_DELETE     83
+  #define KEY_F1         59
+  #define KEY_F2         60
+  #define KEY_F3         61
+  #define KEY_F4         62
+  #define KEY_F5         63
+  #define KEY_F6         64
+  #define KEY_F7         65
+  #define KEY_F8         66
+  #define KEY_F9         67
+</PRE>
+
+<P><DT><B>Return Value</B><DD>
+The ASCII value of a key that has been pressed.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="kbhit.html"> kbhit </A>
+
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+#include "graphics.h"
+#include &lt;stdio.h&gt;      // Provides sprintf
+#include &lt;iostream.h&gt;   // Provides cout
+
+void outintxy(int x, int y, int value);
+
+int main( )
+{
+    int i;
+    char c;
+
+    // Initialize the graphics window.
+    init_window(400, 300);
+
+    // Convert some numbers to strings and draw them in graphics window:
+    outtextxy(10, 10, "Here are some numbers:");
+    for (i = 10; i &lt;= 100; i += 10)
+        outintxy(20, i+10, i);
+
+    // Get some characters from the keyboard until an X is typed:
+    outtextxy(20, 130, "Click in this graphics window,");
+    outtextxy(20, 140, "and then press arrow keys.");
+    outtextxy(20, 150, "Watch the console window while pressing.");
+    outtextxy(20, 160, "Press X to exit.");
+    do
+    {
+        c = (char) getch( );
+        if (c != 0)
+            cout &lt;&lt; "That is ASCII value: " &lt;&lt; (int) c &lt;&lt; endl;
+        else
+        {   // Process one of the special keys:
+            c = (char) getch( );
+            switch (c)
+            {
+                case KEY_HOME:    cout &lt;&lt; "Home key."   &lt;&lt; endl; break;
+                case KEY_UP:      cout &lt;&lt; "Up key."     &lt;&lt; endl; break;
+                case KEY_PGUP:    cout &lt;&lt; "PgUp key."   &lt;&lt; endl; break;
+                case KEY_LEFT:    cout &lt;&lt; "Left key."   &lt;&lt; endl; break;
+                case KEY_CENTER:  cout &lt;&lt; "Center key." &lt;&lt; endl; break;
+                case KEY_RIGHT:   cout &lt;&lt; "Right key."  &lt;&lt; endl; break;
+                case KEY_END:     cout &lt;&lt; "End key."    &lt;&lt; endl; break;
+                case KEY_DOWN:    cout &lt;&lt; "Down key."   &lt;&lt; endl; break;
+                case KEY_PGDN:    cout &lt;&lt; "PgDn key."   &lt;&lt; endl; break;
+                case KEY_INSERT:  cout &lt;&lt; "Insert key." &lt;&lt; endl; break;
+                case KEY_DELETE:  cout &lt;&lt; "Delete key." &lt;&lt; endl; break;
+                case KEY_F1:      cout &lt;&lt; "F1 key."     &lt;&lt; endl; break;
+                case KEY_F2:      cout &lt;&lt; "F2 key."     &lt;&lt; endl; break;
+                case KEY_F3:      cout &lt;&lt; "F3 key."     &lt;&lt; endl; break;
+                case KEY_F4:      cout &lt;&lt; "F4 key."     &lt;&lt; endl; break;
+                case KEY_F5:      cout &lt;&lt; "F5 key."     &lt;&lt; endl; break;
+                case KEY_F6:      cout &lt;&lt; "F6 key."     &lt;&lt; endl; break;
+                case KEY_F7:      cout &lt;&lt; "F7 key."     &lt;&lt; endl; break;
+                case KEY_F8:      cout &lt;&lt; "F8 key."     &lt;&lt; endl; break;
+                case KEY_F9:      cout &lt;&lt; "F9 key."     &lt;&lt; endl; break;
+                default: cout &lt;&lt; "Unknown extended key." &lt;&lt; endl;
+            }
+        }
+    }   while ((c != 'x') && (c != 'X'));
+
+    closegraph( );
+}
+
+void outintxy(int x, int y, int value)
+{
+   char digit_string[20];
+   sprintf(digit_string, "%d", value);
+   outtextxy(x, y, digit_string);
+}
+</PRE>
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

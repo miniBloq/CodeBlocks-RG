@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Preparing">Preparing</a>,
+Next:<a rel="next" accesskey="n" href="Reading.html#Reading">Reading</a>,
+Previous:<a rel="previous" accesskey="p" href="Overview.html#Overview">Overview</a>,
+Up:<a rel="up" accesskey="u" href="Overview.html#Overview">Overview</a>
+<hr><br>
+</div>
+
+<h3 class="heading">Preparing and Running Make</h3>
+
+   <p>To prepare to use <code>make</code>, you must write a file called
+the <dfn>makefile</dfn> that describes the relationships among files
+in your program and provides commands for updating each file. 
+In a program, typically, the executable file is updated from object
+files, which are in turn made by compiling source files.
+
+   <p>Once a suitable makefile exists, each time you change some source files,
+this simple shell command:
+
+<pre class="example">     make
+     </pre>
+
+<p>suffices to perform all necessary recompilations.  The <code>make</code> program
+uses the makefile data base and the last-modification times of the files to
+decide which of the files need to be updated.  For each of those files, it
+issues the commands recorded in the data base.
+
+   <p>You can provide command line arguments to <code>make</code> to control which
+files should be recompiled, or how.  See <a href="Running.html#Running">How to Run <code>make</code></a>.
+
+   </body></html>
+

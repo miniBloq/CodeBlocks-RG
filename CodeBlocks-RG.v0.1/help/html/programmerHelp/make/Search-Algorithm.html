@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Search%20Algorithm">Search Algorithm</a>,
+Next:<a rel="next" accesskey="n" href="Commands-Search.html#Commands%2fSearch">Commands/Search</a>,
+Previous:<a rel="previous" accesskey="p" href="Selective-Search.html#Selective%20Search">Selective Search</a>,
+Up:<a rel="up" accesskey="u" href="Directory-Search.html#Directory%20Search">Directory Search</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">How Directory Searches are Performed</h4>
+
+   <p>When a prerequisite is found through directory search, regardless of type
+(general or selective), the pathname located may not be the one that
+<code>make</code> actually provides you in the prerequisite list.  Sometimes
+the path discovered through directory search is thrown away.
+
+   <p>The algorithm <code>make</code> uses to decide whether to keep or abandon a
+path found via directory search is as follows:
+
+     <ol type=1 start=1>
+<li>If a target file does not exist at the path specified in the makefile,
+directory search is performed.
+
+     <li>If the directory search is successful, that path is kept and this file
+is tentatively stored as the target.
+
+     <li>All prerequisites of this target are examined using this same method.
+
+     <li>After processing the prerequisites, the target may or may not need to be
+rebuilt:
+
+          <ol type=a start=1>
+<li>If the target does <em>not</em> need to be rebuilt, the path to the file
+found during directory search is used for any prerequisite lists which
+contain this target.  In short, if <code>make</code> doesn't need to rebuild
+the target then you use the path found via directory search.
+
+          <li>If the target <em>does</em> need to be rebuilt (is out-of-date), the
+pathname found during directory search is <em>thrown away</em>, and the
+target is rebuilt using the file name specified in the makefile.  In
+short, if <code>make</code> must rebuild, then the target is rebuilt locally,
+not in the directory found via directory search.
+          </ol>
+        </ol>
+
+   <p>This algorithm may seem complex, but in practice it is quite often
+exactly what you want.
+
+   <p>Other versions of <code>make</code> use a simpler algorithm: if the file does
+not exist, and it is found via directory search, then that pathname is
+always used whether or not the target needs to be built.  Thus, if the
+target is rebuilt it is created at the pathname discovered during
+directory search.
+
+   <p>If, in fact, this is the behavior you want for some or all of your
+directories, you can use the <code>GPATH</code> variable to indicate this to
+<code>make</code>.
+
+   <p><code>GPATH</code> has the same syntax and format as <code>VPATH</code> (that is, a
+space- or colon-delimited list of pathnames).  If an out-of-date target
+is found by directory search in a directory that also appears in
+<code>GPATH</code>, then that pathname is not thrown away.  The target is
+rebuilt using the expanded path.
+
+   </body></html>
+

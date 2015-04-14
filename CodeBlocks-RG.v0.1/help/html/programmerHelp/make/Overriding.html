@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Overriding">Overriding</a>,
+Next:<a rel="next" accesskey="n" href="Testing.html#Testing">Testing</a>,
+Previous:<a rel="previous" accesskey="p" href="Avoiding-Compilation.html#Avoiding%20Compilation">Avoiding Compilation</a>,
+Up:<a rel="up" accesskey="u" href="Running.html#Running">Running</a>
+<hr><br>
+</div>
+
+<h3 class="section">Overriding Variables</h3>
+
+   <p>An argument that contains <code>=</code> specifies the value of a variable:
+<code></code><var>v</var><code>=</code><var>x</var><code></code> sets the value of the variable <var>v</var> to <var>x</var>. 
+If you specify a value in this way, all ordinary assignments of the same
+variable in the makefile are ignored; we say they have been
+<dfn>overridden</dfn> by the command line argument.
+
+   <p>The most common way to use this facility is to pass extra flags to
+compilers.  For example, in a properly written makefile, the variable
+<code>CFLAGS</code> is included in each command that runs the C compiler, so a
+file <code>foo.c</code> would be compiled something like this:
+
+<pre class="example">     cc -c $(CFLAGS) foo.c
+     </pre>
+
+   <p>Thus, whatever value you set for <code>CFLAGS</code> affects each compilation
+that occurs.  The makefile probably specifies the usual value for
+<code>CFLAGS</code>, like this:
+
+<pre class="example">     CFLAGS=-g
+     </pre>
+
+   <p>Each time you run <code>make</code>, you can override this value if you
+wish.  For example, if you say <code>make CFLAGS='-g -O'</code>, each C
+compilation will be done with <code>cc -c -g -O</code>.  (This also
+illustrates how you can use quoting in the shell to enclose spaces and
+other special characters in the value of a variable when you override
+it.)
+
+   <p>The variable <code>CFLAGS</code> is only one of many standard variables that
+exist just so that you can change them this way.  See <a href="Implicit-Variables.html#Implicit%20Variables">Variables Used by Implicit Rules</a>, for a complete list.
+
+   <p>You can also program the makefile to look at additional variables of your
+own, giving the user the ability to control other aspects of how the
+makefile works by changing the variables.
+
+   <p>When you override a variable with a command argument, you can define either
+a recursively-expanded variable or a simply-expanded variable.  The
+examples shown above make a recursively-expanded variable; to make a
+simply-expanded variable, write <code>:=</code> instead of <code>=</code>.  But, unless
+you want to include a variable reference or function call in the
+<em>value</em> that you specify, it makes no difference which kind of
+variable you create.
+
+   <p>There is one way that the makefile can change a variable that you have
+overridden.  This is to use the <code>override</code> directive, which is a line
+that looks like this: <code>override </code><var>variable</var><code> = </code><var>value</var><code></code>
+(see <a href="Override-Directive.html#Override%20Directive">The <code>override</code> Directive</a>).
+
+   </body></html>
+

@@ -1,0 +1,102 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Call%20Function">Call Function</a>,
+Next:<a rel="next" accesskey="n" href="Value-Function.html#Value%20Function">Value Function</a>,
+Previous:<a rel="previous" accesskey="p" href="If-Function.html#If%20Function">If Function</a>,
+Up:<a rel="up" accesskey="u" href="Functions.html#Functions">Functions</a>
+<hr><br>
+</div>
+
+<h3 class="section">The <code>call</code> Function</h3>
+
+   <p>The <code>call</code> function is unique in that it can be used to create new
+parameterized functions.  You can write a complex expression as the
+value of a variable, then use <code>call</code> to expand it with different
+values.
+
+   <p>The syntax of the <code>call</code> function is:
+
+<pre class="example">     $(call <var>variable</var>,<var>param</var>,<var>param</var>,...)
+     </pre>
+
+   <p>When <code>make</code> expands this function, it assigns each <var>param</var> to
+temporary variables <code>$(1)</code>, <code>$(2)</code>, etc.  The variable
+<code>$(0)</code> will contain <var>variable</var>.  There is no maximum number of
+parameter arguments.  There is no minimum, either, but it doesn't make
+sense to use <code>call</code> with no parameters.
+
+   <p>Then <var>variable</var> is expanded as a <code>make</code> variable in the context
+of these temporary assignments.  Thus, any reference to <code>$(1)</code> in
+the value of <var>variable</var> will resolve to the first <var>param</var> in the
+invocation of <code>call</code>.
+
+   <p>Note that <var>variable</var> is the <em>name</em> of a variable, not a
+<em>reference</em> to that variable.  Therefore you would not normally use
+a <code>$</code> or parentheses when writing it.  (You can, however, use a
+variable reference in the name if you want the name not to be a
+constant.)
+
+   <p>If <var>variable</var> is the name of a builtin function, the builtin function
+is always invoked (even if a <code>make</code> variable by that name also
+exists).
+
+   <p>The <code>call</code> function expands the <var>param</var> arguments before
+assigning them to temporary variables.  This means that <var>variable</var>
+values containing references to builtin functions that have special
+expansion rules, like <code>foreach</code> or <code>if</code>, may not work as you
+expect.
+
+   <p>Some examples may make this clearer.
+
+   <p>This macro simply reverses its arguments:
+
+<pre class="smallexample">     reverse = $(2) $(1)
+     
+     foo = $(call reverse,a,b)
+     </pre>
+
+<p>Here <var>foo</var> will contain <code>b a</code>.
+
+   <p>This one is slightly more interesting: it defines a macro to search for
+the first instance of a program in <code>PATH</code>:
+
+<pre class="smallexample">     pathsearch = $(firstword $(wildcard $(addsuffix /$(1),$(subst :, ,$(PATH)))))
+     
+     LS := $(call pathsearch,ls)
+     </pre>
+
+<p>Now the variable LS contains <code>/bin/ls</code> or similar.
+
+   <p>The <code>call</code> function can be nested.  Each recursive invocation gets
+its own local values for <code>$(1)</code>, etc. that mask the values of
+higher-level <code>call</code>.  For example, here is an implementation of a
+<dfn>map</dfn> function:
+
+<pre class="smallexample">     map = $(foreach a,$(2),$(call $(1),$(a)))
+     </pre>
+
+   <p>Now you can <var>map</var> a function that normally takes only one argument,
+such as <code>origin</code>, to multiple values in one step:
+
+<pre class="smallexample">     o = $(call map,origin,o map MAKE)
+     </pre>
+
+   <p>and end up with <var>o</var> containing something like <code>file file default</code>.
+
+   <p>A final caution: be careful when adding whitespace to the arguments to
+<code>call</code>.  As with other functions, any whitespace contained in the
+second and subsequent arguments is kept; this can cause strange
+effects.  It's generally safest to remove all extraneous whitespace when
+providing parameters to <code>call</code>.
+
+   </body></html>
+

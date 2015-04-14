@@ -1,0 +1,19 @@
+Engine: CxTest 0.1
+Execution Date & Time: 08/08/10 02:51:17
+Config File: (null)
+Tested Libraries: cxcore: 2.0.0
+Optimized Low-level Plugin's: 
+=================================================
+-------------------------------------------------
+calibratecamera: Could not open file with list of test files: ../tests/cv/testdata//cameracalibration/datafiles.txt
+context: test case = -1, seed = 127bf2960c9759d4
+-------------------------------------------------
+chessboard-detector: chessboard_list.dat can not be readed or is not validcontext: test case = -1, seed = 06cd6d143b8369b3
+-------------------------------------------------
+kd-tree: correct_perc = 446676599
+-------------------------------------------------
+optflow-pyrlk: could not read ../tests/cv/testdata//optflow/lk_prev.dat
+context: test case = -1, seed = 1b40df33943313b8
+-------------------------------------------------
+snakes: can not load ../tests/cv/testdata//snakes/ring.bmp
+context: test case = 0, seed = 2c92e81cf0787968

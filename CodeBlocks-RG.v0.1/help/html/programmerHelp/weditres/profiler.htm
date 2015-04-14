@@ -1,0 +1,73 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The Profiler</title>
+</head>
+
+<body>
+
+<h2 style="mso-list:skip"><a name="_Toc509457021"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc426191780">The
+Profil</span></a><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc426191780">er</span><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span><o:p>
+&nbsp;
+</h2>
+
+<h3 style="mso-list:skip">The statistical profiler</o:p>
+</h3>
+<p class="MsoNormal" style="mso-list:skip">This profiler is a utility that allows
+you to see where your program is spending its time. It operates by starting a
+special debugging session in which the debugger interrupts the running program
+approx. 1,000 times per second. When the debugger stops the program, it checks
+what the program is currently executing and records each source line/function
+that corresponds to the current program counter (EIP).</p>
+<p class="MsoNormal" style="mso-list:skip">When the program finishes running,
+the debugger assembles the information it has gathered into a report in which
+each function that was interrupted is shown with the number of hits it had.</p>
+<p class="MsoNormal" style="mso-list:skip">The logic behind this method is that
+the longer a function executes the higher the probability that the debugger will
+interrupt its execution. Since this is a statistical approach, the longer the
+program runs, the more accurate the information of the profiler will be. Short
+runs can introduce errors because the chance factor is higher. Longer runs
+provide a more reliable report.</p>
+<p class="MsoNormal" style="mso-list:skip">When measuring a program’s
+execution, you should run several profile sessions before using the data.</p>
+<p class="MsoNormal" style="mso-list:skip">To start a profiler session, you
+should compile the program with the debug information ON of course. Use only the
+lowest debug level (g2). Other debug levels will introduce a skew in the data,
+since they affect the program’s runtime behavior. For instance, if you set the
+debug level to g3, at each procedure call, the program will record the name of
+the procedure in the stack, making procedure calls more costly, skewing the data
+seen by the profiler.</p>
+<p class="MsoNormal" style="mso-list:skip">The profiler report will be loaded
+automatically into the editor. You can save it or rename it as you would do with
+any other text file.</p>
+<p class="MsoNormal" style="mso-list:skip">During the profiler session, the
+debugger’s main window will appear. Do not use it because the profiler session
+could be stopped or slowed down, rendering the data useless.</p>
+
+<h3 style="mso-list: skip">The detailed profiler</h3>
+<p style="mso-list: skip">This profiler works by injecting instrumentation code
+in the executable and needs special support from the compiler and the run time
+library profiler.lib. The compiler must be used with the -profile option, and
+the linker should receive the profile.lib in its command line. Both options are
+automatically added by the IDE when generating the makefile.</p>
+<p style="mso-list: skip">When the program starts, it setups the profile
+environment and then calls the main() function. When the program exits (either
+through a return from main or by a direct call to the exit() function) the
+profiler writes in the directory where the program was started the data
+collected in the profiling session. The file name is &quot;__profile.data&quot;,
+and contains information about the line numbers with a count for each line
+number where the program passed, and a clock information for each function. This
+information is given by module.</p>
+<p style="mso-list: skip">The utility &quot;<a href="file:///D:/lcc/doc/manualchm/profilerdisplay.htm">profiler</a>&quot;
+displays this information in a more advanced form. When the IDE is in charge, it
+will start the program with the current command line options and call after it
+finishes the profiler.exe utility to display the results.</p>
+
+</body>
+
+</html>

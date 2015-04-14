@@ -1,0 +1,36 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Debugging Windows Programs</title>
+</head>
+
+<body>
+
+<h2 style="mso-list:skip"><a name="_Toc509457020"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc426195177">Debugging
+Windows</span></a><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc426195177">
+Programs</span><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoNormal">It is important when you debug windowed programs that the
+debugger not interfere with the window of the program being debugged. Any
+interference of the debugger with your program’s window will trigger a message
+to your program, which could cause procedures to be called up that will change
+the execution of the program. For instance, if you try to debug the procedure
+that is called up when a <span style="font-family:Courier">WM_PAINT</span>
+message is received, the fact that the debugger will pop up and hide a portion
+of your program’s window, will trigger the function you want to debug to be
+called up again. If you have a breakpoint in it, there is no way to escape an
+endless cascade of the same message. This can be stopped either by erasing the
+breakpoint or by moving the window so that the debugger’s window does not
+touch the window of your program.</p>
+<p class="MsoNormalIndent" style="mso-list:skip"><span style="mso-ansi-language:
+EN-US">&nbsp;<o:p>
+</o:p>
+</span></p>
+
+</body>
+
+</html>

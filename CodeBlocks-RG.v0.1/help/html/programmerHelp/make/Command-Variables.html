@@ -1,0 +1,99 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Command%20Variables">Command Variables</a>,
+Next:<a rel="next" accesskey="n" href="Directory-Variables.html#Directory%20Variables">Directory Variables</a>,
+Previous:<a rel="previous" accesskey="p" href="Utilities-in-Makefiles.html#Utilities%20in%20Makefiles">Utilities in Makefiles</a>,
+Up:<a rel="up" accesskey="u" href="Makefile-Conventions.html#Makefile%20Conventions">Makefile Conventions</a>
+<hr><br>
+</div>
+
+<h3 class="section">Variables for Specifying Commands</h3>
+
+   <p>Makefiles should provide variables for overriding certain commands, options,
+and so on.
+
+   <p>In particular, you should run most utility programs via variables. 
+Thus, if you use Bison, have a variable named <code>BISON</code> whose default
+value is set with <code>BISON = bison</code>, and refer to it with
+<code>$(BISON)</code> whenever you need to use Bison.
+
+   <p>File management utilities such as <code>ln</code>, <code>rm</code>, <code>mv</code>, and
+so on, need not be referred to through variables in this way, since users
+don't need to replace them with other programs.
+
+   <p>Each program-name variable should come with an options variable that is
+used to supply options to the program.  Append <code>FLAGS</code> to the
+program-name variable name to get the options variable name--for
+example, <code>BISONFLAGS</code>.  (The names <code>CFLAGS</code> for the C
+compiler, <code>YFLAGS</code> for yacc, and <code>LFLAGS</code> for lex, are
+exceptions to this rule, but we keep them because they are standard.) 
+Use <code>CPPFLAGS</code> in any compilation command that runs the
+preprocessor, and use <code>LDFLAGS</code> in any compilation command that
+does linking as well as in any direct use of <code>ld</code>.
+
+   <p>If there are C compiler options that <em>must</em> be used for proper
+compilation of certain files, do not include them in <code>CFLAGS</code>. 
+Users expect to be able to specify <code>CFLAGS</code> freely themselves. 
+Instead, arrange to pass the necessary options to the C compiler
+independently of <code>CFLAGS</code>, by writing them explicitly in the
+compilation commands or by defining an implicit rule, like this:
+
+<pre class="smallexample">     CFLAGS = -g
+     ALL_CFLAGS = -I. $(CFLAGS)
+     .c.o:
+             $(CC) -c $(CPPFLAGS) $(ALL_CFLAGS) $&lt;
+     </pre>
+
+   <p>Do include the <code>-g</code> option in <code>CFLAGS</code>, because that is not
+<em>required</em> for proper compilation.  You can consider it a default
+that is only recommended.  If the package is set up so that it is
+compiled with GCC by default, then you might as well include <code>-O</code>
+in the default value of <code>CFLAGS</code> as well.
+
+   <p>Put <code>CFLAGS</code> last in the compilation command, after other variables
+containing compiler options, so the user can use <code>CFLAGS</code> to
+override the others.
+
+   <p><code>CFLAGS</code> should be used in every invocation of the C compiler,
+both those which do compilation and those which do linking.
+
+   <p>Every Makefile should define the variable <code>INSTALL</code>, which is the
+basic command for installing a file into the system.
+
+   <p>Every Makefile should also define the variables <code>INSTALL_PROGRAM</code>
+and <code>INSTALL_DATA</code>.  (The default for <code>INSTALL_PROGRAM</code> should
+be <code>$(INSTALL)</code>; the default for <code>INSTALL_DATA</code> should be
+<code>${INSTALL} -m 644</code>.)  Then it should use those variables as the
+commands for actual installation, for executables and nonexecutables
+respectively.  Use these variables as follows:
+
+<pre class="example">     $(INSTALL_PROGRAM) foo $(bindir)/foo
+     $(INSTALL_DATA) libfoo.a $(libdir)/libfoo.a
+     </pre>
+
+   <p>Optionally, you may prepend the value of <code>DESTDIR</code> to the target
+filename.  Doing this allows the installer to create a snapshot of the
+installation to be copied onto the real target filesystem later.  Do not
+set the value of <code>DESTDIR</code> in your Makefile, and do not include it
+in any installed files.  With support for <code>DESTDIR</code>, the above
+examples become:
+
+<pre class="example">     $(INSTALL_PROGRAM) foo $(DESTDIR)$(bindir)/foo
+     $(INSTALL_DATA) libfoo.a $(DESTDIR)$(libdir)/libfoo.a
+     </pre>
+
+<p>Always use a file name, not a directory name, as the second argument of
+the installation commands.  Use a separate command for each file to be
+installed.
+
+   </body></html>
+

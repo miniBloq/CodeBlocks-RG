@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Pattern%20Match">Pattern Match</a>,
+Next:<a rel="next" accesskey="n" href="Match-Anything-Rules.html#Match-Anything%20Rules">Match-Anything Rules</a>,
+Previous:<a rel="previous" accesskey="p" href="Automatic.html#Automatic">Automatic</a>,
+Up:<a rel="up" accesskey="u" href="Pattern-Rules.html#Pattern%20Rules">Pattern Rules</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">How Patterns Match</h4>
+
+   <p>A target pattern is composed of a <code>%</code> between a prefix and a suffix,
+either or both of which may be empty.  The pattern matches a file name only
+if the file name starts with the prefix and ends with the suffix, without
+overlap.  The text between the prefix and the suffix is called the
+<dfn>stem</dfn>.  Thus, when the pattern <code>%.o</code> matches the file name
+<code>test.o</code>, the stem is <code>test</code>.  The pattern rule prerequisites are
+turned into actual file names by substituting the stem for the character
+<code>%</code>.  Thus, if in the same example one of the prerequisites is written
+as <code>%.c</code>, it expands to <code>test.c</code>.
+
+   <p>When the target pattern does not contain a slash (and it usually does
+not), directory names in the file names are removed from the file name
+before it is compared with the target prefix and suffix.  After the
+comparison of the file name to the target pattern, the directory
+names, along with the slash that ends them, are added on to the
+prerequisite file names generated from the pattern rule's prerequisite
+patterns and the file name. The directories are ignored only for the
+purpose of finding an implicit rule to use, not in the application of
+that rule.  Thus, <code>e%t</code> matches the file name <code>src/eat</code>,
+with <code>src/a</code> as the stem.  When prerequisites are turned into file
+names, the directories from the stem are added at the front, while the
+rest of the stem is substituted for the <code>%</code>.  The stem
+<code>src/a</code> with a prerequisite pattern <code>c%r</code> gives the file name
+<code>src/car</code>.
+
+   </body></html>
+

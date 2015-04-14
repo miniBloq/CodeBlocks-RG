@@ -1,0 +1,42 @@
+<TITLE>BGI Documentation for 
+writeimagefile
+</TITLE>
+<H2>
+writeimagefile
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include "graphics.h"
+void writeimagefile(
+    const char* title=NULL,	
+    double width_inches=7, double border_left_inches=0.75, double border_top_inches=0.75,
+    int left=0, int right=0, int right=INT_MAX, int bottom=INT_MAX
+    );
+</PRE>
+
+
+
+<DT><B>Description</B><IMG SRC="win.gif" ALT="[WIN]"><DD>
+The 
+writeimagefile
+function is available in the
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation of BGI
+graphics.
+You do not need to include conio.h; just include graphics.h.
+The function saves a portion of the 
+active page in a BMP file.  The filename must end in "BMP" or ".bmp",
+or it may be NULL (in which case a windows file save dialog box is
+opened to allow the user to select a file name).
+
+<P><DT><B>See also</B>
+<DD><A HREF="getimage.html"> getimage </A>
+<DD><A HREF="printimage.html"> printimage </A>
+<DD><A HREF="readimagefile.html"> readimagefile </A>
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

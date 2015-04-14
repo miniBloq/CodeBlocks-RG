@@ -1,0 +1,333 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Up</title>
+</head>
+
+<body>
+
+<h2>Up-Down Controls</h2>
+<hr SIZE="1">
+<p>An up-down control is a pair of arrow buttons that the user can click to
+increment or decrement a value, such as a scroll position or a number displayed
+in a companion control. The value associated with an up-down control is called
+its current position. An up-down control is most often used with a companion
+control, which is called a buddy window.</p>
+<ul>
+  <li><a href="#About_Up_Down_Contro" target="_self">About Up-Down Controls</a>
+  <li><a href="#Up_Down_Control_Upda" target="_self">Up-Down Control Updates in
+    Internet Explorer</a></li>
+</ul>
+<h2><a name="About_Up_Down_Contro"></a>About Up-Down Controls</h2>
+<p>To the user, an up-down control and its buddy window often look like a single
+control. You can specify that an up-down control automatically position itself
+next to its buddy window and that it automatically set the caption of the buddy
+window to its current position. For example, you can use an up-down control with
+an edit control to prompt the user for numeric input. The following illustration
+shows an up-down control with an edit control as its buddy window, a combination
+that is sometimes referred to as a spinner control.</p>
+<p><img border="0" src="up_dow26.gif" width="102" height="33"></p>
+<p>An up-down control without a buddy window functions as a sort of simplified
+scroll bar. For example, a tab control sometimes displays an up-down control to
+enable the user to scroll additional tabs into view. The following illustration
+shows an up-down control in the upper-right corner of a tab control.</p>
+<p><img border="0" src="up_dow27.gif" width="575" height="375"></p>
+<p>You can create an up-down control and specify its buddy window in several
+ways. The <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="UPDOWN_CLASS">
+UPDOWN_CLASS</MSHelp:link>
+ value specifies an up-down control's window class. You can specify this window
+class in a dialog box template or in a call to the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+CreateWindowEx</MSHelp:link>
+ function. Another way is to use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateUpDownControl_cpp">
+CreateUpDownControl</MSHelp:link>
+ function to create an up-down control and, at the same time, specify its buddy
+window, current position, and minimum and maximum positions.</p>
+<p>The UPDOWN_CLASS window class is registered when the common controls
+dynamic-link library (DLL) is loaded. If you create an up-down control without
+using the <b>CreateUpDownControl</b> function, you must ensure that the DLL is
+loaded. You can do so by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_InitCommonControls_cpp">
+InitCommonControls</MSHelp:link>
+ function.</p>
+<p><b>CreateUpDownControl</b> enables you to specify a buddy window. If you
+create an up-down control without using this function, you can assign a buddy
+window by specifying the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="UDS_AUTOBUDDY">
+UDS_AUTOBUDDY</MSHelp:link>
+ window style or by using the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_UDM_SETBUDDY_cpp">
+UDM_SETBUDDY</MSHelp:link>
+ message. If UDS_AUTOBUDDY is specified, the up-down control automatically
+selects the previous window in the z-order as its buddy window. This window
+might be the previous control in a dialog box template. You can use <b>UDM_SETBUDDY</b>
+to assign a specific buddy window to an up-down control. To determine an up-down
+control's current buddy window, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_UDM_GETBUDDY_cpp">
+UDM_GETBUDDY</MSHelp:link>
+ message. An up-down control and its buddy window must have the same parent
+window.</p>
+<p>An up-down control notifies its parent window when its current position
+changes by sending it a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_UDN_DELTAPOS_cpp">
+UDN_DELTAPOS</MSHelp:link>
+ notification message and a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_VSCROLL_cpp">
+WM_VSCROLL</MSHelp:link>
+ or <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_HSCROLL_cpp">
+WM_HSCROLL</MSHelp:link>
+ message. A vertical up-down control (which does not have the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="UDS_HORZ">
+UDS_HORZ</MSHelp:link>
+ style) sends a <b>WM_VSCROLL</b> message. A horizontal up-down control (which
+has the UDS_HORZ style) sends a <b>WM_HSCROLL</b> message.</p>
+<p>The following topics are discussed in this section.</p>
+<ul>
+  <li><a href="#About_Up_Down_Styles" target="_self">About Up-Down Control
+    Styles</a>
+  <li><a href="#Position_and_Acceler" target="_self">Position and Acceleration</a>
+  <li><a href="#Default_Up_Down_Cont" target="_self">Default Up-Down Controls
+    Message Processing</a></li>
+</ul>
+<h3><a name="About_Up_Down_Styles"></a>About Up-Down Control Styles</h3>
+<p>Using window styles, you can manipulate characteristics of an up-down
+control, such as how it positions itself relative to its buddy window, whether
+it sets the text of its buddy window, and whether it processes the UP ARROW and
+DOWN ARROW keys.</p>
+<p>An up-down control with the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="UDS_ALIGNLEFT">
+UDS_ALIGNLEFT</MSHelp:link>
+ or <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="UDS_ALIGNRIGHT">
+UDS_ALIGNRIGHT</MSHelp:link>
+ style aligns with the left or right edge of its buddy window. The width of the
+buddy window is decreased to accommodate the width of the up-down control.</p>
+<p>An up-down control with the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="UDS_SETBUDDYINT">
+UDS_SETBUDDYINT</MSHelp:link>
+ style sets the caption of its buddy window whenever the current position
+changes. The control inserts a thousands separator between every three digits of
+a decimal string unless the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="UDS_NOTHOUSANDS">
+UDS_NOTHOUSANDS</MSHelp:link>
+ style is specified. If the buddy window is a list box, an up-down control sets
+its current selection instead of its caption.</p>
+<p>You can specify the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="UDS_ARROWKEYS">
+UDS_ARROWKEYS</MSHelp:link>
+ style to provide a keyboard interface for an up-down control. If this style is
+specified, the control processes the and keys. The control also subclasses the
+buddy window so that it can process these keys when the buddy window has the
+focus.</p>
+<p>If you use an up-down control for horizontal scrolling, you can specify the
+UDS_HORZ style. This style causes the up-down control's arrows to point left and
+right instead of up and down.</p>
+<p>By default, the current position does not change if the user attempts to
+increment it or decrement it beyond the maximum or minimum value. You can change
+this behavior by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="UDS_WRAP">
+UDS_WRAP</MSHelp:link>
+ style, so the position &quot;wraps&quot; to the opposite extreme. For example,
+incrementing past the upper limit wraps the position back to the lower limit.</p>
+<h3><a name="Position_and_Acceler"></a>Position and Acceleration</h3>
+<p>After an up-down control is created, you can change the control's current
+position, minimum position, and maximum position by sending messages. You can
+also change the radix base used to display the current position in the buddy
+window and the rate at which the current position changes when the up or down
+arrow is clicked.</p>
+<p>To retrieve the current position of an up-down control, use the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_UDM_GETPOS_cpp">
+UDM_GETPOS</MSHelp:link>
+ message. For an up-down control with a buddy window, the current position is
+the number in the buddy window's caption. Because the caption may have changed
+(for example, the user may have edited the text of an edit control), the up-down
+control retrieves the current caption and updates its current position
+accordingly.</p>
+<p>The buddy window's caption may be either a decimal or hexadecimal string,
+depending on the radix base (that is, either base 10 or 16) of the up-down
+control. You can set the radix base by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_UDM_SETBASE_cpp">
+UDM_SETBASE</MSHelp:link>
+ message and retrieve the radix base by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_UDM_GETBASE_cpp">
+UDM_GETBASE</MSHelp:link>
+ message.</p>
+<p>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_UDM_SETPOS_cpp">
+UDM_SETPOS</MSHelp:link>
+ message sets the current position of a buddy window. Note that unlike a scroll
+bar, an up-down control automatically changes its current position when the up
+and down arrows are clicked. An application, therefore, does not need to set the
+current position when processing the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_VSCROLL_cpp">
+WM_VSCROLL</MSHelp:link>
+ or <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_HSCROLL_cpp">
+WM_HSCROLL</MSHelp:link>
+ message.</p>
+<p>You can change the minimum and maximum positions of an up-down control by
+using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_UDM_SETRANGE_cpp">
+UDM_SETRANGE</MSHelp:link>
+ message. The maximum position may be less than the minimum, and in that case
+clicking the up arrow button decreases the current position. To put it another
+way, up means moving towards the maximum position. To retrieve the minimum and
+maximum positions for an up-down control, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_UDM_GETRANGE_cpp">
+UDM_GETRANGE</MSHelp:link>
+ message.</p>
+<p>You can control the rate at which the position changes when the user holds
+down an arrow button by setting the up-down control's acceleration. The
+acceleration is defined by an array of <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_UDACCEL_cpp">
+UDACCEL</MSHelp:link>
+ structures. Each structure specifies a time interval and the number of units by
+which to increment or decrement at the end of that interval. To set the
+acceleration, use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_UDM_SETACCEL_cpp">
+UDM_SETACCEL</MSHelp:link>
+ message. To retrieve acceleration information, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_UDM_GETACCEL_cpp">
+UDM_GETACCEL</MSHelp:link>
+ message.</p>
+<h3><a name="Default_Up_Down_Cont"></a>Default Up-Down Controls Message
+Processing</h3>
+<p>This section describes the standard Windows messages processed by an up-down
+control.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Message</th>
+      <th>Processing performed</th>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_create">
+        WM_CREATE</MSHelp:link>
+      </td>
+      <td>Allocates and initializes a private data structure and saves its
+        address as window data.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_destroy">
+        WM_DESTROY</MSHelp:link>
+      </td>
+      <td>Frees data allocated during WM_CREATE processing.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_enable">
+        WM_ENABLE</MSHelp:link>
+      </td>
+      <td>Invalidates the window.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_keydown">
+        WM_KEYDOWN</MSHelp:link>
+      </td>
+      <td>Changes the current position in the case of an UP ARROW or DOWN ARROW
+        key.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_keyup">
+        WM_KEYUP</MSHelp:link>
+      </td>
+      <td>Completes the position change.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttondown">
+        WM_LBUTTONDOWN</MSHelp:link>
+      </td>
+      <td>Captures the mouse. If the buddy window is an edit control or list
+        box, it sets the focus to the buddy window. If the mouse is over the up
+        or down button, it begins changing the position and sets a timer.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttonup">
+        WM_LBUTTONUP</MSHelp:link>
+      </td>
+      <td>Completes the position change and releases the mouse capture if the
+        up-down control has captured the mouse. If the buddy window is an edit
+        control, it selects all the text in the edit control.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_paint">
+        WM_PAINT</MSHelp:link>
+      </td>
+      <td>Paints the up-down control. If the wParam parameter is non-NULL, the
+        control assumes that the value is an HDC and paints using that device
+        context.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_timer">
+        WM_TIMER</MSHelp:link>
+      </td>
+      <td>Changes the current position if the mouse is being held down over a
+        button and a sufficient interval has elapsed.</td>
+    </tr>
+  </tbody>
+</table>
+<h2><a name="Up_Down_Control_Upda"></a>Up-Down Control Updates in Internet
+Explorer</h2>
+<p>Up-down controls in Microsoft® Internet Explorer support the following new
+feature.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <td><b>Full 32-bit Range</b></td>
+    </tr>
+    <tr>
+      <td>The up-down control now supports a full 32-bit range. The <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_UDM_SETRANGE32_cpp">
+        UDM_SETRANGE32</MSHelp:link>
+        and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_UDM_GETRANGE32_cpp">
+        UDM_GETRANGE32</MSHelp:link>
+        messages have been added to support this feature. The up-down control
+        uses signed integers for its range, so it is necessary to set the range
+        from -0x7FFFFFFF to +0x7FFFFFFF to utilize the full 32-bit range.</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+
+</html>

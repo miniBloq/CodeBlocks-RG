@@ -1,0 +1,4 @@
+<area shape="rect" href="$classwx_grid_cell_bool_renderer.html" title="This class may be used to format boolean data in a cell." alt="" coords="5,89,176,121">
+<area shape="rect" href="$classwx_grid_cell_string_renderer.html" title="This class may be used to format string data in a cell; it is the default for string..." alt="" coords="200,89,379,121">
+<area shape="rect" href="$classwx_grid_cell_float_renderer.html" title="This class may be used to format floating point data in a cell." alt="" coords="100,172,273,204">
+<area shape="rect" href="$classwx_grid_cell_number_renderer.html" title="This class may be used to format integer data in a cell." alt="" coords="297,172,487,204">

@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/cppstring/c_str.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>c_str</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C++ Strings</a> &gt; <a href="c_str.html">c_str</a>
+  </div>
+
+  <div class="name-format">
+    c_str
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  const char* c_str();
+</pre>
+
+  <p>The function c_str() returns a const pointer to a regular C
+  string, identical to the current string. The returned string is
+  null-terminated.</p>
+
+  <p>Note that since the returned pointer is of type <a
+  href="../keywords/const.html">const</a>, the character data that
+  c_str() returns <strong>cannot be modified</strong>.  Furthermore,
+  you do not need to call <a
+  href="http://www.cppreference.com/stdmem/free.html">free()</a> or <a
+  href="http://www.cppreference.com/keywords/delete.html">delete</a>
+  on this pointer.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="string_operators.html">String operators</a><br>
+    <a href="data.html">data</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/c_str.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

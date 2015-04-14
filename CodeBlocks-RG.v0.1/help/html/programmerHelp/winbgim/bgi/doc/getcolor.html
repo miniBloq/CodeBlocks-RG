@@ -1,0 +1,100 @@
+<TITLE>BGI Documentation for 
+getcolor
+</TITLE>
+<H2>
+getcolor
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+int getcolor(void);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+getcolor returns the current drawing color.
+The drawing color is the value to which pixels are set when lines and so on are drawn. For example, in CGAC0 mode, the palette contains four colors: the background color, light green, light red, and yellow. In this mode, if getcolor returns 1, the current drawing color is light green.
+
+
+<P><DT><B>Return Value</B><DD>
+getcolor returns the current drawing color.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+In the <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> version, the user
+might set the drawing color to an
+<A HREF="wincolor.html">RGB color</A>. Therefore, the return value
+from getcolor might be an ordinary BGI color (integer from 0 to 15)
+or an RGB color.
+
+<P><DT><B>See also</B>
+<DD><A HREF="getbkcolor.html"> getbkcolor </A>
+<DD><A HREF="getmaxcolor.html"> getmaxcolor </A>
+<DD><A HREF="getpalette.html"> getpalette </A>
+<DD><A HREF="setcolor.html"> setcolor </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* getcolor example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int color, midx, midy;
+   char colname[35];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+   setcolor(getmaxcolor());
+
+   /* for centering text on the display */
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+
+   /* get the current drawing color */
+   color = getcolor();
+
+   /* convert color value into a string */
+   itoa(color, colname, 10);
+   strcat(colname, " is the current drawing color.");
+
+
+   /* display a message */
+   outtextxy(midx, midy, colname);
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

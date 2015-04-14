@@ -1,0 +1,291 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The Memory Manager</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc499634145"><span style="mso-ansi-language:EN-US">The Memory
+Manager</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</h2>
+<p class="MsoBodyText"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+mso-bidi-font-family:Arial">This part of the manual covers one of the central
+features of the system runtime. It requires some basic understanding of C. If
+you are a beginner, skip this chapter and remember: <b><i style="mso-bidi-font-style:
+normal">To get more memory, use the function</i> GC_malloc(), <i style="mso-bidi-font-style:normal">and
+forget the rest</i>. No free() or other items are required.<o:p>
+</o:p>
+</b></span><span style="mso-bidi-font-family:Arial"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+mso-bidi-font-family:Arial">Lcc-win32 features the garbage collector developed
+by Hans J. Boehm and Alan J. Demers. This fine piece of public software allows
+you to program in C from a different, much more relaxed perspective.<o:p>
+</o:p>
+</span><span style="mso-bidi-font-family:Arial"><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-bidi-font-family:Arial">The well-known
+problem with manual memory management is that it is very difficult for a person
+to specify without any error when each memory block used will be destroyed and
+recycled by the runtime system.<o:p>
+</o:p>
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-bidi-font-family:Arial">This is a task
+that is better left to a machine, i.e., a computer. The authors of this software
+have solved the memory management problem, eliminating countless debugging
+hours.<o:p>
+</o:p>
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-bidi-font-family:Arial">There are, of
+course, applications where real-time requirements make the usage of the
+automatic memory manager impossible. Those applications can still use the
+default memory manager (a much slower solution) or devise a memory manager
+tailored to the application, as all C programmers do, in one way or another.<o:p>
+</o:p>
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-bidi-font-family:Arial">For most
+applications, however, the time required for the memory manager to accomplish
+its task will be unnoticeable. The authors’ years of development have fine
+tuned the software. The speed of the automatic memory manager exceeds that of
+the standard “malloc” implementation by a factor of greater than 10!<o:p>
+</o:p>
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+mso-bidi-font-family:Arial">The development speed is another important factor.
+You can concentrate more on what the program is doing and if its doing it well
+now without having to focus on each bit of RAM you are using. It is no longer
+necessary to develop a memory manager for each application. A DLL and a link
+time import library are the only requirements.<o:p>
+</o:p>
+</span><span style="mso-bidi-font-family:Arial"><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-bidi-font-family:Arial">The debugging time
+required by manual collection must also be taken into consideration. Problems in
+this area are quite difficult to locate. A memory leak or a mistake like calling
+free twice can cause a long search and hours lost in the debugger. If you ever
+find the problem at all. There are numerous examples of programs with this type
+of problem that are never corrected: it is just too hard to follow. When the
+symptoms appear, there is a crash, etc., the real problem can be far removed.
+Reconstructing the route from the destroyed data to the error can take an
+immense amount of time.<o:p>
+</o:p>
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="mso-bidi-font-family:Arial">You should know,
+however, that the memory manager requires a few simple rules to operate
+properly. These rules are common sense, so they are easy to understand and
+follow.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<h3><a name="_Toc499634146"><span style="mso-ansi-language:EN-US">Preparing your
+Programs for Use with the Memory Manager</span></a><span style="mso-ansi-language:
+EN-US"><o:p>
+</o:p>
+</span></h3>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-bidi-font-family:Arial;
+mso-ansi-language:EN-US">Below are a few simple rules to follow when using the
+memory manager. <o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:18.0pt;text-indent:-18.0pt;
+mso-list:l1 level1 lfo2;tab-stops:list 18.0pt"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-bidi-font-family:Arial;
+mso-ansi-language:EN-US">1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+mso-bidi-font-family:Arial;mso-ansi-language:EN-US">Never store pointers to
+objects allocated with the collector in inaccessible places. For instance:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:18.0pt;text-indent:-18.0pt;
+mso-list:l0 level1 lfo4;tab-stops:list 18.0pt"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:Symbol;
+mso-bidi-font-family:Arial;mso-ansi-language:EN-US">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+mso-bidi-font-family:Arial;mso-ansi-language:EN-US">Do not store pointers in the
+window extra bytes, without keeping a pointer somewhere in memory to indicate to
+the collector which object is being used. The memory manager has no access to
+pointers inside the system’s data structures. It will therefore assume that
+memory can be reclaimed, resulting in problems in your program.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:18.0pt;text-indent:-18.0pt;
+mso-list:l0 level1 lfo4;tab-stops:list 18.0pt"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:Symbol;
+mso-bidi-font-family:Arial;mso-ansi-language:EN-US">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+mso-bidi-font-family:Arial;mso-ansi-language:EN-US">Do not store pointers at odd
+addresses or at addresses that are not a multiple of four. The compiler and the&nbsp;linker
+align the memory so that this is the case for all your data when the program
+starts. Thereafter, you must follow this rule.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:18.0pt;text-indent:-18.0pt;
+mso-list:l1 level1 lfo2;tab-stops:list 18.0pt"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-bidi-font-family:Arial;
+mso-ansi-language:EN-US">2.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+mso-bidi-font-family:Arial;mso-ansi-language:EN-US">Do not store pointers in
+arrays declared as integers or in DWORDs. The compiler generates type
+information and makes special calls to the memory manager when the object
+allocated contains no pointers. Basically, it tells the collector to ignore
+those memory locations, since they do not contain pointers. If you circumvent
+this with casts, the collector will not know that the data are being used and
+will reclaim them.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:18.0pt;text-indent:-18.0pt;
+mso-list:l1 level1 lfo2;tab-stops:list 18.0pt"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-bidi-font-family:Arial;
+mso-ansi-language:EN-US">3.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+mso-bidi-font-family:Arial;mso-ansi-language:EN-US">It is better, though not
+required, to set all pointers that are no longer is use to ZERO to avoid
+retaining too much data unnecessarily. If you do not do this, the data will be
+retained until the scope of the pointer is finished. Pointers stored in global
+variables remain indefinitely, so that the data they point to will never be
+reclaimed and the program will leak. A similar situation holds for pointers
+stored as local variables in the main() function<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:18.0pt;text-indent:-18.0pt;
+mso-list:l1 level1 lfo2;tab-stops:list 18.0pt"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-bidi-font-family:Arial;
+mso-ansi-language:EN-US">4.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+mso-bidi-font-family:Arial;mso-ansi-language:EN-US">You should link with gc.lib,
+which is the import library of gc.dll. For technical reasons, it is not possible
+to link statically with the gc. It <b style="mso-bidi-font-weight:
+normal">must</b> be a DLL. This means that when you ship your program, it must
+be shipped with the gc.dll&nbsp;.<a style="mso-footnote-id:ftn1" href="#_ftn1" name="_ftnref1" title><span style="mso-special-character: footnote; mso-ansi-font-size: 12.0pt; mso-text-raise: 0pt" class="MsoFootnoteReference">[1]</span></a><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText">&nbsp;<o:p>
+</o:p>
+</p>
+<h3><a name="_Toc499634147"><span style="mso-ansi-language:EN-US">The C
+Interface to the Collector</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h3>
+<p class="MsoNormal">This interface is described in greater detail in the
+on-line documentation. It will not be repeated here. You can find it if you go
+to the «&nbsp;index&nbsp;» item in the help menu, and choose the <u>memory
+manager</u> link.</p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">&nbsp;<o:p>
+</o:p>
+</span></p>
+<table border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ border:none;mso-border-alt:solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+  <tr>
+    <td width="319" valign="top" style="width:239.4pt;border:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Function</p>
+    </td>
+    <td width="271" valign="top" style="width:203.4pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Description</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="319" valign="top" style="width:239.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">void *GC_malloc(size_t size)&nbsp;;</p>
+    </td>
+    <td width="271" valign="top" style="width:203.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Returns to the address of a new memory block start.
+      The object can contain pointers to other objects.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="319" valign="top" style="width:239.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">void * GC_malloc_atomic(size_t size)&nbsp;;</p>
+    </td>
+    <td width="271" valign="top" style="width:203.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Returns to the address of a new memory block start,
+      which cannot contain pointers.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="319" valign="top" style="width:239.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">void *GC_realloc(void *oldObject,size_t newSize)&nbsp;;</p>
+    </td>
+    <td width="271" valign="top" style="width:203.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Resizes the given object.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="319" valign="top" style="width:239.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">void *GC_malloc_ignore_off_page( size_t)&nbsp;;</p>
+    </td>
+    <td width="271" valign="top" style="width:203.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Large objects (&gt; 100K) should be allocated using
+      this function.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="319" valign="top" style="width:239.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">size_t GC_size(void *object)&nbsp;;</p>
+    </td>
+    <td width="271" valign="top" style="width:203.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Returns the size in bytes of the given object.</p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<div style="mso-element:footnote-list">
+  <br clear="all">
+  <hr align="left" size="1" width="33%">
+  <div style="mso-element:footnote" id="ftn1">
+    <p class="MsoFootnoteText" style="margin-left:0cm;text-indent:0cm"><a style="mso-footnote-id:ftn1" href="#_ftnref1" name="_ftn1" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 10.0pt; mso-text-raise: 0pt; mso-ansi-language: EN-US" class="MsoFootnoteReference">[1]</span></a><span style="mso-ansi-language:EN-US">
+    The memory manager must be informed by the system when the program starts a
+    new thread. The stack of the new thread must be recorded. This is not
+    possible with a static library. The collector data structures are protected
+    with semaphores, but the collector must stop all other threads to avoid
+    being called when a collection is not finished.<o:p>
+    </o:p>
+    </span></p>
+  </div>
+</div>
+
+</body>
+
+</html>

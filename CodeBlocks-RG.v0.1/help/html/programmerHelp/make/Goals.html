@@ -1,0 +1,133 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Goals">Goals</a>,
+Next:<a rel="next" accesskey="n" href="Instead-of-Execution.html#Instead%20of%20Execution">Instead of Execution</a>,
+Previous:<a rel="previous" accesskey="p" href="Makefile-Arguments.html#Makefile%20Arguments">Makefile Arguments</a>,
+Up:<a rel="up" accesskey="u" href="Running.html#Running">Running</a>
+<hr><br>
+</div>
+
+<h3 class="section">Arguments to Specify the Goals</h3>
+
+   <p>The <dfn>goals</dfn> are the targets that <code>make</code> should strive ultimately
+to update.  Other targets are updated as well if they appear as
+prerequisites of goals, or prerequisites of prerequisites of goals, etc.
+
+   <p>By default, the goal is the first target in the makefile (not counting
+targets that start with a period).  Therefore, makefiles are usually
+written so that the first target is for compiling the entire program or
+programs they describe.  If the first rule in the makefile has several
+targets, only the first target in the rule becomes the default goal, not
+the whole list.
+
+   <p>You can specify a different goal or goals with arguments to <code>make</code>. 
+Use the name of the goal as an argument.  If you specify several goals,
+<code>make</code> processes each of them in turn, in the order you name them.
+
+   <p>Any target in the makefile may be specified as a goal (unless it
+starts with <code>-</code> or contains an <code>=</code>, in which case it will be
+parsed as a switch or variable definition, respectively).  Even
+targets not in the makefile may be specified, if <code>make</code> can find
+implicit rules that say how to make them.
+
+   <p><code>Make</code> will set the special variable <code>MAKECMDGOALS</code> to the
+list of goals you specified on the command line.  If no goals were given
+on the command line, this variable is empty.  Note that this variable
+should be used only in special circumstances.
+
+   <p>An example of appropriate use is to avoid including <code>.d</code> files
+during <code>clean</code> rules (see <a href="Automatic-Prerequisites.html#Automatic%20Prerequisites">Automatic Prerequisites</a>), so
+<code>make</code> won't create them only to immediately remove them
+again:
+
+<pre class="example">     sources = foo.c bar.c
+     
+     ifneq ($(MAKECMDGOALS),clean)
+     include $(sources:.c=.d)
+     endif
+     </pre>
+
+   <p>One use of specifying a goal is if you want to compile only a part of
+the program, or only one of several programs.  Specify as a goal each
+file that you wish to remake.  For example, consider a directory containing
+several programs, with a makefile that starts like this:
+
+<pre class="example">     .PHONY: all
+     all: size nm ld ar as
+     </pre>
+
+   <p>If you are working on the program <code>size</code>, you might want to say
+<code>make&nbsp;size</code> so that only the files of that program are recompiled.
+
+   <p>Another use of specifying a goal is to make files that are not normally
+made.  For example, there may be a file of debugging output, or a
+version of the program that is compiled specially for testing, which has
+a rule in the makefile but is not a prerequisite of the default goal.
+
+   <p>Another use of specifying a goal is to run the commands associated with
+a phony target (see <a href="Phony-Targets.html#Phony%20Targets">Phony Targets</a>) or empty target (see <a href="Empty-Targets.html#Empty%20Targets">Empty Target Files to Record Events</a>).  Many makefiles contain
+a phony target named <code>clean</code> which deletes everything except source
+files.  Naturally, this is done only if you request it explicitly with
+<code>make&nbsp;clean</code>.  Following is a list of typical phony and empty
+target names.  See <a href="Standard-Targets.html#Standard%20Targets">Standard Targets</a>, for a detailed list of all the
+standard target names which GNU software packages use.
+
+     <dl>
+<dt><code>all</code>
+     <dd>Make all the top-level targets the makefile knows about.
+
+     <br><dt><code>clean</code>
+     <dd>Delete all files that are normally created by running <code>make</code>.
+
+     <br><dt><code>mostlyclean</code>
+     <dd>Like <code>clean</code>, but may refrain from deleting a few files that people
+normally don't want to recompile.  For example, the <code>mostlyclean</code>
+target for GCC does not delete <code>libgcc.a</code>, because recompiling it
+is rarely necessary and takes a lot of time.
+
+     <br><dt><code>distclean</code>
+     <dd><dt><code>realclean</code>
+     <dd><dt><code>clobber</code>
+     <dd>Any of these targets might be defined to delete <em>more</em> files than
+<code>clean</code> does.  For example, this would delete configuration files
+or links that you would normally create as preparation for compilation,
+even if the makefile itself cannot create these files.
+
+     <br><dt><code>install</code>
+     <dd>Copy the executable file into a directory that users typically search
+for commands; copy any auxiliary files that the executable uses into
+the directories where it will look for them.
+
+     <br><dt><code>print</code>
+     <dd>Print listings of the source files that have changed.
+
+     <br><dt><code>tar</code>
+     <dd>Create a tar file of the source files.
+
+     <br><dt><code>shar</code>
+     <dd>Create a shell archive (shar file) of the source files.
+
+     <br><dt><code>dist</code>
+     <dd>Create a distribution file of the source files.  This might
+be a tar file, or a shar file, or a compressed version of one of the
+above, or even more than one of the above.
+
+     <br><dt><code>TAGS</code>
+     <dd>Update a tags table for this program.
+
+     <br><dt><code>check</code>
+     <dd><dt><code>test</code>
+     <dd>Perform self tests on the program this makefile builds. 
+</dl>
+
+   </body></html>
+

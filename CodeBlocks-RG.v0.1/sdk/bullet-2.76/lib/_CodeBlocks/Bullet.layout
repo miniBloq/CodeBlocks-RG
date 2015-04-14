@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release" />
+	<File name="..\..\src\Bullet-C-Api.h" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="35" />
+	</File>
+	<File name="..\..\src\BulletMultiThreaded\MiniCLTask\MiniCLTask.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1476" topLine="41" />
+	</File>
+	<File name="..\..\src\BulletMultiThreaded\PpuAddressSpace.h" open="0" top="0" tabpos="0">
+		<Cursor position="191" topLine="0" />
+	</File>
+	<File name="..\..\src\LinearMath\btSerializer.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="38515" topLine="543" />
+	</File>
+</CodeBlocks_layout_file>

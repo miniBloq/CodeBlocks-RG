@@ -1,0 +1,73 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The Linker</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509456965"><span style="mso-bookmark: _Toc426387066">The Linker</span></a></h2>
+<p class="MsoNormal" style="mso-list:skip">The general format of a link command
+line is as follows:</p>
+<p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal"><span style="font-family:Courier">lcclnk
+[options] object-files library-files<o:p>
+</o:p>
+</span></b></p>
+<p class="MsoNormal" style="mso-list:skip">The linker will default to the
+following import libraries:</p>
+<p class="MsoNormal" style="mso-list:skip">LIBC.LIB <span style="mso-tab-count:
+2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>A few C functions are in here</p>
+<p class="MsoNormal" style="mso-list:skip">KERNEL32.LIB <span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Kernel function calls</p>
+<p class="MsoNormal" style="mso-list:skip">COMDLG32.LIB <span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Common dialog boxes library</p>
+<p class="MsoNormal" style="mso-list:skip">USER32.LIB <span style="mso-tab-count:
+2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Windows
+'user' functions</p>
+<p class="MsoNormal" style="mso-list:skip"><span lang="FR" style="mso-ansi-language:
+FR">GDI32.LIB <span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>GDI functions <o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-list:skip">ADVAPI32.LIB <span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>More Windows
+functions</p>
+<p class="MsoNormal" style="mso-list:skip">COMCTL32.LIB <span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Library for the common controls
+of Win32</p>
+<p class="MsoNormal" style="mso-list:skip">CRTDLL.LIB <span style="mso-tab-count:
+2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Library
+for the 'C' runtime functions</p>
+<p class="MsoNormal" style="mso-list:skip">These libraries do not need to be
+specified in the command line because the linker will search them anyway.</p>
+<p class="MsoNormal" style="mso-list:skip">The name of the object file can be an
+expandable file specification. For instance: '*.obj'. If the name of the file
+begins with an '@', it will be interpreted as a list of object files to be
+included in the link. For instance you can say:</p>
+<p class="MsoHeader" style="mso-list:skip;tab-stops:36.0pt center 8.0cm right 16.0cm"><span style="font-family:&quot;Courier New&quot;;mso-ansi-language:EN-US">lcclnk
+@list.lst<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-list:skip">which will cause lcclnk to open a 'list.lst'
+file and to read the file names to be used in the link.</p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;The contents of that file could
+be:</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="font-family:Courier">h:\mywork\src\file1.obj<o:p>
+</o:p>
+</span></p>
+<p class="MsoHeader" style="mso-list:skip;tab-stops:36.0pt center 8.0cm right 16.0cm"><span style="font-family:Courier;mso-ansi-language:EN-US">h:\mywork\lib\mylib.lib<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-list:skip">etc.</p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;One line should have only one
+file name. This option is especially useful if you have too many files in the
+command line, which is limited by Win32.</p>
+<h3 style="mso-list:skip"></h3>
+
+</body>
+
+</html>

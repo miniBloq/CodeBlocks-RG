@@ -1,0 +1,86 @@
+<TITLE>BGI Documentation for 
+bar
+</TITLE>
+<H2>
+bar
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void bar(int left, int top, int right, int bottom);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+bar draws a filled-in, rectangular, two-dimensional bar. The bar is filled using the current fill pattern and fill color. bar does not outline the bar; to draw an outlined two-dimensional bar, use bar3d with depth equal to 0.
+<P>
+The upper left and lower right corners of the rectangle are given by (left, top) and (right, bottom), respectively. The coordinates refer to pixels.
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="bar3d.html"> bar3d </A>
+<DD><A HREF="rectangle.html"> rectangle </A>
+<DD><A HREF="setcolor.html"> setcolor </A>
+<DD><A HREF="setfillstyle.html"> setfillstyle </A>
+<DD><A HREF="setlinestyle.html"> setlinestyle </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* bar example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int midx, midy, i;
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {   /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+
+   /* loop through the fill patterns */
+   for (i=SOLID_FILL; i&lt;USER_FILL; i++) {
+      /* set the fill style */
+      setfillstyle(i, getmaxcolor());
+
+      /* draw the bar */
+      bar(midx-50, midy-50, midx+50, midy+50);
+      getch();
+   }
+   /* clean up */
+   closegraph();
+   return 0;
+
+}
+</PRE>
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

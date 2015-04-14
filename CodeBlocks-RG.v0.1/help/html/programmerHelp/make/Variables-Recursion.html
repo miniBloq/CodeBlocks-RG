@@ -1,0 +1,156 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Variables%2fRecursion">Variables/Recursion</a>,
+Next:<a rel="next" accesskey="n" href="Options-Recursion.html#Options%2fRecursion">Options/Recursion</a>,
+Previous:<a rel="previous" accesskey="p" href="MAKE-Variable.html#MAKE%20Variable">MAKE Variable</a>,
+Up:<a rel="up" accesskey="u" href="Recursion.html#Recursion">Recursion</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">Communicating Variables to a Sub-<code>make</code></h4>
+
+   <p>Variable values of the top-level <code>make</code> can be passed to the
+sub-<code>make</code> through the environment by explicit request.  These
+variables are defined in the sub-<code>make</code> as defaults, but do not
+override what is specified in the makefile used by the sub-<code>make</code>
+makefile unless you use the <code>-e</code> switch (see <a href="Options-Summary.html#Options%20Summary">Summary of Options</a>).
+
+   <p>To pass down, or <dfn>export</dfn>, a variable, <code>make</code> adds the variable
+and its value to the environment for running each command.  The
+sub-<code>make</code>, in turn, uses the environment to initialize its table
+of variable values.  See <a href="Environment.html#Environment">Variables from the Environment</a>.
+
+   <p>Except by explicit request, <code>make</code> exports a variable only if it
+is either defined in the environment initially or set on the command
+line, and if its name consists only of letters, numbers, and underscores. 
+Some shells cannot cope with environment variable names consisting of
+characters other than letters, numbers, and underscores.
+
+   <p>The special variables <code>SHELL</code> and <code>MAKEFLAGS</code> are always
+exported (unless you unexport them). 
+<code>MAKEFILES</code> is exported if you set it to anything.
+
+   <p><code>make</code> automatically passes down variable values that were defined
+on the command line, by putting them in the <code>MAKEFLAGS</code> variable. 
+See <a href="Options-Recursion.html#Options%2fRecursion">Options/Recursion</a>.
+
+   <p>Variables are <em>not</em> normally passed down if they were created by
+default by <code>make</code> (see <a href="Implicit-Variables.html#Implicit%20Variables">Variables Used by Implicit Rules</a>).  The sub-<code>make</code> will define these for
+itself.
+
+   <p>If you want to export specific variables to a sub-<code>make</code>, use the
+<code>export</code> directive, like this:
+
+<pre class="example">     export <var>variable</var> ...
+     </pre>
+
+<p>If you want to <em>prevent</em> a variable from being exported, use the
+<code>unexport</code> directive, like this:
+
+<pre class="example">     unexport <var>variable</var> ...
+     </pre>
+
+<p>In both of these forms, the arguments to <code>export</code> and
+<code>unexport</code> are expanded, and so could be variables or functions
+which expand to a (list of) variable names to be (un)exported.
+
+   <p>As a convenience, you can define a variable and export it at the same
+time by doing:
+
+<pre class="example">     export <var>variable</var> = value
+     </pre>
+
+<p>has the same result as:
+
+<pre class="example">     <var>variable</var> = value
+     export <var>variable</var>
+     </pre>
+
+<p>and
+
+<pre class="example">     export <var>variable</var> := value
+     </pre>
+
+<p>has the same result as:
+
+<pre class="example">     <var>variable</var> := value
+     export <var>variable</var>
+     </pre>
+
+   <p>Likewise,
+
+<pre class="example">     export <var>variable</var> += value
+     </pre>
+
+<p>is just like:
+
+<pre class="example">     <var>variable</var> += value
+     export <var>variable</var>
+     </pre>
+
+<p>See <a href="Appending.html#Appending">Appending More Text to Variables</a>.
+
+   <p>You may notice that the <code>export</code> and <code>unexport</code> directives
+work in <code>make</code> in the same way they work in the shell, <code>sh</code>.
+
+   <p>If you want all variables to be exported by default, you can use
+<code>export</code> by itself:
+
+<pre class="example">     export
+     </pre>
+
+<p>This tells <code>make</code> that variables which are not explicitly mentioned
+in an <code>export</code> or <code>unexport</code> directive should be exported. 
+Any variable given in an <code>unexport</code> directive will still <em>not</em>
+be exported.  If you use <code>export</code> by itself to export variables by
+default, variables whose names contain characters other than
+alphanumerics and underscores will not be exported unless specifically
+mentioned in an <code>export</code> directive.
+
+   <p>The behavior elicited by an <code>export</code> directive by itself was the
+default in older versions of GNU <code>make</code>.  If your makefiles depend
+on this behavior and you want to be compatible with old versions of
+<code>make</code>, you can write a rule for the special target
+<code>.EXPORT_ALL_VARIABLES</code> instead of using the <code>export</code> directive. 
+This will be ignored by old <code>make</code>s, while the <code>export</code>
+directive will cause a syntax error.
+
+   <p>Likewise, you can use <code>unexport</code> by itself to tell <code>make</code>
+<em>not</em> to export variables by default.  Since this is the default
+behavior, you would only need to do this if <code>export</code> had been used
+by itself earlier (in an included makefile, perhaps).  You
+<strong>cannot</strong> use <code>export</code> and <code>unexport</code> by themselves to
+have variables exported for some commands and not for others.  The last
+<code>export</code> or <code>unexport</code> directive that appears by itself
+determines the behavior for the entire run of <code>make</code>.
+
+   <p>As a special feature, the variable <code>MAKELEVEL</code> is changed when it
+is passed down from level to level.  This variable's value is a string
+which is the depth of the level as a decimal number.  The value is
+<code>0</code> for the top-level <code>make</code>; <code>1</code> for a sub-<code>make</code>,
+<code>2</code> for a sub-sub-<code>make</code>, and so on.  The incrementation
+happens when <code>make</code> sets up the environment for a command.
+
+   <p>The main use of <code>MAKELEVEL</code> is to test it in a conditional
+directive (see <a href="Conditionals.html#Conditionals">Conditional Parts of Makefiles</a>); this
+way you can write a makefile that behaves one way if run recursively and
+another way if run directly by you.
+
+   <p>You can use the variable <code>MAKEFILES</code> to cause all sub-<code>make</code>
+commands to use additional makefiles.  The value of <code>MAKEFILES</code> is
+a whitespace-separated list of file names.  This variable, if defined in
+the outer-level makefile, is passed down through the environment; then
+it serves as a list of extra makefiles for the sub-<code>make</code> to read
+before the usual or specified ones.  See <a href="MAKEFILES-Variable.html#MAKEFILES%20Variable">The Variable <code>MAKEFILES</code></a>.
+
+   </body></html>
+

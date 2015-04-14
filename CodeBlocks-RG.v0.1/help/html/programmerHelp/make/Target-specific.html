@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Target-specific">Target-specific</a>,
+Next:<a rel="next" accesskey="n" href="Pattern-specific.html#Pattern-specific">Pattern-specific</a>,
+Previous:<a rel="previous" accesskey="p" href="Environment.html#Environment">Environment</a>,
+Up:<a rel="up" accesskey="u" href="Using-Variables.html#Using%20Variables">Using Variables</a>
+<hr><br>
+</div>
+
+<h3 class="section">Target-specific Variable Values</h3>
+
+   <p>Variable values in <code>make</code> are usually global; that is, they are the
+same regardless of where they are evaluated (unless they're reset, of
+course).  One exception to that is automatic variables
+(see <a href="Automatic.html#Automatic">Automatic Variables</a>).
+
+   <p>The other exception is <dfn>target-specific variable values</dfn>.  This
+feature allows you to define different values for the same variable,
+based on the target that <code>make</code> is currently building.  As with
+automatic variables, these values are only available within the context
+of a target's command script (and in other target-specific assignments).
+
+   <p>Set a target-specific variable value like this:
+
+<pre class="example">     <var>target</var> ... : <var>variable-assignment</var>
+     </pre>
+
+<p>or like this:
+
+<pre class="example">     <var>target</var> ... : override <var>variable-assignment</var>
+     </pre>
+
+   <p>Multiple <var>target</var> values create a target-specific variable value for
+each member of the target list individually.
+
+   <p>The <var>variable-assignment</var> can be any valid form of assignment;
+recursive (<code>=</code>), static (<code>:=</code>), appending (<code>+=</code>), or
+conditional (<code>?=</code>).  All variables that appear within the
+<var>variable-assignment</var> are evaluated within the context of the
+target: thus, any previously-defined target-specific variable values
+will be in effect.  Note that this variable is actually distinct from
+any "global" value: the two variables do not have to have the same
+flavor (recursive vs. static).
+
+   <p>Target-specific variables have the same priority as any other makefile
+variable.  Variables provided on the command-line (and in the
+environment if the <code>-e</code> option is in force) will take precedence. 
+Specifying the <code>override</code> directive will allow the target-specific
+variable value to be preferred.
+
+   <p>There is one more special feature of target-specific variables: when you
+define a target-specific variable, that variable value is also in effect
+for all prerequisites of this target (unless those prerequisites override
+it with their own target-specific variable value).  So, for example, a
+statement like this:
+
+<pre class="example">     prog : CFLAGS = -g
+     prog : prog.o foo.o bar.o
+     </pre>
+
+<p>will set <code>CFLAGS</code> to <code>-g</code> in the command script for
+<code>prog</code>, but it will also set <code>CFLAGS</code> to <code>-g</code> in the
+command scripts that create <code>prog.o</code>, <code>foo.o</code>, and
+<code>bar.o</code>, and any command scripts which create their prerequisites.
+
+   </body></html>
+

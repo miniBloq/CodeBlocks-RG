@@ -1,0 +1,88 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The Events Display</title>
+</head>
+
+<body>
+
+<h3 style="mso-list:skip"><a name="_Toc509457012"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc435923444">The
+Events Dis</span></a><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc435923444">play</span><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h3>
+<p class="MsoNormalIndent" style="mso-list:skip"><span style="mso-ansi-language:
+EN-US">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-list:skip">The ‘Events’ window shows you the
+threads that the program has started, the DLLs that were loaded/unloaded on the
+program’s behalf, etc.</p>
+<p class="MsoNormal" style="mso-list:skip">The debugger will show the output of
+the ‘OutputDebugString’ Win32 function in this window.</p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal" style="mso-list:skip">If your message uses the Win32 API
+function ‘OutputDebugString’, all debug strings will be displayed in this
+window. Note that<span style="mso-spacerun: yes">&nbsp; </span>this does not
+trigger a breakpoint.</p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal" style="mso-list:skip">Here, the exact sequence of actions
+when a trap occurs will be displayed, if there is a problem with the debugger.</p>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-left:3.5pt;
+ border-collapse:collapse;mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr>
+    <td width="389" valign="top" style="width:291.85pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-left:24.85pt;mso-list:skip"><!--[if gte vml 1]><v:shapetype
+   id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+   path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+   <v:stroke joinstyle="miter"/>
+   <v:formulas>
+    <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+    <v:f eqn="sum @0 1 0"/>
+    <v:f eqn="sum 0 0 @1"/>
+    <v:f eqn="prod @2 1 2"/>
+    <v:f eqn="prod @3 21600 pixelWidth"/>
+    <v:f eqn="prod @3 21600 pixelHeight"/>
+    <v:f eqn="sum @0 0 1"/>
+    <v:f eqn="prod @6 1 2"/>
+    <v:f eqn="prod @7 21600 pixelWidth"/>
+    <v:f eqn="sum @8 21600 0"/>
+    <v:f eqn="prod @7 21600 pixelHeight"/>
+    <v:f eqn="sum @10 21600 0"/>
+   </v:formulas>
+   <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+   <o:lock v:ext="edit" aspectratio="t"/>
+  </v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:252pt;
+   height:246pt' fillcolor="window">
+   <v:imagedata src="events31.gif"
+    o:title=""/>
+  </v:shape><![endif]-->
+      <img src="events31.gif" v:shapes="_x0000_i1025" width="336" height="328"></p>
+    </td>
+    <td width="193" valign="top" style="width:144.65pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">A DLL is loaded. The debugger
+      displays its name, the file handle for the executable, the base of the DLL
+      code, the offset to the debug information (if any), the pointer to the DLL
+      name, and whether or not it is a Unicode DLL.</p>
+      <p class="MsoNormal" style="mso-list:skip">The OutputDebugString event is
+      received. The debugger is currently unable to understand the undocumented
+      formats that are used by Microsoft’s DLLs. Further investigation of this
+      may produce a more interesting display here. Normally a character string
+      should be at the address pointed to by lpDebugStringData, but this is not
+      the case for system DLLs.</p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal" style="margin-left:1.0cm;mso-list:skip">&nbsp;<o:p>
+</o:p>
+</p>
+
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<TITLE>BGI Documentation for 
+setaspectratio
+</TITLE>
+<H2>
+setaspectratio
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void setaspectratio(int xasp, int yasp);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+setaspectratio changes the default aspect ratio of the graphics system. The graphics system uses the aspect ratio to make sure that circles are round onscreen. If circles appear elliptical, the monitor is not aligned properly. You could correct this in the hardware by realigning the monitor, but it's easier to change in the software by using setaspectratio to set the aspect ratio. To obtain the current aspect ratio from the system, call getaspectratio.
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="circle.html"> circle </A>
+<DD><A HREF="getaspectratio.html"> getaspectratio </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* setaspectratio example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int xasp, yasp, midx, midy;
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk)    /* an error occurred */
+   {
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+   setcolor(getmaxcolor());
+
+   /* get current aspect ratio settings */
+   getaspectratio(&xasp, &yasp);
+
+   /* draw normal circle */
+   circle(midx, midy, 100);
+   getch();
+
+   /* clear the screen */
+   cleardevice();
+
+   /* adjust the aspect for a wide circle */
+   setaspectratio(xasp/2, yasp);
+
+   circle(midx, midy, 100);
+   getch();
+
+   /* adjust the aspect for a narrow circle */
+   cleardevice();
+   setaspectratio(xasp, yasp/2);
+   circle(midx, midy, 100);
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

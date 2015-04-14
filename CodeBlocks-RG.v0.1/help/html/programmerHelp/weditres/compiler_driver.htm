@@ -1,0 +1,62 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The compiler driver</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509456953"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc493894042">The
+co</span></a><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc493894042">mpiler
+driver</span><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">The lc.exe compiler driver has the following format:</p>
+<p class="MsoNormal" style="margin-left:36.0pt;text-indent:13.5pt"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:36.0pt;text-indent:13.5pt"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">lc
+[ compiler options] files… [linker options]<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:36.0pt;text-indent:13.5pt">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">This means that you give it all the compiler options first,
+then the files you want to compile, then and the options you want for the linker
+pass. Things in brackets are optional. You can just use lc file.c and the driver
+will call the compiler without any options, as well as the linker if all
+compilation steps happen without any error.</p>
+<p class="MsoNormal">Note that you can pass to the driver an ambiguous file
+specification like</p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;">lc *.c –o prog.exe<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">The “-o” option is to name the executable output file,
+and it is a linker option, that’s why it is placed after the c files proper.</p>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">The driver will assume that rc files should be compiled
+with the resource compiler lrc, and asm files will be assembled with lcc.</p>
+<p class="MsoNormal">If more than one source file is given, the driver will
+write to stderr the name of the file that is currently being compiled, and will
+echo the linker command line.</p>
+<p class="MsoNormal">If there are errors during the compilation of any one file,
+the compilation goes on with the next file, but the process will stop before the
+link step. The result code will be the number of errors in either the
+compilation or in the linking step.</p>
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<TITLE>BGI Documentation for 
+getmaxwidth
+</TITLE>
+<H2>
+getmaxwidth
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+int getmaxwidth(void);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+The 
+getmaxwidth
+function is available in the
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation of BGI
+graphics.
+The function returns the maximum width that will fit on the screen
+when
+creating a window with initwindow.  This is one of the few
+BGI functions that may be called before calling initwindow.
+
+
+<P><DT><B>Return Value</B><DD>
+getmaxwidth returns the maximum window width
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="getmaxx.html"> getmaxx </A>
+<DD><A HREF="getwindowwidth.html"> getwindowwidth </A>
+<DD><A HREF="getmaxheight.html"> getmaxheight </A>
+<DD><A HREF="initwindow.html"> initwindow </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* getmaxwidth and getmaxheight example */ 
+#include &lt;graphics.h&gt;
+
+int main(void)
+{
+   /* Make a window, as big as possible */
+   initwindow(getmaxwidth( ), getmaxheight( ));
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

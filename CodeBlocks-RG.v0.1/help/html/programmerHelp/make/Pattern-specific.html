@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Pattern-specific">Pattern-specific</a>,
+Previous:<a rel="previous" accesskey="p" href="Target-specific.html#Target-specific">Target-specific</a>,
+Up:<a rel="up" accesskey="u" href="Using-Variables.html#Using%20Variables">Using Variables</a>
+<hr><br>
+</div>
+
+<h3 class="section">Pattern-specific Variable Values</h3>
+
+   <p>In addition to target-specific variable values (see <a href="Target-specific.html#Target-specific">Target-specific Variable Values</a>), GNU <code>make</code> supports
+pattern-specific variable values.  In this form, a variable is defined
+for any target that matches the pattern specified.  Variables defined in
+this way are searched after any target-specific variables defined
+explicitly for that target, and before target-specific variables defined
+for the parent target.
+
+   <p>Set a pattern-specific variable value like this:
+
+<pre class="example">     <var>pattern</var> ... : <var>variable-assignment</var>
+     </pre>
+
+<p>or like this:
+
+<pre class="example">     <var>pattern</var> ... : override <var>variable-assignment</var>
+     </pre>
+
+<p>where <var>pattern</var> is a %-pattern.  As with target-specific variable
+values, multiple <var>pattern</var> values create a pattern-specific variable
+value for each pattern individually.  The <var>variable-assignment</var> can
+be any valid form of assignment.  Any command-line variable setting will
+take precedence, unless <code>override</code> is specified.
+
+   <p>For example:
+
+<pre class="example">     %.o : CFLAGS = -O
+     </pre>
+
+<p>will assign <code>CFLAGS</code> the value of <code>-O</code> for all targets
+matching the pattern <code>%.o</code>.
+
+   </body></html>
+

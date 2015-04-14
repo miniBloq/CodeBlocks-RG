@@ -1,0 +1,15 @@
+<area shape="rect" href="$classwx_g_c_d_c.html" title="wxGCDC is a device context that draws on a wxGraphicsContext." alt="" coords="257,5,337,37">
+<area shape="rect" href="$classwx_memory_d_c.html" title="A memory device context provides a means to draw graphics onto a bitmap." alt="" coords="244,61,351,93">
+<area shape="rect" href="$classwx_metafile_d_c.html" title="This is a type of device context that allows a metafile object to be created (Windows..." alt="" coords="245,117,349,149">
+<area shape="rect" href="$classwx_mirror_d_c.html" title="wxMirrorDC is a simple wrapper class which is always associated with a real wxDC..." alt="" coords="252,173,343,205">
+<area shape="rect" href="$classwx_post_script_d_c.html" title="This defines the wxWidgets Encapsulated PostScript device context, which can write..." alt="" coords="239,229,356,261">
+<area shape="rect" href="$classwx_printer_d_c.html" title="A printer device context is specific to MSW and Mac, and allows access to any printer..." alt="" coords="249,285,345,317">
+<area shape="rect" href="$classwx_screen_d_c.html" title="A wxScreenDC can be used to paint on the screen." alt="" coords="247,341,348,373">
+<area shape="rect" href="$classwx_s_v_g_file_d_c.html" title="A wxSVGFileDC is a device context onto which graphics and text can be drawn, and..." alt="" coords="243,397,352,429">
+<area shape="rect" href="$classwx_window_d_c.html" title="A wxWindowDC must be constructed if an application wishes to paint on the whole area..." alt="" coords="244,453,351,485">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="7,229,81,261">
+<area shape="rect" href="$classwx_buffered_d_c.html" title="This class provides a simple way to avoid flicker: when drawing on it, everything..." alt="" coords="407,61,513,93">
+<area shape="rect" href="$classwx_buffered_paint_d_c.html" title="This is a subclass of wxBufferedDC which can be used inside of an EVT_PAINT() event..." alt="" coords="563,61,701,93">
+<area shape="rect" href="$classwx_auto_buffered_paint_d_c.html" title="This wxDC derivative can be used inside of an EVT_PAINT() event handler to achieve..." alt="" coords="749,61,915,93">
+<area shape="rect" href="$classwx_client_d_c.html" title="A wxClientDC must be constructed if an application wishes to paint on the client..." alt="" coords="415,425,505,457">
+<area shape="rect" href="$classwx_paint_d_c.html" title="A wxPaintDC must be constructed if an application wishes to paint on the client area..." alt="" coords="416,481,504,513">

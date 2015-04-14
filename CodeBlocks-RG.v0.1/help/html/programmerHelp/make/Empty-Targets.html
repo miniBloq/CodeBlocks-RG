@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Empty%20Targets">Empty Targets</a>,
+Next:<a rel="next" accesskey="n" href="Special-Targets.html#Special%20Targets">Special Targets</a>,
+Previous:<a rel="previous" accesskey="p" href="Force-Targets.html#Force%20Targets">Force Targets</a>,
+Up:<a rel="up" accesskey="u" href="Rules.html#Rules">Rules</a>
+<hr><br>
+</div>
+
+<h3 class="section">Empty Target Files to Record Events</h3>
+
+   <p>The <dfn>empty target</dfn> is a variant of the phony target; it is used to hold
+commands for an action that you request explicitly from time to time. 
+Unlike a phony target, this target file can really exist; but the file's
+contents do not matter, and usually are empty.
+
+   <p>The purpose of the empty target file is to record, with its
+last-modification time, when the rule's commands were last executed.  It
+does so because one of the commands is a <code>touch</code> command to update the
+target file.
+
+   <p>The empty target file should have some prerequisites (otherwise it
+doesn't make sense).  When you ask to remake the empty target, the
+commands are executed if any prerequisite is more recent than the target;
+in other words, if a prerequisite has changed since the last time you
+remade the target.  Here is an example:
+
+<pre class="example">     print: foo.c bar.c
+             lpr -p $?
+             touch print
+     </pre>
+
+<p>With this rule, <code>make print</code> will execute the <code>lpr</code> command if
+either source file has changed since the last <code>make print</code>.  The
+automatic variable <code>$?</code> is used to print only those files that have
+changed (see <a href="Automatic.html#Automatic">Automatic Variables</a>).
+
+   </body></html>
+

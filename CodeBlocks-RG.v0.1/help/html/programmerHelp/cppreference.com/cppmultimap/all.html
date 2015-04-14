@@ -1,0 +1,1091 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>C++ Multimaps</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C++ Multimaps</a>
+  </div>
+
+  <div class="name-format">
+    begin
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  iterator begin();
+  const_iterator begin() const;
+</pre>
+
+  <p>The function begin() returns an iterator to the first element of
+  the multimap. begin() should run in <a href=
+  "../complexity.html">constant time</a>.</p>
+
+  <p>For example, the following code uses begin() to initialize an
+  iterator that is used to traverse a list:</p>
+<pre class="prettyprint">
+   // Create a list of characters
+   list&lt;char&gt; charList;
+   for( int i=0; i &lt; 10; i++ ) {
+     charList.push_front( i + 65 );
+   }
+   // Display the list
+   list&lt;char&gt;::iterator theIterator;
+   for( theIterator = charList.begin(); theIterator != charList.end(); theIterator++ ) {
+     cout &lt;&lt; *theIterator;
+   }            
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="end.html">end</a><br>
+    <a href="rbegin.html">rbegin</a><br>
+    <a href="rend.html">rend</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    clear
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  void clear();
+</pre>
+
+  <p>The function clear() deletes all of the elements in the multimap.
+  clear() runs in <a href="../complexity.html">linear time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    (C++ Lists) <a href="../cpplist/erase.html">erase</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    count
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  <strong>size_type</strong> count( const <a href=
+"../containers.html">key_type</a>&amp; key );
+</pre>
+
+  <p>The function count() returns the number of occurrences of
+  <em>key</em> in the multimap.</p>
+
+  <p>count() should run in <a href="../complexity.html">logarithmic
+  time</a>.</p>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    empty
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  bool empty() const;
+</pre>
+
+  <p>The empty() function returns true if the multimap has no elements,
+  false otherwise.</p>
+
+  <p>For example, the following code uses empty() as the stopping
+  condition on a (C/C++ Keywords) <a href=
+  "../keywords/while.html">while</a> loop to clear a multimap and
+  display its contents in reverse order:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v;
+ for( int i = 0; i &lt; 5; i++ ) {
+   v.push_back(i);
+ }
+ while( !v.empty() ) {
+   cout &lt;&lt; v.back() &lt;&lt; endl;
+   v.pop_back();
+ }              
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="size.html">size</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    end
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  iterator end();
+  const_iterator end() const;
+</pre>
+
+  <p>The end() function returns an iterator just past the end of the
+  multimap.</p>
+
+  <p>Note that before you can access the last element of the multimap
+  using an iterator that you get from a call to end(), you&#39;ll have
+  to decrement the iterator first.</p>
+
+  <p>For example, the following code uses <a href=
+  "begin.html">begin</a>() and end() to iterate through all of the
+  members of a vector:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v1( 5, 789 );
+ vector&lt;int&gt;::iterator it;
+ for( it = v1.begin(); it != v1.end(); it++ ) {
+   cout &lt;&lt; *it &lt;&lt; endl;
+ }              
+</pre>
+
+  <p>The iterator is initialized with a call to <a href=
+  "begin.html">begin</a>(). After the body of the loop has been
+  executed, the iterator is incremented and tested to see if it is
+  equal to the result of calling end(). Since end() returns an iterator
+  pointing to an element just after the last element of the vector, the
+  loop will only stop once all of the elements of the vector have been
+  displayed.</p>
+
+  <p>end() runs in <a href="../complexity.html">constant time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="begin.html">begin</a><br>
+    <a href="rbegin.html">rbegin</a><br>
+    <a href="rend.html">rend</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    equal_range
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  pair&lt;iterator, iterator&gt; equal_range( const <a href=
+"../containers.html">key_type</a>&amp; key );
+</pre>
+
+  <p>The function equal_range() returns two iterators - one to the
+  first element that contains <em>key</em>, another to a point just
+  after the last element that contains <em>key</em>.</p>
+
+  <p>For example, here is a hypothetical input-configuration loader
+  using multimaps, strings and equal_range():</p>
+  
+<pre class="prettyprint">
+  multimap&lt;string,pair&lt;int,int&gt; &gt; input_config;
+  
+  // read configuration from file "input.conf" to input_config
+  readConfigFile( input_config, "input.conf" ); 
+  
+  pair&lt;multimap&lt;string,pair&lt;int,int&gt; &gt;::iterator,multimap&lt;string,pair&lt;int,int&gt; &gt;::iterator&gt; ii;
+  multimap&lt;string,pair&lt;int,int&gt; &gt;::iterator i;
+  
+  ii = input_config.equal_range("key");         // keyboard key-bindings
+  // we can iterate over a range just like with begin() and end()  
+  for( i = ii.first; i != ii.second; ++i ) {
+    // add a key binding with this key and output
+    bindkey(i->second.first, i->second.second); 
+  }
+
+  ii = input_config.equal_range("joyb");        // joystick button key-bindings
+  for( i = ii.first; i != ii.second; ++i ) {
+    // add a key binding with this joystick button and output
+    bindjoyb(i->second.first, i->second.second);
+  }
+  </pre>
+
+
+
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    erase
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  void erase( iterator pos );
+  void erase( iterator start, iterator end );
+  <strong>size_type</strong> erase( const <a href=
+"../containers.html">key_type</a>&amp; key );
+</pre>
+
+  <p>The erase function() either erases the element at <em>pos</em>,
+  erases the elements between <em>start</em> and <em>end</em>, or
+  erases all elements that have the value of <em>key</em>.</p>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    find
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  iterator find( const <a href=
+"../containers.html">key_type</a>&amp; key );
+</pre>
+
+  <p>The find() function returns an iterator to <em>key</em>, or an
+  iterator to the end of the multimap if <em>key</em> is not found.</p>
+
+  <p>find() runs in <a href="../complexity.html">logarithmic
+  time</a>.</p>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    insert
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  iterator insert( iterator pos, const <a href=
+"../containers.html">TYPE</a>&amp; val );
+  iterator insert( const <a href=
+"../containers.html">TYPE</a>&amp; val );
+  void insert( <a href=
+"../iterators.html">input_iterator</a> start, <a href=
+"../iterators.html">input_iterator</a> end );
+</pre>
+
+  <p>The function insert() either:</p>
+
+  <ul>
+    <li>inserts <em>val</em> after the element at <em>pos</em> (where
+    <em>pos</em> is really just a suggestion as to where <em>val</em>
+    should go, since multimaps are ordered), and returns an iterator
+    to that element.</li>
+
+    <li>inserts <em>val</em> into the multimap, returning an iterator
+    to the element inserted.</li>
+
+    <li>inserts a range of elements from <em>start</em> to
+    <em>end</em>.</li>
+  </ul>
+
+  <p>For example, the following code uses the insert() function to add
+  several &lt;name,ID&gt; pairs to a employee multimap:</p>
+
+<pre class="prettyprint">
+  multimap&lt;string,int&gt; m;
+
+  int employeeID = 0;
+  m.insert( pair&lt;string,int&gt;("Bob Smith",employeeID++) );
+  m.insert( pair&lt;string,int&gt;("Bob Thompson",employeeID++) );
+  m.insert( pair&lt;string,int&gt;("Bob Smithey",employeeID++) );
+  m.insert( pair&lt;string,int&gt;("Bob Smith",employeeID++) );
+
+  cout &lt;&lt; "Number of employees named 'Bob Smith': " &lt;&lt; m.count("Bob Smith") &lt;&lt; endl;
+  cout &lt;&lt; "Number of employees named 'Bob Thompson': " &lt;&lt; m.count("Bob Thompson") &lt;&lt; endl;
+  cout &lt;&lt; "Number of employees named 'Bob Smithey': " &lt;&lt; m.count("Bob Smithey") &lt;&lt; endl;
+
+  cout &lt;&lt; "Employee list: " &lt;&lt; endl;
+  for( multimap&lt;string, int&gt;::iterator iter = m.begin(); iter != m.end(); ++iter ) {
+    cout &lt;&lt; " Name: " &lt;&lt; iter-&gt;first &lt;&lt; ", ID #" &lt;&lt; iter-&gt;second &lt;&lt; endl;
+  }
+</pre>
+
+  <p>When run, the above code produces the following output:</p>
+
+<pre class="prettyprint">
+  Number of employees named 'Bob Smith': 2
+  Number of employees named 'Bob Thompson': 1
+  Number of employees named 'Bob Smithey': 1
+  Employee list:
+   Name: Bob Smith, ID #0
+   Name: Bob Smith, ID #3
+   Name: Bob Smithey, ID #2
+   Name: Bob Thompson, ID #1
+</pre>
+
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    key_comp
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  key_compare key_comp() const;
+</pre>
+
+  <p>The function key_comp() returns the function that compares
+  keys.</p>
+
+  <p>key_comp() runs in <a href="../complexity.html">constant
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="value_comp.html">value_comp</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    lower_bound
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  iterator lower_bound( const <a href=
+"../containers.html">key_type</a>&amp; key );
+</pre>
+
+  <p>The lower_bound() function returns an iterator to the first
+  element which has a value greater than or equal to key.</p>
+
+  <p>lower_bound() runs in <a href="../complexity.html">logarithmic
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="upper_bound.html">upper_bound</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    max_size
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  <strong>size_type</strong> max_size() const;
+</pre>
+
+  <p>The max_size() function returns the maximum number of elements
+  that the multimap can hold. The max_size() function should not be
+  confused with the <a href="size.html">size</a>() or (C++ Strings)
+  <a href="../cppstring/capacity.html">capacity</a>() functions, which
+  return the number of elements currently in the multimap and the the
+  number of elements that the multimap will be able to hold before more
+  memory will have to be allocated, respectively.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="size.html">size</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    Multimap constructors &amp; destructors
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  multimap();
+  multimap( const multimap&amp; c );
+  multimap( iterator begin, iterator end,
+            const key_compare&amp; cmp = Compare(), const allocator&amp; alloc = Allocator() );
+  ~multimap();
+</pre>
+
+  <p>Multimaps have several constructors:</p>
+
+  <ul>
+  <li>The default constructor takes no arguments, creates a new
+  instance of that multimap, and runs in <a
+  href="../complexity.html">constant time</a>.</li>
+  <li>The default copy constructor runs in <a href=
+  "../complexity.html">linear time</a> and can be used to create a new
+  multimap that is a copy of the given multimap <em>c</em>.</li>
+  <li>Multimaps can also be created from a range of elements defined by
+  <em>begin</em> and <em>end</em>.  When using this constructor, an
+  optional comparison function <em>cmp</em> and allocator
+  <em>alloc</em> can also be provided.</li>
+  </ul>
+
+  <p>The default destructor is called when the multimap should be
+  destroyed.</p>
+
+  <p>The template definition of multimaps requires that both a key
+  type and value type be supplied.  For example, you can instantiate a
+  multimap that maps strings to integers with this statement:</p>
+
+<pre class="prettyprint">
+  multimap&lt;string,int&gt; m;
+</pre>
+
+  <p>You can also supply a comparison function and an allocator in the
+  template:</p>
+
+<pre class="prettyprint">
+  multimap&lt;string,int,myComp,myAlloc&gt; m;
+</pre>
+
+  <p>For example, the following code uses a multimap to associate a
+  series of employee names with numerical IDs:</p>
+
+<pre class="prettyprint">
+  multimap&lt;string,int&gt; m;
+
+  int employeeID = 0;
+  m.insert( pair&lt;string,int&gt;("Bob Smith",employeeID++) );
+  m.insert( pair&lt;string,int&gt;("Bob Thompson",employeeID++) );
+  m.insert( pair&lt;string,int&gt;("Bob Smithey",employeeID++) );
+  m.insert( pair&lt;string,int&gt;("Bob Smith",employeeID++) );
+
+  cout &lt;&lt; "Number of employees named 'Bob Smith': " &lt;&lt; m.count("Bob Smith") &lt;&lt; endl;
+  cout &lt;&lt; "Number of employees named 'Bob Thompson': " &lt;&lt; m.count("Bob Thompson") &lt;&lt; endl;
+  cout &lt;&lt; "Number of employees named 'Bob Smithey': " &lt;&lt; m.count("Bob Smithey") &lt;&lt; endl;
+
+  cout &lt;&lt; "Employee list: " &lt;&lt; endl;
+  for( multimap&lt;string, int&gt;::iterator iter = m.begin(); iter != m.end(); ++iter ) {
+    cout &lt;&lt; " Name: " &lt;&lt; iter-&gt;first &lt;&lt; ", ID #" &lt;&lt; iter-&gt;second &lt;&lt; endl;
+  }
+</pre>
+
+  <p>When run, the above code produces the following output.  Note
+  that the employee list is displayed in alphabetical order, because
+  multimaps are sorted associative containers:</p>
+
+<pre class="prettyprint">
+  Number of employees named 'Bob Smith': 2
+  Number of employees named 'Bob Thompson': 1
+  Number of employees named 'Bob Smithey': 1
+  Employee list:
+   Name: Bob Smith, ID #0
+   Name: Bob Smith, ID #3
+   Name: Bob Smithey, ID #2
+   Name: Bob Thompson, ID #1
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="count.html">count</a><br>
+    <a href="insert.html">insert</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    Multimap operators
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  multimap operator=(const multimap&amp; c2);
+  bool operator==(const multimap&amp; c1, const multimap&amp; c2);
+  bool operator!=(const multimap&amp; c1, const multimap&amp; c2);
+  bool operator&lt;(const multimap&amp; c1, const multimap&amp; c2);
+  bool operator&gt;(const multimap&amp; c1, const multimap&amp; c2);
+  bool operator&lt;=(const multimap&amp; c1, const multimap&amp; c2);
+  bool operator&gt;=(const multimap&amp; c1, const multimap&amp; c2);
+</pre>
+
+  <p>All of the C++ containers can be compared and assigned with the
+  standard comparison operators: ==, !=, &lt;=, &gt;=, &lt;, &gt;, and
+  =. Performing a comparison or assigning one multimap to another takes
+  <a href="../complexity.html">linear time</a>.</p>
+
+  <p>Two multimaps are equal if:</p>
+
+  <ol>
+    <li>Their size is the same, and</li>
+
+    <li>Each member in location i in one multimap is equal to the the
+    member in location i in the other multimap.</li>
+  </ol>
+
+  <p>Comparisons among multimaps are done lexicographically.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="multimap_constructors.html">Multimap Constructors</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    rbegin
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  <a href="../iterators.html">reverse_iterator</a> rbegin();
+  const_<a href=
+"../iterators.html">reverse_iterator</a> rbegin() const;
+</pre>
+
+  <p>The rbegin() function returns a <a href=
+  "../iterators.html">reverse_iterator</a> to the end of the current
+  multimap.</p>
+
+  <p>rbegin() runs in <a href="../complexity.html">constant
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="begin.html">begin</a><br>
+    <a href="end.html">end</a><br>
+    <a href="rend.html">rend</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    rend
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  <a href="../iterators.html">reverse_iterator</a> rend();
+  const_<a href="../iterators.html">reverse_iterator</a> rend() const;
+</pre>
+
+  <p>The function rend() returns a <a href=
+  "../iterators.html">reverse_iterator</a> to the beginning of the
+  current multimap.</p>
+
+  <p>rend() runs in <a href="../complexity.html">constant time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="begin.html">begin</a><br>
+    <a href="end.html">end</a><br>
+    <a href="rbegin.html">rbegin</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    size
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  <strong>size_type</strong> size() const;
+</pre>
+
+  <p>The size() function returns the number of elements in the current
+  multimap.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    (C++ Strings) <a href="../cppstring/capacity.html">capacity</a><br>
+    <a href="empty.html">empty</a><br>
+    (C++ Strings) <a href="../cppstring/length.html">length</a><br>
+    <a href="max_size.html">max_size</a><br>
+    (C++ Strings) <a href="../cppstring/resize.html">resize</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    swap
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  void swap( container&amp; from );
+</pre>
+
+  <p>The swap() function exchanges the elements of the current multimap
+  with those of <em>from</em>. This function operates in <a href=
+  "../complexity.html">constant time</a>.</p>
+
+  <p>For example, the following code uses the swap() function to
+  exchange the values of two strings:</p>
+<pre class="prettyprint">
+   string first( &quot;This comes first&quot; );
+   string second( &quot;And this is second&quot; );
+   first.swap( second );
+   cout &lt;&lt; first &lt;&lt; endl;
+   cout &lt;&lt; second &lt;&lt; endl;          
+</pre>
+
+  <p>The above code displays:</p>
+<pre class="prettyprint">
+   And this is second
+   This comes first             
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    (C++ Lists) <a href="../cpplist/splice.html">splice</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    upper_bound
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  iterator upper_bound( const <a href=
+"../containers.html">key_type</a>&amp; key );
+</pre>
+
+  <p>The function upper_bound() returns an iterator to the first
+  element in the multimap with a key greater than <em>key</em>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="lower_bound.html">lower_bound</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    value_comp
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  value_compare value_comp() const;
+</pre>
+
+  <p>The value_comp() function returns the function that compares
+  values.</p>
+
+  <p>value_comp() runs in <a href="../complexity.html">constant
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="key_comp.html">key_comp</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+</body>
+<!-- Mirrored from cppreference.com/cppmultimap/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

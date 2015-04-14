@@ -1,0 +1,104 @@
+<TITLE>BGI Documentation for 
+registerbgifont
+</TITLE>
+<H2>
+registerbgifont
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+int registerbgifont(void (*font)(void));
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+Calling registerbgifont informs the graphics system that the font
+pointed to by font was included at link time. This routine checks the
+linked-in code for the specified font; if the code is valid, it
+registers the code in internal tables. 
+<P>
+By using the name of a linked-in font in a call to registerbgifont, you also tell the compiler (and linker) to link in the object file with that public name.
+<P>
+If you register a user-supplied font, you must pass the result of registerbgifont to settextstyle as the font number to be used.
+
+
+<P><DT><B>Return Value</B><DD>
+registerbgifont returns a negative graphics error code if the specified font is invalid. Otherwise, registerbgifont returns the font number of the registered font.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+registerbgifont is not available in the <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation.
+
+<P><DT><B>See also</B>
+<DD><A HREF="graphresult.html"> graphresult </A>
+<DD><A HREF="initgraph.html"> initgraph </A>
+<DD><A HREF="installuserdriver.html"> installuserdriver </A>
+<DD><A HREF="registerbgidriver.html"> registerbgidriver </A>
+<DD><A HREF="settextstyle.html"> settextstyle </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* registerbgifont example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int midx, midy;
+
+   /* register a font file that was added into GRAPHICS.LIB */
+   errorcode = registerbgifont(triplex_font);
+
+   /* report any registration errors */
+   if (errorcode &lt; 0) {
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+
+   /* select the registered font */
+   settextstyle(TRIPLEX_FONT, HORIZ_DIR, 4);
+
+   /* output some text */
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+   outtextxy(midx, midy, "The TRIPLEX FONT");
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

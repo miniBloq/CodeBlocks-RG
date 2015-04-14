@@ -1,0 +1,92 @@
+<TITLE>BGI Documentation for 
+setusercharsize
+</TITLE>
+<H2>
+setusercharsize
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void setusercharsize(int multx, int divx, int multy, int divy);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+setusercharsize gives you finer control over the size of text from stroked fonts used with graphics functions. The values set by setusercharsize are active only if charsize equals 0, as set by a previous call to settextstyle.
+<P>
+With setusercharsize, you specify factors by which the width and height are scaled. The default width is scaled by multx : divx, and the default height is scaled by multy : divy. For example, to make text twice as wide and 50% taller than the default, set
+<PRE>
+multx = 2;  divx = 1;
+multy = 3;  divy = 2;
+</PRE>
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="gettextsettings.html"> gettextsettings </A>
+<DD><A HREF="graphresult.html"> graphresult </A>
+<DD><A HREF="settextstyle.html"> settextstyle </A>
+
+
+<P><DT><B>Example</B><DD>
+/* setusercharsize example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   /* select a text style */
+   settextstyle(TRIPLEX_FONT, HORIZ_DIR, 4);
+
+   /* move to the text starting position */
+   moveto(0, getmaxy() / 2);
+
+   /* output some normal text */
+   outtext("Norm ");
+
+   /* make the text 1/3 the normal width */
+   setusercharsize(1, 3, 1, 1);
+   outtext("Short ");
+
+   /* make the text 3 times normal width */
+   setusercharsize(3, 1, 1, 1);
+
+   outtext("Wide");
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

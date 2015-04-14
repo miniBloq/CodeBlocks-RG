@@ -1,0 +1,130 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Automatic%20Prerequisites">Automatic Prerequisites</a>,
+Previous:<a rel="previous" accesskey="p" href="Double-Colon.html#Double-Colon">Double-Colon</a>,
+Up:<a rel="up" accesskey="u" href="Rules.html#Rules">Rules</a>
+<hr><br>
+</div>
+
+<h3 class="section">Generating Prerequisites Automatically</h3>
+
+   <p>In the makefile for a program, many of the rules you need to write often
+say only that some object file depends on some header
+file.  For example, if <code>main.c</code> uses <code>defs.h</code> via an
+<code>#include</code>, you would write:
+
+<pre class="example">     main.o: defs.h
+     </pre>
+
+<p>You need this rule so that <code>make</code> knows that it must remake
+<code>main.o</code> whenever <code>defs.h</code> changes.  You can see that for a
+large program you would have to write dozens of such rules in your
+makefile.  And, you must always be very careful to update the makefile
+every time you add or remove an <code>#include</code>.
+
+   <p>To avoid this hassle, most modern C compilers can write these rules for
+you, by looking at the <code>#include</code> lines in the source files. 
+Usually this is done with the <code>-M</code> option to the compiler. 
+For example, the command:
+
+<pre class="example">     cc -M main.c
+     </pre>
+
+<p>generates the output:
+
+<pre class="example">     main.o : main.c defs.h
+     </pre>
+
+<p>Thus you no longer have to write all those rules yourself. 
+The compiler will do it for you.
+
+   <p>Note that such a prerequisite constitutes mentioning <code>main.o</code> in a
+makefile, so it can never be considered an intermediate file by implicit
+rule search.  This means that <code>make</code> won't ever remove the file
+after using it; see <a href="Chained-Rules.html#Chained%20Rules">Chains of Implicit Rules</a>.
+
+   <p>With old <code>make</code> programs, it was traditional practice to use this
+compiler feature to generate prerequisites on demand with a command like
+<code>make depend</code>.  That command would create a file <code>depend</code>
+containing all the automatically-generated prerequisites; then the
+makefile could use <code>include</code> to read them in (see <a href="Include.html#Include">Include</a>).
+
+   <p>In GNU <code>make</code>, the feature of remaking makefiles makes this
+practice obsolete--you need never tell <code>make</code> explicitly to
+regenerate the prerequisites, because it always regenerates any makefile
+that is out of date.  See <a href="Remaking-Makefiles.html#Remaking%20Makefiles">Remaking Makefiles</a>.
+
+   <p>The practice we recommend for automatic prerequisite generation is to have
+one makefile corresponding to each source file.  For each source file
+<code></code><var>name</var><code>.c</code> there is a makefile <code></code><var>name</var><code>.d</code> which lists
+what files the object file <code></code><var>name</var><code>.o</code> depends on.  That way
+only the source files that have changed need to be rescanned to produce
+the new prerequisites.
+
+   <p>Here is the pattern rule to generate a file of prerequisites (i.e., a makefile)
+called <code></code><var>name</var><code>.d</code> from a C source file called <code></code><var>name</var><code>.c</code>:
+
+<pre class="smallexample">     %.d: %.c
+             
+              $(CC) -M $(CPPFLAGS) $&lt; &gt; $@.$$$$; \
+              sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' &lt; $@.$$$$ &gt; $@; \
+              rm -f $@.$$$$
+     </pre>
+
+<p>See <a href="Pattern-Rules.html#Pattern%20Rules">Pattern Rules</a>, for information on defining pattern rules.  The
+<code>-e</code> flag to the shell causes it to exit immediately if the
+<code>$(CC)</code> command (or any other command) fails (exits with a
+nonzero status).
+
+   <p>With the GNU C compiler, you may wish to use the <code>-MM</code> flag instead
+of <code>-M</code>.  This omits prerequisites on system header files. 
+See <a href="../gcc.info/Preprocessor-Options.html#Preprocessor%20Options">Options Controlling the Preprocessor</a>, for details.
+
+   <p>The purpose of the <code>sed</code> command is to translate (for example):
+
+<pre class="example">     main.o : main.c defs.h
+     </pre>
+
+<p>into:
+
+<pre class="example">     main.o main.d : main.c defs.h
+     </pre>
+
+<p>This makes each <code>.d</code> file depend on all the source and header files
+that the corresponding <code>.o</code> file depends on.  <code>make</code> then
+knows it must regenerate the prerequisites whenever any of the source or
+header files changes.
+
+   <p>Once you've defined the rule to remake the <code>.d</code> files,
+you then use the <code>include</code> directive to read them all in. 
+See <a href="Include.html#Include">Include</a>.  For example:
+
+<pre class="example">     sources = foo.c bar.c
+     
+     include $(sources:.c=.d)
+     </pre>
+
+<p>(This example uses a substitution variable reference to translate the
+list of source files <code>foo.c bar.c</code> into a list of prerequisite
+makefiles, <code>foo.d bar.d</code>.  See <a href="Substitution-Refs.html#Substitution%20Refs">Substitution Refs</a>, for full
+information on substitution references.)  Since the <code>.d</code> files are
+makefiles like any others, <code>make</code> will remake them as necessary
+with no further work from you.  See <a href="Remaking-Makefiles.html#Remaking%20Makefiles">Remaking Makefiles</a>.
+
+   <p>Note that the <code>.d</code> files contain target definitions; you should
+be sure to place the <code>include</code> directive <em>after</em> the first,
+default target in your makefiles or run the risk of having a random
+object file become the default target. 
+See <a href="How-Make-Works.html#How%20Make%20Works">How Make Works</a>.
+
+   </body></html>
+

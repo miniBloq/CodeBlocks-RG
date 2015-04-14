@@ -1,0 +1,58 @@
+<TITLE>BGI Documentation for 
+showerrorbox
+</TITLE>
+<H2>
+showerrorbox
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include "graphics.h"
+void showerrorbox(const char* message=NULL);
+</PRE>
+
+
+
+<DT><B>Description</B><IMG SRC="win.gif" ALT="[WIN]"><DD>
+The 
+showerrorbox
+function is available in the
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation of BGI
+graphics.
+You do not need to include conio.h; just include graphics.h.
+The function opens a windows error message box with the specified
+message (or a standard message if the message parameter is NULL).
+The message box waits for the user to click on OK button
+before showerrorbox returns.
+
+<P><DT><B>See also</B>
+<DD><A HREF="bgiout.html"> bgiout </A>
+<DD><A HREF="outtext.html"> outtext </A>
+<DD><A HREF="getcurrentwindow.html"> outtextxy </A>
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* showerrorbox example */ 
+#include "graphics.h"
+
+int main(void)
+{
+   /* initialize graphics window at 400 x 300 */
+   initwindow(400, 300);
+
+   /* draw a line */
+   line(0, 0, getmaxx(), getmaxy());
+
+   /* display a sample error box */
+   showerrorbox("Sample of an Error Box");
+   closegraph();
+   return 0;
+}
+</PRE>
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

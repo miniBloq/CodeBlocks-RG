@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/cppmap/find.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>find</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C++ Maps</a> &gt; <a href="find.html">find</a>
+  </div>
+
+  <div class="name-format">
+    find
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;map&gt;
+  iterator find( const <a href=
+"../containers.html">key_type</a>&amp; key );
+</pre>
+
+  <p>The find() function returns an iterator to <em>key</em>, or an
+  iterator to the end of the map if <em>key</em> is not found.</p>
+
+  <p>find() runs in <a href="../complexity.html">logarithmic
+  time</a>.</p>
+
+  <p>For example, the following code uses the find() function to
+  determine how many times a user entered a certain word:</p>
+
+<pre class="prettyprint">
+  map&lt;string,int&gt; stringCounts;
+  string str;
+
+  while( cin &gt;&gt; str ) stringCounts[str]++;
+
+  map&lt;string,int&gt;::iterator iter = stringCounts.find("spoon");
+  if( iter != stringCounts.end() ) {
+    cout &lt;&lt; "You typed '" &lt;&lt; iter-&gt;first &lt;&lt; "' " &lt;&lt; iter-&gt;second &lt;&lt; " time(s)" &lt;&lt; endl;
+  }
+</pre>
+
+  <p>When run with this input:</p>
+<pre class="prettyprint">
+my spoon is too big.  my spoon is TOO big!  my SPOON is TOO big!  I am a BANANA!
+</pre>
+ 
+  <p>...the above code produces this output:</p>
+<pre class="prettyprint">
+You typed 'spoon' 2 time(s)
+</pre>
+
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppmap/find.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

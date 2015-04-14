@@ -1,0 +1,4 @@
+<area shape="rect" href="$classwx_html_colour_cell.html" title="This cell changes the colour of either the background or the foreground." alt="" coords="5,172,133,204">
+<area shape="rect" href="$classwx_html_container_cell.html" title="The wxHtmlContainerCell class is an implementation of a cell that may contain more..." alt="" coords="157,172,304,204">
+<area shape="rect" href="$classwx_html_widget_cell.html" title="wxHtmlWidgetCell is a class that provides a connection between HTML cells and widgets..." alt="" coords="328,172,459,204">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="193,7,268,39">

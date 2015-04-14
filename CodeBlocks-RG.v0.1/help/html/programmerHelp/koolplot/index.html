@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<link href="../CSS/1colNheader.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+<!--
+.style9 {	font-size: small;
+	color: #003333;
+}
+.style14 {font-size: 14px}
+-->
+</style>
+</head>
+
+<body>
+<div id="wrapper">
+  <div id="header">
+    <table width="92%" border="0" cellpadding="8">
+      <tr>
+        <td width="419"><p align="left"><span class="title">Simple 2D Plotting Library</span><br />          
+        </p></td>
+        <td width="262"><span class="style14"><img src="smallsine.gif" alt="small sine image" width="53" height="53" /></span></td>
+        <td width="247"><h2><span class="style43">koolplot</span></h2></td>
+      </tr>
+    </table>
+  </div>
+  <div id="main">
+    <p class="abstract">This simple software library can be used by either C or C++ programs to plot two-dimensional graphs. <br />
+    To use koolplot with Quincy, create a koolplot project, then insert your program file(s) into it (right-click with the mouse in project window). </p>
+    <p class="abstract">This document describes the C koolplot interface.</p>
+    <hr />
+    <table border="1" cellpadding="6" bordercolor="#CCCCCC">
+      <tr>
+        <td width="366"><pre><code><font color="#000000"><font color="#0000ff">#include <span
+ style="COLOR: rgb(255,0,0)"  >&quot;koolplot.h&quot;</span>
+int</font> main()
+{
+ &nbsp;&nbsp;plotdata x(-6.0, 6.0); &nbsp;&nbsp;&nbsp;
+   plotdata y = sin(x) + x/5;<br />   plot(x, y);<br /><font
+ color="#0000ff">   return</font> 0;
+}</font></code></pre>        </td>
+        <td width="426"><div align="center"><code><font color="#000000"><span class="style9"><img src="Simple.gif" alt="simple graph output image" width="426" height="178" align="middle" /></span></font></code></div></td>
+      </tr>
+    </table>
+    <p>The C program above displays the curve on the right in a small window. Clicking the mouse with the cursor on the graph places a marker at the cursor location and displays the marker coordinates. The window closes when any key is pressed.<br />
+    __________</p>
+    <table width="92%" border="0" align="center" cellpadding="6">
+      <tr>
+        <td width="50%"><p><a href="#plotdata"><strong><img src="file:///E|/Program Files/quincy/html/pics/link.gif" alt="link image" width="32" height="32" border="0" />plotdata</strong> data type</a><br />
+          <a href="#plotdata"><strong><img src="file:///E|/Program Files/quincy/html/pics/link.gif" alt="link image" width="32" height="32" border="0" /></strong></a><a href="#expressions"><strong>Expressions </strong>and functions </a><br />
+        <a href="#plotdata"><strong><img src="file:///E|/Program Files/quincy/html/pics/link.gif" alt="link image" width="32" height="32" border="0" /></strong></a><a href="#graphs"><strong>Plotting Graphs</strong></a><br />
+          <a href="#plotdata"><strong><img src="file:///E|/Program Files/quincy/html/pics/link.gif" alt="link image" width="32" height="32" border="0" /></strong></a><a href="#multiplegraphs"><strong>Plotting Multiple Graphs</strong></a></p>
+        </td>
+        <td width="50%"><a href="#plotdata"><strong><img src="file:///E|/Program Files/quincy/html/pics/link.gif" alt="link image" width="32" height="32" border="0" /></strong></a><a href="#colours"><strong>Plotting Multiple Colours</strong></a><br />          
+          <a href="#plotdata"><strong><img src="file:///E|/Program Files/quincy/html/pics/link.gif" alt="link image" width="32" height="32" border="0" /></strong></a><a href="#points"><strong>Plotting Individual Data points</strong></a><br />          
+          <a href="#plotdata"><strong><img src="file:///E|/Program Files/quincy/html/pics/link.gif" alt="link image" width="32" height="32" border="0" /></strong></a><a href="#axes"><strong>Controlling the Axes</strong></a></td>
+      </tr>
+    </table>
+    <h2>plotdata<a name="plotdata" id="plotdata"></a></h2>
+    <p>The main data type used in koolplot is <code>plotdata</code>. It is in fact a C++ class, but it hides it well. It can be easily used within C programs as any other C data type. </p>
+    <p>A plotdata variable can hold any number of data points (<code>double</code> values) for the purpose of plotting graphs. One special value (called <strong><code>NOPLOT</code></strong>) receives special treatment and is never plotted onto graphs. </p>
+    <h5>plotdata initialisation, insertion, deletion and assignment:</h5>
+    <p>* A plotdata variable can be declared and initialised at one go by giving it a range in the declaration as in line 1 of the above program: <br />
+      <strong><code>plotdata x(-6.0, 6.0);</code></strong> <br />
+      This defines the range of <code>x</code> data as being between -6 and 6. It creates automatically a large number of data points spread evenly within the range. <br />
+      <span class="abstract"><strong>Note:</strong> Always disambiguate floating point number literals by using a decimal point in initialising plotdata ranges. This avoids occasional problems with the GCC compiler getting confused. </span></p>
+    <p>* Initialisation can also be done during declaration by using an existing array of double values <em>valArray, </em>and the number <em>numToInsert </em>of values to obtain from the array: <br />
+      <code><strong>plotdata x(valArray, numToInsert);</strong><br />
+    </code>The data points inside the array must be ordered as they will be joined in the order inserted during plotting in order to form the curve.</p>
+    <p>* An array of <code>double</code> type values can be inserted into a plotdata variable <em>pdata </em>(appended to the existing data if any) with:<br />
+        <strong><code>insert(pdata, array, numberToInsert);</code></strong>   <br />
+    Of course <em>array</em> may contain more elements than <em>numberToInsert</em>, but not fewer. </p>
+    <p>* Individual data points  may also be appended to a <em>pdata </em>plotdata variable with:<br />
+      <strong><code>point(pdata, doubleValue);
+      <br />
+      </code><span class="abstract"><strong>Note:</strong></span></strong><span class="abstract"> To save typing you can use the &lt;&lt; operator to append points to a plotdata variable. (This looks more like C++ than C, but it saves a fair bit of typing, especially since this insertion operator can be concatenated.
+      )<br />
+    example:</span></p>
+    <pre><code>pdata &lt;&lt; doubleValue &lt;&lt; 1.2 &lt;&lt; p &lt;&lt; 0.006; <span class="comment">/* insert doubleValue, then 1.2, then p.. */</span> </code></pre>
+    <p>* plotdata variables may also be concatenated using the &lt;&lt; insertion operator:</p>
+    <pre>plotdata x(-90, 90), y = sin(x * (M_PI / 180)), z = cos(x * (M_PI / 180));<br />x &lt;&lt; x; <span class="comment">// duplicate the data within x</span><br />y &lt;&lt; z; <span class="comment">// append z data to y</span>
+plot(x, y); <span class="comment">// plot both sin x and cos x</span></pre>
+    <p>* A plotdata variable can be wiped clean by using the function:<br /> 
+      <strong><code> clear(pdata);<br />
+    </code></strong>All data within <em>pdata</em> is removed (<em>pdata</em> is now un-initialised and cannot be an argument of an expression until re-assigned new data). </p>
+    <p>* A plotdata variable may also be assigned the result of an expression containing other plotdata arguments that have been initialised before:<br />
+      <code><strong><font color="#000000">plotdata y = sin(x) + x/5;</font> <span class="comment">/* where x is another plotdata variable */</span></strong></code><code><span class="comment"><br />
+      </span></code> __________</p>
+    <h2>Expressions<a name="expressions" id="expressions"></a></h2>
+    <p><code>plotdata</code> variables can appear as arguments of mathematical expressions involving a mix of initialised plotdata variables and floating point numbers or variables (<code>double</code>, or <code>float</code>). The result of such expressions is always a <code>plotdata</code> value. </p>
+    <h5>operators and brackets</h5>
+          All the usual arithmetic operators (+ - / *) may be used and have their normal order of precedence. Brackets may be used as normal to clarify the order of 
+    interpretation.
+          <p><code>plotdata</code> variables can appear as arguments of all the usual mathematical functions:</p>
+          <p><strong>Trigonometric functions </strong>- sin, cos, tan, asin, acos, atan.</p>
+          <p><strong>Hyperbolic functions </strong> - sinh, cosh, tanh.</p>
+          <p><strong>Logarithmic functions </strong>- log, log10, exp.    </p>
+          <p><strong>Power functions </strong> - pow(pdata, exp), where the <code>plotdata</code> <em>pdata</em> is raised to the <code>double</code> power <em>exp.</em></p>
+          <p><strong>Square root function </strong> - sqrt. </p>
+    <p><strong>Absolute value function </strong> - fabs</p>
+    <p><strong>User-defined functions </strong><br>
+      Programmers can install and plot their own user-designed functions.</p>
+    <p>* User-defined functions can be <strong>unary functions</strong> &quot;<strong><code>f</code></strong>&quot; (with one <code>double</code> argument and returning a double value). In the call to <em>f()</em> the argument is a <code>plotdata</code> variable, for example:    </p>
+    <pre>     plotdata x(-6.0, 6.0);
+     f(x) = sinc;	      <span class="comment">/* installs sinc() as a function of x returning a plotdata. */
+  </span>   plot(x, f(x) * 2);<span class="comment">  /* Plots the graph of sinc(x) * 2 from -6 to 6 */</span></pre>
+    <p><em>sinc()</em> is a function often used in science and engineering. It would be declared by the programmer as:</p>
+    <p> <span class="keyword"><code>double</code></span><code> sinc(<span class="keyword">double</span> x);</code></p>
+    <p>* User-defined functions can be <strong>binary functions</strong> &quot;<code><strong>f2</strong></code>&quot; (with two <code>double</code> arguments and returning a double value). In the call to <em>f2()</em> the first argument is passed a <code>plotdata</code> variable, the second a <code>double</code> value, for example:    </p>
+    <pre>	x = plotdata(-270.0, 270.0); <br />	f2(x) = tanLessThan; /*<span class="comment"> Installs tanLessThan as the function f2(x) returning a plotdata */</span>
+<span class="comment">	/* Do not plot values greater than 20 */
+</span>   plot(x, f2(x, 20));</pre>
+    <p>tanLessThan() is a user-designed function that returns values of tan(x) less than the second argument <em>max</em>. If tan(x) is larger than max, then <strong><code>NOPLOT </code></strong>is returned instead (this is done because <em>tan(x)</em> grows very quickly towards infinity and could not be plotted). Values equal to <strong><code>NOPLOT </code></strong>are not plotted by koolplot.<br />
+    The function <em>tanLessThan()</em> could, for example, be declared by the programmer as: </p>
+    <p><span class="keyword"><code>double</code></span><code> tanLessThan(<span class="keyword">double</span> x, <span class="keyword">double</span> max);<br />
+    </code>__________</p>
+    <h2>Plotting Graphs<a name="graphs" id="plottinggraphs"></a></h2>
+    <p>A call to the <em>plot() </em>function will open a small window and draw a 2-dimensional graph:</p>
+    <p><strong><code>plot(xAxis,  yAxis,  colour, label); </code></strong></p>
+    <p>..where <code>xAxis</code> is the <code>plotdata</code> variable containing horizontal axis data points, <code>yAxis</code> is the <code>plotdata</code> variable containing the vertical axis data points, <code>colour</code> is the graph colour, <code>label</code> is a string containing the caption to print on the window header.</p>
+    <p><code>colour</code> and <code>label</code> are optional. One or the other may be given, or none, or both. When they are not given, default values are used. The graph colour will be green, and the caption will be <em>&quot;2D Plot&quot;</em>.</p>
+    <p><strong><span class="abstract"><strong>Note: </strong></span></strong><span class="abstract">Optional function parameters are not allowed in C. This extra feature is available here due to the fact that the koolplot library is written in C++, even though it can be used by C programs. </span></p>
+    <table width="92%" border="1" cellpadding="6" bordercolor="#CCCCCC">
+      <tr>
+        <td><p><strong>koolplot colours:</strong></p>
+          <p>&nbsp;</p>
+          <p>The following identifiers are defined as koolplot colours usable in graphs (see the actual colours opposite). </p>
+          <p>Standard BGI colours available are: <br />
+          <code>BLACK,  BLUE,  GREEN,  CYAN, RED,  MAGENTA,  BROWN,  LIGHTGREY,  DARKGREY,  LIGHTBLUE,  LIGHTGREEN, LIGHTCYAN,  LIGHTRED, LIGHTMAGENTA, YELLOW, WHITE</code></p>
+          <p> and extra web colours useful in graphs:<br />
+              <code>CRIMSON,            CHOCOLATE,         GOLDENROD, DARKORANGE, REDRED, DARKSLATEGRAY, DEEPPINK,          TURQUOISE,         DARKVIOLET, BEIGE,             MEDIUMSEAGREEN,    LIMEGREEN, DARKGREEN, MEDIUMBLUE, BLUEBLUE, DODGERBLUE</code></p></td>
+        <td><img src="kcolours.jpg" alt="sample koolplot colours" width="340" height="506" /></td>
+      </tr>
+    </table>
+    <p>__________</p>
+    <h2>Plotting Multiple Graphs<a name="multiplegraphs" id="multiplegraphs"></a></h2>
+    <p>A single call to the <em>plot()</em> function can draw more than one graph. For example to draw both <em>sin(x)</em> and <em>cos(x) </em>over the range -315 degrees and 45 degrees: </p>
+    <pre>plotdata x(-315.0, 45.0), y = sin(x * M_PI / 180), z = cos(x * M_PI / 180);
+breakplot(x, y); <span class="comment">// Ensures that the first graph is not linked to the second</span>
+x &lt;&lt; x; <span class="comment">// duplicate the data within x</span><br />y &lt;&lt; z; <span class="comment">// append z data to y</span>
+plot(x, y); <span class="comment">// plot both sin x and cos x over the same range</span><br /></pre>
+    <p>* Function <code>breakplot(x, y) </code>inserts <code>noplot</code> values into both <code>plotdata</code> variables. This ensures that the graph will be broken at that point. In this case, the end of the <em>sin x</em> graph will not be linked to the start of the <em>cos x</em> graph by a meaningless line.<br />
+    __________</p>
+    <h2>Plotting Multiple Colours<a name="colours" id="colours"></a> </h2>
+    <p>* Function <code>setColor()</code> allows displaying multiple graphs in different colour </p>
+    <pre>plotdata x(-45.0, 45.0), y = sin(x * M_PI / 180), z = cos(x * M_PI / 180);
+setColor(x, y, CRIMSON); <span class="comment">// breaks the plot and changes the colour</span> 
+x &lt;&lt; x;      <span class="comment">// duplicate the data within x</span>
+y &lt;&lt; z; <span class="comment">     // append z data to y</span> 
+plot(x, y); <span class="comment"> // plot both sin x and cos x over the same range</span></pre>
+    <p>In this example, <em>sin x</em> will be drawn in green (the default colour), <em>cos x</em> will be red.</p>
+    <p>__________</p>
+    <h2>Plotting Individual Data Points<a name="points" id="points"></a></h2>
+    <p>* Function <code>addMark()</code> adds individual data points (not linked to the graph).<br>
+      The data point appears as a small circle centred on the given coordinates. The call is:  </p>
+    <pre>addMarx(x, y, xCoord, yCoord); 
+</pre>
+    <p>where xCoord and yCoord are the coordinates of the data point to be displayed on the x, y graph. <br>
+    </p>
+    <p>__________</p>
+    <h2>Controlling the Axes<a name="axes" id="axes"></a></h2>
+    <p>koolplot automatically constrains the axes to the exact range of the graph. This is sometimes inconvenient as the markings on the axes end up with large decimal values. <br />
+    Two functions are provided to extend the axes span:</p>
+    <pre><strong><code>axesBotLeft(xData, yData, minX, minY); <span class="comment">// minX and minY are the new minimal axes values</span></code></strong></pre>
+    <p>enables extending the bottom left corner of the axes (downwards and left-wards, away from the graph). </p>
+    <pre><strong><code>axesTopRight(xData, yData, maxX, maxY); <span class="comment">// maxX and maxY are the new maximal axes values</span></code></strong></pre>
+    <p>enables extending the top right corner of the axes (upwards and right-wards, away from the graph). </p>
+    <hr />
+    <p class="abstract">- Sample programs using koolplot are available in the Quincy <a href="../../tutorials/koolplot/index.html">Help->Example Programs</a> menu. </p>
+  </div>
+  <div id="footer">
+    <div align="center" class="style10"><span class="Lowlight"><em>Maintained by</em></span> <img src="../../pics/email.gif" alt="image: mainainer's email" width="167" height="18" align="absmiddle" /> <span class="Lowlight"><em>- Modified: 7 January 2006</em></span> </div>
+  </div>
+</div>
+
+</body>
+</html>

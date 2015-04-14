@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Archive%20Members">Archive Members</a>,
+Next:<a rel="next" accesskey="n" href="Archive-Update.html#Archive%20Update">Archive Update</a>,
+Previous:<a rel="previous" accesskey="p" href="Archives.html#Archives">Archives</a>,
+Up:<a rel="up" accesskey="u" href="Archives.html#Archives">Archives</a>
+<hr><br>
+</div>
+
+<h3 class="section">Archive Members as Targets</h3>
+
+   <p>An individual member of an archive file can be used as a target or
+prerequisite in <code>make</code>.  You specify the member named <var>member</var> in
+archive file <var>archive</var> as follows:
+
+<pre class="example">     <var>archive</var>(<var>member</var>)
+     </pre>
+
+<p>This construct is available only in targets and prerequisites, not in
+commands!  Most programs that you might use in commands do not support this
+syntax and cannot act directly on archive members.  Only <code>ar</code> and
+other programs specifically designed to operate on archives can do so. 
+Therefore, valid commands to update an archive member target probably must
+use <code>ar</code>.  For example, this rule says to create a member
+<code>hack.o</code> in archive <code>foolib</code> by copying the file <code>hack.o</code>:
+
+<pre class="example">     foolib(hack.o) : hack.o
+             ar cr foolib hack.o
+     </pre>
+
+   <p>In fact, nearly all archive member targets are updated in just this way
+and there is an implicit rule to do it for you.  <strong>Note:</strong> The
+<code>c</code> flag to <code>ar</code> is required if the archive file does not
+already exist.
+
+   <p>To specify several members in the same archive, you can write all the
+member names together between the parentheses.  For example:
+
+<pre class="example">     foolib(hack.o kludge.o)
+     </pre>
+
+<p>is equivalent to:
+
+<pre class="example">     foolib(hack.o) foolib(kludge.o)
+     </pre>
+
+   <p>You can also use shell-style wildcards in an archive member reference. 
+See <a href="Wildcards.html#Wildcards">Using Wildcard Characters in File Names</a>.  For
+example, <code>foolib(*.o)</code> expands to all existing members of the
+<code>foolib</code> archive whose names end in <code>.o</code>; perhaps
+<code>foolib(hack.o) foolib(kludge.o)</code>.
+
+   </body></html>
+

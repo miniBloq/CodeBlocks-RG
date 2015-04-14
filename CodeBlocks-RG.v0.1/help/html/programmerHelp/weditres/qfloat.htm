@@ -1,0 +1,1994 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The qfloat data type</title>
+</head>
+
+<body>
+
+<h2>The qfloat data type</h2>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">This floating-point library features numbers with 104
+digits precision. It is based on the CEPHES mathematical Library written by
+Stephen L Moshier. It offers all standard mathematical functions and many
+others.</p>
+<p class="MsoNormal">&nbsp;At a glance:</p>
+<ul style="margin-top:0cm" type="disc">
+  <li class="MsoNormal" style="mso-list:l0 level1 lfo3;tab-stops:list 36.0pt">#include
+    &lt;qfloat.h&gt;</li>
+  <li class="MsoNormal" style="mso-list:l0 level1 lfo3;tab-stops:list 36.0pt">Link
+    with qfloat.lib to use the qfloat.dll</li>
+  <li class="MsoNormal" style="mso-list:l0 level1 lfo3;tab-stops:list 36.0pt">Link
+    with qfloats.lib to use the static library (no dll)</li>
+  <li class="MsoNormal" style="mso-list:l0 level1 lfo3;tab-stops:list 36.0pt">Needs
+    at run-time qfloat.dll if dynamically linked.</li>
+</ul>
+<h3>&nbsp;Overview</h3>
+<p class="MsoNormal">The essential functions are provided with the DLL and
+described below. The static library has many other functions, not included in
+the DLL distribution.</p>
+<p class="MsoNormal">&nbsp;Qfloats are identical to other floating point data
+and no special constructs should be required. They can be initialized like this:</p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">qfloat a
+= 0.88877766566544433322333443334434;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">or</p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">qfloat a
+= &quot;0.88877766566544433322333443334434&quot;;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">They can be freely mixed with other numerical data. The
+compiler will provide the necessary conversions.</p>
+<h3>&nbsp;Printing qfloats with xprintf.</h3>
+<p class="MsoNormal">&nbsp;You can use xprintf to print qfloats using the 'q'
+qualifier.</p>
+<p class="MsoNormal">&nbsp;Example:</p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>qfloat data;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>…<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>xprintf(&quot;%40.30qf\n&quot;,data);<o:p>
+</o:p>
+</span></p>
+<h3><span style="font-family:&quot;Courier New&quot;">&nbsp;</span>Caveats</h3>
+<p class="MsoNormal">If you initialize a qfloat with:</p>
+<p class="MsoNormal">&nbsp;<span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>qfloat a = 111.01;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;the compiler will convert a double precision constant
+to a qfloat with (at most) 18 digits precision. Much more precise is to use:</p>
+<p class="MsoNormal">&nbsp;<span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>qfloat a = &quot;111.01&quot;;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">or</p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>qfloat a = qratio(11101,10000);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;This way, the full precision is used.</p>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<h3>Qfloat functions</h3>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<table border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ border:none;mso-border-alt:solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <h3><span style="font-size:12.0pt">Function<o:p>
+      </o:p>
+      </span></h3>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><b><span style="mso-bidi-font-family:Arial">Description<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="647" colspan="2" valign="top" style="width:485.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <h1><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt">Constructors<o:p>
+      </o:p>
+      </span></h1>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat qfloat(char *);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">From ascii string</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat qfloat(int);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">From integer</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat qfloat(double);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">From double precision double</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat qfloat(long double);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">From long double</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>e24toq</b>(const float *,qfloat
+      *);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Converts a single precision float into a qfloat
+      number.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="font-size:10.0pt;mso-bidi-font-size:
+  12.0pt;font-family:&quot;Courier New&quot;;mso-ansi-language:FR">void <b>etoq</b>(const
+      double *,qfloat *);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Converts a double precision number into a qfloat</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>e64toq</b>(const double *,qfloat
+      *);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Converts a long double number (80 bits) into a
+      qfloat.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>ltoq</b>(long *,qfloat *);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Converts a 32 bit integer in a qfloat.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>lltoq</b>(long long *,qfloat *);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Converts a long long number into a qfloat.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>asctoq</b>(const char *,qfloat
+      *);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Converts a character string in a qfloat.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="647" colspan="2" valign="top" style="width:485.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" align="center" style="text-align:center"><b><span lang="FR" style="font-size:10.0pt;mso-bidi-font-size:12.0pt;mso-bidi-font-family:Arial;
+  mso-ansi-language:FR">Output conversions<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="font-size:10.0pt;mso-bidi-font-size:
+  12.0pt;font-family:&quot;Courier New&quot;;mso-ansi-language:FR">int <b>qtoi</b>(qfloat
+      &amp;);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">Converts a
+      qfloat into a 32 bit integer.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">float <b>qtof</b>(qfloat &amp;);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">Converts a
+      qfloat into a 32 bit float.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">double <b>qtod</b>(qfloat &amp;);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">Converts a
+      qfloat into a 64 bit double.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">long double <b>qtold</b>(qfloat &amp;);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">Converts a
+      qfloat into a 80 bit long double.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="647" colspan="2" valign="top" style="width:485.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <h4>Operators</h4>
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt">Only
+      one version of the operator is presented, but normally all conversions
+      from and to other numbers should be supported. See the header file for
+      details. Both operators and normal functions are provided.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat &amp;<b>operator +=</b>(qfloat
+      &amp;x, const qfloat &amp; y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">+= operator<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat <b>operator +</b>(const qfloat
+      &amp;x, const qfloat &amp; y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">+ operator<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>qadd</b>(const qfloat &amp;x,
+      const qfloat &amp;y, qfloat &amp;z);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="mso-bidi-font-family:Arial;
+  mso-ansi-language:FR">z = x + y<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat <b>operator-</b>(qfloat &amp;x,qfloat
+      &amp;y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">- operator<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>qsub</b>(const qfloat &amp;x,const
+      qfloat &amp;y,qfloat &amp;z);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="mso-bidi-font-family:Arial;
+  mso-ansi-language:FR">z = x - y<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat <b>operator*</b>(const qfloat
+      &amp;x,const qfloat &amp;y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">* operator<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>qmul</b>(const qfloat &amp;x,const
+      qfloat &amp;y,qfloat &amp;z);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="mso-bidi-font-family:Arial;
+  mso-ansi-language:FR">z = x*y<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat <b>operator /</b>(const qfloat
+      &amp; x, const qfloat &amp; y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">/ operator<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>qdiv</b>(const qfloat &amp;x,const
+      qfloat &amp;y,qfloat &amp;z);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="mso-bidi-font-family:Arial;
+  mso-ansi-language:FR">z = x/y<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int <b>operator==</b>(qfloat &amp;x,qfloat
+      &amp;y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<span style="mso-bidi-font-family:Arial"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int <b>operator!=</b>(qfloat &amp;x,qfloat
+      &amp;y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<span style="mso-bidi-font-family:Arial"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int <b>operator&lt;</b>(qfloat &amp;x,qfloat
+      &amp;y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<span style="mso-bidi-font-family:Arial"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int <b>operator&lt;=</b>(qfloat &amp;x,qfloat
+      &amp;y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<span style="mso-bidi-font-family:Arial"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int <b>operator==</b>(qfloat &amp;x,qfloat
+      &amp;y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<span style="mso-bidi-font-family:Arial"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int <b>operator&gt;=</b>(qfloat &amp;x,qfloat
+      &amp;y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<span style="mso-bidi-font-family:Arial"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="font-size:10.0pt;mso-bidi-font-size:
+  12.0pt;font-family:&quot;Courier New&quot;;mso-ansi-language:FR">int <b>qcmp</b>(qfloat
+      &amp;x,qfloat &amp;y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">Compares two
+      qfloats and returns zero for equality, 1 when x &gt; y and –1 when z is
+      less than y.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<span style="mso-bidi-font-family:Arial"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="647" colspan="2" valign="top" style="width:485.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" align="center" style="text-align:center"><b><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;mso-bidi-font-family:Arial">Utility
+      functions<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>qclear</b>(qfloat *);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Zeroes a qfloat number.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="647" colspan="2" valign="top" style="width:485.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <h4>Library functions</h4>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat <b>qsin</b>(qfloat &amp;);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">Sin<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat <b>qcos</b>(qfloat &amp;);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">Cos<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat <b>qtan</b>(qfloat &amp;);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">Tan<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat <b>qremain</b>(const qfloat &amp;x,const
+      qfloat &amp;y,qfloat &amp;z);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">Remainder.
+      Result in Z.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat <b>qpow</b>(qfloat &amp;x,qfloat
+      &amp;y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">x<sup>y<o:p>
+      </o:p>
+      </sup></span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat <b>qexp</b>(qfloat &amp;x);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="font-size:10.0pt;mso-bidi-font-size:
+  12.0pt;mso-bidi-font-family:Arial;mso-ansi-language:FR">e<sup>x<o:p>
+      </o:p>
+      </sup></span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="font-size:10.0pt;mso-bidi-font-size:
+  12.0pt;font-family:&quot;Courier New&quot;;mso-ansi-language:FR">qfloat <b>qexp10</b>(qfloat
+      *x, qfloat *y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  mso-bidi-font-family:Arial">Returns 10 raised to the xth power<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat <b>qlog</b>(qfloat &amp;x);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">log(x)<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat <b>qfloor</b>(qfloat &amp;x);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">Largest
+      integer not greater than x<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat <b>qabs</b>(qfloat &amp;);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">Absolute
+      value<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat <b>qsqrt</b>(qfloat &amp;);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">Square root<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat <b>mtherr</b>(char *,int);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">Error
+      handling function.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="font-size:10.0pt;mso-bidi-font-size:
+  12.0pt;font-family:&quot;Courier New&quot;;mso-ansi-language:FR">qfloat <b>qratio</b>(int
+      x,int y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">Builds a
+      ratio of x/y without losing any precision.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat <b>qfact</b>(const qfloat *,qfloat
+      *);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">Factorial<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">qfloat <b>qrand</b>(void);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="mso-bidi-font-family:Arial">Returns a
+      random qfloat.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+</table>
+<h3>&nbsp;Extended library<o:p>
+</o:p>
+</h3>
+<p class="MsoNormal">This library is distributed with the e-mail distribution,
+together with the source code.<o:p>
+</o:p>
+</p>
+<table border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ border:none;mso-border-alt:solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><b>Function<o:p>
+      </o:p>
+      </b></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><b>Description<o:p>
+      </o:p>
+      </b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>qerf</b>(const qfloat *x,qfloat
+      *y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Error function integral y=erf(x)</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="font-size:10.0pt;mso-bidi-font-size:
+  12.0pt;font-family:&quot;Courier New&quot;;mso-ansi-language:FR">void <b>qerfc</b>(const
+      qfloat *x,qfloat *y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Complementary error function integral 1-erf(x)</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="font-size:10.0pt;mso-bidi-font-size:
+  12.0pt;font-family:&quot;Courier New&quot;;mso-ansi-language:FR">int <b>qcbrt</b>(const
+      qfloat *x,qfloat *y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Cubic root of x.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="font-size:10.0pt;mso-bidi-font-size:
+  12.0pt;font-family:&quot;Courier New&quot;;mso-ansi-language:FR">void <b>qtanh</b>(const
+      qfloat *x,qfloat *y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="mso-ansi-language:FR">y =
+      atanh(x)<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="font-size:10.0pt;mso-bidi-font-size:
+  12.0pt;font-family:&quot;Courier New&quot;;mso-ansi-language:FR">void <b>qsinh</b>(const
+      qfloat *x,qfloat *y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="mso-ansi-language:FR">y =
+      sinh(x)<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>qcosh</b>(const qfloat *x,qfloat
+      y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">y = cosh(x)</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>qkn</b>(const int,const qfloat *x,qfloat
+      *y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Modified Bessel function third kind, integer order</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>qincbi</b>(const qfloat *a, const
+      qfloat *b, const qfloat *y, const qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Inverse beta integral.</p>
+      <p class="MsoNormal">Given y, this function finds x such that:</p>
+      <p class="MsoNormal"><span lang="FR" style="mso-ansi-language:FR">incbet(a,b,x)
+      == y<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>qigami</b>(const qfloat *a,const
+      qfloat *y0,qfloat *answer);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Calculates the inverse of the complemented incomplete
+      gamma integral.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>qfresnl</b>(qfloat *x, qfloat *ss,
+      qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Calculates the Fresnel integral</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">voi <b>qellpj</b>(qfloat *u, qfloat *m,
+      qfloat *sn, qfloat *cn, qfloat *dn qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Evaluates the Jacobian elliptic functions sn(u|m),
+      cn(u|m), and dn(u|m) of parameter m between 0 and 1, and real<span style="mso-spacerun: yes">&nbsp;
+      </span>argument u.</p>
+      <p class="MsoNormal">These functions are periodic, with quarter-period on
+      the real axis equal to the complete elliptic integral<span style="mso-spacerun:
+  yes">&nbsp; </span>ellpk(1.0-m).</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>qshici</b>(const qfloat *x,qfloat
+      *sinInverse, qfloat *cosInverse);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Calculates the hyperbolic sine and cosine in
+      sinInverse and cosInverse</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="font-size:10.0pt;mso-bidi-font-size:
+  12.0pt;font-family:&quot;Courier New&quot;;mso-ansi-language:FR">void <b>qndtri</b>(qfloat
+      *x, qfloat *y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Calculates the Inverse of the normal distribution.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>qdptri</b>(int k,qfloat *x,qfloat
+      *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Inverse Poisson Distribution</p>
+      <p class="MsoNormal">Finds the Poisson variable x such that the integral
+      from 0 to x of the Poisson density is equal to the given probability y.</p>
+      <p class="MsoNormal"><span style="mso-spacerun: yes">&nbsp;</span>This is
+      accomplished using the inverse gamma integral function and the relation</p>
+      <p class="MsoNormal"><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span><span lang="FR" style="mso-ansi-language:FR">m
+      = igami( k+1, y ).<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>qpdtrc</b>(int k,qfloat *m,qfloat
+      *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="mso-ansi-language:FR">Complemented
+      Poisson distribution.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="font-size:10.0pt;mso-bidi-font-size:
+  12.0pt;font-family:&quot;Courier New&quot;;mso-ansi-language:FR">void <b>qpdtr</b>(int
+      k, qfloat *m, qfloat *y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="mso-ansi-language:FR">Poisson
+      distribution. <o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal">Returns the sum of the first k terms of the posisson
+      distribution.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qnbdtc</b>(int
+      k, int n, qfloat *p, qfloat *y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Complemented negative binomial distribution.</p>
+      <p class="MsoNormal">Returns the sum of the terms k+1 to infinity of the
+      negative binomial distribution. The arguments must be positive, with p
+      ranging from 0 to 1.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qnbdtr</b>(int
+      k, int n, qfloat *p, qfloat *y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Negative binomial distribution.</p>
+      <p class="MsoNormal">Returns the sum of the terms 0 through k of the
+      negative</p>
+      <p class="MsoNormal">binomial distribution.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">int <b>qqdtrc</b>(qfloat
+      *a, qfloat *b, qfloat *x, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Complemented gamma distribution function</p>
+      <p class="MsoNormal">Returns the integral from x to infinity of the gamma
+      probability density function. The incomplete gamma integral is used,
+      according to the relation:</p>
+      <p class="MsoNormal"><span lang="FR" style="mso-ansi-language:FR">y =
+      igamc(b,ax);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">int
+      qqdtr(qfloat *a, qfloat *b, qfloat *x, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Gamma distribution function.</p>
+      <p class="MsoNormal">Returns the integral from zero to x of the gamma
+      probability density function.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qfdtri</b>(int
+      ia, int ib, qfloat *y, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Inverse of the complemented F distribution.</p>
+      <p class="MsoNormal">Finds the F density argument x such that the integral
+      from x to infinity of the F density is equal to the given probability p.</p>
+      <p class="MsoNormal">This is accomplished using the inverse beta integral
+      function and the relations:</p>
+      <p class="MsoNormal">z = incbi( df2/2, df1/2, p )</p>
+      <p class="MsoNormal">x = df2 (1-z) / (df1 z)</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qfdtrc</b>(int
+      ia, int ib, qfloat *a,qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Complemented F distribution.</p>
+      <p class="MsoNormal">Returns the area from x to infinity under the F
+      density function (also known as Snedcor's density or the</p>
+      <p class="MsoNormal">variance ratio density).</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qchdti</b>(qfloat
+      *df, qfloat *y, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Inverse of complemented Chi-square distribution.</p>
+      <p class="MsoNormal">Finds the Chi-square argument x such that the
+      integral from x to infinity of the Chi-square density is equal to the
+      given cumulative probability y.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>chdtr</b>(qfloat
+      *df, qfloat *x, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Chi-square distribution.</p>
+      <p class="MsoNormal">Returns the area under the left hand tail (from 0 to
+      x) of the Chi square probability density function with v degrees of
+      freedom.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qbdtri</b>(int
+      k, int n, qfloat *p, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Inverse binomial distribution.</p>
+      <p class="MsoNormal">Finds the event probability p such that the sum of
+      the terms 0 through k of the Binomial probability density is equal to the
+      given cumulative probability y.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qbdtrc</b>(int
+      k, int n, qfloat *p, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Complemented binomial distribution.</p>
+      <p class="MsoNormal">Returns the sum of the terms k+1 through n of the
+      Binomial probability density.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qdbtr</b>(int
+      k, int n, qfloat *p, qfloat * result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Binomial distribution.</p>
+      <p class="MsoNormal">Returns the sum of the terms 0 through k of the
+      Binomial probability density.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qstudt</b>(int
+      k, qfloat *t, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Student's t distribution</p>
+      <p class="MsoNormal">Computes the integral from minus infinity to t of the
+      Student</p>
+      <p class="MsoNormal">t distribution with integer k &gt; 0 degrees of
+      freedom.</p>
+      <p class="MsoNormal">Relation to incomplete beta integral:</p>
+      <p class="MsoNormal">1 - stdtr(k,t) = 0.5 * incbet( k/2, 1/2, z )</p>
+      <p class="MsoNormal">where</p>
+      <p class="MsoNormal"><span lang="FR" style="mso-ansi-language:FR">z = k/(k
+      + t**2)<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qellpk</b>(qfloat
+      *x, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Complete elliptic integral of the first kind.</p>
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qei</b>(qfloat
+      *x, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Exponential integral.</p>
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+      <p class="MsoNormal">Ei(x) = <span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; font-family: Symbol; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial">ò</span>
+      e<sup>t</sup> / t dt.<sup><o:p>
+      </o:p>
+      </sup></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qigamc</b>(qfloat
+      *a, qfloat *x, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Complementary incomplete gamma integral.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qigam</b>(qfloat
+      *a, qfloat *x, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Incomplete gamma integral.</p>
+      <p class="MsoNormal"><span style="font-size:9.0pt"><!--[if gte vml 1]><v:shapetype
+   id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+   path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+   <v:stroke joinstyle="miter"/>
+   <v:formulas>
+    <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+    <v:f eqn="sum @0 1 0"/>
+    <v:f eqn="sum 0 0 @1"/>
+    <v:f eqn="prod @2 1 2"/>
+    <v:f eqn="prod @3 21600 pixelWidth"/>
+    <v:f eqn="prod @3 21600 pixelHeight"/>
+    <v:f eqn="sum @0 0 1"/>
+    <v:f eqn="prod @6 1 2"/>
+    <v:f eqn="prod @7 21600 pixelWidth"/>
+    <v:f eqn="sum @8 21600 0"/>
+    <v:f eqn="prod @7 21600 pixelHeight"/>
+    <v:f eqn="sum @10 21600 0"/>
+   </v:formulas>
+   <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+   <o:lock v:ext="edit" aspectratio="t"/>
+  </v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" alt="" style='width:89.25pt;
+   height:14.25pt'>
+   <v:imagedata src="qfloat1.gif"
+    o:href="http://documents.wolfram.com/v4/RefGuide/Images/Gamma_xml/Gamma.xml_gr_7.gif"/>
+  </v:shape><![endif]-->
+      <img src="../manualhtml/qfloat1.gif" v:shapes="_x0000_i1025" width="119" height="19"></span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qpsi</b>(qfloat
+      *x,qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal"><span lang="FR" style="mso-ansi-language:FR">Psi
+      (digamma) function.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span lang="FR" style="font-size:
+  10.0pt;mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;;mso-ansi-language:
+  FR">void <b>qsici</b>(qfloat *x, qfloat *si, qfloat *ci);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Evaluates the sine and cosine integrals, returned in
+      si and ci.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qlgam</b>(qfloat
+      *x,qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Natural logarithm of the gamma function</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span lang="FR" style="font-size:
+  10.0pt;mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;;mso-ansi-language:
+  FR">void <b>qplanck</b>(qfloat *w,qfloat *T, qfloat *y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Integral of Planck's radiation formula</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qairy</b>(qfloat
+      *x,afloat *ai,qfloat *aip, qfloat *bi,qfloat *bip);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Solution of the differential equation</p>
+      <p class="MsoNormal"><span lang="FR" style="mso-ansi-language:FR">y&quot;(x)
+      = xy<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qbeta</b>(qfloat
+      *a,qfloat *b,qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">This returns:</p>
+      <p class="MsoNormal">gamma(a)*gamma(b)</p>
+      <p class="MsoNormal"><span style="mso-spacerun: yes">&nbsp;</span>--------------------------</p>
+      <p class="MsoNormal"><span style="mso-spacerun: yes">&nbsp;</span>gamma(a+b)</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qhy2f1</b>(qfloat
+      *a, qfloat *b, qfloat *x, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Gauss hypergeometric function.</p>
+      <p class="MsoNormal">Returns</p>
+      <p class="MsoNormal">1+ sum of k=zero to inf of</p>
+      <p class="MsoNormal">a*(a+1)*…(a+k)*b*(b+1)…(b+k)</p>
+      <p class="MsoNormal"><span style="mso-spacerun:
+  yes">&nbsp;</span>----------------------------------------</p>
+      <p class="MsoNormal">c*(c+1)*…(c+k)</p>
+      <p class="MsoNormal">multiplied by x to the k+1 power</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qellpe</b>(qfloat
+      *x,qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Complete elliptic integral of the second kind.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qhyp</b>(qfloat
+      *a, qfloat *b, qfloat *x, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Confluent hypergeometric function.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qerf</b>(qfloat
+      *x, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Error function.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qerfc</b>(qfloat
+      *x, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Complementary error function.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qin</b>(qfloat
+      *n, qfloat *x, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Modified Bessel function I of non-integer order.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qine</b>(qfloat
+      *v, qfloat *x, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Modified Bessel function I of non-integer order
+      exponentially scaled.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qincb</b>(qfloat
+      *a, qfloat *b, qfloat *x, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Incomplete Beta integral.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qjn</b>(qfloat
+      *n, qfloat *x, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Bessel function of non-integer order.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qk0</b>(qfloat
+      *x,qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Modified Bessel function K of order zero.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qspenc</b>(qfloat
+      *x, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Dilogarithm.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void
+      qndtr(qfloat *x, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Normal distribution</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qkn</b>(int
+      n, qfloat *x, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Modified Bessel function of the third kind, integer
+      order</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qyn</b>(qfloat
+      *n, qfloat *x, qfloat *y);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Real Bessel function of second kind, general order.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="395" valign="top" style="width:296.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal" style="tab-stops:86.25pt"><span style="font-size:10.0pt;
+  mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;">void <b>qzetac</b>(qfloat
+      *x, qfloat *result);<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="252" valign="top" style="width:189.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Riemann zeta function</p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal"><b>&nbsp;<o:p>
+</o:p>
+</b></p>
+
+</body>
+
+</html>

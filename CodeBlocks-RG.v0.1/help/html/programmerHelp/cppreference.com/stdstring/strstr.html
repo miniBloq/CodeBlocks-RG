@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/stdstring/strstr.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:02 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>strstr</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">Standard C String and Character</a> &gt; <a href=
+    "strstr.html">strstr</a>
+  </div>
+
+  <div class="name-format">
+    strstr
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstring&gt;
+  char *strstr( const char *str1, const char *str2 );
+</pre>
+
+  <p>The function strstr() returns a pointer to the first occurrence
+  of <em>str2</em> in <em>str1</em>, or <strong>NULL</strong> if no
+  match is found.  If the length of <em>str2</em> is zero, then
+  strstr() will simply return <em>str1</em>.
+  </p>
+
+  <p>For example, the following code checks for the existence of one
+  string within another string:</p>
+
+<pre class="prettyprint">
+  char* str1 = "this is a string of characters";
+  char* str2 = "a string";
+  char* result = strstr( str1, str2 );
+  if( result == NULL ) printf( "Could not find '%s' in '%s'\n", str2, str1 );
+  else printf( "Found a substring: '%s'\n", result );
+</pre>
+
+  <p>When run, the above code displays this output:</p>
+<pre class="prettyprint">
+  Found a substring: 'a string of characters'
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="memchr.html">memchr</a><br>
+    <a href="strchr.html">strchr</a><br>
+    <a href="strcspn.html">strcspn</a><br>
+    <a href="strpbrk.html">strpbrk</a><br>
+    <a href="strrchr.html">strrchr</a><br>
+    <a href="strspn.html">strspn</a><br>
+    <a href="strtok.html">strtok</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdstring/strstr.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:02 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

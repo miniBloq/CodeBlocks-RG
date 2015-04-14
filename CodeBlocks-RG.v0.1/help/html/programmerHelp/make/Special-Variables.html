@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Special%20Variables">Special Variables</a>,
+Next:<a rel="next" accesskey="n" href="Remaking-Makefiles.html#Remaking%20Makefiles">Remaking Makefiles</a>,
+Previous:<a rel="previous" accesskey="p" href="MAKEFILE_LIST-Variable.html#MAKEFILE_LIST%20Variable">MAKEFILE_LIST Variable</a>,
+Up:<a rel="up" accesskey="u" href="Makefiles.html#Makefiles">Makefiles</a>
+<hr><br>
+</div>
+
+<h3 class="section">Other Special Variables</h3>
+
+   <p>GNU <code>make</code> also supports a special variable.  Note that any value
+you assign to this variable will be ignored; it will always return its
+special value.
+
+   <p>The first special variable is <code>.VARIABLES</code>.  When expanded, the
+value consists of a list of the <em>names</em> of all global variables
+defined in all makefiles read up until that point.  This includes
+variables which have empty values, as well as built-in variables
+(see <a href="Implicit-Variables.html#Implicit%20Variables">Variables Used by Implicit Rules</a>), but
+does not include any variables which are only defined in a
+target-specific context.
+
+   </body></html>
+

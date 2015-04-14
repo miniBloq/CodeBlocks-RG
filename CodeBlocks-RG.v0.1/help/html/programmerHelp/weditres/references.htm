@@ -1,0 +1,213 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>References</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc499634153"><span style="mso-ansi-language:EN-US">References</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</h2>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-size: 12.0pt; mso-bidi-font-size: 10.0pt; mso-bidi-font-family: Times New Roman; font-weight: normal">References
+are pointers that are always initialized in their declarations to some existing
+object, and cannot be re-assigned to point to other objects. They will always be
+dereferenced when used, so their usage differs from pointers in their syntax.
+The formal description of their usage is:<o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</p>
+<p class="MsoBodyText3"><span style="font-weight:normal"><font face="Courier New">&lt;type&gt;
+‘&amp;’ &lt;identifier&gt; ‘=’ &lt;object of the specified type&gt; ;</font><o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</p>
+<p class="MsoNormal">Examples:<o:p>
+</o:p>
+</p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>int a = 7;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>int &amp;ra = a;<o:p>
+</o:p>
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>ra++; // Now <b style="mso-bidi-font-weight:normal">a</b>
+is 8. The integer is incremented, not the pointer<o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-size: 12.0pt; mso-bidi-font-size: 10.0pt; mso-bidi-font-family: Times New Roman; font-weight: normal">This
+is a reference to an integer that is initialized to point to the address of the
+integer ‘a’. Note that you should not specify the address-of operator, as
+you would do with a normal pointer. It is the compiler that internally takes the
+address of the resulting object.<o:p>
+</o:p>
+</span><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt"><o:p>
+</o:p>
+</span></p>
+<h3><a name="_Toc499634154"><span style="mso-ansi-language:EN-US">Rules for
+References</span></a><a style="mso-footnote-id:ftn2" href="#_ftn2" name="_ftnref2" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 10.0pt; mso-text-raise: 0pt; mso-ansi-language: EN-US; mso-bookmark: _Toc499634154" class="MsoFootnoteReference">[2]</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h3>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>References cannot be re-assigned. Any re-assignment of a reference
+is a compilation error. The only exception is the initialization of a reference
+when it is declared or when the declaration includes an explicit <span style="font-family:Courier">external</span>
+keyword.</p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>In an external reference, the type of the reference must be
+explicitly known to the compiler when the reference is first used, since to
+dereference an object (and references are always dereferenced when used) the
+compiler must know its definition.</p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>A function that expects a reference cannot receive a pointer.
+Pointers and references are not compatible and no automatic conversion between
+pointers and references is provided. To convert a reference to a pointer, use
+the address-of operator (‘<span style="font-family:Courier">&amp;</span>’).</p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Tables of references are not possible.</p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Pointer arithmetic is not possible with references.</p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>References of references are not possible.</p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The initialization of a reference should always follow the
+declaration, unless the declaration is a function argument or a function result.</p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Arrays of references are not possible.</p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>A reference cannot be assigned to a bit-field.</p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The address of a reference cannot be taken, since the address-of
+operator will be applied to the object to which the reference points. In the
+example above, the expression <span style="font-family:Courier">&amp;ra</span>
+means the address of the object <span style="font-family:Courier">ra</span>
+points to the integer <span style="font-family:Courier">a</span>. The result
+will be the address of <span style="font-family:Courier">a</span> and not the
+address of the reference.</p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Since the address of a reference cannot be taken, there can be no
+pointers to references.</p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>In a function call to a function, which has a reference as
+argument in its prototype, the reference<span style="mso-spacerun: yes">&nbsp; </span>and
+not its value will be passed.</p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>In a function call to a function with no prototype or with one
+that does not have a reference in the given position, the value pointed to by
+the reference will be passed.</p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>In a return statement, when the function has a reference as return
+value, the compiler automatically takes the address of the resulting object, and
+returns this reference as the result of the function.</p>
+<p class="MsoNormal">&nbsp;<span style="mso-bidi-font-size: 10.0pt; mso-bidi-font-family: Times New Roman; font-weight: normal">In
+C++, passing arguments by reference avoids calling the automatic constructors
+and destructors for the object. Since there are no destructors or constructors
+called automatically here, the need for references is less pronounced. C is not
+C++, and there are no functions being called ‘behind your back’ by the
+compiler. All implicit function calls are those redefined explicitly by the
+program.<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3"><span style="font-weight:normal">&nbsp;</span><b>Examples:<o:p>
+</o:p>
+</b></p>
+<p class="MsoBodyText3"><span style="font-weight:normal">Given<o:p>
+</o:p>
+</span><span style="font-weight:normal"><o:p>
+</o:p>
+</span></p>
+<p><span style="font-weight:normal"><font face="Courier New">int fn(int
+&amp;arg)<o:p>
+</o:p>
+</font></span></p>
+<p><span style="font-weight:normal"><font face="Courier New">{<o:p>
+</o:p>
+</font></span></p>
+<p><span style="font-weight:normal"><span style="mso-tab-count:
+1"><font face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></span><font face="Courier New">return
+arg+8;<o:p>
+</o:p>
+</font></span></p>
+<p><span style="font-weight:normal"><font face="Courier New">}<o:p>
+</o:p>
+</font></span><span style="font-weight:normal"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3"><span style="font-weight:normal">You cannot use:<o:p>
+</o:p>
+&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3"><span style="font-weight:normal"><span style="mso-tab-count:
+1">&nbsp;&nbsp; <font face="Courier New">&nbsp;&nbsp; </font></span><font face="Courier New">fn(6);<o:p>
+</o:p>
+<o:p>
+</o:p>
+</font></span></p>
+<p class="MsoBodyText3" style="text-align:justify"><span style="font-size: 12.0pt; mso-bidi-font-size: 10.0pt; mso-bidi-font-family: Times New Roman; font-weight: normal">for
+instance. A constant is not automatically converted to a reference. This is
+consistent with the C++ behavior.<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText3">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<div style="mso-element:footnote-list">
+  <br clear="all">
+  <hr align="left" size="1" width="33%">
+  <div style="mso-element:footnote" id="ftn1">
+    <p class="MsoFootnoteText" style="margin-left:0cm"><a style="mso-footnote-id:
+ftn1" href="#_ftnref1" name="_ftn1" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 10.0pt; mso-text-raise: 0pt; mso-ansi-language: EN-US" class="MsoFootnoteReference">[1]</span></a><span style="mso-ansi-language:EN-US">
+    This construct is needed by the problem of the operator [ ]. To avoid having
+    the construct Vector[5] = 6; be forced to be written as *Vector[5] = 5; or
+    add a new operator [ ]= incompatible with the C++ language, I decided to add
+    the references to lcc-win32. This has ancillary benefits because in general,
+    references are cleaner than pointers: you can do fewer things with them.
+    Since they always have to be initialized to a known object, there is less
+    room for error.<o:p>
+    </o:p>
+    </span></p>
+  </div>
+  <div style="mso-element:footnote" id="ftn2">
+    <p class="MsoFootnoteText" style="margin-left:0cm"><a style="mso-footnote-id:
+ftn2" href="#_ftnref2" name="_ftn2" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 10.0pt; mso-text-raise: 0pt; mso-ansi-language: EN-US" class="MsoFootnoteReference">[2]</span></a><span style="mso-ansi-language:EN-US">
+    These rules are the same as in the C++ language.<o:p>
+    </o:p>
+    </span></p>
+  </div>
+</div>
+
+</body>
+
+</html>

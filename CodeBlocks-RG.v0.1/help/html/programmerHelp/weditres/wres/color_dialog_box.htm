@@ -1,0 +1,368 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Color Dialog Box</title>
+</head>
+
+<body>
+
+<h2>Color Dialog Box</h2>
+<hr SIZE="1">
+<p>The <b>Color</b> dialog box returns the RGB value of a color selected by the
+user. The user can select from a set of basic colors determined by the display
+driver or from a set of custom colors. You must specify the initial set of
+custom colors, but you can allow users to create their own custom colors.</p>
+<p>You create and display a <b>Color</b> dialog box by initializing a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CHOOSECOLOR_str_cpp">
+CHOOSECOLOR</MSHelp:link>
+ structure and passing the structure to the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ChooseColor_cpp">
+ChooseColor</MSHelp:link>
+ function.</p>
+<p>You can partially open the <b>Color</b> dialog box to display the basic and
+custom colors from which the user can select, or you can completely open the
+dialog box to display additional controls that allow the user to create custom
+colors. The following illustration shows the fully opened <b>Color</b> dialog
+box.</p>
+<p><img border="0" src="color_1.gif" width="453" height="324"></p>
+<p>If the user clicks the <b>OK</b> button, <b>ChooseColor</b> returns TRUE. The
+<b>rgbResult</b> member of the <b>CHOOSECOLOR</b> structure contains the RGB
+color value of the color selected by the user. The RGB color value specifies the
+intensities of the individual red, green, and blue colors that make up the
+selected color. The individual values range from 0 through 255. Use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_GetRValue">
+GetRValue</MSHelp:link>
+, <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_GetGValue">
+GetGValue</MSHelp:link>
+, and <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_GetBValue">
+GetBValue</MSHelp:link>
+ macros to extract individual colors from an RGB color value.</p>
+<p>If the user cancels the <b>Color</b> dialog box or an error occurs, <b>ChooseColor</b>
+returns FALSE and the <b>rgbResult</b> member is not defined. To determine the
+cause of the error, call the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CommDlgExtendedError_cpp">
+CommDlgExtendedError</MSHelp:link>
+ function to retrieve the extended error value.</p>
+<p>The following subjects are covered in this section</p>
+<ul>
+  <li><a href="#_win32_Basic_and_Extended_Color_Dialog_Boxes" target="_self">Basic
+    and Extended Color Dialog Boxes</a>
+  <li><a href="#_win32_Customizing_the_Color_Dialog_Box" target="_self">Customizing
+    the Color Dialog Box</a>
+  <li><a href="#_win32_Color_Models_Used_by_the_Color_Dialog_Box" target="_self">Color
+    Models Used by the Color Dialog Box</a></li>
+</ul>
+<h3><a name="_win32_Basic_and_Extended_Color_Dialog_Boxes"></a>Basic and
+Extended Color Dialog Boxes</h3>
+<p>The <b>Color</b> dialog box has a basic version and an extended version. The
+basic version has controls that display the basic and custom colors from which
+the user can select. The extended version includes the basic controls and has
+additional controls that allow the user to create custom colors.</p>
+<p>The basic version of the <b>Color</b> dialog box includes a <b>Define Custom
+Colors</b> button. The user can click this button to display the extended
+version. You can direct the <b>Color</b> dialog box to always display this
+extension by setting the <span class="clsFlag">CC_FULLOPEN</span> flag in the <b>Flags</b>
+member of the <b>CHOOSECOLOR</b> structure. To prevent the user from creating
+custom colors, you can set the <span class="clsFlag">CC_PREVENTFULLOPEN</span>
+flag to disable the <b>Define Custom Colors</b> button.</p>
+<p>The basic colors represent a selection of the colors available on the
+specified device. The actual number of colors displayed is determined by the
+display driver. For example, a VGA driver displays 48 colors, and a monochrome
+display driver displays only 16.</p>
+<p>The custom colors are those that you specify or that the user creates. When
+you create a <b>Color</b> dialog box, you must use the <b>lpCustColors</b>
+member of the <b>CHOOSECOLOR</b> structure to specify the initial values for the
+16 custom colors. If the extended version of the <b>Color</b> dialog box is
+open, the user can create a custom color by one the following methods:</p>
+<ul>
+  <li>Moving the cursor in the color spectrum control and the luminosity slide
+    control
+  <li>Typing RGB values in the <b>Red</b>, <b>Green</b>, and <b>Blue</b> edit
+    controls
+  <li>Typing hue, saturation, luminosity (HSL) values in the <b>Hue</b>, <b>Sat</b>,
+    and <b>Lum</b> edit controls</li>
+</ul>
+<p>To add a new custom color to the custom colors display, the user can click
+the <b>Add to Custom Colors</b> button. This also causes the dialog box to copy
+the RGB value of the new color to the corresponding element in the array pointed
+to by the <b>lpCustColors</b> member. To preserve new custom colors between
+calls to <b>ChooseColor</b>, you should allocate static memory for the array.
+For more information about the RGB and HSL color models, see <a href="#_win32_Color_Models_Used_by_the_Color_Dialog_Box" target="_self">Color
+Models Used by the Color Dialog Box</a>.</p>
+<h3><a name="_win32_Customizing_the_Color_Dialog_Box"></a>Customizing the Color
+Dialog Box</h3>
+<p>To customize a <b>Color</b> dialog box, you can use any of the following
+methods:</p>
+<ul>
+  <li>Specify values in the <b>CHOOSECOLOR</b> structure when you create the
+    dialog box
+  <li>Provide a custom template
+  <li>Provide a hook procedure</li>
+</ul>
+<p>You can modify the appearance and behavior of the <b>Color</b> dialog box by
+setting flags in the <b>Flags</b> member of the <b>CHOOSECOLOR</b> structure.
+For example, you can set the <span class="clsFlag">CC_SOLIDCOLOR</span> flag to
+direct the dialog box to display only solid colors. To cause the dialog box to
+initially select a color other than black, set the <span class="clsFlag">CC_RGBINIT</span>
+flag and specify a color in the <b>rgbResult</b> member.</p>
+<p>You can provide a custom template for the <b>Color</b> dialog box, for
+example, if you want to include additional controls that are unique to your
+application. The <b>ChooseColor</b> function uses your custom template in place
+of the default template.</p>
+<h3><a name="custom_template"></a>To provide a custom template for the Color
+dialog box</h3>
+<ol>
+  <li>Create the custom template by modifying the default template specified in
+    the Color.dlg file. The control identifiers used in the default Color dialog
+    template are defined in the Color.dlg file.
+  <li>Use the <b>CHOOSECOLOR</b> structure to enable the template as follows:
+    <ul>
+      <li>If your custom template is a resource in an application or dynamic
+        link library, set the <span class="clsFlag">CC_ENABLETEMPLATE</span>
+        flag in the <b>Flags</b> member. Use the <b>hInstance</b> and <b>lpTemplateName</b>
+        members of the structure to identify the module and resource name.
+        <p>-Or-</p>
+      <li>If your custom template is already in memory, set the <span class="clsFlag">CC_ENABLETEMPLATEHANDLE</span>
+        flag. Use the <b>hInstance</b> member to identify the memory object that
+        contains the template.</li>
+    </ul>
+  </li>
+</ol>
+<p>You can provide a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CCHookProc_cpp">
+CCHookProc</MSHelp:link>
+ hook procedure for the <b>Color</b> dialog box. The hook procedure can process
+messages sent to the dialog box. It can also use registered messages to control
+the behavior of the dialog box. If you use a custom template to define
+additional controls, you must provide a hook procedure to process input for your
+controls.</p>
+<h3><a name="enable_hook_procedure"></a>To enable a hook procedure for the Color
+dialog box</h3>
+<ol>
+  <li>Set the <span class="clsFlag">CC_ENABLEHOOK</span> flag in the <b>Flags</b>
+    member of the <b>CHOOSECOLOR</b> structure.
+  <li>Specify the address of the hook procedure in the <b>lpfnHook</b> member.</li>
+</ol>
+<p>After processing its <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_INITDIALOG_cpp">
+WM_INITDIALOG</MSHelp:link>
+ message, the dialog box procedure sends a <b>WM_INITDIALOG</b> message to the
+hook procedure. The <i>lParam</i> parameter of this message is a pointer to the <b>CHOOSECOLOR</b>
+structure used to initialize the dialog box.</p>
+<p>The dialog box sends the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_COLOROKSTRING_cpp">
+COLOROKSTRING</MSHelp:link>
+ registered message to the hook procedure when the user clicks the <b>OK</b>
+button. The hook procedure can reject the selected color and force the dialog
+box to remain open by returning zero when it receives this message. The hook
+procedure can force the dialog box to select a particular color by sending the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_SETRGBSTRING_cpp">
+SETRGBSTRING</MSHelp:link>
+ registered message to the dialog box. To use these registered messages, you
+must pass the <b>COLOROKSTRING</b> and <b>SETRGBSTRING</b> constants to the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_RegisterWindowMessage_cpp">
+RegisterWindowMessage</MSHelp:link>
+ function to get a message identifier. You can then use the identifier to detect
+and process messages sent from the dialog box, or to send messages to the dialog
+box.</p>
+<h3><a name="_win32_Color_Models_Used_by_the_Color_Dialog_Box"></a>Color Models
+Used by the Color Dialog Box</h3>
+<p>The custom colors extension of the <b>Color</b> dialog box allows the user to
+specify a color using RGB or HSL values. However, the <b>CHOOSECOLOR</b>
+structure uses only RGB values to report the colors created or selected by the
+user.</p>
+<ul>
+  <li><a href="#rgb_color_model" target="_self">RGB Color Model</a>
+  <li><a href="#hsl_color_model" target="_self">HSL Color Model</a>
+  <li><a href="#converting_hsl_to_rgb" target="_self">Converting HSL Values to
+    RGB Values</a></li>
+</ul>
+<h3><a name="rgb_color_model"></a>RGB Color Model</h3>
+<p>The RGB model is used to designate colors for displays and other devices that
+emit light. Valid red, green, and blue values range from 0 through 255, with 0
+indicating minimum intensity and 255 indicating maximum intensity. The following
+illustration shows how the primary colors red, green, and blue can be combined
+to produce four additional colors. (For display devices, the color black results
+when the red, green, and blue values are set to 0. In display technology, black
+is the absence of all colors.)</p>
+<p><img border="0" src="color_2.gif" width="309" height="218"></p>
+<p>Following are eight colors and their associated RGB values.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Color</th>
+      <th>RGB values</th>
+    </tr>
+    <tr>
+      <td>Red</td>
+      <td>255, 0, 0</td>
+    </tr>
+    <tr>
+      <td>Green</td>
+      <td>0, 255, 0</td>
+    </tr>
+    <tr>
+      <td>Blue</td>
+      <td>0, 0, 255</td>
+    </tr>
+    <tr>
+      <td>Cyan</td>
+      <td>0, 255, 255</td>
+    </tr>
+    <tr>
+      <td>Magenta</td>
+      <td>255, 0, 255</td>
+    </tr>
+    <tr>
+      <td>Yellow</td>
+      <td>255, 255, 0</td>
+    </tr>
+    <tr>
+      <td>White</td>
+      <td>255, 255, 255</td>
+    </tr>
+    <tr>
+      <td>Black</td>
+      <td>0, 0, 0</td>
+    </tr>
+  </tbody>
+</table>
+<p>The system stores internal colors as 32-bit RGB values that have the
+following hexadecimal form:</p>
+<pre class="clsCode" AUTOHILITE="1">    0x00bbggrr </pre>
+<p>The low-order byte contains a value for the relative intensity of red; the
+second byte contains a value for green; and the third byte contains a value for
+blue. The high-order byte must be zero.</p>
+<p>You can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_RGB">
+RGB</MSHelp:link>
+ macro to get an RGB value based on specified intensities for the red, green,
+and blue components. Use the <b>GetRValue</b>, <b>GetBValue</b>, and <b>GetGValue</b>
+macros to extract individual colors from an RGB color value.</p>
+<h3><a name="hsl_color_model"></a>HSL Color Model</h3>
+<p>The <b>Color</b> dialog box provides controls for specifying HSL values. The
+following illustration shows the color spectrum control and the luminosity slide
+control that appear in the <b>Color</b> dialog box. The illustration also shows
+the ranges of values the user can specify with these controls.</p>
+<p><img border="0" src="color_9.gif" width="412" height="227"></p>
+<p>In the <b>Color</b> dialog box, the saturation and luminosity values must be
+in the range 0 through 240, and the hue value must be in the range 0 through
+239.</p>
+<h3><a name="converting_hsl_to_rgb"></a>Converting HSL Values to RGB Values</h3>
+<p>The dialog box procedure provided in Comdlg32.dll for the <b>Color</b> dialog
+box contains code that converts HSL values to the corresponding RGB values.
+Following are several colors and their associated HSL and RGB values.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Color</th>
+      <th>HSL values</th>
+      <th>RGB values</th>
+    </tr>
+    <tr>
+      <td>Red</td>
+      <td>(0, 240, 120)</td>
+      <td>(255, 0, 0)</td>
+    </tr>
+    <tr>
+      <td>Yellow</td>
+      <td>(40, 240, 120)</td>
+      <td>(255, 255, 0)</td>
+    </tr>
+    <tr>
+      <td>Green</td>
+      <td>(80, 240, 120)</td>
+      <td>(0, 255, 0)</td>
+    </tr>
+    <tr>
+      <td>Cyan</td>
+      <td>(120, 240, 120)</td>
+      <td>(0, 255, 255)</td>
+    </tr>
+    <tr>
+      <td>Blue</td>
+      <td>(160, 240, 120)</td>
+      <td>(0, 0, 255)</td>
+    </tr>
+    <tr>
+      <td>Magenta</td>
+      <td>(200, 240, 120)</td>
+      <td>(255, 0, 255)</td>
+    </tr>
+    <tr>
+      <td>White</td>
+      <td>(0, 0, 240)</td>
+      <td>(255, 255, 255)</td>
+    </tr>
+    <tr>
+      <td>Black</td>
+      <td>(0, 0, 0)</td>
+      <td>(0, 0, 0)</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="choosing_color"></a>Choosing a Color</h3>
+<p>This topic describes sample code that displays a <b>Color</b> dialog box so a
+user can select a color. The sample code first initializes a <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CHOOSECOLOR_str_cpp">
+CHOOSECOLOR</MSHelp:link>
+ structure, and then calls the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ChooseColor_cpp">
+ChooseColor</MSHelp:link>
+ function to display the dialog box. If the function returns TRUE, indicating
+that the user selected a color, the sample code uses the selected color to
+create a new solid brush.</p>
+<p>This example uses the <b>CHOOSECOLOR</b> structure to initialize the dialog
+box as follows:</p>
+<ul>
+  <li>Initializes the <b>lpCustColors</b> member with a pointer to a static
+    array of values. The colors in the array are initially black, but the static
+    array preserves custom colors created by the user for subsequent <b>ChooseColor</b>
+    calls.
+  <li>Sets the CC_RGBINIT flag and initializes the <b>rgbResult</b> member to
+    specify the color that is initially selected when the dialog box opens. If
+    not specified, the initial selection is black. The example uses the <i>rgbCurrent</i>
+    static variable to preserve the selected value between calls to <b>ChooseColor</b>.
+  <li>Sets the CC_FULLOPEN flag so the custom colors extension of the dialog box
+    is always displayed.</li>
+</ul>
+<pre class="clsCode" style="DISPLAY: block" AUTOHILITE="1">CHOOSECOLOR cc;                 <font color="blue">//</font><font color="green"> common dialog box structure </font>
+static COLORREF acrCustClr[16]; <font color="blue">//</font><font color="green"> array of custom colors </font>
+HWND hwnd;                      <font color="blue">//</font><font color="green"> owner window</font>
+HBRUSH hbrush;                  <font color="blue">//</font><font color="green"> brush handle</font>
+static DWORD rgbCurrent;        <font color="blue">//</font><font color="green"> initial color selection</font>
+
+<font color="blue">//</font><font color="green"> Initialize CHOOSECOLOR </font>
+ZeroMemory(&amp;cc, sizeof(cc));
+cc.lStructSize = sizeof(cc);
+cc.hwndOwner = hwnd;
+cc.lpCustColors = (LPDWORD) acrCustClr;
+cc.rgbResult = rgbCurrent;
+cc.Flags = CC_FULLOPEN | CC_RGBINIT;
+ 
+if (ChooseColor(&amp;cc)==TRUE) {
+    hbrush = CreateSolidBrush(cc.rgbResult);
+    rgbCurrent = cc.rgbResult; 
+}
+</pre>
+
+</body>
+
+</html>

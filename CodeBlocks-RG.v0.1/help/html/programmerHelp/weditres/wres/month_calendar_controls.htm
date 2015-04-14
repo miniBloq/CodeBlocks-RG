@@ -1,0 +1,503 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Month Calendar Controls</title>
+</head>
+
+<body>
+
+<div class="clsDocBody">
+  <h2>Month Calendar Controls</h2>
+  <hr SIZE="1">
+  <p>A month calendar control implements a calendar-like user interface. This
+  provides the user with a very intuitive and recognizable method of entering or
+  selecting a date. The control also provides the application with the means to
+  obtain and set the date information in the control using existing data types.</p>
+  <h3><a name="About_Month_Calendar"></a>About Month Calendar Controls</h3>
+  <p>The month calendar control is implemented in <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Shell_Versions">
+  version 4.70</MSHelp:link>
+  and later of Comctl32.dll. It provides a simple and intuitive way for a user
+  to select a date from a familiar interface. The following illustration shows a
+  month calendar control.</p>
+  <p><img border="0" src="month_7.jpg" width="321" height="303"></p>
+  <p>An application creates a month calendar control by calling the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+  CreateWindowEx</MSHelp:link>
+  function and specifying <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="MONTHCAL_CLASS">
+  MONTHCAL_CLASS</MSHelp:link>
+  as the window class. The class is registered when the month calendar class is
+  loaded from the common controls dynamic-link library (DLL). Register this
+  class by calling the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_InitCommonControlsEx_cpp">
+  InitCommonControlsEx</MSHelp:link>
+  function, specifying the <span class="clsLiteral">ICC_DATE_CLASSES</span> bit
+  flag in the accompanying <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_INITCOMMONCONTROLSEX_4vvx_cpp">
+  INITCOMMONCONTROLSEX</MSHelp:link>
+  structure.</p>
+  <p>&nbsp;</p>
+  <div class="clsNote">
+    <b>Note</b>&nbsp;&nbsp;
+    <p>&nbsp;
+    <ul>
+      <li>Microsoft® Windows® does not support dates prior to 1601. See <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_com_filetime">
+        FILETIME</MSHelp:link>
+        for details.
+      <li>The month-calendar control is based on the Gregorian calendar, which
+        was introduced in 1753. It will not calculate dates that are consistent
+        with the Julian calendar that was in use prior to 1753.</li>
+    </ul>
+    <p>&nbsp;</p>
+  </div>
+  <h4><a name="The_Month_Calendar_C"></a>The Month Calendar Control User
+  Interface</h4>
+  <p>The month calendar control user interface allows the user to select a date
+  from the displayed days or change the control's display in various ways.</p>
+  <h4><a name="Scrolling_Control"></a>Scrolling the control's display</h4>
+  <p>By default, when a user clicks the arrow buttons in the top left or top
+  right of the month calendar control, the control updates its display to show
+  the previous or next month. If the month calendar control is displaying more
+  than one month at a time, the display changes by the number of months
+  currently in view. That is, if the month calendar displays January, February,
+  and March and the user clicks the top right arrow button, the control updates
+  its display to show April, May, and June. The user can also perform the same
+  action by clicking the partial months displayed before the first month and
+  after the last month.</p>
+  <p>The following keyboard commands can also be used to change the current
+  month.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <td>PAGE UP (<MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_virtual_key_codes">
+          VK_NEXT</MSHelp:link>
+          )</td>
+        <td>Move to the next month.</td>
+      </tr>
+      <tr>
+        <td>PAGE DOWN (<b>VK_PRIOR</b>)</td>
+        <td>Move to the previous month.</td>
+      </tr>
+      <tr>
+        <td>HOME (<b>VK_HOME</b>)</td>
+        <td>Move to the first day of the current month.</td>
+      </tr>
+      <tr>
+        <td>END (<b>VK_END</b>)</td>
+        <td>Move to the last day of the current month.</td>
+      </tr>
+      <tr>
+        <td>CTRL + HOME</td>
+        <td>Move to the first visible month.</td>
+      </tr>
+      <tr>
+        <td>CTRL + END</td>
+        <td>Move to the last visible month.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>An application can change the number of months by which the control updates
+  its display by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_MCM_SETMONTHDELTA_cpp">
+  MCM_SETMONTHDELTA</MSHelp:link>
+  message or the corresponding macro, <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_MonthCal_SetMonthDelta_cpp">
+  MonthCal_SetMonthDelta</MSHelp:link>
+  . However, the PAGE UP and PAGE DOWN keys change the selected month by one,
+  regardless of the number of months displayed or the value set by <b>MCM_SETMONTHDELTA</b>.</p>
+  <h4><a name="select_nonadjacent_month"></a>Selecting a nonadjacent month</h4>
+  <p>When a user clicks the name of a displayed month, a pop-up menu appears
+  that lists all months within the year. The user can select a month on the
+  list. If the user's selection is not visible, the month calendar control
+  scrolls its display to show the chosen month.</p>
+  <h4><a name="select_diff_year"></a>Selecting a different year</h4>
+  <p>If the user clicks the year displayed next to a month name, an up-down
+  control appears in place of the year. The user can change the year with this
+  control. The month calendar control updates its display for the selected year
+  when the up-down control loses focus. The related keyboard commands are:</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <td>CTRL + <b>VK_NEXT</b></td>
+        <td>Move to the next year.</td>
+      </tr>
+      <tr>
+        <td>CTRL + <b>VK_PRIOR</b></td>
+        <td>Move to the previous year.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h4><a name="select_current_day"></a>Selecting the current day</h4>
+  <p>If a month calendar control is not using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="MCS_NOTODAY">
+  MCS_NOTODAY</MSHelp:link>
+  style, the user can return to the current day by clicking the
+  &quot;Today&quot; text at the bottom of the control. If the current day is not
+  visible, the control updates its display to show it. Related keyboard commands
+  are:</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <td><b>VK_LEFT</b></td>
+        <td>Move to the previous day.</td>
+      </tr>
+      <tr>
+        <td><b>VK_RIGHT</b>.</td>
+        <td>Move to the next day.</td>
+      </tr>
+      <tr>
+        <td><b>VK_UP</b></td>
+        <td>Move to the previous week.</td>
+      </tr>
+      <tr>
+        <td><b>VK_DOWN</b></td>
+        <td>Move to the next week.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h4><a name="mc_DayStates"></a>Day States</h4>
+  <p>Month calendar controls that use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="MCS_DAYSTATE">
+  MCS_DAYSTATE</MSHelp:link>
+  style support day states. The control uses day state information to determine
+  how it draws specific days within the control. Day state information is
+  expressed as a 32-bit data type, <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_MONTHDAYSTATE_str_cpp">
+  MONTHDAYSTATE</MSHelp:link>
+  . Each bit in a <b>MONTHDAYSTATE</b> bit field (1 through 31) represents the
+  state of a day in a month. If a bit is on, the corresponding day will be
+  displayed in bold; otherwise, it will be displayed with no emphasis.</p>
+  <p>An application can explicitly set day state information by sending the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_MCM_SETDAYSTATE_cpp">
+  MCM_SETDAYSTATE</MSHelp:link>
+  message or by using the corresponding macro, <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_MonthCal_SetDayState_cpp">
+  MonthCal_SetDayState</MSHelp:link>
+  . Additionally, month calendar controls that use the MCS_DAYSTATE style send <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_MCN_GETDAYSTATE_cpp">
+  MCN_GETDAYSTATE</MSHelp:link>
+  notification messages to request day state information. For more information
+  on supporting day states, see <a href="#mc_processing_MCN_GETDAYSTATE" target="_self">Processing
+  the MCN_GETDAYSTATE Notification Message</a> and <a href="#mc_preparing_MONTHDAYSTATE" target="_self">Preparing
+  the MONTHDAYSTATE Array</a>.</p>
+  <h4><a name="Month_Calendar_Contr"></a>Month Calendar Control Styles</h4>
+  <p>Month calendar controls have several <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Month_calendar_control_styles_cpp">
+  styles</MSHelp:link>
+  that determine their appearance and behavior. When you create the control
+  using <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+  CreateWindowEx</MSHelp:link>
+  , include the desired styles in the <i>dwStyle</i> parameter.</p>
+  <p>After creating the control, you can change all of the styles except for
+  MCS_DAYSTATE and <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="MCS_MULTISELECT">
+  MCS_MULTISELECT</MSHelp:link>
+  . To change these styles, you will need to destroy the existing control and
+  create a new one that has the desired styles. To retrieve or change any other
+  window styles, use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_getwindowlong">
+  GetWindowLong</MSHelp:link>
+  and <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_setwindowlong">
+  SetWindowLong</MSHelp:link>
+  functions.</p>
+  <p>Month calendar controls that use the MCS_MULTISELECT style allow the user
+  to select a range of days. By default, the control allows the user to select
+  seven contiguous days. Your application can change the control's default
+  behavior by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_MCM_SETMAXSELCOUNT_cpp">
+  MCM_SETMAXSELCOUNT</MSHelp:link>
+  message or the accompanying macro, <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_MonthCal_SetMaxSelCount_cpp">
+  MonthCal_SetMaxSelCount</MSHelp:link>
+  .</p>
+  <p>When a month calendar control uses the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="MCS_WEEKNUMBERS">
+  MCS_WEEKNUMBERS</MSHelp:link>
+  style, it displays week numbers at the left side of each month. If the
+  MCS_NOTODAY style is applied, the control no longer circles the current day.</p>
+  <p>The MCS_DAYSTATE style is helpful when you want the control to highlight
+  specific dates by displaying them in bold. For more information, see <a href="#mc_DayStates" target="_self">Day
+  States</a>.</p>
+  <h4><a name="localization"></a>Localization</h4>
+  <p>The month-calendar control gets its format and all strings from
+  LOCALE_USER_DEFAULT. For Windows 2000 and later systems, it gets the month
+  title format from LOCALE_SYEARMONTH. Thus even with the same DLL version, the
+  appearance of the control may vary slightly depending on the system software
+  on which your application runs. For example, with Windows NT 4.0, the month
+  title will look like: &quot;September 1998&quot;. With Windows 2000, it will
+  look like: &quot;September, 1998&quot;.</p>
+  <h4><a name="mc_control_note_msgs"></a>Month Calendar Control Notification
+  Messages</h4>
+  <p>A month calendar control sends notification messages when it receives user
+  input or must request day state information (MCS_DAYSTATE style only). The
+  control's parent receives these notifications as <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_NOTIFY_cpp">
+  WM_NOTIFY</MSHelp:link>
+  messages.</p>
+  <p>The following notification messages are used with month calendar controls.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>Notification</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_MCN_GETDAYSTATE_cpp">
+          MCN_GETDAYSTATE</MSHelp:link>
+        </td>
+        <td>Requests information about which days should be displayed in bold.
+          For more information, see <a href="#mc_preparing_MONTHDAYSTATE" target="_self">Preparing
+          the MONTHDAYSTATE Array</a>.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_MCN_SELCHANGE_cpp">
+          MCN_SELCHANGE</MSHelp:link>
+        </td>
+        <td>Notifies the parent that the selected date or range of dates has
+          changed. The control sends this notification when the user explicitly
+          changes the selection within the current month, or when the selection
+          is implicitly changed in response to next/previous month navigation.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_MCN_SELECT_cpp">
+          MCN_SELECT</MSHelp:link>
+        </td>
+        <td>Notifies the parent that the user has explicitly selected a date.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h4><a name="mc_time_fields"></a>Times in the Month Calendar Control</h4>
+  <p>Because the month calendar control cannot be used to select a time, the
+  time related fields of the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_systemtime_str">
+  SYSTEMTIME</MSHelp:link>
+  structure need to be handled differently. When the control is created, it will
+  insert the current time into its &quot;Today&quot; date and time.</p>
+  <p>When a time is later set programmatically, the control will either copy the
+  time fields as they are or validate them first and then, if invalid, store the
+  current default times. Following is a list of the messages that set a date and
+  a description of how the time fields are treated by the message.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_MCM_SETCURSEL_cpp">
+          MCM_SETCURSEL</MSHelp:link>
+        </td>
+        <td>The control will copy the time fields as they are, without
+          validation or modification.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_MCM_SETRANGE_cpp">
+          MCM_SETRANGE</MSHelp:link>
+        </td>
+        <td>The time fields of the structures passed in will be validated. If
+          they are valid, the time fields will be copied without modification.
+          If they are invalid, the control will copy the time fields from the
+          &quot;Today&quot; date and time.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_MCM_SETSELRANGE_cpp">
+          MCM_SETSELRANGE</MSHelp:link>
+        </td>
+        <td>The time fields of the structures passed in will be validated. If
+          they are valid, the time fields will be copied without modification.
+          If they are invalid, the control will retain the time fields from the
+          current selection ranges.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_MCM_SETTODAY_cpp">
+          MCM_SETTODAY</MSHelp:link>
+        </td>
+        <td>The control will copy the time fields as they are, without
+          validation or modification.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>When a date is retrieved from the control, the time fields will be copied
+  from the stored times without modification. Handling of the time fields by the
+  control is provided as a convenience to the programmer. The control does not
+  examine or modify the time fields as a result of any operation other than
+  those listed above.</p>
+  <h3><a name="Using_Month_Calendar"></a>Using Month Calendar Controls</h3>
+  <p>This section provides information and sample code for implementing month
+  calendar controls.</p>
+  <h3><a name="mc_creating"></a>Creating a Month Calendar Control</h3>
+  <p>To create a month calendar control, use the <b>CreateWindowEx</b> function,
+  specifying MONTHCAL_CLASS as the window class. You must first register the
+  window class by calling the <b>InitCommonControlsEx</b> function, specifying
+  the <span class="clsLiteral">ICC_DATE_CLASSES</span> bit in the accompanying <b>INITCOMMONCONTROLSEX</b>
+  structure.</p>
+  <p>The following example demonstrates how to create a month calendar control
+  in an existing modeless dialog box. Note that the size values passed to <b>CreateWindowEx</b>
+  are all zeros. Because the minimum required size depends on the font the
+  control uses, the DoNotify example function uses the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_MonthCal_GetMinReqRect_cpp">
+  MonthCal_GetMinReqRect</MSHelp:link>
+  macro to request size information and then resizes the control by calling <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_setwindowpos">
+  SetWindowPos</MSHelp:link>
+  . If you subsequently change the font with <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_setfont">
+  WM_SETFONT</MSHelp:link>
+  , the dimensions of the control will not change. You must call <b>MonthCal_GetMinReqRect</b>
+  again and resize the control to fit the new font.</p>
+  <p style="FONT-WEIGHT: bold; CURSOR: hand; TEXT-DECORATION: underline" ShowHideType="Example">Example</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green">   CreateMonthCal -- Creates a month calendar control in a dialog box.</font>
+<font color="blue">//</font><font color="green">                   Returns the handle to the month calendar control</font>
+<font color="blue">//</font><font color="green">                   if successful, or NULL otherwise.</font>
+<font color="blue">//</font>
+<font color="blue">//</font><font color="green">    hwndOwner   -- Handle to the owner of the dialog box.</font>
+<font color="blue">//</font><font color="green">    g_hinst     -- Global handle to the program instance.</font>
+<font color="blue">//</font><font color="green">   </font>
+<font color="blue">////</font><font color="green">/</font>
+HWND WINAPI CreateMonthCal(HWND hwndOwner)
+{
+   HWND hwnd;
+   RECT rc;
+   INITCOMMONCONTROLSEX icex;
+
+   <font color="blue">//</font><font color="green"> Load the window class.</font>
+   icex.dwSize = sizeof(icex);
+   icex.dwICC  = ICC_DATE_CLASSES;
+   InitCommonControlsEx(&amp;icex);
+
+   <font color="blue">//</font><font color="green"> Create a modeless dialog box to hold the control.</font>
+   g_hwndDlg = CreateDialog(g_hinst,
+                     MAKEINTRESOURCE(IDD_DIALOG1),
+                     hwndOwner,
+                     DlgProc);
+
+   <font color="blue">//</font><font color="green"> Create the month calendar.</font>
+   hwnd = CreateWindowEx(0,
+                     MONTHCAL_CLASS,
+                     &quot;&quot;,
+                     WS_BORDER | WS_CHILD | WS_VISIBLE | MCS_DAYSTATE,
+                     0,0,0,0, <font color="blue">//</font><font color="green"> resize it later</font>
+                     g_hwndDlg,
+                     NULL,
+                     g_hinst,
+                     NULL);
+
+   <font color="blue">//</font><font color="green"> Get the size required to show an entire month.</font>
+   MonthCal_GetMinReqRect(hwnd, &amp;rc);
+
+<font color="blue">//</font><font color="green"> Arbitrary values</font>
+#define LEFT 35
+#define TOP  40
+
+   <font color="blue">//</font><font color="green"> Resize the control now that the size values have been obtained.</font>
+   SetWindowPos(hwnd, NULL, TOP, LEFT, 
+                LEFT + rc.right, TOP + rc.bottom,
+                SWP_NOZORDER);
+
+   <font color="blue">//</font><font color="green"> Set colors for aesthetics.</font>
+   MonthCal_SetColor(hwnd, MCSC_BACKGROUND, RGB(175,175,175));
+   MonthCal_SetColor(hwnd, MCSC_MONTHBK, RGB(248,245,225));
+
+   return(hwnd);
+}</pre>
+  <h4><a name="mc_processing_MCN_GETDAYSTATE"></a>Processing the MCN_GETDAYSTATE
+  Notification Message</h4>
+  <p>Month calendar controls send the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_MCN_GETDAYSTATE_cpp">
+  MCN_GETDAYSTATE</MSHelp:link>
+  notification message to request information about how the days within the
+  visible months should be displayed. The following application-defined
+  function, <i>DoNotify</i>, processes <b>MCN_GETDAYSTATE</b> by filling an
+  array of <b>MONTHDAYSTATE</b> values to highlight the 15th day of each month.</p>
+  <p><i>DoNotify</i> extracts the number of <b>MONTHDAYSTATE</b> values needed
+  from the <b>cDayState</b> member of the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NMDAYSTATE_cpp">
+  NMDAYSTATE</MSHelp:link>
+  structure that <i>lParam</i> points to. The function then loops to set the
+  15th bit in each element of the array, using the application-defined <i>BOLDDAY</i>
+  macro.</p>
+  <p style="FONT-WEIGHT: bold; CURSOR: hand; TEXT-DECORATION: underline" ShowHideType="Example">Example</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">BOOL WINAPI DoNotify(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+#define BOLDDAY(ds,iDay) if(iDay&gt;0 &amp;&amp; iDay&lt;32)\
+                            (ds)|=(0x00000001&lt;&lt;(iDay-1))
+
+#define lpnmDS ((NMDAYSTATE *)lParam)
+#define MAX_MONTHS 12
+
+   MONTHDAYSTATE mds[MAX_MONTHS];
+   INT i, iMax;
+   LPNMHDR hdr = (LPNMHDR)lParam;
+
+   switch(hdr-&gt;code){
+      case MCN_GETDAYSTATE:
+         iMax=lpnmDS-&gt;cDayState;
+                  
+         for(i=0;i&lt;iMax;i++){
+            mds[i] = (MONTHDAYSTATE)0;
+            BOLDDAY(mds[i],15);
+         }
+         lpnmDS-&gt;prgDayState = mds;
+         break;
+   }
+   return FALSE;
+}</pre>
+  <h3><a name="mc_preparing_MONTHDAYSTATE"></a>Preparing the MONTHDAYSTATE Array</h3>
+  <p>Both the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_MCM_SETDAYSTATE_cpp">
+  MCM_SETDAYSTATE</MSHelp:link>
+  message and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_MCN_GETDAYSTATE_cpp">
+  MCN_GETDAYSTATE</MSHelp:link>
+  notification message require an array of MONTHDAYSTATE values to determine how
+  dates will be displayed. Each month that the control displays must have a
+  corresponding element within the array.</p>
+  <p>To support these messages, your application must properly prepare the
+  array. The following is a simple macro that sets a bit in a <b>MONTHDAYSTATE</b>
+  value for a given day within that month.</p>
+  <pre class="clsCode" AUTOHILITE="1">#define BOLDDAY(ds,iDay) if(iDay&gt;0 &amp;&amp; iDay&lt;32)\
+                            (ds)|=(0x00000001&lt;&lt;(iDay-1))</pre>
+  <p>Using this macro, an application can loop through an array of important
+  dates, setting bits within the corresponding array elements. This approach is
+  not the most efficient, of course, but works well for many purposes. As long
+  as your application sets <b>MONTHDAYSTATE</b> bits appropriately, it does not
+  matter how those bits were set.</p>
+</div>
+
+</body>
+
+</html>

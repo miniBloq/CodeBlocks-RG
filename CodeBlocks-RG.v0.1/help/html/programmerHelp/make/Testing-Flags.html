@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Testing%20Flags">Testing Flags</a>,
+Previous:<a rel="previous" accesskey="p" href="Conditional-Syntax.html#Conditional%20Syntax">Conditional Syntax</a>,
+Up:<a rel="up" accesskey="u" href="Conditionals.html#Conditionals">Conditionals</a>
+<hr><br>
+</div>
+
+<h3 class="section">Conditionals that Test Flags</h3>
+
+   <p>You can write a conditional that tests <code>make</code> command flags such as
+<code>-t</code> by using the variable <code>MAKEFLAGS</code> together with the
+<code>findstring</code> function
+(see <a href="Text-Functions.html#Text%20Functions">Functions for String Substitution and Analysis</a>). 
+This is useful when <code>touch</code> is not enough to make a file appear up
+to date.
+
+   <p>The <code>findstring</code> function determines whether one string appears as a
+substring of another.  If you want to test for the <code>-t</code> flag,
+use <code>t</code> as the first string and the value of <code>MAKEFLAGS</code> as
+the other.
+
+   <p>For example, here is how to arrange to use <code>ranlib -t</code> to finish
+marking an archive file up to date:
+
+<pre class="example">     archive.a: ...
+     ifneq (,$(findstring t,$(MAKEFLAGS)))
+             +touch archive.a
+             +ranlib -t archive.a
+     else
+             ranlib archive.a
+     endif
+     </pre>
+
+<p>The <code>+</code> prefix marks those command lines as "recursive" so
+that they will be executed despite use of the <code>-t</code> flag. 
+See <a href="Recursion.html#Recursion">Recursive Use of <code>make</code></a>.
+
+   </body></html>
+

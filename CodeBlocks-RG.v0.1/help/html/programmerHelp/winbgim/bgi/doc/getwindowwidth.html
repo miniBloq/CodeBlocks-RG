@@ -1,0 +1,64 @@
+<TITLE>BGI Documentation for 
+getwindowwidth
+</TITLE>
+<H2>
+getwindowwidth
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+int getwindowwidth(void);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+The 
+getwindowwidth
+function is available in the
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation of BGI
+graphics.
+The function returns the total width of the window including
+nondrawable border areas.
+
+
+<P><DT><B>Return Value</B><DD>
+getwindowwidth returns the total width of the window
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="getmaxx.html"> getmaxx </A>
+<DD><A HREF="getwindowheight.html"> getwindowheight </A>
+<DD><A HREF="getx.html"> getx </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* getwindowwidth example */ 
+#include &lt;graphics.h&gt;
+
+int main(void)
+{
+   int w_left, w_right;
+   int width; // Total width of w_left;
+
+   // Make two windows, side by side */
+   w_left = initwindow(300, 200);
+   width = getwindowwidth( );   
+   w_right = initwindow(300, 200, width, 0);
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

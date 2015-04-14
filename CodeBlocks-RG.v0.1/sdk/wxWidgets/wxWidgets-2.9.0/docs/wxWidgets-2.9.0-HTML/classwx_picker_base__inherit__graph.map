@@ -1,0 +1,9 @@
+<area shape="rect" href="$classwx_colour_picker_ctrl.html" title="This control allows the user to select a colour." alt="" coords="5,420,141,452">
+<area shape="rect" href="$classwx_dir_picker_ctrl.html" title="This control allows the user to select a directory." alt="" coords="165,420,277,452">
+<area shape="rect" href="$classwx_file_picker_ctrl.html" title="This control allows the user to select a file." alt="" coords="301,420,419,452">
+<area shape="rect" href="$classwx_font_picker_ctrl.html" title="This control allows the user to select a font." alt="" coords="443,420,565,452">
+<area shape="rect" href="$classwx_control.html" title="This is the base class for a control or &quot;widget&quot;." alt="" coords="251,255,331,287">
+<area shape="rect" href="$classwx_window.html" title="wxWindow is the base class for all windows and represents any visible object om screen..." alt="" coords="247,172,335,204">
+<area shape="rect" href="$classwx_evt_handler.html" title="A class that can handle events from the windowing system." alt="" coords="239,89,343,121">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="199,7,273,39">
+<area shape="rect" href="$classwx_trackable.html" title="Add&#45;on base class for a trackable object." alt="" coords="297,7,396,39">

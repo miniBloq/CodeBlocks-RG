@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="htlbox" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Win32 DLL Universal Release">
+				<Option output="vc_mswunivudll\htlbox" prefix_auto="1" extension_auto="1" />
+				<Option object_output="vc_mswunivudll\htlbox" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-DWIN32" />
+					<Add option="-D__WXMSW__" />
+					<Add option="-D__WXUNIVERSAL__" />
+					<Add option="-D_UNICODE" />
+					<Add option="-DWXUSINGDLL" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-DNOPCH" />
+					<Add directory=".\..\..\lib\vc_dll\mswunivu" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\samples" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory=".\..\..\lib\vc_dll\mswunivu" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\samples" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="wxmswuniv29u_html" />
+					<Add library="wxmswuniv29u_core" />
+					<Add library="wxbase29u" />
+					<Add library="wxtiff" />
+					<Add library="wxjpeg" />
+					<Add library="wxpng" />
+					<Add library="wxzlib" />
+					<Add library="wxregexu" />
+					<Add library="wxexpat" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="comdlg32" />
+					<Add library="winspool" />
+					<Add library="winmm" />
+					<Add library="shell32" />
+					<Add library="comctl32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="rpcrt4" />
+					<Add library="advapi32" />
+					<Add library="wsock32" />
+					<Add library="wininet" />
+					<Add directory=".\..\..\lib\vc_dll" />
+				</Linker>
+			</Target>
+			<Target title="Win32 DLL Universal Debug">
+				<Option output="vc_mswunivuddll\htlbox" prefix_auto="1" extension_auto="1" />
+				<Option object_output="vc_mswunivuddll\htlbox" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-Wall" />
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D__WXMSW__" />
+					<Add option="-D__WXUNIVERSAL__" />
+					<Add option="-D__WXDEBUG__" />
+					<Add option="-D_UNICODE" />
+					<Add option="-DWXUSINGDLL" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-DNOPCH" />
+					<Add directory=".\..\..\lib\vc_dll\mswunivud" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\samples" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory=".\..\..\lib\vc_dll\mswunivud" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\samples" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="wxmswuniv29ud_html" />
+					<Add library="wxmswuniv29ud_core" />
+					<Add library="wxbase29ud" />
+					<Add library="wxtiffd" />
+					<Add library="wxjpegd" />
+					<Add library="wxpngd" />
+					<Add library="wxzlibd" />
+					<Add library="wxregexud" />
+					<Add library="wxexpatd" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="comdlg32" />
+					<Add library="winspool" />
+					<Add library="winmm" />
+					<Add library="shell32" />
+					<Add library="comctl32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="rpcrt4" />
+					<Add library="advapi32" />
+					<Add library="wsock32" />
+					<Add library="wininet" />
+					<Add directory=".\..\..\lib\vc_dll" />
+				</Linker>
+			</Target>
+			<Target title="Win32 DLL Release">
+				<Option output="vc_mswudll\htlbox" prefix_auto="1" extension_auto="1" />
+				<Option object_output="vc_mswudll\htlbox" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-DWIN32" />
+					<Add option="-D__WXMSW__" />
+					<Add option="-D_UNICODE" />
+					<Add option="-DWXUSINGDLL" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-DNOPCH" />
+					<Add directory=".\..\..\lib\vc_dll\mswu" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\samples" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory=".\..\..\lib\vc_dll\mswu" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\samples" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="wxmsw29u_html" />
+					<Add library="wxmsw29u_core" />
+					<Add library="wxbase29u" />
+					<Add library="wxtiff" />
+					<Add library="wxjpeg" />
+					<Add library="wxpng" />
+					<Add library="wxzlib" />
+					<Add library="wxregexu" />
+					<Add library="wxexpat" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="comdlg32" />
+					<Add library="winspool" />
+					<Add library="winmm" />
+					<Add library="shell32" />
+					<Add library="comctl32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="rpcrt4" />
+					<Add library="advapi32" />
+					<Add library="wsock32" />
+					<Add library="wininet" />
+					<Add directory=".\..\..\lib\vc_dll" />
+				</Linker>
+			</Target>
+			<Target title="Win32 DLL Debug">
+				<Option output="vc_mswuddll\htlbox" prefix_auto="1" extension_auto="1" />
+				<Option object_output="vc_mswuddll\htlbox" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-Wall" />
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D__WXMSW__" />
+					<Add option="-D__WXDEBUG__" />
+					<Add option="-D_UNICODE" />
+					<Add option="-DWXUSINGDLL" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-DNOPCH" />
+					<Add directory=".\..\..\lib\vc_dll\mswud" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\samples" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory=".\..\..\lib\vc_dll\mswud" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\samples" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="wxmsw29ud_html" />
+					<Add library="wxmsw29ud_core" />
+					<Add library="wxbase29ud" />
+					<Add library="wxtiffd" />
+					<Add library="wxjpegd" />
+					<Add library="wxpngd" />
+					<Add library="wxzlibd" />
+					<Add library="wxregexud" />
+					<Add library="wxexpatd" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="comdlg32" />
+					<Add library="winspool" />
+					<Add library="winmm" />
+					<Add library="shell32" />
+					<Add library="comctl32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="rpcrt4" />
+					<Add library="advapi32" />
+					<Add library="wsock32" />
+					<Add library="wininet" />
+					<Add directory=".\..\..\lib\vc_dll" />
+				</Linker>
+			</Target>
+			<Target title="Win32 Universal Release">
+				<Option output="vc_mswunivu\htlbox" prefix_auto="1" extension_auto="1" />
+				<Option object_output="vc_mswunivu\htlbox" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-DWIN32" />
+					<Add option="-D__WXMSW__" />
+					<Add option="-D__WXUNIVERSAL__" />
+					<Add option="-D_UNICODE" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-DNOPCH" />
+					<Add directory=".\..\..\lib\vc_lib\mswunivu" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\samples" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory=".\..\..\lib\vc_lib\mswunivu" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\samples" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="wxmswuniv29u_html" />
+					<Add library="wxmswuniv29u_core" />
+					<Add library="wxbase29u" />
+					<Add library="wxtiff" />
+					<Add library="wxjpeg" />
+					<Add library="wxpng" />
+					<Add library="wxzlib" />
+					<Add library="wxregexu" />
+					<Add library="wxexpat" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="comdlg32" />
+					<Add library="winspool" />
+					<Add library="winmm" />
+					<Add library="shell32" />
+					<Add library="comctl32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="rpcrt4" />
+					<Add library="advapi32" />
+					<Add library="wsock32" />
+					<Add library="wininet" />
+					<Add directory=".\..\..\lib\vc_lib" />
+				</Linker>
+			</Target>
+			<Target title="Win32 Universal Debug">
+				<Option output="vc_mswunivud\htlbox" prefix_auto="1" extension_auto="1" />
+				<Option object_output="vc_mswunivud\htlbox" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-Wall" />
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D__WXMSW__" />
+					<Add option="-D__WXUNIVERSAL__" />
+					<Add option="-D__WXDEBUG__" />
+					<Add option="-D_UNICODE" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-DNOPCH" />
+					<Add directory=".\..\..\lib\vc_lib\mswunivud" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\samples" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory=".\..\..\lib\vc_lib\mswunivud" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\samples" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="wxmswuniv29ud_html" />
+					<Add library="wxmswuniv29ud_core" />
+					<Add library="wxbase29ud" />
+					<Add library="wxtiffd" />
+					<Add library="wxjpegd" />
+					<Add library="wxpngd" />
+					<Add library="wxzlibd" />
+					<Add library="wxregexud" />
+					<Add library="wxexpatd" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="comdlg32" />
+					<Add library="winspool" />
+					<Add library="winmm" />
+					<Add library="shell32" />
+					<Add library="comctl32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="rpcrt4" />
+					<Add library="advapi32" />
+					<Add library="wsock32" />
+					<Add library="wininet" />
+					<Add directory=".\..\..\lib\vc_lib" />
+				</Linker>
+			</Target>
+			<Target title="Win32 Release">
+				<Option output="vc_mswu\htlbox" prefix_auto="1" extension_auto="1" />
+				<Option object_output="vc_mswu\htlbox" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-DWIN32" />
+					<Add option="-D__WXMSW__" />
+					<Add option="-D_UNICODE" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-DNOPCH" />
+					<Add directory=".\..\..\lib\vc_lib\mswu" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\samples" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory=".\..\..\lib\vc_lib\mswu" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\samples" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="wxmsw29u_html" />
+					<Add library="wxmsw29u_core" />
+					<Add library="wxbase29u" />
+					<Add library="wxtiff" />
+					<Add library="wxjpeg" />
+					<Add library="wxpng" />
+					<Add library="wxzlib" />
+					<Add library="wxregexu" />
+					<Add library="wxexpat" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="comdlg32" />
+					<Add library="winspool" />
+					<Add library="winmm" />
+					<Add library="shell32" />
+					<Add library="comctl32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="rpcrt4" />
+					<Add library="advapi32" />
+					<Add library="wsock32" />
+					<Add library="wininet" />
+					<Add directory=".\..\..\lib\vc_lib" />
+				</Linker>
+			</Target>
+			<Target title="Win32 Debug">
+				<Option output="vc_mswud\htlbox" prefix_auto="1" extension_auto="1" />
+				<Option object_output="vc_mswud\htlbox" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-Wall" />
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D__WXMSW__" />
+					<Add option="-D__WXDEBUG__" />
+					<Add option="-D_UNICODE" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-DNOPCH" />
+					<Add directory=".\..\..\lib\vc_lib\mswud" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\samples" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory=".\..\..\lib\vc_lib\mswud" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\samples" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="wxmsw29ud_html" />
+					<Add library="wxmsw29ud_core" />
+					<Add library="wxbase29ud" />
+					<Add library="wxtiffd" />
+					<Add library="wxjpegd" />
+					<Add library="wxpngd" />
+					<Add library="wxzlibd" />
+					<Add library="wxregexud" />
+					<Add library="wxexpatd" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="comdlg32" />
+					<Add library="winspool" />
+					<Add library="winmm" />
+					<Add library="shell32" />
+					<Add library="comctl32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="rpcrt4" />
+					<Add library="advapi32" />
+					<Add library="wsock32" />
+					<Add library="wininet" />
+					<Add directory=".\..\..\lib\vc_lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="htlbox.cpp" />
+		<Unit filename="htlbox.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

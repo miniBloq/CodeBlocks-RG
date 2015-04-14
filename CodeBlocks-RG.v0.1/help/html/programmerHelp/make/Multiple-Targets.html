@@ -1,0 +1,69 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Multiple%20Targets">Multiple Targets</a>,
+Next:<a rel="next" accesskey="n" href="Multiple-Rules.html#Multiple%20Rules">Multiple Rules</a>,
+Previous:<a rel="previous" accesskey="p" href="Special-Targets.html#Special%20Targets">Special Targets</a>,
+Up:<a rel="up" accesskey="u" href="Rules.html#Rules">Rules</a>
+<hr><br>
+</div>
+
+<h3 class="section">Multiple Targets in a Rule</h3>
+
+   <p>A rule with multiple targets is equivalent to writing many rules, each with
+one target, and all identical aside from that.  The same commands apply to
+all the targets, but their effects may vary because you can substitute the
+actual target name into the command using <code>$@</code>.  The rule contributes
+the same prerequisites to all the targets also.
+
+   <p>This is useful in two cases.
+
+     <ul>
+<li>You want just prerequisites, no commands.  For example:
+
+     <pre class="example">          kbd.o command.o files.o: command.h
+          </pre>
+
+     <p>gives an additional prerequisite to each of the three object files
+mentioned.
+
+     </p><li>Similar commands work for all the targets.  The commands do not need
+to be absolutely identical, since the automatic variable <code>$@</code>
+can be used to substitute the particular target to be remade into the
+commands (see <a href="Automatic.html#Automatic">Automatic Variables</a>).  For example:
+
+     <pre class="example">          bigoutput littleoutput : text.g
+                  generate text.g -$(subst output,,$@) &gt; $@
+          </pre>
+
+     <p>is equivalent to
+
+     <pre class="example">          bigoutput : text.g
+                  generate text.g -big &gt; bigoutput
+          littleoutput : text.g
+                  generate text.g -little &gt; littleoutput
+          </pre>
+
+     <p>Here we assume the hypothetical program <code>generate</code> makes two
+types of output, one if given <code>-big</code> and one if given
+<code>-little</code>. 
+See <a href="Text-Functions.html#Text%20Functions">Functions for String Substitution and Analysis</a>,
+for an explanation of the <code>subst</code> function. 
+</ul>
+
+   <p>Suppose you would like to vary the prerequisites according to the target,
+much as the variable <code>$@</code> allows you to vary the commands. 
+You cannot do this with multiple targets in an ordinary rule, but you can
+do it with a <dfn>static pattern rule</dfn>. 
+See <a href="Static-Pattern.html#Static%20Pattern">Static Pattern Rules</a>.
+
+   </body></html>
+

@@ -1,0 +1,139 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Using SDL: the CD-ROM</title>
+</head>
+
+<body bgcolor="#FFF8DC" text="#000000">
+<TABLE>
+<TR><!--#include file="../menu.tmpl" -->
+<TD>
+
+<p align="center">
+[<a href="usingsound.html">Prev</a>]
+<a href="toc.html"><font color="#8B0000">Table Of Contents</font> </a>
+[<a href="usingthreads.html">Next</a>]
+</p>
+
+<h1><font color="#8B0000">Using the Simple DirectMedia Layer API</font></h1>
+
+<h2>CD-ROM audio </h2>
+
+<table border="0" cellpadding="4">
+    <tr>
+        <td valign="top"><ul>
+            <li><strong>Opening a CD-ROM drive for use</strong> </li>
+        </ul>
+        <blockquote>
+            <p>You can find out how many CD-ROM drives are on the
+            system with the SDL_CDNumDrives() function, and then
+            pick which one to use with SDL_CDOpen(). </p>
+            <p>The system default CD-ROM is always drive 0. The
+            CD-ROM drive may be opened for use even if there is
+            no disk in the drive. </p>
+            <p>You should use the SDL_CDStatus() function to
+            determine the state of the drive. After you are done
+            using the CD-ROM drive, close it with the
+            SDL_CDClose() function. </p>
+        </blockquote>
+        </td>
+        <td valign="top" width="200" bgcolor="#D3D3D3"><strong>Tip:</strong><br>
+        You can get the system-dependent name for a CD-ROM drive
+        using the SDL_CDName() function. </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="50">
+    <tr>
+        <td valign="top"><font color="#000080"><strong>Example</strong></font><strong>:
+        </strong><pre>
+{
+    SDL_CD *cdrom;
+
+    <font color="#0000FF">if</font> ( SDL_CDNumDrives() &gt; 0 ) {
+        cdrom = SDL_CDOpen(0);
+        <font color="#0000FF">if</font> ( cdrom == NULL ) {
+            fprintf(stderr, &quot;<font color="#000000">Couldn't open default CD-ROM: %s\n</font>&quot; SDL_GetError());
+            return;
+        }
+
+        ...
+
+        SDL_CDClose(cdrom);
+    }
+}
+</pre>
+        </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="4">
+    <tr>
+        <td valign="top"><ul>
+            <li><strong>Playing the CD-ROM </strong></li>
+        </ul>
+        <blockquote>
+            <p>CD-ROM drives specify time either in MSF format
+            (mins/secs/frames) or directly in frames. A frame is
+            a standard unit of time on the CD, corresponding to
+            1/75 of a second. SDL uses frames instead of the MSF
+            format when specifying track lengths and offsets, but
+            you can convert between them using the
+            FRAMES_TO_MSF() and MSF_TO_FRAMES() macros. </p>
+            <p>SDL doesn't update the track information in the
+            SDL_CD structure until you call SDL_CDStatus(), so
+            you should always use SDL_CDStatus() to make sure
+            there is a CD in the drive and determine what tracks
+            are available before playing the CD. Note that track
+            indexes start at 0 for the first track. </p>
+            <p>SDL has two functions for playing the CD-ROM. You
+            can either play specific tracks on the CD using
+            SDL_CDPlayTracks(), or you can play absolute frame
+            offsets using SDL_CDPlay(). </p>
+            <p>SDL doesn't provide automatic notification of CD
+            insertion or play completion. To detect these
+            conditions, you need to periodically poll the status
+            of the drive with SDL_CDStatus(). Since this call
+            reads the table of contents for the CD, it should not
+            be called continuously in a tight loop. </p>
+        </blockquote>
+        </td>
+        <td valign="top" width="200" bgcolor="#D3D3D3"><strong>Tip:</strong><br>
+        You can determine which tracks are audio tracks and which
+        are data tracks by looking at the
+        cdrom-&gt;tracks[track].type, and comparing it to
+        SDL_AUDIO_TRACK and SDL_DATA_TRACK. </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="50">
+    <tr>
+        <td valign="top"><font color="#000080"><strong>Example</strong></font><strong>:
+        </strong><pre>
+<font color="#008000">void</font> PlayTrack(SDL_CD *cdrom, <font
+color="#008000">int</font> track)
+{
+    <font color="#0000FF">if</font> ( CD_INDRIVE(SDL_CDStatus(cdrom)) ) {
+        SDL_CDPlayTracks(cdrom, track, 0, track+1, 0);
+    }
+    <font color="#0000FF">while</font> ( SDL_CDStatus(cdrom) == CD_PLAYING ) {
+        SDL_Delay(1000);
+    }
+}
+</pre>
+        </td>
+    </tr>
+</table>
+
+<p align="center">
+[<a href="usingsound.html">Prev</a>]
+<a href="toc.html"><font color="#8B0000">Table Of Contents</font> </a>
+[<a href="usingthreads.html">Next</a>]
+</p>
+
+</TABLE>
+</body>
+</html>

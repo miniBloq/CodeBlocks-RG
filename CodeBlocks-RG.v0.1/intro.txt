@@ -1,0 +1,20 @@
+
+               Code::Blocks EDU-Portable (CodeBlocks EP)
+			   
+What is it?
+A portable version of the free, open-source Code::Blocks C/C++ Integrated development Environment (IDE) configured as an easy-to-install package for the Windows operating system.
+
+Why EDU (education)?
+CodeBlocks EP comes pre-installed for teaching institutions and learners of C or C++ with:
+- easy access to C/C++ language help (by pressing F1 and via the Help menu)
+- promotion of strict C or C++ programming language standards.
+- static code checking (cppcheck)
+- a simple 2D graphics library (WinBGIm) 
+- a simple 2D plotting library (koolplot)
+- conio and conio2 libraries
+- C/C++ style formatter (AStyle)
+- Automatic documentation generator (Doxygen)
+
+Why Portable?
+- Being portable allows using portable Code::Blocks without interference on PCs where other related software (MinGW, non-portable CB, various programmer-help tools) is already installed.
+- Being portable allows it to be carried around on a USB stick or external HDD.

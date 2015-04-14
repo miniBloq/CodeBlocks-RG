@@ -1,0 +1,118 @@
+<TITLE>BGI Documentation for 
+getlinesettings
+</TITLE>
+<H2>
+getlinesettings
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void getlinesettings(struct linesettingstype *lineinfo);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+getlinesettings fills a linesettingstype structure pointed to by lineinfo with information about the current line style, pattern, and thickness.
+<P>
+The linesettingstype structure is defined in graphics.h as follows:
+<PRE>
+struct linesettingstype {
+   int linestyle;
+   unsigned upattern;
+   int thickness;
+};
+</PRE>
+linestyle specifies in which style subsequent lines will be drawn (such as solid, dotted, centered, dashed). The enumeration line_styles, defined in graphics.h, gives names to these operators:
+<TABLE>
+<TR><TD><B>Name</B><TD><B>Value&nbsp;&nbsp;&nbsp;</B><TD><B>Description
+<TR><TD>SOLID_LINE	<TD>0	<TD>Solid line
+<TR><TD>DOTTED_LINE	<TD>1	<TD>Dotted line
+<TR><TD>CENTER_LINE	<TD>2	<TD>Centered line
+<TR><TD>DASHED_LINE	<TD>3	<TD>Dashed line
+<TR><TD>USERBIT_LINE&nbsp;&nbsp;&nbsp;	<TD>4	<TD>User-defined line style
+</TABLE>
+thickness specifies whether the width of subsequent lines drawn will
+be normal or thick.
+<TABLE>
+<TR><TD><B>Name</B><TD><B>Value&nbsp;&nbsp;&nbsp;</B><TD><B>Description
+<TR><TD>NORM_WIDTH	<TD>1	<TD>1 pixel wide
+<TR><TD>THICK_WIDTH&nbsp;&nbsp;&nbsp;	<TD>3	<TD>3 pixels wide
+</TABLE>
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="setlinestyle.html"> setlinestyle </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* getlinesettings example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+
+/* the names of the line styles supported */
+char *lname[] = { "SOLID_LINE", "DOTTED_LINE", "CENTER_LINE", "DASHED_LINE", "USERBIT_LINE" };
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   struct linesettingstype lineinfo;
+   int midx, midy;
+   char lstyle[80], lpattern[80], lwidth[80];
+
+
+   /* initialize graphics and local variables */
+
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+
+   /* get information about current line settings */
+   getlinesettings(&lineinfo);
+
+
+   /* convert line information into strings */
+  sprintf(lstyle, "%s is the line style.", lname[lineinfo.linestyle]);
+  sprintf(lpattern, "0x%X is the user-defined line pattern.", lineinfo.upattern);
+  sprintf(lwidth, "%d is the line thickness.", lineinfo.thickness);
+
+   /* display the information */
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+   outtextxy(midx, midy, lstyle);
+   outtextxy(midx, midy+2*textheight("W"), lpattern);
+   outtextxy(midx, midy+4*textheight("W"), lwidth);
+
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

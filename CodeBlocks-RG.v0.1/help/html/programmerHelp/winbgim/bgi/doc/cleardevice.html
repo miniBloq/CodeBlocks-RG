@@ -1,0 +1,84 @@
+<TITLE>BGI Documentation for 
+cleardevice
+</TITLE>
+<H2>
+cleardevice
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void cleardevice(void);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+cleardevice erases (that is, fills with the current background color) the entire graphics screen and moves the CP (current position) to home (0,0).
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="clearviewport.html"> clearviewport </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* cleardevice example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int midx, midy;
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {    /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);                 /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+   setcolor(getmaxcolor());
+
+   /* for centering screen messages */
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+
+   /* output a message to the screen */
+   outtextxy(midx, midy, "Press any key to clear the screen:");
+
+   getch();   /* wait for a key */
+   cleardevice();   /* clear the screen */
+
+   /* output another message */
+   outtextxy(midx, midy, "Press any key to quit:");
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

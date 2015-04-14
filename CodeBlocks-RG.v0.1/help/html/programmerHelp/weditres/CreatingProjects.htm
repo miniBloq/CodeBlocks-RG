@@ -1,0 +1,287 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>A project is a set of source files that is translated into a single
+executable by the integrated development environment</title>
+</head>
+
+<body>
+
+<p>A project is a set of source files that is translated into a single
+executable by the integrated development environment.</p>
+<h3><span style="mso-ansi-language:EN-US">Creating a Project<o:p>
+</o:p>
+</span></h3>
+<p class="MsoNormal">This option allows you to define the set of files that will
+be loaded together and considered as a work unit. For this you have to define:</p>
+<ol>
+  <li>
+    <p class="MsoNormal">The name of the project</li>
+  <li>
+    <p class="MsoNormal">The directory where the source files will be found</li>
+</ol>
+<p class="MsoHeader" style="tab-stops:36.0pt center 8.0cm right 16.0cm"><span style="font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US">&nbsp;</span>The
+object files and the executable are placed by default in a directory named 'lcc'
+under the sources directory. For instance. if you use the directory c:\myproject
+for the sources, the output<span style="mso-spacerun: yes">&nbsp; </span>of the
+compiler will be placed in a directory named 'c:\myproject\lcc'. This method is
+not obligatory in this version, but it was in earlier versions of Wedit. Still,
+it is better (as always) to use the defaults.<a style="mso-footnote-id:ftn1" href="#_ftn1" name="_ftnref1" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 12.0pt; mso-text-raise: 0pt" class="MsoFootnoteReference">[1]</span></a></p>
+<p class="MsoNormal">&nbsp;Avoid placing two completely unrelated projects in
+the same directory. The makefiles would be erased and several object files could
+be lost. For example, if you have a file called main.c in two projects, the
+object files of both projects would be the same and the linker would be
+confused.<b style="mso-bidi-font-weight:normal"><o:p>
+</o:p>
+</b></p>
+<p class="MsoNormal">Four types of projects are supported:</p>
+<ol>
+  <li>
+    <p class="MsoNormal"><b style="mso-bidi-font-weight:normal">Windows
+    executable</b>. This means that your program will start at the ‘WinMain’
+    function, that it will not use the standard input or standard output
+    functions and that it will not use the ‘console’ window.<a style="mso-footnote-id:ftn2" href="#_ftn2" name="_ftnref2" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 12.0pt; mso-text-raise: 0pt" class="MsoFootnoteReference">[2]</span></a></li>
+  <li>
+    <p class="MsoNormal"><b style="mso-bidi-font-weight:normal">Console
+    application</b>. This means that your program uses ‘printf’ and assumes,
+    for example, that stdin and stdout are initialized and it will appear in a
+    text mode window.<a style="mso-footnote-id:ftn3" href="#_ftn3" name="_ftnref3" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 12.0pt; mso-text-raise: 0pt" class="MsoFootnoteReference">[3]</span></a></li>
+  <li>
+    <p class="MsoNormal"><b style="mso-bidi-font-weight:normal">Static library</b>.
+    This means that you want to create a library containing a set of object
+    files. This library is linked statically, i.e., each executable will contain
+    its own copy of the routines in the library.</li>
+  <li>
+    <p class="MsoNormal"><b style="mso-bidi-font-weight:normal">Dynamic link
+    library</b>. This means that you will create an executable that is
+    dynamically attached to another process when the other executable starts.</li>
+</ol>
+<p class="MsoNormal" style="margin-left:1.0cm"><o:p>
+</o:p>
+</p>
+<div style="mso-element: frame; mso-element-frame-hspace: 9.0pt; mso-element-wrap: no-wrap-beside; mso-element-anchor-vertical: paragraph; mso-element-anchor-horizontal: column; mso-element-left: 75.6pt; mso-element-top: 10.55pt; mso-height-rule: exactly; width: 684; height: 368">
+  <table cellspacing="0" cellpadding="0" hspace="0" vspace="0">
+    <tr>
+      <td valign="top" align="left" style="padding-top:0cm;padding-right:9.0pt;
+  padding-bottom:0cm;padding-left:9.0pt">
+        <p class="MsoNormal" style="mso-element:frame;mso-element-frame-hspace:9.0pt;
+  mso-element-wrap:no-wrap-beside;mso-element-anchor-vertical:paragraph;
+  mso-element-anchor-horizontal:column;mso-element-left:75.6pt;mso-element-top:
+  10.55pt;mso-height-rule:exactly"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+   coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+   filled="f" stroked="f">
+   <v:stroke joinstyle="miter"/>
+   <v:formulas>
+    <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+    <v:f eqn="sum @0 1 0"/>
+    <v:f eqn="sum 0 0 @1"/>
+    <v:f eqn="prod @2 1 2"/>
+    <v:f eqn="prod @3 21600 pixelWidth"/>
+    <v:f eqn="prod @3 21600 pixelHeight"/>
+    <v:f eqn="sum @0 0 1"/>
+    <v:f eqn="prod @6 1 2"/>
+    <v:f eqn="prod @7 21600 pixelWidth"/>
+    <v:f eqn="sum @8 21600 0"/>
+    <v:f eqn="prod @7 21600 pixelHeight"/>
+    <v:f eqn="sum @10 21600 0"/>
+   </v:formulas>
+   <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+   <o:lock v:ext="edit" aspectratio="t"/>
+  </v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:333pt;
+   height:274.5pt' fillcolor="window">
+   <v:imagedata src="file:///C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/FrontPageTempDir/wpe1.gif"
+    o:title=""/>
+  </v:shape><![endif]-->
+        <img border="0" src="Creati1.gif" width="444" height="366"></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="left" style="padding-top:0cm;padding-right:9.0pt;
+  padding-bottom:0cm;padding-left:9.0pt"></td>
+    </tr>
+  </table>
+</div>
+<h3><br clear="ALL">
+&nbsp;<span style="mso-ansi-language:EN-US">Creating Several Projects under the
+Same Directory<o:p>
+</o:p>
+</span></h3>
+<p class="MsoNormal">From the same source set, you can create different projects
+that use some of the files in the sources directory. For instance under the
+project <span style="font-family:Courier">\myprojects\accounting</span>, you
+could create several projects that use some of the same sources under that
+directory for setting up different executables, a DLL, a library, etc. You can
+do this if you change the item ‘Project directory’ in the definition of the
+project. Since the object files are stored in different places, there is no risk
+of mixing them up.</p>
+<h3><span style="mso-ansi-language:EN-US">&nbsp;Defining the Files to be used by
+the Project<o:p>
+</o:p>
+</span></h3>
+<p class="MsoNormal">When you accept by pressing the 'Create' button, the system
+will ask you if you want to use the wizard to generate the code for the skeleton
+of a new application. If you answer yes, the code generation wizard starts. If
+you answer <b style="mso-bidi-font-weight:normal">no</b>, the following dialog
+box appears:<o:p>
+</o:p>
+</p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse; mso-padding-alt: 0cm 3.5pt 0cm 3.5pt; margin-left: 3.5pt" width="681">
+  <tr>
+    <td valign="top" style="padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm" align="left" width="523">
+      <p class="MsoNormal" style="margin-left:24.85pt"><!--[if gte vml 1]><v:shape
+   id="_x0000_i1026" type="#_x0000_t75" style='width:310.5pt;height:294.75pt'
+   fillcolor="window">
+   <v:imagedata src="file:///C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/FrontPageTempDir/wpe2.gif"
+    o:title=""/>
+  </v:shape><![endif]-->
+      <img border="0" src="Creati2.gif" width="482" height="382"></p>
+    </td>
+    <td valign="top" style="padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm" width="134">
+      <p class="MsoNormal"><span style="font-size:8.0pt;mso-bidi-font-size:12.0pt">You
+      reach this dialog box either by choosing ‘Create’ in the project
+      options, or by choosing ‘Add/Delete files’.<o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal"><span style="font-size:8.0pt;mso-bidi-font-size:12.0pt">This
+      is the standard dialog box for project file maintenance.<o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal"><span style="font-size:8.0pt;mso-bidi-font-size:12.0pt">To
+      add a file, choose a file from the list box at the upper left or type its
+      name in the corresponding entry field, then click on the ‘Add’ button.<o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal"><span style="font-size:8.0pt;mso-bidi-font-size:12.0pt">To
+      remove a file, select it first in the list box at the bottom, then click
+      on the ‘Remove’ button.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal" style="margin-left:1.0cm">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">Here you should enter the names of all files that will
+create this project. You can enter them quickly if you click on the ‘Read file
+list from a text file’ button.</p>
+<p class="MsoNormal">&nbsp;If your project uses special libraries, add them to
+the project files here. For instance, if you want to use the Windows sockets
+primitives for network programming add ws2_32.lib. You can enter the library
+without a path. If no library is found in the current directory with the name
+you typed, Wedit will search in the system \lcc\lib directory, and determine the
+path for you.</p>
+<p class="DefinitionTerm">&nbsp;If you are building a Windows executable, you
+should add your resources, either by adding a <b style="mso-bidi-font-weight:normal">.rc</b>
+file or a binary <b style="mso-bidi-font-weight:normal">.res</b> file. Use the
+combination box with ‘List files of type’ header to choose the different
+files that you want to add to the project.</p>
+<p class="MsoNormal">When you have chosen all the files, click the
+‘Validate’ button and the following dialog box will appear.</p>
+<p class="MsoNormal" style="margin-left:1.0cm;text-indent:14.15pt">&nbsp;<o:p>
+</o:p>
+</p>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-left:3.5pt;
+ border-collapse:collapse;mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr>
+    <td width="492" valign="top" style="width:369.0pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-left:31.95pt"><!--[if gte vml 1]><v:shape
+   id="_x0000_i1027" type="#_x0000_t75" style='width:330.75pt;height:311.25pt'
+   fillcolor="window">
+   <v:imagedata src="Creati3.gif"
+    o:title=""/>
+  </v:shape><![endif]-->
+      <img src="Creati3.gif" v:shapes="_x0000_i1027" width="441" height="415"></p>
+    </td>
+    <td width="84" valign="top" style="width:63.0pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal"><span style="font-size:8.0pt;mso-bidi-font-size:12.0pt">You
+      can reach this dialog box either when you create a new project or by using
+      the ‘Configuration’ option from the ‘Project-Configuration’ menu
+      bar.<o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal">&nbsp;<span style="font-size:8.0pt;mso-bidi-font-size:12.0pt"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal" style="margin-left:42.55pt">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">This dialog box lets you change/add/modify the settings for
+the compiler, choose the level of debugging support, etc. This will be explained
+in full in the corresponding chapter.<span style="mso-spacerun:
+yes">&nbsp; </span>This is the same dialog box that you reach from the
+‘Configuration’ tab in the ‘Options’ main menu. It is just displayed
+differently.</p>
+<p class="MsoNormal">&nbsp;This is the first of a series of three dialog boxes
+that the system presents to you in the event that you want to modify some of the
+settings at the start of a project. Choosing the ‘Next’ button allows you to
+continue.</p>
+<p class="MsoNormal">&nbsp;This is a good place for adding the #defines that
+your project may need or a special library that is not included in the default
+libraries. By default, the compiler will start the project with a debug setting
+(debug information turned on, optimizations off), but you can also change this
+here.</p>
+<p class="MsoNormal">&nbsp;The next two dialog boxes (shown later in the
+‘Compiler’ chapter) concern the linker and the debugger settings. Once
+finished with the settings, Wedit will generate a Makefile for your application
+using the available information.</p>
+<p class="MsoNormal">&nbsp;The project is then ready. You can compile and
+execute your application. You should wait, however, until Wedit finishes
+generating the Makefile for your application. This can take a few seconds, since
+Wedit calls up the compiler to determine which files are used for each of the
+files you added to the project.<a style="mso-footnote-id:ftn4" href="#_ftn4" name="_ftnref4" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 12.0pt; mso-text-raise: 0pt" class="MsoFootnoteReference">[4]</span></a><o:p>
+</o:p>
+</p>
+<p class="MsoNormal">The structure of the Makefile that is generated is
+described in the technical documentation.</p>
+<p class="MsoNormal">&nbsp;</p>
+<div style="mso-element:footnote-list">
+  <br clear="all">
+  <hr align="left" size="1" width="33%">
+  <div style="mso-element:footnote" id="ftn1">
+    <p class="MsoFootnoteText" style="text-indent:0cm"><a style="mso-footnote-id:
+ftn1" href="#_ftnref1" name="_ftn1" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 10.0pt; mso-text-raise: 0pt; mso-ansi-language: EN-US" class="MsoFootnoteReference">[1]</span></a><span style="mso-ansi-language:EN-US">
+    The current directory can be determined easily: just go to the configuration
+    menu option. In the ‘General’ tab, you will find what the current
+    directory is.<o:p>
+    </o:p>
+    </span></p>
+  </div>
+  <div style="mso-element:footnote" id="ftn2">
+    <p class="MsoFootnoteText" style="text-indent:0cm"><a style="mso-footnote-id:
+ftn2" href="#_ftnref2" name="_ftn2" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 10.0pt; mso-text-raise: 0pt" lang="FR" class="MsoFootnoteReference">[2]</span></a><span style="mso-ansi-language:EN-US">
+    Of course windows program can open an own console if they wish to. This
+    refers to what is present by default at the program startup.<o:p>
+    </o:p>
+    </span></p>
+  </div>
+  <div style="mso-element:footnote" id="ftn3">
+    <p class="MsoFootnoteText" style="text-indent:0cm"><a style="mso-footnote-id:
+ftn3" href="#_ftnref3" name="_ftn3" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 10.0pt; mso-text-raise: 0pt" lang="FR" class="MsoFootnoteReference">[3]</span></a><span style="mso-ansi-language:EN-US">
+    Again, console programs can use any window API. The system opens a console
+    for them by default at the program startup, that’s all.<o:p>
+    </o:p>
+    </span></p>
+  </div>
+  <div style="mso-element:footnote" id="ftn4">
+    <p class="MsoFootnoteText" style="text-indent:0cm"><a style="mso-footnote-id:
+ftn4" href="#_ftnref4" name="_ftn4" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 10.0pt; mso-text-raise: 0pt; mso-ansi-language: EN-US" class="MsoFootnoteReference">[4]</span></a><span style="mso-ansi-language:EN-US">
+    It could be argued that calling the compiler for this is an overkill, and
+    just scanning for #include statements would suffice. The problem is that #ifdef
+    ... #endif statements, that need to be processed in order to know which
+    files are <b style="mso-bidi-font-weight:normal">actually</b> used by a
+    source module.<o:p>
+    </o:p>
+    </span></p>
+  </div>
+</div>
+
+</body>
+
+</html>

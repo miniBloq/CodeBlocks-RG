@@ -1,0 +1,235 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The Software Metrics Module</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509457025"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc425011558">The
+Software Metrics Module</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoNormal">In this context, software metrics means a set of
+measurements made of the source code of your program to determine certain
+metrics or ratios. This is a domain with a long story of continuous refinement
+of the definitions and metrics involved that would be impossible to describe in
+the context of a software manual. It is this author’s personal opinion,
+however, that this field has lacked the raw data from numerous measurements by
+many people. With this idea in mind, Wedit tries to provide you with a set of
+tools to measure your code and deduce your own conclusions. The emphasis is on
+providing raw data and displaying it without any interpretation; the objective
+being that you interpret the measurements as you like. Important here are not
+the actual numbers displayed, but the experience you accumulate by investigating
+your own code and seeing how those numbers correlate to your experience with the
+software that you write or maintain.</p>
+<p class="MsoNormal">After reviewing the enormous amount of papers published
+within this field, the author abstracted the following information, which seems
+to be widely recognized as meaningful measurements.</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>The
+number of lines of a program/module</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>The
+number of unique operands</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>The total
+number of operands used</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>The
+number of unique operators</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>The total
+number of operators</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>The
+number of flow control statements</p>
+<p class="MsoNormal"><!--[if supportFields]><span style='mso-element:field-begin'></span>SYMBOL
+183 \f &quot;Symbol&quot; \s 10 \h<![endif]-->
+<!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]-->
+<span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>The
+volume of commentaries</p>
+<p class="MsoNormal">For the C language, Wedit considers the expression
+&quot;++&quot; or &quot;+=&quot; as an operator. Constants and variables are
+considered as operands (the objects that operators manipulate). A construct such
+as 'while' or 'for' is considered to be a control flow directive.</p>
+<h4><a name="_Toc435923627"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc425011559">Analysis
+of a Whole File</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h4>
+<p class="MsoBodyText">This option provides a global view of the functions in a
+file, displaying the results in a graphical form. You can call up this option by
+clicking somewhere in an open file with the right mouse button. In the
+contextual menu that opens, choose the ‘metrics’ menu option.</p>
+<p class="centr"><span style="font-size:10.0pt;mso-ansi-language:EN-US;
+text-decoration:none;text-underline:none"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:449.25pt;
+ height:324.75pt' fillcolor="window">
+ <v:imagedata src="softwa41.gif"
+  o:title=""/>
+</v:shape><![endif]-->
+<img width="599" height="433" src="softwa41.gif" v:shapes="_x0000_i1025"></span><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText">A line whose length is proportional to its length or
+volume, depending on the settings of the ‘Data’ menu selection represents
+each function in the file. To see to which function each line corresponds to,
+click on the line you are interested in. In the dialog box (at the bottom of the
+graphic), this will display the exact value of the line and the name of the
+function to which it corresponds. If you select it in the dialog box, all the
+data corresponding to the data will be shown.</p>
+<p class="MsoNormal" style="margin-left:76.55pt">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">The result is displayed in the following dialog box:</p>
+<p class="centr"><span style="font-size:10.0pt;mso-ansi-language:EN-US;
+text-decoration:none;text-underline:none"><!--[if gte vml 1]><v:shape id="_x0000_i1026"
+ type="#_x0000_t75" style='width:369pt;height:286.5pt' fillcolor="window">
+ <v:imagedata src="softwa42.gif"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="softwa42.gif" v:shapes="_x0000_i1026" width="492" height="382"></span><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></p>
+<p class="Normal2" style="margin-left:0cm;text-indent:0cm"><span style="font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US">There
+are four main groups of collected data:<o:p>
+</o:p>
+</span></p>
+<p class="Normal2" style="margin-left:0cm;text-indent:0cm"><!--[if supportFields]><span
+style='font-family:"Times New Roman";mso-ansi-language:EN-US'><span
+style='mso-element:field-begin'></span>SYMBOL 183 \f &quot;Symbol&quot; \s 10
+\h</span><![endif]-->
+<!--[if supportFields]><span style='font-family:"Times New Roman";
+mso-ansi-language:EN-US'><span style='mso-element:field-end'></span></span><![endif]-->
+<span style="font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>The group to the left shows the raw data.<o:p>
+</o:p>
+</span></p>
+<p class="Normal2" style="margin-left:0cm;text-indent:0cm"><!--[if supportFields]><span
+style='font-family:"Times New Roman";mso-ansi-language:EN-US'><span
+style='mso-element:field-begin'></span>SYMBOL 183 \f &quot;Symbol&quot; \s 10
+\h</span><![endif]-->
+<!--[if supportFields]><span style='font-family:"Times New Roman";
+mso-ansi-language:EN-US'><span style='mso-element:field-end'></span></span><![endif]-->
+<span style="font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>The 'Style' group shows the percentage of comments, etc.<o:p>
+</o:p>
+</span></p>
+<p class="Normal2" style="margin-left:0cm;text-indent:0cm"><!--[if supportFields]><span
+style='font-family:"Times New Roman";mso-ansi-language:EN-US'><span
+style='mso-element:field-begin'></span>SYMBOL 183 \f &quot;Symbol&quot; \s 10
+\h</span><![endif]-->
+<!--[if supportFields]><span style='font-family:"Times New Roman";
+mso-ansi-language:EN-US'><span style='mso-element:field-end'></span></span><![endif]-->
+<span style="font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>The 'metrics' groups show the values calculated according to the formulae
+below.<o:p>
+</o:p>
+</span></p>
+<p class="Normal2" style="margin-left:0cm;text-indent:0cm"><!--[if supportFields]><span
+style='font-family:"Times New Roman";mso-ansi-language:EN-US'><span
+style='mso-element:field-begin'></span>SYMBOL 183 \f &quot;Symbol&quot; \s 10
+\h</span><![endif]-->
+<!--[if supportFields]><span style='font-family:"Times New Roman";
+mso-ansi-language:EN-US'><span style='mso-element:field-end'></span></span><![endif]-->
+<span style="font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>The 'Identifiers' list appears as information only.<o:p>
+</o:p>
+</span></p>
+<p class="Normal2" style="margin-left:0cm;text-indent:0cm"><span style="font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US">The
+formulae used are:<o:p>
+</o:p>
+</span></p>
+<p class="Normal2" style="margin-left:0cm;text-indent:0cm"><span style="font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="Normal2" style="margin-left:0cm;text-indent:0cm"><span style="font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US">LENGTH:
+Total number of operators + total number of operands<o:p>
+</o:p>
+</span></p>
+<p class="Normal2" style="margin-left:0cm;text-indent:0cm"><span style="font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US">VOLUME:
+Length * (log(number of unique operands)/log(2) )<o:p>
+</o:p>
+</span></p>
+<p class="Normal2" style="margin-left:0cm;text-indent:0cm"><span style="font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US">LEVEL:<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;
+</span>(2 / unique operands) * (unique operands / total number of operands)<o:p>
+</o:p>
+</span></p>
+<p class="Normal2" style="margin-left:0cm;text-indent:0cm"><span style="font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US">DENSITY:
+VOLUME / LEVEL<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">These formulae correspond to Halstead’s work.</p>
+<p class="MsoNormal" style="margin-left:76.55pt">&nbsp;<o:p>
+</o:p>
+</p>
+<h4><a name="_Toc435923628"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc425011560">How
+Wedit Collects the Data</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h4>
+<p class="MsoNormal">It is not necessary in this forum to discuss at length what
+a line of code is. Defining the nature of an instruction, is slightly more
+complicated. For the C language, Wedit uses the number of statement separators
+(the semi-colon) as a guide. The other definitions are straightforward: All
+operators are counted for the number of possible operators, including the
+preprocessor commands. The rationale behind this is that they count for the
+comprehension of the text. Parentheses are counted each as an operator.</p>
+<p class="MsoNormal">Numbers are considered operands, as well as static
+character constants or strings. The flow-control operations such as, 'for case
+while', etc. are counted, and they are important for the McCabe complexity
+measurement.</p>
+<p class="MsoNormal">The 'style' group gives the percentage of comments, the
+number of 'goto' instructions used, and the maximum depth of blocks in the
+analyzed code.</p>
+
+</body>
+
+</html>

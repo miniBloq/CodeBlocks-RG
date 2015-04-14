@@ -1,0 +1,229 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Button Styles</title>
+</head>
+
+<body>
+
+<h2>Button Styles</h2>
+<hr SIZE="1">
+<p>If you create a button by specifying the BUTTON class with the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindow">
+CreateWindow</MSHelp:link>
+ or <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+CreateWindowEx</MSHelp:link>
+ function, you can specify a combination of the following button styles.</p>
+<p class="clsRef">Constants</p>
+<blockquote>
+  <dl class="clsRef">
+    <dt><b>BS_3STATE</b>&nbsp;
+    <dd>Creates a button that is the same as a check box, except that the box
+      can be grayed as well as checked or cleared. Use the grayed state to show
+      that the state of the check box is not determined.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_AUTO3STATE</b>&nbsp;
+    <dd>Creates a button that is the same as a three-state check box, except
+      that the box changes its state when the user selects it. The state cycles
+      through checked, grayed, and cleared.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_AUTOCHECKBOX</b>&nbsp;
+    <dd>Creates a button that is the same as a check box, except that the check
+      state automatically toggles between checked and cleared each time the user
+      selects the check box.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_AUTORADIOBUTTON</b>&nbsp;
+    <dd>Creates a button that is the same as a radio button, except that when
+      the user selects it, The system automatically sets the button's check
+      state to checked and automatically sets the check state for all other
+      buttons in the same group to cleared.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_CHECKBOX</b>&nbsp;
+    <dd>Creates a small, empty check box with text. By default, the text is
+      displayed to the right of the check box. To display the text to the left
+      of the check box, combine this flag with the BS_LEFTTEXT style (or with
+      the equivalent BS_RIGHTBUTTON style).
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_DEFPUSHBUTTON</b>&nbsp;
+    <dd>Creates a push button that behaves like a BS_PUSHBUTTON style button,
+      but also has a heavy black border. If the button is in a dialog box, the
+      user can select the button by pressing the ENTER key, even when the button
+      does not have the input focus. This style is useful for enabling the user
+      to quickly select the most likely (default) option.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_GROUPBOX</b>&nbsp;
+    <dd>Creates a rectangle in which other controls can be grouped. Any text
+      associated with this style is displayed in the rectangle's upper left
+      corner.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_LEFTTEXT</b>&nbsp;
+    <dd>Places text on the left side of the radio button or check box when
+      combined with a radio button or check box style. Same as the
+      BS_RIGHTBUTTON style.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_OWNERDRAW</b>&nbsp;
+    <dd>Creates an owner-drawn button. The owner window receives a <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_DRAWITEM_cpp">
+      WM_DRAWITEM</MSHelp:link>
+      message when a visual aspect of the button has changed. Do not combine the
+      BS_OWNERDRAW style with any other button styles.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_PUSHBUTTON</b>&nbsp;
+    <dd>Creates a push button that posts a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_command">
+      WM_COMMAND</MSHelp:link>
+      message to the owner window when the user selects the button.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_RADIOBUTTON</b>&nbsp;
+    <dd>Creates a small circle with text. By default, the text is displayed to
+      the right of the circle. To display the text to the left of the circle,
+      combine this flag with the BS_LEFTTEXT style (or with the equivalent
+      BS_RIGHTBUTTON style). Use radio buttons for groups of related, but
+      mutually exclusive choices.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_USERBUTTON</b>&nbsp;
+    <dd>Obsolete, but provided for compatibility with 16-bit versions of
+      Windows. Applications should use BS_OWNERDRAW instead.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_BITMAP</b>&nbsp;
+    <dd>Specifies that the button displays a bitmap.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_BOTTOM</b>&nbsp;
+    <dd>Places text at the bottom of the button rectangle.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_CENTER</b>&nbsp;
+    <dd>Centers text horizontally in the button rectangle.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_ICON</b>&nbsp;
+    <dd>Specifies that the button displays an icon.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_FLAT</b>&nbsp;
+    <dd>Specifies that the button is two-dimensional; it does not use the
+      default shading to create a 3-D image.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_LEFT</b>&nbsp;
+    <dd>Left-justifies the text in the button rectangle. However, if the button
+      is a check box or radio button that does not have the BS_RIGHTBUTTON
+      style, the text is left justified on the right side of the check box or
+      radio button.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_MULTILINE</b>&nbsp;
+    <dd>Wraps the button text to multiple lines if the text string is too long
+      to fit on a single line in the button rectangle.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_NOTIFY</b>&nbsp;
+    <dd>Enables a button to send <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_BN_KILLFOCUS_cpp">
+      BN_KILLFOCUS</MSHelp:link>
+      and <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_BN_SETFOCUS_cpp">
+      BN_SETFOCUS</MSHelp:link>
+      notification messages to its parent window.
+      <p>Note that buttons send the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_BN_CLICKED_cpp">
+      BN_CLICKED</MSHelp:link>
+      notification message regardless of whether it has this style. To get <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_BN_DBLCLK_cpp">
+      BN_DBLCLK</MSHelp:link>
+      notification messages, the button must have the BS_RADIOBUTTON or
+      BS_OWNERDRAW style.</p>
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_PUSHLIKE</b>&nbsp;
+    <dd>Makes a button (such as a check box, three-state check box, or radio
+      button) look and act like a push button. The button looks raised when it
+      isn't pushed or checked, and sunken when it is pushed or checked.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_RIGHT</b>&nbsp;
+    <dd>Right-justifies text in the button rectangle. However, if the button is
+      a check box or radio button that does not have the BS_RIGHTBUTTON style,
+      the text is right justified on the right side of the check box or radio
+      button.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_RIGHTBUTTON</b>&nbsp;
+    <dd>Positions a radio button's circle or a check box's square on the right
+      side of the button rectangle. Same as the BS_LEFTTEXT style.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_TEXT</b>&nbsp;
+    <dd>Specifies that the button displays text.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_TOP</b>&nbsp;
+    <dd>Places text at the top of the button rectangle.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_TYPEMASK</b>&nbsp;
+    <dd>Microsoft® Windows® 2000: A composite style bit that results from
+      using the OR operator on BS_* style bits. It can be used to mask out valid
+      BS_* bits from a given bitmask. Note that this is out of date and does not
+      correctly include all valid styles. Thus, you should not use this style.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>BS_VCENTER</b>&nbsp;
+    <dd>Places text in the middle (vertically) of the button rectangle.</dd>
+  </dl>
+</blockquote>
+
+</body>
+
+</html>

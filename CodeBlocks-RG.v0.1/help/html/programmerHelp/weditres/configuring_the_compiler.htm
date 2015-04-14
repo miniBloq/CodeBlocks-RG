@@ -1,0 +1,105 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Configuring the compiler</title>
+</head>
+
+<body>
+
+<h2><span style="mso-ansi-language:EN-US">Configuring the compiler<o:p>
+</o:p>
+</span></h2>
+<p class="MsoNormalIndent">&nbsp;The configuration of the compiler is done
+through Project <span style="mso-char-type: symbol; mso-symbol-font-family: Wingdings; font-family: Wingdings; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial">à</span>
+Configuration menu option.</p>
+<p class="MsoNormalIndent" align="center">&nbsp;<!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:318pt;
+ height:335.25pt'>
+ <v:imagedata src="file:///C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/msoclip1/01/clip_image001.png"
+  o:title=""/>
+</v:shape><![endif]-->
+ <img border="0" src="config3.gif" width="424" height="447"></p>
+<blockquote>
+  <blockquote>
+    <p class="MsoNormalIndent">&nbsp;<span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></span>Preprocessor defines. Write here the –D directives <b>without</b>
+    any options. If you want to #define MYDEF you would write: MYDEF in the edit
+    field. If you have several of those write: MYDEF, MY_OTHER_DEF. This will
+    provoke that the development environment will call the compiler with –DMYDEF
+    and –DMY_OTHER_DEF as command line arguments.</p>
+  </blockquote>
+</blockquote>
+<p class="MsoNormalIndent" style="margin-left:72.0pt;text-indent:-18.0pt;
+mso-list:l3 level1 lfo6;tab-stops:list 72.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Include Path. Here you write several paths separated by spaces. It
+is imperative to put double quotes in path names that have spaces, as shown in
+the example above. This will be translated by the development environment as: -I&quot;c:\program
+files\lcc\include&quot;. This is just an example. It is NOT necessary to put
+there the path of the standard includes.</p>
+<p class="MsoNormalIndent" style="margin-left:72.0pt;text-indent:-18.0pt;
+mso-list:l3 level1 lfo6;tab-stops:list 72.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Generate Asm. This will produce an assembly listing that will have
+the same name as the source file but an .asm extension.</p>
+<p class="MsoNormalIndent" style="margin-left:72.0pt;text-indent:-18.0pt;
+mso-list:l3 level1 lfo6;tab-stops:list 72.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Optimize. The compiler will try to generate the best code.</p>
+<p class="MsoNormalIndent" style="margin-left:72.0pt;text-indent:-18.0pt;
+mso-list:l3 level1 lfo6;tab-stops:list 72.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Generate browse info. Normally the IDE does this automatically, so
+this is not really necessary.</p>
+<p class="MsoNormalIndent" style="margin-left:72.0pt;text-indent:-18.0pt;
+mso-list:l3 level1 lfo6;tab-stops:list 72.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Use Pentium pro instructions. If you choose this (command line
+option –p6) the new p6 instructions will be used and your code will NOT run in
+a previous processor.</p>
+<p class="MsoNormalIndent" style="margin-left:72.0pt;text-indent:-18.0pt;
+mso-list:l3 level1 lfo6;tab-stops:list 72.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Structure alignment. This sets the space that the compiler will
+use to align structures.</p>
+<p class="MsoNormalIndent" style="margin-left:72.0pt;text-indent:-18.0pt;
+mso-list:l3 level1 lfo6;tab-stops:list 72.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Debugging support level. This can be the strict minimum (Generate
+debug info) or more sophisticated error reports in case of crash (Run time stack
+trace support) that can have even line number display.</p>
+<p class="MsoNormalIndent" style="margin-left:72.0pt;text-indent:-18.0pt;
+mso-list:l3 level1 lfo6;tab-stops:list 72.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Language extensions. Whether to use the lcc-win32 language
+extensions (operator overloading, etc). Leave this as above.</p>
+<p class="MsoNormalIndent" style="margin-left:72.0pt;text-indent:-18.0pt;
+mso-list:l3 level1 lfo6;tab-stops:list 72.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Warning level: Self evident.</p>
+<p style="margin-left:72.0pt;text-indent:-18.0pt;
+mso-list:l3 level1 lfo6;tab-stops:list 72.0pt"><span style="font-family:Symbol">·&nbsp;</span><span style="font-family: Symbol">&nbsp;&nbsp;
+</span>Enable profiling. This activates the -profile option of the compiler. See
+<a href="profiler.htm">profiler</a>.</p>
+<p class="MsoNormalIndent" style="margin-left:72.0pt;text-indent:-18.0pt;
+mso-list:l3 level1 lfo6;tab-stops:list 72.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Generate intermediate language file. A .LIL (<b>L</b>cc <b>I</b>ntermediate
+<b>L</b>anguage) file is generated. This helps understand how the compiler
+works.</p>
+
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Rule%20Syntax">Rule Syntax</a>,
+Next:<a rel="next" accesskey="n" href="Prerequisite-Types.html#Prerequisite%20Types">Prerequisite Types</a>,
+Previous:<a rel="previous" accesskey="p" href="Rule-Example.html#Rule%20Example">Rule Example</a>,
+Up:<a rel="up" accesskey="u" href="Rules.html#Rules">Rules</a>
+<hr><br>
+</div>
+
+<h3 class="section">Rule Syntax</h3>
+
+   <p>In general, a rule looks like this:
+
+<pre class="example">     <var>targets</var> : <var>prerequisites</var>
+             <var>command</var>
+             ...
+     </pre>
+
+<p>or like this:
+
+<pre class="example">     <var>targets</var> : <var>prerequisites</var> ; <var>command</var>
+             <var>command</var>
+             ...
+     </pre>
+
+   <p>The <var>targets</var> are file names, separated by spaces.  Wildcard
+characters may be used (see <a href="Wildcards.html#Wildcards">Using Wildcard Characters in File Names</a>) and a name of the form <code></code><var>a</var><code>(</code><var>m</var><code>)</code>
+represents member <var>m</var> in archive file <var>a</var>
+(see <a href="Archive-Members.html#Archive%20Members">Archive Members as Targets</a>). 
+Usually there is only one
+target per rule, but occasionally there is a reason to have more
+(see <a href="Multiple-Targets.html#Multiple%20Targets">Multiple Targets in a Rule</a>).
+
+   <p>The <var>command</var> lines start with a tab character.  The first command may
+appear on the line after the prerequisites, with a tab character, or may
+appear on the same line, with a semicolon.  Either way, the effect is the
+same.  See <a href="Commands.html#Commands">Writing the Commands in Rules</a>.
+
+   <p>Because dollar signs are used to start variable references, if you really
+want a dollar sign in a rule you must write two of them, <code>$$</code>
+(see <a href="Using-Variables.html#Using%20Variables">How to Use Variables</a>). 
+You may split a long line by inserting a backslash
+followed by a newline, but this is not required, as <code>make</code> places no
+limit on the length of a line in a makefile.
+
+   <p>A rule tells <code>make</code> two things: when the targets are out of date,
+and how to update them when necessary.
+
+   <p>The criterion for being out of date is specified in terms of the
+<var>prerequisites</var>, which consist of file names separated by spaces. 
+(Wildcards and archive members (see <a href="Archives.html#Archives">Archives</a>) are allowed here too.) 
+A target is out of date if it does not exist or if it is older than any
+of the prerequisites (by comparison of last-modification times).  The
+idea is that the contents of the target file are computed based on
+information in the prerequisites, so if any of the prerequisites changes,
+the contents of the existing target file are no longer necessarily
+valid.
+
+   <p>How to update is specified by <var>commands</var>.  These are lines to be
+executed by the shell (normally <code>sh</code>), but with some extra features
+(see <a href="Commands.html#Commands">Writing the Commands in Rules</a>).
+
+   </body></html>
+

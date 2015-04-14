@@ -1,0 +1,83 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Getting started</title>
+</head>
+
+<body>
+
+<h3><span style="mso-ansi-language:EN-US">Getting started<o:p>
+</o:p>
+</span></h3>
+<p style="tab-stops:36.0pt center 8.0cm right 16.0cm"><span style="mso-bidi-font-family: Times New Roman; mso-ansi-language: EN-US">&nbsp;</span><span style="mso-ansi-language: EN-US">To
+start using lcc-win32, a simple windows application will be used as an example.&nbsp;</span></p>
+<p style="tab-stops:36.0pt center 8.0cm right 16.0cm"><span style="mso-ansi-language: EN-US"> Start
+the editor (Wedit), go to the Project menu, and choose Create. You will be
+prompted for the name of the new project. Enter a short name, without spaces in
+it, for instance &quot;test&quot;.</span></p>
+<p><span style="mso-bidi-font-family:Arial">&nbsp;</span>The project definition
+dialog box appears. You should specify a source directory, where your project
+will be built. If that directory does not exist, it will be created. Choose a
+Windows application as the type of application, and press the Create button. <o:p>
+</o:p>
+</p>
+<p>&nbsp;You will be prompted if the wizard should write the project skeleton
+for you. You should answer: Yes. Wedit minimizes itself, and the wizard
+definition dialog box appears. You can select several types of applications, but
+to get started easily, maintain always the default settings, and just press Continue
+until the wizard informs you that the files have been created. Wedit will
+restart, and it will make a ‘Makefile’ from the files generated.<o:p>
+</o:p>
+</p>
+<p>&nbsp;When the ‘Makefile’ has been created, <b> press the F9 key to compile</b>
+your application. This should go very quickly since the application is very
+small. Then <b> press Ctrl+F5 to start</b> your new application. An empty window will appear
+with the name of the application in the title bar.</p>
+<p>To know where the IDE stores the executable go to the linker configuration
+tab and see what is in the &quot;Output file&quot; edit field. There you should
+find the full path to the generated exe.</p>
+<p>You can <b> debug your application by using the F5 </b> key — Wedit’s
+debugger. Press F4 to go line by line to execute the application. The F8 key is
+used for stepping into procedure calls. The F4 key skips procedure calls and
+always stays at the same level.</p>
+<p>&nbsp;You can modify the dialog boxes or other types of resources using the
+integrated resource editor. Go to the Design menu, and choose Open. This will
+open the resource editor in which you can add new dialog box definitions, menus,
+resource strings, or other types of resources to your application.</p>
+<p>&nbsp;To define a dialog box, choose Design, then New, then dialog box. An
+empty dialog box will be created, and the resource editor will automatically
+bring up the properties of the dialog box. You can then change the title, style,
+etc.&nbsp;<o:p>
+</o:p>
+</p>
+<p>To populate your dialog box with controls, just select a control type in the
+floating toolbar of Wedit, drag and drop it in the desired position. You can
+test your dialog box by using the Test option in the Design menu at any time.
+You can change the properties of any control by double-clicking on the specified
+control. This also applies to the dialog box as a whole.</p>
+<p><span style="mso-bidi-font-family:
+Arial">By pressing the right mouse button anywhere within the program text, you
+can always go to the definition of a symbol, or add special comments to your
+code. A quicker way to navigate through your code is to use the F12 key to show
+the list of defined functions in the current file. The keys Ctrl+F8 will show
+you where the symbol under the cursor is used.<o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</p>
+<p>Wedit has many settings for fonts, compiler configuration, links, etc. All of
+them are in the Project menu, under Configuration.<o:p>
+</o:p>
+</p>
+<p>If you do not want to create a project, you can load any C source file, and
+press Compile. Wedit will create a default project for the Windows application
+if it finds a WinMain procedure or Console application if it finds a main()
+function. In this case, you should have a file that needs no other source files.
+You can create a project easily within a few seconds.</p>
+
+</body>
+
+</html>

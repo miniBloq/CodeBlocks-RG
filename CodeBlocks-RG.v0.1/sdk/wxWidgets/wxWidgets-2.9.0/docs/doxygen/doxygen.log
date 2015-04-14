@@ -1,0 +1,41 @@
+  parameter 'buffer'
+  parameter 'ext'
+  parameter 'ext'
+  parameter 'format'
+  parameter 'format'
+  parameter 'fullpath'
+  parameter 'fullpath'
+  parameter 'name'
+  parameter 'name'
+  parameter 'path'
+  parameter 'path'
+  parameter 'pos'
+  parameter 'startPos'
+  parameter 'volume'
+mainpages/introduction.h:37: Error: Unexpected character `"'
+overviews/resyntax.h:589: Error: Unexpected character `"'
+wx/choice.h:44: Warning: argument 'n' of command @param is not found in the argument list of wxChoice::Create(wxWindow *parent, wxWindowID id, const wxPoint &pos, const wxSize &size, const wxArrayString &choices, long style=0, const wxValidator &validator=wxDefaultValidator, const wxString &name=wxChoiceNameStr)
+wx/clntdata.h:9: Error: Unexpected character `"'
+wx/clntdata.h:9: Error: Unexpected character `"'
+wx/clntdata.h:9: Error: Unexpected character `"'
+wx/clntdata.h:9: Error: Unexpected character `"'
+wx/clntdata.h:9: Error: Unexpected character `"'
+wx/clntdata.h:9: Error: Unexpected character `"'
+wx/combobox.h:86: Warning: argument 'n' of command @param is not found in the argument list of wxComboBox::Create(wxWindow *parent, wxWindowID id, const wxString &value, const wxPoint &pos, const wxSize &size, const wxArrayString &choices, long style=0, const wxValidator &validator=wxDefaultValidator, const wxString &name=wxComboBoxNameStr)
+wx/dcbuffer.h:52: Warning: The following parameters of wxBufferedDC::Init(wxDC *dc, wxBitmap &buffer=wxNullBitmap, int style=wxBUFFER_CLIENT_AREA) are not documented:
+wx/dcbuffer.h:52: Warning: argument 'area' of command @param is not found in the argument list of wxBufferedDC::Init(wxDC *dc, wxBitmap &buffer=wxNullBitmap, int style=wxBUFFER_CLIENT_AREA)
+wx/debug.h:245: Error: Unexpected character `"'
+wx/filename.h:406: Warning: The following parameters of wxFileName::SplitPath(const wxString &fullpath, wxString *path, wxString *name, wxString *ext, wxPathFormat format=wxPATH_NATIVE) are not documented:
+wx/filename.h:406: Warning: The following parameters of wxFileName::SplitPath(const wxString &fullpath, wxString *volume, wxString *path, wxString *name, wxString *ext, wxPathFormat format) are not documented:
+wx/filename.h:406: Warning: argument 'fileTemp' of command @param is not found in the argument list of wxFileName::SplitPath(const wxString &fullpath, wxString *path, wxString *name, wxString *ext, wxPathFormat format=wxPATH_NATIVE)
+wx/filename.h:406: Warning: argument 'fileTemp' of command @param is not found in the argument list of wxFileName::SplitPath(const wxString &fullpath, wxString *volume, wxString *path, wxString *name, wxString *ext, wxPathFormat format)
+wx/filename.h:406: Warning: argument 'prefix' of command @param is not found in the argument list of wxFileName::SplitPath(const wxString &fullpath, wxString *path, wxString *name, wxString *ext, wxPathFormat format=wxPATH_NATIVE)
+wx/filename.h:406: Warning: argument 'prefix' of command @param is not found in the argument list of wxFileName::SplitPath(const wxString &fullpath, wxString *volume, wxString *path, wxString *name, wxString *ext, wxPathFormat format)
+wx/html/htmltag.h:76: Error: Unexpected character `"'
+wx/odcombo.h:72: Warning: argument 'n' of command @param is not found in the argument list of wxOwnerDrawnComboBox::Create(wxWindow *parent, wxWindowID id, const wxString &value, const wxPoint &pos, const wxSize &size, const wxArrayString &choices, long style=0, const wxValidator &validator=wxDefaultValidator, const wxString &name=wxComboBoxNameStr)
+wx/propgrid/propgridiface.h:197: Warning: The following parameters of wxPropertyGridInterface::GetIterator(int flags, int startPos) const are not documented:
+wx/propgrid/propgridiface.h:197: Warning: argument 'firstProp' of command @param is not found in the argument list of wxPropertyGridInterface::GetIterator(int flags, int startPos) const
+wx/stattext.h:92: Error: Unexpected character `"'
+wx/stattext.h:92: Error: Unexpected character `"'
+wx/tokenzr.h:29: Error: Unexpected character `"'
+wx/toolbar.h:235: Warning: The following parameters of wxToolBar::InsertTool(size_t pos, wxToolBarToolBase *tool) are not documented:

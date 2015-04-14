@@ -1,0 +1,439 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Installing lcc</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509456940"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc426387000">Installing
+lcc-win32</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span>&nbsp;<o:p>
+</o:p>
+</h2>
+<p class="MsoNormal">If you have the auto-installable version, you can happily
+skip this section. There are no special instructions and everything is
+automatic. The system installs in the ‘Programs’ menu item of the ‘Start
+menu’ of windows.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">Depending how did you obtain the software, you can start
+either with a zip file, or with a CDROM. In both cases, you should execute in
+this order:<o:p>
+</o:p>
+</p>
+<p class="MsoNormal"><b style="mso-bidi-font-weight:normal">lccwin32.exe.</b>
+This installs the compiler and the basic system.</p>
+<p class="MsoNormal"><b style="mso-bidi-font-weight:normal">lcc2.exe.</b><span style="mso-spacerun: yes">&nbsp;
+</span>This installs the examples and the source code.</p>
+<p class="MsoNormal"><b style="mso-bidi-font-weight:normal">lcc3.exe.<span style="mso-spacerun: yes">&nbsp;
+</span></b>This installs the sources for the debugger/linker/IDE, etc.</p>
+<p class="MsoNormal"><b style="mso-bidi-font-weight:normal">lccdoc.exe.</b> This
+installs the documentation.</p>
+<p class="MsoNormal"><b style="mso-bidi-font-weight:normal">fortran.exe.</b>
+This installs the Fortran compiler.</p>
+<p class="MsoNormal"><b style="mso-bidi-font-weight:normal">w32hlp.exe.</b> This
+installs the windows on-line docs.</p>
+<p class="MsoNormal"><b>lccdb.exe</b>. This installs the database module.&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal" style="margin-left:1.0cm">You should establish a directory
+tree like this:</p>
+<table border="1" cellspacing="0" cellpadding="0" style="margin-left:5.4pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+  <tr>
+    <td width="47" valign="top" style="width:35.45pt;border:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">lcc</p>
+    </td>
+    <td width="103" valign="top" style="width:77.05pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="72" valign="top" style="width:54.0pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="360" valign="top" style="width:270.0pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Root directory</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="47" valign="top" style="width:35.45pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="103" valign="top" style="width:77.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">bin</p>
+    </td>
+    <td width="72" valign="top" style="width:54.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="360" valign="top" style="width:270.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Binaries</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="47" valign="top" style="width:35.45pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="103" valign="top" style="width:77.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">include</p>
+    </td>
+    <td width="72" valign="top" style="width:54.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="360" valign="top" style="width:270.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Include headers.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="47" valign="top" style="width:35.45pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="103" valign="top" style="width:77.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="72" valign="top" style="width:54.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">gl</p>
+    </td>
+    <td width="360" valign="top" style="width:270.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Open gl headers</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="47" valign="top" style="width:35.45pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="103" valign="top" style="width:77.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="72" valign="top" style="width:54.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">sys</p>
+    </td>
+    <td width="360" valign="top" style="width:270.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">System specific headers</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="47" valign="top" style="width:35.45pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="103" valign="top" style="width:77.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">lib</p>
+    </td>
+    <td width="72" valign="top" style="width:54.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="360" valign="top" style="width:270.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Libraries</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="47" valign="top" style="width:35.45pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="103" valign="top" style="width:77.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="72" valign="top" style="width:54.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">wizard</p>
+    </td>
+    <td width="360" valign="top" style="width:270.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Wizard templates</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="47" valign="top" style="width:35.45pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="103" valign="top" style="width:77.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">buildlib</p>
+    </td>
+    <td width="72" valign="top" style="width:54.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="360" valign="top" style="width:270.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">EXP files for the buildlib utility</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="47" valign="top" style="width:35.45pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="103" valign="top" style="width:77.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">src</p>
+    </td>
+    <td width="72" valign="top" style="width:54.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="360" valign="top" style="width:270.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Sources root dir</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="47" valign="top" style="width:35.45pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="103" valign="top" style="width:77.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="72" valign="top" style="width:54.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">lccsrc</p>
+    </td>
+    <td width="360" valign="top" style="width:270.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Compiler sources. Optional.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="47" valign="top" style="width:35.45pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="103" valign="top" style="width:77.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="72" valign="top" style="width:54.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">pedump</p>
+    </td>
+    <td width="360" valign="top" style="width:270.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Sources of the pedump utility</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="47" valign="top" style="width:35.45pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="103" valign="top" style="width:77.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">examples</p>
+    </td>
+    <td width="72" valign="top" style="width:54.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+    <td width="360" valign="top" style="width:270.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormal">Samples</p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal">In the <b style="mso-bidi-font-weight:normal">\lcc\bin</b>
+directory you should have the executables for (at least):</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo2"><span style="font-family:Symbol">·</span>Wedit.exe<span style="mso-tab-count:
+2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>The IDE</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo2"><span style="font-family:Symbol">·</span>lcc.exe<span style="mso-tab-count:
+2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>The compiler</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo2"><span style="font-family:Symbol">·</span>lcclnk.exe<span style="mso-tab-count:
+2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>The linker</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo2"><span style="font-family:Symbol">·</span>lcclib.exe<span style="mso-tab-count:
+2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>The librarian</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo2"><span style="font-family:Symbol">·</span>buildlib.exe<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Utility for building import libraries</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo2"><span style="font-family:Symbol">·</span>Weditres.exe<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Resource editor</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo2"><span lang="FR" style="font-family:Symbol;mso-ansi-language:FR">·</span><span lang="FR" style="mso-ansi-language:FR">lrc.exe<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Resource compiler<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo2"><span style="font-family:Symbol">·</span>make.exe<span style="mso-tab-count:
+2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>The program maintenance utility</p>
+<p class="MsoHeader" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo2;
+tab-stops:36.0pt center 8.0cm right 16.0cm"><span style="mso-bidi-font-size:12.0pt;font-family:Symbol;mso-ansi-language:EN-US">·</span><span style="mso-bidi-font-size:12.0pt;font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-US">dolibs.exe<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Automatic construction of the libraries.<o:p>
+</o:p>
+</span></p>
+<p class="MsoHeader" style="tab-stops:36.0pt center 8.0cm right 16.0cm"><span style="font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:
+EN-US">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">In the<b style="mso-bidi-font-weight:normal"> \lcc\include</b>
+directory you should have all the include files distributed with lcc-win32:
+windows.h, stdio.h etc.</p>
+<p class="MsoNormal">In the <b style="mso-bidi-font-weight:normal">\lcc\lib</b>
+directory you should have the libraries, and the startup code. The startup code
+comes in two varieties:</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;mso-list:l1 level1 lfo4">1.lcccrt0.obj,
+for normal programs</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;mso-list:l1 level1 lfo4">2.libcrt0.obj,
+for DLLs</p>
+<p class="MsoNormal">In the lib directory there is a sub-directory ‘wizard’
+that contains the templates that the wizard utility uses for automatically
+generating Windows programs. The templates have an extension of .tpl.</p>
+<p class="MsoNormal">The lcc-win32 system supposes this directory structure. You
+have to establish a directory tree like this. You can add/delete directories,
+but at least those mentioned above should be present. The installation program
+will automatically do this.</p>
+<p class="MsoNormal">Once this step is finished you are done. Lcc-win32 is ready
+to run. Start Wedit, and make a project for the ‘hello’ sample in the
+\lcc\demo\hello directory. If everything is correct, you should be able to
+compile that short program.</p>
+
+</body>
+
+</html>

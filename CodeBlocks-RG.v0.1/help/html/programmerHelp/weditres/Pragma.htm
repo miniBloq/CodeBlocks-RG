@@ -1,0 +1,191 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Pragma Directives of lcc</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509456958"><span style="mso-ansi-language:EN-US">Pragma
+Directives of lcc-win32</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><b style="mso-bidi-font-weight:normal"><span style="mso-ansi-language:EN-US">Packing
+directives</span></b><span style="mso-ansi-language:EN-US">. These directives
+tell the compiler how to pack the structure members.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">This
+directive can have two forms:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><b style="mso-bidi-font-weight:normal"><span lang="FR">#pragma
+pack(n)<o:p>
+</o:p>
+</span></b></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">where
+<b style="mso-bidi-font-weight:normal">n</b> is 1,2,4,8, or 16. This will align
+the members of a structure at 1 (i.e., no packing) at 2, 4, 8, or 16 bytes.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">You
+can also use:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><b style="mso-bidi-font-weight:normal"><span style="mso-ansi-language:EN-US">#pragma
+pack(push,n)<o:p>
+</o:p>
+</span></b></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">This
+will save the current value of the packing constant, and set it to <b style="mso-bidi-font-weight:normal">n</b>,
+which should be an integer as explained above. After some code, this allows you<span style="mso-spacerun: yes">&nbsp;
+</span>to use:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><b style="mso-bidi-font-weight:normal"><span lang="FR">#pragma
+pack(pop)<o:p>
+</o:p>
+</span></b></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">to
+restore the original value again.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Example:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">The
+most common use is at the beginning of an include file to set the value to a
+certain amount, and to restore it at the end of the file.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">#pragma
+pack(push,1)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span lang="FR">.....</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span lang="FR">#pragma
+pack(pop)</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">EOF<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><b style="mso-bidi-font-weight:normal"><span style="mso-ansi-language:EN-US">Include
+directives</span></b><span style="mso-ansi-language:EN-US">. The pragma<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><b style="mso-bidi-font-weight:normal"><span style="mso-ansi-language:EN-US">#pragma
+once<o:p>
+</o:p>
+</span></b></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">will
+ensure that the current file will be read only once by the compiler. Any further
+directives for #including the same file will have no affect.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><b style="mso-bidi-font-weight:normal"><span style="mso-ansi-language:EN-US">Optimization
+directives</span></b><span style="mso-ansi-language:EN-US">. This allows you to
+set the optimization flag on or off at certain functions.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><b style="mso-bidi-font-weight:normal"><span lang="FR">#pragma
+optimize(n)<o:p>
+</o:p>
+</span></b></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">where
+<b style="mso-bidi-font-weight:normal">n</b> will be either zero (no
+optimizations) or one (optimizations).<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><b style="mso-bidi-font-weight:normal"><span style="mso-ansi-language:EN-US">Switch
+generation control. </span></b><span style="mso-ansi-language:EN-US">The pragma<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><b style="mso-bidi-font-weight:normal"><span style="mso-ansi-language:EN-US">#pragma
+density(push,0.0)<o:p>
+</o:p>
+</span></b></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">will
+trigger the compiler to generate a table of all possible switch values between
+the lowest and the highest case statements found, making a tradeoff that
+penalizes space for speed. This can of course overflow if you have:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>switch(i)
+{<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>case
+-10000000:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-US"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>...<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>case
+10000000:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-US"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>...<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">In
+this example, the generated table would have 20 million positions, which may not
+be a good idea.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+tab-stops:432.35pt"><span style="mso-ansi-language:EN-US">On the contrary, in
+other cases where the numbers are densely packed, this can be an ideal
+optimization.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+tab-stops:432.35pt"><b><span style="mso-ansi-language:EN-US">Including libraries
+for the link command<o:p>
+</o:p>
+</span></b></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+tab-stops:432.35pt"><b><span lang="FR">#pragma lib &quot;mylib.lib&quot;<o:p>
+</o:p>
+</span></b></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+tab-stops:432.35pt"><b><span lang="FR">#pragma lib &lt;mylib.lib&gt;<o:p>
+</o:p>
+</span></b></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+tab-stops:432.35pt"><span style="mso-ansi-language:EN-US">This pragmas allow you
+to automatically include a library that is associated with a header file. Paths
+enclosed in double quotes will be understood as absolute paths, paths enclosed
+in &lt;&gt; will be searched in the standard library paths (normally \lcc\lib).<o:p>
+</o:p>
+</span></p>
+
+</body>
+
+</html>

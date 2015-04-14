@@ -1,0 +1,1242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>Standard C Math</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">Standard C Math</a>
+  </div>
+
+  <div class="name-format">
+    abs
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdlib&gt;
+  int abs( int num );
+</pre>
+
+  <p>The abs() function returns the absolute value of <em>num</em>. For
+  example:</p>
+<pre class="prettyprint">
+   int magic_number = 10;
+   cout &lt;&lt; &quot;Enter a guess: &quot;;
+   cin &gt;&gt; x;
+   cout &lt;&lt; &quot;Your guess was &quot; &lt;&lt; abs( magic_number - x ) &lt;&lt; &quot; away from the magic number.&quot; &lt;&lt; endl;          
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fabs.html">fabs</a><br>
+    <a href="labs.html">labs</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    acos
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double acos( double arg );
+</pre>
+
+  <p>The acos() function returns the arc cosine of <em>arg</em>, which
+  will be in the range [0, pi].  <em>arg</em> should be between -1 and
+  1.  If <em>arg</em> is outside this range, acos() returns NAN and
+  raises a floating-point exception.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="asin.html">asin</a><br>
+    <a href="atan.html">atan</a><br>
+    <a href="atan2.html">atan2</a><br>
+    <a href="cos.html">cos</a><br>
+    <a href="cosh.html">cosh</a><br>
+    <a href="sin.html">sin</a><br>
+    <a href="sinh.html">sinh</a><br>
+    <a href="tan.html">tan</a><br>
+    <a href="tanh.html">tanh</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    asin
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double asin( double arg );
+</pre>
+
+  <p>The asin() function returns the arc sine of <em>arg</em>, which
+  will be in the range [-pi/2, +pi/2].  <em>arg</em> should be between
+  -1 and 1.  If <em>arg</em> is outside this range, asin() returns NAN
+  and raises a floating-point exception.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="acos.html">acos</a><br>
+    <a href="atan.html">atan</a><br>
+    <a href="atan2.html">atan2</a><br>
+    <a href="cos.html">cos</a><br>
+    <a href="cosh.html">cosh</a><br>
+    <a href="sin.html">sin</a><br>
+    <a href="sinh.html">sinh</a><br>
+    <a href="tan.html">tan</a><br>
+    <a href="tanh.html">tanh</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    atan
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double atan( double arg );
+</pre>
+
+  <p>The function atan() returns the arc tangent of <em>arg</em>,
+  which will be in the range [-pi/2, +pi/2].</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="acos.html">acos</a><br>
+    <a href="asin.html">asin</a><br>
+    <a href="atan2.html">atan2</a><br>
+    <a href="cos.html">cos</a><br>
+    <a href="cosh.html">cosh</a><br>
+    <a href="sin.html">sin</a><br>
+    <a href="sinh.html">sinh</a><br>
+    <a href="tan.html">tan</a><br>
+    <a href="tanh.html">tanh</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    atan2
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double atan2( double y, double x );
+</pre>
+
+  <p>The atan2() function computes the arc tangent of
+  <em>y</em>/<em>x</em>, using the signs of the arguments to compute
+  the quadrant of the return value.</p>
+
+  <p>Note the order of the arguments passed to this function.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="acos.html">acos</a><br>
+    <a href="asin.html">asin</a><br>
+    <a href="atan.html">atan</a><br>
+    <a href="cos.html">cos</a><br>
+    <a href="cosh.html">cosh</a><br>
+    <a href="sin.html">sin</a><br>
+    <a href="sinh.html">sinh</a><br>
+    <a href="tan.html">tan</a><br>
+    <a href="tanh.html">tanh</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    ceil
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double ceil( double num );
+</pre>
+
+  <p>The ceil() function returns the smallest integer no less than
+  <em>num</em>. For example,</p>
+<pre class="prettyprint">
+   y = 6.04;
+   x = ceil( y );               
+</pre>
+
+  <p>would set x to 7.0.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="floor.html">floor</a><br>
+    <a href="fmod.html">fmod</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    cos
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double cos( double arg );
+</pre>
+
+  <p>The cos() function returns the cosine of <em>arg</em>, where
+  <em>arg</em> is expressed in radians.  The return value of cos() is
+  in the range [-1,1].  If <em>arg</em> is infinite, cos() will return
+  NAN and raise a floating-point exception.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="acos.html">acos</a><br>
+    <a href="asin.html">asin</a><br>
+    <a href="atan.html">atan</a><br>
+    <a href="atan2.html">atan2</a><br>
+    <a href="cosh.html">cosh</a><br>
+    <a href="sin.html">sin</a><br>
+    <a href="sinh.html">sinh</a><br>
+    <a href="tan.html">tan</a><br>
+    <a href="tanh.html">tanh</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    cosh
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double cosh( double arg );
+</pre>
+
+  <p>The function cosh() returns the hyperbolic cosine of
+  <em>arg</em>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="acos.html">acos</a><br>
+    <a href="asin.html">asin</a><br>
+    <a href="atan.html">atan</a><br>
+    <a href="atan2.html">atan2</a><br>
+    <a href="cos.html">cos</a><br>
+    <a href="sin.html">sin</a><br>
+    <a href="sinh.html">sinh</a><br>
+    <a href="tan.html">tan</a><br>
+    <a href="tanh.html">tanh</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    div
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdlib&gt;
+  <strong>div_t</strong> div( int numerator, int denominator );
+</pre>
+
+  <p>The function div() returns the quotient and remainder of the
+  operation <em>numerator</em> / <em>denominator</em>. The
+  <strong>div_t</strong> structure is defined in cstdlib, and has at
+  least:</p>
+<pre class="prettyprint">
+   int quot;   // The quotient
+   int rem;    // The remainder         
+</pre>
+
+  <p>For example, the following code displays the quotient and
+  remainder of x/y:</p>
+<pre class="prettyprint">
+   <strong>div_t</strong> temp;
+   temp = div( x, y );
+   printf( &quot;%d divided by %d yields %d with a remainder of %d\n&quot;,
+           x, y, temp.quot, temp.rem );         
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="ldiv.html">ldiv</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    exp
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double exp( double arg );
+</pre>
+
+  <p>The exp() function returns e (2.7182818) raised to the
+  <em>arg</em>th power.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="log.html">log</a><br>
+    <a href="pow.html">pow</a><br>
+    <a href="sqrt.html">sqrt</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    fabs
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double fabs( double arg );
+</pre>
+
+  <p>The function fabs() returns the absolute value of
+  <em>arg</em>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="abs.html">abs</a><br>
+    <a href="fmod.html">fmod</a><br>
+    <a href="labs.html">labs</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    floor
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double floor( double arg );
+</pre>
+
+  <p>The function floor() returns the largest integer not greater than
+  <em>arg</em>. For example,</p>
+<pre class="prettyprint">
+   y = 6.04;
+   x = floor( y );              
+</pre>
+
+  <p>would result in x being set to 6.0.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="ceil.html">ceil</a><br>
+    <a href="fmod.html">fmod</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    fmod
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double fmod( double x, double y );
+</pre>
+
+  <p>The fmod() function returns the remainder of
+  <em>x</em>/<em>y</em>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="ceil.html">ceil</a><br>
+    <a href="fabs.html">fabs</a><br>
+    <a href="floor.html">floor</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    frexp
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double frexp( double num, int* exp );
+</pre>
+
+  <p>The function frexp() is used to decompose <em>num</em> into two
+  parts: a mantissa between 0.5 and 1 (returned by the function) and an
+  exponent returned as <em>exp</em>. Scientific notation works like
+  this:</p>
+<pre class="prettyprint">
+   num = mantissa * (2 ^ exp)           
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="ldexp.html">ldexp</a><br>
+    <a href="modf.html">modf</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    labs
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdlib&gt;
+  long labs( long num );
+</pre>
+
+  <p>The function labs() returns the absolute value of
+  <em>num</em>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="abs.html">abs</a><br>
+    <a href="fabs.html">fabs</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    ldexp
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double ldexp( double num, int exp );
+</pre>
+
+  <p>The ldexp() function returns <em>num</em> * (2 ^ <em>exp</em>).
+  And get this: if an overflow occurs, <strong>HUGE_VAL</strong> is
+  returned.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="frexp.html">frexp</a><br>
+    <a href="modf.html">modf</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    ldiv
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdlib&gt;
+  <strong>l</strong>div_t ldiv( long numerator, long denominator );
+</pre>
+
+  <p>Testing: <strong>a</strong>div_t, <strong>div_t</strong>,
+  <strong>l</strong>div_t.</p>
+
+  <p>The ldiv() function returns the quotient and remainder of the
+  operation <em>numerator</em> / <em>denominator</em>. The
+  <strong>l</strong>div_t structure is defined in cstdlib and has at
+  least:</p>
+<pre class="prettyprint">
+   long quot;  // the quotient
+   long rem;   // the remainder         
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="div.html">div</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    log
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double log( double num );
+</pre>
+
+  <p>The function log() returns the natural (base e) logarithm of
+  <em>num</em>.  There&#39;s a domain error if <em>num</em> is
+  negative, a range error if <em>num</em> is zero.</p>
+
+  <p>In order to calculate the logarithm of <em>x</em> to an arbitrary
+  base <em>b</em>, you can use:</p>
+<pre class="prettyprint">
+  double answer = log(x) / log(b);
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="exp.html">exp</a><br>
+    <a href="log10.html">log10</a><br>
+    <a href="pow.html">pow</a><br>
+    <a href="sqrt.html">sqrt</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    log10
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double log10( double num );
+</pre>
+
+  <p>The log10() function returns the base 10 (or common) logarithm for
+  <em>num</em>. There&#39;s a domain error if <em>num</em> is negative,
+  a range error if <em>num</em> is zero.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="log.html">log</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    modf
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double modf( double num, double *i );
+</pre>
+
+  <p>The function modf() splits <em>num</em> into its integer and
+  fraction parts. It returns the fractional part and loads the integer
+  part into <em>i</em>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="frexp.html">frexp</a><br>
+    <a href="ldexp.html">ldexp</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    pow
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double pow( double base, double exp );
+</pre>
+
+  <p>The pow() function returns <em>base</em> raised to the
+  <em>exp</em>th power. There&#39;s a domain error if <em>base</em> is
+  zero and <em>exp</em> is less than or equal to zero. There&#39;s also
+  a domain error if <em>base</em> is negative and <em>exp</em> is not
+  an integer. There&#39;s a range error if an overflow occurs.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="exp.html">exp</a><br>
+    <a href="log.html">log</a><br>
+    <a href="sqrt.html">sqrt</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    sin
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double sin( double arg );
+</pre>
+
+  <p>The function sin() returns the sine of <em>arg</em>, where
+  <em>arg</em> is given in radians.  The return value of sin() will be
+  in the range [-1,1].  If <em>arg</em> is infinite, sin() will return
+  NAN and raise a floating-point exception.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="acos.html">acos</a><br>
+    <a href="asin.html">asin</a><br>
+    <a href="atan.html">atan</a><br>
+    <a href="atan2.html">atan2</a><br>
+    <a href="cos.html">cos</a><br>
+    <a href="cosh.html">cosh</a><br>
+    <a href="sinh.html">sinh</a><br>
+    <a href="tan.html">tan</a><br>
+    <a href="tanh.html">tanh</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    sinh
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double sinh( double arg );
+</pre>
+
+  <p>The function sinh() returns the hyperbolic sine of
+  <em>arg</em>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="acos.html">acos</a><br>
+    <a href="asin.html">asin</a><br>
+    <a href="atan.html">atan</a><br>
+    <a href="atan2.html">atan2</a><br>
+    <a href="cos.html">cos</a><br>
+    <a href="cosh.html">cosh</a><br>
+    <a href="sin.html">sin</a><br>
+    <a href="tan.html">tan</a><br>
+    <a href="tanh.html">tanh</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    sqrt
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double sqrt( double num );
+</pre>
+
+  <p>The sqrt() function returns the square root of <em>num</em>. If
+  <em>num</em> is negative, a domain error occurs.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="exp.html">exp</a><br>
+    <a href="log.html">log</a><br>
+    <a href="pow.html">pow</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    tan
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double tan( double arg );
+</pre>
+
+  <p>The tan() function returns the tangent of <em>arg</em>, where
+  <em>arg</em> is given in radians.  If <em>arg</em> is infinite,
+  tan() will return NAN and raise a floating-point exception.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="acos.html">acos</a><br>
+    <a href="asin.html">asin</a><br>
+    <a href="atan.html">atan</a><br>
+    <a href="atan2.html">atan2</a><br>
+    <a href="cos.html">cos</a><br>
+    <a href="cosh.html">cosh</a><br>
+    <a href="sin.html">sin</a><br>
+    <a href="sinh.html">sinh</a><br>
+    <a href="tanh.html">tanh</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    tanh
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cmath&gt;
+  double tanh( double arg );
+</pre>
+
+  <p>The function tanh() returns the hyperbolic tangent of
+  <em>arg</em>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="acos.html">acos</a><br>
+    <a href="asin.html">asin</a><br>
+    <a href="atan.html">atan</a><br>
+    <a href="atan2.html">atan2</a><br>
+    <a href="cos.html">cos</a><br>
+    <a href="cosh.html">cosh</a><br>
+    <a href="sin.html">sin</a><br>
+    <a href="sinh.html">sinh</a><br>
+    <a href="tan.html">tan</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

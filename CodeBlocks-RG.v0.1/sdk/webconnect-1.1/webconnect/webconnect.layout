@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Win32 Release Unicode" />
+	<File name="dom.h" open="0" top="0" tabpos="5">
+		<Cursor position="24458" topLine="923" />
+	</File>
+	<File name="nsall.h" open="0" top="0" tabpos="0">
+		<Cursor position="715" topLine="30" />
+	</File>
+	<File name="nsbase.h" open="0" top="0" tabpos="0">
+		<Cursor position="8174" topLine="237" />
+	</File>
+	<File name="nsimpl.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="557" topLine="9" />
+	</File>
+	<File name="webcontrol.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="599" topLine="10" />
+	</File>
+	<File name="webcontrol.h" open="0" top="0" tabpos="1">
+		<Cursor position="14664" topLine="0" />
+	</File>
+</CodeBlocks_layout_file>

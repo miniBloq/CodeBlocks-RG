@@ -1,0 +1,2 @@
+<area shape="rect" href="$classwx_file_drop_target.html" title="This is a drop target which accepts files (dragged from File Manager or Explorer)..." alt="" coords="5,89,133,121">
+<area shape="rect" href="$classwx_text_drop_target.html" title="A predefined drop target for dealing with text data." alt="" coords="157,89,291,121">

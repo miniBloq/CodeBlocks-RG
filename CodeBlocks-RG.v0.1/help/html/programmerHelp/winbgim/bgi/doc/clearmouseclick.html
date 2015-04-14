@@ -1,0 +1,114 @@
+<TITLE>BGI Documentation for 
+clearmouseclick
+</TITLE>
+<H2>
+clearmouseclick
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include "graphics.h"
+void clearmouseclick(int kind);
+</PRE>
+
+
+
+<DT><B>Description</B><IMG SRC="win.gif" ALT="[WIN]"><DD>
+The 
+clearmouseclick
+function is available in the
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation of BGI
+graphics.
+   This is just like <CODE><A HREF="getmouseclick.html">getmouseclick</A></CODE>, except it does not
+   provide the x and y coordinates of the event.
+   The value of the argument kind may be any of the constants
+   listed above. After calling <CODE>getmouseclick</CODE>,
+   for a particular kind of event, the <CODE><A HREF="ismouseclick.html">ismouseclick</A></CODE>
+   will return false for that kind of event until another such event occurs.
+   <P>
+   The <CODE>kind</CODE> argument to <CODE>clearmouseclick</CODE> is
+   one of these constants from the <CODE>graphics.h</CODE> file:
+   <DL>
+   <DT><CODE>WM_MOUSEMOVE</CODE>
+   <DD>if you want to detect a mouse movement
+   <DT><CODE>WM_LBUTTONDBLCLK</CODE>
+   <DD>...detect when the left mouse button is double clicked
+   <DT><CODE>WM_LBUTTONDOWN</CODE>
+   <DD>...detect when the left mouse button is clicked down
+   <DT><CODE>WM_LBUTTONUP</CODE>
+   <DD>...detect when the left mouse button is released up
+   <DT><CODE>WM_MBUTTONDBLCLK</CODE>
+   <DD>...detect when the middle mouse button is double clicked
+   <DT><CODE>WM_MBUTTONDOWN</CODE>
+   <DD>...detect when the middle mouse button is clicked down
+   <DT><CODE>WM_MBUTTONUP</CODE>
+   <DD>...detect when the middle mouse button is released up
+   <DT><CODE>WM_RBUTTONDBLCLK</CODE>
+   <DD>...detect when the right mouse button is double clicked
+   <DT><CODE>WM_RBUTTONDOWN</CODE>
+   <DD>...detect when the right mouse button is clicked down
+   <DT><CODE>WM_RBUTTONUP</CODE>
+   <DD>...detect when the right mouse button is released up
+   </DL>
+   <P>
+   The middle mouse button handlers aren't working on my machine.
+   I haven't yet tracked down the reason--it could be a broken mouse
+   or it could be a bug in my programming.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="ismouseclick.html"> ismouseclick </A>
+<DD><A HREF="getmouseclick.html"> getmouseclick </A>
+
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* mouse example */ 
+#include "graphics.h"
+
+void main(void)
+{
+    const int LIMIT = 10; // Number of clicks to stop program.
+    int maxx, maxy;  // Maximum x and y pixel coordinates
+    int count = 0;   // Number of mouse clicks
+    int divisor;     // Divisor for the length of a triangle side
+
+    // Put the machine into graphics mode and get the maximum coordinates:
+    initwindow(450, 300);         
+    maxx = getmaxx( );
+    maxy = getmaxy( );
+
+    // Draw a white circle with red inside and a radius of 50 pixels:
+    setfillstyle(SOLID_FILL, RED);
+    setcolor(WHITE);
+    fillellipse(maxx/2, maxy/2, 50, 50);
+    
+    // Print a message and wait for a red pixel to be double clicked:
+    settextstyle(DEFAULT_FONT, HORIZ_DIR, 2);
+    outtextxy(20, 20, "Left click " << LIMIT << " times to end.");
+    setcolor(BLUE);
+    divisor = 2;
+    while (count < LIMIT)
+    {
+        triangle(maxx/divisor, maxy/divisor);
+        delay(500);
+        divisor++;
+        if (ismouseclick(WM_LBUTTONDOWN))
+	{
+	    clearmouseclick(WM_LBUTTONDOWN));
+            count++;
+        }
+    }
+
+    // Switch back to text mode:
+    closegraph( );
+}
+</PRE>
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

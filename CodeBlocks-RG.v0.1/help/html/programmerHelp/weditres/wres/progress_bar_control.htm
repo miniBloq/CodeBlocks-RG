@@ -1,0 +1,268 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Progress Bar Control</title>
+</head>
+
+<body>
+
+<div class="clsDocBody">
+  <h1>Progress Bar Control</h1>
+  <hr SIZE="1">
+  <p>A <i>progress bar</i> is a window that an application can use to indicate
+  the progress of a lengthy operation. It consists of a rectangle that is
+  gradually filled with the system highlight color as an operation progresses.
+  The following illustration shows a progress bar positioned along the bottom of
+  a window.</p>
+  <p><img border="0" src="progre8.jpg"></p>
+  <ul>
+    <li><a href="#Using_Progress_Bars" target="_self">Using Progress Bars</a>
+    <li><a href="#Progress_Bar_Control" target="_self">Progress Bar Control
+      Updates in Internet Explorer</a></li>
+  </ul>
+  <h2><a name="Using_Progress_Bars"></a>Using Progress Bars</h2>
+  <p>You create a progress bar by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+  CreateWindowEx</MSHelp:link>
+  function, specifying the PROGRESS_CLASS window class. This window class is
+  registered when the common control dynamic-link library (DLL) is loaded. To
+  ensure that this DLL is loaded, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_InitCommonControls_cpp">
+  InitCommonControls</MSHelp:link>
+  function first.</p>
+  <h3><a name="Range_and_Current_Pos"></a>Range and Current Position</h3>
+  <p>A progress bar's <i>range</i> represents the entire duration of the
+  operation, and the <i>current position</i> represents the progress that the
+  application has made toward completing the operation. The window procedure
+  uses the range and the current position to determine the percentage of the
+  progress bar to fill with the highlight color. Because the range and current
+  position values are expressed as unsigned integers, the highest possible range
+  or current position value is 65,535.</p>
+  <p>The minimum value in the range can be from 0 to 65,535. Likewise, the
+  maximum value can be from 0 to 65,535. If you do not set the range values, the
+  system sets the minimum value to 0 and the maximum value to 100. You can
+  adjust the range to convenient integers by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PBM_SETRANGE_cpp">
+  PBM_SETRANGE</MSHelp:link>
+  message.</p>
+  <p>A progress bar provides several messages that you can use to set the
+  current position. The <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PBM_SETPOS_cpp">
+  PBM_SETPOS</MSHelp:link>
+  message sets the position to a given value. The <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PBM_DELTAPOS_cpp">
+  PBM_DELTAPOS</MSHelp:link>
+  message advances the position by adding a specified value to the current
+  position.</p>
+  <p>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PBM_SETSTEP_cpp">
+  PBM_SETSTEP</MSHelp:link>
+  message allows you to specify a step increment for a progress bar.
+  Subsequently, whenever you send the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PBM_STEPIT_cpp">
+  PBM_STEPIT</MSHelp:link>
+  message to the progress bar, the current position advances by the specified
+  increment. By default, the step increment is set to 10.</p>
+  <div class="clsNote">
+    <b>Note</b>&nbsp;&nbsp; You use the Theme API to apply visual styles to
+    applications. If you are using a progress bar control with the Theme API on
+    Microsoft® Windows® XP the control must be at least 10 pixels high.
+  </div>
+  <h3><a name="Default_Progress_Bar"></a>Default Progress Bar Message Processing</h3>
+  <p>This section describes the messages handled by the window procedure for the
+  PROGRESS_CLASS class.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>Message</th>
+        <th>Processing performed</th>
+      </tr>
+      <tr>
+        <td>WM_CREATE</td>
+        <td>Allocates and initializes an initial structure.</td>
+      </tr>
+      <tr>
+        <td>WM_DESTROY</td>
+        <td>Frees all resources associated with the progress bar.</td>
+      </tr>
+      <tr>
+        <td>WM_ERASEBKGND</td>
+        <td>Draws the background and borders of the progress bar.</td>
+      </tr>
+      <tr>
+        <td>WM_GETFONT</td>
+        <td>Returns the handle to the current font. The progress bar does not
+          currently draw text, so sending this message has no effect on the
+          control.</td>
+      </tr>
+      <tr>
+        <td>WM_PAINT</td>
+        <td>Draws the progress bar. If the <i>wParam</i> parameter is non-NULL,
+          the control assumes that the value is an HDC and paints using that
+          device context.</td>
+      </tr>
+      <tr>
+        <td>WM_SETFONT</td>
+        <td>Saves the handle to the new font and returns the handle to the
+          previous font. The progress bar does not currently draw text, so
+          sending this message has no effect on the control.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h4><a name="Progress_Bar_Example"></a>Progress Bar Example</h4>
+  <p>The following example shows how to use a progress bar to indicate the
+  progress of a lengthy file-parsing operation. The example creates a progress
+  bar and positions it along the bottom of the parent window's client area. The
+  height of the progress bar is based on the height of the arrow bitmap used in
+  a scroll bar. The range is based on the size of the file divided by 2048,
+  which is the size of each &quot;chunk&quot; of data read from the file. The
+  example also sets an increment and advances the current position of the
+  progress bar by the increment after parsing each chunk.</p>
+  <p style="FONT-WEIGHT: bold; CURSOR: hand; TEXT-DECORATION: underline" ShowHideType="Example">Example</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green"> ParseALargeFile - parses a large file and uses a</font>
+<font color="blue">//</font><font color="green"> progress bar to indicate the progress of the</font>
+<font color="blue">//</font><font color="green"> parsing operation. </font>
+<font color="blue">//</font><font color="green"> Returns TRUE if successful, or FALSE otherwise. </font>
+<font color="blue">//</font><font color="green"> hwndParent - parent window of the progress bar. </font>
+<font color="blue">//</font><font color="green"> lpszFileName - name of the file to parse. </font>
+<font color="blue">//</font><font color="green"> </font>
+<font color="blue">//</font><font color="green"> Global variable </font>
+<font color="blue">//</font><font color="green">     g_hinst - instance handle </font>
+
+extern HINSTANCE g_hinst; 
+
+BOOL ParseALargeFile(HWND hwndParent, LPSTR lpszFileName) 
+{ 
+    RECT rcClient;  <font color="blue">//</font><font color="green"> Client area of parent window </font>
+    int cyVScroll;  <font color="blue">//</font><font color="green"> Height of scroll bar arrow </font>
+    HWND hwndPB;    <font color="blue">//</font><font color="green"> Handle of progress bar </font>
+    HANDLE hFile;   <font color="blue">//</font><font color="green"> Handle of file </font>
+    DWORD cb;       <font color="blue">//</font><font color="green"> Size of file and count of</font>
+                    <font color="blue">//</font><font color="green"> bytes read </font>
+    LPCH pch;       <font color="blue">//</font><font color="green"> Address of data read from</font>
+                    <font color="blue">//</font><font color="green"> file </font>
+    LPCH pchTmp;    <font color="blue">//</font><font color="green"> Temporary pointer </font>
+
+ 
+
+    <font color="blue">//</font><font color="green"> Ensure that the common control DLL is loaded</font>
+    <font color="blue">//</font><font color="green"> and create a progress bar along the bottom of</font>
+    <font color="blue">//</font><font color="green"> the client area of the parent window. </font>
+    <font color="blue">//</font><font color="green"> Base the height of the progress bar on the</font>
+    <font color="blue">//</font><font color="green"> height of a scroll bar arrow. </font>
+    InitCommonControls(); 
+    GetClientRect(hwndParent, &amp;rcClient); 
+    cyVScroll = GetSystemMetrics(SM_CYVSCROLL); 
+    hwndPB = CreateWindowEx(0, PROGRESS_CLASS,
+	         (LPSTR) NULL, WS_CHILD | WS_VISIBLE,
+             rcClient.left, rcClient.bottom
+             cyVScroll, rcClient.right, cyVScroll, 
+             hwndParent, (HMENU) 0, g_hinst, NULL); 
+
+   <font color="blue">//</font><font color="green"> Open the file for reading, and retrieve the</font>
+   <font color="blue">//</font><font color="green"> size of the file. </font>
+
+    hFile = CreateFile(lpszFileName, GENERIC_READ,
+            FILE_SHARE_READ, (LPSECURITY_ATTRIBUTES)
+            NULL, OPEN_EXISTING,
+            FILE_ATTRIBUTE_NORMAL, (HANDLE) NULL); 
+
+    if (hFile == (HANDLE) INVALID_HANDLE_VALUE) 
+        return FALSE; 
+
+    cb = GetFileSize(hFile, (LPDWORD) NULL); 
+
+    <font color="blue">//</font><font color="green"> Set the range and increment of the progress</font>
+    <font color="blue">//</font><font color="green"> bar. </font>
+
+    SendMessage(hwndPB, PBM_SETRANGE, 0,
+                MAKELPARAM(0, cb / 2048)); 
+    SendMessage(hwndPB, PBM_SETSTEP, (WPARAM) 1, 0); 
+
+    <font color="blue">//</font><font color="green"> Parse the file. </font>
+    pch = (LPCH) LocalAlloc(LPTR, sizeof(char) *
+	       2048); 
+    pchTmp = pch; 
+    do { 
+        ReadFile(hFile, pchTmp, sizeof(char) * 2048,
+		         &amp;cb, 
+            (LPOVERLAPPED) NULL);
+		<font color="blue">//</font><font color="green"> TODO: Write an error handler to check that all the</font>
+        <font color="blue">//</font><font color="green"> requested data was read. </font>
+        . 
+        . 
+        <font color="blue">//</font><font color="green"> Include here any code that parses the</font>
+        <font color="blue">//</font><font color="green"> file. </font>
+        . 
+       <font color="blue">//</font><font color="green"> Advance the current position of the</font>
+       <font color="blue">//</font><font color="green"> progress bar by the increment. </font>
+       SendMessage(hwndPB, PBM_STEPIT, 0, 0); 
+      } while (cb); 
+
+   CloseHandle((HANDLE) hFile); 
+   DestroyWindow(hwndPB);
+    
+    return TRUE; 
+} 
+ </pre>
+  <h3><a name="Progress_Bar_Control"></a>Progress Bar Control Updates in
+  Internet Explorer</h3>
+  <p>Progress bar controls in Microsoft Internet Explorer support the following
+  new features.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>New Progress Bar Control Styles</th>
+        <td>Progress bar controls can now display progress information
+          vertically, using the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="PBS_VERTICAL">
+          PBS_VERTICAL</MSHelp:link>
+          style. Also, a smooth progress mode is supported using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="PBS_SMOOTH">
+          PBS_SMOOTH</MSHelp:link>
+          style. Using the PBS_SMOOTH style causes the control to display a
+          contiguous progress bar instead of a segmented bar.</td>
+      </tr>
+      <tr>
+        <th>Extended Range Values</th>
+        <td>Progress bar controls now support 32-bit range values. To set range
+          values in excess of 65,535, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PBM_SETRANGE32_cpp">
+          PBM_SETRANGE32</MSHelp:link>
+          message. To retrieve 32-bit range values, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PBM_GETRANGE_cpp">
+          PBM_GETRANGE</MSHelp:link>
+          message. The progress bar high limit, low limit, and position
+          parameters are signed integers. To make full use of the 32-bit range,
+          set the range to -0x7FFFFFFF to 0x7FFFFFFF and treat the position as a
+          signed integer.</td>
+      </tr>
+      <tr>
+        <th>Programmable Colors</th>
+        <td>An application can now control the colors used in a progress bar
+          control with the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PBM_SETBARCOLOR_cpp">
+          PBM_SETBARCOLOR</MSHelp:link>
+          and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PBM_SETBKCOLOR_cpp">
+          PBM_SETBKCOLOR</MSHelp:link>
+          messages.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+
+</html>

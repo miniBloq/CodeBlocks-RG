@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="zip" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Win32 DLL Release">
+				<Option output="vc_mswudll\zip" prefix_auto="1" extension_auto="1" />
+				<Option object_output="vc_mswudll\zip" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-DWIN32" />
+					<Add option="-D__WXMSW__" />
+					<Add option="-D_UNICODE" />
+					<Add option="-DWXUSINGDLL" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-DNOPCH" />
+					<Add directory=".\..\..\..\lib\vc_dll\mswu" />
+					<Add directory=".\..\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\..\samples" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory=".\..\..\..\lib\vc_dll\mswu" />
+					<Add directory=".\..\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\..\samples" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="wxmsw29u_html" />
+					<Add library="wxmsw29u_core" />
+					<Add library="wxbase29u" />
+					<Add library="wxtiff" />
+					<Add library="wxjpeg" />
+					<Add library="wxpng" />
+					<Add library="wxzlib" />
+					<Add library="wxregexu" />
+					<Add library="wxexpat" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="comdlg32" />
+					<Add library="winspool" />
+					<Add library="winmm" />
+					<Add library="shell32" />
+					<Add library="comctl32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="rpcrt4" />
+					<Add library="advapi32" />
+					<Add library="wsock32" />
+					<Add library="wininet" />
+					<Add directory=".\..\..\..\lib\vc_dll" />
+				</Linker>
+			</Target>
+			<Target title="Win32 DLL Debug">
+				<Option output="vc_mswuddll\zip" prefix_auto="1" extension_auto="1" />
+				<Option object_output="vc_mswuddll\zip" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-Wall" />
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D__WXMSW__" />
+					<Add option="-D__WXDEBUG__" />
+					<Add option="-D_UNICODE" />
+					<Add option="-DWXUSINGDLL" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-DNOPCH" />
+					<Add directory=".\..\..\..\lib\vc_dll\mswud" />
+					<Add directory=".\..\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\..\samples" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory=".\..\..\..\lib\vc_dll\mswud" />
+					<Add directory=".\..\..\..\include" />
+					<Add directory="." />
+					<Add directory=".\..\..\..\samples" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="wxmsw29ud_html" />
+					<Add library="wxmsw29ud_core" />
+					<Add library="wxbase29ud" />
+					<Add library="wxtiffd" />
+					<Add library="wxjpegd" />
+					<Add library="wxpngd" />
+					<Add library="wxzlibd" />
+					<Add library="wxregexud" />
+					<Add library="wxexpatd" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="comdlg32" />
+					<Add library="winspool" />
+					<Add library="winmm" />
+					<Add library="shell32" />
+					<Add library="comctl32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="rpcrt4" />
+					<Add library="advapi32" />
+					<Add library="wsock32" />
+					<Add library="wininet" />
+					<Add directory=".\..\..\..\lib\vc_dll" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="zip.cpp" />
+		<Unit filename="zip.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

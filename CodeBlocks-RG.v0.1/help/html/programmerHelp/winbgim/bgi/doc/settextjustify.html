@@ -1,0 +1,127 @@
+<TITLE>BGI Documentation for 
+settextjustify
+</TITLE>
+<H2>
+settextjustify
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void settextjustify(int horiz, int vert);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+Text output after a call to settextjustify is justified around the
+current position (CP) horizontally and vertically, as specified. The
+default justification settings are LEFT_TEXT (for horizontal) and
+TOP_TEXT (for vertical). The enumeration text_just in graphics.h
+provides names for the horiz and vert settings passed to
+settextjustify.
+<TABLE>
+<TR><TD><B>Description&nbsp;&nbsp;&nbsp;</B><TD><B>Name</B><TD><B>Value&nbsp;&nbsp;&nbsp;</B><TD><B>Action</B>
+<TR><TD>horiz&nbsp;&nbsp;&nbsp;<TD>LEFT_TEXT<TD>0<TD>left-justify text
+<TR><TD><TD>CENTER_TEXT<TD>1<TD>center text
+<TR><TD><TD>RIGHT_TEXT<TD>2<TD>right-justify text
+<TR><TD>vertical&nbsp;&nbsp;&nbsp;<TD>BOTTOM_TEXT<TD>0<TD>bottom-justify text
+<TR><TD><TD>CENTER_TEXT<TD>1<TD>center text
+<TR><TD><TD>TOP_TEXT<TD>2<TD>top-justify text
+</TABLE>
+If horiz is equal to LEFT_TEXT and direction equals HORIZ_DIR, the CP's x component is advanced after a call to outtext(string) by textwidth(string).
+<P>
+settextjustify affects text written with outtext and cannot be used with text mode and stream functions.
+
+<P><DT><B>Return Value</B><DD>
+If invalid input is passed to settextjustify, graphresult returns -11, and the current text justification remains unchanged.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="gettextsettings.html"> gettextsettings </A>
+<DD><A HREF="graphresults.html"> graphresults </A>
+<DD><A HREF="outtext.html"> outtext </A>
+<DD><A HREF="settextstyle.html"> settextstyle </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* settextjustify example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+/* function prototype */
+void xat(int x, int y);
+
+/* horizontal text justification settings */
+char *hjust[] = { "LEFT_TEXT", "CENTER_TEXT", "RIGHT_TEXT" };
+
+/* vertical text justification settings */
+char *vjust[] = { "BOTTOM_TEXT", "CENTER_TEXT", "TOP_TEXT" };
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int midx, midy, hj, vj;
+
+   char msg[80];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+
+
+   /* loop through text justifications */
+   for (hj=LEFT_TEXT; hj&lt;=RIGHT_TEXT; hj++)
+      for (vj=LEFT_TEXT; vj&lt;=RIGHT_TEXT; vj++) {
+         cleardevice();
+
+         /* set the text justification */
+         settextjustify(hj, vj);
+
+         /* create a message string */
+         sprintf(msg, "%s  %s", hjust[hj], vjust[vj]);
+
+         /* create crosshairs on the screen */
+         xat(midx, midy);
+
+         /* output the message */
+         outtextxy(midx, midy, msg);
+
+         getch();
+      }
+
+   /* clean up */
+   closegraph();
+   return 0;
+}
+
+void xat(int x, int y)       /* draw an x at (x,y) */
+{
+  line(x-4, y, x+4, y);
+  line(x, y-4, x, y+4);
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

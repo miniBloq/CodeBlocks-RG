@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Makefile%20Contents">Makefile Contents</a>,
+Next:<a rel="next" accesskey="n" href="Makefile-Names.html#Makefile%20Names">Makefile Names</a>,
+Previous:<a rel="previous" accesskey="p" href="Makefiles.html#Makefiles">Makefiles</a>,
+Up:<a rel="up" accesskey="u" href="Makefiles.html#Makefiles">Makefiles</a>
+<hr><br>
+</div>
+
+<h3 class="section">What Makefiles Contain</h3>
+
+   <p>Makefiles contain five kinds of things: <dfn>explicit rules</dfn>,
+<dfn>implicit rules</dfn>, <dfn>variable definitions</dfn>, <dfn>directives</dfn>,
+and <dfn>comments</dfn>.  Rules, variables, and directives are described at
+length in later chapters.
+
+     <ul>
+<li>An <dfn>explicit rule</dfn> says when and how to remake one or more files,
+called the rule's targets.  It lists the other files that the targets
+depend on, call the <dfn>prerequisites</dfn> of the target, and may also give
+commands to use to create or update the targets.  See <a href="Rules.html#Rules">Writing Rules</a>.
+
+     <li>An <dfn>implicit rule</dfn> says when and how to remake a class of files
+based on their names.  It describes how a target may depend on a file
+with a name similar to the target and gives commands to create or
+update such a target.  See <a href="Implicit-Rules.html#Implicit%20Rules">Using Implicit Rules</a>.
+
+     <li>A <dfn>variable definition</dfn> is a line that specifies a text string
+value for a variable that can be substituted into the text later.  The
+simple makefile example shows a variable definition for <code>objects</code>
+as a list of all object files (see <a href="Variables-Simplify.html#Variables%20Simplify">Variables Make Makefiles Simpler</a>).
+
+     <li>A <dfn>directive</dfn> is a command for <code>make</code> to do something special while
+reading the makefile.  These include:
+
+          <ul>
+<li>Reading another makefile (see <a href="Include.html#Include">Including Other Makefiles</a>).
+
+          <li>Deciding (based on the values of variables) whether to use or
+ignore a part of the makefile (see <a href="Conditionals.html#Conditionals">Conditional Parts of Makefiles</a>).
+
+          <li>Defining a variable from a verbatim string containing multiple lines
+(see <a href="Defining.html#Defining">Defining Variables Verbatim</a>). 
+</ul>
+
+     <li><code>#</code> in a line of a makefile starts a <dfn>comment</dfn>.  It and the
+rest of the line are ignored, except that a trailing backslash not
+escaped by another backslash will continue the comment across multiple
+lines.  A line containing just a comment (with perhaps spaces before
+it) is effectively blank, and is ignored.  If you want a literal
+<code>#</code>, escape it with a backslash (e.g., <code>\#</code>).  Comments may
+appear on any line in the makefile, although they are treated
+specially in certain situations.
+
+     <p>Within a command script (if the line begins with a TAB character) the
+entire line is passed to the shell, just as with any other line that
+begins with a TAB.  The shell decides how to interpret the text:
+whether or not this is a comment is up to the shell.
+
+     <p>Within a <code>define</code> directive, comments are not ignored during the
+definition of the variable, but rather kept intact in the value of the
+variable.  When the variable is expanded they will either be treated
+as <code>make</code> comments or as command script text, depending on the
+context in which the variable is evaluated. 
+</ul>
+
+   </body></html>
+

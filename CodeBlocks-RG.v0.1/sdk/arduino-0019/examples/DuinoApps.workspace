@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="DuinoApps">
+		<Project filename="0.EmptyApp_Core/0.EmptyApp.cbp" />
+		<Project filename="1.Basics/AnalogReadSerial/AnalogReadSerial.cbp" />
+		<Project filename="Libraries/Servo/Knob/Knob.cbp" active="1" />
+	</Workspace>
+</CodeBlocks_workspace_file>

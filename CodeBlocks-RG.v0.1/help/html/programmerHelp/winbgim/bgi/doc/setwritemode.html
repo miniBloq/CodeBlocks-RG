@@ -1,0 +1,99 @@
+<TITLE>BGI Documentation for 
+setwritemode
+</TITLE>
+<H2>
+setwritemode
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void setwritemode(int mode);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+The following constants are defined:
+<PRE>
+COPY_PUT = 0      /* MOV */
+XOR_PUT  = 1      /* XOR */
+</PRE>
+Each constant corresponds to a binary operation between each byte in the line and the corresponding bytes onscreen. COPY_PUT uses the assembly language MOV instruction, overwriting with the line whatever is on the screen. XOR_PUT uses the XOR command to combine the line with the screen. Two successive XOR commands will erase the line and restore the screen to its original appearance.
+<P>
+setwritemode currently works only with line, linerel, lineto, rectangle, and drawpoly.
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="lineto.html"> lineto </A>
+<DD><A HREF="putimage.html"> putimage </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* setwritemode example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main()
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int xmax, ymax;
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk)    /* an error occurred */
+   {
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   xmax = getmaxx();
+   ymax = getmaxy();
+
+   /* select XOR drawing mode */
+   setwritemode(XOR_PUT);
+
+   /* draw a line */
+   line(0, 0, xmax, ymax);
+   getch();
+
+   /* erase the line by drawing over it */
+   line(0, 0, xmax, ymax);
+   getch();
+
+   /* select overwrite drawing mode */
+   setwritemode(COPY_PUT);
+
+   /* draw a line */
+
+   line(0, 0, xmax, ymax);
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

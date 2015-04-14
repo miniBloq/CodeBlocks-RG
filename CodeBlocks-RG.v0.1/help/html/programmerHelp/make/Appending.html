@@ -1,0 +1,123 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Appending">Appending</a>,
+Next:<a rel="next" accesskey="n" href="Override-Directive.html#Override%20Directive">Override Directive</a>,
+Previous:<a rel="previous" accesskey="p" href="Setting.html#Setting">Setting</a>,
+Up:<a rel="up" accesskey="u" href="Using-Variables.html#Using%20Variables">Using Variables</a>
+<hr><br>
+</div>
+
+<h3 class="section">Appending More Text to Variables</h3>
+
+   <p>Often it is useful to add more text to the value of a variable already defined. 
+You do this with a line containing <code>+=</code>, like this:
+
+<pre class="example">     objects += another.o
+     </pre>
+
+<p>This takes the value of the variable <code>objects</code>, and adds the text
+<code>another.o</code> to it (preceded by a single space).  Thus:
+
+<pre class="example">     objects = main.o foo.o bar.o utils.o
+     objects += another.o
+     </pre>
+
+<p>sets <code>objects</code> to <code>main.o foo.o bar.o utils.o another.o</code>.
+
+   <p>Using <code>+=</code> is similar to:
+
+<pre class="example">     objects = main.o foo.o bar.o utils.o
+     objects := $(objects) another.o
+     </pre>
+
+<p>but differs in ways that become important when you use more complex values.
+
+   <p>When the variable in question has not been defined before, <code>+=</code>
+acts just like normal <code>=</code>: it defines a recursively-expanded
+variable.  However, when there <em>is</em> a previous definition, exactly
+what <code>+=</code> does depends on what flavor of variable you defined
+originally.  See <a href="Flavors.html#Flavors">The Two Flavors of Variables</a>, for an
+explanation of the two flavors of variables.
+
+   <p>When you add to a variable's value with <code>+=</code>, <code>make</code> acts
+essentially as if you had included the extra text in the initial
+definition of the variable.  If you defined it first with <code>:=</code>,
+making it a simply-expanded variable, <code>+=</code> adds to that
+simply-expanded definition, and expands the new text before appending it
+to the old value just as <code>:=</code> does
+(see <a href="Setting.html#Setting">Setting Variables</a>, for a full explanation of <code>:=</code>). 
+In fact,
+
+<pre class="example">     variable := value
+     variable += more
+     </pre>
+
+<p>is exactly equivalent to:
+
+<pre class="example">     variable := value
+     variable := $(variable) more
+     </pre>
+
+   <p>On the other hand, when you use <code>+=</code> with a variable that you defined
+first to be recursively-expanded using plain <code>=</code>, <code>make</code> does
+something a bit different.  Recall that when you define a
+recursively-expanded variable, <code>make</code> does not expand the value you set
+for variable and function references immediately.  Instead it stores the text
+verbatim, and saves these variable and function references to be expanded
+later, when you refer to the new variable (see <a href="Flavors.html#Flavors">The Two Flavors of Variables</a>).  When you use <code>+=</code> on a recursively-expanded variable,
+it is this unexpanded text to which <code>make</code> appends the new text you
+specify.
+
+<pre class="example">     variable = value
+     variable += more
+     </pre>
+
+<p>is roughly equivalent to:
+
+<pre class="example">     temp = value
+     variable = $(temp) more
+     </pre>
+
+<p>except that of course it never defines a variable called <code>temp</code>. 
+The importance of this comes when the variable's old value contains
+variable references.  Take this common example:
+
+<pre class="example">     CFLAGS = $(includes) -O
+     ...
+     CFLAGS += -pg # enable profiling
+     </pre>
+
+<p>The first line defines the <code>CFLAGS</code> variable with a reference to another
+variable, <code>includes</code>.  (<code>CFLAGS</code> is used by the rules for C
+compilation; see <a href="Catalogue-of-Rules.html#Catalogue%20of%20Rules">Catalogue of Implicit Rules</a>.) 
+Using <code>=</code> for the definition makes <code>CFLAGS</code> a recursively-expanded
+variable, meaning <code>$(includes)&nbsp;-O</code> is <em>not</em> expanded when
+<code>make</code> processes the definition of <code>CFLAGS</code>.  Thus, <code>includes</code>
+need not be defined yet for its value to take effect.  It only has to be
+defined before any reference to <code>CFLAGS</code>.  If we tried to append to the
+value of <code>CFLAGS</code> without using <code>+=</code>, we might do it like this:
+
+<pre class="example">     CFLAGS := $(CFLAGS) -pg # enable profiling
+     </pre>
+
+<p>This is pretty close, but not quite what we want.  Using <code>:=</code>
+redefines <code>CFLAGS</code> as a simply-expanded variable; this means
+<code>make</code> expands the text <code>$(CFLAGS)&nbsp;-pg</code> before setting the
+variable.  If <code>includes</code> is not yet defined, we get <code>&nbsp;-O&nbsp;-pg</code>, and a later definition of <code>includes</code> will have no effect. 
+Conversely, by using <code>+=</code> we set <code>CFLAGS</code> to the
+<em>unexpanded</em> value <code>$(includes)&nbsp;-O&nbsp;-pg</code>.  Thus we preserve
+the reference to <code>includes</code>, so if that variable gets defined at
+any later point, a reference like <code>$(CFLAGS)</code> still uses its
+value.
+
+   </body></html>
+

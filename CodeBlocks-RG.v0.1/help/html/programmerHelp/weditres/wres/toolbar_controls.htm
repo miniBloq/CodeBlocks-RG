@@ -1,0 +1,1670 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Toolbar Controls</title>
+</head>
+
+<body>
+
+<div class="clsDocBody">
+  <h2>Toolbar Controls</h2>
+  <hr SIZE="1">
+  <p>Toolbars provide a means for users to activate commands and tools contained
+  in an application. To make your application user-friendly, design your toolbar
+  to expose the key functionality of the application. The following topics
+  discuss features to consider when planning a toolbar.</p>
+  <p>&nbsp;</p>
+  <ul>
+    <li><a href="#Creating_a_Toolbar" target="_self">Creating a Toolbar</a>
+    <li><a href="#Specifying_Toolbar_Size_and_Position" target="_self">Specifying
+      Toolbar Size and Position</a>
+    <li><a href="#Displaying_Tooltips_for_Buttons" target="_self">Displaying
+      ToolTips for Buttons</a>
+    <li><a href="#Defining_Button_Images" target="_self">Defining Button Images</a>
+    <li><a href="#Defining_Text_for_Buttons" target="_self">Defining Text for
+      Buttons</a>
+    <li><a href="#Adding_Toolbar_Buttons" target="_self">Adding Toolbar Buttons</a>
+    <li><a href="#Customizing_a_Toolbar" target="_self">Customizing a Toolbar</a>
+    <li><a href="#Using_Hot-tracking" target="_self">Using Hot-tracking</a>
+    <li><a href="#Using_Toolbar_Frames" target="_self">Using Toolbar Frames</a></li>
+  </ul>
+  <h3><a name="Creating_a_Toolbar"></a>Creating a Toolbar</h3>
+  <p>You can use two functions to create a toolbar—<MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateToolbarEx_cpp">
+  CreateToolbarEx</MSHelp:link>
+  or <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+  CreateWindowEx</MSHelp:link>
+  . The <b>CreateToolbarEx</b> function creates a toolbar and adds an initial
+  set of buttons to it. You can also use <b>CreateWindowEx</b>, specifying the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TOOLBARCLASSNAME">
+  TOOLBARCLASSNAME</MSHelp:link>
+  window class to create a toolbar that initially contains no buttons. The
+  TOOLBARCLASSNAME window class is registered when the common control
+  dynamic-link library (DLL) is loaded. To ensure that this DLL is loaded, use
+  the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_InitCommonControlsEx_cpp">
+  InitCommonControlsEx</MSHelp:link>
+  function first. If you create an empty toolbar, you add buttons to it by using
+  the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_ADDBUTTONS_cpp">
+  TB_ADDBUTTONS</MSHelp:link>
+  or <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_INSERTBUTTON_cpp">
+  TB_INSERTBUTTON</MSHelp:link>
+  message. If you retrieve the size of the toolbar, you must send the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_AUTOSIZE_cpp">
+  TB_AUTOSIZE</MSHelp:link>
+  message after all the items and strings have been inserted into the control to
+  cause the toolbar to recalculate its size based on its content.</p>
+  <h3><a name="Specifying_Toolbar_Size_and_Position"></a>Specifying Toolbar Size
+  and Position</h3>
+  <p>If you create a toolbar using <b>CreateToolbarEx</b>, the function enables
+  you to specify in pixels the height and width of the toolbar. However, the <b>CreateWindowEx</b>
+  function does not have parameters for specifying toolbar size. The toolbar
+  window procedure automatically sets the size and position of the toolbar
+  window. The height is based on the height of the buttons in the toolbar. The
+  width is the same as the width of the parent window's client area. To change
+  the automatic size settings, send a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_SETBUTTONSIZE_cpp">
+  TB_SETBUTTONSIZE</MSHelp:link>
+  message. The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="CCS_TOP">
+  CCS_TOP</MSHelp:link>
+  and <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="CCS_BOTTOM">
+  CCS_BOTTOM</MSHelp:link>
+  common control styles determine whether the toolbar is positioned along the
+  top or bottom of the client area. By default, a toolbar has the CCS_TOP style.</p>
+  <p>Also, the toolbar window procedure automatically adjusts the size of the
+  toolbar whenever it receives a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_size">
+  WM_SIZE</MSHelp:link>
+  or <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_AUTOSIZE_cpp">
+  TB_AUTOSIZE</MSHelp:link>
+  message. An application should send either of these messages whenever the size
+  of the parent window changes or after sending a message that requires
+  adjusting the size of the toolbar—for example, a <b>TB_SETBUTTONSIZE</b>
+  message.</p>
+  <p>The toolbar default sizing and positioning behaviors can be turned off by
+  setting the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="CCS_NORESIZE">
+  CCS_NORESIZE</MSHelp:link>
+  and <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="CCS_NOPARENTALIGN">
+  CCS_NOPARENTALIGN</MSHelp:link>
+  common control styles. Toolbar controls that are hosted by rebar controls must
+  set these styles because the rebar control sizes and positions the toolbar.</p>
+  <h3><a name="Displaying_Tooltips_for_Buttons"></a>Displaying ToolTips for
+  Buttons</h3>
+  <p>When you specify the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TBSTYLE_TOOLTIPS">
+  TBSTYLE_TOOLTIPS</MSHelp:link>
+  style, the toolbar creates and manages a ToolTip control. A ToolTip control is
+  a small pop-up window that contains a line of text describing a toolbar
+  button. The ToolTip control is hidden and appears only when the user moves the
+  pointer over a toolbar button and leaves it there for approximately one
+  second. The ToolTip control is displayed near the pointer.</p>
+  <p>When the toolbar receives a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_mousemove">
+  WM_MOUSEMOVE</MSHelp:link>
+  message, it sends a notification message to the ToolTip control. The ToolTip
+  control sets a timer and, after approximately one second, checks to see if the
+  pointer is still at the same location and is on a toolbar button. If it is,
+  the ToolTip control sends a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTN_GETDISPINFO_cpp">
+  TTN_GETDISPINFO</MSHelp:link>
+  notification message to the parent window to retrieve the descriptive text for
+  the button. Then the ToolTip control creates a pop-up window and displays the
+  text in the window. The ToolTip control destroys the pop-up window when the
+  user clicks a mouse button or moves the pointer out of the toolbar.</p>
+  <p>An application that needs to send messages directly to the ToolTip control
+  can retrieve the handle to the control by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_GETTOOLTIPS_cpp">
+  TB_GETTOOLTIPS</MSHelp:link>
+  message. An application can replace the ToolTip control of a toolbar with
+  another ToolTip control by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_SETTOOLTIPS_cpp">
+  TB_SETTOOLTIPS</MSHelp:link>
+  message.</p>
+  <h3><a name="Defining_Button_Images"></a>Defining Button Images</h3>
+  <p>There are two ways to specify the images for buttons—by bitmaps or by
+  image lists. An application must choose which method to use. It cannot use
+  both methods with the same toolbar control. Note that the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateToolbarEx_cpp">
+  CreateToolbarEx</MSHelp:link>
+  function uses the bitmap method. Applications that want to use the image list
+  method must use the <b>CreateWindowEx</b> function to create the toolbar
+  control.</p>
+  <h4><a name="Defining_Button_Images_By_Using_Bitmaps"></a>Defining Button
+  Images by Using Bitmaps</h4>
+  <p>Each button in a toolbar can include a bitmapped image. A toolbar uses an
+  internal list to store the information that it needs to draw the images. When
+  you call the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateToolbarEx_cpp">
+  CreateToolbarEx</MSHelp:link>
+  function, you specify a monochrome or color bitmap that contains the initial
+  images, and the toolbar adds the information to the internal list of images.
+  You can add additional images later by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_ADDBITMAP_cpp">
+  TB_ADDBITMAP</MSHelp:link>
+  message.</p>
+  <p>Each image has a zero-based index. The first image added to the internal
+  list has an index of 0, the second image has an index of 1, and so on. <b>TB_ADDBITMAP</b>
+  adds images to the end of the list and returns the index of the first new
+  image that it added. To associate the image with a button, you must send a <b>TB_ADDBUTTONS</b>
+  message and specify the image's index after you add bitmaps to the internal
+  image list.</p>
+  <p>Microsoft® Windows® assumes that all of a toolbar's bitmapped images are
+  the same size. You specify the size when you create the toolbar by using <b>CreateToolbarEx</b>.
+  If you use the <b>CreateWindowEx</b> function to create a toolbar, the size of
+  the images is set to the default dimensions of 16 by 15 pixels. You can use
+  the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_SETBITMAPSIZE_cpp">
+  TB_SETBITMAPSIZE</MSHelp:link>
+  message to change the dimensions of the bitmapped images, but you must do so
+  before adding any images to the internal list.</p>
+  <h4><a name="Defining_Button_Images_by_Using_Image_Lists"></a>Defining Button
+  Images by Using Image Lists</h4>
+  <p>You can also store button images in a set of <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Image_Lists_cpp">
+  Image Lists</MSHelp:link>
+  . An image list is a collection of images of the same size, each of which can
+  be referred to by its index. Image lists are used to manage large sets of
+  icons or bitmaps. You can use up to three different image lists to display
+  buttons in various states, as shown in the following table.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <td>Normal</td>
+        <td>Buttons in their default state.</td>
+      </tr>
+      <tr>
+        <td>Hot</td>
+        <td>Buttons that are under the pointer or pressed. Hot items are
+          supported only in toolbar controls that have the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TBSTYLE_FLAT">
+          TBSTYLE_FLAT</MSHelp:link>
+          style.</td>
+      </tr>
+      <tr>
+        <td>Disabled</td>
+        <td>Buttons that are disabled.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>After the toolbar is destroyed, applications must free any image lists they
+  have created.</p>
+  <h3><a name="Defining_Text_for_Buttons"></a>Defining Text for Buttons</h3>
+  <p>Each button can display a string in addition to, or instead of, an image. A
+  toolbar maintains an internal list that contains all the strings available to
+  toolbar buttons. You add strings to the internal list by using the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_ADDSTRING_cpp">
+  TB_ADDSTRING</MSHelp:link>
+  message, specifying the address of the buffer containing the strings to add.
+  Each string must be null-terminated, and the last string must be terminated
+  with two null characters.</p>
+  <p>Each string has a zero-based index. The first string added to the internal
+  list of strings has an index of 0, the second string has an index of 1, and so
+  on. <b>TB_ADDSTRING</b> adds strings to the end of the list and returns the
+  index of the first new string. You use a string's index to associate the
+  string with a button.</p>
+  <p>Using <b>TB_ADDSTRING</b> is not the only way to add strings to a toolbar.
+  You can display a string in a button by passing a string pointer in the <i>iString</i>
+  field of the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBBUTTON_cpp">
+  TBBUTTON</MSHelp:link>
+  structure that is passed to <b>TB_ADDBUTTONS</b>. Additionally, you can use <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_SETBUTTONINFO_cpp">
+  TB_SETBUTTONINFO</MSHelp:link>
+  to assign text to a toolbar button. For more information, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Using_Toolbar_Controls_cpp">
+  Assigning text to a toolbar button</MSHelp:link>
+  .</p>
+  <h3><a name="Adding_Toolbar_Buttons"></a>Adding Toolbar Buttons</h3>
+  <p>If you use the <b>CreateToolbarEx</b> function to create a toolbar, you can
+  add buttons to the toolbar by filling an array of <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBBUTTON_cpp">
+  TBBUTTON</MSHelp:link>
+  structures and specifying the address of the array in the function call.
+  However, the <b>CreateWindowEx</b> function does not have a parameter for
+  passing a <b>TBBUTTON</b> structure. <b>CreateWindowEx</b> creates an empty
+  toolbar that you fill by sending a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_ADDBUTTONS_cpp">
+  TB_ADDBUTTONS</MSHelp:link>
+  message, specifying the address of a <b>TBBUTTON</b> structure.</p>
+  <p>After a toolbar is created, you can insert buttons by sending a <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_INSERTBUTTON_cpp">
+  TB_INSERTBUTTON</MSHelp:link>
+  message, which passes the address of a <b>TBBUTTON</b> structure to the
+  toolbar. Each <b>TBBUTTON</b> structure defines the attributes of a button,
+  including the indexes of its string and bitmap as well as its style, state,
+  command identifier, and application-defined 32-bit value.</p>
+  <div class="clsNote">
+    <b>Note</b>&nbsp;&nbsp;If you use the <b>CreateWindowEx</b> function to
+    create a toolbar, you must send the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_BUTTONSTRUCTSIZE_cpp">
+    TB_BUTTONSTRUCTSIZE</MSHelp:link>
+    message before adding any buttons. The message passes the size of the <b>TBBUTTON</b>
+    structure to the toolbar.
+  </div>
+  <h4><a name="Toolbar_button_style"></a>Toolbar Button Styles</h4>
+  <p>A button's style determines how the button appears and how it responds to
+  user input. For instance, the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="BTNS_BUTTON">
+  BTNS_BUTTON</MSHelp:link>
+  style creates a toolbar button that behaves like a standard push button. A
+  button that has the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="BTNS_CHECK">
+  BTNS_CHECK</MSHelp:link>
+  style is similar to a standard push button, except it toggles between the
+  pressed and nonpressed states each time the user clicks it.</p>
+  <p>You can create groups of toolbar buttons that act like radio buttons by
+  using the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="BTNS_GROUP">
+  BTNS_GROUP</MSHelp:link>
+  or <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="BTNS_CHECKGROUP">
+  BTNS_CHECKGROUP</MSHelp:link>
+  style. This causes a button to stay pressed until the user chooses another
+  button in the group. A group is defined as a contiguous collection of buttons,
+  all with the BTNS_GROUP or BTNS_CHECKGROUP style.</p>
+  <p>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="BTNS_SEP">
+  BTNS_SEP</MSHelp:link>
+  style creates a small gap between buttons or draws an etch between buttons on
+  flat toolbars. A button with the BTNS_SEP style does not receive user input.</p>
+  <p>Version 5.80 of the common controls introduced some new toolbar button
+  styles and renamed some of the older styles. All button style flags now begin
+  with BTNS_XXX instead of TBSTYLE_XXX. For a listing and discussion of the
+  button styles, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Toolbar_Control_and_Button_Styles_cpp">
+  Toolbar Control and Button Styles</MSHelp:link>
+  .</p>
+  <h4><a name="Toolbar_button_states"></a>Toolbar Button States</h4>
+  <p>Each button in a toolbar has a state. The toolbar updates a button's state
+  to reflect user actions, such as clicking the button. The state indicates
+  whether the button is currently pressed or not pressed, enabled or disabled,
+  hidden or visible. Although an application sets a button's initial state when
+  adding the button to the toolbar, it can change and retrieve the state by
+  sending <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_GETSTATE_cpp">
+  TB_GETSTATE</MSHelp:link>
+  and <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_SETSTATE_cpp">
+  TB_SETSTATE</MSHelp:link>
+  messages to the toolbar. For a list of toolbar button states, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Toolbar_Button_States_cpp">
+  Toolbar States</MSHelp:link>
+  .</p>
+  <h4><a name="Command_identifier"></a>Command Identifier</h4>
+  <p>Each button has an application-defined command identifier associated with
+  it. Button identifiers are usually defined in an application header file. For
+  example, a Paste button can be defined as:</p>
+  <pre class="clsCode" AUTOHILITE="1">#define ID_PASTE 100</pre>
+  <p>When the user selects a button, the toolbar sends the parent window a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_command">
+  WM_COMMAND</MSHelp:link>
+  or <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_NOTIFY_cpp">
+  WM_NOTIFY</MSHelp:link>
+  message that includes the command identifier of the button. The parent window
+  examines the command identifier and carries out the command associated with
+  the button. For information about when controls send <b>WM_COMMAND</b>
+  messages and when they send <b>WM_NOTIFY</b>, see the Remarks section of the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_NOTIFY_cpp">
+  WM_NOTIFY</MSHelp:link>
+  documentation.</p>
+  <h4><a name="Button_size_and_position"></a>Button Size and Position</h4>
+  <p>A toolbar keeps track of its buttons by assigning each button a position
+  index. The index is zero-based; that is, the leftmost button has an index of
+  0, the next button to the right has an index of 1, and so on. An application
+  must specify the index of a button when sending messages to retrieve
+  information about the button or to set the button's attributes.</p>
+  <p>A toolbar updates the position indexes as buttons are inserted and removed.
+  An application can retrieve the current position index of a button by using
+  the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_COMMANDTOINDEX_cpp">
+  TB_COMMANDTOINDEX</MSHelp:link>
+  message. The message specifies the command identifier of a button, and the
+  toolbar window uses the identifier to locate the button and return its
+  position index.</p>
+  <p>All buttons in a toolbar are the same size. The <b>CreateToolbarEx</b>
+  function requires you to set the initial size of the buttons when you create
+  the toolbar. When you use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+  CreateWindowEx</MSHelp:link>
+  function, the initial size is set to the default dimensions of 24 by 22
+  pixels. You can use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_SETBUTTONSIZE_cpp">
+  TB_SETBUTTONSIZE</MSHelp:link>
+  message to change the button size, but you must do so before adding any
+  buttons to the toolbar. The <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_GETITEMRECT_cpp">
+  TB_GETITEMRECT</MSHelp:link>
+  message retrieves the current dimensions of the buttons.</p>
+  <p>When you add a string that is longer than any string currently in the
+  toolbar, the toolbar automatically resets the width of its buttons. The width
+  is set to accommodate the longest string in the toolbar.</p>
+  <h3><a name="Customizing_a_Toolbar"></a>Customizing a Toolbar</h3>
+  <p>A toolbar has built-in customization features that you can make available
+  to the user by giving the toolbar the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="CCS_ADJUSTABLE">
+  CCS_ADJUSTABLE</MSHelp:link>
+  common control style. The customization features allow the user to drag a
+  button to a new position or to remove a button by dragging it off the toolbar.
+  In addition, the user can double-click the toolbar to display the Customize
+  Toolbar dialog box, which allows the user to add, delete, and rearrange
+  toolbar buttons. To display the dialog box, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_CUSTOMIZE_cpp">
+  TB_CUSTOMIZE</MSHelp:link>
+  message. An application determines whether the customization features are
+  available to the user and controls the extent to which the user can customize
+  the toolbar.</p>
+  <p>As part of the customization process, applications often need to save and
+  restore a toolbar's state. For instance, many applications store the toolbar
+  state before the user begins customizing the toolbar in case the user later
+  wants to restore the toolbar to its original state. The toolbar control does
+  not automatically keep a record of its precustomization state. Your
+  application must save the toolbar state in order to restore it. For more
+  information, see <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Using_Toolbar_Controls_cpp">
+  Customizing Toolbars</MSHelp:link>
+  and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Using_Toolbar_Controls_cpp">
+  Using Hot-tracking with Toolbars</MSHelp:link>
+  .</p>
+  <h3><a name="Using_Hot-tracking"></a>Using Hot-tracking</h3>
+  <p>Toolbar controls created with the TBSTYLE_FLAT style support hot-tracking
+  by default. Hot-tracking means that when the pointer moves over an item, it is
+  highlighted but not selected. When the user moves the pointer over a toolbar
+  button, the button's appearance changes. You can use other window styles in
+  combination with TBSTYLE_FLAT to produce toolbars that enable hot-tracking but
+  have a different appearance from a flat toolbar. For more information, see <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Using_Toolbar_Controls_cpp">
+  Using Hot-tracking with Toolbars</MSHelp:link>
+  .</p>
+  <h3><a name="Using_Toolbar_Frames"></a>Using Toolbar Frames</h3>
+  <p>Toolbar frames serve as containers for toolbars and other child windows.
+  You implement toolbar frames by creating a rebar control and adding one or
+  more controls to it. A rebar control hosts one or more bands. Each band
+  contains only one child window.</p>
+  <p>Rebar controls are separate controls but they are often used to host
+  toolbar controls. Using toolbar and rebar controls together enables you to
+  write applications that are more flexible. For example, toolbars can be moved,
+  repositioned, minimized, and maximized within the rebar control. For more
+  information about programming rebar controls, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Rebar_Controls_cpp">
+  Rebar Controls</MSHelp:link>
+  .</p>
+</div>
+<div class="clsDocBody">
+  <h2>Using Toolbar Controls</h2>
+  <hr SIZE="1">
+  <p>This section contains examples that demonstrate how to create and use
+  toolbar controls in your applications.</p>
+  <ul>
+    <li><a href="#Creating_Toolbars" target="_self">Creating Toolbars</a>
+    <li><a href="#Creating_Transparent_Toolbars" target="_self">Creating
+      Transparent Toolbars</a>
+    <li><a href="#Creating_List_Style_Toolbars" target="_self">Creating
+      List-style Toolbars</a>
+    <li><a href="#Handling_ToolTips" target="_self">Handling ToolTips</a>
+    <li><a href="#Handling_Drop-down_Buttons" target="_self">Handling Drop-down
+      Buttons</a>
+    <li><a href="#Customizing_Toolbars" target="_self">Customizing Toolbars</a>
+    <li><a href="#Embedding_Non_Button_Controls_in_Toolbars" target="_self">Embedding
+      Nonbutton Controls in Toolbars</a>
+    <li><a href="#Using_Hot-tracking_With_Toolbars" target="_self">Using
+      Hot-tracking with Toolbars</a>
+    <li><a href="#Related_Topics" target="_self">Related Topics</a></li>
+  </ul>
+  <h3><a name="Creating_Toolbars"></a>Creating Toolbars</h3>
+  <p>You can use two functions to create a toolbar—<MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+  CreateWindowEx</MSHelp:link>
+  or <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateToolbarEx_cpp">
+  CreateToolbarEx</MSHelp:link>
+  . This topic provides code samples using the two functions and also discusses
+  several ways to add text to toolbar buttons.</p>
+  <h3><a name="Creating_a_Toolbar_with_CreateWindowEx"></a>Creating a Toolbar
+  with CreateWindowEx</h3>
+  <p>The following CreateAToolBar sample function uses <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+  CreateWindowEx</MSHelp:link>
+  and specifies the <b>TOOLBARCLASSNAME</b> window class to create an empty
+  toolbar. To add buttons and button strings to the toolbar, the function uses <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_ADDSTRING_cpp">
+  TB_ADDSTRING</MSHelp:link>
+  and <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_ADDBUTTONS_cpp">
+  TB_ADDBUTTONS</MSHelp:link>
+  messages.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green"> CreateAToolBar creates a toolbar and adds a set of buttons to it.</font>
+<font color="blue">//</font><font color="green"> The function returns the handle to the toolbar if successful, </font>
+<font color="blue">//</font><font color="green"> or NULL otherwise. </font>
+<font color="blue">//</font><font color="green"> hwndParent is the handle to the toolbar's parent window. </font>
+HWND CreateAToolBar(HWND hwndParent) 
+{ 
+   HWND hwndTB; 
+   TBADDBITMAP tbab; 
+   TBBUTTON tbb[3]; 
+   char szBuf[16]; 
+   int iCut, iCopy, iPaste;
+   INITCOMMONCONTROLSEX icex;
+   HRESULT hr;
+   size_t cch;
+
+<font color="blue">//</font><font color="green"> Ensure that the common control DLL is loaded. </font>
+   icex.dwSize = sizeof(INITCOMMONCONTROLSEX);
+   icex.dwICC  = ICC_BAR_CLASSES;
+   InitCommonControlsEx(&amp;icex);
+
+<font color="blue">//</font><font color="green"> Create a toolbar. </font>
+   hwndTB = CreateWindowEx(0, TOOLBARCLASSNAME, (LPSTR) NULL, 
+        WS_CHILD | CCS_ADJUSTABLE, 0, 0, 0, 0, hwndParent, 
+        (HMENU) ID_TOOLBAR, g_hinst, NULL); 
+
+<font color="blue">//</font><font color="green"> Send the TB_BUTTONSTRUCTSIZE message, which is required for </font>
+<font color="blue">//</font><font color="green"> backward compatibility. </font>
+   SendMessage(hwndTB, TB_BUTTONSTRUCTSIZE, (WPARAM) sizeof(TBBUTTON), 0); 
+
+<font color="blue">//</font><font color="green"> Add the button strings to the toolbar's internal string list. </font>
+   LoadString(g_hinst, IDS_CUT, szBuf, MAX_LEN-1); 
+<font color="blue">//</font><font color="green">Save room for second null terminator.</font>
+   hr = StringCchLength(szBuf, MAX_LEN, &amp;cch);
+   if(SUCCEEDED(hr))
+   {
+   szBuf[cch + 2] = 0;  <font color="blue">//</font><font color="green">Double-null terminate.</font>
+   }
+   else
+   {
+   <font color="blue">//</font><font color="green"> TODO: Write error handler.</font>
+   } 
+   iCut = SendMessage(hwndTB, TB_ADDSTRING, 0, (LPARAM) (LPSTR) szBuf); 
+   LoadString(g_hinst, IDS_COPY, szBuf, MAX_LEN-1);  
+<font color="blue">//</font><font color="green">Save room for second null terminator.</font>
+   hr = StringCchLength(szBuf, MAX_LEN, &amp;cch);
+   if(SUCCEEDED(hr))
+   {
+   szBuf[cch + 2] = 0;  <font color="blue">//</font><font color="green">Double-null terminate.</font>
+   }
+   else
+   {
+   <font color="blue">//</font><font color="green"> TODO: Write error handler.</font>
+   } 
+   iCopy = SendMessage(hwndTB, TB_ADDSTRING, (WPARAM) 0, 
+       (LPARAM) (LPSTR) szBuf); 
+   LoadString(g_hinst, IDS_PASTE, szBuf, MAX_LEN-1);  
+<font color="blue">//</font><font color="green">Save room for second null terminator.</font>
+   hr = StringCchLength(szBuf, MAX_LEN, &amp;cch);
+   if(SUCCEEDED(hr))
+   {
+   szBuf[cch + 2] = 0;  <font color="blue">//</font><font color="green">Double-null terminate.</font>
+   }
+   else
+   {
+   <font color="blue">//</font><font color="green"> TODO: Write error handler.</font>
+   } 
+   iPaste = SendMessage(hwndTB, TB_ADDSTRING, (WPARAM) 0, 
+        (LPARAM) (LPSTR) szBuf); 
+ 
+<font color="blue">//</font><font color="green"> Fill the TBBUTTON array with button information, and add the </font>
+<font color="blue">//</font><font color="green"> buttons to the toolbar. The buttons on this toolbar have text </font>
+<font color="blue">//</font><font color="green"> but do not have bitmap images. </font>
+   tbb[0].iBitmap = I_IMAGENONE; 
+   tbb[0].idCommand = IDS_CUT; 
+   tbb[0].fsState = TBSTATE_ENABLED; 
+   tbb[0].fsStyle = BTNS_BUTTON; 
+   tbb[0].dwData = 0; 
+   tbb[0].iString = iCut; 
+ 
+   tbb[1].iBitmap = I_IMAGENONE; 
+   tbb[1].idCommand = IDS_COPY; 
+   tbb[1].fsState = TBSTATE_ENABLED; 
+   tbb[1].fsStyle = BTNS_BUTTON; 
+   tbb[1].dwData = 0; 
+   tbb[1].iString = iCopy; 
+
+   tbb[2].iBitmap = I_IMAGENONE; 
+   tbb[2].idCommand = IDS_PASTE; 
+   tbb[2].fsState = TBSTATE_ENABLED; 
+   tbb[2].fsStyle = BTNS_BUTTON; 
+   tbb[2].dwData = 0; 
+   tbb[2].iString = iPaste; 
+
+   SendMessage(hwndTB, TB_ADDBUTTONS, (WPARAM) NUM_BUTTONS, 
+        (LPARAM) (LPTBBUTTON) &amp;tbb); 
+
+   SendMessage(hwndTB, TB_AUTOSIZE, 0, 0); 
+
+   ShowWindow(hwndTB, SW_SHOW); 
+   return hwndTB; 
+} </pre>
+  <h4><a name="Assigning_Text_to_a_Toolbar_Button"></a>Assigning text to a
+  toolbar button</h4>
+  <p>You are not required to make an internal list of strings to add text to a
+  button. There are alternative methods. One alternative is to pass a string
+  pointer to the <b>iString</b> member of a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBBUTTON_cpp">
+  TBBUTTON</MSHelp:link>
+  structure. For example, you can place text in a buffer, retrieve a pointer to
+  the buffer, enter the pointer in a <b>TBBUTTON</b> structure, and send a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_ADDBUTTONS_cpp">
+  TB_ADDBUTTONS</MSHelp:link>
+  message, specifying the filled <b>TBBUTTON</b> structure.</p>
+  <pre class="clsCode" AUTOHILITE="1">tbb[0].iBitmap = -1; 
+tbb[0].idCommand = IDS_CUT; 
+tbb[0].fsState = TBSTATE_ENABLED; 
+tbb[0].fsStyle = TBSTYLE_BUTTON; 
+tbb[0].dwData = 0; 
+tbb[0].iString = (int) pszBuf;  <font color="blue">//</font><font color="green"> Text is in a buffer.</font>
+</pre>
+  <p>Another way to assign text to a button is with the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_SETBUTTONINFO_cpp">
+  TB_SETBUTTONINFO</MSHelp:link>
+  message. You enter the data you want to change in a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBBUTTONINFO_cpp">
+  TBBUTTONINFO</MSHelp:link>
+  structure. Then send a <b>TB_SETBUTTONINFO</b> message. The following example
+  demonstrates how to modify the previous CreateAToolBar code to change the text
+  of the third button from Paste to Change.</p>
+  <pre class="clsCode" style="DISPLAY: block" AUTOHILITE="1">char szBuf[8] = &quot;CHANGE&quot;;
+LPSTR pszBuf;
+TBBUTTONINFO tbi;
+LPTBBUTTONINFO lptbbi;
+
+<font color="blue">//</font><font color="green"> Other code here.</font>
+<font color="blue">//</font><font color="green"> Initialize pszBuf and lptbbi.</font>
+
+<font color="blue">//</font><font color="green"> These are the only fields of the TBBUTTONINFO structure that </font>
+<font color="blue">//</font><font color="green"> need to be changed to modify text.   </font>
+	tbi.dwMask = TBIF_TEXT;
+	tbi.cbSize = sizeof (TBBUTTONINFO);
+	tbi.pszText = pszBuf;
+	tbi.cchText = sizeof (szBuf);
+SendMessage(hwndTB, TB_SETBUTTONINFO, IDS_PASTE, (LPARAM)
+    (LPTBBUTTONINFO)lptbbi);</pre>
+  <p>&nbsp;</p>
+  <div class="clsNote">
+    <b>Note</b>&nbsp;&nbsp; If you change a button's text by using <b>TB_SETBUTTONINFO</b>,
+    this does not affect the string assigned to that button in the internal
+    string list. Also, if you add a toolbar button string to the internal text
+    list, you cannot retrieve the index of that string by calling <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBN_GETBUTTONINFO_cpp">
+    TBN_GETBUTTONINFO</MSHelp:link>
+    ; you must use <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_GETBUTTON_cpp">
+    TB_GETBUTTON</MSHelp:link>
+    instead.
+  </div>
+  <h3><a name="Creating_a_Toolbar_with_CreateToolbarEx"></a>Creating a Toolbar
+  with CreateToolbarEx</h3>
+  <p>This example uses <b>CreateToolbarEx</b> to create a toolbar and adds
+  standard bitmaps to the toolbar. The standard toolbar bitmaps are built into
+  Comctl32.dll. You do not have to use the standard bitmaps; you can use your
+  own custom bitmaps. To add a bitmap to an application, use the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_ADDBITMAP_cpp">
+  TB_ADDBITMAP</MSHelp:link>
+  message. The sample function, CreateAToolBar2, adds three standard file
+  bitmaps and four standard view bitmaps. Because CreateAToolBar2 requires a <b>TBBUTTON</b>
+  structure containing the predefined indexes to the bitmaps, you must include
+  the following <b>TBBUTTON</b> structures in your application.</p>
+  <p style="FONT-WEIGHT: bold; CURSOR: hand; TEXT-DECORATION: underline" ShowHideType="Example">Show
+  Example</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green"> Toolbar buttons used to create the first 4 buttons.</font>
+TBBUTTON tbButtonsCreate [ ] = 
+{
+{STD_FILENEW, IDM_NEW, TBSTATE_ENABLED, BTNS_BUTTON, 
+#if defined(_WIN32) | defined(_WIN64)
+{0},
+#endif
+0L, 0},
+{STD_FILEOPEN, IDM_OPEN, TBSTATE_ENABLED, BTNS_BUTTON, 
+#if defined(_WIN32) | defined(_WIN64)
+{0},
+#endif
+0L, 0},
+{STD_FILESAVE, IDM_SAVE, TBSTATE_ENABLED, BTNS_BUTTON, 
+#if defined(_WIN32) | defined(_WIN64)
+{0},
+#endif
+0L, 0},
+{0, 0, TBSTATE_ENABLED, BTNS_SEP, 
+#if defined(_WIN32) | defined(_WIN64)
+{0},
+#endif
+0L, 0},
+};
+
+<font color="blue">//</font><font color="green"> Toolbar buttons to add.</font>
+TBBUTTON tbButtonsAdd [ ] = 
+{
+{VIEW_LARGEICONS, IDM_LARGEICON, TBSTATE_ENABLED, BTNS_BUTTON, 
+#if defined(_WIN32) | defined(_WIN64)
+{0},
+#endif
+0L, 0},
+{VIEW_SMALLICONS, IDM_SMALLICON, TBSTATE_ENABLED, BTNS_BUTTON, #if defined(_WIN32) | defined(_WIN64)
+{0},
+#endif
+0L, 0},
+{VIEW_LIST, IDM_LISTVIEW, TBSTATE_ENABLED, BTNS_BUTTON, #if defined(_WIN32) | defined(_WIN64)
+{0},
+#endif
+0L, 0},
+{VIEW_DETAILS, IDM_REPORTVIEW, TBSTATE_ENABLED, BTNS_BUTTON, #if defined(_WIN32) | defined(_WIN64)
+{0},
+#endif
+0L, 0},
+}; 
+
+<font color="blue">//</font><font color="green"> Also the code example uses a MACRO defined in the header file as</font>
+<font color="blue">//</font><font color="green"> follows: #define ARRAYSIZE(a) (sizeof(a)/sizeof(a[0]))</font>
+
+<font color="blue">//</font><font color="green"> CreateAToolBar2 creates a toolbar and adds bitmaps to it.</font>
+<font color="blue">//</font><font color="green"> The function returns the handle to the toolbar if successful, </font>
+<font color="blue">//</font><font color="green"> or NULL otherwise.</font>
+<font color="blue">//</font><font color="green"> The function uses HINST_COMMCTRL as the HINSTANCE and</font>
+<font color="blue">//</font><font color="green"> IDB_STD_SMALL_COLOR as the bitmap identifier. </font>
+<font color="blue">//</font><font color="green"> hwndParent is the handle to the toolbar's parent window. </font>
+HWND CreateAToolBar2(HWND hWndParent)
+{
+HWND hWndToolbar;
+TBADDBITMAP tb;
+int index, stdidx;
+
+<font color="blue">//</font><font color="green"> Create a toolbar with three standard file bitmaps and one</font>
+<font color="blue">//</font><font color="green"> separator.</font>
+<font color="blue">//</font><font color="green"> There are 15 items in IDB_STD_SMALL_COLOR.  However, because this is a</font>
+<font color="blue">//</font><font color="green"> standard system-defined bitmap, the parameter that specifies the number</font>
+<font color="blue">//</font><font color="green"> of button images in the bitmap (nBitmaps) is ignored, so it is set</font>
+<font color="blue">//</font><font color="green"> to 0.</font>
+hWndToolbar = CreateToolbarEx (hWndParent, 
+    WS_CHILD | WS_BORDER | WS_VISIBLE | TBSTYLE_TOOLTIPS, 
+    ID_TOOLBAR, 0, HINST_COMMCTRL, IDB_STD_SMALL_COLOR, 
+    tbButtonsCreate, ARRAYSIZE(tbButtonsCreate), 0, 0, 100, 30, sizeof (TBBUTTON));
+
+<font color="blue">//</font><font color="green"> Add four view bitmaps. The view bitmaps are not in the same </font>
+<font color="blue">//</font><font color="green"> file as the standard bitmaps; therefore, you must change the</font>
+<font color="blue">//</font><font color="green"> resource identifier from IDB_STD_SMALL_COLOR to </font>
+<font color="blue">//</font><font color="green"> IDB_VIEW_SMALL_COLOR.  </font>
+tb.hInst = HINST_COMMCTRL;
+tb.nID = IDB_VIEW_SMALL_COLOR;
+<font color="blue">//</font><font color="green"> There are 12 items in IDB_VIEW_SMALL_COLOR.  However, because this is a standard</font>
+<font color="blue">//</font><font color="green"> system-defined bitmap, wParam (nButtons) is ignored.</font>
+stdidx = SendMessage (hWndToolbar, TB_ADDBITMAP, 0, (LPARAM)&amp;tb);
+
+<font color="blue">//</font><font color="green"> Update the indexes to the view bitmaps.</font>
+for (index = 0; index &lt; 4; index++)
+tbButtonsAdd[index].iBitmap += stdidx;
+
+<font color="blue">//</font><font color="green"> Add the view buttons.</font>
+SendMessage (hWndToolbar, TB_ADDBUTTONS, ARRAYSIZE(tbButtonsAdd), (LPARAM) &amp;tbButtonsAdd[0]);
+
+return hWndToolbar;
+} </pre>
+  <h3><a name="Creating_Transparent_Toolbars"></a>Creating Transparent Toolbars</h3>
+  <p>Toolbar controls support a transparent look that allows the client area
+  under the toolbar to show through. There are two kinds of transparent
+  toolbars, ones with flat buttons and ones with three-dimensional buttons. If
+  you want your application to match the Microsoft® Windows® interface, use
+  the flat transparent style toolbar. You create a flat transparent toolbar by
+  including the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TBSTYLE_FLAT">
+  TBSTYLE_FLAT</MSHelp:link>
+  style. To create a nonflat transparent toolbar, use <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TBSTYLE_TRANSPARENT">
+  TBSTYLE_TRANSPARENT</MSHelp:link>
+  . The following illustration shows the two kinds of transparent toolbars. The
+  flat transparent toolbar was created with the TBSTYLE_FLAT style; the nonflat
+  transparent toolbar was created with the TBSTYLE_TRANSPARENT style.</p>
+  <p><img border="0" src="toolba12.gif" width="536" height="274"></p>
+  <p>To create a transparent toolbar, all you need to do is add TBSTYLE_FLAT or
+  TBSTYLE_TRANSPARENT to the window style parameter of <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateToolbarEx_cpp">
+  CreateToolbarEx</MSHelp:link>
+  . If you do not want a line to appear to indicate the bottom of the toolbar,
+  do not use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Window_Styles">
+  WS_BORDER</MSHelp:link>
+  window style. The following code snippet shows a call to <b>CreateToolbarEx</b>
+  that produces a transparent toolbar with flat buttons.</p>
+  <pre class="clsCode" AUTOHILITE="1">hWndToolbar = CreateToolbarEx (hWndParent, 
+    WS_CHILD | WS_VISIBLE | TBSTYLE_TOOLTIPS | TBSTYLE_FLAT, 
+    ID_TOOLBAR, 11, (HINSTANCE)HINST_COMMCTRL, IDB_STD_SMALL_COLOR, 
+    (LPCTBBUTTON)&amp;tbButtons, 4, 0, 0, 100, 30, sizeof (TBBUTTON));</pre>
+  <p>To produce a transparent toolbar with raised buttons, change TBSTYLE_FLAT
+  to TBSTYLE_TRANSPARENT.</p>
+  <h3><a name="Creating_List_Style_Toolbars"></a>Creating List-style Toolbars</h3>
+  <p>Toolbar buttons enable you to display both text and bitmaps. The buttons on
+  a toolbar created with the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TBSTYLE_LIST">
+  TBSTYLE_LIST</MSHelp:link>
+  style are different from other toolbar buttons because they place text to the
+  right of the bitmap instead of under the image. Also, the list-style button
+  leaves a blank space if you fail to provide images or text; other buttons do
+  not. You can use the TBSTYLE_LIST toolbar style in combination with the
+  TBSTYLE_FLAT style to create a toolbar with flat buttons. The following
+  illustration shows two list-style toolbars that have buttons with both text
+  and bitmaps. The list toolbar was created with the TBSTYLE_LIST style; the
+  flat list toolbar was created with both the TBSTYLE_LIST and TBSTYLE_FLAT
+  styles.</p>
+  <p><img border="0" src="toolba13.gif" width="506" height="313"></p>
+  <p>The following code snippet creates a toolbar with the TBSTYLE_LIST style.</p>
+  <pre class="clsCode" AUTOHILITE="1">hWndToolbar = CreateToolbarEx (hWndParent, 
+    WS_CHILD | WS_VISIBLE | TBSTYLE_TOOLTIPS | TBSTYLE_LIST, 
+    ID_TOOLBAR, 11, (HINSTANCE)HINST_COMMCTRL, IDB_STD_SMALL_COLOR, 
+    (LPCTBBUTTON)&amp;tbButtons, 4, 0, 0, 100, 30, sizeof (TBBUTTON));</pre>
+  <p>To create a flat list-style toolbar, use the following:</p>
+  <pre class="clsCode" AUTOHILITE="1">hWndToolbar = CreateToolbarEx (hWndParent, 
+    WS_CHILD | WS_VISIBLE | TBSTYLE_TOOLTIPS | TBSTYLE_FLAT |
+    TBSTYLE_LIST, ID_TOOLBAR, 11, (HINSTANCE)HINST_COMMCTRL,
+    IDB_STD_SMALL_COLOR, (LPCTBBUTTON)&amp;tbButtons, 4, 0, 0, 100, 
+    30, sizeof (TBBUTTON));</pre>
+  <p>When you create a list-style toolbar, you should provide text and bitmaps
+  to avoid blank spaces on the button. For information about adding text and
+  bitmaps to a button, see <a href="#Assigning_Text_to_a_Toolbar_Button" target="_self">Assigning
+  text to a toolbar button</a> and <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Toolbar_Controls_Overview_cpp">
+  Defining Button Bitmaps.</MSHelp:link>
+  </p>
+  <h3><a name="Handling_ToolTips"></a>Handling ToolTips</h3>
+  <p>Applications that need to customize the text displayed in toolbar ToolTips
+  must respond to the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTN_GETDISPINFO_cpp">
+  TTN_GETDISPINFO</MSHelp:link>
+  message sent by the toolbar control to its parent, rather than subclassing the
+  toolbar control and intercepting the notification from the ToolTip to the
+  toolbar. The method by which the toolbar and its associated ToolTip
+  communicate varies from platform to platform.</p>
+  <p>A toolbar that has the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TBSTYLE_TOOLTIPS">
+  TBSTYLE_TOOLTIPS</MSHelp:link>
+  style creates a ToolTip control, which an application can use to display Help
+  text for toolbar buttons. The parent window receives the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TTN_GETDISPINFO_cpp">
+  TTN_GETDISPINFO</MSHelp:link>
+  notification message when the toolbar needs the Help text for a button. The
+  ToolTip control sends the notification in the form of a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_NOTIFY_cpp">
+  WM_NOTIFY</MSHelp:link>
+  message. The <i>lParam</i> parameter includes the address of an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NMTTDISPINFO_cpp">
+  NMTTDISPINFO</MSHelp:link>
+  structure that specifies the command identifier of the button for which Help
+  text is needed. An application can copy the Help text to the structure,
+  specify the address of a string containing the Help text, or specify the
+  instance handle and resource identifier of a string resource.</p>
+  <p>The following example specifies an instance handle and a resource
+  identifier to handle the <b>TTN_GETDISPINFO</b> ToolTip notification.</p>
+  <p style="FONT-WEIGHT: bold; CURSOR: hand; TEXT-DECORATION: underline" ShowHideType="Example">Show
+  Example</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">case WM_NOTIFY: 
+    switch (((LPNMHDR) lParam)-&gt;code) 
+	{ 
+        case TTN_GETDISPINFO: 
+            { 
+            LPTOOLTIPTEXT lpttt; 
+
+            lpttt = (LPTOOLTIPTEXT) lParam; 
+            lpttt-&gt;hinst = g_hinst; 
+
+            <font color="blue">//</font><font color="green"> Specify the resource identifier of the descriptive </font>
+            <font color="blue">//</font><font color="green"> text for the given button. </font>
+            idButton = lpttt-&gt;hdr.idFrom; 
+            switch (idButton) 
+			{ 
+                case IDM_CUT: 
+                    lpttt-&gt;lpszText = MAKEINTRESOURCE(IDS_TIPS_CUT); 
+                    break; 
+                case IDM_COPY: 
+                    lpttt-&gt;lpszText = MAKEINTRESOURCE(IDS_TIPS_COPY); 
+                    break; 
+                case IDM_PASTE: 
+                    lpttt-&gt;lpszText = MAKEINTRESOURCE(IDS_TIPS_PASTE); 
+                    break; 
+            } 
+            break; 
+            } 
+        . 
+        . <font color="blue">//</font><font color="green"> Process other notifications here. </font>
+        . 
+        default: 
+            break; 
+    } </pre>
+  <p>If an application specifies labels in the <b>iString</b> member of the
+  associated <b>TBBUTTON</b> structure, the toolbar control automatically uses
+  that string as the ToolTip. You must send a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_SETMAXTEXTROWS_cpp">
+  TB_SETMAXTEXTROWS</MSHelp:link>
+  message and set the maximum text rows to zero to keep the label from appearing
+  on the button. If your application does not respond to <b>TTN_GETDISPINFO</b>,
+  the toolbar uses the label as the ToolTip text.</p>
+  <p>You can also provide ToolTips by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TBSTYLE_EX_MIXEDBUTTONS">
+  TBSTYLE_EX_MIXEDBUTTONS</MSHelp:link>
+  extended style. This style allows you to set text for all buttons, but only
+  display it for those buttons with the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="BTNS_SHOWTEXT">
+  BTNS_SHOWTEXT</MSHelp:link>
+  button style. The TBSTYLE_LIST style must also be set. Normally, when a button
+  does not display text, your application must handle <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBN_GETINFOTIP_cpp">
+  TBN_GETINFOTIP</MSHelp:link>
+  to display a ToolTip. With the TBSTYLE_EX_MIXEDBUTTONS extended style, text
+  that is set but not displayed on a button will automatically be used as the
+  button's ToolTip text. Your application needs to handle <b>TBN_GETINFOTIP</b>
+  only if it needs more flexibility in specifying the ToolTip text.</p>
+  <h3><a name="Handling_Drop-down_Buttons"></a>Handling Drop-down Buttons</h3>
+  <p>A drop-down button is designed to present users with a list of options. You
+  create this style button by specifying the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="BTNS_DROPDOWN">
+  BTNS_DROPDOWN</MSHelp:link>
+  style, also called <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TBSTYLE_DROPDOWN">
+  TBSTYLE_DROPDOWN</MSHelp:link>
+  for compatibility with previous versions of the common controls. To produce a
+  drop-down button with an arrow displayed on the right, you must specify
+  BTNS_DROPDOWN and set the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TBSTYLE_EX_DRAWDDARROWS">
+  TBSTYLE_EX_DRAWDDARROWS</MSHelp:link>
+  toolbar style by sending a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_SETEXTENDEDSTYLE_cpp">
+  TB_SETEXTENDEDSTYLE</MSHelp:link>
+  message. The following illustration shows the two kinds of drop-down buttons.
+  The toolbar with the drop-down button was created with the BTNS_DROPDOWN
+  button style; the toolbar with the drop-down button and arrow was created with
+  the BTNS_DROPDOWN button style and the TBSTYLE_EX_DRAWDDARROWS toolbar style.</p>
+  <p><img border="0" src="toolba14.gif" width="548" height="441"></p>
+  <p>When the user clicks a toolbar button that uses the BTNS_DROPDOWN style,
+  the toolbar control sends its parent a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBN_DROPDOWN_cpp">
+  TBN_DROPDOWN</MSHelp:link>
+  notification message. The application's notification handler can then display
+  a list of options. When you click a drop-down arrow button, a <b>TBN_DROPDOWN</b>
+  notification is sent; if you click the associated arrow, a <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_command">
+  WM_COMMAND</MSHelp:link>
+  message is sent.</p>
+  <p>An application can support a drop-down button in a toolbar control, as
+  illustrated in the following <i>DoNotify</i> application-defined function:</p>
+  <ul>
+    <li>If the incoming notification message is <b>TBN_DROPDOWN</b>, <i>DoNotify</i>
+      retrieves the bounding rectangle of the button the user clicked by sending
+      the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_GETRECT_cpp">
+      TB_GETRECT</MSHelp:link>
+      message.
+    <li>When sending the message, <i>DoNotify</i> specifies the command
+      identifier of the drop-down button as the <i>wParam</i> parameter of the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_SendMessage">
+      SendMessage</MSHelp:link>
+      function.
+    <li>The button's command identifier was retrieved from the <b>iItem</b>
+      member of the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NMTOOLBAR_cpp">
+      NMTOOLBAR</MSHelp:link>
+      structure that <i>lParam</i> points to.
+    <li>After <i>DoNotify</i> retrieves the bounding rectangle, it calls <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_mapwindowpoints">
+      MapWindowPoints</MSHelp:link>
+      to convert the rectangle from client coordinates to screen coordinates.
+    <li>It then retrieves the pop-up menu from a menu resource by using the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_getsubmenu">
+      GetSubMenu</MSHelp:link>
+      function and calls the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_trackpopupmenuex">
+      TrackPopupMenuEx</MSHelp:link>
+      function to display the menu.
+    <li>Note that <i>DoNotify</i> positions the menu under the correct button by
+      using the rectangle it retrieved earlier. It also includes the <b>TPM_VERTICAL</b>
+      flag to ensure that the menu is displayed so that it doesn't overlap the
+      button.
+    <li>Note also that <i>DoNotify</i> sets rcExclude equal to the button
+      rectangle so that if the toolbar is too close to the bottom of the screen,
+      the menu will appear above the button rather than below it.</li>
+  </ul>
+  <p style="FONT-WEIGHT: bold; CURSOR: hand; TEXT-DECORATION: underline" ShowHideType="Example">&nbsp;</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">BOOL DoNotify(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+#define lpnm   ((LPNMHDR)lParam)
+#define lpnmTB ((LPNMTOOLBAR)lParam)
+
+   RECT      rc;
+   TPMPARAMS tpm;
+   HMENU     hPopupMenu = NULL;
+   HMENU     hMenuLoaded;
+   BOOL      bRet = FALSE;
+
+   switch(lpnm-&gt;code){
+      case TBN_DROPDOWN:
+         SendMessage(lpnmTB-&gt;hdr.hwndFrom, TB_GETRECT,
+                     (WPARAM)lpnmTB-&gt;iItem, (LPARAM)&amp;rc);
+
+         MapWindowPoints(lpnmTB-&gt;hdr.hwndFrom,
+                         HWND_DESKTOP, (LPPOINT)&amp;rc, 2);                         
+
+         tpm.cbSize = sizeof(TPMPARAMS);
+         tpm.rcExclude = rc;
+         hMenuLoaded = LoadMenu(g_hinst, MAKEINTRESOURCE(IDR_POPUP)); 
+         hPopupMenu = GetSubMenu(LoadMenu(g_hinst,
+            MAKEINTRESOURCE(IDR_POPUP)),0);
+
+         TrackPopupMenuEx(hPopupMenu,
+            TPM_LEFTALIGN|TPM_LEFTBUTTON|TPM_VERTICAL,               
+            rc.left, rc.bottom, g_hwndMain, &amp;tpm); 
+
+         DestroyMenu(hMenuLoaded);			
+      return (FALSE);
+   }
+   return FALSE;
+}</pre>
+  <h3><a name="Customizing_Toolbars"></a>Customizing Toolbars</h3>
+  <p>Most Windows-based applications use toolbar controls to provide their users
+  with convenient access to various tools. However, static toolbars have some
+  shortcomings, such as too little space to effectively display all the
+  available tools.</p>
+  <p>The solution to this problem is to make your application's toolbars
+  customizable. Users can then move, add, and delete tools to select only the
+  ones they need and organize them in whatever way they find convenient.</p>
+  <p>To enable customization, include the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="CCS_ADJUSTABLE">
+  CCS_ADJUSTABLE</MSHelp:link>
+  common controls style flag when you create the toolbar control. There are two
+  basic approaches to customization:</p>
+  <ul>
+    <li>The customization dialog box. This system-provided dialog box is the
+      simplest approach. It gives users a graphical user interface that allows
+      them to add, delete, or move icons.
+    <li>Dragging and dropping tools. Implementing drag and drop allows users to
+      move tools to another location on the toolbar or delete them by dragging
+      them off the toolbar. It provides users a quick and easy way to organize
+      their toolbar, but does not allow them to add tools.</li>
+  </ul>
+  <p>You can implement either or both, depending on the needs of the
+  application. Neither of these two approaches to customization provides a
+  built-in mechanism, such as a Cancel or Undo button, to return the toolbar to
+  its former state. You must explicitly use the toolbar control API to store the
+  toolbar's precustomization state. If necessary, you can later use this stored
+  information to restore the toolbar to its original state.</p>
+  <p>This topic discusses how to enable toolbar customization with the
+  customization dialog box and with drag and drop.</p>
+  <h3><a name="custom_dialog_box"></a>Customization Dialog Box</h3>
+  <p>The customization dialog box is provided by the toolbar control to give
+  users a simple way to add, move, or delete tools. Users can launch it by
+  double-clicking the toolbar. Applications can launch the customization dialog
+  box by sending the toolbar control a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_CUSTOMIZE_cpp">
+  TB_CUSTOMIZE</MSHelp:link>
+  message. The following illustration shows an example of the toolbar
+  customization dialog box.</p>
+  <p><img border="0" src="toolba15.gif" width="542" height="287"></p>
+  <p>The tools in the right-hand list box are those currently on the toolbar.
+  Initially, this list will contain the tools that you specify when you create
+  the toolbar. The left-hand list box contains the tools that are available to
+  add to the toolbar. Your application is responsible for populating that list
+  and keeping track of what tools are currently on the toolbar.</p>
+  <h4><a name="impl_custom_db"></a>Implementing the customization dialog box</h4>
+  <p>The toolbar control notifies your application that it is launching a
+  customization dialog box by sending its parent window a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBN_BEGINADJUST_cpp">
+  TBN_BEGINADJUST</MSHelp:link>
+  notification. It then sends a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBN_INITCUSTOMIZE_cpp">
+  TBN_INITCUSTOMIZE</MSHelp:link>
+  notification. If you don't want the toolbar to display a Help button, handle
+  this notification and return TBNRF_HIDEHELP.</p>
+  <p>The toolbar control then collects the information it needs to initialize
+  the dialog box by sending three series of notifications in the following
+  order:</p>
+  <ul>
+    <li>A <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBN_QUERYINSERT_cpp">
+      TBN_QUERYINSERT</MSHelp:link>
+      notification for each button on the toolbar to determine where buttons can
+      be inserted. Return FALSE to prevent a button from being inserted to the
+      left of the button specified in the notification. If you return FALSE to
+      all <b>TBN_QUERYINSERT</b> notifications, the dialog box will not be
+      displayed.
+    <li>A <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBN_QUERYDELETE_cpp">
+      TBN_QUERYDELETE</MSHelp:link>
+      notification for each tool currently on the toolbar. Return TRUE if a tool
+      can be deleted, or FALSE if not.
+    <li>A series of <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBN_GETBUTTONINFO_cpp">
+      TBN_GETBUTTONINFO</MSHelp:link>
+      notifications to populate the list of available tools. To add a tool to
+      the list, fill in the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NMTOOLBAR_cpp">
+      NMTOOLBAR</MSHelp:link>
+      structure that is passed with the notification and return TRUE. When you
+      have no more tools to add, return FALSE.</li>
+  </ul>
+  <p>The dialog box is then displayed, and the user can begin to customize the
+  toolbar.</p>
+  <p>Once the dialog box is displayed, your application can receive a variety of
+  notifications, depending on the users' actions:</p>
+  <ul>
+    <li><b>TBN_QUERYINSERT</b>. Each time the user changes the location of a
+      tool on the toolbar, or adds a tool. Return FALSE to prevent the tool from
+      being inserted at that location.
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBN_DELETINGBUTTON_cpp">
+      TBN_DELETINGBUTTON</MSHelp:link>
+      . The user is about to remove a tool from the toolbar.
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBN_CUSTHELP_cpp">
+      TBN_CUSTHELP</MSHelp:link>
+      . The user has clicked the Help button.
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBN_TOOLBARCHANGE_cpp">
+      TBN_TOOLBARCHANGE</MSHelp:link>
+      . The user has added, moved, or deleted a tool.
+    <li><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBN_RESET_cpp">
+      TBN_RESET</MSHelp:link>
+      . The user has clicked the Reset button.</li>
+  </ul>
+  <p>After the dialog box is destroyed, your application will receive a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBN_ENDADJUST_cpp">
+  TBN_ENDADJUST</MSHelp:link>
+  notification.</p>
+  <p>The following code example demonstrates how to handle notifications to
+  enable toolbar customization.</p>
+  <p style="FONT-WEIGHT: bold; CURSOR: hand; TEXT-DECORATION: underline" ShowHideType="Example">Show
+  Example</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">LRESULT MsgNotify(HWND hwnd, UINT uMessage, WPARAM wparam, LPARAM lparam)
+{
+    static UINT		i=0;
+    LPNMHDR         lpnmhdr;
+
+    lpnmhdr = (LPNMHDR)lparam;
+
+    <font color="blue">//</font><font color="green"> The following code allows the toolbar to be customized. </font>
+    <font color="blue">//</font><font color="green"> If you return FALSE the Customize Toolbar dialog flashes</font>
+    <font color="blue">//</font><font color="green"> and goes away.</font>
+
+    if (lpnmhdr-&gt;code == TBN_QUERYINSERT || lpnmhdr-&gt;code ==
+	    TBN_QUERYDELETE)
+    {
+     return TRUE;
+    }
+        
+    if (lpnmhdr-&gt;code == TBN_GETBUTTONINFO)
+    {
+        LPTBNOTIFY lpTbNotify = (LPTBNOTIFY)lparam;
+        char  szBuffer [20];
+	   
+		<font color="blue">//</font><font color="green"> 20 = total number of buttons.</font>
+		<font color="blue">//</font><font color="green"> tbButton and tbButtonNew send information about</font>
+		<font color="blue">//</font><font color="green"> the other 12 buttons in tbButtonNew.</font>
+		
+        if (lpTbNotify-&gt;iItem &lt; 12)    
+        {                              
+         lpTbNotify-&gt;tbButton = tbButtonNew[lpTbNotify-&gt;iItem];
+		 LoadString(hInst,
+                    4000+ lpTbNotify-&gt;iItem,  
+                    szBuffer, sizeof(szBuffer)/sizeof(szBuffer[0]));
+         hr = StringCchCopy
+                  (lpTbNotify-&gt;pszText, 
+                          sizeof(lpTbNotify-&gt;pszText)
+                          /sizeof(lpTbNotify-&gt;pszText[0]),
+                          szBuffer );
+                        if(SUCEEDED(hr))
+                          {
+                          lpTbNotify-&gt;cchText =     
+                               sizeof(szBuffer)/sizeof(szBuffer[0]);
+                          }
+                        else
+                          {
+                          TODO: Write error handler.
+                          }
+         return TRUE;
+        }
+     else
+        return 0;
+    }
+    return 0;
+}</pre>
+  <h3><a name="drag_drop_tools"></a>Dragging and Dropping Tools</h3>
+  <p>Users can also rearrange the buttons on a toolbar by pressing the SHIFT key
+  and dragging the button to another location. The drag-and-drop process is
+  handled automatically by the toolbar control. It displays a ghost image of the
+  button as it is dragged, and rearranges the toolbar after it is dropped. Users
+  cannot add buttons in this way, but they can delete a button by dropping it
+  off the toolbar.</p>
+  <p>Although the toolbar control normally does this operation automatically, it
+  also sends your application two notifications: <b>TBN_QUERYDELETE</b> and <b>TBN_QUERYINSERT</b>.
+  To control the drag-and-drop process, handle these notifications as follows:</p>
+  <ul>
+    <li>The <b>TBN_QUERYDELETE</b> notification is sent as soon as the user
+      attempts to move the button, before the ghost button is displayed. Return
+      FALSE to prevent the button from being moved. If you return TRUE, the user
+      will be able to either move the tool or delete it by dropping it off the
+      toolbar. Once you have allowed the user to move a tool, you cannot prevent
+      him or her from deleting it. However, if the user deletes a tool, the
+      toolbar control will send your application a <b>TBN_DELETINGBUTTON</b>
+      notification, at which point you can choose to reinsert the button at its
+      original location, thereby canceling the deletion.
+    <li>The <b>TBN_QUERYINSERT</b> notification is sent when the user attempts
+      to drop the button on the toolbar. To prevent the button being moved from
+      being dropped to the left of the button specified in the notification,
+      return FALSE. This notification is not sent if the user drops the tool off
+      the toolbar.</li>
+  </ul>
+  <p>If the user attempts to drag a button without also pressing the SHIFT key,
+  the toolbar control will not handle the drag-and-drop operation. However, it
+  will send your application a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBN_BEGINDRAG_cpp">
+  TBN_BEGINDRAG</MSHelp:link>
+  notification to indicate the start of a drag operation, and a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBN_ENDDRAG_cpp">
+  TBN_ENDDRAG</MSHelp:link>
+  notification to indicate the end. If you want to enable this form of
+  drag-and-drop, your application must handle these notifications, provide the
+  necessary user interface, and modify the toolbar to reflect any changes.</p>
+  <h3><a name="restore_tb"></a>Saving and Restoring Toolbars</h3>
+  <p>In the process of customizing a toolbar, your application might need to
+  save information so that you can restore the toolbar to its original state. To
+  initiate saving or restoring a toolbar state, send the toolbar control a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_SAVERESTORE_cpp">
+  TB_SAVERESTORE</MSHelp:link>
+  message with the <i>lParam</i> set to TRUE. The <i>lParam</i> value of this
+  message specifies whether you are requesting a save or a restore operation.
+  Once the message is sent, there are two ways to handle the save/restore
+  operation:</p>
+  <ul>
+    <li>With common controls <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Shell_Versions">
+      version 4.72</MSHelp:link>
+      and earlier, you must implement a <b>TBN_GETBUTTONINFO</b> handler. The
+      toolbar control sends this notification to request information about each
+      button as it is restored.
+    <li>Version 5.80 includes a save/restore option. At the beginning of the
+      process, and as each button is saved or restored, your application will
+      receive a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBN_SAVE_cpp">
+      TBN_SAVE</MSHelp:link>
+      or <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBN_RESTORE_cpp">
+      TBN_RESTORE</MSHelp:link>
+      notification. To use this option, you must implement notification handlers
+      to provide the Shell with the bitmap and state information it needs to
+      successfully save or restore the toolbar state.</li>
+  </ul>
+  <p>Toolbar states are saved in a data stream that consists of blocks of
+  Shell-defined data alternating with blocks of application-defined data. One
+  data block of each type is stored for each button, along with an optional
+  block of global data that applications can place at the beginning of the
+  stream. During the save process, your <b>TBN_SAVE</b> handler adds the
+  application-defined blocks to the data stream. During the restore process, the
+  <b>TBN_RESTORE</b> handler reads each block and gives the Shell the
+  information it needs to reconstruct the toolbar.</p>
+  <h3><a name="TBN_SAVE_note"></a>How to Handle a TBN_SAVE Notification</h3>
+  <p>The first <b>TBN_SAVE</b> notification is sent at the beginning of the save
+  process. Before any buttons are saved, the members of the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NMTBSAVE_cpp">
+  NMTBSAVE</MSHelp:link>
+  structure are set as shown in the following table.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>Member</th>
+        <th>Setting</th>
+      </tr>
+      <tr>
+        <td><b>iItem</b></td>
+        <td>-1</td>
+      </tr>
+      <tr>
+        <td><b>cbData</b></td>
+        <td>Amount of memory needed for Shell-defined data.</td>
+      </tr>
+      <tr>
+        <td><b>cButtons</b></td>
+        <td>Number of buttons.</td>
+      </tr>
+      <tr>
+        <td><b>pData</b></td>
+        <td>Calculated amount of memory needed for application-defined data.
+          Typically, you include some global data, plus data for each button.
+          Add that value to <b>cbData</b> and allocate enough memory to <b>pData</b>
+          to hold it all.</td>
+      </tr>
+      <tr>
+        <td><b>pCurrent</b></td>
+        <td>First unused byte in the data stream. If you do not require global
+          toolbar information, set <b>pCurrent</b> = <b>pData</b> so that it
+          points to the start of the data stream. If you do require global
+          toolbar information, store it at <b>pData</b>, then set <b>pCurrent</b>
+          to the beginning of the unused portion of the data stream before
+          returning.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>If you want to add some global toolbar information, put it at the start of
+  the data stream. Advance <b>pCurrent</b> to the end of the global data so that
+  it points to the beginning of the unused portion of the data stream, and
+  return.</p>
+  <p>After you return, the Shell starts saving button information. It adds the
+  Shell-defined data for the first button at <b>pCurrent</b> and then advances <b>pCurrent</b>
+  to the start of the unused portion.</p>
+  <p>After each button is saved, a <b>TBN_SAVE</b> notification is sent and <b>NMTBSAVE</b>
+  is returned with these members set as follows.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>Member</th>
+        <th>Setting</th>
+      </tr>
+      <tr>
+        <td><b>iItem</b></td>
+        <td>Zero-based index of the button number.</td>
+      </tr>
+      <tr>
+        <td><b>pCurrent</b></td>
+        <td>Pointer to the first unused byte in the data stream. If you want to
+          store additional information about the button, store it at the
+          location pointed to by <b>pCurrent</b> and update <b>pCurrent</b> to
+          point to the first unused portion of the data stream after that.</td>
+      </tr>
+      <tr>
+        <td><b>TBBUTTON</b></td>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBBUTTON_cpp">
+          TBBUTTON</MSHelp:link>
+          structure that describes the button being saved.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>When you receive the notification, you should extract any button-specific
+  information you need from<b>TBBUTTON</b>. Remember that when you add a button,
+  you can use the <b>dwData</b> member of <b>TBBUTTON</b> to hold
+  application-specific data. Load your data into the data stream at <b>pCurrent</b>.
+  Advance <b>pCurrent</b> to the end of your data, again pointing to the
+  beginning of the unused portion of the stream, and return.</p>
+  <p>The Shell then goes to the next button, adds its information to <b>pData</b>,
+  advances <b>pCurrent</b>, loads <b>TBBUTTON</b>, and sends another <b>NMTBSAVE</b>
+  notification. This process continues until all buttons are saved.</p>
+  <h3><a name="restore_saved_tb"></a>Restoring Saved Toolbars</h3>
+  <p>The restore process basically reverses the save process. At the beginning,
+  your application will receive a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NMTBRESTORE_cpp">
+  NMTBRESTORE</MSHelp:link>
+  notification with the <b>iItem</b> member of the <b>NMTBRESTORE</b> structure
+  set to -1. The <b>cbData</b> member is set to the size of<b>pData</b>, and <b>cButtons</b>
+  is set to the number of buttons.</p>
+  <p>Your notification handler should extract the global information placed at
+  the beginning of <b>pData</b> during the save, and advance <b>pCurrent</b> to
+  the start of the first block of Shell-defined data. Set <b>cBytesPerRecord</b>
+  to the size of the data blocks you used to save the button data. Set <b>cButtons</b>
+  to the number of buttons, and return.</p>
+  <p>The next <b>NMTBRESTORE</b> is for the first button. The <b>pCurrent</b>
+  member points to the start of your first block of button data, and <b>iItem</b>
+  is to the button index. Extract that data and advance <b>pCurrent</b>. Load
+  the data into <b>TBBUTTON</b>, and return. To omit a button from the restored
+  toolbar, set the <b>idCommand</b> member of <b>TBBUTTON</b> to zero. The Shell
+  will repeat the process for the remaining buttons.</p>
+  <p>In addition to <b>NMTBSAVE</b> and <b>NMTBRESTORE</b> messages, you can
+  also use messages such as <b>TBN_RESET</b> to save and restore a toolbar. The
+  following code snippet saves a toolbar before it is customized and restores it
+  if the application receives a <b>TBN_RESET</b> message.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">int                    i;
+LPNMHDR                lpnmhdr;
+static int             nResetCount;
+static LPTBBUTTON      lpSaveButtons;
+LPARAM                 lParam;
+
+switch( lpnmhdr-&gt;code)
+{
+   case TBN_BEGINADJUST: <font color="blue">//</font><font color="green"> Start customizing the toolbar.</font>
+     {
+	   LPTBNOTIFY  lpTB = (LPTBNOTIFY)lparam;
+	   
+       <font color="blue">//</font><font color="green"> Allocate memory to store the button information.</font>
+       nResetCount = SendMessage(lpTB-&gt;hdr.hwndFrom,
+         TB_BUTTONCOUNT, 0, 0);
+       lpSaveButtons = (LPTBBUTTON)GlobalAlloc(GPTR,
+         sizeof(TBBUTTON) * nResetCount);
+      
+      <font color="blue">//</font><font color="green"> Save the current configuration so if the user presses</font>
+      <font color="blue">//</font><font color="green"> reset, the original toolbar can be restored.</font>
+      for(i = 0; i &lt; nResetCount; i++)
+         {
+         SendMessage(lpTB-&gt;hdr.hwndFrom, TB_GETBUTTON, i,
+		    (LPARAM)(lpSaveButtons + i));
+         }
+     }
+     return TRUE;
+   
+   case TBN_RESET:
+      {
+      LPTBNOTIFY  lpTB = (LPTBNOTIFY)lparam;
+      int         nCount, i;
+	
+      <font color="blue">//</font><font color="green"> Remove all of the existing buttons starting with the</font>
+      <font color="blue">//</font><font color="green"> last and working down.</font>
+      nCount = SendMessage(lpTB-&gt;hdr.hwndFrom, TB_BUTTONCOUNT, 0,
+	     0);
+      for(i = nCount - 1; i &gt;= 0; i--)
+         {
+         SendMessage(lpTB-&gt;hdr.hwndFrom, TB_DELETEBUTTON, i, 0);
+         }
+      
+      <font color="blue">//</font><font color="green"> Restore the buttons that were saved.</font>
+      SendMessage(lpTB-&gt;hdr.hwndFrom, TB_ADDBUTTONS,
+	    (WPARAM)nResetCount, (LPARAM)lpSaveButtons);
+      }
+      return TRUE;
+   
+   case TBN_ENDADJUST:
+      <font color="blue">//</font><font color="green"> Free the memory allocated during TBN_BEGINADJUST</font>
+      GlobalFree((HGLOBAL)lpSaveButtons);
+      return TRUE;
+ }</pre>
+  <h2><a name="Embedding_Non_Button_Controls_in_Toolbars"></a>Embedding
+  Nonbutton Controls in Toolbars</h2>
+  <p>Toolbars support only buttons; therefore, if your application requires a
+  different kind of control, you must create a child window. The following
+  illustration shows a toolbar with an embedded edit control.</p>
+  <p><img border="0" src="toolba16.gif" width="499" height="221"></p>
+  <p>Any type of window can be placed on a toolbar. The following sample code
+  adds an edit control as a child of the toolbar control window. Because the
+  toolbar is created and then the edit control added, you must provide space for
+  the edit control. One way to do this is to add a separator as a placeholder in
+  the toolbar. For example, to add an edit control to the second code sample in
+  the <a href="#Creating_Toolbars" target="_self">Creating Toolbars</a> section
+  of this article, you first add a separator to tbButtonsCreate, a customized <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TBBUTTON_cpp">
+  TBBUTTON</MSHelp:link>
+  structure. You set the width of the separator to the number of pixels you want
+  to reserve.</p>
+  <p>The following application-defined function creates the toolbar, and adds
+  the buttons and the edit control.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">HWND CreateAToolBar(HWND hWndParent)
+{
+HWND hWndToolbar;
+HWND hWndEdit;
+TBADDBITMAP tb;
+int index, stdidx;
+int cx_edit, CX_SEPARATOR = 250; <font color="blue">//</font><font color="green"> Width of edit control.</font>
+int cy_edit = 35;                <font color="blue">//</font><font color="green"> Height of edit control.</font>
+
+<font color="blue">//</font><font color="green"> The code example uses a MACRO defined in the header file as</font>
+<font color="blue">//</font><font color="green"> follows: #define ARRAYSIZE(a) (sizeof(a)/sizeof(a[0]))</font>
+
+<font color="blue">//</font><font color="green"> Toolbar buttons</font>
+
+TBBUTTON tbButtonsCreate [ ] = 
+{
+<font color="blue">//</font><font color="green"> The separator is set to the width of the edit control. </font>
+{CX_SEPARATOR, 0, TBSTATE_ENABLED, BTNS_SEP, 
+#if defined(_WIN32) | defined(_WIN64)
+{0},
+#endif
+0, -1},
+{STD_FILENEW, IDM_NEW, TBSTATE_ENABLED, BTNS_BUTTON, 
+#if defined(_WIN32) | defined(_WIN64)
+{0},
+#endif
+0L, 0},
+{STD_FILEOPEN, IDM_OPEN, TBSTATE_ENABLED, BTNS_BUTTON, 
+#if defined(_WIN32) | defined(_WIN64)
+{0},
+#endif
+0L, 0},
+{STD_FILESAVE, IDM_SAVE, TBSTATE_ENABLED, BTNS_BUTTON, 
+#if defined(_WIN32) | defined(_WIN64)
+{0},
+#endif
+0L, 0},
+{0, 0, TBSTATE_ENABLED, BTNS_SEP, 
+#if defined(_WIN32) | defined(_WIN64)
+{0},
+#endif
+0L, 0},
+};
+
+TBBUTTON tbButtonsAdd [ ] = 
+{
+{VIEW_LARGEICONS, IDM_LARGEICON, TBSTATE_ENABLED, BTNS_BUTTON, 
+#if defined(_WIN32) | defined(_WIN64)
+{0},
+#endif
+0L, 0},
+{VIEW_SMALLICONS, IDM_SMALLICON, TBSTATE_ENABLED, BTNS_BUTTON, 
+#if defined(_WIN32) | defined(_WIN64)
+{0},
+#endif
+0L, 0},
+{VIEW_LIST, IDM_LISTVIEW, TBSTATE_ENABLED, BTNS_BUTTON, 
+#if defined(_WIN32) | defined(_WIN64)
+{0},
+#endif
+0L, 0},
+{VIEW_DETAILS, IDM_REPORTVIEW, TBSTATE_ENABLED, BTNS_BUTTON, 
+#if defined(_WIN32) | defined(_WIN64)
+{0},
+#endif
+0L, 0},
+}; 
+<font color="blue">//</font><font color="green"> Create a toolbar containing separators and three buttons.</font>
+<font color="blue">//</font><font color="green"> There are 15 items in IDB_STD_SMALL_COLOR.  However, because this is a</font>
+<font color="blue">//</font><font color="green"> standard system-defined bitmap, the parameter that specifies the number</font>
+<font color="blue">//</font><font color="green"> of button images in the bitmap (nBitmaps) is ignored, so it is set</font>
+<font color="blue">//</font><font color="green"> to 0.</font>
+hWndToolbar = CreateToolbarEx (hWndParent, 
+    WS_CHILD | WS_BORDER | WS_VISIBLE | TBSTYLE_TOOLTIPS, 
+    ID_TOOLBAR, 0, HINST_COMMCTRL,
+    IDB_STD_SMALL_COLOR, tbButtonsCreate, ARRAYSIZE(tbButtonsCreate), 0, 0, 100,
+    30, sizeof (TBBUTTON));
+	
+<font color="blue">//</font><font color="green"> Add four view bitmaps. The view bitmaps are not in the same </font>
+<font color="blue">//</font><font color="green"> file as the standard bitmaps; therefore, you must change the</font>
+<font color="blue">//</font><font color="green"> resource identifier to IDB_VIEW_SMALL_COLOR.  </font>
+tb.hInst = HINST_COMMCTRL;
+tb.nID = IDB_VIEW_SMALL_COLOR;
+<font color="blue">//</font><font color="green"> There are 12 items in IDB_VIEW_SMALL_COLOR.  However, because this is a standard</font>
+<font color="blue">//</font><font color="green"> system-defined bitmap, wParam (nButtons) is ignored.</font>
+stdidx = SendMessage (hWndToolbar, TB_ADDBITMAP, 0,
+   (LPARAM)&amp;tb);
+
+<font color="blue">//</font><font color="green"> Update the indexes to the view bitmaps.</font>
+for (index = 0; index &lt; 4; index++)
+   tbButtonsAdd[index].iBitmap += stdidx;
+
+<font color="blue">//</font><font color="green"> Add the view buttons.   </font>
+SendMessage (hWndToolbar, TB_ADDBUTTONS, ARRAYSIZE(tbButtonsAdd), (LPARAM)
+   &amp;tbButtonsAdd[0]);
+
+<font color="blue">//</font><font color="green"> Create the edit control child window.    </font>
+hWndEdit = CreateWindowEx(0L, &quot;Edit&quot;, NULL, WS_CHILD | WS_BORDER
+   | WS_VISIBLE | ES_LEFT | ES_AUTOVSCROLL | ES_MULTILINE, 
+   0, 0, cx_edit, cy_edit, hWndToolbar, (HMENU) IDM_EDIT, hInst, 0 );
+   
+<font color="blue">//</font><font color="green"> Return the toolbar with the embedded edit control.  </font>
+return hWndToolbar;
+}      </pre>
+  <p>The sample hard-codes the dimensions of the child window; however, to make
+  a more robust application, determine the size of the toolbar and make the edit
+  control window to fit.</p>
+  <p>You might want the edit control notifications to go to another window, such
+  as the toolbar's parent. To do this, create the edit control as a child of the
+  toolbar's parent window. Then change the parent of the edit control to the
+  toolbar. Notifications go to the original parent; therefore, the edit control
+  messages go to the parent of the toolbar and yet the edit window resides in
+  the toolbar window. The following code example demonstrates this.</p>
+  <pre class="clsCode" AUTOHILITE="1"><font color="blue">//</font><font color="green"> Create the edit control. Notice that hWndParent, parent of</font>
+<font color="blue">//</font><font color="green"> the toolbar, is used as the parent of the edit control.    </font>
+hWndEdit = CreateWindowEx(0L, &quot;Edit&quot;, NULL, WS_CHILD | WS_BORDER
+   | WS_VISIBLE | ES_LEFT | ES_AUTOVSCROLL | ES_MULTILINE, 
+   0, 0, cx_edit, cy_edit, hWndParent, (HMENU) IDM_EDIT, hInst, 0 );
+   
+<font color="blue">//</font><font color="green"> Set the toolbar window as the parent of the edit control</font>
+<font color="blue">//</font><font color="green"> window. You must set the toolbar as the parent of the edit</font>
+<font color="blue">//</font><font color="green"> control for it to appear embedded in the toolbar.</font>
+SetParent (hWndEdit, hWndToolbar);    </pre>
+  <h3><a name="Using_Hot-tracking_With_Toolbars"></a>Using Hot-tracking with
+  Toolbars</h3>
+  <p>When a mouse pointer hovers over an item, the item becomes hot. If
+  hot-tracking is enabled, the hot item is selected and the item under the mouse
+  pointer is highlighted. Hot-tracking is supported by common controls, such as
+  the toolbar, list view, tab, and header. Some controls have window styles that
+  provide hot-tracking by default; others require that a specific hot-tracking
+  window style be used. A toolbar created with the TBSTYLE_FLAT style supports
+  hot-tracking by default. You can use TBSTYLE_FLAT in combination with other
+  window styles to produce toolbars that enable hot-tracking. Hot-tracking
+  requires that you create image lists; therefore, you cannot use <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_ADDBITMAP_cpp">
+  TB_ADDBITMAP</MSHelp:link>
+  or <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateToolbarEx_cpp">
+  CreateToolbarEx</MSHelp:link>
+  to create your toolbar.</p>
+  <p>When the mouse hovers over a toolbar button, the button is outlined to
+  highlight it. The following illustration shows a flat or transparent toolbar
+  with hot-tracking enabled.</p>
+  <p><img border="0" src="toolba17.gif" width="526" height="144"></p>
+  <p>If you want a toolbar button bitmap to change when the state of the control
+  changes, store the different images in <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Image_Lists_cpp">
+  Image Lists</MSHelp:link>
+  . For example, some applications have black and white toolbar buttons that
+  become colored when they are selected. The two different images are stored in
+  image lists. Toolbars support using up to three image lists. Typically an
+  application has a default, disabled, and hot-tracking list of images. To set
+  and retrieve image lists for hot toolbar buttons, use <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_SETHOTIMAGELIST_cpp">
+  TB_SETHOTIMAGELIST</MSHelp:link>
+  and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TB_GETHOTIMAGELIST_cpp">
+  TB_GETHOTIMAGELIST</MSHelp:link>
+  . The following code snippet creates, fills, and assigns an image list for hot
+  buttons.</p>
+  <pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green"> Create the image list, himlHot.</font>
+himlHot = ImageList_Create(MYICON_CX,MYICON_CY,ILC_COLOR8,0,4);
+<font color="blue">//</font><font color="green"> Load a bitmap from a resource file and adds the images to the</font>
+<font color="blue">//</font><font color="green"> image list. The bitmap contains four images.</font>
+   hBitmapHot = LoadBitmap(g_hinst, MAKEINTRESOURCE(IDB_HOT));
+   ImageList_Add(himlHot, hBitmapHot, NULL);
+   
+<font color="blue">//</font><font color="green"> Set the image list. </font>
+   SendMessage(hwndTB, TB_SETHOTIMAGELIST, 0, (LPARAM)himlHot);
+   
+<font color="blue">//</font><font color="green"> Loop to fill the array of TBBUTTON structures.  </font>
+   for(i=0;i&lt;MAX_BUTTONS;i++)
+   {
+      tbArray[i].iBitmap   = i; <font color="blue">//</font><font color="green"> Bitmap from image list.</font>
+      tbArray[i].idCommand = IDM_BUTTONSTART + i;
+      tbArray[i].fsState   = TBSTATE_ENABLED;
+      tbArray[i].fsStyle   = BTNS_DROPDOWN;
+      tbArray[i].dwData    = 0;
+      tbArray[i].iString   = i;
+   }
+<font color="blue">//</font><font color="green"> Delete the loaded bitmap.</font>
+DeleteObject(hBitmapHot);</pre>
+</div>
+<div class="clsFooter">
+  <hr SIZE="1">
+  <br>
+  <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="msdn_copyright">
+  © 2002 Microsoft Corporation. All rights reserved.</MSHelp:link>
+</div>
+
+</body>
+
+</html>

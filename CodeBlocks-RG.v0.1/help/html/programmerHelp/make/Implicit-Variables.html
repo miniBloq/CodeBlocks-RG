@@ -1,0 +1,165 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Implicit%20Variables">Implicit Variables</a>,
+Next:<a rel="next" accesskey="n" href="Chained-Rules.html#Chained%20Rules">Chained Rules</a>,
+Previous:<a rel="previous" accesskey="p" href="Catalogue-of-Rules.html#Catalogue%20of%20Rules">Catalogue of Rules</a>,
+Up:<a rel="up" accesskey="u" href="Implicit-Rules.html#Implicit%20Rules">Implicit Rules</a>
+<hr><br>
+</div>
+
+<h3 class="section">Variables Used by Implicit Rules</h3>
+
+   <p>The commands in built-in implicit rules make liberal use of certain
+predefined variables.  You can alter these variables in the makefile,
+with arguments to <code>make</code>, or in the environment to alter how the
+implicit rules work without redefining the rules themselves.  You can
+cancel all variables used by implicit rules with the <code>-R</code> or
+<code>--no-builtin-variables</code> option.
+
+   <p>For example, the command used to compile a C source file actually says
+<code>$(CC) -c $(CFLAGS) $(CPPFLAGS)</code>.  The default values of the variables
+used are <code>cc</code> and nothing, resulting in the command <code>cc -c</code>.  By
+redefining <code>CC</code> to <code>ncc</code>, you could cause <code>ncc</code> to be
+used for all C compilations performed by the implicit rule.  By redefining
+<code>CFLAGS</code> to be <code>-g</code>, you could pass the <code>-g</code> option to
+each compilation.  <em>All</em> implicit rules that do C compilation use
+<code>$(CC)</code> to get the program name for the compiler and <em>all</em>
+include <code>$(CFLAGS)</code> among the arguments given to the compiler.
+
+   <p>The variables used in implicit rules fall into two classes: those that are
+names of programs (like <code>CC</code>) and those that contain arguments for the
+programs (like <code>CFLAGS</code>).  (The "name of a program" may also contain
+some command arguments, but it must start with an actual executable program
+name.)  If a variable value contains more than one argument, separate them
+with spaces.
+
+   <p>Here is a table of variables used as names of programs in built-in rules:
+
+     <dl>
+<dt><code>AR</code>
+     <dd>Archive-maintaining program; default <code>ar</code>.
+
+     <br><dt><code>AS</code>
+     <dd>Program for doing assembly; default <code>as</code>.
+
+     <br><dt><code>CC</code>
+     <dd>Program for compiling C programs; default <code>cc</code>.
+
+     <br><dt><code>CXX</code>
+     <dd>Program for compiling C++ programs; default <code>g++</code>.
+
+     <br><dt><code>CO</code>
+     <dd>Program for extracting a file from RCS; default <code>co</code>.
+
+     <br><dt><code>CPP</code>
+     <dd>Program for running the C preprocessor, with results to standard output;
+default <code>$(CC) -E</code>.
+
+     <br><dt><code>FC</code>
+     <dd>Program for compiling or preprocessing Fortran and Ratfor programs;
+default <code>f77</code>.
+
+     <br><dt><code>GET</code>
+     <dd>Program for extracting a file from SCCS; default <code>get</code>.
+
+     <br><dt><code>LEX</code>
+     <dd>Program to use to turn Lex grammars into C programs or Ratfor programs;
+default <code>lex</code>.
+
+     <br><dt><code>PC</code>
+     <dd>Program for compiling Pascal programs; default <code>pc</code>.
+
+     <br><dt><code>YACC</code>
+     <dd>Program to use to turn Yacc grammars into C programs; default <code>yacc</code>.
+
+     <br><dt><code>YACCR</code>
+     <dd>Program to use to turn Yacc grammars into Ratfor
+programs; default <code>yacc -r</code>.
+
+     <br><dt><code>MAKEINFO</code>
+     <dd>Program to convert a Texinfo source file into an Info file; default
+<code>makeinfo</code>.
+
+     <br><dt><code>TEX</code>
+     <dd>Program to make TeX <small>DVI</small> files from TeX source;
+default <code>tex</code>.
+
+     <br><dt><code>TEXI2DVI</code>
+     <dd>Program to make TeX <small>DVI</small> files from Texinfo source;
+default <code>texi2dvi</code>.
+
+     <br><dt><code>WEAVE</code>
+     <dd>Program to translate Web into TeX; default <code>weave</code>.
+
+     <br><dt><code>CWEAVE</code>
+     <dd>Program to translate C Web into TeX; default <code>cweave</code>.
+
+     <br><dt><code>TANGLE</code>
+     <dd>Program to translate Web into Pascal; default <code>tangle</code>.
+
+     <br><dt><code>CTANGLE</code>
+     <dd>Program to translate C Web into C; default <code>ctangle</code>.
+
+     <br><dt><code>RM</code>
+     <dd>Command to remove a file; default <code>rm -f</code>. 
+</dl>
+
+   <p>Here is a table of variables whose values are additional arguments for the
+programs above.  The default values for all of these is the empty
+string, unless otherwise noted.
+
+     <dl>
+<dt><code>ARFLAGS</code>
+     <dd>Flags to give the archive-maintaining program; default <code>rv</code>.
+
+     <br><dt><code>ASFLAGS</code>
+     <dd>Extra flags to give to the assembler (when explicitly
+invoked on a <code>.s</code> or <code>.S</code> file).
+
+     <br><dt><code>CFLAGS</code>
+     <dd>Extra flags to give to the C compiler.
+
+     <br><dt><code>CXXFLAGS</code>
+     <dd>Extra flags to give to the C++ compiler.
+
+     <br><dt><code>COFLAGS</code>
+     <dd>Extra flags to give to the RCS <code>co</code> program.
+
+     <br><dt><code>CPPFLAGS</code>
+     <dd>Extra flags to give to the C preprocessor and programs
+that use it (the C and Fortran compilers).
+
+     <br><dt><code>FFLAGS</code>
+     <dd>Extra flags to give to the Fortran compiler.
+
+     <br><dt><code>GFLAGS</code>
+     <dd>Extra flags to give to the SCCS <code>get</code> program.
+
+     <br><dt><code>LDFLAGS</code>
+     <dd>Extra flags to give to compilers when they are
+supposed to invoke the linker, <code>ld</code>.
+
+     <br><dt><code>LFLAGS</code>
+     <dd>Extra flags to give to Lex.
+
+     <br><dt><code>PFLAGS</code>
+     <dd>Extra flags to give to the Pascal compiler.
+
+     <br><dt><code>RFLAGS</code>
+     <dd>Extra flags to give to the Fortran compiler for Ratfor programs.
+
+     <br><dt><code>YFLAGS</code>
+     <dd>Extra flags to give to Yacc. 
+</dl>
+
+   </body></html>
+

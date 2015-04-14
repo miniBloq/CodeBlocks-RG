@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release" />
+	<File name="edit.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="4601" topLine="100" />
+	</File>
+	<File name="edit.h" open="0" top="0" tabpos="10">
+		<Cursor position="1610" topLine="55" />
+	</File>
+	<File name="stctest.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="22438" topLine="642" />
+	</File>
+</CodeBlocks_layout_file>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="Workspace">
+		<Project filename="BulletCollision/BulletCollision.cbp" active="1" />
+		<Project filename="BulletDynamics/BulletDynamics.cbp" />
+		<Project filename="BulletMultiThreaded/BulletMultiThreaded.cbp" />
+		<Project filename="BulletSoftBody/BulletSoftBody.cbp" />
+		<Project filename="LinearMath/LinearMath.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>

@@ -1,0 +1,32 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Setting Data Breakpoints</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509457017"><span style="mso-ansi-language:EN-US">Settin</span></a><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc509457017">g
+Data Breakpoints</span><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoNormal">Wedit can stop the program when an address is accessed,
+either in read or in read/write mode&nbsp;. To enable these special breakpoints,
+you should choose the ‘Data breakpoints’ option in the debugger menu.</p>
+<p class="MsoNormal">You have up to four data breakpoints (there are only 4
+debug registers in the x86 architecture). Enter an address expression or the
+name of a variable, the size of the variable (only 1,2,or 4 are possible), and
+the access type. Whether the breakpoint should fire when the variable is
+accessed (read access) or when the variable is written to (read/write access).</p>
+<p class="MsoNormal">When the breakpoint fires, Wedit will stop the program and
+display the closest location to the breakpoint in the program. Note that data
+breakpoints fire <i style="mso-bidi-font-style:normal">after</i> the instruction
+is executed. If the access is in read/write, Wedit will display the old and the
+new variable values.</p>
+
+</body>
+
+</html>

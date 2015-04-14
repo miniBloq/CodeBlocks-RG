@@ -1,0 +1,145 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="fr">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>List views</title>
+</head>
+
+<body>
+
+<h2>List views</h2>
+<p>List-view controls display items in four different views. The control's
+window style specifies the current view. Additional window styles specify the
+alignment of items and control-specific features. The following table describes
+the four views.</p>
+<table class="clsStd" width="625" border="1">
+  <tbody>
+    <tr>
+      <th width="94">View Name</th>
+      <th width="570">Description</th>
+      <th width="485">Image</th>
+    </tr>
+    <tr>
+      <td width="94" valign="top">Icon view</td>
+      <td width="570" valign="top">Specified by the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_ICON">
+        LVS_ICON</MSHelp:link>
+        window style. Each item appears as a full-sized icon with a label below
+        it. The user can drag the items to any location in the list-view window.</td>
+      <td width="485"><img border="0" src="list_v1.gif" width="226" height="250"></td>
+    </tr>
+    <tr>
+      <td width="94" valign="top">Small&nbsp;icon&nbsp;view</td>
+      <td width="570" valign="top">Specified by the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_SMALLICON">
+        LVS_SMALLICON</MSHelp:link>
+        window style. Each item appears as a small icon with the label to the
+        right of it. The user can drag the items to any location.</td>
+      <td width="485"><img border="0" src="list_v2.gif" width="176" height="203"></td>
+    </tr>
+    <tr>
+      <td width="94" valign="top">List view</td>
+      <td width="570" valign="top">Specified by the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_LIST">
+        LVS_LIST</MSHelp:link>
+        window style. Each item appears as a small icon with a label to the
+        right of it. Items are arranged in columns and the user cannot drag them
+        to an arbitrary location.</td>
+      <td width="485"><img border="0" src="list_v2.gif" width="176" height="203"></td>
+    </tr>
+    <tr>
+      <td width="94" valign="top">Report view</td>
+      <td width="570">Specified by the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_REPORT">
+        LVS_REPORT</MSHelp:link>
+        window style. Each item appears on its own line, with information
+        arranged in columns. The leftmost column is always left justified and
+        contains the small icon and label. Subsequent columns contain subitems
+        as specified by the application. Each column has a header, unless you
+        also specify the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_NOCOLUMNHEADER">
+        LVS_NOCOLUMNHEADER</MSHelp:link>
+        window style.</td>
+      <td width="485"><img border="0" src="list_v3.gif" width="248" height="183"></td>
+    </tr>
+  </tbody>
+</table>
+<p>You can change the view type after you create a list-view control. To
+retrieve and change the window style, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_getwindowlong">
+GetWindowLong</MSHelp:link>
+ and <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_setwindowlong">
+SetWindowLong</MSHelp:link>
+ functions. To determine the window styles of the current view, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_TYPEMASK">
+LVS_TYPEMASK</MSHelp:link>
+ value.</p>
+<p>You can control the way items are arranged in icon or small icon view by
+specifying either the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_ALIGNTOP">
+LVS_ALIGNTOP</MSHelp:link>
+ (default) or <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_ALIGNLEFT">
+LVS_ALIGNLEFT</MSHelp:link>
+ window style.</p>
+<p>You can change the alignment after you create a list-view control. To
+determine the current alignment, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_ALIGNMASK">
+LVS_ALIGNMASK</MSHelp:link>
+ value.</p>
+<p><b>Styles</b></p>
+<ul>
+  <li><b>No button like header</b>. Column headers are not displayed in report view. By default, columns have headers in report view.</li>
+  <li><b>Auto arrange</b>. Icons are automatically kept arranged in icon and
+    small icon view.</li>
+  <li><b>Single line label text</b>. Item text is displayed on a single line in
+    icon view. By default, item text may wrap in icon view.</li>
+  <li><b>Owner draw fixed</b>. The owner window can paint items in report view.
+    The list-view control sends a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_DRAWITEM_cpp">
+    WM_DRAWITEM</MSHelp:link>
+    message to paint each item; it does not send separate messages for each
+    subitem. The <b>iItemData</b> member of the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DRAWITEMSTRUCT_str_cpp">
+    DRAWITEMSTRUCT</MSHelp:link>
+    structure contains the item data for the specified list-view item.</li>
+  <li><b>Share image lists</b>. The image list will not be deleted when the
+    control is destroyed. This style enables the use of the same image lists
+    with multiple list-view controls.</li>
+  <li><b>Edit labels</b>. Item text can be edited in place. The parent window
+    must process the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVN_ENDLABELEDIT_cpp">
+    LVN_ENDLABELEDIT</MSHelp:link>
+    notification message.</li>
+  <li><b>No scroll</b>. Scrolling is disabled. All items must be within the
+    client area. This style is not compatible with the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_LIST">
+    LVS_LIST</MSHelp:link>
+    or <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_REPORT">
+    LVS_REPORT</MSHelp:link>
+    styles.</li>
+  <li><b>Sort</b>. Can be one of: none (no sort), ascending or descending.</li>
+</ul>
+
+</body>
+
+</html>

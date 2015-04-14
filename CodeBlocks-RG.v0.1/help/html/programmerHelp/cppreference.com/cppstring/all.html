@@ -1,0 +1,2317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>C++ Strings</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C++ Strings</a>
+  </div>
+
+  <div class="name-format">
+    append
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  string&amp; append( const string&amp; str );
+  string&amp; append( const char* str );
+  string&amp; append( const string&amp; str, <strong>size_type</strong> index, <strong>size_type</strong> len );
+  string&amp; append( const char* str, <strong>size_type</strong> num );
+  string&amp; append( <strong>size_type</strong> num, char ch );
+  string&amp; append( <a href=
+"../iterators.html">input_iterator</a> start, <a href=
+"../iterators.html">input_iterator</a> end );
+</pre>
+
+  <p>The append() function either:</p>
+
+  <ul>
+    <li>appends <em>str</em> on to the end of the current string,</li>
+
+    <li>appends a substring of <em>str</em> starting at <em>index</em>
+    that is <em>len</em> characters long on to the end of the current
+    string,</li>
+
+    <li>appends <em>num</em> characters of <em>str</em> on to the end
+    of the current string,</li>
+
+    <li>appends <em>num</em> repititions of <em>ch</em> on to the end
+    of the current string,</li>
+
+    <li>or appends the sequence denoted by <em>start</em> and
+    <em>end</em> on to the end of the current string.</li>
+  </ul>
+
+  <p>For example, the following code uses append() to add 10 copies of
+  the &#39;!&#39; character to a string:</p>
+<pre class="prettyprint">
+   string str = &quot;Hello World&quot;;
+   str.append( 10, &#39;!&#39; );
+   cout &lt;&lt; str &lt;&lt; endl;             
+</pre>
+
+  <p>That code displays:</p>
+<pre class="prettyprint">
+   Hello World!!!!!!!!!!                
+</pre>
+
+  <p>In the next example, append() is used to concatenate a substring
+  of one string onto another string:</p>
+<pre class="prettyprint">
+ string str1 = &quot;Eventually I stopped caring...&quot;;
+ string str2 = &quot;but that was the &#39;80s so nobody noticed.&quot;;
+
+ str1.append( str2, 25, 15 );
+ cout &lt;&lt; &quot;str1 is &quot; &lt;&lt; str1 &lt;&lt; endl; 
+</pre>
+
+  <p>When run, the above code displays:</p>
+<pre class="prettyprint">
+ str1 is Eventually I stopped caring...nobody noticed.          
+</pre>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    assign
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  void assign( <strong>size_type</strong> num, const char&amp; val );
+  void assign( <a href=
+"../iterators.html">input_iterator</a> start, <a href=
+"../iterators.html">input_iterator</a> end );
+  string&amp; assign( const string&amp; str );
+  string&amp; assign( const char* str );
+  string&amp; assign( const char* str, <strong>size_type</strong> num );
+  string&amp; assign( const string&amp; str, <strong>size_type</strong> index, <strong>size_type</strong> len );
+  string&amp; assign( <strong>size_type</strong> num, const char&amp; ch );
+</pre>
+
+  <p>The default assign() function gives the current string the values
+  from <em>start</em> to <em>end</em>, or gives it <em>num</em> copies
+  of <em>val</em>.</p>
+
+  <p>In addition to the normal (C++ Lists) <a href=
+  "../cpplist/assign.html">assign</a>() functionality that all C++
+  containers have, strings possess an assign() function that also
+  allows them to:</p>
+
+  <ul>
+    <li>assign <em>str</em> to the current string,</li>
+
+    <li>assign the first <em>num</em> characters of <em>str</em> to the
+    current string,</li>
+
+    <li>assign a substring of <em>str</em> starting at <em>index</em>
+    that is <em>len</em> characters long to the current string,</li>
+  </ul>
+
+  <p>For example, the following code:</p>
+<pre class="prettyprint">
+   string str1, str2 = &quot;War and Peace&quot;;
+   str1.assign( str2, 4, 3 );
+   cout &lt;&lt; str1 &lt;&lt; endl;            
+</pre>
+
+  <p>displays</p>
+<pre class="prettyprint">
+   and          
+</pre>
+
+  <p>This function will destroy the previous contents of the
+  string.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    (C++ Lists) <a href="../cpplist/assign.html">assign</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    at
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  <a href=
+"../containers.html">TYPE</a>&amp; at( <strong>size_type</strong> loc );
+  const <a href=
+"../containers.html">TYPE</a>&amp; at( <strong>size_type</strong> loc ) const;
+</pre>
+
+  <p>The at() function returns a reference to the element in the string
+  at index <em>loc</em>. The at() function is safer than the []
+  operator, because it won&#39;t let you reference items outside the
+  bounds of the string.</p>
+
+  <p>For example, consider the following code:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v( 5, 1 );
+ for( int i = 0; i &lt; 10; i++ ) {
+   cout &lt;&lt; &quot;Element &quot; &lt;&lt; i &lt;&lt; &quot; is &quot; &lt;&lt; v[i] &lt;&lt; endl;
+ }              
+</pre>
+
+  <p>This code overrunns the end of the vector, producing potentially
+  dangerous results. The following code would be much safer:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v( 5, 1 );
+ for( int i = 0; i &lt; 10; i++ ) {
+   cout &lt;&lt; &quot;Element &quot; &lt;&lt; i &lt;&lt; &quot; is &quot; &lt;&lt; v.at(i) &lt;&lt; endl;
+ }              
+</pre>
+
+  <p>Instead of attempting to read garbage values from memory, the at()
+  function will realize that it is about to overrun the vector and will
+  throw an exception.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    (C++ Multimaps) <a href=
+    "../cppmultimap/multimap_operators.html">Multimap
+    operators</a><br>
+    (C++ Double-ended Queues) <a href=
+    "../cppdeque/container_operators.html">Container operators</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    begin
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  iterator begin();
+  const_iterator begin() const;
+</pre>
+
+  <p>The function begin() returns an iterator to the first element of
+  the string. begin() should run in <a href=
+  "../complexity.html">constant time</a>.</p>
+
+  <p>For example, the following code uses begin() to initialize an
+  iterator that is used to traverse a list:</p>
+<pre class="prettyprint">
+   // Create a list of characters
+   list&lt;char&gt; charList;
+   for( int i=0; i &lt; 10; i++ ) {
+     charList.push_front( i + 65 );
+   }
+   // Display the list
+   list&lt;char&gt;::iterator theIterator;
+   for( theIterator = charList.begin(); theIterator != charList.end(); theIterator++ ) {
+     cout &lt;&lt; *theIterator;
+   }            
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="end.html">end</a><br>
+    <a href="rbegin.html">rbegin</a><br>
+    <a href="rend.html">rend</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    c_str
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  const char* c_str();
+</pre>
+
+  <p>The function c_str() returns a const pointer to a regular C
+  string, identical to the current string. The returned string is
+  null-terminated.</p>
+
+  <p>Note that since the returned pointer is of type <a
+  href="../keywords/const.html">const</a>, the character data that
+  c_str() returns <strong>cannot be modified</strong>.  Furthermore,
+  you do not need to call <a
+  href="http://www.cppreference.com/stdmem/free.html">free()</a> or <a
+  href="http://www.cppreference.com/keywords/delete.html">delete</a>
+  on this pointer.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="string_operators.html">String operators</a><br>
+    <a href="data.html">data</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    capacity
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  <strong>size_type</strong> capacity() const;
+</pre>
+
+  <p>The capacity() function returns the number of elements that the
+  string can hold before it will need to allocate more space.</p>
+
+  <p>For example, the following code uses two different methods to set
+  the capacity of two vectors. One method passes an argument to the
+  constructor that suggests an initial size, the other method calls the
+  reserve function to achieve a similar goal:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v1(10);
+ cout &lt;&lt; &quot;The capacity of v1 is &quot; &lt;&lt; v1.capacity() &lt;&lt; endl;
+ vector&lt;int&gt; v2;
+ v2.reserve(20);
+ cout &lt;&lt; &quot;The capacity of v2 is &quot; &lt;&lt; v2.capacity() &lt;&lt; endl;         
+</pre>
+
+  <p>When run, the above code produces the following output:</p>
+<pre class="prettyprint">
+ The capacity of v1 is 10
+ The capacity of v2 is 20               
+</pre>
+
+  <p>C++ containers are designed to grow in size dynamically. This
+  frees the programmer from having to worry about storing an arbitrary
+  number of elements in a container. However, sometimes the programmer
+  can improve the performance of her program by giving hints to the
+  compiler about the size of the containers that the program will use.
+  These hints come in the form of the <a href=
+  "reserve.html">reserve</a>() function and the constructor used in the
+  above example, which tell the compiler how large the container is
+  expected to get.</p>
+
+  <p>The capacity() function runs in <a href=
+  "../complexity.html">constant time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="reserve.html">reserve</a><br>
+    <a href="resize.html">resize</a><br>
+    <a href="size.html">size</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    clear
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  void clear();
+</pre>
+
+  <p>The function clear() deletes all of the elements in the string.
+  clear() runs in <a href="../complexity.html">linear time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    (C++ Lists) <a href="../cpplist/erase.html">erase</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    compare
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  int compare( const string&amp; str );
+  int compare( const char* str );
+  int compare( <strong>size_type</strong> index, <strong>size_type</strong> length, const string&amp; str );
+  int compare( <strong>size_type</strong> index, <strong>size_type</strong> length, const string&amp; str, <strong>size_type</strong> index2,
+  <strong>size_type</strong> length2 );
+  int compare( <strong>size_type</strong> index, <strong>size_type</strong> length, const char* str, <strong>size_type</strong> length2 );
+</pre>
+
+  <p>The compare() function either compares <em>str</em> to the current
+  string in a variety of ways, returning</p>
+
+  <table class="code-table">
+    <tr>
+      <th class="code-table-th">Return Value</th>
+
+      <th class="code-table-th">Case</th>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">less than zero</td>
+
+      <td class="code-table-td">this &lt; str</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">zero</td>
+
+      <td class="code-table-td">this == str</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">greater than zero</td>
+
+      <td class="code-table-td">this &gt; str</td>
+    </tr>
+  </table>
+
+  <p>The various functions either:</p>
+
+  <ul>
+    <li>compare <em>str</em> to the current string,</li>
+
+    <li>compare <em>str</em> to a substring of the current string,
+    starting at <em>index</em> for <em>length</em> characters,</li>
+
+    <li>compare a substring of <em>str</em> to a substring of the
+    current string, where <em>index2</em> and <em>length2</em> refer to
+    <em>str</em> and <em>index</em> and <em>length</em> refer to the
+    current string,</li>
+
+    <li>or compare a substring of <em>str</em> to a substring of the
+    current string, where the substring of <em>str</em> begins at zero
+    and is <em>length2</em> characters long, and the substring of the
+    current string begins at <em>index</em> and is <em>length</em>
+    characters long.</li>
+  </ul>
+
+  <p>For example, the following code uses compare() to compare four
+  strings with eachother:</p>
+<pre class="prettyprint">
+ string names[] = {&quot;Homer&quot;, &quot;Marge&quot;, &quot;3-eyed fish&quot;, &quot;inanimate carbon rod&quot;};            
+
+ for( int i = 0; i &lt; 4; i++ ) {
+   for( int j = 0; j &lt; 4; j++ ) {
+     cout &lt;&lt; names[i].compare( names[j] ) &lt;&lt; &quot; &quot;;
+   }
+   cout &lt;&lt; endl;
+ }              
+</pre>
+
+  <p>Data from the above code was used to generate this table, which
+  shows how the various strings compare to eachother:</p>
+
+  <table class="code-table">
+    <tr>
+      <th class="code-table-th"></th>
+
+      <th class="code-table-th">Homer</th>
+
+      <th class="code-table-th">Marge</th>
+
+      <th class="code-table-th">3-eyed fish</th>
+
+      <th class="code-table-th">inanimate carbon rod</th>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">&quot;Homer&quot;.compare( x )</td>
+
+      <td class="code-table-td">0</td>
+
+      <td class="code-table-td">-1</td>
+
+      <td class="code-table-td">1</td>
+
+      <td class="code-table-td">-1</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">&quot;Marge&quot;.compare( x )</td>
+
+      <td class="code-table-td">1</td>
+
+      <td class="code-table-td">0</td>
+
+      <td class="code-table-td">1</td>
+
+      <td class="code-table-td">-1</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">&quot;3-eyed fish&quot;.compare( x
+      )</td>
+
+      <td class="code-table-td">-1</td>
+
+      <td class="code-table-td">-1</td>
+
+      <td class="code-table-td">0</td>
+
+      <td class="code-table-td">-1</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">&quot;inanimate carbon
+      rod&quot;.compare( x )</td>
+
+      <td class="code-table-td">1</td>
+
+      <td class="code-table-td">1</td>
+
+      <td class="code-table-td">1</td>
+
+      <td class="code-table-td">0</td>
+    </tr>
+  </table>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="string_operators.html">String operators</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    copy
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  <strong>size_type</strong> copy( char* str, <strong>size_type</strong> num, <strong>size_type</strong> index = 0 );
+</pre>
+
+  <p>The copy() function copies <em>num</em> characters of the current
+  string (starting at <em>index</em> if it&#39;s specified, 0
+  otherwise) into <em>str</em>.</p>
+
+  <p>The return value of copy() is the number of characters copied.</p>
+
+  <p>For example, the following code uses copy() to extract a substring
+  of a string into an array of characters:</p>
+<pre class="prettyprint">
+ char buf[30];
+ memset( buf, &#39;\0&#39;, 30 );
+ string str = &quot;Trying is the first step towards failure.&quot;;
+ str.copy( buf, 24 );
+ cout &lt;&lt; buf &lt;&lt; endl;               
+</pre>
+
+  <p>When run, this code displays:</p>
+<pre class="prettyprint">
+ Trying is the first step               
+</pre>
+
+  <p>Note that before calling copy(), we first call (Standard C String
+  and Character) <a href="../stdstring/memset.html">memset</a>() to
+  fill the destination array with copies of the <strong>NULL</strong>
+  character. This step is included to make sure that the resulting
+  array of characters is <strong>NULL</strong>-terminated.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="substr.html">substr</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    data
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  const char *data();
+</pre>
+
+  <p>The function data() returns a pointer to the first character in
+  the current string.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="string_operators.html">String operators</a><br>
+    <a href="c_str.html">c_str</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    empty
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  bool empty() const;
+</pre>
+
+  <p>The empty() function returns true if the string has no elements,
+  false otherwise.</p>
+
+  <p>For example:</p>
+<pre class="prettyprint">
+  string s1;
+  string s2("");
+  string s3("This is a string");
+  cout.setf(ios::boolalpha);
+  cout &lt;&lt; s1.empty() &lt;&lt; endl;
+  cout &lt;&lt; s2.empty() &lt;&lt; endl;
+  cout &lt;&lt; s3.empty() &lt;&lt; endl;
+</pre>
+
+  <p>When run, this code produces the following output:</p>
+  <pre class="example-output">
+  true
+  true
+  false
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="size.html">size</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    end
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  iterator end();
+  const_iterator end() const;
+</pre>
+
+  <p>The end() function returns an iterator just past the end of the
+  string.</p>
+
+  <p>Note that before you can access the last element of the string
+  using an iterator that you get from a call to end(), you&#39;ll have
+  to decrement the iterator first.</p>
+
+  <p>For example, the following code uses <a href=
+  "begin.html">begin</a>() and end() to iterate through all of the
+  members of a vector:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v1( 5, 789 );
+ vector&lt;int&gt;::iterator it;
+ for( it = v1.begin(); it != v1.end(); it++ ) {
+   cout &lt;&lt; *it &lt;&lt; endl;
+ }              
+</pre>
+
+  <p>The iterator is initialized with a call to <a href=
+  "begin.html">begin</a>(). After the body of the loop has been
+  executed, the iterator is incremented and tested to see if it is
+  equal to the result of calling end(). Since end() returns an iterator
+  pointing to an element just after the last element of the vector, the
+  loop will only stop once all of the elements of the vector have been
+  displayed.</p>
+
+  <p>end() runs in <a href="../complexity.html">constant time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="begin.html">begin</a><br>
+    <a href="rbegin.html">rbegin</a><br>
+    <a href="rend.html">rend</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    erase
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  iterator erase( iterator loc );
+  iterator erase( iterator start, iterator end );
+  string&amp; erase( <strong>size_type</strong> index = 0, <strong>size_type</strong> num = npos );
+</pre>
+
+  <p>The erase() function either:</p>
+
+  <ul>
+    <li>removes the character pointed to by <em>loc</em>, returning an
+    iterator to the next character,</li>
+
+    <li>removes the characters between <em>start</em> and <em>end</em>
+    (including the one at <em>start</em> but not the one at
+    <em>end</em>), returning an iterator to the character after the
+    last character removed,</li>
+
+    <li>or removes <em>num</em> characters from the current string,
+    starting at <em>index</em>, and returns *this.</li>
+  </ul>
+
+  <p>The parameters <em>index</em> and <em>num</em> have default
+  values, which means that erase() can be called with just
+  <em>index</em> to erase all characters after <em>index</em> or with
+  no arguments to erase all characters.</p>
+
+  <p>For example:</p>
+<pre class="prettyprint">
+   string s(&quot;So, you like donuts, eh? Well, have all the donuts in the world!&quot;);
+   cout &lt;&lt; &quot;The original string is &#39;&quot; &lt;&lt; s &lt;&lt; &quot;&#39;&quot; &lt;&lt; endl;          
+
+   s.erase( 50, 14 );
+   cout &lt;&lt; &quot;Now the string is &#39;&quot; &lt;&lt; s &lt;&lt; &quot;&#39;&quot; &lt;&lt; endl;
+   s.erase( 24 );
+   cout &lt;&lt; &quot;Now the string is &#39;&quot; &lt;&lt; s &lt;&lt; &quot;&#39;&quot; &lt;&lt; endl;
+   s.erase();
+   cout &lt;&lt; &quot;Now the string is &#39;&quot; &lt;&lt; s &lt;&lt; &quot;&#39;&quot; &lt;&lt; endl;               
+</pre>
+
+  <p>will display</p>
+<pre class="prettyprint">
+   The original string is &#39;So, you like donuts, eh? Well, have all the donuts in the world!&#39;
+   Now the string is &#39;So, you like donuts, eh? Well, have all the donuts&#39;
+   Now the string is &#39;So, you like donuts, eh?&#39;
+   Now the string is &#39;&#39;         
+</pre>
+
+  <p>erase() runs in <a href="../complexity.html">linear time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="insert.html">insert</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    find
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  <strong>size_type</strong> find( const string&amp; str, <strong>size_type</strong> index );
+  <strong>size_type</strong> find( const char* str, <strong>size_type</strong> index );
+  <strong>size_type</strong> find( const char* str, <strong>size_type</strong> index, <strong>size_type</strong> length );
+  <strong>size_type</strong> find( char ch, <strong>size_type</strong> index );
+</pre>
+
+  <p>The function find() either:</p>
+
+  <ul>
+    <li>returns the first occurrence of <em>str</em> within the current
+    string, starting at <em>index</em>, string::npos if nothing is
+    found,</li>
+
+    <li>if the <em>length</em> parameter is given, then find() returns
+    the first occurrence of the first <em>length</em> characters of
+    <em>str</em> within the current string, starting at
+    <em>index</em>, string::npos if nothing is found,</li>
+
+    <li>or returns the index of the first occurrence <em>ch</em> within
+    the current string, starting at <em>index</em>, string::npos if
+    nothing is found.</li>
+  </ul>
+
+  <p>For example:</p>
+<pre class="prettyprint">
+   string str1( &quot;Alpha Beta Gamma Delta&quot; );
+   string::size_type loc = str1.find( &quot;Omega&quot;, 0 );
+   if( loc != string::npos ) {
+     cout &lt;&lt; &quot;Found Omega at &quot; &lt;&lt; loc &lt;&lt; endl;
+   } else {
+     cout &lt;&lt; &quot;Didn&#39;t find Omega&quot; &lt;&lt; endl;         
+   }
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="find_first_not_of.html">find_first_not_of</a><br>
+    <a href="find_first_of.html">find_first_of</a><br>
+    <a href="find_last_not_of.html">find_last_not_of</a><br>
+    <a href="find_last_of.html">find_last_of</a><br>
+    <a href="rfind.html">rfind</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    find_first_not_of
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  <strong>size_type</strong> find_first_not_of( const string&amp; str, <strong>size_type</strong> index = 0 );
+  <strong>size_type</strong> find_first_not_of( const char* str, <strong>size_type</strong> index = 0 );
+  <strong>size_type</strong> find_first_not_of( const char* str, <strong>size_type</strong> index, <strong>size_type</strong> num );
+  <strong>size_type</strong> find_first_not_of( char ch, <strong>size_type</strong> index = 0 );
+</pre>
+
+  <p>The find_first_not_of() function either:</p>
+
+  <ul>
+    <li>returns the index of the first character within the current
+    string that does not match any character in <em>str</em>, beginning
+    the search at <em>index</em>, string::npos if nothing is
+    found,</li>
+
+    <li>searches the current string, beginning at <em>index</em>, for
+    any character that does not match the first <em>num</em>
+    characters in <em>str</em>, returning the index in the current
+    string of the first character found that meets this criteria,
+    otherwise returning string::npos,</li>
+
+    <li>or returns the index of the first occurrence of a character
+    that does not match <em>ch</em> in the current string, starting the
+    search at <em>index</em>, string::npos if nothing is found.</li>
+  </ul>
+
+  <p>For example, the following code searches a string of text for the
+  first character that is not a lower-case character, space, comma, or
+  hypen:</p>
+<pre class="prettyprint">
+  string lower_case = &quot;abcdefghijklmnopqrstuvwxyz ,-&quot;;
+  string str = &quot;this is the lower-case part, AND THIS IS THE UPPER-CASE PART&quot;;
+  cout &lt;&lt; &quot;first non-lower-case letter in str at: &quot; &lt;&lt; str.find_first_not_of(lower_case) &lt;&lt; endl;            
+</pre>
+
+  <p>When run, find_first_not_of() finds the first upper-case letter in
+  <em>str</em> at index 29 and displays this output:</p>
+<pre class="prettyprint">
+  first non-lower-case letter in str at: 29              
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="find.html">find</a><br>
+    <a href="find_first_not_of.html">find_first_not_of</a><br>
+    <a href="find_first_of.html">find_first_of</a><br>
+    <a href="find_last_not_of.html">find_last_not_of</a><br>
+    <a href="find_last_of.html">find_last_of</a><br>
+    <a href="rfind.html">rfind</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    find_first_of
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  <strong>size_type</strong> find_first_of( const string &amp;str, <strong>size_type</strong> index = 0 );
+  <strong>size_type</strong> find_first_of( const char* str, <strong>size_type</strong> index = 0 );
+  <strong>size_type</strong> find_first_of( const char* str, <strong>size_type</strong> index, <strong>size_type</strong> num );
+  <strong>size_type</strong> find_first_of( char ch, <strong>size_type</strong> index = 0 );
+</pre>
+
+  <p>The find_first_of() function either:</p>
+
+  <ul>
+    <li>returns the index of the first character within the current
+    string that matches any character in <em>str</em>, beginning the
+    search at <em>index</em>, string::npos if nothing is found,</li>
+
+    <li>searches the current string, beginning at <em>index</em>, for
+    any of the first <em>num</em> characters in <em>str</em>,
+    returning the index in the current string of the first character
+    found, or string::npos if no characters match,</li>
+
+    <li>or returns the index of the first occurrence of <em>ch</em> in
+    the current string, starting the search at <em>index</em>,
+    string::npos if nothing is found.</li>
+  </ul>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="find.html">find</a><br>
+    <a href="find_first_not_of.html">find_first_not_of</a><br>
+    <a href="find_last_not_of.html">find_last_not_of</a><br>
+    <a href="find_last_of.html">find_last_of</a><br>
+    <a href="rfind.html">rfind</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    find_last_not_of
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  <strong>size_type</strong> find_last_not_of( const string&amp; str, <strong>size_type</strong> index = npos );
+  <strong>size_type</strong> find_last_not_of( const char* str, <strong>size_type</strong> index = npos);
+  <strong>size_type</strong> find_last_not_of( const char* str, <strong>size_type</strong> index, <strong>size_type</strong> num );
+  <strong>size_type</strong> find_last_not_of( char ch, <strong>size_type</strong> index = npos );
+</pre>
+
+  <p>The find_last_not_of() function either:</p>
+
+  <ul>
+    <li>returns the index of the last character within the current
+    string that does not match any character in <em>str</em>, doing a
+    reverse search from <em>index</em>, string::npos if nothing is
+    found,</li>
+
+    <li>does a reverse search in the current string, beginning at
+    <em>index</em>, for any character that does not match the first
+    <em>num</em> characters in <em>str</em>, returning the index in
+    the current string of the first character found that meets this
+    criteria, otherwise returning string::npos,</li>
+
+    <li>or returns the index of the last occurrence of a character
+    that does not match <em>ch</em> in the current string, doing a
+    reverse search from <em>index</em>, string::npos if nothing is
+    found.</li>
+  </ul>
+
+  <p>For example, the following code searches for the last
+  non-lower-case character in a mixed string of characters:</p>
+<pre class="prettyprint">
+  string lower_case = &quot;abcdefghijklmnopqrstuvwxyz&quot;;
+  string str = &quot;abcdefgABCDEFGhijklmnop&quot;;
+  cout &lt;&lt; &quot;last non-lower-case letter in str at: &quot; &lt;&lt; str.find_last_not_of(lower_case) &lt;&lt; endl;              
+</pre>
+
+  <p>This code displays the following output:</p>
+<pre class="prettyprint">
+  last non-lower-case letter in str at: 13               
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="find.html">find</a><br>
+    <a href="find_first_not_of.html">find_first_not_of</a><br>
+    <a href="find_first_of.html">find_first_of</a><br>
+    <a href="find_last_of.html">find_last_of</a><br>
+    <a href="rfind.html">rfind</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    find_last_of
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  <strong>size_type</strong> find_last_of( const string&amp; str, <strong>size_type</strong> index = npos );
+  <strong>size_type</strong> find_last_of( const char* str, <strong>size_type</strong> index = npos );
+  <strong>size_type</strong> find_last_of( const char* str, <strong>size_type</strong> index, <strong>size_type</strong> num );
+  <strong>size_type</strong> find_last_of( char ch, <strong>size_type</strong> index = npos );
+</pre>
+
+  <p>The find_last_of() function either:</p>
+
+  <ul>
+    <li>does a reverse search from <em>index</em>, returning the index
+    of the first character within the current string that matches any
+    character in <em>str</em>, or string::npos if nothing is found,</li>
+
+    <li>does a reverse search in the current string, beginning at
+    <em>index</em>, for any of the first <em>num</em> characters in
+    <em>str</em>, returning the index in the current string of the
+    first character found, or string::npos if no characters
+    match,</li>
+
+    <li>or does a reverse search from <em>index</em>, returning the
+    index of the first occurrence of <em>ch</em> in the current
+    string, string::npos if nothing is found.</li> </ul>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="find.html">find</a><br>
+    <a href="find_first_not_of.html">find_first_not_of</a><br>
+    <a href="find_first_of.html">find_first_of</a><br>
+    <a href="find_last_not_of.html">find_last_not_of</a><br>
+    <a href="rfind.html">rfind</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    getline
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  istream&amp; getline( istream&amp; is, string&amp; s, char delimiter = &#39;\n&#39; );
+</pre>
+
+  <p>The C++ string class defines the global function getline() to read
+  strings from an I/O stream. The getline() function, which is not
+  part of the string class, reads a line from <em>is</em> and stores it
+  into <em>s</em>. If a character <em>delimiter</em> is specified, then
+  getline() will use <em>delimiter</em> to decide when to stop reading
+  data.</p>
+
+  <p>For example, the following code reads a line of text from
+  <strong>stdin</strong> and displays it to
+  <strong>stdout</strong>:</p>
+<pre class="prettyprint">
+ string s;
+ getline( cin, s );
+ cout &lt;&lt; &quot;You entered &quot; &lt;&lt; s &lt;&lt; endl;
+</pre>
+
+  <p>After getting a line of data in a string, you may find that <a
+  href="../cppsstream/index-2.html">string streams</a> are useful in extracting
+  data from that string.  For example, the following code reads
+  numbers from standard input, ignoring any "commented" lines that
+  begin with double slashes:</p>
+
+<pre class="prettyprint">
+  // expects either space-delimited numbers or lines that start with
+  // two forward slashes (//)
+  string s;
+  while( getline(cin,s) ) {
+    if( s.size() >= 2 && s[0] == '/' && s[1] == '/' ) {
+      cout << "  ignoring comment: " << s << endl;
+    } else {
+      istringstream ss(s);
+      double d;
+      while( ss >> d ) {
+        cout << "  got a number: " << d << endl;
+      }
+    }
+  }
+</pre>
+
+  <p>When run with a user supplying input, the above code might
+  produce this output:</p>
+
+<pre class="prettyprint">
+  // test
+    ignoring comment: // test
+  23.3 -1 3.14159
+    got a number: 23.3
+    got a number: -1
+    got a number: 3.14159
+  // next batch
+    ignoring comment: // next batch
+  1 2 3 4 5
+    got a number: 1
+    got a number: 2
+    got a number: 3
+    got a number: 4
+    got a number: 5
+  50
+    got a number: 50
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    (C++ I/O) <a href="../cppio/get.html">get</a><br>
+    (C++ I/O) <a href="../cppio/getline.html">getline</a><br>
+    <a href="../cppsstream/index-2.html">string streams</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    insert
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  iterator insert( iterator i, const char&amp; ch );
+  string&amp; insert( <strong>size_type</strong> index, const string&amp; str );
+  string&amp; insert( <strong>size_type</strong> index, const char* str );
+  string&amp; insert( <strong>size_type</strong> index1, const string&amp; str, <strong>size_type</strong> index2, <strong>size_type</strong> num );
+  string&amp; insert( <strong>size_type</strong> index, const char* str, <strong>size_type</strong> num );
+  string&amp; insert( <strong>size_type</strong> index, <strong>size_type</strong> num, char ch );
+  void insert( iterator i, <strong>size_type</strong> num, const char&amp; ch );
+  void insert( iterator i, iterator start, iterator end );
+</pre>
+
+  <p>The very multi-purpose insert() function either:</p>
+
+  <ul>
+    <li>inserts <em>ch</em> before the character denoted by
+    <em>i</em>,</li>
+
+    <li>inserts <em>str</em> into the current string, at location
+    <em>index</em>,</li>
+
+    <li>inserts a substring of <em>str</em> (starting at
+    <em>index2</em> and <em>num</em> characters long) into the current
+    string, at location <em>index1</em>,</li>
+
+    <li>inserts <em>num</em> characters of <em>str</em> into the
+    current string, at location <em>index</em>,</li>
+
+    <li>inserts <em>num</em> copies of <em>ch</em> into the current
+    string, at location <em>index</em>,</li>
+
+    <li>inserts <em>num</em> copies of <em>ch</em> into the current
+    string, before the character denoted by <em>i</em>,</li>
+
+    <li>or inserts the characters denoted by <em>start</em> and
+    <em>end</em> into the current string, before the character
+    specified by <em>i</em>.</li>
+  </ul>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="erase.html">erase</a><br>
+    <a href="replace.html">replace</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    length
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  <strong>size_type</strong> length() const;
+</pre>
+
+<p>
+The length() function returns the number of elements in the current
+string, performing the same role as the <a href="size.html">size</a>()
+function.
+</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="size.html">size</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    max_size
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  <strong>size_type</strong> max_size() const;
+</pre>
+
+  <p>The max_size() function returns the maximum number of elements
+  that the string can hold. The max_size() function should not be
+  confused with the <a href="size.html">size</a>() or <a href=
+  "capacity.html">capacity</a>() functions, which return the number of
+  elements currently in the string and the the number of elements that
+  the string will be able to hold before more memory will have to be
+  allocated, respectively.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="size.html">size</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    push_back
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  void push_back( const <a href=
+"../containers.html">TYPE</a>&amp; val );
+</pre>
+
+  <p>The push_back() function appends <em>val</em> to the end of the
+  string.</p>
+
+  <p>For example, the following code puts 10 integers into a list:</p>
+<pre class="prettyprint">
+   list&lt;int&gt; the_list;
+   for( int i = 0; i &lt; 10; i++ )
+     the_list.push_back( i );           
+</pre>
+
+  <p>When displayed, the resulting list would look like this:</p>
+<pre class="prettyprint">
+ 0 1 2 3 4 5 6 7 8 9            
+</pre>
+
+  <p>push_back() runs in <a href="../complexity.html">constant
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    (C++ Lists) <a href="../cpplist/assign.html">assign</a><br>
+    (C++ Lists) <a href="../cpplist/insert.html">insert</a><br>
+    (C++ Lists) <a href="../cpplist/pop_back.html">pop_back</a><br>
+    (C++ Lists) <a href="../cpplist/push_front.html">push_front</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    rbegin
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  <a href="../iterators.html">reverse_iterator</a> rbegin();
+  const_<a href=
+"../iterators.html">reverse_iterator</a> rbegin() const;
+</pre>
+
+  <p>The rbegin() function returns a <a href=
+  "../iterators.html">reverse_iterator</a> to the end of the current
+  string.</p>
+
+  <p>rbegin() runs in <a href="../complexity.html">constant
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="begin.html">begin</a><br>
+    <a href="end.html">end</a><br>
+    <a href="rend.html">rend</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    rend
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  <a href="../iterators.html">reverse_iterator</a> rend();
+  const_<a href="../iterators.html">reverse_iterator</a> rend() const;
+</pre>
+
+  <p>The function rend() returns a <a href=
+  "../iterators.html">reverse_iterator</a> to the beginning of the
+  current string.</p>
+
+  <p>rend() runs in <a href="../complexity.html">constant time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="begin.html">begin</a><br>
+    <a href="end.html">end</a><br>
+    <a href="rbegin.html">rbegin</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    replace
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  string&amp; replace( <strong>size_type</strong> index, <strong>size_type</strong> num, const string&amp; str );
+  string&amp; replace( <strong>size_type</strong> index1, <strong>size_type</strong> num1, const string&amp; str, <strong>size_type</strong> index2, <strong>size_type</strong> num2 );
+  string&amp; replace( <strong>size_type</strong> index, <strong>size_type</strong> num, const char* str );
+  string&amp; replace( <strong>size_type</strong> index, <strong>size_type</strong> num1, const char* str, <strong>size_type</strong> num2 );
+  string&amp; replace( <strong>size_type</strong> index, <strong>size_type</strong> num1, <strong>size_type</strong> num2, char ch );
+  string&amp; replace( iterator start, iterator end, const string&amp; str );
+  string&amp; replace( iterator start, iterator end, const char* str );
+  string&amp; replace( iterator start, iterator end, const char* str, <strong>size_type</strong> num );
+  string&amp; replace( iterator start, iterator end, <strong>size_type</strong> num, char ch );
+</pre>
+
+  <p>The function replace() either:</p>
+
+  <ul>
+    <li>replaces characters of the current string with up to
+    <em>num</em> characters from <em>str</em>, beginning at
+    <em>index</em>,</li>
+
+    <li>replaces up to <em>num1</em> characters of the current string
+    (starting at <em>index1</em>) with up to <em>num2</em> characters
+    from <em>str</em> beginning at <em>index2</em>,</li>
+
+    <li>replaces up to <em>num</em> characters of the current string
+    with characters from <em>str</em>, beginning at <em>index</em> in
+    <em>str</em>,</li>
+
+    <li>replaces up to <em>num1</em> characters in the current string
+    (beginning at <em>index1</em>) with <em>num2</em> characters from
+    <em>str</em> beginning at <em>index2</em>,</li>
+
+    <li>replaces up to <em>num1</em> characters in the current string
+    (beginning at <em>index</em>) with <em>num2</em> copies of
+    <em>ch</em>,</li>
+
+    <li>replaces the characters in the current string from
+    <em>start</em> to <em>end</em> with <em>str</em>,</li>
+
+    <li>replaces characters in the current string from <em>start</em>
+    to <em>end</em> with <em>num</em> characters from
+    <em>str</em>,</li>
+
+    <li>or replaces the characters in the current string from
+    <em>start</em> to <em>end</em> with <em>num</em> copies of
+    <em>ch</em>.</li>
+  </ul>
+
+  <p>For example, the following code displays the string &quot;They say
+  he carved it himself...find your soul-mate, Homer.&quot;</p>
+<pre class="prettyprint">
+   string s = &quot;They say he carved it himself...from a BIGGER spoon&quot;;
+   string s2 = &quot;find your soul-mate, Homer.&quot;;
+   s.replace( 32, s2.length(), s2 );
+   cout &lt;&lt; s &lt;&lt; endl;               
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="insert.html">insert</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    reserve
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  void reserve( <strong>size_type</strong> size );
+</pre>
+
+  <p>The reserve() function sets the capacity of the string to at least
+  <em>size</em>.</p>
+
+  <p>reserve() runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="capacity.html">capacity</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    resize
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  void resize( <strong>size_type</strong> size, const <a href=
+"../containers.html">TYPE</a>&amp; val = <a href=
+"../containers.html">TYPE</a>() );
+</pre>
+
+  <p>The function resize() changes the size of the string to
+  <em>size</em>. If <em>val</em> is specified then any newly-created
+  elements will be initialized to have a value of <em>val</em>.</p>
+
+  <p>This function runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    (C++ Multimaps) <a href=
+    "../cppmultimap/multimap_constructors.html">Multimap constructors
+    &amp; destructors</a><br>
+    <a href="capacity.html">capacity</a><br>
+    <a href="size.html">size</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    rfind
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  <strong>size_type</strong> rfind( const string&amp; str, <strong>size_type</strong> index );
+  <strong>size_type</strong> rfind( const char* str, <strong>size_type</strong> index );
+  <strong>size_type</strong> rfind( const char* str, <strong>size_type</strong> index, <strong>size_type</strong> num );
+  <strong>size_type</strong> rfind( char ch, <strong>size_type</strong> index );
+</pre>
+
+  <p>The rfind() function either:</p>
+
+  <ul>
+    <li>returns the location of the first occurrence of <em>str</em> in
+    the current string, doing a reverse search from <em>index</em>,
+    string::npos if nothing is found,</li>
+
+    <li>returns the location of the first occurrence of <em>str</em> in
+    the current string, doing a reverse search from <em>index</em>,
+    searching at most <em>num</em> characters, string::npos if nothing
+    is found,</li>
+
+    <li>or returns the location of the first occurrence of <em>ch</em>
+    in the current string, doing a reverse search from <em>index</em>,
+    string::npos if nothing is found.</li>
+  </ul>
+
+  <p>For example, in the following code, the first call to rfind()
+  returns string::npos, because the target word is not within the first
+  8 characters of the string. However, the second call returns 9,
+  because the target word is within 20 characters of the beginning of
+  the string.</p>
+<pre class="prettyprint">
+   int loc;
+   string s = &quot;My cat&#39;s breath smells like cat food.&quot;;
+   loc = s.rfind( &quot;breath&quot;, 8 );
+   cout &lt;&lt; &quot;The word breath is at index &quot; &lt;&lt; loc &lt;&lt; endl;
+   loc = s.rfind( &quot;breath&quot;, 20 );
+   cout &lt;&lt; &quot;The word breath is at index &quot; &lt;&lt; loc &lt;&lt; endl;           
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="find.html">find</a><br>
+    <a href="find_first_not_of.html">find_first_not_of</a><br>
+    <a href="find_first_of.html">find_first_of</a><br>
+    <a href="find_last_not_of.html">find_last_not_of</a><br>
+    <a href="find_last_of.html">find_last_of</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    size
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  <strong>size_type</strong> size() const;
+</pre>
+
+  <p>The size() function returns the number of elements in the current
+  string.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="capacity.html">capacity</a><br>
+    <a href="empty.html">empty</a><br>
+    <a href="length.html">length</a><br>
+    <a href="max_size.html">max_size</a><br>
+    <a href="resize.html">resize</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    String constructors
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  string();
+  string( const string&amp; s );
+  string( <strong>size_type</strong> length, const char&amp; ch );
+  string( const char* str );
+  string( const char* str, <strong>size_type</strong> length );
+  string( const string&amp; str, <strong>size_type</strong> index, <strong>size_type</strong> length );
+  string( <a href=
+"../iterators.html">input_iterator</a> start, <a href="../iterators.html">input_iterator</a> end );
+  ~string();
+</pre>
+
+  <p>The string constructors create a new string containing:</p>
+
+  <ul>
+    <li>nothing; an empty string,</li>
+
+    <li>a copy of the given string <em>s</em>,</li>
+
+    <li><em>length</em> copies of <em>ch</em>,</li>
+
+    <li>a duplicate of <em>str</em> (optionally up to <em>length</em>
+    characters long),</li>
+
+    <li>a substring of <em>str</em> starting at <em>index</em> and
+    <em>length</em> characters long</li>
+
+    <li>a string of characters denoted by the <em>start</em> and
+    <em>end</em> iterators</li>
+  </ul>
+
+  <p>For example,</p>
+<pre class="prettyprint">
+   string str1( 5, &#39;c&#39; );
+   string str2( &quot;Now is the time...&quot; );
+   string str3( str2, 11, 4 );
+   cout &lt;&lt; str1 &lt;&lt; endl;
+   cout &lt;&lt; str2 &lt;&lt; endl;
+   cout &lt;&lt; str3 &lt;&lt; endl;            
+</pre>
+
+  <p>displays</p>
+<pre class="prettyprint">
+   ccccc
+   Now is the time...
+   time         
+</pre>
+
+  <p>The string constructors usually run in <a href=
+  "../complexity.html">linear time</a>, except the empty constructor,
+  which runs in <a href="../complexity.html">constant time</a>.</p>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    String operators
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  bool operator==(const string&amp; c1, const string&amp; c2);
+  bool operator!=(const string&amp; c1, const string&amp; c2);
+  bool operator&lt;(const string&amp; c1, const string&amp; c2);
+  bool operator&gt;(const string&amp; c1, const string&amp; c2);
+  bool operator&lt;=(const string&amp; c1, const string&amp; c2);
+  bool operator&gt;=(const string&amp; c1, const string&amp; c2);
+  string operator+(const string&amp; s1, const string&amp; s2 );
+  string operator+(const char* s, const string&amp; s2 );
+  string operator+( char c, const string&amp; s2 );
+  string operator+( const string&amp; s1, const char* s );
+  string operator+( const string&amp; s1, char c );
+  ostream&amp; operator&lt;&lt;( ostream&amp; os, const string&amp; s );
+  istream&amp; operator&gt;&gt;( istream&amp; is, string&amp; s );
+  string&amp; operator=( const string&amp; s );
+  string&amp; operator=( const char* s );
+  string&amp; operator=( char ch );
+  char&amp; operator[]( <strong>size_type</strong> index );
+</pre>
+
+  <p>C++ strings can be compared and assigned with the standard
+  comparison operators: ==, !=, &lt;=, &gt;=, &lt;, &gt;, and =.
+  Performing a comparison or assigning one string to another takes
+  <a href="../complexity.html">linear time</a>.</p>
+
+  <p>Two strings are equal if:</p>
+<pre class="prettyprint">
+  1. Their size is the same, and
+  2. Each member in location i in one string is equal to the the member in location i in the other string.              
+</pre>
+
+  <p>Comparisons among strings are done lexicographically.</p>
+
+  <p>In addition to the normal container operators, strings can also
+  be concatenated with the + operator and fed to the C++ I/O stream
+  classes with the &lt;&lt; and &gt;&gt; operators.</p>
+
+  <p>For example, the following code concatenates two strings and
+  displays the result:</p>
+<pre class="prettyprint">
+ string s1 = &quot;Now is the time...&quot;;
+ string s2 = &quot;for all good men...&quot;;
+ string s3 = s1 + s2;
+ cout &lt;&lt; &quot;s3 is &quot; &lt;&lt; s3 &lt;&lt; endl;            
+</pre>
+
+  <p>Futhermore, strings can be assigned values that are other
+  strings, character arrays, or even single characters. The following
+  code is perfectly valid:</p>
+<pre class="prettyprint">
+ char ch = &#39;N&#39;;
+ string s;
+ s = ch;         
+</pre>
+
+  <p>Individual characters of a string can be examined with the []
+  operator, which runs in <a href="../complexity.html">constant
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="c_str.html">c_str</a><br>
+    <a href="compare.html">compare</a><br>
+    <a href="data.html">data</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    substr
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  string substr( <strong>size_type</strong> index, <strong>size_type</strong> length = npos );
+</pre>
+
+  <p>The substr() function returns a substring of the current string,
+  starting at <em>index</em>, and <em>length</em> characters long. If
+  <em>length</em> is omitted, it will default to string::npos, and the
+  substr() function will simply return the remainder of the string
+  starting at <em>index</em>.</p>
+
+  <p>For example:</p>
+<pre class="prettyprint">
+   string s(&quot;What we have here is a failure to communicate&quot;);
+   string sub = s.substr(21);
+   cout &lt;&lt; &quot;The original string is &quot; &lt;&lt; s &lt;&lt; endl;
+   cout &lt;&lt; &quot;The substring is &quot; &lt;&lt; sub &lt;&lt; endl;              
+</pre>
+
+  <p>displays</p>
+<pre class="prettyprint">
+   The original string is What we have here is a failure to communicate
+   The substring is a failure to communicate            
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="copy.html">copy</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    swap
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;string&gt;
+  void swap( container&amp; from );
+</pre>
+
+  <p>The swap() function exchanges the elements of the current string
+  with those of <em>from</em>. This function operates in <a href=
+  "../complexity.html">constant time</a>.</p>
+
+  <p>For example, the following code uses the swap() function to
+  exchange the values of two strings:</p>
+<pre class="prettyprint">
+   string first( &quot;This comes first&quot; );
+   string second( &quot;And this is second&quot; );
+   first.swap( second );
+   cout &lt;&lt; first &lt;&lt; endl;
+   cout &lt;&lt; second &lt;&lt; endl;          
+</pre>
+
+  <p>The above code displays:</p>
+<pre class="prettyprint">
+   And this is second
+   This comes first             
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    (C++ Lists) <a href="../cpplist/splice.html">splice</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

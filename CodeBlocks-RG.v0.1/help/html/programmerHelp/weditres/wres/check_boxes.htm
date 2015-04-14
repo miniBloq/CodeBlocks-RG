@@ -1,0 +1,64 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="fr">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Check boxes</title>
+</head>
+
+<body>
+
+<h2>Check boxes</h2>
+<p>A <i>check box</i> consists of a square box and application-defined text
+(label), an icon, or a bitmap, that indicates a choice the user can make by
+selecting the button. Applications typically display check boxes in a group box
+to permit the user to choose from a set of related, but independent options. For
+example, an application might present a group of check boxes from which the user
+can select error conditions that produce warning beeps.</p>
+<p>A check box can be one of four styles: standard, automatic, three-state, and
+automatic three-state, as defined by the constants BS_CHECKBOX, BS_AUTOCHECKBOX,
+BS_3STATE, and BS_AUTO3STATE, respectively. Each style can assume two check
+states: checked (a check mark inside the box) or cleared (no check mark). In
+addition, a three-state check box can assume an indeterminate state (a grayed
+box inside the check box). Repeatedly clicking a standard or automatic check box
+toggles it from checked to cleared and back again. Repeatedly clicking a
+three-state check box toggles it from checked to cleared to indeterminate and
+back again.</p>
+<p>When the user clicks a check box (of any style), the check box receives the
+keyboard focus. The system sends the check box's parent window a <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_command">
+WM_COMMAND</MSHelp:link>
+ message containing the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_BN_CLICKED_cpp">
+BN_CLICKED</MSHelp:link>
+ notification code. The parent window doesn't acknowledge this message if it
+comes from an automatic check box or automatic three-state check box, because
+the system automatically sets the check state for those styles. But the parent
+window must acknowledge the message if it comes from a check box or three-state
+check box because the parent window is responsible for setting the check state
+for those styles. Regardless of the check box style, the system automatically
+repaints the check box once its state is changed.</p>
+<p align="left">&nbsp;</p>
+<p>Styles:</p>
+<ul>
+  <li><b>Normal</b> check boxes look like this: <img border="0" src="check_2.gif" width="47" height="18"></li>
+  <li><b>Flat</b>. Produces checkboxes with this appearence:<img border="0" src="check_3.gif" width="47" height="23"></li>
+  <li><b>Push like</b>. Produces checkboxes like a push button: <img border="0" src="check_4.gif" width="52" height="25"></li>
+  <li>Other styles can be applied to this control (static edge, Modal frame,
+    etc) .</li>
+</ul>
+<p>Type:</p>
+<ul>
+  <li><b>Auto</b>: This type of check boxes toggles automatically when the user
+    activates it, without requiring from the programmer any intervention.</li>
+  <li><b>Three state</b>. This check boxes can be in a checked, unchecked, or greyed
+    state. The other types of listboxes can be only in either checked or
+    unchecked state.</li>
+</ul>
+
+</body>
+
+</html>

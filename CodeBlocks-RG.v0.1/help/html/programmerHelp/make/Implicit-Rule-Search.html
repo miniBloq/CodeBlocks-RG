@@ -1,0 +1,104 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Implicit%20Rule%20Search">Implicit Rule Search</a>,
+Previous:<a rel="previous" accesskey="p" href="Suffix-Rules.html#Suffix%20Rules">Suffix Rules</a>,
+Up:<a rel="up" accesskey="u" href="Implicit-Rules.html#Implicit%20Rules">Implicit Rules</a>
+<hr><br>
+</div>
+
+<h3 class="section">Implicit Rule Search Algorithm</h3>
+
+   <p>Here is the procedure <code>make</code> uses for searching for an implicit rule
+for a target <var>t</var>.  This procedure is followed for each double-colon
+rule with no commands, for each target of ordinary rules none of which have
+commands, and for each prerequisite that is not the target of any rule.  It
+is also followed recursively for prerequisites that come from implicit
+rules, in the search for a chain of rules.
+
+   <p>Suffix rules are not mentioned in this algorithm because suffix rules are
+converted to equivalent pattern rules once the makefiles have been read in.
+
+   <p>For an archive member target of the form
+<code></code><var>archive</var><code>(</code><var>member</var><code>)</code>, the following algorithm is run
+twice, first using the entire target name <var>t</var>, and second using
+<code>(</code><var>member</var><code>)</code> as the target <var>t</var> if the first run found no
+rule.
+
+     <ol type=1 start=1>
+<li>Split <var>t</var> into a directory part, called <var>d</var>, and the rest,
+called <var>n</var>.  For example, if <var>t</var> is <code>src/foo.o</code>, then
+<var>d</var> is <code>src/</code> and <var>n</var> is <code>foo.o</code>.
+
+     <li>Make a list of all the pattern rules one of whose targets matches
+<var>t</var> or <var>n</var>.  If the target pattern contains a slash, it is
+matched against <var>t</var>; otherwise, against <var>n</var>.
+
+     <li>If any rule in that list is <em>not</em> a match-anything rule, then
+remove all nonterminal match-anything rules from the list.
+
+     <li>Remove from the list all rules with no commands.
+
+     <li>For each pattern rule in the list:
+
+          <ol type=a start=1>
+<li>Find the stem <var>s</var>, which is the nonempty part of <var>t</var> or <var>n</var>
+matched by the <code>%</code> in the target pattern.
+
+          <li>Compute the prerequisite names by substituting <var>s</var> for <code>%</code>; if
+the target pattern does not contain a slash, append <var>d</var> to
+the front of each prerequisite name.
+
+          <li>Test whether all the prerequisites exist or ought to exist.  (If a
+file name is mentioned in the makefile as a target or as an explicit
+prerequisite, then we say it ought to exist.)
+
+          <p>If all prerequisites exist or ought to exist, or there are no prerequisites,
+then this rule applies.
+          </ol>
+
+     </p><li>If no pattern rule has been found so far, try harder. 
+For each pattern rule in the list:
+
+          <ol type=a start=1>
+<li>If the rule is terminal, ignore it and go on to the next rule.
+
+          <li>Compute the prerequisite names as before.
+
+          <li>Test whether all the prerequisites exist or ought to exist.
+
+          <li>For each prerequisite that does not exist, follow this algorithm
+recursively to see if the prerequisite can be made by an implicit
+rule.
+
+          <li>If all prerequisites exist, ought to exist, or can be
+made by implicit rules, then this rule applies.
+          </ol>
+
+     <li>If no implicit rule applies, the rule for <code>.DEFAULT</code>, if any,
+applies.  In that case, give <var>t</var> the same commands that
+<code>.DEFAULT</code> has.  Otherwise, there are no commands for <var>t</var>.
+        </ol>
+
+   <p>Once a rule that applies has been found, for each target pattern of the
+rule other than the one that matched <var>t</var> or <var>n</var>, the <code>%</code> in
+the pattern is replaced with <var>s</var> and the resultant file name is stored
+until the commands to remake the target file <var>t</var> are executed.  After
+these commands are executed, each of these stored file names are entered
+into the data base and marked as having been updated and having the same
+update status as the file <var>t</var>.
+
+   <p>When the commands of a pattern rule are executed for <var>t</var>, the automatic
+variables are set corresponding to the target and prerequisites. 
+See <a href="Automatic.html#Automatic">Automatic Variables</a>.
+
+   </body></html>
+

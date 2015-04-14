@@ -1,0 +1,1420 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Tree</title>
+</head>
+
+<body>
+
+<h2>Tree-View Controls</h2>
+<hr SIZE="1">
+<p>A <i>tree-view control</i> is a window that displays a hierarchical list of
+items, such as the headings in a document, the entries in an index, or the files
+and directories on a disk. Each item consists of a label and an optional
+bitmapped image, and each item can have a list of subitems associated with it.
+By clicking an item, the user can expand or collapse the associated list of
+subitems.</p>
+<p>The following topics are discussed.</p>
+<ul>
+  <li><a href="#About_Tree_View_Cont" target="_self">About Tree-View Controls</a>
+  <li><a href="#Using_Tree_View_Cont" target="_self">Using Tree-View Controls</a>
+  <li><a href="#Tree_View_Control_Up" target="_self">Tree-View Control Updates
+    in Internet Explorer</a>
+  <li><a href="#related_topics" target="_self">Related Topics</a></li>
+</ul>
+<h3><a name="About_Tree_View_Cont"></a>About Tree-View Controls</h3>
+<p>You create a tree-view control by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+CreateWindowEx</MSHelp:link>
+ function, specifying the WC_TREEVIEW window class. The class is registered when
+the common control dynamic-link library (DLL) is loaded. To ensure that this DLL
+is loaded, include the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_InitCommonControls_cpp">
+InitCommonControls</MSHelp:link>
+ function in your application. </p>
+<p>After creating a tree-view control, you add, remove, arrange, or otherwise
+manipulate items by sending messages to the control. Each message has one or
+more corresponding macros that you can use instead of sending the message
+explicitly.</p>
+<h3><a name="Tree_View_Styles"></a>Tree-View Styles</h3>
+<p>Tree-view styles govern aspects of a tree-view control's appearance. You set
+the initial styles when you create the tree-view control. You can retrieve and
+change the styles after creating the tree-view control by using the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_getwindowlong">
+GetWindowLong</MSHelp:link>
+ and <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_setwindowlong">
+SetWindowLong</MSHelp:link>
+ functions.</p>
+<p>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Tree_View_Control_Window_Styles_cpp">
+TVS_HASLINES</MSHelp:link>
+ style enhances the graphic representation of a tree-view control's hierarchy by
+drawing lines that link child items to their parent item. This style does not
+link items at the root of the hierarchy. To do so, you need to combine the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TVS_HASLINES">
+TVS_HASLINES</MSHelp:link>
+ and <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TVS_LINESATROOT">
+TVS_LINESATROOT</MSHelp:link>
+ styles.</p>
+<p>The user can expand or collapse a parent item's list of child items by
+double-clicking the parent item. A tree-view control that has the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TVS_HASBUTTONS">
+TVS_HASBUTTONS</MSHelp:link>
+ style adds a button to the left side of each parent item. The user can click
+the button once instead of double-clicking the parent item to expand or collapse
+the child. TVS_HASBUTTONS does not add buttons to items at the root of the
+hierarchy. To do so, you must combine TVS_HASLINES, TVS_LINESATROOT, and
+TVS_HASBUTTONS.</p>
+<p>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Tree_View_Control_Window_Styles_cpp">
+TVS_EDITLABELS</MSHelp:link>
+ style makes it possible for the user to edit the labels of tree-view items. For
+more information about editing labels, see <a href="#tv_label_editing" target="_self">Tree-View
+Label Editing</a>.</p>
+<p>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TVS_SHOWSELALWAYS">
+TVS_SHOWSELALWAYS</MSHelp:link>
+ style causes a selected item to remain selected when the tree-view control
+loses focus.</p>
+<p>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TVS_CHECKBOXES">
+TVS_CHECKBOXES</MSHelp:link>
+ style creates checkboxes next to each item. If you want to use the checkbox
+style, you must set the TVS_CHECKBOXES style (with <b>SetWindowLong</b>) after
+you create the tree-view control and before you populate the tree. Otherwise,
+the checkboxes might appear unchecked, depending on timing issues.</p>
+<h3><a name="Parent_and_Child_Items"></a>Parent and Child Items</h3>
+<p>Any item in a tree-view control can have a list of subitems—called <i>child
+items</i>—associated with it. An item that has one or more child items is
+called a <i>parent item</i>. A child item is displayed below its parent item and
+is indented to indicate that it is subordinate to the parent. An item that has
+no parent appears at the top of the hierarchy and is called a <i>root item</i>.</p>
+<p>To add an item to a tree-view control, send the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_INSERTITEM_cpp">
+TVM_INSERTITEM</MSHelp:link>
+ message to the control. The message returns a handle to the HTREEITEM type,
+which uniquely identifies the item. When adding an item, you must specify the
+handle to the new item's parent item. If you specify NULL or the TVI_ROOT value
+instead of a parent item handle in the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVINSERTSTRUCT_cpp">
+TVINSERTSTRUCT</MSHelp:link>
+ structure, the item is added as a root item.</p>
+<p>At any given time, the state of a parent item's list of child items can be
+either expanded or collapsed. When the state is expanded, the child items are
+displayed below the parent item. When it is collapsed, the child items are not
+displayed. The list automatically toggles between the expanded and collapsed
+states when the user double-clicks the parent item or, if the parent has the
+TVS_HASBUTTONS style, when the user clicks the button associated with the parent
+item. An application can expand or collapse the child items by using the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_EXPAND_cpp">
+TVM_EXPAND</MSHelp:link>
+ message.</p>
+<p>A tree-view control sends the parent window a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_ITEMEXPANDING_cpp">
+TVN_ITEMEXPANDING</MSHelp:link>
+ notification message when a parent item's list of child items is about to be
+expanded or collapsed. The notification gives an application the opportunity to
+prevent the change or to set any attributes of the parent item that depend on
+the state of the list of child items. After changing the state of the list, the
+tree-view control sends the parent window a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_ITEMEXPANDED_cpp">
+TVN_ITEMEXPANDED</MSHelp:link>
+ notification message.</p>
+<p>When a list of child items is expanded, it is indented relative to the parent
+item. You can set the amount of indentation by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_SETINDENT_cpp">
+TVM_SETINDENT</MSHelp:link>
+ message or retrieve the current amount by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_GETINDENT_cpp">
+TVM_GETINDENT</MSHelp:link>
+ message.</p>
+<p>A tree-view control uses memory allocated from the heap of the process that
+creates the tree-view control. The maximum number of items in a tree view is
+based on the amount of memory available in the heap.</p>
+<h3><a name="Item_Labels"></a>Item Labels</h3>
+<p>You typically specify the text of an item's label when adding the item to the
+tree-view control. The <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_INSERTITEM_cpp">
+TVM_INSERTITEM</MSHelp:link>
+ message includes a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVITEM_cpp">
+TVITEM</MSHelp:link>
+ structure that defines the item's properties, including a string containing the
+text of the label.</p>
+<p>A tree-view control allocates memory for storing each item; the text of the
+item labels takes up a significant portion of this memory. If your application
+maintains a copy of the strings in the tree-view control, you can decrease the
+memory requirements of the control by specifying the LPSTR_TEXTCALLBACK value in
+the <b>pszText</b> member of <b>TVITEM</b> instead of passing actual strings to
+the tree view. Using LPSTR_TEXTCALLBACK causes the tree-view control to retrieve
+the text of an item's label from the parent window whenever the item needs to be
+redrawn. To retrieve the text, the tree-view control sends a <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_GETDISPINFO_cpp">
+TVN_GETDISPINFO</MSHelp:link>
+ notification message, which includes the address of an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NMTVDISPINFO_cpp">
+NMTVDISPINFO</MSHelp:link>
+ structure. The parent window must fill the appropriate members of the included
+structure.</p>
+<h3><a name="tv_label_editing"></a>Tree-View Label Editing</h3>
+<p>The user can directly edit the labels of items in a tree-view control that
+has the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TVS_EDITLABELS">
+TVS_EDITLABELS</MSHelp:link>
+ style. The user begins editing by clicking the label of the item that has the
+focus. An application begins editing by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_EDITLABEL_cpp">
+TVM_EDITLABEL</MSHelp:link>
+ message. The tree-view control notifies the parent window when editing begins
+and when it is canceled or completed. When editing is completed, the parent
+window is responsible for updating the item's label, if appropriate.</p>
+<p>When label editing begins, a tree-view control sends its parent window a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_BEGINLABELEDIT_cpp">
+TVN_BEGINLABELEDIT</MSHelp:link>
+ notification message. By processing this notification, an application can allow
+editing of some labels and prevent editing of others. Returning zero allows
+editing, and returning nonzero prevents it.</p>
+<p>When label editing is canceled or completed, a tree-view control sends its
+parent window a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_ENDLABELEDIT_cpp">
+TVN_ENDLABELEDIT</MSHelp:link>
+ notification message. The <i>lParam</i> parameter is the address of an <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NMTVDISPINFO_cpp">
+NMTVDISPINFO</MSHelp:link>
+ structure. The <i>item</i> parameter is a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVITEM_cpp">
+TVITEM</MSHelp:link>
+ structure that identifies the item and includes the edited text. The parent
+window is responsible for updating the item's label if it wishes to keep the new
+label. The <b>pszText</b> member of <b>TVITEM</b> is zero if editing is
+canceled.</p>
+<p>During label editing, typically in response to the <b>TVN_BEGINLABELEDIT</b>
+notification message, you can retrieve the handle to the edit control used for
+label editing by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_GETEDITCONTROL_cpp">
+TVM_GETEDITCONTROL</MSHelp:link>
+ message. You can send the edit control an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SETLIMITTEXT_cpp">
+EM_SETLIMITTEXT</MSHelp:link>
+ message to limit the amount of text a user can enter or subclass the edit
+control to intercept and discard invalid characters. Note, however, that the
+edit control is displayed only <i>after</i>&nbsp;<b>TVN_BEGINLABELEDIT</b> is
+sent.</p>
+<h3><a name="Tree_View_Item_Posit"></a>Tree-View Item Position</h3>
+<p>An item's initial position is set when the item is added to the tree-view
+control by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_INSERTITEM_cpp">
+TVM_INSERTITEM</MSHelp:link>
+ message. The message includes a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVINSERTSTRUCT_cpp">
+TVINSERTSTRUCT</MSHelp:link>
+ structure that specifies the handle to the parent item and the handle to the
+item after which the new item is to be inserted. The second handle must identify
+either a child item of the given parent or one of these values: TVI_FIRST,
+TVI_LAST, or TVI_SORT.</p>
+<p>When TVI_FIRST or TVI_LAST is specified, the tree-view control places the new
+item at the beginning or end of the given parent item's list of child items.
+When TVI_SORT is specified, the tree-view control inserts the new item into the
+list of child items in alphabetical order based on the text of the item labels.</p>
+<p>You can put a parent item's list of child items in alphabetical order by
+using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_SORTCHILDREN_cpp">
+TVM_SORTCHILDREN</MSHelp:link>
+ message. The message includes a parameter that specifies whether all levels of
+child items descending from the given parent item are also sorted in
+alphabetical order.</p>
+<p>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_SORTCHILDRENCB_cpp">
+TVM_SORTCHILDRENCB</MSHelp:link>
+ message allows you to sort child items based on criteria that you define. When
+you use this message, you specify an application-defined callback function that
+the tree-view control can call whenever the relative order of two child items
+needs to be decided. The callback function receives two 32-bit
+application-defined values for the items being compared and a third 32-bit value
+that you specify when sending <b>TVM_SORTCHILDRENCB</b>.</p>
+<h3><a name="tv_item_states_ovr"></a>Tree-View Item States Overview</h3>
+<p>Each item in a tree-view control has a current state. The state information
+for each item includes a set of bit flags as well as image list indexes that
+indicate the item's state image and overlay image. The bit flags indicate
+whether the item is selected, disabled, expanded, and so on. For the most part,
+a tree-view control automatically sets an item's state to reflect user actions,
+such as selection of an item. However, you can also set an item's state by using
+the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_SETITEM_cpp">
+TVM_SETITEM</MSHelp:link>
+ message, and you can retrieve the current state of an item by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_GETITEM_cpp">
+TVM_GETITEM</MSHelp:link>
+ message. For a complete list of item states, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Tree_View_Control_Item_States_cpp">
+Tree-View Control Item States</MSHelp:link>
+.</p>
+<p>An item's current state is specified by the <b>state</b> member of the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVITEM_cpp">
+TVITEM</MSHelp:link>
+ structure. A tree-view control might change an item's state to reflect a user
+action, such as selecting the item or setting the focus to the item. In
+addition, an application might change an item's state to disable or hide the
+item or to specify an overlay image or state image.</p>
+<p>When you specify or change an item's state, the <b>statemask</b> member of <b>TVITEM</b>
+specifies which state bits to set, and the <b>state</b> member contains the new
+values for those bits.</p>
+<p>To set an item's overlay image, <b>statemask</b> must include the
+TVIS_OVERLAYMASK value, and <b>state</b> must include the one-based index of the
+overlay image shifted left 8 bits by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_INDEXTOOVERLAYMASK_cpp">
+INDEXTOOVERLAYMASK</MSHelp:link>
+ macro. The index can be zero to specify no overlay image.</p>
+<p>A state image is displayed next to an item's icon to indicate an
+application-defined state. State images are contained in a <i>state image list</i>
+that is specified by sending a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_SETIMAGELIST_cpp">
+TVM_SETIMAGELIST</MSHelp:link>
+ message. To set an item's state image, include the TVIS_STATEIMAGEMASK value in
+the <b>statemask</b> member of the <b>TVITEM</b> structure. Bits 12 through 15
+of the structure's <b>state</b> member specify the index in the state image list
+of the image to be drawn.</p>
+<p>To set the state image index, use <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_INDEXTOSTATEIMAGEMASK_cpp">
+INDEXTOSTATEIMAGEMASK</MSHelp:link>
+. This macro takes an index, and sets bits 12 through 15 appropriately. To
+indicate that the item has no state image, set the index to zero. This
+convention means that image zero in the state image list cannot be used as a
+state image. To isolate bits 12 through 15 of the <b>state</b> member, use the
+TVIS_STATEIMAGEMASK mask. For more information about overlay and state images,
+see <a href="#tv_image_lists" target="_self">Tree-View Image Lists</a>.</p>
+<h3><a name="Item_Selection"></a>Item Selection</h3>
+<p>A tree-view control notifies the parent window when the selection changes
+from one item to another by sending the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_SELCHANGING_cpp">
+TVN_SELCHANGING</MSHelp:link>
+ and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_SELCHANGED_cpp">
+TVN_SELCHANGED</MSHelp:link>
+ notification messages. Both notifications include a value that specifies
+whether the change is the result of a mouse click or a keystroke. The
+notifications also include information about the item that is gaining the
+selection and the item that is losing the selection. You can use this
+information to set item attributes that depend on the selection state of the
+item. Returning TRUE in response to <b>TVN_SELCHANGING</b> prevents the
+selection from changing, and returning FALSE allows the change.</p>
+<p>An application can change the selection by sending the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_SELECTITEM_cpp">
+TVM_SELECTITEM</MSHelp:link>
+ message.</p>
+<h3><a name="Item_Information"></a>Item Information</h3>
+<p>Tree-view controls support a number of messages that retrieve information
+about items in the control.</p>
+<p>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_GETITEM_cpp">
+TVM_GETITEM</MSHelp:link>
+ message can retrieve an item's handle and attributes. An item's attributes
+include its current state, the indexes in the control's image list of the item's
+selected and nonselected bitmapped images, a flag that indicates whether the
+item has child items, the address of the item's label string, and the item's
+application-defined 32-bit value.</p>
+<p>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_GETNEXTITEM_cpp">
+TVM_GETNEXTITEM</MSHelp:link>
+ message retrieves the tree-view item that bears the specified relationship to
+the current item. The message can retrieve an item's parent, the next or
+previous visible item, the first child item, and so on.</p>
+<p>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_GETITEMRECT_cpp">
+TVM_GETITEMRECT</MSHelp:link>
+ message retrieves the bounding rectangle for a tree-view item. The <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_GETCOUNT_cpp">
+TVM_GETCOUNT</MSHelp:link>
+ and <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_GETVISIBLECOUNT_cpp">
+TVM_GETVISIBLECOUNT</MSHelp:link>
+ messages retrieve a count of the items in a tree-view control and a count of
+the items that can be fully visible in the tree-view control's window,
+respectively. You can ensure that a particular item is visible by using the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_ENSUREVISIBLE_cpp">
+TVM_ENSUREVISIBLE</MSHelp:link>
+ message.</p>
+<h3><a name="tv_image_lists"></a>Tree-View Image Lists</h3>
+<p>Each item in a tree-view control can have four bitmapped images associated
+with it.</p>
+<ul>
+  <li>An image, such as an open folder, displayed when the item is selected.
+  <li>An image, such as a closed folder, displayed when the item is not
+    selected.
+  <li>An overlay image that is drawn transparently over the selected or
+    nonselected image.
+  <li>A state image, which is an additional image displayed to the left of the
+    selected or nonselected image. You can use state images, such as checked and
+    cleared check boxes, to indicate application-defined item states.</li>
+</ul>
+<p>By default, a tree-view control does not display item images. To display item
+images, you must create image lists and associate them with the control. For
+more information about image lists, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Image_Lists_cpp">
+Image Lists</MSHelp:link>
+.</p>
+<p>A tree-view control can have two image lists: a normal image list and a state
+image list. A normal image list stores the selected, nonselected, and overlay
+images. A state image list stores state images. Use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ImageList_Create_cpp">
+ImageList_Create</MSHelp:link>
+ function to create an image list, and use other image list functions to add
+bitmaps to the image list. Then, to associate the image list with the tree-view
+control, use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_SETIMAGELIST_cpp">
+TVM_SETIMAGELIST</MSHelp:link>
+ message. The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_GETIMAGELIST_cpp">
+TVM_GETIMAGELIST</MSHelp:link>
+ message retrieves a handle to one of a tree-view control's image lists. This
+message is useful if you need to add more images to the list.</p>
+<p>In addition to the selected and nonselected images, a tree-view control's
+normal image list can contain up to four overlay images. Overlay images are
+identified by a one-based index and are designed to be drawn transparently over
+the selected and nonselected images. To assign an overlay mask index to an image
+in the normal image list, call the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ImageList_SetOverlayImage_cpp">
+ImageList_SetOverlayImage</MSHelp:link>
+ function.</p>
+<p>By default, all items display the first image in the normal image list for
+both the selected and nonselected states. Also, by default, items do not display
+overlay images or state images. You can change these default behaviors for an
+item by sending the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_INSERTITEM_cpp">
+TVM_INSERTITEM</MSHelp:link>
+ or <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_SETITEM_cpp">
+TVM_SETITEM</MSHelp:link>
+ message. These messages use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVITEM_cpp">
+TVITEM</MSHelp:link>
+ structure to specify image list indexes for an item.</p>
+<p>To specify an item's selected and nonselected images, set the
+TVIF_SELECTEDIMAGE and TVIF_IMAGE bits in the <b>mask</b> member of the <b>TVITEM</b>
+structure and specify indexes from the control's normal image list in the <b>iSelectImage</b>
+and <b>iImage</b> members. Alternatively, you can specify the I_IMAGECALLBACK
+value in <b>iSelectImage</b> and <b>iImage</b> instead of specifying indexes.
+This causes the control to query its parent window for an image list index each
+time the item is about to be redrawn. The control sends the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_GETDISPINFO_cpp">
+TVN_GETDISPINFO</MSHelp:link>
+ notification message to retrieve the index.</p>
+<p>To associate an overlay image with an item, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_INDEXTOOVERLAYMASK_cpp">
+INDEXTOOVERLAYMASK</MSHelp:link>
+ macro to specify an overlay mask index in the <b>state</b> member of the item's
+<b>TVITEM</b> structure. You must also set the TVIS_OVERLAYMASK bits in the <b>stateMask</b>
+member. Overlay mask indexes are one-based; an index of zero indicates that no
+overlay image was specified.</p>
+<p>State images are stored in a separate state image list and identified by
+their index. To specify the state image list, send a <b>TVM_SETIMAGELIST</b>
+message. Unlike the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_List_View_Controls_cpp">
+list-view control</MSHelp:link>
+, which uses a one-based index to identify state images, tree-view control state
+images are identified by a zero-based index. However, an index of zero indicates
+that the item does not have a state image. Consequently, image zero cannot be
+used as a state image. For further discussion of item states and state images,
+see <a href="#tv_item_states_ovr" target="_self">Tree-View Item States Overview</a>.</p>
+<h3><a name="Drag_and_Drop_Operations"></a>Drag-and-Drop Operations</h3>
+<p>A tree-view control notifies the parent window when the user starts to drag
+an item. The parent window receives a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_BEGINDRAG_cpp">
+TVN_BEGINDRAG</MSHelp:link>
+ notification message when the user begins dragging an item with the left mouse
+button and a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_BEGINRDRAG_cpp">
+TVN_BEGINRDRAG</MSHelp:link>
+ notification message when the user begins dragging with the right button. You
+can prevent a tree-view control from sending these notifications by giving the
+tree-view control the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TVS_DISABLEDRAGDROP">
+TVS_DISABLEDRAGDROP</MSHelp:link>
+ style.</p>
+<p>You obtain an image to display during a drag operation by using the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_CREATEDRAGIMAGE_cpp">
+TVM_CREATEDRAGIMAGE</MSHelp:link>
+ message. The tree-view control creates a dragging bitmap based on the label of
+the item being dragged. Then the tree-view control creates an image list, adds
+the bitmap to it, and returns the handle to the image list.</p>
+<p>You must provide the code that actually drags the item. This typically
+involves using the dragging capabilities of the image list functions and
+processing the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_mousemove">
+WM_MOUSEMOVE</MSHelp:link>
+ and <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttonup">
+WM_LBUTTONUP</MSHelp:link>
+ (or <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_rbuttonup">
+WM_RBUTTONUP</MSHelp:link>
+) messages sent to the parent window after the drag operation has begun. For
+more information, see <a href="#tv_dragging_items" target="_self">Dragging a
+Tree-View Item</a>.</p>
+<p>If items in a tree-view control are to be the targets of drag-and-drop
+operations, you need to know when the mouse pointer is on a target item. You can
+find out by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_HITTEST_cpp">
+TVM_HITTEST</MSHelp:link>
+ message. You specify the address of a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVHITTESTINFO_cpp">
+TVHITTESTINFO</MSHelp:link>
+ structure that contains the current coordinates of the mouse pointer. When the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_SendMessage">
+SendMessage</MSHelp:link>
+ function returns, the structure contains a flag indicating the location of the
+mouse pointer relative to the tree-view control. If the pointer is over an item
+in the tree-view control, the structure contains the handle to the item as well.</p>
+<p>You can indicate that an item is the target of a drag-and-drop operation by
+using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_SETITEM_cpp">
+TVM_SETITEM</MSHelp:link>
+ message to set the state to the TVIS_DROPHILITED value. An item that has this
+state is drawn in the style used to indicate a drag-and-drop target.</p>
+<h3><a name="Tree_View_Notifications"></a>About Tree-View Control Notification
+Messages</h3>
+<p>A tree-view control sends the following notification messages to its parent
+window in the form of <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_NOTIFY_cpp">
+WM_NOTIFY</MSHelp:link>
+ messages.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Notification</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_BEGINDRAG_cpp">
+        TVN_BEGINDRAG</MSHelp:link>
+      </td>
+      <td>Signals the start of a drag-and-drop operation.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_BEGINLABELEDIT_cpp">
+        TVN_BEGINLABELEDIT</MSHelp:link>
+        &nbsp;&nbsp;</td>
+      <td>Signals the start of in-place label editing.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_BEGINRDRAG_cpp">
+        TVN_BEGINRDRAG</MSHelp:link>
+      </td>
+      <td>Signals that the right mouse button has started a drag-and-drop
+        operation.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_DELETEITEM_cpp">
+        TVN_DELETEITEM</MSHelp:link>
+      </td>
+      <td>Signals the deletion of a specific item.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_ENDLABELEDIT_cpp">
+        TVN_ENDLABELEDIT</MSHelp:link>
+      </td>
+      <td>Signals the end of label editing.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_GETDISPINFO_cpp">
+        TVN_GETDISPINFO</MSHelp:link>
+      </td>
+      <td>Requests information that the tree-view control requires to display an
+        item.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_ITEMEXPANDED_cpp">
+        TVN_ITEMEXPANDED</MSHelp:link>
+      </td>
+      <td>Signals that a parent item's list of child items was expanded or
+        collapsed.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_ITEMEXPANDING_cpp">
+        TVN_ITEMEXPANDING</MSHelp:link>
+      </td>
+      <td>Signals that a parent item's list of child items is about to be
+        expanded or collapsed.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_KEYDOWN_cpp">
+        TVN_KEYDOWN</MSHelp:link>
+      </td>
+      <td>Signals a keyboard event.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_SELCHANGED_cpp">
+        TVN_SELCHANGED</MSHelp:link>
+      </td>
+      <td>Signals that the selection has changed from one item to another.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_SELCHANGING_cpp">
+        TVN_SELCHANGING</MSHelp:link>
+      </td>
+      <td>Signals that the selection is about to be changed from one item to
+        another.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_SETDISPINFO_cpp">
+        TVN_SETDISPINFO</MSHelp:link>
+      </td>
+      <td>Notifies a parent window that it must update the information it
+        maintains for an item.</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="Tree_View_Control_Message_Proc"></a>Default Tree-View Control
+Message Processing</h3>
+<p>This section describes the window message processing performed by a tree-view
+control. Messages specific to tree-view controls are discussed in other sections
+of this document, so they are not included here.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Message</th>
+      <th>Processing performed</th>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_command">
+        WM_COMMAND</MSHelp:link>
+      </td>
+      <td>Processes the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EN_UPDATE_cpp">
+        EN_UPDATE</MSHelp:link>
+        and <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EN_KILLFOCUS_cpp">
+        EN_KILLFOCUS</MSHelp:link>
+        edit control notification messages and forwards all other edit control
+        notifications to the parent window. There is no return value.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_create">
+        WM_CREATE</MSHelp:link>
+      </td>
+      <td>Allocates memory and initializes internal data structures. It returns
+        zero if successful, or -1 otherwise.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_destroy">
+        WM_DESTROY</MSHelp:link>
+      </td>
+      <td>Frees all system resources associated with the control. It returns
+        zero.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_enable">
+        WM_ENABLE</MSHelp:link>
+      </td>
+      <td>Enables or disables the control.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_erasebkgnd">
+        WM_ERASEBKGND</MSHelp:link>
+      </td>
+      <td>Erases the window background using the current background color for
+        the tree-view control. It returns TRUE.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_getdlgcode">
+        WM_GETDLGCODE</MSHelp:link>
+      </td>
+      <td>Returns a combination of the DLGC_WANTARROWS and DLGC_WANTCHARS
+        values.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_getfont">
+        WM_GETFONT</MSHelp:link>
+      </td>
+      <td>Returns the handle to the current label font.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_HSCROLL_cpp">
+        WM_HSCROLL</MSHelp:link>
+      </td>
+      <td>Scrolls the tree-view control. It returns TRUE if scrolling occurs, or
+        FALSE otherwise.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_keydown">
+        WM_KEYDOWN</MSHelp:link>
+      </td>
+      <td>Sends the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_KEYDOWN_cpp">
+        TVN_KEYDOWN</MSHelp:link>
+        notification message to the parent window for all keys. Sends the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NM_RETURN_tree_view__cpp">
+        NM_RETURN (tree view)</MSHelp:link>
+        notification message when the user presses the ENTER key. It moves the
+        caret when the user presses the direction keys or the PAGE UP, PAGE
+        DOWN, HOME, END, or BACKSPACE key. It scrolls the tree-view control when
+        the user presses the CTRL key in combination with those keys. It returns
+        TRUE if a key is processed, or FALSE otherwise.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_killfocus">
+        WM_KILLFOCUS</MSHelp:link>
+      </td>
+      <td>Repaints the focused item, if any, and sends an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NM_KILLFOCUS_tree_view__cpp">
+        NM_KILLFOCUS (tree view)</MSHelp:link>
+        notification message to the parent window.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttondblclk">
+        WM_LBUTTONDBLCLK</MSHelp:link>
+      </td>
+      <td>Cancels label editing and, if an item was double-clicked, sends the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NM_DBLCLK_cpp">
+        NM_DBLCLK</MSHelp:link>
+        notification message to the parent window. If the parent window returns
+        0, the tree-view control toggles the expanded state of the item, sending
+        the parent window the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_ITEMEXPANDING_cpp">
+        TVN_ITEMEXPANDING</MSHelp:link>
+        and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_ITEMEXPANDED_cpp">
+        TVN_ITEMEXPANDED</MSHelp:link>
+        notification messages. There is no return value.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttondown">
+        WM_LBUTTONDOWN</MSHelp:link>
+      </td>
+      <td>Toggles the expanded state if the user clicked the button associated
+        with a parent item. If the user clicked an item label, the tree-view
+        control selects and sets the focus to the item. If the user moves the
+        mouse before releasing the mouse button, the tree-view control begins a
+        drag-and-drop operation. There is no return value.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_paint">
+        WM_PAINT</MSHelp:link>
+      </td>
+      <td>Paints the invalid region of the tree-view control. It returns zero.
+        If the <i>wParam</i> parameter is non-NULL, the control assumes that the
+        value is a handle to a device context (HDC) and paints using that device
+        context.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_rbuttondown">
+        WM_RBUTTONDOWN</MSHelp:link>
+      </td>
+      <td>Checks to see if an item was clicked and a drag operation was begun.
+        If the operation has begun, it sends a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_BEGINRDRAG_cpp">
+        TVN_BEGINRDRAG</MSHelp:link>
+        notification message to the parent window and highlights the drop
+        target. Otherwise, it sends an <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NM_RCLICK_cpp">
+        NM_RCLICK</MSHelp:link>
+        notification message to the parent window. There is no return value.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_setfocus">
+        WM_SETFOCUS</MSHelp:link>
+      </td>
+      <td>Repaints the focused item, if any, and sends an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NM_SETFOCUS_cpp">
+        NM_SETFOCUS</MSHelp:link>
+        notification message to the parent window.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_setfont">
+        WM_SETFONT</MSHelp:link>
+      </td>
+      <td>Saves the specified font handle and repaints the tree-view control
+        using the new font.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_setredraw">
+        WM_SETREDRAW</MSHelp:link>
+      </td>
+      <td>Sets or clears the redraw flag. The tree-view control is redrawn after
+        the redraw flag is set. It returns zero.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_size">
+        WM_SIZE</MSHelp:link>
+      </td>
+      <td>Recomputes internal variables that depend on the size of the tree-view
+        control's client area. It returns TRUE.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_stylechanged">
+        WM_STYLECHANGED</MSHelp:link>
+      </td>
+      <td>Cancels label editing and redraws the tree-view control using the new
+        styles. It returns zero.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_syscolorchange">
+        WM_SYSCOLORCHANGE</MSHelp:link>
+      </td>
+      <td>Redraws the tree-view control using the new color if the redraw flag
+        is set. There is no return value.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_timer">
+        WM_TIMER</MSHelp:link>
+      </td>
+      <td>Begins editing an item label. If the user clicks the label of the
+        focused item, the tree-view control sets a timer instead of entering
+        edit mode immediately. The timer makes it possible for the tree view to
+        avoid entering edit mode if the user double-clicks the label. It returns
+        zero.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_VSCROLL_cpp">
+        WM_VSCROLL</MSHelp:link>
+      </td>
+      <td>Scrolls the tree-view control. It returns TRUE if scrolling occurs, or
+        FALSE otherwise.</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="Creating_a_Tree_View"></a>Creating a Tree-View Control</h3>
+<p>To create a tree-view control, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+CreateWindowEx</MSHelp:link>
+ function, specifying the WC_TREEVIEW value for the window class. The tree-view
+window class is registered in the application's address space when the common
+control dynamic-link library (DLL) is loaded. To ensure that the DLL is loaded,
+use the <b>InitCommonControls</b> function.</p>
+<div class="clsNote">
+  <b>Note</b>&nbsp;&nbsp;When you create a tree-view control, you can also send
+  it a <b>WM_SETFONT</b> message to set the font to be used for the text in the
+  tree view. You should send this message prior to inserting any items. By
+  default, a tree view uses the icon title font. Although you can customize the
+  font on a per-item basis (by using <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Custom_Draw_cpp">
+  Customizing a Control's Appearance Using Custom Draw</MSHelp:link>
+  , the tree-view control uses the dimensions of the font specified by the
+  WM_SETFONT message to determine spacing and layout.
+</div>
+<p>The following example creates a tree-view control that is sized to fit the
+client area of the parent window. It also uses application-defined functions to
+associate an image list with the control and add items to the control.</p>
+<p style="FONT-WEIGHT: bold; CURSOR: hand; TEXT-DECORATION: underline" ShowHideType="Example">Show
+Example</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green"> CreateATreeView - creates a tree-view control. </font>
+<font color="blue">//</font><font color="green"> Returns the handle to the new control if successful,</font>
+<font color="blue">//</font><font color="green"> or NULL otherwise. </font>
+<font color="blue">//</font><font color="green"> hwndParent - handle to the control's parent window. </font>
+<font color="blue">//</font><font color="green"> lpszFileName - name of the file to parse for tree-view items.</font>
+
+HWND CreateATreeView(HWND hwndParent, LPSTR lpszFileName) 
+{ 
+    RECT rcClient;  <font color="blue">//</font><font color="green"> dimensions of client area </font>
+    HWND hwndTV;    <font color="blue">//</font><font color="green"> handle to tree-view control </font>
+
+    <font color="blue">//</font><font color="green"> Ensure that the common control DLL is loaded. </font>
+    InitCommonControls(); 
+
+    <font color="blue">//</font><font color="green"> Get the dimensions of the parent window's client area, and create </font>
+    <font color="blue">//</font><font color="green"> the tree-view control. </font>
+    GetClientRect(hwndParent, &amp;rcClient); 
+    hwndTV = CreateWindowEx(0,
+                            WC_TREEVIEW,
+                            &quot;Tree View&quot;,
+                            WS_VISIBLE | WS_CHILD | WS_BORDER | TVS_HASLINES, 
+                            0, 
+                            0, 
+                            rcClient.right, 
+                            rcClient.bottom,
+                            hwndParent, 
+                            (HMENU)ID_TREEVIEW, 
+                            g_hinst, 
+                            NULL); 
+
+    <font color="blue">//</font><font color="green"> Initialize the image list, and add items to the control. </font>
+    <font color="blue">//</font><font color="green"> InitTreeViewImageLists and InitTreeViewItems are application- </font>
+    <font color="blue">//</font><font color="green"> defined functions. </font>
+    if (!InitTreeViewImageLists(hwndTV) || 
+                !InitTreeViewItems(hwndTV, lpszFileName))
+    { 
+        DestroyWindow(hwndTV); 
+        return FALSE; 
+    } 
+    return hwndTV;
+} </pre>
+<h3><a name="Initializing_the_Ima"></a>Initializing the Image List</h3>
+<p>Every item in a tree-view control can have two images associated with it. An
+item displays one image when it is selected and the other when it is not. To
+include images with tree-view items, first use the <b>Image Lists</b> functions
+to create an image list and add images to it. Then associate the image list with
+the tree-view control by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_SETIMAGELIST_cpp">
+TVM_SETIMAGELIST</MSHelp:link>
+ message.</p>
+<p>The following example creates an image list, adds three bitmaps to the list,
+and associates the image list with a tree-view control.</p>
+<p style="FONT-WEIGHT: bold; CURSOR: hand; TEXT-DECORATION: underline" ShowHideType="Example">Show
+Example</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green"> InitTreeViewImageLists - creates an image list, adds three bitmaps </font>
+<font color="blue">//</font><font color="green"> to it, and associates the image list with a tree-view control. </font>
+<font color="blue">//</font><font color="green"> Returns TRUE if successful, or FALSE otherwise. </font>
+<font color="blue">//</font><font color="green"> hwndTV - handle to the tree-view control. </font>
+<font color="blue">//</font>
+<font color="blue">//</font><font color="green"> Global variables and constants </font>
+<font color="blue">//</font><font color="green"> g_nOpen, g_nClosed, and g_nDocument - integer variables for </font>
+<font color="blue">//</font><font color="green"> indexes of the images. </font>
+<font color="blue">//</font><font color="green"> CX_BITMAP and CY_BITMAP - width and height of an icon. </font>
+<font color="blue">//</font><font color="green"> NUM_BITMAPS - number of bitmaps to add to the image list. </font>
+
+BOOL InitTreeViewImageLists(HWND hwndTV) 
+{ 
+    HIMAGELIST himl;  <font color="blue">//</font><font color="green"> handle to image list </font>
+    HBITMAP hbmp;     <font color="blue">//</font><font color="green"> handle to bitmap </font>
+
+    <font color="blue">//</font><font color="green"> Create the image list. </font>
+    if ((himl = ImageList_Create(CX_BITMAP, 
+                                 CY_BITMAP,
+                                 FALSE, 
+                                 NUM_BITMAPS, 0)) == NULL) 
+        return FALSE; 
+
+    <font color="blue">//</font><font color="green"> Add the open file, closed file, and document bitmaps. </font>
+    hbmp = LoadBitmap(g_hinst, MAKEINTRESOURCE(IDB_OPEN_FILE)); 
+    g_nOpen = ImageList_Add(himl, hbmp, (HBITMAP)NULL); 
+    DeleteObject(hbmp); 
+
+    hbmp = LoadBitmap(g_hinst, MAKEINTRESOURCE(IDB_CLOSED_FILE)); 
+    g_nClosed = ImageList_Add(himl, hbmp, (HBITMAP)NULL); 
+    DeleteObject(hbmp); 
+
+    hbmp = LoadBitmap(g_hinst, MAKEINTRESOURCE(IDB_DOCUMENT)); 
+    g_nDocument = ImageList_Add(himl, hbmp, (HBITMAP)NULL); 
+    DeleteObject(hbmp); 
+
+    <font color="blue">//</font><font color="green"> Fail if not all of the images were added. </font>
+    if (ImageList_GetImageCount(himl) &lt; 3) 
+        return FALSE; 
+
+    <font color="blue">//</font><font color="green"> Associate the image list with the tree-view control. </font>
+    TreeView_SetImageList(hwndTV, himl, TVSIL_NORMAL); 
+
+    return TRUE; 
+} </pre>
+<h3><a name="Adding_Tree_View_Ite"></a>Adding Tree-View Items</h3>
+<p>You add an item to a tree-view control by sending the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_INSERTITEM_cpp">
+TVM_INSERTITEM</MSHelp:link>
+ message to the control. The message includes the address of a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVINSERTSTRUCT_cpp">
+TVINSERTSTRUCT</MSHelp:link>
+ structure, specifying the parent item, the item after which the new item is
+inserted, and a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVITEM_cpp">
+TVITEM</MSHelp:link>
+ structure that defines the attributes of the item. The attributes include the
+item's label, its selected and nonselected images, and a 32-bit
+application-defined value.</p>
+<p>The example in this section demonstrates how to create a table of contents
+based on the information in a text file. The example includes two functions. The
+first function searches a file for headings. When it finds one, it extracts the
+text of the heading and the value that indicates the level of the heading and
+then passes them to the second function.</p>
+<p>The second function adds an item to a tree-view control, using the heading
+text as the item's label and the heading level to determine the parent item for
+the new item. A level one heading is added to the root of the tree-view control,
+a level two heading is added as a child item of the previous level one item, and
+so on. The function assigns an image to an item based on whether it has any
+child items. If an item has child items, it gets an image representing a closed
+folder. Otherwise, it gets an image representing a document. An item uses the
+same image for both the selected and nonselected states.</p>
+<div class="clsNote">
+</div>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green"> InitTreeViewItems - extracts headings from the specified file and </font>
+<font color="blue">//</font><font color="green"> passes them to a function that adds them to a tree-view control. </font>
+<font color="blue">//</font><font color="green"> Returns TRUE if successful, or FALSE otherwise. </font>
+<font color="blue">//</font><font color="green"> hwndTV - handle to the tree-view control. </font>
+<font color="blue">//</font><font color="green"> lpszFileName - name of file with headings.</font>
+
+BOOL InitTreeViewItems(HWND hwndTV, LPSTR lpszFileName) 
+{ 
+    HANDLE hf;            <font color="blue">//</font><font color="green"> handle to file </font>
+    char szItemText[128]; <font color="blue">//</font><font color="green"> label text of tree-view item </font>
+    int nLevel;           <font color="blue">//</font><font color="green"> heading level </font>
+
+    <font color="blue">//</font><font color="green"> Open the file to parse. </font>
+    if ((hf = CreateFile(lpszFileName, 
+                         GENERIC_READ,
+                         FILE_SHARE_READ, 
+                         (LPSECURITY_ATTRIBUTES)NULL, 
+					     OPEN_EXISTING,
+                         FILE_ATTRIBUTE_NORMAL,
+                         (HANDLE)NULL)) == (HANDLE)INVALID_HANDLE_VALUE) 
+         return FALSE; 
+
+    <font color="blue">//</font><font color="green"> Call private function to parse the file looking for headings.</font>
+    while (GetNextHeadingAndLevelFromFile(hf, szItemText, &amp;nLevel))
+
+         <font color="blue">//</font><font color="green"> Add the item to the tree-view control. </font>
+         AddItemToTree(hwndTV, szItemText, nLevel); 
+
+    return TRUE; 
+} 
+
+<font color="blue">//</font><font color="green"> AddItemToTree - adds items to a tree-view control. </font>
+<font color="blue">//</font><font color="green"> Returns the handle to the newly added item. </font>
+<font color="blue">//</font><font color="green"> hwndTV - handle to the tree-view control. </font>
+<font color="blue">//</font><font color="green"> lpszItem - text of the item to add. </font>
+<font color="blue">//</font><font color="green"> nLevel - level at which to add the item. </font>
+
+HTREEITEM AddItemToTree(HWND hwndTV, LPSTR lpszItem, int nLevel)
+{ 
+    TVITEM tvi; 
+    TVINSERTSTRUCT tvins; 
+    static HTREEITEM hPrev = (HTREEITEM)TVI_FIRST; 
+    static HTREEITEM hPrevRootItem = NULL; 
+    static HTREEITEM hPrevLev2Item = NULL; 
+    HTREEITEM hti; 
+
+    tvi.mask = TVIF_TEXT | TVIF_IMAGE 
+               | TVIF_SELECTEDIMAGE | TVIF_PARAM; 
+
+    <font color="blue">//</font><font color="green"> Set the text of the item. </font>
+    tvi.pszText = lpszItem; 
+    tvi.cchTextMax = sizeof(tvi.pszText)/sizeof(tvi.pszText[0]); 
+
+    <font color="blue">//</font><font color="green"> Assume the item is not a parent item, so give it a </font>
+    <font color="blue">//</font><font color="green"> document image. </font>
+    tvi.iImage = g_nDocument; 
+    tvi.iSelectedImage = g_nDocument; 
+
+    <font color="blue">//</font><font color="green"> Save the heading level in the item's application-defined </font>
+    <font color="blue">//</font><font color="green"> data area. </font>
+    tvi.lParam = (LPARAM)nLevel; 
+    tvins.item = tvi; 
+    tvins.hInsertAfter = hPrev; 
+
+    <font color="blue">//</font><font color="green"> Set the parent item based on the specified level. </font>
+    if (nLevel == 1) 
+        tvins.hParent = TVI_ROOT; 
+    else if (nLevel == 2) 
+        tvins.hParent = hPrevRootItem; 
+    else 
+        tvins.hParent = hPrevLev2Item; 
+
+    <font color="blue">//</font><font color="green"> Add the item to the tree-view control. </font>
+    hPrev = (HTREEITEM)SendMessage(hwndTV, 
+                                   TVM_INSERTITEM, 
+                                   0,
+                                   (LPARAM)(LPTVINSERTSTRUCT)&amp;tvins); 
+
+    <font color="blue">//</font><font color="green"> Save the handle to the item. </font>
+    if (nLevel == 1) 
+        hPrevRootItem = hPrev; 
+    else if (nLevel == 2) 
+        hPrevLev2Item = hPrev; 
+
+    <font color="blue">//</font><font color="green"> The new item is a child item. Give the parent item a </font>
+    <font color="blue">//</font><font color="green"> closed folder bitmap to indicate it now has child items. </font>
+    if (nLevel &gt; 1)
+    { 
+        hti = TreeView_GetParent(hwndTV, hPrev); 
+        tvi.mask = TVIF_IMAGE | TVIF_SELECTEDIMAGE; 
+        tvi.hItem = hti; 
+        tvi.iImage = g_nClosed; 
+        tvi.iSelectedImage = g_nClosed; 
+        TreeView_SetItem(hwndTV, &amp;tvi); 
+    } 
+
+    return hPrev; 
+} </pre>
+<h3><a name="tv_dragging_items"></a>Dragging a Tree-View Item</h3>
+<p>Dragging a tree-view item typically involves processing the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_BEGINDRAG_cpp">
+TVN_BEGINDRAG</MSHelp:link>
+ (or <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_BEGINRDRAG_cpp">
+TVN_BEGINRDRAG</MSHelp:link>
+) notification message, the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_mousemove">
+WM_MOUSEMOVE</MSHelp:link>
+ message, and the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttonup">
+WM_LBUTTONUP</MSHelp:link>
+ (or <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_rbuttonup">
+WM_RBUTTONUP</MSHelp:link>
+) message. It also involves using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Image_Lists_cpp">
+Image Lists</MSHelp:link>
+ functions to draw the item as it is being dragged.</p>
+<p>The remainder of this section provides an example that demonstrates how to
+drag a tree-view item. The example consists of three functions. The first
+function begins the drag operation, the second drags the image, and the third
+ends the drag operation.</p>
+<h4><a name="Beginning_the_tree_v"></a>Beginning the tree-view drag operation</h4>
+<p>A tree-view control sends the parent window a <b>TVN_BEGINDRAG</b> (or <b>TVN_BEGINRDRAG</b>)
+notification message whenever the user starts to drag an item. The parent window
+receives the notification in the form of a <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_NOTIFY_cpp">
+WM_NOTIFY</MSHelp:link>
+ message whose <i>lParam</i> parameter is the address of an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NMTREEVIEW_cpp">
+NMTREEVIEW</MSHelp:link>
+ structure. The members of this structure include the screen coordinates of the
+mouse pointer and a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVITEM_cpp">
+TVITEM</MSHelp:link>
+ structure that contains information about the item to be dragged.</p>
+<p>The following example shows how to process the <b>WM_NOTIFY</b> message to
+obtain <b>TVN_BEGINDRAG</b>.</p>
+<pre class="clsCode" AUTOHILITE="1">case WM_NOTIFY: 
+    switch (((LPNMHDR)lParam)-&gt;code) 
+    {
+        case TVN_BEGINDRAG:
+            <font color="blue">//</font><font color="green">Main_OnBeginDrag is an application-defined function</font>
+            Main_OnBeginDrag(hwndTV, (LPNMTREEVIEW)lParam);
+            break;
+		
+        <font color="blue">//</font><font color="green"> Handle other cases here. </font>
+    }
+    break; 
+</pre>
+<p>Beginning the drag operation involves using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ImageList_BeginDrag_cpp">
+ImageList_BeginDrag</MSHelp:link>
+ function. The function's parameters include the handle to the image list
+containing the image to use during the drag operation and the index of the
+image. You can either provide your own image list and image, or you can have the
+tree-view control create them for you by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_CREATEDRAGIMAGE_cpp">
+TVM_CREATEDRAGIMAGE</MSHelp:link>
+ message.</p>
+<p>Because the drag image replaces the mouse pointer for the duration of the
+drag operation, <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ImageList_BeginDrag_cpp">
+ImageList_BeginDrag</MSHelp:link>
+ requires you to specify a hot spot within the image. The coordinates of the hot
+spot are relative to the upper left corner of the image. <b>ImageList_BeginDrag</b>
+also requires you to specify the initial location of the drag image. An
+application typically sets the initial location so that the hot spot of the drag
+image corresponds to that of the mouse pointer at the time the user began the
+drag operation.</p>
+<p>The following function demonstrates how to begin dragging a tree-view item.
+It uses the drag image provided by the tree-view control and obtains the
+bounding rectangle of the item to determine the appropriate point for the hot
+spot. (The dimensions of the bounding rectangle are the same as those of the
+image.) Note that the bounding rectangle does not account for the indentation of
+child items. For this reason, the function adds the amount of indentation to the
+x-coordinate of the hot spot.</p>
+<p>The function captures mouse input, causing mouse messages to be sent to the
+parent window. The parent window needs the subsequent <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_mousemove">
+WM_MOUSEMOVE</MSHelp:link>
+ messages to determine where to drag the image and the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_lbuttonup">
+WM_LBUTTONUP</MSHelp:link>
+ message to determine when to end the drag operation.</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green"> Main_OnBeginDrag - begins dragging an item in a tree-view control. </font>
+<font color="blue">//</font><font color="green"> hwndTV - handle to the image list. </font>
+<font color="blue">//</font><font color="green"> lpnmtv - address of information about the item being dragged. </font>
+
+void Main_OnBeginDrag(HWND hwndTV, LPNMTREEVIEW lpnmtv) 
+{ 
+    HIMAGELIST himl;    <font color="blue">//</font><font color="green"> handle to image list </font>
+    RECT rcItem;        <font color="blue">//</font><font color="green"> bounding rectangle of item </font>
+    DWORD dwLevel;      <font color="blue">//</font><font color="green"> heading level of item </font>
+    DWORD dwIndent;     <font color="blue">//</font><font color="green"> amount that child items are indented </font>
+
+    <font color="blue">//</font><font color="green"> Tell the tree-view control to create an image to use </font>
+    <font color="blue">//</font><font color="green"> for dragging. </font>
+    himl = TreeView_CreateDragImage(hwndTV, lpnmtv-&gt;itemNew.hItem); 
+
+    <font color="blue">//</font><font color="green"> Get the bounding rectangle of the item being dragged. </font>
+    TreeView_GetItemRect(hwndTV, lpnmtv-&gt;itemNew.hItem, &amp;rcItem, TRUE); 
+
+    <font color="blue">//</font><font color="green"> Get the heading level and the amount that the child items are </font>
+    <font color="blue">//</font><font color="green"> indented. </font>
+    dwLevel = lpnmtv-&gt;itemNew.lParam; 
+    dwIndent = (DWORD)SendMessage(hwndTV, TVM_GETINDENT, 0, 0); 
+
+    <font color="blue">//</font><font color="green"> Start the drag operation. </font>
+    ImageList_BeginDrag(himl, 0, 0, 0);
+    ImageList_DragEnter(hwndTV, 50, 50);  
+
+    <font color="blue">//</font><font color="green"> Hide the mouse pointer, and direct mouse input to the </font>
+    <font color="blue">//</font><font color="green"> parent window. </font>
+    ShowCursor(FALSE); 
+    SetCapture(GetParent(hwndTV)); 
+    g_fDragging = TRUE; 
+
+    return; 
+
+} </pre>
+<h4><a name="Dragging_the_tree_vi"></a>Dragging the tree-view item</h4>
+<p>You drag a tree-view item by calling the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ImageList_DragMove_cpp">
+ImageList_DragMove</MSHelp:link>
+ function when the parent window receives a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_mousemove">
+WM_MOUSEMOVE</MSHelp:link>
+ message, as the following example shows. The example also demonstrates how to
+perform hit testing during the drag operation to determine whether to highlight
+other items in the tree view as targets of a drag-and-drop operation.</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green"> Main_OnMouseMove - drags an item in a tree-view control, </font>
+<font color="blue">//</font><font color="green"> highlighting the item that is the target. </font>
+<font color="blue">//</font><font color="green"> hwndParent - handle to the parent window. </font>
+<font color="blue">//</font><font color="green"> hwndTV - handle to the tree-view control.</font>
+<font color="blue">//</font><font color="green"> xCur and yCur - x- and y-coordinates of the mouse pointer. </font>
+
+void Main_OnMouseMove(HWND hwndParent, HWND hwndTV, LONG xCur, LONG yCur) 
+{ 
+    HTREEITEM htiTarget;  <font color="blue">//</font><font color="green"> handle to target item </font>
+    TVHITTESTINFO tvht;  <font color="blue">//</font><font color="green"> hit test information </font>
+
+    if (g_fDragging) 
+    { 
+        <font color="blue">//</font><font color="green"> Drag the item to the current position of the mouse pointer. </font>
+        ImageList_DragMove(xCur, yCur); 
+
+        <font color="blue">//</font><font color="green"> Find out if the pointer is on the item. If it is, </font>
+        <font color="blue">//</font><font color="green"> highlight the item as a drop target. </font>
+        tvht.pt.x = xCur; 
+        tvht.pt.y = yCur; 
+        if ((htiTarget = TreeView_HitTest(hwndTV, &amp;tvht)) != NULL) 
+        { 
+            TreeView_SelectDropTarget(hwndTV, htiTarget); 
+        } 
+    } 
+    return; 
+} 
+</pre>
+<h4><a name="Ending_the_tree_view_drag"></a>Ending the tree-view drag operation</h4>
+<p>The following example shows how to end a drag operation. The <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ImageList_EndDrag_cpp">
+ImageList_EndDrag</MSHelp:link>
+ function is called when the parent window receives a <b>WM_LBUTTONUP</b>
+message.</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green"> Main_OnLButtonUp - stops dragging a tree-view item, releases the </font>
+<font color="blue">//</font><font color="green"> mouse capture, and shows the mouse pointer.</font>
+<font color="blue">//</font>
+<font color="blue">//</font><font color="green"> Global variable g_fDragging - indicates whether</font>
+<font color="blue">//</font><font color="green"> a drag operation is underway. </font>
+
+void Main_OnLButtonUp(void) 
+{ 
+    if (g_fDragging) 
+    { 
+        ImageList_EndDrag(); 
+        ReleaseCapture(); 
+        ShowCursor(TRUE); 
+        g_fDragging = FALSE; 
+    } 
+    return; 
+} 
+</pre>
+<h4><a name="tv_state_image_indexes"></a>Working with state image indexes</h4>
+<p>There is often confusion about how to set and retrieve the state image index
+in a tree-view control. The following examples demonstrate the proper method for
+setting and retrieving the state image index. The examples assume that there are
+only two state image indexes in the tree-view control, unchecked and checked. If
+your application contains more than two, these functions will need to be
+modified to handle that case.</p>
+<p>The following example function illustrates how to set an item's check state.</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">BOOL TreeView_SetCheckState(HWND hwndTreeView, HTREEITEM hItem, BOOL fCheck)
+{
+    TVITEM tvItem;
+
+    tvItem.mask = TVIF_HANDLE | TVIF_STATE;
+    tvItem.hItem = hItem;
+    tvItem.stateMask = TVIS_STATEIMAGEMASK;
+
+    <font color="blue">//</font><font color="green"> Image 1 in the tree-view check box image list is the</font>
+    <font color="blue">//</font><font color="green"> unchecked box. Image 2 is the checked box.</font>
+
+    tvItem.state = INDEXTOSTATEIMAGEMASK((fCheck ? 2 : 1));
+
+    return TreeView_SetItem(hwndTreeView, &amp;tvItem);
+}
+</pre>
+<p>The following example function illustrates how to retrieve an item's check
+state.</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">BOOL TreeView_GetCheckState(HWND hwndTreeView, HTREEITEM hItem)
+{
+    TVITEM tvItem;
+
+    <font color="blue">//</font><font color="green"> Prepare to receive the desired information.</font>
+    tvItem.mask = TVIF_HANDLE | TVIF_STATE;
+    tvItem.hItem = hItem;
+    tvItem.stateMask = TVIS_STATEIMAGEMASK;
+
+    <font color="blue">//</font><font color="green"> Request the information.</font>
+    TreeView_GetItem(hwndTreeView, &amp;tvItem);
+
+    <font color="blue">//</font><font color="green"> Return zero if it's not checked, or nonzero otherwise.</font>
+    return ((BOOL)(tvItem.state &gt;&gt; 12) -1);
+}
+</pre>
+<h3><a name="Tree_View_Control_Up"></a>Tree-View Control Updates in Internet
+Explorer</h3>
+<p>Tree-view controls in Microsoft® Internet Explorer support the following
+features.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <td><b>ToolTips</b></td>
+      <td>Tree-view controls now automatically display ToolTips when an item is
+        not entirely within the view area.</td>
+    </tr>
+    <tr>
+      <td><b>New Item State</b></td>
+      <td>Tree-view controls now support a new item state for parent items,
+        TVIS_EXPANDPARTIAL. When a parent item is set to this state, the child
+        items are displayed and the parent's plus sign remains visible. The <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_EXPAND_cpp">
+        TVM_EXPAND</MSHelp:link>
+        message and the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TreeView_Expand_cpp">
+        TreeView_Expand</MSHelp:link>
+        macro have been updated to support this feature.</td>
+    </tr>
+    <tr>
+      <td><b>Single-Click Expansion</b></td>
+      <td>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Tree_View_Control_Window_Styles_cpp">
+        TVS_SINGLEEXPAND</MSHelp:link>
+        style causes a tree-view item to be expanded when it becomes selected
+        and to be closed when it becomes unselected.</td>
+    </tr>
+    <tr>
+      <td><b>Adjustable Maximum Scroll Time</b></td>
+      <td>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_SETSCROLLTIME_cpp">
+        TVM_SETSCROLLTIME</MSHelp:link>
+        message allows you to set the maximum amount of time that a scroll
+        operation can take. The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_GETSCROLLTIME_cpp">
+        TVM_GETSCROLLTIME</MSHelp:link>
+        message allows you to retrieve the maximum scroll time.</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+
+</html>

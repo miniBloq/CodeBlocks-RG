@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1" />
+<title>koolplot, the simplest C/C++ plotting library</title>
+<meta name="description"
+ content="How to use cascading style sheets to create tableless web site designs" />
+<meta name="keywords" content="Cascading Style Sheets CSS layouts" />
+<link href="../CSS/1colNheader.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.style14 {color: #666666}
+-->
+  </style>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+</head>
+<body>
+<div id="wrapper">
+<div id="header">
+<h1><img style="WIDTH: 53px; HEIGHT: 53px"
+ alt="koolplot curve drawing 2D Plot image" src="smallsine.gif"
+ align="middle" /> &nbsp;&nbsp;&nbsp;koolplot by Example </h1>
+</div>
+<div id="main">
+<p class="abstract"><span style="FONT-WEIGHT: bold">koolplot</span> is freeware open-source. It is a very simple-to-use software library for drawing graphs from C or C++ programs. This document introduces C code examples, but the techniques illustrated could just as well be used in C++ programs. </p>
+<p align="center" class="abstract"><img src="graph.gif" width="646" height="265" /></p>
+<p align="center">Sample koolplot output</p>
+<h2><b><big>Using koolplot in C or C++ Programs</big></b></h2>
+<h3>koolplot Syntax:</h3>
+<p>Code in the examples below is heavily commented. The &quot;sticky bits&quot; are explained.<br />
+  When unsure, the <a href="../../programmerHelp/koolplot/index.html" title="documentation"><img src="file:///E|/Program Files/quincy/html/pics/link.gif" alt="link image" width="32" height="32" border="0" />koolplot documentation</a> in the Quincy Help-&gt;Programmer's Help menu provides detailed explanations of the koolplot C API (Application Programmer's Interface), including function calls, <code>plotdata</code> data type, and useful programming techniques. It's a good idea to keep the koolplot documentation open in a browser window while you build and study the example programs. </p>
+<p>In order to use elements of the koolplot software library in your programs, you must always insert the line: <br />
+    <span class="keyword"><code>#include</code></span><code class="string"> &lt;koolplot.h&gt; <br />
+    </code>at the start of your programs. </p>
+<h3>koolplot Project:</h3>
+<p>To use the koolplot software library from within Quincy all you need to do is to create a new &quot;koolplot application &quot; in the <code>File-&gt;New-&gt;Project</code> menu. The procedure is the same for C or C++ projects. Select a target path for your project (the place where you will develop and build your program). The &quot;working directory&quot; field can usually be left blank. Un-tick &quot;With Console&quot; if you do not need an extra black &quot;DOS&quot; screen. Click OK. </p>
+<p align="center"> <img src="project.gif" alt="project screen" width="390" height="240" /></p>
+<p align="left">  - <u>Insert your source code files into the project</u> (assuming that they already exist in the project directory) by right-clicking in the project window that opens.<br />
+  If a source code file that you intend to have in a project is not yet written, create it, then insert it into the project before you <em>build</em> the project.</p>
+<p align="left">The example programs below all come with a ready-made project file. All you need to do is load the existing project file into Quincy, then build, execute, and examine the programs.<br />
+  _____________
+</p>
+<h2>kplot.c</h2>
+<p>This first example program demonstrates the most common koolplot programming techniques: <br />
+  <br />
+  * using the <code>plotdata</code> data type and mathematical expressions <br />
+  * displaying single graphs,<br />
+  * displaying multiple graphs,<br />
+  *  using your own functions in mathematical expressions,
+  <br />
+  * entering data one point at a time,<br />
+  * displaying graphs in various colour,</p>
+<p>Get the example from the zip file:<a href="kplot.zip"> <img src="kplotFiles.gif" alt="image: files" width="152" height="36" border="0" align="middle" /> kplot.zip</a> </p>
+<p>Extract the zip to the directory of your choice, open the project file, then build, run, and examine  the code in <em>kplot.c. </em></p>
+<p align="center"><img src="sinc.gif" alt="sinc(x) output " width="471" height="196" /></p>
+<p>The program opens several graphs in succession, each of them illustrating a different technique. <br />
+  _____________ </p>
+<h2>weirdX.c</h2>
+<p>This example demonstrates more advanced  koolplot programming techniques: <br />
+  <br />
+  * controlling the extent of the axes <br />
+  <span class="Lowlight style14">(Extending the axes range beyond the minimum and maximum of the x and y axes.)</span><br />
+  * adding and displaying single data points.<br />
+   <span class="Lowlight">(Single points would not be visible. Single data points, displayed as a tiny circle can be displayed by using a special koolplot function demonstrated here.) </span><br />
+</p>
+<p>Get the example from the zip file:<a href="weirdX.zip"> <img src="weirdXFiles.gif" alt="image: files" width="189" height="36" border="0" align="middle" /> weirdX.zip</a> </p>
+<p>Extract the zip to the directory of your choice, open the project file, then build, run, and examine the code in <em>weirdX.c</em>.</p>
+<p align="center"><img src="weirdXoutput.gif" alt="weirdX output" width="406" height="421" /></p>
+<p>The program displays an interesting-looking function <img src="weirdXequation.gif" alt="equation" width="294" height="32" align="texttop" />, extends the y axis beyond the minima and maxima of the function, and displays a number of individual data points.</p>
+</div>
+<div id="footer">
+<div align="center">
+<ul>
+  <li><span class="caption">Maintained by: <span style="FONT-WEIGHT: bold"><span
+ style="FONT-WEIGHT: bold"><span style="FONT-WEIGHT: bold"><span
+ style="FONT-WEIGHT: bold"><font color="#6c6c6c"
+ face="Verdana, Helvetica, Arial" size="1">&nbsp;</font></span></span></span></span></span><span style="FONT-WEIGHT: bold"><span
+ style="FONT-WEIGHT: bold"><span style="FONT-WEIGHT: bold"><span
+ style="FONT-WEIGHT: bold"><span style="TEXT-DECORATION: underline"><img src="file:///E|/Program Files/quincy/html/pics/email.gif" alt ="koolplot
+ maintainer" width="167" height="18" align="absmiddle" style ="WIDTH: 167px;
+ HEIGHT: 18px"
+ title="koolplot maintainer address" /></span></span></span></span></span></li>
+    <font color="#6c6c6c" size="1"
+ face="Verdana, Helvetica, Arial" class="caption"> -Modified: January 2006&nbsp; </font> 
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<TITLE>BGI Documentation for 
+getdefaultpalette
+</TITLE>
+<H2>
+getdefaultpalette
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+struct palettetype *getdefaultpalette(void);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+getdefaultpalette finds the palettetype structure that contains the palette initialized by the driver during initgraph.
+
+
+
+
+<P><DT><B>Return Value</B><DD>
+getdefaultpalette returns a pointer to the default palette set up by the current driver when that driver was initialized.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="getpalette.html"> getpalette </A>
+<DD><A HREF="initgraph.html"> initgraph </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* getdefaultpalette example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+
+
+   /* pointer to palette structure */
+   struct palettetype *pal = NULL;
+   int i;
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   /* return a pointer to the default palette */
+   pal = getdefaultpalette();
+   for (i=0; i&lt;pal-&gt;size; i++) {
+      printf("colors[%d] = %d\n", i, pal-&gt;colors[i]);
+      getch();
+   }
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

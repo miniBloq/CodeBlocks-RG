@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Combine%20By%20Prerequisite">Combine By Prerequisite</a>,
+Next:<a rel="next" accesskey="n" href="Cleanup.html#Cleanup">Cleanup</a>,
+Previous:<a rel="previous" accesskey="p" href="make-Deduces.html#make%20Deduces">make Deduces</a>,
+Up:<a rel="up" accesskey="u" href="Introduction.html#Introduction">Introduction</a>
+<hr><br>
+</div>
+
+<h3 class="section">Another Style of Makefile</h3>
+
+   <p>When the objects of a makefile are created only by implicit rules, an
+alternative style of makefile is possible.  In this style of makefile,
+you group entries by their prerequisites instead of by their targets. 
+Here is what one looks like:
+
+<pre class="example">     objects = main.o kbd.o command.o display.o \
+               insert.o search.o files.o utils.o
+     
+     edit : $(objects)
+             cc -o edit $(objects)
+     
+     $(objects) : defs.h
+     kbd.o command.o files.o : command.h
+     display.o insert.o search.o files.o : buffer.h
+     </pre>
+
+<p>Here <code>defs.h</code> is given as a prerequisite of all the object files;
+<code>command.h</code> and <code>buffer.h</code> are prerequisites of the specific
+object files listed for them.
+
+   <p>Whether this is better is a matter of taste: it is more compact, but some
+people dislike it because they find it clearer to put all the information
+about each target in one place.
+
+   </body></html>
+

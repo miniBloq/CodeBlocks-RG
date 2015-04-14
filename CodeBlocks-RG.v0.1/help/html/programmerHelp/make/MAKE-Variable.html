@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="MAKE%20Variable">MAKE Variable</a>,
+Next:<a rel="next" accesskey="n" href="Variables-Recursion.html#Variables%2fRecursion">Variables/Recursion</a>,
+Previous:<a rel="previous" accesskey="p" href="Recursion.html#Recursion">Recursion</a>,
+Up:<a rel="up" accesskey="u" href="Recursion.html#Recursion">Recursion</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">How the <code>MAKE</code> Variable Works</h4>
+
+   <p>Recursive <code>make</code> commands should always use the variable <code>MAKE</code>,
+not the explicit command name <code>make</code>, as shown here:
+
+<pre class="example">     subsystem:
+             cd subdir &amp;&amp; $(MAKE)
+     </pre>
+
+   <p>The value of this variable is the file name with which <code>make</code> was
+invoked.  If this file name was <code>/bin/make</code>, then the command executed
+is <code>cd subdir &amp;&amp; /bin/make</code>.  If you use a special version of
+<code>make</code> to run the top-level makefile, the same special version will be
+executed for recursive invocations.
+
+   <p>As a special feature, using the variable <code>MAKE</code> in the commands of
+a rule alters the effects of the <code>-t</code> (<code>--touch</code>), <code>-n</code>
+(<code>--just-print</code>), or <code>-q</code> (<code>--question</code>) option. 
+Using the <code>MAKE</code> variable has the same effect as using a <code>+</code>
+character at the beginning of the command line.  See <a href="Instead-of-Execution.html#Instead%20of%20Execution">Instead of Executing the Commands</a>.
+
+   <p>Consider the command <code>make -t</code> in the above example.  (The
+<code>-t</code> option marks targets as up to date without actually running
+any commands; see <a href="Instead-of-Execution.html#Instead%20of%20Execution">Instead of Execution</a>.)  Following the usual
+definition of <code>-t</code>, a <code>make -t</code> command in the example would
+create a file named <code>subsystem</code> and do nothing else.  What you
+really want it to do is run <code>cd&nbsp;subdir&nbsp;&amp;&amp; make&nbsp;-t</code>; but that would
+require executing the command, and <code>-t</code> says not to execute
+commands.
+
+   <p>The special feature makes this do what you want: whenever a command
+line of a rule contains the variable <code>MAKE</code>, the flags <code>-t</code>,
+<code>-n</code> and <code>-q</code> do not apply to that line.  Command lines
+containing <code>MAKE</code> are executed normally despite the presence of a
+flag that causes most commands not to be run.  The usual
+<code>MAKEFLAGS</code> mechanism passes the flags to the sub-<code>make</code>
+(see <a href="Options-Recursion.html#Options%2fRecursion">Communicating Options to a Sub-<code>make</code></a>), so your request to touch the files, or print the
+commands, is propagated to the subsystem.
+
+   </body></html>
+

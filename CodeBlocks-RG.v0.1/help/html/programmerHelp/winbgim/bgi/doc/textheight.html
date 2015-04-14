@@ -1,0 +1,94 @@
+<TITLE>BGI Documentation for 
+textheight
+</TITLE>
+<H2>
+textheight
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+int textheight(char *textstring);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+The graphics function textheight takes the current font size and multiplication factor, and determines the height of textstring in pixels. This function is useful for adjusting the spacing between lines, computing viewport heights, sizing a title to make it fit on a graph or in a box, and so on.
+<P>
+For example, with the 8x8 bit-mapped font and a multiplication factor of 1 (set by settextstyle), the string BorlandC++ is 8 pixels high.
+<P>
+Use textheight to compute the height of strings, instead of doing the computations manually. By using this function, no source code modifications have to be made when different fonts are selected.
+
+
+<P><DT><B>Return Value</B><DD>
+textheight returns the text height in pixels.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="gettextsettings.html"> gettextsettings </A>
+<DD><A HREF="outtext.html"> outtext </A>
+<DD><A HREF="outtextxy.html"> outtextxy </A>
+<DD><A HREF="settextstyle.html"> settextstyle </A>
+<DD><A HREF="textwidth.html"> textwidth </A>
+
+
+<P><DT><B>Example</B><DD>
+/* textheight example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int y = 0;
+   int i;
+   char msg[80];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   /* draw some text on the screen */
+   for (i=1; i&lt;11; i++) {
+      /* select the text style, direction, and size */
+      settextstyle(TRIPLEX_FONT, HORIZ_DIR, i);
+
+      /* create a message string */
+      sprintf(msg, "Size: %d", i);
+
+      /* output the message */
+      outtextxy(1, y, msg);
+
+      /* advance to the next text line */
+
+      y += textheight(msg);
+   }
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

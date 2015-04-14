@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="webconnect" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Win32 Release Unicode">
+				<Option output="..\releaseu\libwebconnect" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="ReleaseUnicode" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-W" />
+					<Add option="-fexceptions" />
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_MBCS" />
+					<Add option="-D_LIB" />
+					<Add option="-D_UNICODE" />
+					<Add option="-DUNICODE" />
+					<Add directory="$(#webconnect)\releaseu" />					
+					<Add directory="..\supp\gecko-sdk\include" />
+					<Add directory="$(#wx)\lib\gcc_dll\mswu" />
+					<Add directory="$(#wx)\lib\gcc_dll" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="libwxmsw29u_richtext.a" />
+					<Add library="libwxmsw29u_xrc.a" />
+					<Add library="libwxmsw29u_aui.a" />
+					<Add library="libwxmsw29u_media.a" />
+					<Add library="libwxbase29u_net.a" />
+					<Add library="libwxmsw29u_gl.a" />
+					<Add library="libwxbase29u_xml.a" />
+					<Add library="libwxmsw29u_adv.a" />
+					<Add library="libwxmsw29u_html.a" />
+					<Add library="libwxmsw29u_core.a" />
+					<Add library="libwxbase29u.a" />
+					<Add library="libwxpng.a" />
+					<Add library="libwxjpeg.a" />
+					<Add library="libwxtiff.a" />
+					<Add library="libwxzlib.a" />
+					<Add library="libwxregexu.a" />
+					<Add library="libwxexpat.a" />
+					<Add library="$(#webconnect)\releaseu\libwebconnect.a" />
+					<Add directory="$(#wx)\lib\gcc_dll" />
+				</Linker>
+			</Target>
+			<Target title="Win32 Debug Unicode">
+				<Option output="..\releaseu\libwebconnect" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="DebugUnicode" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-W" />
+					<Add option="-fexceptions" />
+					<Add option="-g" />
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D_MBCS" />
+					<Add option="-D_LIB" />
+					<Add option="-DUNICODE" />
+					<Add option="-D_UNICODE" />
+					<Add directory="..\supp\gecko-sdk\include" />
+					<Add directory="$(#wx)\lib\gcc_dll\mswud" />
+					<Add directory="$(#wx)\lib\gcc_dll" />
+					<Add directory=".\..\..\include" />
+					<Add directory="." />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-pipe" />
+			<Add option="-mthreads" />
+			<Add option='[[if (PLATFORM == PLATFORM_MSW &amp;&amp; (GetCompilerFactory().GetCompilerVersionString(_T(&quot;gcc&quot;)) &gt;= _T(&quot;4.0.0&quot;))) print(_T(&quot;-Wno-attributes&quot;));]]' />
+			<Add option="-D__GNUWIN32__" />
+			<Add option="-D__WXMSW__" />
+			<Add option="-DWXUSINGDLL" />
+			<Add option="-DwxUSE_UNICODE" />
+			<Add directory="$(#wx)\include" />
+			<Add directory="$(#wx)\contrib\include" />
+			<Add directory="Source\CTB\v0.13" />
+			<Add directory="Source\CTB\v0.13\include" />
+			<Add directory="Source\CTB\v0.13\include\win32" />
+			<Add directory="Source\Bubble\wxBubble\v1.0\Source" />
+			<Add directory="Resources" />
+			<Add directory="Source" />
+		</Compiler>
+		<ResourceCompiler>
+			<Add directory="$(#wx)\include" />
+		</ResourceCompiler>
+		<Linker>
+			<Add option="-lkernel32" />
+			<Add option="-luser32" />
+			<Add option="-lgdi32" />
+			<Add option="-lcomdlg32" />
+			<Add option="-lwinspool" />
+			<Add option="-lwinmm" />
+			<Add option="-lshell32" />
+			<Add option="-lcomctl32" />
+			<Add option="-lole32" />
+			<Add option="-loleaut32" />
+			<Add option="-luuid" />
+			<Add option="-lrpcrt4" />
+			<Add option="-ladvapi32" />
+			<Add option="-lwsock32" />
+			<Add option="-lodbc32" />
+			<Add option="-lopengl32" />
+		</Linker>
+		<Unit filename="dom.cpp" />
+		<Unit filename="dom.h" />
+		<Unit filename="domprivate.h" />
+		<Unit filename="nsall.h" />
+		<Unit filename="nsbase.h" />
+		<Unit filename="nsimpl.cpp" />
+		<Unit filename="nsinclude.h" />
+		<Unit filename="nsptr.h" />
+		<Unit filename="nsstr.h" />
+		<Unit filename="nsutils.h" />
+		<Unit filename="nsweak.h" />
+		<Unit filename="promptservice.cpp" />
+		<Unit filename="promptservice.h" />
+		<Unit filename="testapp.cpp" />
+		<Unit filename="webcontrol.cpp" />
+		<Unit filename="webcontrol.h" />
+		<Unit filename="webframe.cpp" />
+		<Unit filename="webframe.h" />
+		<Unit filename="webprefs.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

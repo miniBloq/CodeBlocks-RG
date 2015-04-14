@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C++ Express 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "webconnect", "webconnect\webconnect.vcproj", "{FB085D7A-9BBA-490C-AA2E-ECDC0C3727BF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testapp", "testapp\testapp.vcproj", "{D85979F3-6F24-4F10-8ACC-A7F9F912D578}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FB085D7A-9BBA-490C-AA2E-ECDC0C3727BF} = {FB085D7A-9BBA-490C-AA2E-ECDC0C3727BF}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Unicode|Win32 = Debug Unicode|Win32
+		Debug|Win32 = Debug|Win32
+		Release Unicode|Win32 = Release Unicode|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB085D7A-9BBA-490C-AA2E-ECDC0C3727BF}.Debug Unicode|Win32.ActiveCfg = Debug Unicode|Win32
+		{FB085D7A-9BBA-490C-AA2E-ECDC0C3727BF}.Debug Unicode|Win32.Build.0 = Debug Unicode|Win32
+		{FB085D7A-9BBA-490C-AA2E-ECDC0C3727BF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FB085D7A-9BBA-490C-AA2E-ECDC0C3727BF}.Debug|Win32.Build.0 = Debug|Win32
+		{FB085D7A-9BBA-490C-AA2E-ECDC0C3727BF}.Release Unicode|Win32.ActiveCfg = Release Unicode|Win32
+		{FB085D7A-9BBA-490C-AA2E-ECDC0C3727BF}.Release Unicode|Win32.Build.0 = Release Unicode|Win32
+		{FB085D7A-9BBA-490C-AA2E-ECDC0C3727BF}.Release|Win32.ActiveCfg = Release|Win32
+		{FB085D7A-9BBA-490C-AA2E-ECDC0C3727BF}.Release|Win32.Build.0 = Release|Win32
+		{D85979F3-6F24-4F10-8ACC-A7F9F912D578}.Debug Unicode|Win32.ActiveCfg = Debug Unicode|Win32
+		{D85979F3-6F24-4F10-8ACC-A7F9F912D578}.Debug Unicode|Win32.Build.0 = Debug Unicode|Win32
+		{D85979F3-6F24-4F10-8ACC-A7F9F912D578}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D85979F3-6F24-4F10-8ACC-A7F9F912D578}.Debug|Win32.Build.0 = Debug|Win32
+		{D85979F3-6F24-4F10-8ACC-A7F9F912D578}.Release Unicode|Win32.ActiveCfg = Release Unicode|Win32
+		{D85979F3-6F24-4F10-8ACC-A7F9F912D578}.Release Unicode|Win32.Build.0 = Release Unicode|Win32
+		{D85979F3-6F24-4F10-8ACC-A7F9F912D578}.Release|Win32.ActiveCfg = Release|Win32
+		{D85979F3-6F24-4F10-8ACC-A7F9F912D578}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,4 @@
+<area shape="rect" href="$classwx_combo_box.html" title="A combobox is like a combination of an edit control and a listbox." alt="" coords="32,89,139,121">
+<area shape="rect" href="$classwx_text_ctrl.html" title="A text control allows text to be displayed and edited." alt="" coords="176,89,261,121">
+<area shape="rect" href="$classwx_bitmap_combo_box.html" title="A combobox that displays bitmap in front of the list items." alt="" coords="5,172,152,204">
+<area shape="rect" href="$classwx_search_ctrl.html" title="A search control is a composite control with a search button, a text control, and..." alt="" coords="176,172,277,204">

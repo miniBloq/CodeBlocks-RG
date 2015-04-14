@@ -1,0 +1,5 @@
+<area shape="rect" href="$classwx_buffered_d_c.html" title="This class provides a simple way to avoid flicker: when drawing on it, everything..." alt="" coords="35,255,141,287">
+<area shape="rect" href="$classwx_d_c.html" title="A wxDC is a &quot;device context&quot; onto which graphics and text can be drawn..." alt="" coords="59,89,117,121">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="51,7,125,39">
+<area shape="rect" href="$classwx_buffered_paint_d_c.html" title="This is a subclass of wxBufferedDC which can be used inside of an EVT_PAINT() event..." alt="" coords="19,337,157,369">
+<area shape="rect" href="$classwx_auto_buffered_paint_d_c.html" title="This wxDC derivative can be used inside of an EVT_PAINT() event handler to achieve..." alt="" coords="5,420,171,452">

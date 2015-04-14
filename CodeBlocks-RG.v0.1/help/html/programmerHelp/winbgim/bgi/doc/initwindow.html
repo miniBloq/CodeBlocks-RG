@@ -1,0 +1,116 @@
+<TITLE>BGI Documentation for 
+initwindow
+</TITLE>
+<H2>
+initwindow
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include "graphics.h"
+int initwindow(int width, int height, const char* title="Windows BGI", int left=0, int top=0, bool dbflag=false, closeflag=true);
+</PRE>
+
+
+
+<DT><B>Description</B><IMG SRC="win.gif" ALT="[WIN]"><DD>
+The 
+initwindow
+function is available in the
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation of BGI
+graphics.
+You do not need to include conio.h; just include graphics.h.
+The function initializes the graphics system by opening a graphics
+window
+of the specified size.
+The first two parameters (width and height) are required, but all
+other
+parameters have default values.
+<p>
+The title parameter is the title that will be printed at the top of
+the window (with a default of "Windows BGI".)
+<p>
+The left and top parameters determine the screen coordinates of the
+left and top sides of the window.
+<p>
+The dbflag parameter determines whether
+double-buffering for the window is automatically
+turned on as described in the
+<A HREF="swapbuffers.html">swapbuffers</a> function (true means
+that double-buffering will be turned on).
+<p>
+If the closeflag parameter is true, then the user can click
+on the window's close button to shut down the entire program.
+
+<P><DT><B>Return Value</B><DD>
+The original version of initgraph was a void function (with no flag
+argument), and only one graphics window could be created in any
+program.  The new version allows multiple graphics windows to be
+created.  The return value from the new initwindow function is
+a unique int identifier that can be used as an argument to
+<A HREF="setcurrentwindow.html">setcurrentwindow</a> in order to
+set which of several windows is currently being used.
+Immediately after calling initwindow, the current window is always
+the window that was just created.
+
+<P><DT><B>See also</B>
+<DD><A HREF="closegraph.html"> closegraph </A>
+<DD><A HREF="getcurrentwindow.html"> getcurrentwindow </A>
+<DD><A HREF="getmaxheight.html"> getmaxheight </A>
+<DD><A HREF="getmaxwidth.html"> getmaxwidth </A>
+<DD><A HREF="initgraph.html"> initgraph </A>
+<DD><A HREF="setcurrentwindow.html"> setcurrentwindow </A>
+<DD><A HREF="swapbuffers.html"> swapbuffers </A>
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* initwindow example */ 
+#include "graphics.h"
+
+int main(void)
+{
+   /* initialize graphics window at 400 x 300 */
+   initwindow(400, 300);
+
+   /* draw a line */
+   line(0, 0, getmaxx(), getmaxy());
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+<PRE>
+/* initwindow example with two windows */ 
+#include "graphics.h"
+
+int main(void)
+{
+   int wid1, wid2;
+
+   /* initialize graphics windows */
+   wid1 = initwindow(400, 300);
+   wid2 = initwindow(300, 400, 200, 100);
+
+   /* draw lines */
+   setcurrentwindow(wid1);
+   line(0, 0, getmaxx(), getmaxy());
+   setcurrentwindow(wid2);
+   line(0, 0, getmaxx(), getmaxy());
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

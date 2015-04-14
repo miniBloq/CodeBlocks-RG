@@ -1,0 +1,328 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The Intrinsic Functions</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509456956"><span style="mso-ansi-language:EN-US">The Intrinsic
+Fun</span></a><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc509456956">ctions</span><span style="mso-ansi-language:
+EN-US"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoNormal" style="text-align:justify">Lcc-win32 offers a series of
+pseudo-functions that use the call syntax function, but which will trigger the
+emission of an inlined assembly macro. These macros do not have the overhead of
+the function call instruction and spare the cost of setting up and destroying a
+procedure frame. They can be used only if the file «&nbsp;intrinsics.h&nbsp;»
+is present in the compilation unit.<span style="font-family:Arial;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" align="left" style="text-align:left"><span style="mso-ansi-language:EN-US">&nbsp;<o:p>
+</o:p>
+</span></p>
+<table border="1" cellspacing="0" cellpadding="0" width="662" style="border-collapse: collapse; mso-border-alt: solid windowtext 1.5pt; mso-padding-alt: 0cm 3.5pt 0cm 3.5pt; border-style: none; border-width: medium; margin-left: 3.5pt">
+  <tr>
+    <td width="142" valign="top" style="width: 106.35pt; border-left: 1.5pt solid windowtext; border-right-width: .75pt; border-top: 1.5pt solid windowtext; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify"><b style="mso-bidi-font-weight:
+  normal"><span style="font-family:&quot;Courier New&quot;">Name<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td width="521" valign="top" style="mso-border-left-alt: solid windowtext .75pt; border-left-style: none; border-left-width: medium; border-right-width: 1.5pt; border-top: 1.5pt solid windowtext; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <h5><span style="font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US">Description<o:p>
+      </o:p>
+      </span></h5>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width: 106.35pt; mso-border-top-alt: solid windowtext .75pt; border-left: 1.5pt solid windowtext; border-right-width: .75pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify"><b style="mso-bidi-font-weight:
+  normal"><span style="font-family:&quot;Courier New&quot;">long long _rdtsc(void)<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td width="521" valign="top" style="mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; border-left-style: none; border-left-width: medium; border-right-width: 1.5pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify">Returns a long long
+      integer (64 bits) containing the number of cycles that the machine has
+      done since it was turned on. Since this counter is automatically
+      incremented at each cycle,<span style="mso-spacerun: yes">&nbsp; </span>to
+      get a time in seconds you have to divide by the clock speed of your
+      machine. For example if you divide the value by 166 x 1e6 you get the
+      number of seconds elapsed for a 166 MHz machine. This intrinsic value will
+      use up some cycles for converting the 64 bit value into a floating point
+      number, so there will be an overhead of at most 1000 cycles: at 200 MHz
+      this should be 5 millionths of a second.<b style="mso-bidi-font-weight:normal"><span style="font-family:Arial;
+  mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width: 106.35pt; mso-border-top-alt: solid windowtext .75pt; border-left: 1.5pt solid windowtext; border-right-width: .75pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify"><b style="mso-bidi-font-weight:
+  normal"><span style="font-family:&quot;Courier New&quot;">int _bswap(long)<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td width="521" valign="top" style="mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; border-left-style: none; border-left-width: medium; border-right-width: 1.5pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify">Returns the byte swapped
+      long integer.<b style="mso-bidi-font-weight:normal"><span style="font-family:Arial;
+  mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width: 106.35pt; mso-border-top-alt: solid windowtext .75pt; border-left: 1.5pt solid windowtext; border-right-width: .75pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify"><b style="mso-bidi-font-weight:
+  normal"><span style="font-family:&quot;Courier New&quot;">double _fsicncos(arg,cos
+      *)<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td width="521" valign="top" style="mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; border-left-style: none; border-left-width: medium; border-right-width: 1.5pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify">Returns sin(arg), and
+      stores the cosine in the address pointed by cos *.<b style="mso-bidi-font-weight:
+  normal"><span style="font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width: 106.35pt; mso-border-top-alt: solid windowtext .75pt; border-left: 1.5pt solid windowtext; border-right-width: .75pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify"><b style="mso-bidi-font-weight:
+  normal"><span lang="FR" style="font-family:&quot;Courier New&quot;;mso-ansi-language:
+  FR">double _fcos(double)<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td width="521" valign="top" style="mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; border-left-style: none; border-left-width: medium; border-right-width: 1.5pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify">Returns the cosinus of its
+      argument.<span style="font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width: 106.35pt; mso-border-top-alt: solid windowtext .75pt; border-left: 1.5pt solid windowtext; border-right-width: .75pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify"><b style="mso-bidi-font-weight:
+  normal"><span lang="FR" style="font-family:&quot;Courier New&quot;;mso-ansi-language:
+  FR">double _fsin(double)<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td width="521" valign="top" style="mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; border-left-style: none; border-left-width: medium; border-right-width: 1.5pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify">Returns the sinus of its
+      argument.<span style="font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width: 106.35pt; mso-border-top-alt: solid windowtext .75pt; border-left: 1.5pt solid windowtext; border-right-width: .75pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify"><b style="mso-bidi-font-weight:
+  normal"><span lang="FR" style="font-family:&quot;Courier New&quot;;mso-ansi-language:
+  FR">double _fldpi(void)<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td width="521" valign="top" style="mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; border-left-style: none; border-left-width: medium; border-right-width: 1.5pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify">Returns the constant pi in
+      floating point format.<b style="mso-bidi-font-weight:normal"><span style="font-family:
+  Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width: 106.35pt; mso-border-top-alt: solid windowtext .75pt; border-left: 1.5pt solid windowtext; border-right-width: .75pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify"><b style="mso-bidi-font-weight:
+  normal"><span lang="FR" style="font-family:&quot;Courier New&quot;;mso-ansi-language:
+  FR">double _fldl2e(void)<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td width="521" valign="top" style="mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; border-left-style: none; border-left-width: medium; border-right-width: 1.5pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify">Returns the logarithm base
+      2 of e.<b style="mso-bidi-font-weight:normal"><span style="font-family:Arial;
+  mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width: 106.35pt; mso-border-top-alt: solid windowtext .75pt; border-left: 1.5pt solid windowtext; border-right-width: .75pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify"><b style="mso-bidi-font-weight:
+  normal"><span style="font-family:&quot;Courier New&quot;">double _fldlg2(void)<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td width="521" valign="top" style="mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; border-left-style: none; border-left-width: medium; border-right-width: 1.5pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify">Returns the logarithm base
+      10 of e.<span style="font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width: 106.35pt; mso-border-top-alt: solid windowtext .75pt; border-left: 1.5pt solid windowtext; border-right-width: .75pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify"><b style="mso-bidi-font-weight:
+  normal"><span lang="FR" style="font-family:&quot;Courier New&quot;;mso-ansi-language:
+  FR">double _fldln2(void)<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td width="521" valign="top" style="mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; border-left-style: none; border-left-width: medium; border-right-width: 1.5pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify">Returns the natural
+      logarithm (base e) of 2.<span style="font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width: 106.35pt; mso-border-top-alt: solid windowtext .75pt; border-left: 1.5pt solid windowtext; border-right-width: .75pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify"><b style="mso-bidi-font-weight:
+  normal"><span style="font-family:&quot;Courier New&quot;">int _carry(void)<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td width="521" valign="top" style="mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; border-left-style: none; border-left-width: medium; border-right-width: 1.5pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify">Returns the carry flag as
+      an integer. This value is VERY volatile, since most calculations set/unset
+      it. You should not assume that the value returned is the value of the last
+      C instruction performed, since the lcc’s optimizer could re-arrange the
+      instructions. The best way to do this is to write only one operation,
+      immediately followed by an assignment expression. For example you should
+      write:<span style="font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal" style="text-align:justify">a = b+c;<span style="font-family:
+  Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal" style="text-align:justify">instead of<span style="font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal" style="text-align:justify">a = b+foo(5)+78;<span style="font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal" style="text-align:justify">If you test the
+      carry/overflow flag at the end of a complicated expression, you cannot
+      know the exact operation that produced the error. Besides, since many
+      operations change this flag, an actual overflow could be hidden by the
+      operations that follow it.<span style="font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></p>
+      <p class="MsoNormal" style="text-align:justify">&nbsp;<span style="font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width: 106.35pt; mso-border-top-alt: solid windowtext .75pt; border-left: 1.5pt solid windowtext; border-right-width: .75pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify"><b style="mso-bidi-font-weight:
+  normal"><span style="font-family:&quot;Courier New&quot;">int _fistp(arg)<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td width="521" valign="top" style="mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; border-left-style: none; border-left-width: medium; border-right-width: 1.5pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify">Returns a long integer
+      from the given double using the rounding mode that is in effect at the
+      time of the call. Normally this should be rounding to nearest number,
+      since lcc-win32 never changes this setting. This allows for very fast
+      rounding. Remember that to satisfy the rules of ANSI C, lcc-win32 is
+      forced to set the rounding to truncation, round the figure, and then
+      restore the original mode. This can be avoided by using this intrinsic
+      function to round floating point data.<span style="font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width: 106.35pt; mso-border-top-alt: solid windowtext .75pt; border-left: 1.5pt solid windowtext; border-right-width: .75pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify"><b style="mso-bidi-font-weight:
+  normal"><span style="font-family:&quot;Courier New&quot;">int _overflow(void)<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td width="521" valign="top" style="mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; border-left-style: none; border-left-width: medium; border-right-width: 1.5pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify">Returns the value of the
+      overflow flag. The same considerations apply as to the carry() function
+      above.<span style="font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width: 106.35pt; mso-border-top-alt: solid windowtext .75pt; border-left: 1.5pt solid windowtext; border-right-width: .75pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify"><b style="mso-bidi-font-weight:
+  normal"><span lang="FR" style="font-family:&quot;Courier New&quot;;mso-ansi-language:
+  FR">int rint(double)&nbsp;<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td width="521" valign="top" style="mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; border-left-style: none; border-left-width: medium; border-right-width: 1.5pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify">Rounds the given floating
+      point number to an integer using the current rounding mode. By default,
+      the rounding mode is round to nearest number. To use this, you should
+      include &lt;math.h&gt;.<span style="font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width: 106.35pt; mso-border-top-alt: solid windowtext .75pt; border-left: 1.5pt solid windowtext; border-right-width: .75pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify"><b style="mso-bidi-font-weight:
+  normal"><span style="font-family:&quot;Courier New&quot;">int _bsr(long)<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td width="521" valign="top" style="mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; border-left-style: none; border-left-width: medium; border-right-width: 1.5pt; border-top-style: none; border-top-width: medium; border-bottom-width: .75pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify">Returns an integer with
+      the index of the first non-zero bit in the given integer, starting with
+      the most significant bit.<span style="font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="142" valign="top" style="width: 106.35pt; mso-border-top-alt: solid windowtext .75pt; border-left: 1.5pt solid windowtext; border-right-width: .75pt; border-top-style: none; border-top-width: medium; border-bottom-width: 1.5pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify"><b style="mso-bidi-font-weight:
+  normal"><span style="font-family:&quot;Courier New&quot;">int _bsf(long)<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td width="521" valign="top" style="mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; border-left-style: none; border-left-width: medium; border-right-width: 1.5pt; border-top-style: none; border-top-width: medium; border-bottom-width: 1.5pt; padding-left: 3.5pt; padding-right: 3.5pt; padding-top: 0cm; padding-bottom: 0cm">
+      <p class="MsoNormal" style="text-align:justify">Returns an integer with
+      the index of the first non-zero bit in the given integer starting with the
+      least significant bit.<span style="font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal" style="text-align:justify"><b style="mso-bidi-font-weight:
+normal"><span style="font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;">&nbsp;<o:p>
+</o:p>
+</span></b></p>
+<p class="MsoNormal" style="text-align:justify">Lcc-win32 offers special macros
+for all MMX instructions. Please refer to the associated documentation.<span style="font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="text-align:justify"><span style="font-family:Arial;
+mso-bidi-font-family:&quot;Times New Roman&quot;">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+
+</body>
+
+</html>

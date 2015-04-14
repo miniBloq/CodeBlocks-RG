@@ -1,0 +1,767 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Buttons</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc494631974">Buttons</a></h2>
+<p>Dialog boxes and controls support communication between an application and
+the user. A <i>button</i> is a control the user can click to provide input to an
+application.</p>
+<p>There are several types of buttons and one or more button styles to
+distinguish among buttons of the same type. The user clicks a button using the
+mouse or keyboard. Clicking a button typically changes its visual appearance and
+state (from checked to cleared, for example). The system, the button, and the
+application cooperate in changing the button's appearance and state. A button
+can send messages to its parent window, and a parent window can send messages to
+a button. Some buttons are painted by the system, some by the application.
+Buttons can be used alone or in groups and can appear with or without
+application-defined text (a label). They belong to the BUTTON window class.</p>
+<p>Although an application can use buttons in overlapped, pop-up, and child
+windows, they are designed for use in dialog boxes, where the system
+standardizes their behavior. If an application uses buttons outside dialog
+boxes, it increases the risk that the application may behave in a nonstandard
+fashion. Applications typically either use buttons in dialog boxes or use <a href="../../api/api2/winprocs_5u93.htm">window
+subclassing</a> to create customized buttons.</p>
+<h2><a name="_Toc494631976">Button Types and Styles</a></h2>
+<p>There are five kinds of buttons:</p>
+<ul type="disc">
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo6;tab-stops:list 36.0pt"><a href="/wres/push_buttons.htm">Push
+    buttons</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo6;tab-stops:list 36.0pt"><a href="/wres/check_boxes_desc.htm">Check
+    boxes</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo6;tab-stops:list 36.0pt"><a href="/wres/radio_buttons_desc.htm">Radio
+    buttons</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo6;tab-stops:list 36.0pt"><a href="/wres/owner_draw_buttons.htm">Owner-drawn
+    buttons</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo6;tab-stops:list 36.0pt"><a href="/wres/group_boxes_desc.htm">Group
+    boxes</a></li>
+</ul>
+<p>Each type of button has one or more styles. For a table of button styles, see
+<a href="/wres/button_styles.htm">Button Styles</a>.</p>
+<h2><a name="_Toc494631982">Button States</a></h2>
+<p>This section discusses how selecting a button changes its state and how the
+application should respond. The section consists of the following topics:</p>
+<ul type="disc">
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l23 level1 lfo7;tab-stops:list 36.0pt"><a href="../../api/api2/buttons_8q0e.htm">Button
+    Selection</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l23 level1 lfo7;tab-stops:list 36.0pt"><a href="../../api/api2/buttons_8bc5.htm">Elements
+    of a Button State</a></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l23 level1 lfo7;tab-stops:list 36.0pt"><a href="../../api/api2/buttons_3gmd.htm">Changes
+    to a Button State</a></li>
+</ul>
+<h3><a name="_Toc494631983">Button Selection</a></h3>
+<p>The user can select a button in three ways: by clicking it with the mouse, by
+tabbing to it and then pressing the ENTER key, or (if the button is part of a
+group defined by the WS_GROUP style) by tabbing to the selected button in the
+group and using the arrow keys to move within that group. The two tabbing
+methods are part of the predefined keyboard interface provided by the system.
+For a complete description of this interface, see <a href="../../api/api2/dlgboxes_7foz.htm">Dialog
+Boxes</a>.</p>
+<p>Selecting a button typically causes the following events:</p>
+<ul type="disc">
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l6 level1 lfo8;tab-stops:list 36.0pt">The system gives the button
+    the keyboard focus.</li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l6 level1 lfo8;tab-stops:list 36.0pt">The button sends its parent
+    window a message to notify it of the selection.</li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l6 level1 lfo8;tab-stops:list 36.0pt">The parent window (or the
+    system) sends the button a message to change its state.</li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l6 level1 lfo8;tab-stops:list 36.0pt">The parent window (or the
+    system) repaints the button to reflect its new state.</li>
+</ul>
+<h3><a name="_Toc494631984">Elements of a Button State</a></h3>
+<p>A button's state can be characterized by its focus state, push state, and
+check state.</p>
+<h4>Focus State</h4>
+<p>The focus state applies to a check box, radio button, push button, or
+owner-drawn button. A button receives the keyboard focus when the user selects
+it and loses the focus when the user selects another control. Only one control
+can have the keyboard focus at a time.</p>
+<p>When a button has the keyboard focus, the system typically highlights the
+text, icon, or bitmap of a button by surrounding it with a dotted line. In
+addition, a push button has a heavy dark border when it has the focus. The
+system automatically changes the highlight for an automatic button, but the
+application must change the highlight for a non-automatic button by sending
+messages.</p>
+<h4>Push State</h4>
+<p>The push state applies to a push button, check box, radio button, or
+three-state check box, but does not apply to other buttons. The push state of a
+button can be either pushed or not pushed. When a push button (or any button
+with the BS_PUSHLIKE style) is pushed, the button is drawn as a sunken button.
+When it is not pushed, it is drawn as a raised button. When a check box, radio
+button, or three-state check box is clicked, the background of the button is
+grayed. When it is not pushed, the background of the button is not grayed.</p>
+<h4>Check State</h4>
+<p>The check state applies to a check box, radio button, or three-state check
+box, but does not apply to other buttons. The state can be checked, cleared, or
+(for three-state check boxes) indeterminate. A check box is checked when it
+contains a check mark, and is cleared when it does not. A radio button is
+checked when it contains a black dot; and is cleared when it does not. A
+three-state check box is checked when it contains a check mark, is cleared when
+it does not, and is indeterminate when it contains a grayed box. The system
+automatically changes the check state of an automatic button, but the
+application must change the check state of a non-automatic button.</p>
+<h3><a name="_Toc494631985">Changes to a Button State</a></h3>
+<p>When the user selects a button, it is generally necessary to change one or
+more of the button's state elements. The system automatically changes the focus
+state for all button types, the push state for push buttons or buttons with the
+BS_PUSHLIKE style, and the check state for all automatic buttons. The
+application must make all other state changes, taking into account the button's
+type, style, and current state. The following list shows the state elements that
+must be changed for each button type:</p>
+<ul type="disc">
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo9;tab-stops:list 36.0pt">A check box must change the
+    check state.</li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo9;tab-stops:list 36.0pt">A radio button must change
+    the check state. It may also be necessary to change the check state of other
+    radio buttons in the same group to ensure the mutually exclusive nature of
+    radio buttons.</li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo9;tab-stops:list 36.0pt">Because the state of an
+    owner-drawn button is application dependent, what the application must
+    change in the button can vary. No elements of a group box must be changed,
+    because users cannot select group boxes.</li>
+</ul>
+<p>An application can determine a button's state by sending it a <b>BM_GETCHECK</b>
+or <b>BM_GETSTATE</b> message; the
+application can set a button's state by sending it a <b>BM_SETCHECK</b>
+or <b>BM_SETSTATE</b> message.</p>
+<h2><a name="_Toc494631986">Notification Messages from Buttons</a></h2>
+<p>When the user clicks a button, its state changes, and the button sends
+notification messages to its parent window. For example, a push button control
+sends the <b>BN_CLICKED</b>
+notification message whenever the user chooses the button. In all cases, the
+low-order word of the <i>wParam</i> parameter contains the control identifier,
+the high-order word of <i>wParam</i> contains the notification code, and the <i>lParam</i>
+parameter contains the control window handle.</p>
+<p>Both the message and the parent window's response depend on the type, style,
+and current state of the button. Following are the button notification messages
+an application should monitor and process.</p>
+<table border="0" cellpadding="0" style="mso-cellspacing:1.5pt">
+  <tr>
+    <td width="34%" valign="top" style="width:34.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>Message<o:p>
+      </o:p>
+      </b></p>
+    </td>
+    <td width="66%" valign="top" style="width:66.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>Description<o:p>
+      </o:p>
+      </b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="34%" valign="top" style="width:34.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>BN_CLICKED</b></p>
+    </td>
+    <td width="66%" valign="top" style="width:66.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">The user clicked a button.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="34%" valign="top" style="width:34.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>BN_DBLCLK</b>
+      or<br>
+      <b>BN_DOUBLECLICKED</b></p>
+    </td>
+    <td width="66%" valign="top" style="width:66.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">The user double-clicked a button.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="34%" valign="top" style="width:34.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>BN_DISABLE</b></p>
+    </td>
+    <td width="66%" valign="top" style="width:66.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">A button is disabled.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="34%" valign="top" style="width:34.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><a href="../../api/api2/buttons_3pgk.htm"><b>BN_PUSHED</b></a>
+      or<br>
+      <a href="../../api/api2/buttons_78x1.htm"><b>BN_HILITE</b></a></p>
+    </td>
+    <td width="66%" valign="top" style="width:66.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">The user pushed a button.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="34%" valign="top" style="width:34.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><a href="../../api/api2/buttons_1e0j.htm"><b>BN_KILLFOCUS</b></a></p>
+    </td>
+    <td width="66%" valign="top" style="width:66.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">The button lost the keyboard focus.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="34%" valign="top" style="width:34.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><a href="../../api/api2/buttons_16us.htm"><b>BN_PAINT</b></a></p>
+    </td>
+    <td width="66%" valign="top" style="width:66.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">The button should be painted.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="34%" valign="top" style="width:34.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><a href="../../api/api2/buttons_6d9v.htm"><b>BN_SETFOCUS</b></a></p>
+    </td>
+    <td width="66%" valign="top" style="width:66.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">The button gained the keyboard focus.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="34%" valign="top" style="width:34.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><a href="../../api/api2/buttons_9e04.htm"><b>BN_UNPUSHED</b></a>
+      or<br>
+      <a href="../../api/api2/buttons_2xgl.htm"><b>BN_UNHILITE</b></a></p>
+    </td>
+    <td width="66%" valign="top" style="width:66.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">The button is no longer pushed.</p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<p>A button sends the <b>BN_DISABLE</b>, <b>BN_PUSHED</b>, <b>BN_KILLFOCUS</b>, <b>BN_PAINT</b>,
+<b>BN_SETFOCUS</b>,
+and <b>BN_UNPUSHED</b>
+notification messages only if it has the BS_NOTIFY style. <b>BN_DBLCLK</b>
+notification messages are sent automatically for BS_USERBUTTON, BS_RADIOBUTTON,
+and BS_OWNERDRAW buttons. Other button types send <b>BN_DBLCLK</b> only if they
+have the BS_NOTIFY style. All buttons send the <b>BN_CLICKED</b>
+notification message regardless of their button styles.</p>
+<p>For automatic buttons, the system changes the push state and paints the
+button. In this case, the application typically processes only the <b>BN_CLICKED</b>
+and <b>BN_DBLCLK</b> notification messages. For buttons that are not automatic,
+the application typically responds to the notification message by sending a
+message to change the state of the button. For information about sending
+messages to buttons, see <a href="../../api/api2/buttons_4k4z.htm">Messages to
+Buttons</a>.</p>
+<p>When the user selects an owner-drawn button, the button sends its parent
+window a <b>WM_DRAWITEM</b>
+message containing the identifier of the control to be drawn and information
+about its dimensions and state. For more information about this message, see <a href="../../api/api2/buttons_4icz.htm">Using
+Owner-Drawn Buttons</a>.</p>
+<h2><a name="_Toc494631987">Messages to Buttons</a></h2>
+<p>A parent window can send messages to a button in an overlapped or child
+window by using the <a href="../../api/api2/messques_8ht1.htm"><b>SendMessage</b></a>
+function, or it can send messages to a button in a dialog box by using the <b>SendDlgItemMessage</b>,
+<b>CheckDlgButton</b>, <b>CheckRadioButton</b>,
+and <b>IsDlgButtonChecked</b>
+functions.</p>
+<p>An application can use the <b>BM_GETCHECK</b>
+message to retrieve the check state of check box or radio button. An application
+can also use the <b>BM_GETSTATE</b>
+message to retrieve the button's current states (the check state, push state,
+and focus state). To get information about a specific state, use a bitmask on
+the returned state value.</p>
+<p>The <b>BM_SETCHECK</b> message
+sets the check state of a check box or radio button; the message returns zero.
+The <b>BM_SETSTATE</b> message
+sets the push state of a button; this message also returns zero. The <b>BM_SETSTYLE</b>
+message changes the style of a button. It is designed for changing button styles
+within a type (for example, changing a check box to an automatic check box). It
+is not designed for changing between types (for example, changing a check box to
+a radio button). An application should not change a button from one type to
+another.</p>
+<p>A button of the BS_BITMAP or BS_ICON style displays a bitmap or icon instead
+of text. The <b>BM_SETIMAGE</b>
+message associates a handle to a bitmap or icon with a button. The <b>BM_GETIMAGE</b>
+message retrieves a handle to the bitmap or icon associated with a button.</p>
+<p>An application can also use the <b>DM_GETDEFID</b>
+message to retrieve the identifier of the default push button control in a
+dialog box. An application can use the <b>DM_SETDEFID</b>
+message to set the default push button for a dialog box.</p>
+<p>Calling the <b>CheckDlgButton</b>
+or <b>CheckRadioButton</b>
+function is equivalent to sending a <b>BM_SETCHECK</b> message. Calling the <b>IsDlgButtonChecked</b>
+function is equivalent to sending a <b>BM_GETCHECK</b>
+message.</p>
+<h2><a name="_Toc494631988">Button Color Messages</a></h2>
+<p>The system provides default color values for buttons. An application can
+retrieve the default values for these colors by calling the <b>GetSysColor</b>
+function, or set the values by calling the <b>SetSysColors</b>
+function. The following table shows the default button-color values.</p>
+<table border="0" cellpadding="0" style="mso-cellspacing:1.5pt">
+  <tr>
+    <td width="38%" valign="top" style="width:38.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>Value<o:p>
+      </o:p>
+      </b></p>
+    </td>
+    <td width="62%" valign="top" style="width:62.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>Element colored<o:p>
+      </o:p>
+      </b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="38%" valign="top" style="width:38.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">COLOR_BTNFACE</p>
+    </td>
+    <td width="62%" valign="top" style="width:62.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Button faces.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="38%" valign="top" style="width:38.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">COLOR_BTNHIGHLIGHT</p>
+    </td>
+    <td width="62%" valign="top" style="width:62.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Highlight area (the top and left edges) of a button.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="38%" valign="top" style="width:38.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">COLOR_BTNSHADOW</p>
+    </td>
+    <td width="62%" valign="top" style="width:62.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Shadow area (the bottom and right edges) of a button.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="38%" valign="top" style="width:38.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">COLOR_BTNTEXT</p>
+    </td>
+    <td width="62%" valign="top" style="width:62.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Regular (nongrayed) text in buttons.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="38%" valign="top" style="width:38.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">COLOR_GRAYTEXT</p>
+    </td>
+    <td width="62%" valign="top" style="width:62.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Disabled (gray) text in buttons. This color is set to
+      0 if the current display driver does not support a solid gray color.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="38%" valign="top" style="width:38.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">COLOR_WINDOW</p>
+    </td>
+    <td width="62%" valign="top" style="width:62.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Window backgrounds.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="38%" valign="top" style="width:38.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">COLOR_WINDOWFRAME</p>
+    </td>
+    <td width="62%" valign="top" style="width:62.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Window frames.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="38%" valign="top" style="width:38.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">COLOR_WINDOWTEXT</p>
+    </td>
+    <td width="62%" valign="top" style="width:62.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Text in windows.</p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<p>However, calling <b>SetSysColors</b> affects all applications, so you should
+not call this function to customize buttons for your application.</p>
+<p>The system sends a <b>WM_CTLCOLORBTN</b>
+message to a button's parent window before drawing a button. This message
+contains a handle to the button's device context and a handle to the child
+window. The parent window can use these handles to change the button's text and
+background colors. However, only owner-drawn buttons respond to the parent
+window processing the message.</p>
+<h2><a name="_Toc494631989">Button Default Message Processing</a></h2>
+<p>The window procedure for the predefined button control window class carries
+out default processing for all messages that the button control procedure does
+not process. When the button control procedure returns FALSE for any message,
+the predefined window procedure checks the messages and performs the default
+actions listed in the following table.</p>
+<table border="0" cellpadding="0" style="mso-cellspacing:1.5pt">
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>Message<o:p>
+      </o:p>
+      </b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>Default action<o:p>
+      </o:p>
+      </b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>BM_CLICK</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Sends the button a <b>WM_LBUTTONDOWN</b>
+      and a <b>WM_LBUTTONUP</b>
+      message, and sends the parent window a <b>BN_CLICKED</b>
+      notification message.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>BM_GETCHECK</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Returns the check state of the button.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>BM_GETIMAGE</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Returns a handle to the bitmap or icon associated
+      with the button or NULL if the button has no bitmap or icon.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>BM_GETSTATE</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Returns the current check state, push state, and
+      focus state of the button.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>BM_SETCHECK</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Sets the check state for all styles of radio buttons
+      and check boxes. If the <i>wParam</i> parameter is greater than zero for
+      radio buttons, the button is given the WS_TABSTOP style.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>BM_SETIMAGE</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Associates the specified bitmap or icon handle with
+      the button and returns a handle to the previous bitmap or icon.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>BM_SETSTATE</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Sets the push state of the button. For owner-drawn
+      buttons, a <b>WM_DRAWITEM</b>
+      message is sent to the parent window if the state of the button has
+      changed.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>BM_SETSTYLE</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Sets the button style. If the low-order word of the <i>lParam</i>
+      parameter is TRUE, the button is redrawn.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>WM_CHAR</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Checks a check box or automatic check box when the
+      user presses the plus (+) or equal (=) keys. Clears a check box or
+      automatic check box when the user presses the minus (–) key.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>WM_ENABLE</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Paints the button.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>WM_ERASEBKGND</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Erases the background for owner-drawn buttons. The
+      backgrounds of other buttons are erased as part of the <b>WM_PAINT</b>
+      and <b>WM_ENABLE</b>
+      processing.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>WM_GETDLGCODE</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Returns values indicating the type of input processed
+      by the default button procedure, as shown in the following table.</p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<table border="0" cellpadding="0" style="mso-cellspacing:1.5pt">
+  <tr>
+    <td width="40%" valign="top" style="width:40.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>Button style<o:p>
+      </o:p>
+      </b></p>
+    </td>
+    <td width="60%" valign="top" style="width:60.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>Returns<o:p>
+      </o:p>
+      </b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="40%" valign="top" style="width:40.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">BS_AUTOCHECKBOX</p>
+    </td>
+    <td width="60%" valign="top" style="width:60.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">DLGC_WANTCHARS | DLGC_BUTTON</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="40%" valign="top" style="width:40.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">BS_AUTORADIOBUTTON</p>
+    </td>
+    <td width="60%" valign="top" style="width:60.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">DLGC_RADIOBUTTON</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="40%" valign="top" style="width:40.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">BS_CHECKBOX</p>
+    </td>
+    <td width="60%" valign="top" style="width:60.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">DLGC_WANTCHARS | DLGC_BUTTON</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="40%" valign="top" style="width:40.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">BS_DEFPUSHBUTTON</p>
+    </td>
+    <td width="60%" valign="top" style="width:60.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">DLGC_DEFPUSHBUTTON</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="40%" valign="top" style="width:40.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">BS_GROUPBOX</p>
+    </td>
+    <td width="60%" valign="top" style="width:60.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">DLGC_STATIC</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="40%" valign="top" style="width:40.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">BS_PUSHBUTTON</p>
+    </td>
+    <td width="60%" valign="top" style="width:60.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">DLGC_UNDEFPUSHBUTTON</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="40%" valign="top" style="width:40.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">BS_RADIOBUTTON</p>
+    </td>
+    <td width="60%" valign="top" style="width:60.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">DLGC_RADIOBUTTON</p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<table border="0" cellpadding="0" style="mso-cellspacing:1.5pt">
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>Message<o:p>
+      </o:p>
+      </b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>Default action<o:p>
+      </o:p>
+      </b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>WM_GETFONT</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Returns a handle to the current font.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>WM_KEYDOWN</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Pushes the button if the user presses the SPACEBAR.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>WM_KEYUP</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Releases the mouse capture for all cases except the
+      TAB key.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>WM_KILLFOCUS</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Removes the focus rectangle from a button. For push
+      buttons and default push buttons, the focus rectangle is invalidated. If
+      the button has the mouse capture, the capture is released, the button is
+      not clicked, and any push state is removed.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>WM_LBUTTONDBLCLK</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Sends a <b>BN_DBLCLK</b>
+      notification message to the parent window for radio buttons and
+      owner-drawn buttons. For other buttons, a double-click is processed as a <b>WM_LBUTTONDOWN</b>
+      message.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>WM_LBUTTONDOWN</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Highlights the button if the position of the mouse
+      cursor is within the button's client rectangle.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>WM_LBUTTONUP</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Releases the mouse capture if the button had the
+      mouse capture.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>WM_MOUSEMOVE</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Performs the same action as <b>WM_LBUTTONDOWN</b>,
+      if the button has the mouse capture. Otherwise, no action is performed.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>WM_NCCREATE</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Turns any BS_OWNERDRAW button into a BS_PUSHBUTTON
+      button.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>WM_NCHITTEST</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Returns HTTRANSPARENT, if the button control is a
+      group box.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>WM_PAINT</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Draws the button according to its style and current
+      state.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>WM_SETFOCUS</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Draws a focus rectangle on the button getting the
+      focus. For radio buttons and automatic radio buttons, the parent window is
+      sent a <b>BN_CLICKED</b>
+      notification message.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>WM_SETFONT</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Sets a new font and optionally updates the window.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>WM_SETTEXT</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Sets the text of the button. In the case of a group
+      box, the message paints over the preexisting text before repainting the
+      group box with the new text.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="37%" valign="top" style="width:37.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal"><b>WM_SYSKEYUP</b></p>
+    </td>
+    <td width="63%" valign="top" style="width:63.0%;padding:.75pt .75pt .75pt .75pt">
+      <p class="MsoNormal">Releases the mouse capture for all cases except the
+      TAB key.</p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<p>The predefined window procedure passes all other messages to the <b>DefWindowProc</b>
+function for default processing.</p>
+
+</body>
+
+</html>

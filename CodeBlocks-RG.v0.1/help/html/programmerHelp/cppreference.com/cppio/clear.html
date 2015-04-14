@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/cppio/clear.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>clear</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C++ I/O</a> &gt; <a href="clear.html">clear</a>
+  </div>
+
+  <div class="name-format">
+    clear
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  void clear( iostate flags = ios::goodbit );
+</pre>
+
+  <p>The function clear() does two things:</p>
+
+  <ul>
+    <li>it clears all <a href="../io_flags.html#state_flags">io stream
+    state flag</a>s associated with the current stream,</li>
+
+    <li>and sets the flags denoted by <em>flags</em></li>
+  </ul>
+
+  <p>The <em>flags</em> argument defaults to ios::goodbit, which means
+  that by default, all flags will be cleared and ios::goodbit will be
+  set.</p>
+
+  <div class="related-examples-format">
+    Example code:
+  </div>
+
+  <div class="related-examples">
+    <p>For example, the following code uses the clear() function to
+    reset the flags of an output file stream, after an attempt is made
+    to read from that output stream:</p>
+<pre class="prettyprint">
+ fstream outputFile( &quot;output.txt&quot;, fstream::out );            
+
+ // try to read from the output stream; this shouldn&#39;t work
+ int val;
+ outputFile &gt;&gt; val;
+ if( outputFile.fail() ) {
+   cout &lt;&lt; &quot;Error reading from the output stream&quot; &lt;&lt; endl;
+   // reset the flags associated with the stream
+   outputFile.clear();
+ }              
+                
+
+ for( int i = 0; i &lt; 10; i++ ) {
+   outputFile &lt;&lt; i &lt;&lt; &quot; &quot;;
+ }
+ outputFile &lt;&lt; endl;              
+</pre>
+  </div>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="eof.html">eof</a><br>
+    <a href="fail.html">fail</a><br>
+    <a href="good.html">good</a><br>
+    <a href="rdstate.html">rdstate</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/clear.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

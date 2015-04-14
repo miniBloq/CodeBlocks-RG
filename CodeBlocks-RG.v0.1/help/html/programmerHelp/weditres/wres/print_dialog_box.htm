@@ -1,0 +1,243 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Print Dialog Box</title>
+</head>
+
+<body>
+
+<div class="clsDocBody">
+  <h2>Print Dialog Box</h2>
+  <hr SIZE="1">
+  <p>The <b>Print</b> dialog box lets the user select options for a particular
+  print job. For example, the user can specify the printer to use, the range of
+  pages to print, and the number of copies.</p>
+  <p><b>Windows 2000/XP:</b> You can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PrintDlgEx_cpp">
+  PrintDlgEx</MSHelp:link>
+  function to display a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Print_Property_Sheet">
+  Print Property Sheet</MSHelp:link>
+  , which has a <b>General</b> page containing controls similar to the <b>Print</b>
+  dialog box. The property sheet can also have additional application-specific
+  and driver-specific property pages following the <b>General</b> page.</p>
+  <p>You create and display a <b>Print</b> dialog box by initializing a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PRINTDLG_str_cpp">
+  PRINTDLG</MSHelp:link>
+  structure and passing the structure to the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PrintDlg_cpp">
+  PrintDlg</MSHelp:link>
+  function.</p>
+  <p>The following illustration shows a typical <b>Print</b> dialog box.</p>
+  <p><img border="0" src="print_8.gif" width="438" height="327"></p>
+  <p>If the user clicks the <b>OK</b> button, <b>PrintDlg</b> returns TRUE and
+  uses the <b>PRINTDLG</b> structure to return information about the user's
+  selections. For example, the <b>hDevMode</b> and <b>hDevNames</b> members
+  typically return global memory handles for and <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DEVNAMES_str_cpp">
+  DEVNAMES</MSHelp:link>
+  structures. You can use the information in these structures to create a device
+  context or an information context for the selected printer.</p>
+  <p>If the user cancels the <b>Print</b> dialog box or an error occurs, <b>PrintDlg</b>
+  returns FALSE. You can determine the cause of an error by using the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CommDlgExtendedError_cpp">
+  CommDlgExtendedError</MSHelp:link>
+  function to retrieve the extended error value.</p>
+  <p>The <b>Print</b> dialog box includes a <b>Print Range</b> group of radio
+  buttons that indicate whether the user wants to print all pages, a range of
+  pages, or only the selected text. Before calling <b>PrintDlg</b>, you can set
+  one of the PD_ALLPAGES, PD_SELECTION, or PD_PAGENUMS flags to indicate which
+  button is initially selected. When <b>PrintDlg</b> returns TRUE, the function
+  sets one of these flags to indicate the user's selections. If PD_PAGENUMS is
+  set, the <b>nFromPage</b> and <b>nToPage</b> members of the <b>PRINTDLG</b>
+  structure contain the starting and ending pages specified by the user. To
+  disable the <b>Pages</b> radio button and its associated <b>From</b> and <b>To</b>
+  edit controls, set the PD_NOPAGENUMS flag. To disable the <b>Selection</b>
+  radio button, set the PD_NOSELECTION flag.</p>
+  <p>The dialog box includes an edit control in which the user can type the
+  number of copies to print. If the <b>hDevMode</b> member of the <b>PRINTDLG</b>
+  structure is non-NULL, the <b>dmCopies</b> member of the structure specifies
+  the initial value for this edit control. If <b>hDevMode</b> is NULL, the <b>nCopies</b>
+  member of the <b>PRINTDLG</b> structure specifies the initial value. When <b>PrintDlg</b>
+  returns, <b>nCopies</b> typically indicates the number of copies specified by
+  the user. However, if you set the PD_USEDEVMODECOPIESANDCOLLATE flag when you
+  create the dialog box, <b>nCopies</b> is always set to 1 on return and the <b>dmCopies</b>
+  member of <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DEVMODE_str">
+  DEVMODE</MSHelp:link>
+  indicates the number of copies to print.</p>
+  <p>The <b>Collate</b> check box indicates whether the user wants to collate
+  the pages if multiple copies are being printed. The PD_COLLATE flag is set if
+  the <b>Collate</b> check box is selected. If your application does not support
+  multiple copies or simulated collation, set the PD_USEDEVMODECOPIESANDCOLLATE
+  flag in the <b>Flags</b> member of the <b>PRINTDLG</b> structure. This
+  disables the <b>Collate</b> check box and the <b>Number of Copies</b> edit
+  control unless the printer driver supports multiple copies and collation.</p>
+  <p>The <b>Print To File</b> check box indicates whether the user wants to send
+  output to a file rather than to a printer. You can set the PD_PRINTTOFILE flag
+  so the check box is initially selected. To hide the check box, set the
+  PD_HIDEPRINTTOFILE flag. To disable it, set the PD_DISABLEPRINTTOFILE flag. If
+  the user selects the <b>Print To File</b> option, <b>PrintDlg</b> sets the
+  PD_PRINTTOFILE flag and returns &quot;FILE:&quot; at the offset indicated by
+  the <b>wOutputOffset</b> member of the <b>DEVNAMES</b> structure. When you
+  call the function to start the printing operation, specify this
+  &quot;FILE:&quot; string in the <b>lpszOutput</b> member of the structure.
+  Specifying this string causes the print subsystem to query the user for the
+  name of the output file.</p>
+  <p>By default, the <b>Print</b> dialog box initially displays information
+  about the current default printer. To display information for another
+  installed printer, initialize a and a <b>DEVNAMES</b> structure and assign the
+  global memory handle for the structure to the <b>hDevMode</b> and <b>hDevNames</b>
+  members. The device name you specify in the <b>dmDeviceName</b> member of the <b>DEVMODE</b>
+  structure and in the <b>wDriverOffset</b> member of the <b>DEVNAMES</b>
+  structure must identify a printer device that is also listed in the [Devices]
+  section of the Win.ini file. If the device is not listed, <b>PrintDlg</b>
+  returns an error.</p>
+  <p>You can direct <b>PrintDlg</b> to create a device context or information
+  context for the printer by setting the PD_RETURNDC or PD_RETURNIC flag in the <b>Flags</b>
+  member of the <b>PRINTDLG</b> structure. The function returns a handle to the
+  device context or information context in the <b>hDC</b> member. If you use the
+  PD_RETURNDC flag, you can use the device context to generate output for the
+  printer.</p>
+  <p>To retrieve information about the default printer without displaying the <b>Print</b>
+  dialog box, set the PD_RETURNDEFAULT flag. In this case, <b>PrintDlg</b>
+  returns immediately after setting the <b>hDevMode</b> and <b>hDevNames</b>
+  members to handles for structures containing the information.</p>
+  <p>By default, <b>PrintDlg</b> displays message boxes when errors occur. For
+  example, the function displays an error message if no printers are installed.
+  To prevent the function from displaying these warning messages, set the
+  PD_NOWARNING flag.</p>
+  <p>The following topics are discussed in this section.</p>
+  <ul>
+    <li><a href="#_win32_Customizing_the_Print_Dialog_Box" target="_self">Customizing
+      the Print Dialog Box</a>
+    <li><a href="#_win32_Print_Setup_Dialog_Box" target="_self">Print Setup
+      Dialog Box</a></li>
+    <li><a href="#example">Example</a></li>
+  </ul>
+  <h3><a name="_win32_Customizing_the_Print_Dialog_Box"></a>Customizing the
+  Print Dialog Box</h3>
+  <p>You can provide a custom template for the <b>Print</b> dialog box, for
+  example, if you want to include additional controls that are unique to your
+  application. The <b>PrintDlg</b> function uses your custom template in place
+  of the default template.</p>
+  <p>To provide a custom template for the Print dialog box:</p>
+  <ol>
+    <li>Create the custom template by modifying the default template specified
+      in the Prnsetup.dlg file. The control identifiers used in the default
+      Print dialog template are defined in the Dlgs.h file.
+    <li>Use the <b>PRINTDLG</b> structure to enable the template as follows:
+      <ul>
+        <li>If your custom template is a resource in an application or
+          dynamic-link library, set the PD_ENABLEPRINTTEMPLATE flag in the <b>Flags</b>
+          member. Use the <b>hInstance</b> and <b>lpPrintTemplateName</b>
+          members of the structure to identify the module and resource name.
+          <p>-Or-</p>
+        <li>If your custom template is already in memory, set the
+          PD_ENABLEPRINTTEMPLATEHANDLE flag. Use the <b>hPrintTemplate</b>
+          member to identify the memory object that contains the template.</li>
+      </ul>
+    </li>
+  </ol>
+  <p>You can provide a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PrintHookProc_cpp">
+  PrintHookProc</MSHelp:link>
+  hook procedure for the <b>Print</b> dialog box. The hook procedure can process
+  messages sent to the dialog box. It can also send messages to the dialog box.
+  If you use a custom template to define additional controls, you must provide a
+  hook procedure to process input for your controls.</p>
+  <p>To enable a hook procedure for the Print dialog box:</p>
+  <ol>
+    <li>Set the PD_ENABLEPRINTHOOK flag in the <b>Flags</b> member of the <b>PRINTDLG</b>
+      structure.
+    <li>Specify the address of the hook procedure in the <b>lpfnPrintHook</b>
+      member.</li>
+  </ol>
+  <p>After processing its <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_INITDIALOG_cpp">
+  WM_INITDIALOG</MSHelp:link>
+  message, the dialog box procedure sends a <b>WM_INITDIALOG</b> message to the
+  hook procedure. The <i>lParam</i> parameter of this message is a pointer to
+  the <b>PRINTDLG</b> structure used to initialize the dialog box.</p>
+  <h3><a name="_win32_Print_Setup_Dialog_Box"></a>Print Setup Dialog Box</h3>
+  <p>You can create and display a <b>Print Setup</b> dialog box by setting the
+  PD_PRINTSETUP flag in a call to the <b>PrintDlg</b> function. However, the <b>Print
+  Setup</b> dialog box has been superseded by the <b>Page Setup</b> dialog box
+  and should not be used in new applications.</p>
+  <p>The following flags apply only to the <b>Print Setup</b> dialog box:</p>
+  <ul>
+    <li>PD_ENABLESETUPHOOK
+    <li>PD_ENABLESETUPTEMPLATE
+    <li>PD_ENABLESETUPTEMPLATEHANDLE</li>
+  </ul>
+</div>
+<h3><a name="example"></a>Example</h3>
+<p>This example describes sample code that displays a <b>Print</b> dialog box so
+a user can select options for printing a document. The sample code first
+initializes a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PRINTDLG_str_cpp">
+PRINTDLG</MSHelp:link>
+ structure, and then calls the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PrintDlg_cpp">
+PrintDlg</MSHelp:link>
+ function to display the dialog box.</p>
+<p>This example sets the PD_RETURNDC flag in the <b>Flags</b> member of the <b>PRINTDLG</b>
+structure. This causes <b>PrintDlg</b> to return a device context handle for the
+selected printer in the <b>hDC</b> member. You can use the handle to render
+output on the printer.</p>
+<p>On input, the sample code sets the <b>hDevMode</b> and <b>hDevNames</b>
+members to NULL. If the function returns TRUE, these members return handles to
+and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DEVNAMES_str_cpp">
+DEVNAMES</MSHelp:link>
+ structures containing the user's input and information about the printer. You
+can use this information to prepare the output to be sent to the selected
+printer.</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">#include &lt;windows.h&gt;
+// <font face="Arial">This program will call the print dialog and print &quot;OK&quot; or &quot;Cancel&quot; depending on which button the user pressed.
+</font>PRINTDLG pd;
+HWND hwnd;
+int main(void) 
+{
+    // <font face="Arial">Initialize </font>PRINTDLG
+    memset(&amp;pd,0, sizeof(pd));
+    pd.lStructSize = sizeof(pd);
+    pd.hwndOwner   = hwnd;
+    pd.hDevMode    = NULL;     // <font face="Arial">Don't forget to free or store</font> hDevMode
+    pd.hDevNames   = NULL;     // <font face="Arial">Don't forget to free or store</font> hDevNames
+    pd.Flags       = PD_USEDEVMODECOPIESANDCOLLATE | PD_RETURNDC; 
+    pd.nCopies     = 1;
+    pd.nFromPage   = 0xFFFF; 
+    pd.nToPage     = 0xFFFF; 
+    pd.nMinPage    = 1; 
+    pd.nMaxPage    = 0xFFFF; 
+
+    if (PrintDlg(&amp;pd)==TRUE) 
+    {
+        // GDI <font face="Arial">calls to render output.</font> 
+        printf(&quot;OK\n&quot;);
+
+        // <font face="Arial">Delete DC when done.</font>
+        DeleteDC(pd.hDC);
+    }
+    else printf(&quot;Cancel.\n&quot;);
+    return 0;
+}
+</pre>
+
+<p>Compile with &quot;lc prtdlg.c&quot;.</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

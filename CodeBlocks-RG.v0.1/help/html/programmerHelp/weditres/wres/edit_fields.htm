@@ -1,0 +1,295 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="fr">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Edit fields</title>
+</head>
+
+<body>
+
+<h2>Edit fields</h2>
+<p>An <i>edit control</i> is a rectangular control window typically used in a
+dialog box to permit the user to enter and edit text by typing on the keyboard.</p>
+<p>Edit controls support both the Unicode character set in which characters are
+two bytes, and ANSI character sets in which characters are one byte.</p>
+<h3>Edit Control Features</h3>
+<p>An edit control is selected and receives the input focus when a user clicks
+the mouse inside it or presses the TAB key. After it is selected, the edit
+control displays its text (if any) and a flashing caret that indicates the
+insertion point. The user can then enter text, move the insertion point, or
+select text to be edited by using the keyboard or the mouse. An edit control can
+send notification messages to its parent window in the form of <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_command">
+WM_COMMAND</MSHelp:link>
+ messages. A parent window can send messages to an edit control in a dialog box
+by calling the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_SendDlgItemMessage">
+SendDlgItemMessage</MSHelp:link>
+ function.</p>
+<p>A combo box is a control that combines much of the functionality of an edit
+control and a list box. In a combo box, the edit control displays the current
+selection and the list box presents options a user can select. For more
+information about combo boxes, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Combo_Boxes_cpp">
+Combo Boxes</MSHelp:link>
+.</p>
+
+<p>Styles</p>
+      <ol>
+        <li>Border: Wether it has a black line for a border or not.</li>
+        <li>Uppercase: Whether it should convert all input to uppercase or not</li>
+        <li>Lowercase: Similar to above.</li>
+        <li>Password: Controls with this style do not show what the user types,
+          just an asterisk.</li>
+        <li>Visible selection means whether the control will retain its
+          selection even if it looses the focus. Normally, edit controls do not
+          show the selection when they do not have the focus;</li>
+        <li>Horz/Vert scroll. Not very useful unless the edit field is
+          multiline.</li>
+        <li>Want carriage return: Whether the return key is processed by the
+          control or passed to the dialog procedure.</li>
+        <li>Translate PCchar set. Useful only if you have old DOS software with
+          other code page in it.</li>
+        <li>Multi-line: Whether the control can hold several lines.</li>
+        <li>Number means that the control will only accept characters between 0
+          and 9. No minus sign is allowed, nor floating point notation.</li>
+        <li>Read only means that the user can only see the data displayed but
+          not change it.</li>
+        <li>Automatic scroll means that the control will display a sliding
+          window when the data is greater than the screen dimensions of the
+          control.</li>
+        <li>Text alignment: Either left to right (default) or right to left
+          (oriental languages).</li>
+      </ol>
+<h3>The Text Buffer</h3>
+<p>The system stores edit control text in a buffer and copies it to the control,
+as necessary.</p>
+<h4>Allocating a Text Buffer</h4>
+<p>When the system creates an edit control, it automatically creates a text
+buffer, sets its initial size, and increases the size as necessary. The size can
+be up to a predefined limit of approximately 32 kilobyte (KB) for single-line
+edit controls. Because this limit can change, it is called a soft limit. An
+application can set a hard limit to the buffer size by sending an <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SETLIMITTEXT_cpp">
+EM_SETLIMITTEXT</MSHelp:link>
+ message to the edit control. If the buffer exceeds either limit, the system
+sends the application an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EN_ERRSPACE_cpp">
+EN_ERRSPACE</MSHelp:link>
+ message. An application can retrieve the current text limit by sending an <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_GETLIMITTEXT_cpp">
+EM_GETLIMITTEXT</MSHelp:link>
+ message.</p>
+<p>The system typically creates an edit control buffer in a dialog box, using
+memory outside the application's data segment. An application can suppress this
+default allocation behavior and create the buffer from its local heap by using
+the DS_LOCALEDIT style (see &quot;Dialog Box Template Styles&quot; in <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_About_Dialog_Boxes">
+About Dialog Boxes</MSHelp:link>
+) when creating the edit control. An application that uses the DS_LOCALEDIT
+style is responsible for all buffer allocations. To make the initial allocation,
+an application can call the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_localalloc">
+LocalAlloc</MSHelp:link>
+ function and pass the returned buffer handle to the edit control by sending it
+an <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SETHANDLE_cpp">
+EM_SETHANDLE</MSHelp:link>
+ message. To make subsequent allocations (in response to an <b>EN_ERRSPACE</b>
+message, for example), an application should save the current buffer content (if
+necessary) and obtain a new buffer as follows.</p>
+<p>To save the current buffer and obtain a new one:</p>
+<ol>
+  <li>Retrieve the handle of the memory currently allocated for the text in a
+    multiline edit control by sending the control an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_GETHANDLE_cpp">
+    EM_GETHANDLE</MSHelp:link>
+    message.
+  <li>Free the buffer by calling the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_localfree">
+    LocalFree</MSHelp:link>
+    function.
+  <li>Obtain a new buffer (and buffer handle) by calling <b>LocalAlloc</b>.
+  <li>Give the buffer handle to the system by sending the control an <b>EM_SETHANDLE</b>
+    message.</li>
+</ol>
+<p>The <b>EM_SETHANDLE</b> and <b>EM_GETHANDLE</b> messages apply only to
+multiline edit controls.</p>
+<p>An application that uses the default allocation behavior (that is, does not
+use the DS_LOCALEDIT style (see &quot;Dialog Box Template Styles&quot; in <b>About
+Dialog Boxes</b>)) must not send <b>EM_SETHANDLE</b> and <b>EM_GETHANDLE</b>
+messages to the edit control.</p>
+<p>Sending an <b>EM_SETHANDLE</b> message has several side effects: it clears
+the undo flag (making the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_CANUNDO_cpp">
+EM_CANUNDO</MSHelp:link>
+ message return zero), it clears the modify flag (making the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_GETMODIFY_cpp">
+EM_GETMODIFY</MSHelp:link>
+ message return zero), and it redraws the edit control window.</p>
+<h4>Initializing a Text Buffer</h4>
+<p>An application can initialize or reinitialize an edit control's text buffer
+by calling the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_SetDlgItemText">
+SetDlgItemText</MSHelp:link>
+ function. An application can retrieve the content of a text buffer by calling
+the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_GetDlgItemText">
+GetDlgItemText</MSHelp:link>
+ function.</p>
+<h4>Making a Text Buffer Readonly</h4>
+<p>For each edit control, the system maintains a read-only flag that indicates
+whether the control's text is read-write (the default) or read-only. An
+application can set the read-write flag or the read-only flag for the text by
+sending the control an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SETREADONLY_cpp">
+EM_SETREADONLY</MSHelp:link>
+ message. To determine whether an edit control is read-only, an application can
+call the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_getwindowlong">
+GetWindowLong</MSHelp:link>
+ function using the GWL_STYLE constant. The <b>EM_SETREADONLY</b> message
+applies to both single-line and multiline edit controls.</p>
+<h3>Changing the Formatting Rectangle</h3>
+<p>The visibility of an edit control's text is governed by the dimensions of its
+window rectangle and its formatting rectangle. The window rectangle is the
+client area of the window containing the edit control. The formatting rectangle
+is a construct maintained by the system for formatting the text displayed in the
+window rectangle. When an edit control is first displayed, the two rectangles
+are identical on the screen. An application can make the formatting rectangle
+larger than the window rectangle (thereby limiting the visibility of the edit
+control's text) or smaller than the window rectangle (thereby creating extra
+white space around the text).</p>
+<p>An application can set the coordinates of an edit control's formatting
+rectangle by sending it an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SETRECT_cpp">
+EM_SETRECT</MSHelp:link>
+ message. The <b>EM_SETRECT</b> message also automatically redraws the edit
+control's text. To establish the coordinates of the formatting rectangle without
+redrawing the control's text, an application can send the control an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SETRECTNP_cpp">
+EM_SETRECTNP</MSHelp:link>
+ message. To retrieve the coordinates of the formatting rectangle, an
+application can send the control an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_GETRECT_cpp">
+EM_GETRECT</MSHelp:link>
+ message. These messages apply to multiline edit controls only.</p>
+<h3>Edit Control Notification Messages</h3>
+<p>The user makes editing requests by using the keyboard and mouse. The system
+sends each request to the edit control's parent window in the form of a <b>WM_COMMAND</b>
+message. The message includes the edit control identifier in the low-order word
+of the <i>wParam</i> parameter, the handle of the edit control in the <i>lParam</i>
+parameter, and an edit control notification message corresponding to the user's
+action in the high-order word of the <i>wParam</i> parameter.</p>
+<p>An application should examine each notification message and respond
+appropriately. The following table lists each edit control notification message
+and the action that generates it.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Notification message</th>
+      <th>User action</th>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EN_CHANGE_cpp">
+        EN_CHANGE</MSHelp:link>
+      </td>
+      <td>The user has modified text in an edit control. The system updates the
+        display before sending this message (unlike <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EN_UPDATE_cpp">
+        EN_UPDATE</MSHelp:link>
+        ).</td>
+    </tr>
+    <tr>
+      <td><b>EN_ERRSPACE</b></td>
+      <td>The edit control cannot allocate enough memory to meet a specific
+        request.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EN_HSCROLL_cpp">
+        EN_HSCROLL</MSHelp:link>
+      </td>
+      <td>The user has clicked the edit control's horizontal scroll bar. The
+        system sends this message before updating the screen.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EN_KILLFOCUS_cpp">
+        EN_KILLFOCUS</MSHelp:link>
+      </td>
+      <td>The user has selected another control.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EN_MAXTEXT_cpp">
+        EN_MAXTEXT</MSHelp:link>
+      </td>
+      <td>While inserting text, the user has exceeded the specified number of
+        characters for the edit control. Insertion has been truncated. This
+        message is also sent either when an edit control does not have the
+        ES_AUTOHSCROLL style and the number of characters to be inserted exceeds
+        the width of the edit control or when an edit control does not have the
+        ES_AUTOVSCROLL style and the total number of lines to be inserted
+        exceeds the height of the edit control.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EN_SETFOCUS_cpp">
+        EN_SETFOCUS</MSHelp:link>
+      </td>
+      <td>The user has selected this edit control.</td>
+    </tr>
+    <tr>
+      <td><b>EN_UPDATE</b></td>
+      <td>The user has altered the text in the edit control and the system is
+        about to display the new text. The system sends this message after
+        formatting the text, but before displaying it, so that the application
+        can resize the edit control window.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EN_VSCROLL_cpp">
+        EN_VSCROLL</MSHelp:link>
+      </td>
+      <td>The user has clicked the edit control's vertical scroll bar or has
+        scrolled the mouse wheel over the edit control. The system sends this
+        message before updating the screen.</td>
+    </tr>
+  </tbody>
+</table>
+<p>In addition, the system sends a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_CTLCOLOREDIT_cpp">
+WM_CTLCOLOREDIT</MSHelp:link>
+ message to an edit control's parent window before the edit control is drawn.
+This message contains a handle of the edit control's display context (DC) and a
+handle of the child window. The parent window can use these handles to change
+the edit control's text and background colors.</p>
+
+</body>
+
+</html>

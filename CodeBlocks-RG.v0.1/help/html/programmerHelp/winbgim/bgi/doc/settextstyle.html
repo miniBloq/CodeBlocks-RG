@@ -1,0 +1,134 @@
+<TITLE>BGI Documentation for 
+settextstyle
+</TITLE>
+<H2>
+settextstyle
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void settextstyle(int font, int direction, int charsize);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+settextstyle sets the text font, the direction in which text is displayed, and the size of the characters. A call to settextstyle affects all text output by outtext and outtextxy.
+<P>
+The parameters font, direction, and charsize passed to settextstyle are described in the following:
+<P>
+font: One 8x8 bit-mapped font and several "stroked" fonts are available. The 8x8 bit-mapped font is the default. The enumeration font_names, which is defined in graphics.h, provides names for these different font settings:
+<TABLE>
+<TR><TD><B>Name</B><TD><B>Value&nbsp;&nbsp;&nbsp;</B><TD><B>Description</B>
+<TR><TD>DEFAULT_FONT	<TD>0	<TD>8x8 bit-mapped font
+<TR><TD>TRIPLEX_FONT	<TD>1	<TD>Stroked triplex font
+<TR><TD>SMALL_FONT	<TD>2	<TD>Stroked small font
+<TR><TD>SANS_SERIF_FONT	<TD>3	<TD>Stroked sans-serif font
+<TR><TD>GOTHIC_FONT	<TD>4	<TD>Stroked gothic font
+<TR><TD>SCRIPT_FONT	<TD>5	<TD>Stroked script font
+<TR><TD>SIMPLEX_FONT	<TD>6	<TD>Stroked triplex script font
+<TR><TD>TRIPLEX_SCR_FONT&nbsp;&nbsp;&nbsp;	<TD>7	<TD>Stroked triplex script font
+<TR><TD>COMPLEX_FONT	<TD>8	<TD>Stroked complex font
+<TR><TD>EUROPEAN_FONT	<TD>9	<TD>Stroked European font
+<TR><TD>BOLD_FONT	<TD>10	<TD>Stroked bold font
+</TABLE>
+
+The default bit-mapped font is built into the graphics system. Stroked fonts are stored in *.CHR disk files, and only one at a time is kept in memory. Therefore, when you select a stroked font (different from the last selected stroked font), the corresponding *.CHR file must be loaded from disk.
+<P>
+To avoid this loading when several stroked fonts are used, you can
+link font files into your program. Do this by converting them into
+object files with the BGIOBJ utility, then registering them through
+registerbgifont.
+<P>
+direction: Font directions supported are horizontal text (left to right) and vertical text (rotated 90 degrees counterclockwise). The default direction is HORIZ_DIR.
+The size of each character can be magnified using the charsize factor. If charsize is nonzero, it can affect bit-mapped or stroked characters. A charsize value of 0 can be used only with stroked fonts.
+<UL>
+<LI>If charsize equals 1, outtext and outtextxy displays characters from the 8x8 bit-mapped font in an 8x8 pixel rectangle onscreen.
+	<LI>If charsize equals 2, these output functions display characters from the 8x8 bit-mapped font in a 16*16 pixel rectangle, and so on (up to a limit of ten times the normal size).
+	<LI>When charsize equals 0, the output functions outtext and outtextxy magnify the stroked font text using either the default character magnification factor (4) or the user-defined character size given by setusercharsize.
+</UL>
+Always use textheight and textwidth to determine the actual dimensions of the text.
+<P><DT><B>Return Value</B><DD>
+
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="gettextsettings.html"> gettextsettings </A>
+<DD><A HREF="graphresults.html"> graphresults </A>
+<DD><A HREF="installuserfont.html"> installuserfont </A>
+<DD><A HREF="settextjustify.html"> settextjustify </A>
+<DD><A HREF="setusercharsize.html"> setusercharsize </A>
+<DD><A HREF="textheight.html"> textheight </A>
+<DD><A HREF="textwidth.html"> textwidth </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* settextstyle example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+/* the names of the text styles supported */
+char *fname[] = { "DEFAULT font",  "TRIPLEX font", 
+                  "SMALL font",    "SANS SERIF_font", 
+                  "GOTHIC_font",   "SCRIPT font",
+                  "SIMPLEX font",  "TRIPLEX SCRIPT font",
+                  "COMPLEX font",  "EUROPEAN font",
+                  "BOLD font"};
+
+int main(void)
+{
+   /* request autodetection */
+
+   int gdriver = DETECT, gmode, errorcode;
+   int style, midx, midy;
+   int size = 1;
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+
+   /* loop through the available text styles */
+   for (style=DEFAULT_FONT; style&lt;=BOLD_FONT; style++) {
+      cleardevice();
+      if (style == TRIPLEX_FONT)
+         size = 4;
+      /* select the text style */
+      settextstyle(style, HORIZ_DIR, size);
+
+      /* output a message */
+      outtextxy(midx, midy, fname[style]);
+      getch();
+   }
+   /* clean up */
+
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

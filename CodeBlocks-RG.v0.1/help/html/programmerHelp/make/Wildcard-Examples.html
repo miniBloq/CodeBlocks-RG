@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Wildcard%20Examples">Wildcard Examples</a>,
+Next:<a rel="next" accesskey="n" href="Wildcard-Pitfall.html#Wildcard%20Pitfall">Wildcard Pitfall</a>,
+Previous:<a rel="previous" accesskey="p" href="Wildcards.html#Wildcards">Wildcards</a>,
+Up:<a rel="up" accesskey="u" href="Wildcards.html#Wildcards">Wildcards</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">Wildcard Examples</h4>
+
+   <p>Wildcards can be used in the commands of a rule, where they are expanded
+by the shell.  For example, here is a rule to delete all the object files:
+
+<pre class="example">     clean:
+             rm -f *.o
+     </pre>
+
+   <p>Wildcards are also useful in the prerequisites of a rule.  With the
+following rule in the makefile, <code>make print</code> will print all the
+<code>.c</code> files that have changed since the last time you printed them:
+
+<pre class="example">     print: *.c
+             lpr -p $?
+             touch print
+     </pre>
+
+<p>This rule uses <code>print</code> as an empty target file; see <a href="Empty-Targets.html#Empty%20Targets">Empty Target Files to Record Events</a>.  (The automatic variable
+<code>$?</code> is used to print only those files that have changed; see
+<a href="Automatic.html#Automatic">Automatic Variables</a>.)
+
+   <p>Wildcard expansion does not happen when you define a variable.  Thus, if
+you write this:
+
+<pre class="example">     objects = *.o
+     </pre>
+
+<p>then the value of the variable <code>objects</code> is the actual string
+<code>*.o</code>.  However, if you use the value of <code>objects</code> in a target,
+prerequisite or command, wildcard expansion will take place at that time. 
+To set <code>objects</code> to the expansion, instead use:
+
+<pre class="example">     objects := $(wildcard *.o)
+     </pre>
+
+<p>See <a href="Wildcard-Function.html#Wildcard%20Function">Wildcard Function</a>.
+
+   </body></html>
+

@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="How%20Make%20Works">How Make Works</a>,
+Next:<a rel="next" accesskey="n" href="Variables-Simplify.html#Variables%20Simplify">Variables Simplify</a>,
+Previous:<a rel="previous" accesskey="p" href="Simple-Makefile.html#Simple%20Makefile">Simple Makefile</a>,
+Up:<a rel="up" accesskey="u" href="Introduction.html#Introduction">Introduction</a>
+<hr><br>
+</div>
+
+<h3 class="section">How <code>make</code> Processes a Makefile</h3>
+
+   <p>By default, <code>make</code> starts with the first target (not targets whose
+names start with <code>.</code>).  This is called the <dfn>default goal</dfn>. 
+(<dfn>Goals</dfn> are the targets that <code>make</code> strives ultimately to
+update.  See <a href="Goals.html#Goals">Arguments to Specify the Goals</a>.)
+
+   <p>In the simple example of the previous section, the default goal is to
+update the executable program <code>edit</code>; therefore, we put that rule
+first.
+
+   <p>Thus, when you give the command:
+
+<pre class="example">     make
+     </pre>
+
+<p><code>make</code> reads the makefile in the current directory and begins by
+processing the first rule.  In the example, this rule is for relinking
+<code>edit</code>; but before <code>make</code> can fully process this rule, it
+must process the rules for the files that <code>edit</code> depends on,
+which in this case are the object files.  Each of these files is
+processed according to its own rule.  These rules say to update each
+<code>.o</code> file by compiling its source file.  The recompilation must
+be done if the source file, or any of the header files named as
+prerequisites, is more recent than the object file, or if the object
+file does not exist.
+
+   <p>The other rules are processed because their targets appear as
+prerequisites of the goal.  If some other rule is not depended on by the
+goal (or anything it depends on, etc.), that rule is not processed,
+unless you tell <code>make</code> to do so (with a command such as
+<code>make&nbsp;clean</code>).
+
+   <p>Before recompiling an object file, <code>make</code> considers updating its
+prerequisites, the source file and header files.  This makefile does not
+specify anything to be done for them--the <code>.c</code> and <code>.h</code> files
+are not the targets of any rules--so <code>make</code> does nothing for these
+files.  But <code>make</code> would update automatically generated C programs,
+such as those made by Bison or Yacc, by their own rules at this time.
+
+   <p>After recompiling whichever object files need it, <code>make</code> decides
+whether to relink <code>edit</code>.  This must be done if the file
+<code>edit</code> does not exist, or if any of the object files are newer than
+it.  If an object file was just recompiled, it is now newer than
+<code>edit</code>, so <code>edit</code> is relinked.
+
+   <p>Thus, if we change the file <code>insert.c</code> and run <code>make</code>,
+<code>make</code> will compile that file to update <code>insert.o</code>, and then
+link <code>edit</code>.  If we change the file <code>command.h</code> and run
+<code>make</code>, <code>make</code> will recompile the object files <code>kbd.o</code>,
+<code>command.o</code> and <code>files.o</code> and then link the file <code>edit</code>.
+
+   </body></html>
+

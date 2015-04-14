@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Running">Running</a>,
+Next:<a rel="next" accesskey="n" href="Implicit-Rules.html#Implicit%20Rules">Implicit Rules</a>,
+Previous:<a rel="previous" accesskey="p" href="Functions.html#Functions">Functions</a>,
+Up:<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr><br>
+</div>
+
+<h2 class="chapter">How to Run <code>make</code></h2>
+
+   <p>A makefile that says how to recompile a program can be used in more
+than one way.  The simplest use is to recompile every file that is out
+of date.  Usually, makefiles are written so that if you run
+<code>make</code> with no arguments, it does just that.
+
+   <p>But you might want to update only some of the files; you might want to use
+a different compiler or different compiler options; you might want just to
+find out which files are out of date without changing them.
+
+   <p>By giving arguments when you run <code>make</code>, you can do any of these
+things and many others.
+
+   <p>The exit status of <code>make</code> is always one of three values:
+     <dl>
+<dt><code>0</code>
+     <dd>The exit status is zero if <code>make</code> is successful. 
+<br><dt><code>2</code>
+     <dd>The exit status is two if <code>make</code> encounters any errors. 
+It will print messages describing the particular errors. 
+<br><dt><code>1</code>
+     <dd>The exit status is one if you use the <code>-q</code> flag and <code>make</code>
+determines that some target is not already up to date. 
+See <a href="Instead-of-Execution.html#Instead%20of%20Execution">Instead of Executing the Commands</a>. 
+</dl>
+
+<ul class="menu">
+<li><a accesskey="1" href="Makefile-Arguments.html#Makefile%20Arguments">Makefile Arguments</a>:           How to specify which makefile to use. 
+<li><a accesskey="2" href="Goals.html#Goals">Goals</a>:                        How to use goal arguments to specify which
+                                  parts of the makefile to use. 
+<li><a accesskey="3" href="Instead-of-Execution.html#Instead%20of%20Execution">Instead of Execution</a>:         How to use mode flags to specify what
+                                  kind of thing to do with the commands
+                                  in the makefile other than simply
+                                  execute them. 
+<li><a accesskey="4" href="Avoiding-Compilation.html#Avoiding%20Compilation">Avoiding Compilation</a>:         How to avoid recompiling certain files. 
+<li><a accesskey="5" href="Overriding.html#Overriding">Overriding</a>:                   How to override a variable to specify
+                                  an alternate compiler and other things. 
+<li><a accesskey="6" href="Testing.html#Testing">Testing</a>:                      How to proceed past some errors, to
+                                  test compilation. 
+<li><a accesskey="7" href="Options-Summary.html#Options%20Summary">Options Summary</a>:              Summary of Options
+</ul>
+
+   </body></html>
+

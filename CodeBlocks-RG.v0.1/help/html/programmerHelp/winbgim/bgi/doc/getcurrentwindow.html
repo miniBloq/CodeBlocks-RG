@@ -1,0 +1,55 @@
+<TITLE>BGI Documentation for 
+getcurrentwindow
+</TITLE>
+<H2>
+getcurrentwindow
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include "graphics.h"
+int getcurrentwindow( );
+</PRE>
+
+
+
+<DT><B>Description</B><IMG SRC="win.gif" ALT="[WIN]"><DD>
+The 
+getcurrentwindow
+function is available in the
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation of BGI
+graphics.
+You do not need to include conio.h; just include graphics.h.
+<p>
+The function gets the current window number, which is the
+window where all graphics operations occur.
+
+<P><DT><B>See also</B>
+<DD><A HREF="setcurrentwindow.html"> setcurrentwindow </A>
+<DD><A HREF="initgraph.html"> initgraph </A>
+<DD><A HREF="initwindow.html"> initwindow </A>
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* setcurrentwindow example */ 
+#include <graphics.h>
+
+void change ( int window )
+{
+    int oldwindow = getcurrentwindow( );
+    setcurrentwindow(window);
+   
+    // Do whatever graphics operations you like in the new current
+    // window...
+
+    // Restore the original window:
+    setcurrentwindow(oldwindow);
+}
+</PRE>
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

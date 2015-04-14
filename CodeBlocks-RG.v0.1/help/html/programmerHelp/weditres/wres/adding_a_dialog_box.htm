@@ -1,0 +1,42 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Adding a dialog box</title>
+</head>
+
+<body>
+
+<h2>Adding a dialog box</h2>
+<p>To create a new dialog box select the &quot;Objects&quot; menu and then
+&quot;New dialog&quot;.</p>
+<p>This will create an empty dialog box. A new window appears at the right side,
+the properties window.</p>
+<p align="center"><img border="0" src="editor2.gif" width="279" height="251"></p>
+<p align="left">The contents of this window can change, according to what object
+is selected. When you create a dialog box, it is automatically selected, and the
+properties window displays the associated information.</p>
+<p align="left">Each object will be referenced in your program by a numeric
+identifier, in this case 21600. The dialog editor chooses a number according to
+which dialog identifiers are already used. You can change this number but is
+better to leave the defaults since you could create problems with other
+identifiers.</p>
+<p align="left">To avoid using a bare number, each identifier will be provided a
+corresponding #define instruction to give it a symbolic name or
+&quot;Symbol&quot; for short. In this case the editor will write in the header
+file a line like this:</p>
+<p align="left"><font face="Courier">#define DLG_21600&nbsp;&nbsp;&nbsp; 21600</font></p>
+<p align="left">You can (and should) change the default symbol name to something
+like INPUT_DIALOG or DID_INPUT. The names are case sensitive, and following an
+established C tradition the names are in upper case since they are macros. This
+is not mandatory but it is useful for avoiding conflicts with other identifiers
+in your program.</p>
+<p align="left">Note that the properties window is a modal window. You can't do
+anything else when it is open. To return to the editor you should close that
+window.</p>
+
+</body>
+
+</html>

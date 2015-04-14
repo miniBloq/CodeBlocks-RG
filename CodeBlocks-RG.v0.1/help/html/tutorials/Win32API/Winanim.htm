@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>React: A first C++ project</title>
+<link href="../CSS/1colNheader.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.style10 {
+	color: #3C505E;
+	font-size: xx-small;
+	font-style: italic;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+h5 {
+	font-size: small;
+	color: rgb(90, 95, 102);
+}
+.style14 {color: #324E51}
+.style20 {font-size: x-small}
+</style>
+</head>
+
+<body>
+<div id="wrapper">
+  <div id="header">
+    <table width="92%" border="0" align="center" cellpadding="2">
+      <tr>
+        <td width="372"><h1 align="left">Example C Program:</h1>
+        <p align="left"><span class="title"><span class="title">Win32 animation example </span></span><br />
+        </p></td>
+        <td width="236"><span class="style14"><img src="../../pics/winanim.gif" alt="image: Portion of grid" width="230" height="172" align="absmiddle" /></span></td>
+        <td width="160"><h2>winanim </h2></td>
+      </tr>
+    </table>
+  </div>
+  <div id="main">
+    <p class="abstract">The Win32 Application Programmer's Interface (API) is the native Windows C/C++ GUI development library..</p>
+    <p class="abstract">&quot;winanim&quot; is a well-known example of animation using the Win32 API in a C program.    <br />
+    The winanim program shows a red ball bouncing on the sides of a window.    </p>
+    <hr />
+    <h2><br />
+    Before we start</h2>
+    <p>Create a  &quot;<em>winanim</em>&quot; subdirectory somewhere you choose to build this example.  </p>
+    <p>Get the example from the zip file:<a href="winanim.zip"> winanim.zip</a>    </p>
+    <p>Save the archive into the new &quot;<em>winanim</em>&quot; subdirectory, and extract the source files from the archive.</p>
+    <p>You should have the files shown here: <img src="../../pics/winanim files.gif" alt="winanim files" width="228" height="166" align="absmiddle" /></p>
+    <p>The C code for &quot;winanim&quot; is in <em>Main.c</em>.<br />
+    The red ball image is in <em>ball.bmp</em>.<br />
+    The <em>ballmask.bmp</em> is used to erase the last position of the ball from the window.<br />
+      <em>Anim.ico </em>is the icon that shows in explorer next to the produced <em>winanim.exe</em> program file.<br />
+    <em>Anim.rc</em> and <em>Images.rc</em> are Windows resources files used to produce winanim.<br />
+    <em class="style14">(Anim.rc is the main resource file. It includes Images.rc)</em><br />
+    <em>winanim [winanim.exe].PRJ</em> is a Quincy project file for the winanim project.
+      <br />
+    ___________ </p>
+    <h2>Open the &quot;winanim&quot; project file with Quincy </h2>
+    <p>- Note that both the main resource file and the C code file have be &quot;inserted&quot; into the project.<img src="../../pics/winanimProjectFile.gif" alt="winanimProject" width="219" height="68" /> <br />
+    - If you examine the project properties using the [Project]-&gt;[Properties] menu entry, you will see that the selected &quot;Type of Build&quot; is <strong><em>Win32 GUI application</em></strong>.  </p>
+    <h2>Build the &quot;winanim&quot; project </h2>
+    <p>- The build happens in 3 stages:</p>
+    <ul>
+      <li>The Windows resource editor &quot;windres.exe&quot; is first called to compile the &quot;Anim.rc&quot; resource file. It produces an &quot;anim.o&quot; object file. </li>
+      <li>The gcc compiler then compiles Main.c and produces the Main.o object file.</li>
+      <li>Finally the gcc linker  links the object files with the Win32 libraries and produces the <em>winanim.exe </em>executable.</li>
+    </ul>
+    <p>Execute the winanim program, enjoy. <br />
+    </p>
+    <hr />
+    <p class="abstract">- <strong class="Highlight">Win32 API </strong> is the basic, native Windows GUI and graphics library. Since it works directly with the operating system, it is likely to produce the fastest and smallest executables. It is however not intuitive to use, but is frequently used from C programs. If you want to learn it, you should procure a good book (or two). You will also find some basic tutorials on the internet. </p>
+    <p class="abstract">For simple graphics in C (but not menus, buttons, scrollbars, etc...) WinBGIm is <strong>much </strong>simpler to use. </p>
+    <p class="abstract">Most frequently, Windows GUI programs are produced using C++ class libraries. FLTK, available with Quincy is such a library. <br />
+    </p>
+  </div>
+  <div id="footer">
+    <div align="center" class="style10"><span class="style20"> Modified: 15 July 2006</span> </div>
+  </div>
+</div>
+</body>
+</html>

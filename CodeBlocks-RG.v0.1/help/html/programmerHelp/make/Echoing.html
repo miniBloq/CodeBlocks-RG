@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Echoing">Echoing</a>,
+Next:<a rel="next" accesskey="n" href="Execution.html#Execution">Execution</a>,
+Previous:<a rel="previous" accesskey="p" href="Commands.html#Commands">Commands</a>,
+Up:<a rel="up" accesskey="u" href="Commands.html#Commands">Commands</a>
+<hr><br>
+</div>
+
+<h3 class="section">Command Echoing</h3>
+
+   <p>Normally <code>make</code> prints each command line before it is executed. 
+We call this <dfn>echoing</dfn> because it gives the appearance that you
+are typing the commands yourself.
+
+   <p>When a line starts with <code>@</code>, the echoing of that line is suppressed. 
+The <code>@</code> is discarded before the command is passed to the shell. 
+Typically you would use this for a command whose only effect is to print
+something, such as an <code>echo</code> command to indicate progress through
+the makefile:
+
+<pre class="example">     @echo About to make distribution files
+     </pre>
+
+   <p>When <code>make</code> is given the flag <code>-n</code> or <code>--just-print</code>
+it only echoes commands, it won't execute them.  See <a href="Options-Summary.html#Options%20Summary">Summary of Options</a>.  In this case and only this case, even the
+commands starting with <code>@</code> are printed.  This flag is useful for
+finding out which commands <code>make</code> thinks are necessary without
+actually doing them.
+
+   <p>The <code>-s</code> or <code>--silent</code>
+flag to <code>make</code> prevents all echoing, as if all commands
+started with <code>@</code>.  A rule in the makefile for the special target
+<code>.SILENT</code> without prerequisites has the same effect
+(see <a href="Special-Targets.html#Special%20Targets">Special Built-in Target Names</a>). 
+<code>.SILENT</code> is essentially obsolete since <code>@</code> is more flexible.
+
+   </body></html>
+

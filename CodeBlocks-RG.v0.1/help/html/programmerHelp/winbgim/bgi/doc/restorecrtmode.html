@@ -1,0 +1,102 @@
+<TITLE>BGI Documentation for 
+restorecrtmode
+</TITLE>
+<H2>
+restorecrtmode
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void restorecrtmode(void);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+restorecrtmode restores the original video mode detected by initgraph.
+<P>
+This function can be used in conjunction with setgraphmode to switch back and forth between text and graphics modes. textmode should not be used for this purpose; use it only when the screen is in text mode, to change to a different text mode.
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+restorecrtmode is implemented in <A
+HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A>,
+but it does not do any work. This is because both the graphics window
+and the text window are always open during any Windows program, so
+there is no need to switch back and forth between the two modes.
+
+<P><DT><B>See also</B>
+<DD><A HREF="getgraphmode.html"> getgraphmode </A>
+<DD><A HREF="initgraph.html"> initgraph </A>
+<DD><A HREF="setgraphmode.html"> setgraphmode </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* restorecrtmode example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int x, y;
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   x = getmaxx() / 2;
+   y = getmaxy() / 2;
+
+   /* output a message */
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+   outtextxy(x, y, "Press any key to exit graphics:");
+   getch();
+
+   /* restore system to text mode */
+   restorecrtmode();
+   printf("We're now in text mode.\n");
+   printf("Press any key to return to graphics mode:");
+   getch();
+
+   /* return to graphics mode */
+
+   setgraphmode(getgraphmode());
+
+   /* output a message */
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+   outtextxy(x, y, "We're back in graphics mode.");
+   outtextxy(x, y+textheight("W"), "Press any key to halt:");
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

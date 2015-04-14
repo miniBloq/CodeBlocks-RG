@@ -1,0 +1,266 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="fr">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Tree control</title>
+</head>
+
+<body>
+
+<h2>Tree control</h2>
+<p>A <i>tree-view control</i> is a window that displays a hierarchical list of
+items, such as the headings in a document, the entries in an index, or the files
+and directories on a disk. Each item consists of a label and an optional
+bitmapped image, and each item can have a list of subitems associated with it.
+By clicking an item, the user can expand or collapse the associated list of
+subitems.</p>
+<p><span style="font-size:12.0pt;font-family:Arial;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:207pt;
+ height:236.25pt' fillcolor="window">
+ <v:imagedata src="tree_c4.gif"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="tree_c4.gif" v:shapes="_x0000_i1025" width="276" height="315"></span></p>
+<p>Styles</p>
+<ul>
+  <li><b>Lines to join items</b>.This style enhances the graphic representation
+    of a tree-view control's hierarchy by drawing lines that link child items to
+    their parent item. This style does not link items at the root of the
+    hierarchy. To do so, you need to combine this style with the &quot;lines at
+    root position&quot;.</li>
+  <li><b>Buttons indicate item state</b>.The user can expand or collapse a
+    parent item's list of child items by double-clicking the parent item. A
+    tree-view control that has this style adds a button to the left side of each
+    parent item. The user can click the button once instead of double-clicking
+    the parent item to expand or collapse the child. This style does not add
+    buttons to items at the root of the hierarchy. To do so, you must combine
+    &quot;Lines to join items&quot;,&nbsp; &quot;Lines at root position&quot;,
+    and this style.</li>
+  <li><b>Edit labels</b>.This style style makes it possible for the user to edit
+    the labels of tree-view items.</li>
+  <li><b>Lines at root position</b>. This style makes the control draw lines at
+    the root of the hierarchy.</li>
+  <li><b>Always shows selection</b>. This style causes a selected item to remain
+    selected when the tree-view control loses focus.</li>
+  <li>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="TVS_CHECKBOXES">
+    TVS_CHECKBOXES</MSHelp:link>
+    style creates checkboxes next to each item. If you want to use the checkbox
+    style, you must set the TVS_CHECKBOXES style (with <b>SetWindowLong</b>)
+    after you create the tree-view control and before you populate the tree.
+    Otherwise, the checkboxes might appear unchecked, depending on timing
+    issues.</li>
+</ul>
+<h3>Initializing the Image List</h3>
+<p>Every item in a tree-view control can have two images associated with it. An
+item displays one image when it is selected and the other when it is not. To
+include images with tree-view items, first use the <b>Image Lists</b> functions
+to create an image list and add images to it. Then associate the image list with
+the tree-view control by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_SETIMAGELIST_cpp">
+TVM_SETIMAGELIST</MSHelp:link>
+ message.</p>
+<p>The following example creates an image list, adds three bitmaps to the list,
+and associates the image list with a tree-view control.</p>
+<pre class="clsCode" style="DISPLAY: block" AUTOHILITE="1"><font color="blue">//</font><font color="green"> InitTreeViewImageLists - creates an image list, adds three bitmaps </font>
+<font color="blue">//</font><font color="green"> to it, and associates the image list with a tree-view control. </font>
+<font color="blue">//</font><font color="green"> Returns TRUE if successful, or FALSE otherwise. </font>
+<font color="blue">//</font><font color="green"> hwndTV - handle to the tree-view control. </font>
+<font color="blue">//</font>
+<font color="blue">//</font><font color="green"> Global variables and constants </font>
+<font color="blue">//</font><font color="green"> g_nOpen, g_nClosed, and g_nDocument - integer variables for </font>
+<font color="blue">//</font><font color="green"> indexes of the images. </font>
+<font color="blue">//</font><font color="green"> CX_BITMAP and CY_BITMAP - width and height of an icon. </font>
+<font color="blue">//</font><font color="green"> NUM_BITMAPS - number of bitmaps to add to the image list. </font>
+
+BOOL InitTreeViewImageLists(HWND hwndTV) 
+{ 
+    HIMAGELIST himl;  <font color="blue">//</font><font color="green"> handle to image list </font>
+    HBITMAP hbmp;     <font color="blue">//</font><font color="green"> handle to bitmap </font>
+
+    <font color="blue">//</font><font color="green"> Create the image list. </font>
+    if ((himl = ImageList_Create(CX_BITMAP, 
+                                 CY_BITMAP,
+                                 FALSE, 
+                                 NUM_BITMAPS, 0)) == NULL) 
+        return FALSE; 
+
+    <font color="blue">//</font><font color="green"> Add the open file, closed file, and document bitmaps. </font>
+    hbmp = LoadBitmap(g_hinst, MAKEINTRESOURCE(IDB_OPEN_FILE)); 
+    g_nOpen = ImageList_Add(himl, hbmp, (HBITMAP)NULL); 
+    DeleteObject(hbmp); 
+
+    hbmp = LoadBitmap(g_hinst, MAKEINTRESOURCE(IDB_CLOSED_FILE)); 
+    g_nClosed = ImageList_Add(himl, hbmp, (HBITMAP)NULL); 
+    DeleteObject(hbmp); 
+
+    hbmp = LoadBitmap(g_hinst, MAKEINTRESOURCE(IDB_DOCUMENT)); 
+    g_nDocument = ImageList_Add(himl, hbmp, (HBITMAP)NULL); 
+    DeleteObject(hbmp); 
+
+    <font color="blue">//</font><font color="green"> Fail if not all of the images were added. </font>
+    if (ImageList_GetImageCount(himl) &lt; 3) 
+        return FALSE; 
+
+    <font color="blue">//</font><font color="green"> Associate the image list with the tree-view control. </font>
+    TreeView_SetImageList(hwndTV, himl, TVSIL_NORMAL); 
+
+    return TRUE; 
+} </pre>
+<p>&nbsp;</p>
+<h3>Adding Tree-View Items</h3>
+<p>You add an item to a tree-view control by sending the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_INSERTITEM_cpp">
+TVM_INSERTITEM</MSHelp:link>
+ message to the control. The message includes the address of a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVINSERTSTRUCT_cpp">
+TVINSERTSTRUCT</MSHelp:link>
+ structure, specifying the parent item, the item after which the new item is
+inserted, and a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVITEM_cpp">
+TVITEM</MSHelp:link>
+ structure that defines the attributes of the item. The attributes include the
+item's label, its selected and nonselected images, and a 32-bit
+application-defined value.</p>
+<p>The example in this section demonstrates how to create a table of contents
+based on the information in a text file. The example includes two functions. The
+first function searches a file for headings. When it finds one, it extracts the
+text of the heading and the value that indicates the level of the heading and
+then passes them to the second function.</p>
+<p>The second function adds an item to a tree-view control, using the heading
+text as the item's label and the heading level to determine the parent item for
+the new item. A level one heading is added to the root of the tree-view control,
+a level two heading is added as a child item of the previous level one item, and
+so on. The function assigns an image to an item based on whether it has any
+child items. If an item has child items, it gets an image representing a closed
+folder. Otherwise, it gets an image representing a document. An item uses the
+same image for both the selected and nonselected states</p>
+<pre class="clsCode" style="DISPLAY: block" AUTOHILITE="1"><font color="blue">//</font><font color="green"> InitTreeViewItems - extracts headings from the specified file and </font>
+<font color="blue">//</font><font color="green"> passes them to a function that adds them to a tree-view control. </font>
+<font color="blue">//</font><font color="green"> Returns TRUE if successful, or FALSE otherwise. </font>
+<font color="blue">//</font><font color="green"> hwndTV - handle to the tree-view control. </font>
+<font color="blue">//</font><font color="green"> lpszFileName - name of file with headings.</font>
+
+BOOL InitTreeViewItems(HWND hwndTV, LPSTR lpszFileName) 
+{ 
+    HANDLE hf;            <font color="blue">//</font><font color="green"> handle to file </font>
+    char szItemText[128]; <font color="blue">//</font><font color="green"> label text of tree-view item </font>
+    int nLevel;           <font color="blue">//</font><font color="green"> heading level </font>
+
+    <font color="blue">//</font><font color="green"> Open the file to parse. </font>
+    if ((hf = CreateFile(lpszFileName, 
+                         GENERIC_READ,
+                         FILE_SHARE_READ, 
+                         (LPSECURITY_ATTRIBUTES)NULL, 
+					     OPEN_EXISTING,
+                         FILE_ATTRIBUTE_NORMAL,
+                         (HANDLE)NULL)) == (HANDLE)INVALID_HANDLE_VALUE) 
+         return FALSE; 
+
+    <font color="blue">//</font><font color="green"> Call private function to parse the file looking for headings.</font>
+    while (GetNextHeadingAndLevelFromFile(hf, szItemText, &amp;nLevel))
+
+         <font color="blue">//</font><font color="green"> Add the item to the tree-view control. </font>
+         AddItemToTree(hwndTV, szItemText, nLevel); 
+
+    return TRUE; 
+} 
+
+<font color="blue">//</font><font color="green"> AddItemToTree - adds items to a tree-view control. </font>
+<font color="blue">//</font><font color="green"> Returns the handle to the newly added item. </font>
+<font color="blue">//</font><font color="green"> hwndTV - handle to the tree-view control. </font>
+<font color="blue">//</font><font color="green"> lpszItem - text of the item to add. </font>
+<font color="blue">//</font><font color="green"> nLevel - level at which to add the item. </font>
+
+HTREEITEM AddItemToTree(HWND hwndTV, LPSTR lpszItem, int nLevel)
+{ 
+    TVITEM tvi; 
+    TVINSERTSTRUCT tvins; 
+    static HTREEITEM hPrev = (HTREEITEM)TVI_FIRST; 
+    static HTREEITEM hPrevRootItem = NULL; 
+    static HTREEITEM hPrevLev2Item = NULL; 
+    HTREEITEM hti; 
+
+    tvi.mask = TVIF_TEXT | TVIF_IMAGE 
+               | TVIF_SELECTEDIMAGE | TVIF_PARAM; 
+
+    <font color="blue">//</font><font color="green"> Set the text of the item. </font>
+    tvi.pszText = lpszItem; 
+    tvi.cchTextMax = sizeof(tvi.pszText)/sizeof(tvi.pszText[0]); 
+
+    <font color="blue">//</font><font color="green"> Assume the item is not a parent item, so give it a </font>
+    <font color="blue">//</font><font color="green"> document image. </font>
+    tvi.iImage = g_nDocument; 
+    tvi.iSelectedImage = g_nDocument; 
+
+    <font color="blue">//</font><font color="green"> Save the heading level in the item's application-defined </font>
+    <font color="blue">//</font><font color="green"> data area. </font>
+    tvi.lParam = (LPARAM)nLevel; 
+    tvins.item = tvi; 
+    tvins.hInsertAfter = hPrev; 
+
+    <font color="blue">//</font><font color="green"> Set the parent item based on the specified level. </font>
+    if (nLevel == 1) 
+        tvins.hParent = TVI_ROOT; 
+    else if (nLevel == 2) 
+        tvins.hParent = hPrevRootItem; 
+    else 
+        tvins.hParent = hPrevLev2Item; 
+
+    <font color="blue">//</font><font color="green"> Add the item to the tree-view control. </font>
+    hPrev = (HTREEITEM)SendMessage(hwndTV, 
+                                   TVM_INSERTITEM, 
+                                   0,
+                                   (LPARAM)(LPTVINSERTSTRUCT)&amp;tvins); 
+
+    <font color="blue">//</font><font color="green"> Save the handle to the item. </font>
+    if (nLevel == 1) 
+        hPrevRootItem = hPrev; 
+    else if (nLevel == 2) 
+        hPrevLev2Item = hPrev; 
+
+    <font color="blue">//</font><font color="green"> The new item is a child item. Give the parent item a </font>
+    <font color="blue">//</font><font color="green"> closed folder bitmap to indicate it now has child items. </font>
+    if (nLevel &gt; 1)
+    { 
+        hti = TreeView_GetParent(hwndTV, hPrev); 
+        tvi.mask = TVIF_IMAGE | TVIF_SELECTEDIMAGE; 
+        tvi.hItem = hti; 
+        tvi.iImage = g_nClosed; 
+        tvi.iSelectedImage = g_nClosed; 
+        TreeView_SetItem(hwndTV, &amp;tvi); 
+    } 
+
+    return hPrev; 
+} </pre>
+
+</body>
+
+</html>

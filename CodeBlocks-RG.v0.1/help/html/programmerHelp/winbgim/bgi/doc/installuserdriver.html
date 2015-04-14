@@ -1,0 +1,115 @@
+<TITLE>BGI Documentation for 
+installuserdriver
+</TITLE>
+<H2>
+installuserdriver
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+int installuserdriver(char *name, int huge (*detect)(void));
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+installuserdriver lets you add a vendor-added device driver to the BGI internal table. The name parameter is the name of the new device-driver file (.BGI), and the detect parameter is a pointer to an optional autodetect function that can accompany the new driver. This autodetect function takes no parameters and returns an integer value.
+<P>
+There are two ways to use this vendor-supplied driver. Suppose you have a new video card called the Spiffy Graphics Array (SGA) and that the SGA manufacturer provided you with a BGI device driver (SGA.BGI). The easiest way to use this driver is to install it by calling installuserdriver and then passing the return value (the assigned driver number) directly to initgraph.
+<P>
+The other, more general way to use this driver is to link in an autodetect function that will be called by initgraph as part of its hardware-detection logic (presumably, the manufacturer of the SGA gave you this autodetect function). When you install the driver (by calling installuserdriver), you pass the address of this function, along with the device driver's file name.
+<P>
+After you install the device-driver file name and the SGA autodetect function, call initgraph and let it go through its normal autodetection process. Before initgraph calls its built-in autodetection function (detectgraph), it first calls the SGA autodetect function. If the SGA autodetect function doesn't find the SGA hardware, it returns a value of -11 (grError), and initgraph proceeds with its normal hardware detection logic (which can include calling any other vendor-supplied autodetection functions in the order in which they were "installed"). If, however, the autodetect function determines that an SGA is present, it returns a nonnegative mode number; then initgraph locates and loads SGA.BGI, puts the hardware into the default graphics mode recommended by the autodetect function, and finally returns control to your program.
+<P>
+You can install up to ten drivers at one time.
+
+
+<P><DT><B>Return Value</B><DD>
+The value returned by installuserdriver is the driver number parameter you would pass to initgraph in order to select the newly installed driver manually.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+installuserdriver is not available in the <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation.
+
+<P><DT><B>See also</B>
+<DD><A HREF="initgraph.html"> initgraph </A>
+<DD><A HREF="registerbgidriver.html"> registerbgidriver </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* installuserdriver example */ 
+
+#include <graphics.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+
+/* function prototypes */
+int huge detectEGA(void);
+void checkerrors(void);
+int main(void)
+{
+   int gdriver, gmode;
+
+   /* install a user written device driver */
+   gdriver = installuserdriver("EGA", detectEGA);
+
+   /* must force use of detection routine */
+   gdriver = DETECT;
+
+   /* check for any installation errors */
+   checkerrors();
+
+   /* initialize graphics and local variables */
+
+   initgraph(&gdriver, &gmode, "");
+
+   /* check for any initialization errors */
+   checkerrors();
+
+   /* draw a line */
+   line(0, 0, getmaxx(), getmaxy());
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+
+/* detects EGA or VGA cards */
+int huge detectEGA(void)
+{
+   int driver, mode, sugmode = 0;
+   detectgraph(&driver, &mode);
+   if ((driver == EGA) || (driver == VGA))
+      return sugmode;      /* return suggested video mode number */
+
+   else
+      return grError;      /* return an error code */
+}
+
+/* check for and report any graphics errors */
+void checkerrors(void)
+{
+   int errorcode;
+
+   /* read result of last graphics operation */
+   errorcode = graphresult();
+   if (errorcode != grOk) {
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);
+   }
+}
+</PRE>
+
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

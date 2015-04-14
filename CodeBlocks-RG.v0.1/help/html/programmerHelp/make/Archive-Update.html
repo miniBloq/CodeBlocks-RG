@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Archive%20Update">Archive Update</a>,
+Next:<a rel="next" accesskey="n" href="Archive-Pitfalls.html#Archive%20Pitfalls">Archive Pitfalls</a>,
+Previous:<a rel="previous" accesskey="p" href="Archive-Members.html#Archive%20Members">Archive Members</a>,
+Up:<a rel="up" accesskey="u" href="Archives.html#Archives">Archives</a>
+<hr><br>
+</div>
+
+<h3 class="section">Implicit Rule for Archive Member Targets</h3>
+
+   <p>Recall that a target that looks like <code></code><var>a</var><code>(</code><var>m</var><code>)</code> stands for the
+member named <var>m</var> in the archive file <var>a</var>.
+
+   <p>When <code>make</code> looks for an implicit rule for such a target, as a special
+feature it considers implicit rules that match <code>(</code><var>m</var><code>)</code>, as well as
+those that match the actual target <code></code><var>a</var><code>(</code><var>m</var><code>)</code>.
+
+   <p>This causes one special rule whose target is <code>(%)</code> to match.  This
+rule updates the target <code></code><var>a</var><code>(</code><var>m</var><code>)</code> by copying the file <var>m</var>
+into the archive.  For example, it will update the archive member target
+<code>foo.a(bar.o)</code> by copying the <em>file</em> <code>bar.o</code> into the
+archive <code>foo.a</code> as a <em>member</em> named <code>bar.o</code>.
+
+   <p>When this rule is chained with others, the result is very powerful. 
+Thus, <code>make "foo.a(bar.o)"</code> (the quotes are needed to protect the
+<code>(</code> and <code>)</code> from being interpreted specially by the shell) in
+the presence of a file <code>bar.c</code> is enough to cause the following
+commands to be run, even without a makefile:
+
+<pre class="example">     cc -c bar.c -o bar.o
+     ar r foo.a bar.o
+     rm -f bar.o
+     </pre>
+
+<p>Here <code>make</code> has envisioned the file <code>bar.o</code> as an intermediate
+file.  See <a href="Chained-Rules.html#Chained%20Rules">Chains of Implicit Rules</a>.
+
+   <p>Implicit rules such as this one are written using the automatic variable
+<code>$%</code>.  See <a href="Automatic.html#Automatic">Automatic Variables</a>.
+
+   <p>An archive member name in an archive cannot contain a directory name, but
+it may be useful in a makefile to pretend that it does.  If you write an
+archive member target <code>foo.a(dir/file.o)</code>, <code>make</code> will perform
+automatic updating with this command:
+
+<pre class="example">     ar r foo.a dir/file.o
+     </pre>
+
+<p>which has the effect of copying the file <code>dir/file.o</code> into a member
+named <code>file.o</code>.  In connection with such usage, the automatic variables
+<code>%D</code> and <code>%F</code> may be useful.
+
+<ul class="menu">
+<li><a accesskey="1" href="Archive-Symbols.html#Archive%20Symbols">Archive Symbols</a>:              How to update archive symbol directories. 
+</ul>
+
+   </body></html>
+

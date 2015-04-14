@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Force%20Targets">Force Targets</a>,
+Next:<a rel="next" accesskey="n" href="Empty-Targets.html#Empty%20Targets">Empty Targets</a>,
+Previous:<a rel="previous" accesskey="p" href="Phony-Targets.html#Phony%20Targets">Phony Targets</a>,
+Up:<a rel="up" accesskey="u" href="Rules.html#Rules">Rules</a>
+<hr><br>
+</div>
+
+<h3 class="section">Rules without Commands or Prerequisites</h3>
+
+   <p>If a rule has no prerequisites or commands, and the target of the rule
+is a nonexistent file, then <code>make</code> imagines this target to have
+been updated whenever its rule is run.  This implies that all targets
+depending on this one will always have their commands run.
+
+   <p>An example will illustrate this:
+
+<pre class="example">     clean: FORCE
+             rm $(objects)
+     FORCE:
+     </pre>
+
+   <p>Here the target <code>FORCE</code> satisfies the special conditions, so the
+target <code>clean</code> that depends on it is forced to run its commands. 
+There is nothing special about the name <code>FORCE</code>, but that is one name
+commonly used this way.
+
+   <p>As you can see, using <code>FORCE</code> this way has the same results as using
+<code>.PHONY: clean</code>.
+
+   <p>Using <code>.PHONY</code> is more explicit and more efficient.  However,
+other versions of <code>make</code> do not support <code>.PHONY</code>; thus
+<code>FORCE</code> appears in many makefiles.  See <a href="Phony-Targets.html#Phony%20Targets">Phony Targets</a>.
+
+   </body></html>
+

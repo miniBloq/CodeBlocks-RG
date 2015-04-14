@@ -1,0 +1,4361 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>C++ Algorithms</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C++ Algorithms</a>
+  </div>
+
+  <div class="name-format">
+    accumulate
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;numeric&gt;
+  <a href=
+"../containers.html">TYPE</a> accumulate( iterator start, iterator end, <a href="../containers.html">TYPE</a> val );
+  <a href=
+"../containers.html">TYPE</a> accumulate( iterator start, iterator end, <a href="../containers.html">TYPE</a> val, BinaryFunction f );
+</pre>
+
+  <p>The accummulate() function computes the sum of <em>val</em> and
+  all of the elements in the range [<em>start</em>,<em>end</em>).</p>
+
+  <p>If the binary function <em>f</em> if specified, it is used instead
+  of the + operator to perform the summation.</p>
+
+  <p>accumulate() runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="adjacent_difference.html">adjacent_difference</a><br>
+    <a href="count.html">count</a><br>
+    <a href="inner_product.html">inner_product</a><br>
+    <a href="partial_sum.html">partial_sum</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    adjacent_difference
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;numeric&gt;
+  iterator adjacent_difference( iterator start, iterator end, iterator result );
+  iterator adjacent_difference( iterator start, iterator end, iterator result, BinaryFunction f );
+</pre>
+
+  <p>The adjacent_difference() function calculates the differences
+  between adjacent elements in the range [<em>start</em>,<em>end</em>)
+  and stores the result starting at <em>result</em>.</p>
+
+  <p>If a binary function <em>f</em> is given, it is used instead of
+  the - operator to compute the differences.</p>
+
+  <p>adjacent_difference() runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="accumulate.html">accumulate</a><br>
+    <a href="count.html">count</a><br>
+    <a href="inner_product.html">inner_product</a><br>
+    <a href="partial_sum.html">partial_sum</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    adjacent_find
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator adjacent_find( iterator start, iterator end );
+  iterator adjacent_find( iterator start, iterator end, BinPred pr );
+</pre>
+
+  <p>The adjacent_find() function searches between <em>start</em> and
+  <em>end</em> for two consecutive identical elements. If the binary
+  predicate <em>pr</em> is specified, then it is used to test whether
+  two elements are the same or not.</p>
+
+  <p>The return value is an iterator that points to the first of the
+  two elements that are found. If no matching elements are found, the
+  returned iterator points to <em>end</em>.</p>
+
+  <p>For example, the following code creates a vector containing the
+  integers between 0 and 10 with 7 appearing twice in a row.
+  adjacent_find() is then used to find the location of the pair of
+  7&#39;s:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v1;
+ for( int i = 0; i &lt; 10; i++ ) {
+   v1.push_back(i);
+   // add a duplicate 7 into v1
+   if( i == 7 ) {
+     v1.push_back(i);           
+
+   }
+ }              
+
+ vector&lt;int&gt;::iterator result;
+ result = adjacent_find( v1.begin(), v1.end() );                
+
+ if( result == v1.end() ) {
+   cout &lt;&lt; &quot;Did not find adjacent elements in v1&quot; &lt;&lt; endl;
+ }              
+
+ else {
+   cout &lt;&lt; &quot;Found matching adjacent elements starting at &quot; &lt;&lt; *result &lt;&lt; endl;
+ }              
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="find.html">find</a><br>
+    <a href="find_end.html">find_end</a><br>
+    <a href="find_first_of.html">find_first_of</a><br>
+    <a href="find_if.html">find_if</a><br>
+    <a href="unique.html">unique</a><br>
+    <a href="unique_copy.html">unique_copy</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    binary_search
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  bool binary_search( iterator start, iterator end, const <a href=
+"../containers.html">TYPE</a>&amp; val );
+  bool binary_search( iterator start, iterator end, const <a href=
+"../containers.html">TYPE</a>&amp; val, Comp f );
+</pre>
+
+  <p>The binary_search() function searches from <em>start</em> to
+  <em>end</em> for <em>val</em>. The elements between <em>start</em>
+  and <em>end</em> that are searched should be in ascending order as
+  defined by the &lt; operator. Note that a binary search <strong>will
+  not work</strong> unless the elements being searched are in
+  order.</p>
+
+  <p>If <em>val</em> is found, binary_search() returns true, otherwise
+  false.</p>
+
+  <p>If the function <em>f</em> is specified, then it is used to
+  compare elements.</p>
+
+  <p>For example, the following code uses binary_search() to determine
+  if the integers 0-9 are in an array of integers:</p>
+<pre class="prettyprint">
+ int nums[] = { -242, -1, 0, 5, 8, 9, 11 };
+ int start = 0;
+ int end = 7;           
+
+ for( int i = 0; i &lt; 10; i++ ) {
+   if( binary_search( nums+start, nums+end, i ) ) {
+     cout &lt;&lt; &quot;nums[] contains &quot; &lt;&lt; i &lt;&lt; endl;
+   } else {
+     cout &lt;&lt; &quot;nums[] DOES NOT contain &quot; &lt;&lt; i &lt;&lt; endl;
+   }
+ }              
+</pre>
+
+  <p>When run, this code displays the following output:</p>
+<pre class="prettyprint">
+ nums[] contains 0
+ nums[] DOES NOT contain 1
+ nums[] DOES NOT contain 2
+ nums[] DOES NOT contain 3
+ nums[] DOES NOT contain 4
+ nums[] contains 5
+ nums[] DOES NOT contain 6
+ nums[] DOES NOT contain 7
+ nums[] contains 8
+ nums[] contains 9              
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="equal_range.html">equal_range</a><br>
+    <a href="is_sorted.html">is_sorted</a><br>
+    <a href="lower_bound.html">lower_bound</a><br>
+    <a href="partial_sort.html">partial_sort</a><br>
+    <a href="partial_sort_copy.html">partial_sort_copy</a><br>
+    <a href="sort.html">sort</a><br>
+    <a href="stable_sort.html">stable_sort</a><br>
+    <a href="upper_bound.html">upper_bound</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    copy
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator copy( iterator start, iterator end, iterator dest );
+</pre>
+
+  <p>The copy() function copies the elements between <em>start</em> and
+  <em>end</em> to <em>dest</em>. In other words, after copy() has
+  run,</p>
+<pre class="prettyprint">
+ *dest == *start
+ *(dest+1) == *(start+1)
+ *(dest+2) == *(start+2)
+ ...
+ *(dest+N) == *(start+N)                
+</pre>
+
+  <p>The return value is an iterator to the last element copied. copy()
+  runs in <a href="../complexity.html">linear time</a>.</p>
+
+  <p>For example, the following code uses copy() to copy the contents
+  of one vector to another:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; from_vector;
+ for( int i = 0; i &lt; 10; i++ ) {
+   from_vector.push_back( i );
+ }              
+
+ vector&lt;int&gt; to_vector(10);               
+
+ copy( from_vector.begin(), from_vector.end(), to_vector.begin() );             
+
+ cout &lt;&lt; &quot;to_vector contains: &quot;;
+ for( unsigned int i = 0; i &lt; to_vector.size(); i++ ) {
+   cout &lt;&lt; to_vector[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="copy_backward.html">copy_backward</a><br>
+    <a href="copy_n.html">copy_n</a><br>
+    <a href="generate.html">generate</a><br>
+    <a href="remove_copy.html">remove_copy</a><br>
+    <a href="swap.html">swap</a><br>
+    <a href="transform.html">transform</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    copy_backward
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator copy_backward( iterator start, iterator end, iterator dest );
+</pre>
+
+  <p>copy_backward() is similar to (C++ Strings) <a href=
+  "../cppstring/copy.html">copy</a>(), in that both functions copy
+  elements from <em>start</em> to <em>end</em> to <em>dest</em>. The
+  copy_backward() function , however, starts depositing elements at
+  <em>dest</em> and then works backwards, such that:</p>
+<pre class="prettyprint">
+ *(dest-1) == *(end-1)
+ *(dest-2) == *(end-2)
+ *(dest-3) == *(end-3)
+ ...
+ *(dest-N) == *(end-N)          
+</pre>
+
+  <p>The following code uses copy_backward() to copy 10 integers into
+  the end of an empty vector:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; from_vector;
+ for( int i = 0; i &lt; 10; i++ ) {
+   from_vector.push_back( i );
+ }              
+
+ vector&lt;int&gt; to_vector(15);               
+
+ copy_backward( from_vector.begin(), from_vector.end(), to_vector.end() );              
+
+ cout &lt;&lt; &quot;to_vector contains: &quot;;
+ for( unsigned int i = 0; i &lt; to_vector.size(); i++ ) {
+   cout &lt;&lt; to_vector[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+</pre>
+
+  <p>The above code produces the following output:</p>
+<pre class="prettyprint">
+ to_vector contains: 0 0 0 0 0 0 1 2 3 4 5 6 7 8 9              
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="copy.html">copy</a><br>
+    <a href="copy_n.html">copy_n</a><br>
+    <a href="swap.html">swap</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    copy_n
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator copy_n( iterator from, size_t num, iterator to ); 
+</pre>
+
+  <p>The copy_n() function copies <em>num</em> elements starting at
+  <em>from</em> to the destination pointed at by <em>to</em>. To put it
+  another way, copy_n() performs <em>num</em> assignments and
+  duplicates a subrange.</p>
+
+  <p>The return value of copy_n() is an iterator that points to the
+  last element that was copied, i.e. (to + num).</p>
+
+  <p>This function runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="copy.html">copy</a><br>
+    <a href="copy_backward.html">copy_backward</a><br>
+    <a href="swap.html">swap</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    count
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  size_t count( iterator start, iterator end, const <a href=
+"../containers.html">TYPE</a>&amp; val );
+</pre>
+
+  <p>The count() function returns the number of elements between
+  <em>start</em> and <em>end</em> that match <em>val</em>.</p>
+
+  <p>For example, the following code uses count() to determine how many
+  integers in a vector match a target value:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v;
+ for( int i = 0; i &lt; 10; i++ ) {
+   v.push_back( i );
+ }              
+
+ int target_value = 3;
+ int num_items = count( v.begin(), v.end(), target_value );             
+
+ cout &lt;&lt; &quot;v contains &quot; &lt;&lt; num_items &lt;&lt; &quot; items matching &quot; &lt;&lt; target_value &lt;&lt; endl;            
+</pre>
+
+  <p>The above code displays the following output:</p>
+<pre class="prettyprint">
+ v contains 1 items matching 3          
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="accumulate.html">accumulate</a><br>
+    <a href="adjacent_difference.html">adjacent_difference</a><br>
+    <a href="count_if.html">count_if</a><br>
+    <a href="inner_product.html">inner_product</a><br>
+    <a href="partial_sum.html">partial_sum</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    count_if
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  size_t count_if( iterator start, iterator end, UnaryPred p );
+</pre>
+
+  <p>The count_if() function returns the number of elements between
+  <em>start</em> and <em>end</em> for which the predicate <em>p</em>
+  returns true.</p>
+
+  <p>For example, the following code uses count_if() with a predicate
+  that returns true for the integer 3 to count the number of items in
+  an array that are equal to 3:</p>
+<pre class="prettyprint">
+ int nums[] = { 0, 1, 2, 3, 4, 5, 9, 3, 13 };
+ int start = 0;
+ int end = 9;           
+
+ int target_value = 3;
+ int num_items = count_if( nums+start,
+                    nums+end,
+                    bind2nd(equal_to&lt;int&gt;(), target_value) );             
+
+ cout &lt;&lt; &quot;nums[] contains &quot; &lt;&lt; num_items &lt;&lt; &quot; items matching &quot; &lt;&lt; target_value &lt;&lt; endl;               
+</pre>
+
+  <p>When run, the above code displays the following output:</p>
+<pre class="prettyprint">
+ nums[] contains 2 items matching 3             
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="count.html">count</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    equal
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  bool equal( iterator start1, iterator end1, iterator start2 );
+  bool equal( iterator start1, iterator end1, iterator start2, BinPred p );
+</pre>
+
+  <p>The equal() function returns true if the elements in two ranges
+  are the same. The first range of elements are those between
+  <em>start1</em> and <em>end1</em>. The second range of elements has
+  the same size as the first range but starts at <em>start2</em>.</p>
+
+  <p>If the binary predicate <em>p</em> is specified, then it is used
+  instead of == to compare each pair of elements.</p>
+
+  <p>For example, the following code uses equal() to compare two
+  vectors of integers:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v1;
+ for( int i = 0; i &lt; 10; i++ ) {
+   v1.push_back( i );
+ }              
+
+ vector&lt;int&gt; v2;
+ for( int i = 0; i &lt; 10; i++ ) {
+   v2.push_back( i );
+ }              
+
+ if( equal( v1.begin(), v1.end(), v2.begin() ) ) {
+   cout &lt;&lt; &quot;v1 and v2 are equal&quot; &lt;&lt; endl;
+ } else {
+   cout &lt;&lt; &quot;v1 and v2 are NOT equal&quot; &lt;&lt; endl;
+ }              
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="find_if.html">find_if</a><br>
+    <a href=
+    "lexicographical_compare.html">lexicographical_compare</a><br>
+    <a href="mismatch.html">mismatch</a><br>
+    <a href="search.html">search</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    equal_range
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  pair&lt;iterator,iterator&gt; equal_range( iterator first, iterator last, const <a href="../containers.html">TYPE</a>&amp; val );
+  pair&lt;iterator,iterator&gt; equal_range( iterator first, iterator last, const <a href="../containers.html">TYPE</a>&amp; val, CompFn comp );
+</pre>
+
+  <p>The equal_range() function returns the range of elements between
+  <em>first</em> and <em>last</em> that are equal to <em>val</em>. This
+  function assumes that the elements between <em>first</em> and
+  <em>last</em> are in order according to <em>comp</em>, if it is
+  specified, or the &lt; operator otherwise.</p>
+
+  <p>equal_range() can be thought of as a combination of the <a href=
+  "lower_bound.html">lower_bound</a>() and `upper_bound1`() functions,
+  since the first of the pair of iterators that it returns is what
+  <a href="lower_bound.html">lower_bound</a>() returns and the second
+  iterator in the pair is what `upper_bound1`() returns.</p>
+
+  <p>For example, the following code uses equal_range() to determine
+  all of the possible places that the number 8 can be inserted into an
+  ordered vector of integers such that the existing ordering is
+  preserved:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; nums;
+ nums.push_back( -242 );
+ nums.push_back( -1 );
+ nums.push_back( 0 );
+ nums.push_back( 5 );
+ nums.push_back( 8 );
+ nums.push_back( 8 );
+ nums.push_back( 11 );          
+
+ pair&lt;vector&lt;int&gt;::iterator, vector&lt;int&gt;::iterator&gt; result;
+ int new_val = 8;               
+
+ result = equal_range( nums.begin(), nums.end(), new_val );             
+
+ cout &lt;&lt; &quot;The first place that &quot; &lt;&lt; new_val &lt;&lt; &quot; could be inserted is before &quot;
+      &lt;&lt; *result.first &lt;&lt; &quot;, and the last place that it could be inserted is before &quot;
+      &lt;&lt; *result.second &lt;&lt; endl;            
+</pre>
+
+  <p>The above code produces the following output:</p>
+<pre class="prettyprint">
+ The first place that 8 could be inserted is before 8,
+ and the last place that it could be inserted is before 11              
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="binary_search.html">binary_search</a><br>
+    <a href="lower_bound.html">lower_bound</a><br>
+    <a href="upper_bound.html">upper_bound</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    fill
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  #include &lt;algorithm&gt;
+  void fill( iterator start, iterator end, const <a href=
+"../containers.html">TYPE</a>&amp; val );
+</pre>
+
+  <p>The function fill() assigns <em>val</em> to all of the elements
+  between <em>start</em> and <em>end</em>.</p>
+
+  <p>For example, the following code uses fill() to set all of the
+  elements of a vector of integers to -1:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v1;
+ for( int i = 0; i &lt; 10; i++ ) {
+   v1.push_back( i );
+ }              
+
+ cout &lt;&lt; &quot;Before, v1 is: &quot;;
+ for( unsigned int i = 0; i &lt; v1.size(); i++ ) {
+   cout &lt;&lt; v1[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+
+ fill( v1.begin(), v1.end(), -1 );              
+
+ cout &lt;&lt; &quot;After, v1 is: &quot;;
+ for( unsigned int i = 0; i &lt; v1.size(); i++ ) {
+   cout &lt;&lt; v1[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+</pre>
+
+  <p>When run, the above code displays:</p>
+<pre class="prettyprint">
+ Before, v1 is: 0 1 2 3 4 5 6 7 8 9
+ After, v1 is: -1 -1 -1 -1 -1 -1 -1 -1 -1 -1            
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fill_n.html">fill_n</a><br>
+    <a href="generate.html">generate</a><br>
+    <a href="transform.html">transform</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    fill_n
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  #include &lt;algorithm&gt;
+  iterator fill_n( iterator start, size_t n, const <a href=
+"../containers.html">TYPE</a>&amp; val );
+</pre>
+
+  <p>The fill_n() function is similar to (C++ I/O) <a href=
+  "../cppio/fill.html">fill</a>(). Instead of assigning <em>val</em> to
+  a range of elements, however, fill_n() assigns <em>val</em> to the
+  first <em>n</em> elements starting at <em>start</em>.</p>
+
+  <p>For example, the following code uses fill_n() to assign -1 to the
+  first half of a vector of integers:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v1;
+ for( int i = 0; i &lt; 10; i++ ) {
+   v1.push_back( i );
+ }              
+
+ cout &lt;&lt; &quot;Before, v1 is: &quot;;
+ for( unsigned int i = 0; i &lt; v1.size(); i++ ) {
+   cout &lt;&lt; v1[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+
+ fill_n( v1.begin(), v1.size()/2, -1 );         
+
+ cout &lt;&lt; &quot;After, v1 is: &quot;;
+ for( unsigned int i = 0; i &lt; v1.size(); i++ ) {
+   cout &lt;&lt; v1[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+</pre>
+
+  <p>When run, this code displays:</p>
+<pre class="prettyprint">
+ Before, v1 is: 0 1 2 3 4 5 6 7 8 9
+ After, v1 is: -1 -1 -1 -1 -1 5 6 7 8 9         
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="fill.html">fill</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    find
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator find( iterator start, iterator end, const <a href=
+"../containers.html">TYPE</a>&amp; val );
+</pre>
+
+  <p>The find() algorithm looks for an element matching <em>val</em>
+  between <em>start</em> and <em>end</em>. If an element matching
+  <em>val</em> is found, the return value is an iterator that points to
+  that element. Otherwise, the return value is an iterator that points
+  to <em>end</em>.</p>
+
+  <p>For example, the following code uses find() to search a vector of
+  integers for the number 3:</p>
+<pre class="prettyprint">
+ int num_to_find = 3;           
+
+ vector&lt;int&gt; v1;
+ for( int i = 0; i &lt; 10; i++ ) {
+   v1.push_back(i);
+ }              
+
+ vector&lt;int&gt;::iterator result;
+ result = find( v1.begin(), v1.end(), num_to_find );            
+
+ if( result == v1.end() ) {
+   cout &lt;&lt; &quot;Did not find any element matching &quot; &lt;&lt; num_to_find &lt;&lt; endl;
+ }              
+
+ else {
+   cout &lt;&lt; &quot;Found a matching element: &quot; &lt;&lt; *result &lt;&lt; endl;
+ }              
+</pre>
+
+  <p>In the next example, shown below, the find() function is used on
+  an array of integers. This example shows how the C++ Algorithms can
+  be used to manipulate arrays and pointers in the same manner that
+  they manipulate containers and iterators:</p>
+<pre class="prettyprint">
+ int nums[] = { 3, 1, 4, 1, 5, 9 };
+
+ int num_to_find = 5;
+ int start = 0;
+ int end = 2;
+ int* result = find( nums + start, nums + end, num_to_find );                
+
+ if( result == nums + end ) {
+   cout &lt;&lt; &quot;Did not find any number matching &quot; &lt;&lt; num_to_find &lt;&lt; endl;
+ } else {
+   cout &lt;&lt; &quot;Found a matching number: &quot; &lt;&lt; *result &lt;&lt; endl;
+ }              
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="adjacent_find.html">adjacent_find</a><br>
+    <a href="find_end.html">find_end</a><br>
+    <a href="find_first_of.html">find_first_of</a><br>
+    <a href="find_if.html">find_if</a><br>
+    <a href="mismatch.html">mismatch</a><br>
+    <a href="search.html">search</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    find_end
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator find_end( iterator start, iterator end, iterator seq_start, iterator seq_end );
+  iterator find_end( iterator start, iterator end, iterator seq_start, iterator seq_end, BinPred bp );
+</pre>
+
+  <p>The find_end() function searches for the sequence of elements
+  denoted by <em>seq_start</em> and <em>seq_end</em>. If such a
+  sequence if found between <em>start</em> and <em>end</em>, an
+  iterator to the first element of the last found sequence is returned.
+  If no such sequence is found, an iterator pointing to <em>end</em> is
+  returned.</p>
+
+  <p>If the binary predicate <em>bp</em> is specified, then it is used
+  to when elements match.</p>
+
+  <p>For example, the following code uses find_end() to search for two
+  different sequences of numbers. The the first chunk of code, the last
+  occurence of &quot;1 2 3&quot; is found. In the second chunk of code,
+  the sequence that is being searched for is not found:</p>
+<pre class="prettyprint">
+ int nums[] = { 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4 };
+ int* result;
+ int start = 0;
+ int end = 11;          
+
+ int target1[] = { 1, 2, 3 };
+ result = find_end( nums + start, nums + end, target1 + 0, target1 + 2 );
+ if( *result == nums[end] ) {
+   cout &lt;&lt; &quot;Did not find any subsequence matching { 1, 2, 3 }&quot; &lt;&lt; endl;
+ } else {
+   cout &lt;&lt; &quot;The last matching subsequence is at: &quot; &lt;&lt; *result &lt;&lt; endl;
+ }              
+
+ int target2[] = { 3, 2, 3 };
+ result = find_end( nums + start, nums + end, target2 + 0, target2 + 2 );
+ if( *result == nums[end] ) {
+   cout &lt;&lt; &quot;Did not find any subsequence matching { 3, 2, 3 }&quot; &lt;&lt; endl;
+ } else {
+   cout &lt;&lt; &quot;The last matching subsequence is at: &quot; &lt;&lt; *result &lt;&lt; endl;
+ }              
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="adjacent_find.html">adjacent_find</a><br>
+    <a href="find.html">find</a><br>
+    <a href="find_first_of.html">find_first_of</a><br>
+    <a href="find_if.html">find_if</a><br>
+    <a href="search_n.html">search_n</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    find_first_of
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator find_first_of( iterator start, iterator end, iterator find_start, iterator find_end );
+  iterator find_first_of( iterator start, iterator end, iterator find_start, iterator find_end, BinPred bp );
+</pre>
+
+  <p>The find_first_of() function searches for the first occurence of
+  any element between <em>find_start</em> and <em>find_end</em>. The
+  data that are searched are those between <em>start</em> and
+  <em>end</em>.</p>
+
+  <p>If any element between <em>find_start</em> and <em>find_end</em>
+  is found, an iterator pointing to that element is returned.
+  Otherwise, an iterator pointing to <em>end</em> is returned.</p>
+
+  <p>For example, the following code searches for a 9, 4, or 7 in an
+  array of integers:</p>
+<pre class="prettyprint">
+ int nums[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+ int* result;
+ int start = 0;
+ int end = 10;          
+
+ int targets[] = { 9, 4, 7 };
+ result = find_first_of( nums + start, nums + end, targets + 0, targets + 2 );
+ if( *result == nums[end] ) {
+   cout &lt;&lt; &quot;Did not find any of { 9, 4, 7 }&quot; &lt;&lt; endl;
+ } else {
+   cout &lt;&lt; &quot;Found a matching target: &quot; &lt;&lt; *result &lt;&lt; endl;
+ }              
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="adjacent_find.html">adjacent_find</a><br>
+    <a href="find.html">find</a><br>
+    <a href="find_end.html">find_end</a><br>
+    <a href="find_if.html">find_if</a><br>
+    (Standard C String and Character) <a href=
+    "../stdstring/strpbrk.html">strpbrk</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    find_if
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator find_if( iterator start, iterator end, UnPred up );
+</pre>
+
+  <p>The find_if() function searches for the first element between
+  <em>start</em> and <em>end</em> for which the unary predicate
+  <em>up</em> returns true.</p>
+
+  <p>If such an element is found, an iterator pointing to that element
+  is returned. Otherwise, an iterator pointing to <em>end</em> is
+  returned.</p>
+
+  <p>For example, the following code uses find_if() and a
+  &quot;greater-than-zero&quot; unary predicate to the first positive,
+  non-zero number in a list of numbers:</p>
+<pre class="prettyprint">
+ int nums[] = { 0, -1, -2, -3, -4, 342, -5 };
+ int* result;
+ int start = 0;
+ int end = 7;           
+
+ result = find_if( nums + start, nums + end, bind2nd(greater&lt;int&gt;(), 0));
+ if( *result == nums[end] ) {
+   cout &lt;&lt; &quot;Did not find any number greater than zero&quot; &lt;&lt; endl;
+ } else {
+   cout &lt;&lt; &quot;Found a positive non-zero number: &quot; &lt;&lt; *result &lt;&lt; endl;
+ }              
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="adjacent_find.html">adjacent_find</a><br>
+    <a href="equal.html">equal</a><br>
+    <a href="find.html">find</a><br>
+    <a href="find_end.html">find_end</a><br>
+    <a href="find_first_of.html">find_first_of</a><br>
+    <a href="search_n.html">search_n</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    for_each
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  UnaryFunction for_each( iterator start, iterator end, UnaryFunction f );
+</pre>
+
+  <p>The for_each() algorithm applies the function <em>f</em> to each
+  of the elements between <em>start</em> and <em>end</em>. The return
+  value of for_each() is <em>f</em>.</p>
+
+  <p>For example, the following code snippets define a unary function
+  then use it to increment all of the elements of an array:</p>
+<pre class="prettyprint">
+ template&lt;class <a href=
+"../containers.html">TYPE</a>&gt; struct increment : public unary_function&lt;<a href="../containers.html">TYPE</a>, void&gt; {
+   void operator() (<a href="../containers.html">TYPE</a>&amp; x) {
+     x++;
+   }
+ };             
+
+ ...            
+
+ int nums[] = {3, 4, 2, 9, 15, 267};
+ const int N = 6;               
+
+ cout &lt;&lt; &quot;Before, nums[] is: &quot;;
+ for( int i = 0; i &lt; N; i++ ) {
+   cout &lt;&lt; nums[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+
+ for_each( nums, nums + N, increment&lt;int&gt;() );            
+
+ cout &lt;&lt; &quot;After, nums[] is: &quot;;
+ for( int i = 0; i &lt; N; i++ ) {
+   cout &lt;&lt; nums[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+</pre>
+
+  <p>The above code displays the following output:</p>
+<pre class="prettyprint">
+ Before, nums[] is: 3 4 2 9 15 267
+ After, nums[] is: 4 5 3 10 16 268              
+</pre>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    generate
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  void generate( iterator start, iterator end, Generator g );
+</pre>
+
+  <p>The generate() function runs the Generator function object
+  <em>g</em> a number of times, saving the result of each execution in
+  the range [<em>start</em>,<em>end</em>).</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="copy.html">copy</a><br>
+    <a href="fill.html">fill</a><br>
+    <a href="generate_n.html">generate_n</a><br>
+    <a href="transform.html">transform</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    generate_n
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator generate_n( iterator result, size_t num, Generator g );
+</pre>
+
+  <p>The generate_n() function runs the Generator function object
+  <em>g</em> <em>num</em> times, saving the result of each execution in
+  <em>result</em>, (<em>result</em>+1), etc.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="generate.html">generate</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    includes
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  bool includes( iterator start1, iterator end1, iterator start2, iterator end2 );
+  bool includes( iterator start1, iterator end1, iterator start2, iterator end2, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The includes() algorithm returns true if every element in
+  [<em>start2</em>,<em>end2</em>) is also in
+  [<em>start1</em>,<em>end1</em>). Both of the given ranges must be
+  sorted in ascending order.</p>
+
+  <p>By default, the &lt; operator is used to compare elements. If the
+  strict weak ordering function object <em>cmp</em> is given, then it
+  is used instead.</p>
+
+  <p>includes() runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="set_difference.html">set_difference</a><br>
+    <a href="set_intersection.html">set_intersection</a><br>
+    <a href=
+    "set_symmetric_difference.html">set_symmetric_difference</a><br>
+    <a href="set_union.html">set_union</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    inner_product
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;numeric&gt;
+  <a href=
+"../containers.html">TYPE</a> inner_product( iterator start1, iterator end1, iterator start2, <a href="../containers.html">TYPE</a> val );
+  <a href=
+"../containers.html">TYPE</a> inner_product( iterator start1, iterator end1, iterator start2, <a href="../containers.html">TYPE</a> val, BinaryFunction f1, BinaryFunction f2 );
+</pre>
+
+  <p>The inner_product() function computes the inner product of
+  [<em>start1</em>,<em>end1</em>) and a range of the same size starting
+  at <em>start2</em>.</p>
+
+  <p>inner_product() runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="accumulate.html">accumulate</a><br>
+    <a href="adjacent_difference.html">adjacent_difference</a><br>
+    <a href="count.html">count</a><br>
+    <a href="partial_sum.html">partial_sum</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    inplace_merge
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  inline void inplace_merge( iterator start, iterator middle, iterator end );
+  inline void inplace_merge( iterator start, iterator middle, iterator end, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The inplace_merge() function is similar to the merge() function,
+  but instead of creating a new sorted range of elements,
+  inplace_merge() alters the existing ranges to perform the merge
+  in-place.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="merge.html">merge</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    is_heap
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  bool is_heap( iterator start, iterator end );
+  bool is_heap( iterator start, iterator end, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The is_heap() function returns true if the given range
+  [<em>start</em>,<em>end</em>) is a heap.</p>
+
+  <p>If the strict weak ordering comparison function object
+  <em>cmp</em> is given, then it is used instead of the &lt; operator
+  to compare elements.</p>
+
+  <p>is_heap() runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="make_heap.html">make_heap</a><br>
+    <a href="pop_heap.html">pop_heap</a><br>
+    <a href="push_heap.html">push_heap</a><br>
+    <a href="sort_heap.html">sort_heap</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    is_sorted
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  bool is_sorted( iterator start, iterator end );
+  bool is_sorted( iterator start, iterator end, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The is_sorted() algorithm returns true if the elements in the
+  range [<em>start</em>,<em>end</em>) are sorted in ascending
+  order.</p>
+
+  <p>By default, the &lt; operator is used to compare elements. If the
+  strict weak order function object <em>cmp</em> is given, then it is
+  used instead.</p>
+
+  <p>is_sorted() runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="binary_search.html">binary_search</a><br>
+    <a href="partial_sort.html">partial_sort</a><br>
+    <a href="partial_sort_copy.html">partial_sort_copy</a><br>
+    <a href="sort.html">sort</a><br>
+    <a href="stable_sort.html">stable_sort</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    iter_swap
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  inline void iter_swap( iterator a, iterator b );
+</pre>
+
+  <p>A call to iter_swap() exchanges the values of two elements exactly
+  as a call to</p>
+<pre class="prettyprint">
+ swap( *a, *b );                
+</pre>
+
+  <p>would.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="swap.html">swap</a><br>
+    <a href="swap_ranges.html">swap_ranges</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    lexicographical_compare
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  bool lexicographical_compare( iterator start1, iterator end1, iterator start2, iterator end2 );
+  bool lexicographical_compare( iterator start1, iterator end1, iterator start2, iterator end2, BinPred p );
+</pre>
+
+  <p>The lexicographical_compare() function returns true if the range
+  of elements [<em>start1</em>,<em>end1</em>) is lexicographically less
+  than the range of elements [<em>start2</em>,<em>end2</em>).</p>
+
+  <p>If you&#39;re confused about what lexicographic means, it might
+  help to know that dictionaries are ordered lexicographically.</p>
+
+  <p>lexicographical_compare() runs in <a href=
+  "../complexity.html">linear time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="equal.html">equal</a><br>
+    <a href=
+    "lexicographical_compare_3.html">lexicographical_compare_3way</a><br>
+
+    <a href="mismatch.html">mismatch</a><br>
+    <a href="search.html">search</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    lexicographical_compare_3way
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  int lexicographical_compare_3way( iterator start1, iterator end1, iterator start2, iterator end2 );
+</pre>
+
+  <p>The lexicographical_compare_3way() function compares the first
+  range, defined by [<em>start1</em>,<em>end1</em>) to the second
+  range, defined by [<em>start2</em>,<em>end2</em>).</p>
+
+  <p>If the first range is lexicographically less than the second
+  range, this function returns a negative number. If the first range is
+  lexicographically greater than the second, a positive number is
+  returned. Zero is returned if neither range is lexicographically
+  greater than the other.</p>
+
+  <p>lexicographical_compare_3way() runs in <a href=
+  "../complexity.html">linear time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="lexicographical_compare.html">lexicographical_compare</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    lower_bound
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator lower_bound( iterator first, iterator last,  const <a href=
+"../containers.html">TYPE</a>&amp; val );
+  iterator lower_bound( iterator first, iterator last, const <a href=
+"../containers.html">TYPE</a>&amp; val, CompFn f );
+</pre>
+
+  <p>The lower_bound() function is a type of <a href=
+  "binary_search.html">binary_search</a>(). This function searches for
+  the first place that <em>val</em> can be inserted into the ordered
+  range defined by <em>first</em> and <em>last</em> that will not mess
+  up the existing ordering.</p>
+
+  <p>The return value of lower_bound() is an iterator that points to
+  the location where <em>val</em> can be safely inserted. Unless the
+  comparison function <em>f</em> is specified, the &lt; operator is
+  used for ordering.</p>
+
+  <p>For example, the following code uses lower_bound() to insert the
+  number 7 into an ordered vector of integers:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; nums;
+ nums.push_back( -242 );
+ nums.push_back( -1 );
+ nums.push_back( 0 );
+ nums.push_back( 5 );
+ nums.push_back( 8 );
+ nums.push_back( 8 );
+ nums.push_back( 11 );          
+
+ cout &lt;&lt; &quot;Before nums is: &quot;;
+ for( unsigned int i = 0; i &lt; nums.size(); i++ ) {
+   cout &lt;&lt; nums[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+
+ vector&lt;int&gt;::iterator result;
+ int new_val = 7;               
+
+ result = lower_bound( nums.begin(), nums.end(), new_val );             
+
+ nums.insert( result, new_val );                
+
+ cout &lt;&lt; &quot;After, nums is: &quot;;
+ for( unsigned int i = 0; i &lt; nums.size(); i++ ) {
+   cout &lt;&lt; nums[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+</pre>
+
+  <p>The above code produces the following output:</p>
+<pre class="prettyprint">
+ Before nums is: -242 -1 0 5 8 8 11
+ After, nums is: -242 -1 0 5 7 8 8 11           
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="binary_search.html">binary_search</a><br>
+    <a href="equal_range.html">equal_range</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    make_heap
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  void make_heap( iterator start, iterator end );
+  void make_heap( iterator start, iterator end, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The make_heap() function turns the given range of elements
+  [<em>start</em>,<em>end</em>) into a heap.</p>
+
+  <p>If the strict weak ordering comparison function object
+  <em>cmp</em> is given, then it is used instead of the &lt; operator
+  to compare elements.</p>
+
+  <p>make_heap() runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="is_heap.html">is_heap</a><br>
+    <a href="pop_heap.html">pop_heap</a><br>
+    <a href="push_heap.html">push_heap</a><br>
+    <a href="sort_heap.html">sort_heap</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    max
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  const <a href="../containers.html">TYPE</a>&amp; max( const <a href=
+"../containers.html">TYPE</a>&amp; x, const <a href=
+"../containers.html">TYPE</a>&amp; y );
+  const <a href="../containers.html">TYPE</a>&amp; max( const <a href=
+"../containers.html">TYPE</a>&amp; x, const <a href=
+"../containers.html">TYPE</a>&amp; y, BinPred p );
+</pre>
+
+  <p>The max() function returns the greater of <em>x</em> and
+  <em>y</em>.</p>
+
+  <p>If the binary predicate <em>p</em> is given, then it will be used
+  instead of the &lt; operator to compare the two elements.</p>
+
+  <div class="related-examples-format">
+    Example code:
+  </div>
+
+  <div class="related-examples">
+    <p>For example, the following code snippet displays various uses of
+    the max() function:</p>
+<pre class="prettyprint">
+ cout &lt;&lt; &quot;Max of 1 and 9999 is &quot; &lt;&lt; max( 1, 9999) &lt;&lt; endl;
+ cout &lt;&lt; &quot;Max of &#39;a&#39; and &#39;b&#39; is &quot; &lt;&lt; max( &#39;a&#39;, &#39;b&#39;) &lt;&lt; endl;
+ cout &lt;&lt; &quot;Max of 3.14159 and 2.71828 is &quot; &lt;&lt; max( 3.14159, 2.71828) &lt;&lt; endl;                
+</pre>
+
+    <p>When run, this code displays:</p>
+<pre class="prettyprint">
+ Max of 1 and 9999 is 9999
+ Max of &#39;a&#39; and &#39;b&#39; is b
+ Max of 3.14159 and 2.71828 is 3.14159          
+</pre>
+  </div>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="max_element.html">max_element</a><br>
+    <a href="min.html">min</a><br>
+    <a href="min_element.html">min_element</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    max_element
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator max_element( iterator start, iterator end );
+  iterator max_element( iterator start, iterator end, BinPred p );
+</pre>
+
+  <p>The max_element() function returns an iterator to the largest
+  element in the range [<em>start</em>,<em>end</em>).</p>
+
+  <p>If the binary predicate <em>p</em> is given, then it will be used
+  instead of the &lt; operator to determine the largest element.</p>
+
+  <div class="related-examples-format">
+    Example code:
+  </div>
+
+  <div class="related-examples">
+    <p>For example, the following code uses the max_element() function
+    to determine the largest integer in an array and the largest
+    character in a vector of characters:</p>
+<pre class="prettyprint">
+ int array[] = { 3, 1, 4, 1, 5, 9 };
+ unsigned int array_size = 6;
+ cout &lt;&lt; &quot;Max element in array is &quot; &lt;&lt; *max_element( array, array+array_size) &lt;&lt; endl;              
+
+ vector&lt;char&gt; v;
+ v.push_back(&#39;a&#39;); v.push_back(&#39;b&#39;); v.push_back(&#39;c&#39;); v.push_back(&#39;d&#39;);
+ cout &lt;&lt; &quot;Max element in the vector v is &quot; &lt;&lt; *max_element( v.begin(), v.end() ) &lt;&lt; endl;           
+</pre>
+
+    <p>When run, the above code displays this output:</p>
+<pre class="prettyprint">
+ Max element in array is 9
+ Max element in the vector v is d               
+</pre>
+  </div>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="max.html">max</a><br>
+    <a href="min.html">min</a><br>
+    <a href="min_element.html">min_element</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    merge
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator merge( iterator start1, iterator end1, iterator start2, iterator end2, iterator result );
+  iterator merge( iterator start1, iterator end1, iterator start2, iterator end2, iterator result, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The merge() function combines two sorted ranges
+  [<em>start1</em>,<em>end1</em>) and [<em>start2</em>,<em>end2</em>)
+  into a single sorted range, stored starting at <em>result</em>. The
+  return value of this function is an iterator to the end of the merged
+  range.</p>
+
+  <p>If the strict weak ordering function object <em>cmp</em> is given,
+  then it is used in place of the &lt; operator to perform comparisons
+  between elements.</p>
+
+  <p>merge() runs in <a href="../complexity.html">linear time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="inplace_merge.html">inplace_merge</a><br>
+    <a href="set_union.html">set_union</a><br>
+    <a href="sort.html">sort</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    min
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  const <a href="../containers.html">TYPE</a>&amp; min( const <a href=
+"../containers.html">TYPE</a>&amp; x, const <a href=
+"../containers.html">TYPE</a>&amp; y );
+  const <a href="../containers.html">TYPE</a>&amp; min( const <a href=
+"../containers.html">TYPE</a>&amp; x, const <a href=
+"../containers.html">TYPE</a>&amp; y, BinPred p );
+</pre>
+
+  <p>The min() function, unsurprisingly, returns the smaller of
+  <em>x</em> and <em>y</em>.</p>
+
+  <p>By default, the &lt; operator is used to compare the two elements.
+  If the binary predicate <em>p</em> is given, it will be used
+  instead.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="max.html">max</a><br>
+    <a href="max_element.html">max_element</a><br>
+    <a href="min_element.html">min_element</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    min_element
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator min_element( iterator start, iterator end );
+  iterator min_element( iterator start, iterator end, BinPred p );
+</pre>
+
+  <p>The min_element() function returns an iterator to the smallest
+  element in the range [<em>start</em>,<em>end</em>).</p>
+
+  <p>If the binary predicate <em>p</em> is given, then it will be used
+  instead of the &lt; operator to determine the smallest element.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="max.html">max</a><br>
+    <a href="max_element.html">max_element</a><br>
+    <a href="min.html">min</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    mismatch
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  pair &lt;iterator1,iterator2&gt; mismatch( iterator start1, iterator end1, iterator start2 );
+  pair &lt;iterator1,iterator2&gt; mismatch( iterator start1, iterator end1, iterator start2, BinPred p );
+</pre>
+
+  <p>The mismatch() function compares the elements in the range defined
+  by [<em>start1</em>,<em>end1</em>) to the elements in a range of the
+  same size starting at <em>start2</em>. The return value of mismatch()
+  is the first location where the two ranges differ.</p>
+
+  <p>If the optional binary predicate <em>p</em> is given, then it is
+  used to compare elements from the two ranges.</p>
+
+  <p>The mismatch() algorithm runs in <a href=
+  "../complexity.html">linear time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="equal.html">equal</a><br>
+    <a href="find.html">find</a><br>
+    <a href=
+    "lexicographical_compare.html">lexicographical_compare</a><br>
+    <a href="search.html">search</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    next_permutation
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  bool next_permutation( iterator start, iterator end );
+  bool next_permutation( iterator start, iterator end, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The next_permutation() function attempts to transform the given
+  range of elements [<em>start</em>,<em>end</em>) into the next
+  lexicographically greater permutation of elements. If it succeeds, it
+  returns true, otherwise, it returns false.</p>
+
+  <p>If a strict weak ordering function object <em>cmp</em> is
+  provided, it is used in lieu of the &lt; operator when comparing
+  elements.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="prev_permutation.html">prev_permutation</a><br>
+    <a href="random_sample.html">random_sample</a><br>
+    <a href="random_sample_n.html">random_sample_n</a><br>
+    <a href="random_shuffle.html">random_shuffle</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    nth_element
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  void nth_element( iterator start, iterator middle, iterator end );
+  void nth_element( iterator start, iterator middle, iterator end, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The nth_element() function semi-sorts the range of elements
+  defined by [<em>start</em>,<em>end</em>). It puts the element that
+  <em>middle</em> points to in the place that it would be if the entire
+  range was sorted, and it makes sure that none of the elements before
+  that element are greater than any of the elements that come after
+  that element.</p>
+
+  <p>nth_element() runs in <a href="../complexity.html">linear time</a>
+  on average.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="partial_sort.html">partial_sort</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    partial_sort
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  void partial_sort( iterator start, iterator middle, iterator end );
+  void partial_sort( iterator start, iterator middle, iterator end, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The partial_sort() function arranges the first N elements of the
+  range [<em>start</em>,<em>end</em>) in ascending order. N is defined
+  as the number of elements between <em>start</em> and
+  <em>middle</em>.</p>
+
+  <p>By default, the &lt; operator is used to compare two elements. If
+  the strict weak ordering comparison function <em>cmp</em> is given,
+  it is used instead.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="binary_search.html">binary_search</a><br>
+    <a href="is_sorted.html">is_sorted</a><br>
+    <a href="nth_element.html">nth_element</a><br>
+    <a href="partial_sort_copy.html">partial_sort_copy</a><br>
+    <a href="sort.html">sort</a><br>
+    <a href="stable_sort.html">stable_sort</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    partial_sort_copy
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator partial_sort_copy( iterator start, iterator end, iterator result_start, iterator result_end );
+  iterator partial_sort_copy( iterator start, iterator end, iterator result_start, iterator result_end, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The partial_sort_copy() algorithm behaves like <a href=
+  "partial_sort.html">partial_sort</a>(), except that instead of
+  partially sorting the range in-place, a copy of the range is created
+  and the sorting takes place in the copy. The initial range is defined
+  by [<em>start</em>,<em>end</em>) and the location of the copy is
+  defined by [<em>result_start</em>,<em>result_end</em>).</p>
+
+  <p>partial_sort_copy() returns an iterator to the end of the copied,
+  partially-sorted range of elements.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="binary_search.html">binary_search</a><br>
+    <a href="is_sorted.html">is_sorted</a><br>
+    <a href="partial_sort.html">partial_sort</a><br>
+    <a href="sort.html">sort</a><br>
+    <a href="stable_sort.html">stable_sort</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    partial_sum
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;numeric&gt;
+  iterator partial_sum( iterator start, iterator end, iterator result );
+  iterator partial_sum( iterator start, iterator end, iterator result, BinOp p );
+</pre>
+
+  <p>The partial_sum() function calculates the partial sum of a range
+  defined by [<em>start</em>,<em>end</em>), storing the output at
+  <em>result</em>.</p>
+
+  <ul>
+    <li><em>start</em> is assigned to *<em>result</em>, the sum of
+    *<em>start</em> and *(<em>start</em> + 1) is assigned to
+    *(<em>result</em> + 1), etc.</li>
+  </ul>
+
+  <p>partial_sum() runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="accumulate.html">accumulate</a><br>
+    <a href="adjacent_difference.html">adjacent_difference</a><br>
+    <a href="count.html">count</a><br>
+    <a href="inner_product.html">inner_product</a><br>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    partition
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator partition( iterator start, iterator end, Predicate p );
+</pre>
+
+  <p>The partition() algorithm re-orders the elements in
+  [<em>start</em>,<em>end</em>) such that the elements for which the
+  predicate <em>p</em> returns true come before the elements for which
+  <em>p</em> returns false.</p>
+
+  <p>In other words, partition() uses <em>p</em> to divide the elements
+  into two groups.</p>
+
+  <p>The return value of partition() is an iterator to the first
+  element for which <em>p</em> returns false.</p>
+
+  <p>parition() runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="stable_partition.html">stable_partition</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    pop_heap
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  void pop_heap( iterator start, iterator end );
+  void pop_heap( iterator start, iterator end, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The pop_heap() function removes the larges element (defined as the
+  element at the front of the heap) from the given heap.</p>
+
+  <p>If the strict weak ordering comparison function object
+  <em>cmp</em> is given, then it is used instead of the &lt; operator
+  to compare elements.</p>
+
+  <p>pop_heap() runs in <a href="../complexity.html">logarithmic
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="is_heap.html">is_heap</a><br>
+    <a href="make_heap.html">make_heap</a><br>
+    <a href="push_heap.html">push_heap</a><br>
+    <a href="sort_heap.html">sort_heap</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    prev_permutation
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  bool prev_permutation( iterator start, iterator end );
+  bool prev_permutation( iterator start, iterator end, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The prev_permutation() function attempts to transform the given
+  range of elements [<em>start</em>,<em>end</em>) into the next
+  lexicographically smaller permutation of elements. If it succeeds, it
+  returns true, otherwise, it returns false.</p>
+
+  <p>If a strict weak ordering function object <em>cmp</em> is
+  provided, it is used instead of the &lt; operator when comparing
+  elements.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="next_permutation.html">next_permutation</a><br>
+    <a href="random_sample.html">random_sample</a><br>
+    <a href="random_sample_n.html">random_sample_n</a><br>
+    <a href="random_shuffle.html">random_shuffle</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    push_heap
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  void push_heap( iterator start, iterator end );
+  void push_heap( iterator start, iterator end, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The push_heap() function adds an element (defined as the last
+  element before <em>end</em>) to a heap (defined as the range of
+  elements between [<em>start</em>,&#39;&#39;end-1).</p>
+
+  <p>If the strict weak ordering comparison function object
+  <em>cmp</em> is given, then it is used instead of the &lt; operator
+  to compare elements.</p>
+
+  <p>push_heap() runs in <a href="../complexity.html">logarithmic
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="is_heap.html">is_heap</a><br>
+    <a href="make_heap.html">make_heap</a><br>
+    <a href="pop_heap.html">pop_heap</a><br>
+    <a href="sort_heap.html">sort_heap</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    random_sample
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator random_sample( iterator start1, iterator end1, iterator start2, iterator end2 );
+  iterator random_sample( iterator start1, iterator end1, iterator start2, iterator end2, RandomNumberGenerator&amp; rnd );
+</pre>
+
+  <p>The random_sample() algorithm randomly copies elements from
+  [<em>start1</em>,<em>end1</em>) to [<em>start2</em>,<em>end2</em>).
+  Elements are chosen with uniform probability and elements from the
+  input range will appear at most once in the output range.</p>
+
+  <p>If a random number generator function object <em>rnd</em> is
+  supplied, then it will be used instead of an internal random number
+  generator.</p>
+
+  <p>The return value of random_sample() is an iterator to the end of
+  the output range.</p>
+
+  <p>random_sample() runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="next_permutation.html">next_permutation</a><br>
+    <a href="prev_permutation.html">prev_permutation</a><br>
+    <a href="random_sample_n.html">random_sample_n</a><br>
+    <a href="random_shuffle.html">random_shuffle</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    random_sample_n
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator random_sample_n( iterator start, iterator end, iterator result, size_t N );
+  iterator random_sample_n( iterator start, iterator end, iterator result, size_t N, RandomNumberGenerator&amp; rnd );
+</pre>
+
+  <p>The random_sample_n() algorithm randomly copies <em>N</em>
+  elements from [<em>start</em>,<em>end</em>) to <em>result</em>.
+  Elements are chosen with uniform probability and elements from the
+  input range will appear at most once in the output range.
+  <strong>Element order is preserved</strong> from the input range to
+  the output range.</p>
+
+  <p>If a random number generator function object <em>rnd</em> is
+  supplied, then it will be used instead of an internal random number
+  generator.</p>
+
+  <p>The return value of random_sample_n() is an iterator to the end of
+  the output range.</p>
+
+  <p>random_sample_n() runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="next_permutation.html">next_permutation</a><br>
+    <a href="prev_permutation.html">prev_permutation</a><br>
+    <a href="random_sample.html">random_sample</a><br>
+    <a href="random_shuffle.html">random_shuffle</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    random_shuffle
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  void random_shuffle( iterator start, iterator end );
+  void random_shuffle( iterator start, iterator end, RandomNumberGenerator&amp; rnd );
+</pre>
+
+  <p>The random_shuffle() function randomly re-orders the elements in
+  the range [<em>start</em>,<em>end</em>). If a random number generator
+  function object <em>rnd</em> is supplied, it will be used instead of
+  an internal random number generator.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="next_permutation.html">next_permutation</a><br>
+    <a href="prev_permutation.html">prev_permutation</a><br>
+    <a href="random_sample.html">random_sample</a><br>
+    <a href="random_sample_n.html">random_sample_n</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    remove
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator remove( iterator start, iterator end, const <a href=
+"../containers.html">TYPE</a>&amp; val );
+</pre>
+
+  <p>The remove() algorithm removes all of the elements in the range
+  [<em>start</em>,<em>end</em>) that are equal to <em>val</em>.</p>
+
+  <p>The return value of this function is an iterator to the last
+  element of the new sequence that should contain no elements equal to
+  <em>val</em>.</p>
+
+  <p>The remove() function runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="remove_copy.html">remove_copy</a><br>
+    <a href="remove_copy_if.html">remove_copy_if</a><br>
+    <a href="remove_if.html">remove_if</a><br>
+    <a href="unique.html">unique</a><br>
+    <a href="unique_copy.html">unique_copy</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    remove_copy
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator remove_copy( iterator start, iterator end, iterator result, const <a href="../containers.html">TYPE</a>&amp; val );
+</pre>
+
+  <p>The remove_copy() algorithm copies the range
+  [<em>start</em>,<em>end</em>) to <em>result</em> but omits any
+  elements that are equal to <em>val</em>.</p>
+
+  <p>remove_copy() returns an iterator to the end of the new range, and
+  runs in <a href="../complexity.html">linear time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="copy.html">copy</a><br>
+    <a href="remove.html">remove</a><br>
+    <a href="remove_copy_if.html">remove_copy_if</a><br>
+    <a href="remove_if.html">remove_if</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    remove_copy_if
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator remove_copy_if( iterator start, iterator end, iterator result, Predicate p );
+</pre>
+
+  <p>The remove_copy_if() function copies the range of elements
+  [<em>start</em>,<em>end</em>) to <em>result</em>, omitting any
+  elements for which the predicate function <em>p</em> returns
+  true.</p>
+
+  <p>The return value of remove_copy_if() is an iterator the end of the
+  new range.</p>
+
+  <p>remove_copy_if() runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="remove.html">remove</a><br>
+    <a href="remove_copy.html">remove_copy</a><br>
+    <a href="remove_if.html">remove_if</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    remove_if
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator remove_if( iterator start, iterator end, Predicate p );
+</pre>
+
+  <p>The remove_if() function removes all elements in the range
+  [<em>start</em>,<em>end</em>) for which the predicate <em>p</em>
+  returns true.</p>
+
+  <p>The return value of this function is an iterator to the last
+  element of the pruned range.</p>
+
+  <p>remove_if() runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="remove.html">remove</a><br>
+    <a href="remove_copy.html">remove_copy</a><br>
+    <a href="remove_copy_if.html">remove_copy_if</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    replace
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  void replace( iterator start, iterator end, const <a href=
+"../containers.html">TYPE</a>&amp; old_value, const <a href=
+"../containers.html">TYPE</a>&amp; new_value );
+</pre>
+
+  <p>The replace() function sets every element in the range
+  [<em>start</em>,<em>end</em>) that is equal to <em>old_value</em> to
+  have <em>new_value</em> instead.</p>
+
+  <p>replace() runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="replace_copy.html">replace_copy</a><br>
+    <a href="replace_copy_if.html">replace_copy_if</a><br>
+    <a href="replace_if.html">replace_if</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    replace_copy
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator replace_copy( iterator start, iterator end, iterator result, const <a href="../containers.html">TYPE</a>&amp; old_value, const <a href="../containers.html">TYPE</a>&amp; new_value );
+</pre>
+
+  <p>The replace_copy() function copies the elements in the range
+  [<em>start</em>,<em>end</em>) to the destination <em>result</em>. Any
+  elements in the range that are equal to <em>old_value</em> are
+  replaced with <em>new_value</em>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="replace.html">replace</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    replace_copy_if
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator replace_copy_if( iterator start, iterator end, iterator result, Predicate p, const <a href="../containers.html">TYPE</a>&amp; new_value );
+</pre>
+
+  <p>The replace_copy_if() function copies the elements in the range
+  [<em>start</em>,<em>end</em>) to the destination <em>result</em>. Any
+  elements for which the predicate <em>p</em> is true are replaced with
+  <em>new_value</em>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="replace.html">replace</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    replace_if
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  void replace_if( iterator start, iterator end, Predicate p, const <a href="../containers.html">TYPE</a>&amp; new_value );
+</pre>
+
+  <p>The replace_if() function assigns every element in the range
+  [<em>start</em>,<em>end</em>) for which the predicate function
+  <em>p</em> returns true the value of <em>new_value</em>.</p>
+
+  <p>This function runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="replace.html">replace</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    reverse
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  void reverse( iterator start, iterator end );
+</pre>
+
+  <p>The reverse() algorithm reverses the order of elements in the
+  range [<em>start</em>,<em>end</em>).</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="reverse_copy.html">reverse_copy</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    reverse_copy
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator reverse_copy( iterator start, iterator end, iterator result );
+</pre>
+
+  <p>The reverse_copy() algorithm copies the elements in the range
+  [<em>start</em>,<em>end</em>) to <em>result</em> such that the
+  elements in the new range are in reverse order.</p>
+
+  <p>The return value of the reverse_copy() function is an iterator the
+  end of the new range.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="reverse.html">reverse</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    rotate
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  inline iterator rotate( iterator start, iterator middle, iterator end );
+</pre>
+
+  <p>The rotate() algorithm moves the elements in the range
+  [<em>start</em>,<em>end</em>) such that the <em>middle</em> element
+  is now where <em>start</em> used to be, (<em>middle</em>+1) is now at
+  (<em>start</em>+1), etc.</p>
+
+  <p>The return value of rotate() is an iterator to <em>start</em> +
+  (<em>end</em>-<em>middle</em>).</p>
+
+  <p>rotate() runs in <a href="../complexity.html">linear time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="rotate_copy.html">rotate_copy</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    rotate_copy
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator rotate_copy( iterator start, iterator middle, iterator end, iterator result );
+</pre>
+
+  <p>The rotate_copy() algorithm is similar to the <a href=
+  "rotate.html">rotate</a>() algorithm, except that the range of
+  elements is copied to <em>result</em> before being rotated.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="rotate.html">rotate</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    search
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator search( iterator start1, iterator end1, iterator start2, iterator end2 );
+  iterator search( iterator start1, iterator end1, iterator start2, iterator end2, BinPred p );
+</pre>
+
+  <p>The search() algorithm looks for the elements
+  [<em>start2</em>,<em>end2</em>) in the range
+  [<em>start1</em>,<em>end1</em>). If the optional binary predicate
+  <em>p</em> is provided, then it is used to perform comparisons
+  between elements.</p>
+
+  <p>If search() finds a matching subrange, then it returns an iterator
+  to the beginning of that matching subrange. If no match is found, an
+  iterator pointing to <em>end1</em> is returned.</p>
+
+  <p>In the worst case, search() runs in quadratic time, on average, it
+  runs in <a href="../complexity.html">linear time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="equal.html">equal</a><br>
+    <a href="find.html">find</a><br>
+    <a href=
+    "lexicographical_compare.html">lexicographical_compare</a><br>
+    <a href="mismatch.html">mismatch</a><br>
+    <a href="search_n.html">search_n</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    search_n
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator search_n( iterator start, iterator end, size_t num, const <a href="../containers.html">TYPE</a>&amp; val );
+  iterator search_n( iterator start, iterator end, size_t num, const <a href="../containers.html">TYPE</a>&amp; val, BinPred p );
+</pre>
+
+  <p>The search_n() function looks for <em>num</em> occurances of
+  <em>val</em> in the range [<em>start</em>,<em>end</em>).</p>
+
+  <p>If <em>num</em> consecutive copies of <em>val</em> are found,
+  search_n() returns an iterator to the beginning of that sequence.
+  Otherwise it returns an iterator to <em>end</em>.</p>
+
+  <p>If the optional binary predicate <em>p</em> is given, then it is
+  used to perform comparisons between elements.</p>
+
+  <p>This function runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="find_end.html">find_end</a><br>
+    <a href="find_if.html">find_if</a><br>
+    <a href="search.html">search</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    set_difference
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator set_difference( iterator start1, iterator end1, iterator start2, iterator end2, iterator result );
+  iterator set_difference( iterator start1, iterator end1, iterator start2, iterator end2, iterator result, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The set_difference() algorithm computes the difference between two
+  sets defined by [<em>start1</em>,<em>end1</em>) and
+  [<em>start2</em>,<em>end2</em>) and stores the difference starting at
+  <em>result</em>.</p>
+
+  <p>Both of the sets, given as ranges, must be sorted in ascending
+  order.</p>
+
+  <p>The return value of set_difference() is an iterator to the end of
+  the result range.</p>
+
+  <p>If the strict weak ordering comparison function object
+  <em>cmp</em> is not specified, set_difference() will use the &lt;
+  operator to compare elements.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="includes.html">includes</a><br>
+    <a href="set_intersection.html">set_intersection</a><br>
+    <a href=
+    "set_symmetric_difference.html">set_symmetric_difference</a><br>
+    <a href="set_union.html">set_union</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    set_intersection
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator set_intersection( iterator start1, iterator end1, iterator start2, iterator end2, iterator result );
+  iterator set_intersection( iterator start1, iterator end1, iterator start2, iterator end2, iterator result, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The set_intersection() algorithm computes the intersection of the
+  two sets defined by [<em>start1</em>,<em>end1</em>) and
+  [<em>start2</em>,<em>end2</em>) and stores the intersection starting
+  at <em>result</em>.</p>
+
+  <p>Both of the sets, given as ranges, must be sorted in ascending
+  order.</p>
+
+  <p>The return value of set_intersection() is an iterator to the end
+  of the intersection range.</p>
+
+  <p>If the strict weak ordering comparison function object
+  <em>cmp</em> is not specified, set_intersection() will use the &lt;
+  operator to compare elements.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="includes.html">includes</a><br>
+    <a href="set_difference.html">set_difference</a><br>
+    <a href=
+    "set_symmetric_difference.html">set_symmetric_difference</a><br>
+    <a href="set_union.html">set_union</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    set_symmetric_difference
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator set_symmetric_difference( iterator start1, iterator end1, iterator start2, iterator end2, iterator result );
+  iterator set_symmetric_difference( iterator start1, iterator end1, iterator start2, iterator end2, iterator result, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The set_symmetric_difference() algorithm computes the symmetric
+  difference of the two sets defined by [<em>start1</em>,<em>end1</em>)
+  and [<em>start2</em>,<em>end2</em>) and stores the difference
+  starting at <em>result</em>.</p>
+
+  <p>Both of the sets, given as ranges, must be sorted in ascending
+  order.</p>
+
+  <p>The return value of set_symmetric_difference() is an iterator to
+  the end of the result range.</p>
+
+  <p>If the strict weak ordering comparison function object
+  <em>cmp</em> is not specified, set_symmetric_difference() will use
+  the &lt; operator to compare elements.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="includes.html">includes</a><br>
+    <a href="set_difference.html">set_difference</a><br>
+    <a href="set_intersection.html">set_intersection</a><br>
+    <a href="set_union.html">set_union</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    set_union
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator set_union( iterator start1, iterator end1, iterator start2, iterator end2, iterator result );
+  iterator set_union( iterator start1, iterator end1, iterator start2, iterator end2, iterator result, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The set_union() algorithm computes the union of the two ranges
+  [<em>start1</em>,<em>end1</em>) and [<em>start2</em>,<em>end2</em>)
+  and stores it starting at <em>result</em>.</p>
+
+  <p>The return value of set_union() is an iterator to the end of the
+  union range.</p>
+
+  <p>set_union() runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="includes.html">includes</a><br>
+    <a href="merge.html">merge</a><br>
+    <a href="set_difference.html">set_difference</a><br>
+    <a href="set_intersection.html">set_intersection</a><br>
+    <a href=
+    "set_symmetric_difference.html">set_symmetric_difference</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    sort
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  void sort( iterator start, iterator end );
+  void sort( iterator start, iterator end, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The sort() algorithm sorts the elements in the range
+  [<em>start</em>,<em>end</em>) into ascending order. If two elements
+  are equal, there is no guarantee what order they will be in.</p>
+
+  <p>If the strict weak ordering function object <em>cmp</em> is given,
+  then it will be used to compare two objects instead of the &lt;
+  operator.</p>
+
+  <p>The algorithm behind sort() is the <em>introsort</em> algorithm.
+  sort() runs in O(N log(N)) time (average and worst case) which is
+  faster than polynomial time but slower than <a href=
+  "../complexity.html">linear time</a>.</p>
+
+  <div class="related-examples-format">
+    Example code:
+  </div>
+
+  <div class="related-examples">
+    <p>For example, the following code sorts a vector of integers into
+    ascending order:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v;
+ v.push_back( 23 );
+ v.push_back( -1 );
+ v.push_back( 9999 );
+ v.push_back( 0 );
+ v.push_back( 4 );              
+
+ cout &lt;&lt; &quot;Before sorting: &quot;;
+ for( unsigned int i = 0; i &lt; v.size(); i++ ) {
+   cout &lt;&lt; v[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+
+ sort( v.begin(), v.end() );            
+
+ cout &lt;&lt; &quot;After sorting: &quot;;
+ for( unsigned int i = 0; i &lt; v.size(); i++ ) {
+   cout &lt;&lt; v[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+</pre>
+
+    <p>When run, the above code displays this output:</p>
+<pre class="prettyprint">
+ Before sorting: 23 -1 9999 0 4
+ After sorting: -1 0 4 23 9999          
+</pre>
+
+    <p>Alternatively, the following code uses the sort() function to
+    sort a normal array of integers, and displays the same output as
+    the previous example:</p>
+<pre class="prettyprint">
+ int array[] = { 23, -1, 9999, 0, 4 };
+ unsigned int array_size = 5;           
+
+ cout &lt;&lt; &quot;Before sorting: &quot;;
+ for( unsigned int i = 0; i &lt; array_size; i++ ) {
+   cout &lt;&lt; array[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+
+ sort( array, array + array_size );             
+
+ cout &lt;&lt; &quot;After sorting: &quot;;
+ for( unsigned int i = 0; i &lt; array_size; i++ ) {
+   cout &lt;&lt; array[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+</pre>
+
+    <p>This next example shows how to use sort() with a user-specified
+    comparison function. The function <strong>cmp</strong> is defined
+    to do the opposite of the &lt; operator. When sort() is called
+    with <strong>cmp</strong> used as the comparison function, the
+    result is a list sorted in descending, rather than ascending,
+    order:</p>
+
+<pre class="prettyprint">
+ bool cmp( int a, int b ) {
+   return a &gt; b;
+ }              
+
+ ...            
+
+ vector&lt;int&gt; v;
+ for( int i = 0; i &lt; 10; i++ ) {
+   v.push_back(i);
+ }              
+
+ cout &lt;&lt; &quot;Before: &quot;;
+ for( int i = 0; i &lt; 10; i++ ) {
+   cout &lt;&lt; v[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+
+ sort( v.begin(), v.end(), cmp );               
+
+ cout &lt;&lt; &quot;After: &quot;;
+ for( int i = 0; i &lt; 10; i++ ) {
+   cout &lt;&lt; v[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+</pre>
+  </div>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="binary_search.html">binary_search</a><br>
+    <a href="is_sorted.html">is_sorted</a><br>
+    <a href="merge.html">merge</a><br>
+    <a href="partial_sort.html">partial_sort</a><br>
+    <a href="partial_sort_copy.html">partial_sort_copy</a><br>
+    <a href="stable_sort.html">stable_sort</a><br>
+    (Other Standard C Functions) <a href=
+    "../stdother/qsort.html">qsort</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    sort_heap
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  void sort_heap( iterator start, iterator end );
+  void sort_heap( iterator start, iterator end, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The sort_heap() function turns the heap defined by
+  [<em>start</em>,<em>end</em>) into a sorted range.</p>
+
+  <p>If the strict weak ordering comparison function object
+  <em>cmp</em> is given, then it is used instead of the &lt; operator
+  to compare elements.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="is_heap.html">is_heap</a><br>
+    <a href="make_heap.html">make_heap</a><br>
+    <a href="pop_heap.html">pop_heap</a><br>
+    <a href="push_heap.html">push_heap</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    stable_partition
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator stable_partition( iterator start, iterator end, Predicate p );
+</pre>
+
+  <p>The stable_partition() function behaves similarily to <a href=
+  "partition.html">partition</a>(). The difference between the two
+  algorithms is that stable_partition() will preserve the initial
+  ordering of the elements in the two groups.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="partition.html">partition</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    stable_sort
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  void stable_sort( iterator start, iterator end );
+  void stable_sort( iterator start, iterator end, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The stable_sort() algorithm is like the <a href=
+  "sort.html">sort</a>() algorithm, in that it sorts a range of
+  elements into ascending order. Unlike <a href="sort.html">sort</a>(),
+  however, stable_sort() will preserve the original ordering of
+  elements that are equal to eachother.</p>
+
+  <p>This functionality comes at a small cost, however, as
+  stable_sort() takes a few more comparisons that sort() in the worst
+  case: N (log N)^2 instead of N log N.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="binary_search.html">binary_search</a><br>
+    <a href="is_sorted.html">is_sorted</a><br>
+    <a href="partial_sort.html">partial_sort</a><br>
+    <a href="partial_sort_copy.html">partial_sort_copy</a><br>
+    <a href="sort.html">sort</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    swap
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  void swap( Assignable&amp; a, Assignable&amp; b );
+</pre>
+
+  <p>The swap() function swaps the values of <em>a</em> and
+  <em>b</em>.</p>
+
+  <p>swap() expects that its arguments will conform to the Assignable
+  model; that is, they should have a copy constructor and work with the
+  = operator. This function performs one copy and two assignments.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="copy.html">copy</a><br>
+    <a href="copy_backward.html">copy_backward</a><br>
+    <a href="copy_n.html">copy_n</a><br>
+    <a href="iter_swap.html">iter_swap</a><br>
+    <a href="swap_ranges.html">swap_ranges</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    swap_ranges
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator swap_ranges( iterator start1, iterator end1, iterator start2 );
+</pre>
+
+  <p>The swap_ranges() function exchanges the elements in the range
+  [<em>start1</em>,<em>end1</em>) with the range of the same size
+  starting at <em>start2</em>.</p>
+
+  <p>The return value of swap_ranges() is an iterator to
+  <em>start2</em> + (<em>end1</em>-<em>start1</em>).</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="iter_swap.html">iter_swap</a><br>
+    <a href="swap.html">swap</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    transform
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator transform( iterator start, iterator end, iterator result, UnaryFunction f );
+  iterator transform( iterator start1, iterator end1, iterator start2, iterator result, BinaryFunction f );
+</pre>
+
+  <p>The transform() algorithm applies the function <em>f</em> to some
+  range of elements, storing the result of each application of the
+  function in <em>result</em>.</p>
+
+  <p>The first version of the function applies <em>f</em> to each
+  element in [<em>start</em>,<em>end</em>) and assigns the first output
+  of the function to <em>result</em>, the second output to
+  (<em>result</em>+1), etc.</p>
+
+  <p>The second version of the transform() works in a similar manner,
+  except that it is given two ranges of elements and calls a binary
+  function on a pair of elements.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="copy.html">copy</a><br>
+    <a href="fill.html">fill</a><br>
+    <a href="generate.html">generate</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    unique
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator unique( iterator start, iterator end );
+  iterator unique( iterator start, iterator end, BinPred p );
+</pre>
+
+  <p>The unique() algorithm removes all consecutive duplicate elements
+  from the range [<em>start</em>,<em>end</em>). If the binary predicate
+  <em>p</em> is given, then it is used to test to test two elements to
+  see if they are duplicates.</p>
+
+  <p>The return value of unique() is an iterator to the end of the
+  modified range.</p>
+
+  <p>unique() runs in <a href="../complexity.html">linear time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="adjacent_find.html">adjacent_find</a><br>
+    <a href="remove.html">remove</a><br>
+    <a href="unique_copy.html">unique_copy</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    unique_copy
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator unique_copy( iterator start, iterator end, iterator result );
+  iterator unique_copy( iterator start, iterator end, iterator result, BinPred p );
+</pre>
+
+  <p>The unique_copy() function copies the range
+  [<em>start</em>,<em>end</em>) to <em>result</em>, removing all
+  consecutive duplicate elements. If the binary predicate <em>p</em> is
+  provided, then it is used to test two elements to see if they are
+  duplicates.</p>
+
+  <p>The return value of unique_copy() is an iterator to the end of the
+  new range.</p>
+
+  <p>unique_copy() runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="adjacent_find.html">adjacent_find</a><br>
+    <a href="remove.html">remove</a><br>
+    <a href="unique.html">unique</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    upper_bound
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;algorithm&gt;
+  iterator upper_bound( iterator start, iterator end, const <a href=
+"../containers.html">TYPE</a>&amp; val );
+  iterator upper_bound( iterator start, iterator end, const <a href=
+"../containers.html">TYPE</a>&amp; val, StrictWeakOrdering cmp );
+</pre>
+
+  <p>The upper_bound() algorithm searches the ordered range
+  [<em>start</em>,<em>end</em>) for the last location that <em>val</em>
+  could be inserted without disrupting the order of the range.</p>
+
+  <p>If the strict weak ordering function object <em>cmp</em> is given,
+  it is used to compare elements instead of the &lt; operator.</p>
+
+  <p>upper_bound() runs in <a href="../complexity.html">logarithmic
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="binary_search.html">binary_search</a><br>
+    <a href="equal_range.html">equal_range</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+</body>
+<!-- Mirrored from cppreference.com/cppalgorithm/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

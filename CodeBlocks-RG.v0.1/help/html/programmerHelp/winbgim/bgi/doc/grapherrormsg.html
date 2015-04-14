@@ -1,0 +1,77 @@
+<TITLE>BGI Documentation for 
+grapherrormsg
+</TITLE>
+<H2>
+grapherrormsg
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+char * grapherrormsg(int errorcode);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+grapherrormsg returns a pointer to the error message string associated with errorcode, the value returned by graphresult.
+<P>Refer to the entry for errno in the Library Reference, Chapter 4, for a list of error messages and mnemonics.
+
+
+<P><DT><B>Return Value</B><DD>
+grapherrormsg returns a pointer to an error message string.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="graphresult.html"> graphresult </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* grapherrormsg example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+#define NONSENSE -50
+
+int main(void)
+{
+   /* force an error to occur */
+   int gdriver = NONSENSE, gmode, errorcode;
+
+   /* initialize graphics mode */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+
+   /* if an error occurred, then output descriptive error message*/
+   if (errorcode != grOk) {
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+
+   /* draw a line */
+   line(0, 0, getmaxx(), getmaxy());
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

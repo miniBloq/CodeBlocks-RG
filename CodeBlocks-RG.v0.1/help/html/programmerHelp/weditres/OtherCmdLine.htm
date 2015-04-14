@@ -1,0 +1,2097 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./OtherCmdLine_files/filelist.xml">
+<title>Other command line utilities</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>jacob navia</o:Author>
+  <o:LastAuthor>jacob navia</o:LastAuthor>
+  <o:Revision>3</o:Revision>
+  <o:TotalTime>3</o:TotalTime>
+  <o:Created>2001-04-01T14:28:00Z</o:Created>
+  <o:LastSaved>2001-06-16T19:56:00Z</o:LastSaved>
+  <o:Pages>6</o:Pages>
+  <o:Words>2163</o:Words>
+  <o:Characters>12333</o:Characters>
+  <o:Company>logiciels/informatique</o:Company>
+  <o:Lines>102</o:Lines>
+  <o:Paragraphs>24</o:Paragraphs>
+  <o:CharactersWithSpaces>15145</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:DrawingGridHorizontalSpacing>3.9 pt</w:DrawingGridHorizontalSpacing>
+  <w:DrawingGridVerticalSpacing>5.3 pt</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:Courier;
+	panose-1:0 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:0;
+	mso-generic-font-family:modern;
+	mso-font-format:other;
+	mso-font-pitch:fixed;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:"Lucida Sans Unicode";
+	panose-1:2 11 6 2 3 5 4 2 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-2147476737 14699 0 0 63 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+h1
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	text-align:center;
+	line-height:36.0pt;
+	mso-pagination:widow-orphan lines-together no-line-numbers;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-bidi-font-family:"Times New Roman";
+	color:maroon;
+	mso-font-kerning:0pt;
+	mso-ansi-language:FR;
+	mso-bidi-font-weight:normal;
+	text-decoration:underline;
+	text-underline:single;}
+h2
+	{mso-style-next:Normal;
+	margin-top:24.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:14.2pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	line-height:18.0pt;
+	page-break-before:always;
+	mso-pagination:widow-orphan no-line-numbers;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:13.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-bidi-font-family:"Times New Roman";
+	color:maroon;
+	mso-ansi-language:FR;
+	mso-bidi-font-weight:normal;
+	text-decoration:underline;
+	text-underline:single;}
+h3
+	{mso-style-next:"Normal Indent";
+	margin-top:6.0pt;
+	margin-right:14.2pt;
+	margin-bottom:0cm;
+	margin-left:17.7pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:14.2pt;
+	mso-line-height-alt:6.0pt;
+	mso-pagination:widow-orphan lines-together no-line-numbers;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-bidi-font-family:"Times New Roman";
+	color:maroon;
+	mso-ansi-language:FR;
+	mso-bidi-font-weight:normal;}
+h4
+	{mso-style-next:"Normal Indent";
+	margin-top:6.0pt;
+	margin-right:14.2pt;
+	margin-bottom:0cm;
+	margin-left:17.7pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:14.2pt;
+	mso-line-height-alt:6.0pt;
+	mso-pagination:widow-orphan lines-together no-line-numbers;
+	page-break-after:avoid;
+	mso-outline-level:4;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:FR;
+	mso-bidi-font-weight:normal;}
+h5
+	{mso-style-next:Normal;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:5;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Lucida Sans Unicode";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:FR;
+	mso-bidi-font-weight:normal;}
+h6
+	{mso-style-next:Normal;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:6;
+	font-size:16.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-font-weight:normal;}
+p.MsoHeading7, li.MsoHeading7, div.MsoHeading7
+	{mso-style-next:Normal;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:7;
+	font-size:16.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.MsoHeading8, li.MsoHeading8, div.MsoHeading8
+	{mso-style-next:Normal;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:center;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:8;
+	mso-list:skip;
+	font-size:16.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.MsoHeading9, li.MsoHeading9, div.MsoHeading9
+	{mso-style-next:Normal;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:9;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.MsoIndex1, li.MsoIndex1, div.MsoIndex1
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:12.0pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:-12.0pt;
+	mso-pagination:widow-orphan;
+	tab-stops:right dotted 208.8pt;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.MsoIndex2, li.MsoIndex2, div.MsoIndex2
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:24.0pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:-12.0pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoIndex3, li.MsoIndex3, div.MsoIndex3
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:-12.0pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoIndex4, li.MsoIndex4, div.MsoIndex4
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:48.0pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:-12.0pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoIndex5, li.MsoIndex5, div.MsoIndex5
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:60.0pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:-12.0pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoIndex6, li.MsoIndex6, div.MsoIndex6
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:72.0pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:-12.0pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoIndex7, li.MsoIndex7, div.MsoIndex7
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:84.0pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:-12.0pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoIndex8, li.MsoIndex8, div.MsoIndex8
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:96.0pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:-12.0pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoIndex9, li.MsoIndex9, div.MsoIndex9
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:108.0pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:-12.0pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:18.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	tab-stops:right 453.55pt;
+	font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	text-transform:uppercase;
+	mso-ansi-language:FR;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.MsoToc2, li.MsoToc2, div.MsoToc2
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:10.0pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	tab-stops:right 453.55pt;
+	font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:FR;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.MsoToc3, li.MsoToc3, div.MsoToc3
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:20.0pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	tab-stops:right 453.55pt;
+	font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.MsoToc4, li.MsoToc4, div.MsoToc4
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:30.0pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoToc5, li.MsoToc5, div.MsoToc5
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:40.0pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc6, li.MsoToc6, div.MsoToc6
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:50.0pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc7, li.MsoToc7, div.MsoToc7
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:60.0pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc8, li.MsoToc8, div.MsoToc8
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:70.0pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc9, li.MsoToc9, div.MsoToc9
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:80.0pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoNormalIndent, li.MsoNormalIndent, div.MsoNormalIndent
+	{margin-top:6.0pt;
+	margin-right:14.2pt;
+	margin-bottom:0cm;
+	margin-left:35.4pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:14.2pt;
+	mso-line-height-alt:6.0pt;
+	mso-pagination:widow-orphan lines-together no-line-numbers;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText
+	{margin-top:6.0pt;
+	margin-right:14.2pt;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:14.2pt;
+	mso-line-height-alt:6.0pt;
+	mso-pagination:widow-orphan lines-together no-line-numbers;
+	page-break-after:avoid;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	tab-stops:center 8.0cm right 16.0cm;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Lucida Sans Unicode";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	tab-stops:center 216.0pt right 432.0pt;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoIndexHeading, li.MsoIndexHeading, div.MsoIndexHeading
+	{mso-style-next:"Index 1";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{mso-style-next:Normal;
+	margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:FR;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+span.MsoFootnoteReference
+	{mso-ansi-font-size:8.0pt;
+	mso-text-raise:3.0pt;
+	vertical-align:super;}
+span.MsoCommentReference
+	{mso-ansi-font-size:8.0pt;
+	mso-bidi-font-size:8.0pt;}
+p.MsoList, li.MsoList, div.MsoList
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:14.15pt;
+	margin-bottom:.0001pt;
+	text-indent:-14.15pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Lucida Sans Unicode";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.MsoList2, li.MsoList2, div.MsoList2
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:28.3pt;
+	margin-bottom:.0001pt;
+	text-indent:-14.15pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Lucida Sans Unicode";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.MsoListBullet2, li.MsoListBullet2, div.MsoListBullet2
+	{mso-style-update:auto;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:28.3pt;
+	margin-bottom:.0001pt;
+	text-indent:-14.15pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Lucida Sans Unicode";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:center;
+	mso-pagination:widow-orphan;
+	font-size:26.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoBodyTextIndent, li.MsoBodyTextIndent, div.MsoBodyTextIndent
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:27.0pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	mso-list:skip;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoListContinue2, li.MsoListContinue2, div.MsoListContinue2
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:28.3pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Lucida Sans Unicode";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.MsoBodyText2, li.MsoBodyText2, div.MsoBodyText2
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:1.0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoBodyText3, li.MsoBodyText3, div.MsoBodyText3
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Courier;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.MsoBodyTextIndent2, li.MsoBodyTextIndent2, div.MsoBodyTextIndent2
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:22.5pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoBodyTextIndent3, li.MsoBodyTextIndent3, div.MsoBodyTextIndent3
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:1.0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoBlockText, li.MsoBlockText, div.MsoBlockText
+	{margin-top:0cm;
+	margin-right:12.0pt;
+	margin-bottom:6.0pt;
+	margin-left:36.0pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.Normal2, li.Normal2, div.Normal2
+	{mso-style-name:Normal2;
+	margin-top:6.0pt;
+	margin-right:14.2pt;
+	margin-bottom:0cm;
+	margin-left:2.0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:14.2pt;
+	mso-line-height-alt:6.0pt;
+	mso-pagination:widow-orphan lines-together no-line-numbers;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.Normal1, li.Normal1, div.Normal1
+	{mso-style-name:Normal1;
+	margin-top:6.0pt;
+	margin-right:14.2pt;
+	margin-bottom:0cm;
+	margin-left:94.7pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:-17.85pt;
+	mso-line-height-alt:6.0pt;
+	mso-pagination:widow-orphan lines-together no-line-numbers;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.centr, li.centr, div.centr
+	{mso-style-name:centré;
+	mso-style-parent:"Heading 1";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	text-align:center;
+	line-height:36.0pt;
+	mso-pagination:widow-orphan lines-together no-line-numbers;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:maroon;
+	mso-ansi-language:FR;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;
+	text-decoration:underline;
+	text-underline:single;}
+p.DefinitionList, li.DefinitionList, div.DefinitionList
+	{mso-style-name:"Definition List";
+	mso-style-next:"Definition Term";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:18.0pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.DefinitionTerm, li.DefinitionTerm, div.DefinitionTerm
+	{mso-style-name:"Definition Term";
+	mso-style-next:"Definition List";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.Preformatted, li.Preformatted, div.Preformatted
+	{mso-style-name:Preformatted;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	tab-stops:0cm 47.95pt 95.9pt 143.85pt 191.8pt 239.75pt 287.7pt 335.65pt 383.6pt 431.55pt 479.5pt;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.Corpsdetexte3, li.Corpsdetexte3, div.Corpsdetexte3
+	{mso-style-name:"Corps de texte 3";
+	mso-style-parent:"Body Text 2";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:14.15pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Lucida Sans Unicode";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.Corpsdetexte4, li.Corpsdetexte4, div.Corpsdetexte4
+	{mso-style-name:"Corps de texte 4";
+	mso-style-parent:"Body Text 2";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:14.15pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Lucida Sans Unicode";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.Corpsdetexte5, li.Corpsdetexte5, div.Corpsdetexte5
+	{mso-style-name:"Corps de texte 5";
+	mso-style-parent:"Body Text 2";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:14.15pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Lucida Sans Unicode";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+span.CODE
+	{mso-style-name:CODE;
+	mso-style-parent:"";
+	mso-ansi-font-size:10.0pt;
+	mso-ascii-font-family:"Courier New";
+	mso-hansi-font-family:"Courier New";}
+@page Section1
+	{size:21.0cm 842.0pt;
+	margin:72.0pt 89.85pt 72.0pt 89.85pt;
+	mso-header-margin:36.0pt;
+	mso-footer-margin:36.0pt;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:-2;
+	mso-list-type:simple;
+	mso-list-template-ids:-1;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-text:*;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l1
+	{mso-list-id:750540409;
+	mso-list-type:simple;
+	mso-list-template-ids:67698689;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:18.0pt;
+	mso-level-number-position:left;
+	margin-left:18.0pt;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level1 lfo3
+	{mso-level-number-format:bullet;
+	mso-level-numbering:continue;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	mso-level-legacy:yes;
+	mso-level-legacy-indent:-14.2pt;
+	mso-level-legacy-space:0cm;
+	margin-left:0cm;
+	text-indent:0cm;
+	font-family:Symbol;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+</head>
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:36.0pt'>
+
+<div class=Section1>
+
+<h2><a name="_Toc509456970"><span lang=FR>Other command line utilities</span></a></h2>
+
+<h3><a name="_Toc426387070"></a><a name="_Toc426392427"></a><a
+name="_Toc430329259"></a><a name="_Toc431269419"></a><a name="_Toc431269622"></a><a
+name="_Toc435923459"></a><a name="_Toc435923621"></a><a name="_Toc509456971"><span
+style='mso-bookmark:_Toc435923621'><span style='mso-bookmark:_Toc435923459'><span
+style='mso-bookmark:_Toc431269622'><span style='mso-bookmark:_Toc431269419'><span
+style='mso-bookmark:_Toc430329259'><span style='mso-bookmark:_Toc426392427'><span
+style='mso-bookmark:_Toc426387070'><span lang=FR>The Resource Com</span></span></span></span></span></span></span></span></a><a
+name=Resource></a><span style='mso-bookmark:_Toc509456971'><span
+style='mso-bookmark:_Toc435923621'><span style='mso-bookmark:_Toc435923459'><span
+style='mso-bookmark:_Toc431269622'><span style='mso-bookmark:_Toc431269419'><span
+style='mso-bookmark:_Toc430329259'><span style='mso-bookmark:_Toc426392427'><span
+style='mso-bookmark:_Toc426387070'><span lang=FR>piler</span></span></span></span></span></span></span></span></span></h3>
+
+<p class=MsoNormal style='mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-list:skip'>The resource compiler receives an .rc
+file as input that is written in a special language for describing resources.
+It will produce a binary file as output with the .res extension that can be
+used with the other object files by the linker to build an executable.</p>
+
+<p class=MsoNormal style='mso-list:skip'>Usage:</p>
+
+<p class=MsoNormal style='mso-list:skip'>lrc [options] .RC input file </p>
+
+<p class=MsoNormal style='mso-list:skip'>Switches:</p>
+
+<p class=MsoNormal style='margin-left:1.0cm;mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<table border=1 cellspacing=0 cellpadding=0 width=609 style='width:457.0pt;
+ margin-left:3.5pt;border-collapse:collapse;border:none;mso-border-alt:solid windowtext .75pt;
+ mso-padding-alt:0cm 3.5pt 0cm 3.5pt'>
+ <tr>
+  <td width=76 valign=top style='width:2.0cm;border:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'><b style='mso-bidi-font-weight:normal'>Option<o:p></o:p></b></p>
+  </td>
+  <td width=534 valign=top style='width:400.3pt;border:solid windowtext .75pt;
+  border-left:none;mso-border-left-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'><b style='mso-bidi-font-weight:normal'>Meaning<o:p></o:p></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=76 valign=top style='width:2.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/r</p>
+  </td>
+  <td width=534 valign=top style='width:400.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Build a .res file. This is assumed,
+  so this option is there just for compatibility with earlier versions of rc.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=76 valign=top style='width:2.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/v</p>
+  </td>
+  <td width=534 valign=top style='width:400.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Verbose output</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=76 valign=top style='width:2.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/m</p>
+  </td>
+  <td width=534 valign=top style='width:400.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Build a map file. The name of the
+  map file will be the same as the output file with a .map extension.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=76 valign=top style='width:2.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/dSYM</p>
+  </td>
+  <td width=534 valign=top style='width:400.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Define symbol. This is for Lrc's
+  pre-processor.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=76 valign=top style='width:2.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/ofile</p>
+  </td>
+  <td width=534 valign=top style='width:400.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Write the output into &lt;file&gt;.
+  No space should be left between the o and the name of the file.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=76 valign=top style='width:2.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/fo</p>
+  </td>
+  <td width=534 valign=top style='width:400.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Same as above.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=76 valign=top style='width:2.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/l</p>
+  </td>
+  <td width=534 valign=top style='width:400.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Default language number follows in
+  hexadecimal.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=76 valign=top style='width:2.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/I</p>
+  </td>
+  <td width=534 valign=top style='width:400.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Add an include path.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=76 valign=top style='width:2.0cm;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/p</p>
+  </td>
+  <td width=534 valign=top style='width:400.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Print in the standard output a list
+  of file dependencies of the given input resource file.</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-left:1.0cm;mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='margin-left:1.0cm;mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-list:skip'>Flags are not case sensitive.</p>
+
+<p class=MsoNormal style='mso-list:skip'>The resource compiler defines the
+symbol</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style='mso-tab-count:1'>            </span>RC_INVOKED</p>
+
+<p class=MsoBodyTextIndent3 style='margin-left:0cm;mso-list:skip'><span
+style='font-family:"Times New Roman"'>To allow you conditional compilation of resources
+and to direct it to avoid much of the program text.<o:p></o:p></span></p>
+
+<h3><a name="_Toc430329260"></a><a name="_Toc431269420"></a><a
+name="_Toc431269623"></a><a name="_Toc435923460"></a><a name="_Toc435923622"></a><a
+name="_Toc509456972"><span style='mso-bookmark:_Toc435923622'><span
+style='mso-bookmark:_Toc435923460'><span style='mso-bookmark:_Toc431269623'><span
+style='mso-bookmark:_Toc431269420'><span style='mso-bookmark:_Toc430329260'><span
+lang=FR>The pedu</span></span></span></span></span></span></a><a name=pedump></a><span
+style='mso-bookmark:_Toc509456972'><span style='mso-bookmark:_Toc435923622'><span
+style='mso-bookmark:_Toc435923460'><span style='mso-bookmark:_Toc431269623'><span
+style='mso-bookmark:_Toc431269420'><span style='mso-bookmark:_Toc430329260'><span
+lang=FR>mp Utility</span></span></span></span></span></span></span></h3>
+
+<p class=MsoNormalIndent style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;mso-list:skip'><span
+style='mso-ansi-language:EN-US'>This utility has been the workhorse of
+lcc-win32. Without it, the linker and the debugger would not exist. To be able
+to generate something, you must be able to see what you are generating. See the
+technical documentation for more information about pedump.<o:p></o:p></span></p>
+
+<p class=MsoNormalIndent style='margin-left:0cm;text-indent:0cm;mso-list:skip'><span
+style='mso-ansi-language:EN-US'>Files types dumped are:<o:p></o:p></span></p>
+
+<p class=MsoNormalIndent style='margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo3'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·</span><![endif]><span
+style='mso-ansi-language:EN-US'>EXE<span style='mso-tab-count:2'>               </span>Executable
+files<o:p></o:p></span></p>
+
+<p class=MsoNormalIndent style='margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo3'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·</span><![endif]><span
+style='mso-ansi-language:EN-US'>OBJ<span style='mso-tab-count:2'>               </span>Object
+files<o:p></o:p></span></p>
+
+<p class=MsoNormalIndent style='margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo3'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·</span><![endif]><span
+style='mso-ansi-language:EN-US'>RES<span style='mso-tab-count:2'>               </span>Resource
+files<o:p></o:p></span></p>
+
+<p class=MsoNormalIndent style='margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo3'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·</span><![endif]><span
+style='mso-ansi-language:EN-US'>DLL<span style='mso-tab-count:2'>               </span>DLLs<o:p></o:p></span></p>
+
+<p class=MsoNormalIndent style='margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo3'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·</span><![endif]><span
+style='mso-ansi-language:EN-US'>OCX<span style='mso-tab-count:2'>              </span>Type
+libraries+dlls<o:p></o:p></span></p>
+
+<p class=MsoNormalIndent style='margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo3'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·</span><![endif]><span
+style='mso-ansi-language:EN-US'>LIB<span style='mso-tab-count:2'>                </span>Libraries<o:p></o:p></span></p>
+
+<p class=MsoNormalIndent style='margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo3'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·</span><![endif]><span
+style='mso-ansi-language:EN-US'>TLB/OCA<span style='mso-tab-count:1'>      </span>Type
+libraries<o:p></o:p></span></p>
+
+<p class=MsoNormalIndent style='margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo3'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·</span><![endif]><span
+style='mso-ansi-language:EN-US'>DBG<span style='mso-tab-count:2'>              </span>DLLs
+debug info<o:p></o:p></span></p>
+
+<p class=MsoNormalIndent><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<table border=1 cellspacing=0 cellpadding=0 width=605 style='width:16.0cm;
+ margin-left:3.5pt;border-collapse:collapse;border:none;mso-border-alt:solid windowtext 1.5pt;
+ mso-padding-alt:0cm 3.5pt 0cm 3.5pt'>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border-top:1.5pt;border-left:
+  1.5pt;border-bottom:.75pt;border-right:.75pt;border-color:windowtext;
+  border-style:solid;padding:0cm 3.5pt 0cm 3.5pt'>
+  <h5 style='mso-list:skip'><span style='font-family:"Times New Roman";
+  mso-ansi-language:EN-US'>Option<o:p></o:p></span></h5>
+  </td>
+  <td width=491 valign=top style='width:13.0cm;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-left-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <h5 style='mso-list:skip'><span style='font-family:"Times New Roman";
+  mso-ansi-language:EN-US'>Description<o:p></o:p></span></h5>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/A</p>
+  </td>
+  <td width=491 valign=top style='width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Includes everything in the output.
+  All sections, all data dumps, etc. The code sections will be disassembled and
+  if debug information is available, the line numbers will be annotated in the
+  resulting output.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/D</p>
+  </td>
+  <td width=491 valign=top style='width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Dumps the code view or gcc debug
+  information. This option supports the NB09 Standard from Microsoft, and the
+  STABS format from gcc.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/E</p>
+  </td>
+  <td width=491 valign=top style='width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Dump the resources section.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/EXP</p>
+  </td>
+  <td width=491 valign=top style='width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>If given an import library, pedump will
+  generate a list of the exported functions in a format suitable for the
+  buildlib utility. See FAQ question 12 for further explanation. If given a
+  DLL, pedump will print a list of the exported symbols from the DLL, in the
+  same format. If given an object file, this option will trigger pedump to
+  print a list of all public symbols defined in the object file, in the same
+  format.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/functionsize</p>
+  </td>
+  <td width=491 valign=top style='width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Will produce a table of all
+  functions defined in the object or executable file sorted by their size in
+  bytes. The executable should have a symbol table (debug information should be
+  present).</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/H</p>
+  </td>
+  <td width=491 valign=top style='width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Includes a hexadecimal dump of the
+  sections in the file.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/HEX</p>
+  </td>
+  <td width=491 valign=top style='width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Dump contents in hexadecimal form, without
+  any concern for structures in the file. This allows you to dump any type of
+  file.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/L</p>
+  </td>
+  <td width=491 valign=top style='width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Includes line number information.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/OUT:file</p>
+  </td>
+  <td width=491 valign=top style='width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Prints the output into &lt;file&gt;
+  instead of standard output. If the given file name contains spaces it should
+  be enclosed in quotes.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/REL</p>
+  </td>
+  <td width=491 valign=top style='width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Shows the relocations.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/R</p>
+  </td>
+  <td width=491 valign=top style='width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Shows the resources in an
+  executable.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/SUMMARY</p>
+  </td>
+  <td width=491 valign=top style='width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Shows the sizes for the main parts
+  of the file only.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/S</p>
+  </td>
+  <td width=491 valign=top style='width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Dumps the symbol table. All the symbols
+  are dumped with all the details. Useful if you are writing a compiler.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/SP</p>
+  </td>
+  <td width=491 valign=top style='width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Writes all the exported/imported
+  symbols from an object file or executable. This is a smaller and more
+  readable output than /S.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/T</p>
+  </td>
+  <td width=491 valign=top style='width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Dumps a type library. This will be
+  determined automatically if you present to pedump a library that contains an
+  exported function like DllRegisterServer.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border-top:none;border-left:solid windowtext 1.5pt;
+  border-bottom:solid windowtext 1.5pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/X</p>
+  </td>
+  <td width=491 valign=top style='width:13.0cm;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Extracts a section to a file. The
+  name of the section immediately follows the “x”. For instance /x.data will
+  create a data.scn file with the contents of the data section.</p>
+  </td>
+ </tr>
+</table>
+
+<h3><a name="_Toc509456973"><span lang=FR>F2C — The Fortr</span></a><a
+name=f2c></a><span style='mso-bookmark:_Toc509456973'><span lang=FR>an Compiler</span></span></h3>
+
+<p class=MsoNormal style='mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-list:skip'><b style='mso-bidi-font-weight:normal'>SYNOPSIS</b></p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span>f2c [option ... ] file ...</p>
+
+<p class=MsoNormal style='mso-list:skip'><b style='mso-bidi-font-weight:normal'>DESCRIPTION</b></p>
+
+<p class=MsoNormal style='mso-list:skip'>F2c converts Fortran 77 source code in
+files with names ending in `.f' or `.F' to C source files in the current
+directory, with `.c' substituted for the final `.f' or `.F'. </p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span>The lcc compiler is invoked if the compilation finished without
+error and an object file is generated in the current directory.</p>
+
+<p class=MsoNormal style='mso-list:skip'>If no Fortran files are named, f2c
+reads Fortran from standard input and writes C on standard output. </p>
+
+<p class=MsoNormal style='mso-list:skip'>File names that end with `.p' or `.P'
+are taken to be prototype files, as produced by option `-P', and are read
+first.</p>
+
+<p class=MsoNormal style='mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span>The following options have the same meaning as in other Fortran
+compilers.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-C</b> Compiles code to
+check that subscripts are within declared array limits</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-Idir</b><span
+style="mso-spacerun: yes">  </span>Looks for a non-absolute include file first
+in the directory of the current input file, then in directories specified by -I
+options (one directory per option). Options -I2 and -I4 have precedence, thus a
+directory named 2 should be specified by -I./2.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-onetrip</b><span
+style="mso-spacerun: yes">  </span>Compiles DO loops that are performed at
+least once if reached. (Fortran 77 DO loops are not performed at all if the
+upper limit is smaller than the lower limit.)</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-U</b> Honors the case of
+variable and external names. Fortran keywords must be in lower case.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-u</b> Makes the default
+type of a variable `undefined' rather than using the default Fortran rules.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-w</b> Suppresses all
+warning messages, or if the option is `-w66', just Fortran 66 compatibility
+warnings.</p>
+
+<p class=MsoNormal style='mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span>The following options are peculiar to f2c.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-A</b> Produces ANSI C.
+Default is old-style C. This option is not very useful with lcc-win32, but
+allows you to port the resulting C code to other machines.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-a</b> Makes local
+variables automatic rather than static unless they appear in a DATA,
+EQUIVALENCE, NAMELIST, or<span style="mso-spacerun: yes">  </span>SAVE
+statement.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-C++</b> Outputs C++ code.
+This will make the resulting code incompatible with lcc-win32, and object file
+generation will not work. Again, this can be useful if you are porting the code
+to another machine or you want to link the resulting code with C++.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-c</b> Includes original
+Fortran source as comments.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-cd</b> Does not recognize
+cdabs, cdcos, cdexp, cdlog, cdsin, and cdsqrt as synonyms for the double
+complex intrinsics<span style="mso-spacerun: yes">  </span>zabs, zcos, zexp,
+zlog, zsin, and zsqrt, respectively.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-ddir</b><span
+style="mso-spacerun: yes">  </span>Writes `.c' files in directory dir instead
+of the current directory.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-E</b> Declares
+uninitialized COMMON to be Extern (defined to be overwrite-capable in f2c.h as
+extern).</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-ec</b> Places
+uninitialized COMMON blocks in separate files: COMMON /ABC/ appears in file
+abc_com.c. Option `-e1c'<span style="mso-spacerun: yes">  </span>bundles the
+separate files into the output file, with<span style="mso-spacerun: yes"> 
+</span>comments that give an unbundling sed(1) script.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-ext</b> Complains about
+f77(1) extensions. This is useful if you want to remain compatible with Fortran
+66, the standard of more than 30 years ago.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-g</b> Includes original
+Fortran line numbers in #line lines.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-h</b> Emulates Fortran
+66's treatment of Hollerith: tries to align character strings on word (or, if
+the option is<span style="mso-spacerun: yes">  </span>`-hd', on double word)
+boundaries.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-i90 </b>Does not recognize
+the Fortran 90 bit-manipulation intrinsics btest, iand, ibclr, ibits, ibset,
+ieor, ior,<span style="mso-spacerun: yes">  </span>ishft, and ishftc.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-kr</b> Uses temporary values
+to enforce Fortran expression evaluation where K&amp;R (first edition)
+parenthesization<span style="mso-spacerun: yes">  </span>rules allow
+rearrangement. If the option is `-krd',<span style="mso-spacerun: yes"> 
+</span>uses double precision temporaries even for single-precision operands.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-P </b><span
+style="mso-spacerun: yes"> </span>Writes a file.P of ANSI (or C++) prototypes
+for definitions in each input file.f or file.F. When reading<span
+style="mso-spacerun: yes">  </span>Fortran from standard input, writes
+prototypes at the<span style="mso-spacerun: yes">  </span>beginning of standard
+output. Option -Ps implies -P<span style="mso-spacerun: yes">  </span>and gives
+exit status 4; if rerunning f2c may change<span style="mso-spacerun: yes"> 
+</span>prototypes or declarations.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-p </b><span
+style="mso-spacerun: yes"> </span>Supplies preprocessor definitions to make
+common-block members look like local variables.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-R</b> Does not promote
+REAL functions and operations to DOUBLE<span style="mso-spacerun: yes"> 
+</span>PRECISION. Option `-!R' confirms the default, which<span
+style="mso-spacerun: yes">  </span>imitates f77.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-r</b> Casts REAL arguments
+of intrinsic functions and values of REAL functions (including intrinsics) to
+REAL.</p>
+
+<p class=MsoNormal style='mso-list:skip'><b style='mso-bidi-font-weight:normal'>-r8</b>
+Promotes REAL to DOUBLE PRECISION, COMPLEX to DOUBLE COMPLEX.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-s</b> Preserves
+multidimensional subscripts. Suppressed by<span style="mso-spacerun: yes"> 
+</span>option `-C' .</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-Tdir</b><span
+style="mso-spacerun: yes">  </span>Puts temporary files in directory dir.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-w8</b> Suppresses warnings
+when COMMON or EQUIVALENCE forces odd-word alignment of doubles.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-Wn</b> Assumes n
+characters/word (default 4) when initializing numeric variables with character
+data.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-z</b> Does not implicitly
+recognize DOUBLE COMPLEX.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-!bs </b>Does not recognize
+backslash escapes in character strings.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-!c</b> Inhibits C output,
+but produces -P output.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-!I</b> Rejects include
+statements.</p>
+
+<p class=MsoNormal style='mso-list:skip'><b style='mso-bidi-font-weight:normal'>-!i8</b>
+Disallows INTEGER*8.</p>
+
+<p class=MsoNormal style='mso-list:skip'><b style='mso-bidi-font-weight:normal'><span
+style="mso-spacerun: yes"> </span>-!it</b><span style="mso-spacerun: yes"> 
+</span>Does not infer types of untyped EXTERNAL procedures from use as parameters
+to previously defined or prototyped<span style="mso-spacerun: yes"> 
+</span>procedures.</p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>-!P</b> Does not attempt to
+infer ANSI or C++ prototypes from usage.</p>
+
+<p class=MsoNormal style='mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-list:skip'><b style='mso-bidi-font-weight:normal'>Options
+specific to lcc-win32:</b></p>
+
+<p class=MsoNormal style='mso-list:skip'><b style='mso-bidi-font-weight:normal'>-removec</b>
+Instructs f2c to remove the intermediate C file.</p>
+
+<p class=MsoNormal style='mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-list:skip'>The resulting C invokes the support
+routines of f77; object code should be linked with lcclnk specifying libf77.lib
+at the end of the command line. Wedit will automatically add this library when
+any of the project files end with .f.</p>
+
+<p class=MsoNormal style='mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-list:skip'><span style="mso-spacerun:
+yes"> </span><b style='mso-bidi-font-weight:normal'>SEE ALSO</b> S. I. Feldman
+and P. J. Weinberger, `A Portable Fortran 77 Compiler', UNIX Time Sharing
+System Programmer's Manual, Tenth Edition, Volume 2, AT&amp;T Bell
+Laboratories, 1990. This document is distributed with the source code of f2c.
+It is a file for the Laserjet printer. To print it you should open a command shell
+and issue the command: print f2c.prt.</p>
+
+<p class=MsoNormal style='mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-list:skip'><b style='mso-bidi-font-weight:normal'>FILES</b></p>
+
+<p class=MsoNormal style='mso-list:skip'><b style='mso-bidi-font-weight:normal'>f2c.h</b>
+This file is used by the generated C code. It should be in the \lcc\include
+directory.</p>
+
+<p class=MsoNormal style='mso-list:skip'><b style='mso-bidi-font-weight:normal'>libf77.lib</b>
+This file is the runtime of the Fortran system. It should be in the \lcc\lib
+directory with all other libraries.</p>
+
+<p class=MsoNormal style='mso-list:skip'><b style='mso-bidi-font-weight:normal'>f2c.exe</b>
+The is the compiler itself. It should be located in the \lcc\bin directory
+together with all other executables.</p>
+
+<p class=MsoNormal style='mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-list:skip'><b style='mso-bidi-font-weight:normal'>DIAGNOSTICS</b>
+</p>
+
+<p class=MsoNormal style='mso-list:skip'>The diagnostics produced by f2c are
+intended to be self-explanatory. lcc-win32 will not generate any warnings when
+called from f2c. The resulting C file can be invalid, however, this provokes an
+error message from lcc-win32. This happens when you do not adhere to the
+prototypes given or you have an error in the calling sequence: you are calling
+a subroutine with different numbers of arguments within the same program. The
+error issued by lcc-win32 follows the warning of the Fortran compiler.</p>
+
+<p class=MsoNormal style='mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-list:skip'><b style='mso-bidi-font-weight:normal'>BUGS</b>
+</p>
+
+<p class=MsoNormal style='mso-list:skip'>Floating-point constant expressions
+are simplified in the floating-point arithmetic of the machine running f2c, so
+that they are typically accurate to, at most 16 or 17, decimal places.</p>
+
+<p class=MsoNormal style='mso-list:skip'><a name="_Toc431269421">Untypable
+EXTERNAL functions are declared int.</a></p>
+
+<h3><a name="_Toc509456974"></a><a name="_The_browsegen_Utility"></a><span
+style='mso-bookmark:_Toc509456974'><span lang=FR>The browsegen U<a
+name=browsegen></a>tility</span></span></h3>
+
+<p class=MsoNormal style='mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyText2 style='margin-left:0cm;mso-list:skip'><span
+style='font-family:"Times New Roman"'>This utility is a modified version of the
+compiler that will produce a browse file containing the position in the given source
+file or its included headers of the symbols used. The format of the generated
+browse files is described in the technical documentation. Use this utility only
+if you want to build browse information for use in another software. Normally,
+this utility is only used by the IDE (Wedit) to answer queries. A more detailed
+description of how it works is found in the technical documentation.<o:p></o:p></span></p>
+
+<p class=MsoBodyText2 style='margin-left:0cm;mso-list:skip'><span
+style='font-family:"Times New Roman"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoBodyText2 style='margin-left:0cm;mso-list:skip'><span
+style='font-family:"Times New Roman"'>Browsegen accepts the following command
+line options:<o:p></o:p></span></p>
+
+<p class=MsoBodyText2 style='margin-left:27.0pt;mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyText2 style='margin-left:0cm;text-indent:0cm;mso-list:l1 level1 lfo5;
+tab-stops:list 18.0pt'><![if !supportLists]><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Times New Roman"'>showifdeflines</span></b><span
+style='font-family:"Times New Roman"'>. This will trigger line numbers of inactive
+lines to be printed in standard output or in the given output file. This is
+useful for finding out which lines in a source file are being compiled or not.<o:p></o:p></span></p>
+
+<p class=MsoBodyText2 style='margin-left:0cm;text-indent:0cm;mso-list:l1 level1 lfo5;
+tab-stops:list 18.0pt'><![if !supportLists]><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Times New Roman"'>M1</span></b><span style='font-family:
+"Times New Roman"'>. This will show in the standard output all include files by
+the given input file.<o:p></o:p></span></p>
+
+<p class=MsoBodyText2 style='margin-left:0cm;text-indent:0cm;mso-list:l1 level1 lfo5;
+tab-stops:list 18.0pt'><![if !supportLists]><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Times New Roman"'>Fo</span></b><span style='font-family:
+"Times New Roman"'>&lt;file&gt;. Writes all output in the given file. This is
+exactly the same as the compiler option Fo.<o:p></o:p></span></p>
+
+<p class=MsoBodyText2 style='margin-left:0cm;text-indent:0cm;mso-list:l1 level1 lfo5;
+tab-stops:list 18.0pt'><![if !supportLists]><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Times New Roman"'>-P –P1 –P2 –P3 –P4. </span></b><span
+style='font-family:"Times New Roman";mso-bidi-font-weight:bold'>This generates
+a C source file that contains the public or public and private interface for
+the given source file.</span><span style='font-family:"Times New Roman"'><o:p></o:p></span></p>
+
+<p class=MsoBodyText2><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<table border=1 cellspacing=0 cellpadding=0 style='margin-left:5.4pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr>
+  <td width=85 valign=top style='width:63.8pt;border:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoBodyText2 style='margin-left:0cm'><b><span style='font-family:
+  "Times New Roman"'>Option<o:p></o:p></span></b></p>
+  </td>
+  <td width=498 valign=top style='width:373.6pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoBodyText2 style='margin-left:0cm'><b><span style='font-family:
+  "Times New Roman"'>Description<o:p></o:p></span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=85 valign=top style='width:63.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoBodyText2 style='margin-left:0cm'><span style='font-family:"Times New Roman"'>-P
+  or –P1<o:p></o:p></span></p>
+  </td>
+  <td width=498 valign=top style='width:373.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoBodyText2 style='margin-left:0cm'><span style='font-family:"Times New Roman"'>Will
+  write all the prototypes for the public (i.e. not static) functions defined
+  in the module.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=85 valign=top style='width:63.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoBodyText2 style='margin-left:0cm'><span style='font-family:"Times New Roman"'>-P2<o:p></o:p></span></p>
+  </td>
+  <td width=498 valign=top style='width:373.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoBodyText2 style='margin-left:0cm'><span style='font-family:"Times New Roman"'>Will
+  write the public prototypes and data definitions for the given module.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=85 valign=top style='width:63.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoBodyText2 style='margin-left:0cm'><span style='font-family:"Times New Roman"'>-P3<o:p></o:p></span></p>
+  </td>
+  <td width=498 valign=top style='width:373.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoBodyText2 style='margin-left:0cm'><span style='font-family:"Times New Roman"'>Will
+  write the prototypes for both the public and static functions, and the public
+  data dependencies.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=85 valign=top style='width:63.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoBodyText2 style='margin-left:0cm'><span style='font-family:"Times New Roman"'>-P4<o:p></o:p></span></p>
+  </td>
+  <td width=498 valign=top style='width:373.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoBodyText2 style='margin-left:0cm'><span style='font-family:"Times New Roman"'>Will
+  write the public and static function prototypes, and the public and static
+  data definitions.<o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoBodyText2><span style='font-family:"Times New Roman"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoBodyText2 style='margin-left:0cm'><span style='font-family:"Times New Roman"'>Note
+that only definitions at the global level will be written. Local or external variables
+will never be written.<o:p></o:p></span></p>
+
+<h3><a name="_Toc509456975"><span lang=FR>The buildlib </span></a><a
+name=buildlib></a><span style='mso-bookmark:_Toc509456975'><span lang=FR>Utility</span></span></h3>
+
+<p class=MsoNormal style='mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-list:skip'>This utility reads an ASCII
+description of symbols and produces an import library that allows you to link
+your executable with a specific DLL.</p>
+
+<p class=MsoNormal style='mso-list:skip'>It has no command line options and the
+input arguments are as follows:</p>
+
+<p class=MsoNormal style='mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-list:skip'>buildlib &lt;ASCII description&gt;
+&lt;output library&gt;</p>
+
+<p class=MsoNormal style='mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-list:skip'>The first argument has to be a text
+file that contains the list of symbols to be built into the library; the second
+argument is the name of the library.</p>
+
+<p class=MsoNormal style='mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-list:skip'>Normally, the extension used in lcc-win32
+for this textual description is .exp. See the directory \lcc\buildlib for
+numerous examples of these file types.</p>
+
+<p class=MsoNormal style='mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-list:skip'>The format of the text file is as
+follows:</p>
+
+<p class=MsoNormal style='mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-list:skip'>First line: Name of the DLL this
+import library should bind to. This is mandatory.</p>
+
+<p class=MsoNormal style='mso-list:skip'>All other lines have a column format
+with 1 mandatory column and two optional columns. </p>
+
+<p class=MsoNormal style='mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-list:skip'>The first column should contain the
+symbol name as emitted by the compiler, i.e., with all decorations, such as
+leading underscore, and '@nn' decoration for _stdcall symbols.</p>
+
+<p class=MsoNormal style='mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-list:skip'>The second column is optional. It
+indicates the name of the symbol as it is exported from the DLL. This can be
+different from the decorated form.<span style="mso-spacerun: yes">  </span>For
+example, you may want to export a function without any decorations so that you
+can your DLL in other environments. If you omit this column, buildlib will
+strip decorations from the symbol names.</p>
+
+<p class=MsoNormal style='mso-list:skip'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-list:skip'>The third column is also optional,
+consisting of a single keyword 'data'. If present, this means that the exported
+symbol is not a function, but a data item, i.e., a variable.</p>
+
+<h3><a name="_Toc509456976"><span lang=FR>The lc</span></a><a name=lcclib></a><span
+style='mso-bookmark:_Toc509456976'><span lang=FR>clib Utility</span></span></h3>
+
+<p class=MsoBodyTextIndent style='margin-left:0cm'><span style='font-family:
+"Times New Roman"'>The purpose of this utility is to build library files (.lib)
+from a list of object files. The general format of the command line is:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-list:skip'><b style='mso-bidi-font-weight:normal'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></p>
+
+<p class=MsoNormal style='margin-left:27.0pt;mso-list:skip'><b
+style='mso-bidi-font-weight:normal'>lcclib &lt;options&gt;<span
+style="mso-spacerun: yes">  </span>&lt;library file&gt;<span
+style="mso-spacerun: yes">  </span>&lt;object files &gt;<o:p></o:p></b></p>
+
+<p class=MsoNormal style='mso-list:skip'><b style='mso-bidi-font-weight:normal'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></b></p>
+
+<p class=MsoBodyTextIndent><span style='font-family:"Times New Roman"'>Options:<o:p></o:p></span></p>
+
+<table border=1 cellspacing=0 cellpadding=0 width=609 style='width:457.0pt;
+ margin-left:3.5pt;border-collapse:collapse;border:none;mso-border-alt:solid windowtext 1.5pt;
+ mso-padding-alt:0cm 3.5pt 0cm 3.5pt'>
+ <tr>
+  <td width=192 valign=top style='width:144.0pt;border-top:1.5pt;border-left:
+  1.5pt;border-bottom:.75pt;border-right:.75pt;border-color:windowtext;
+  border-style:solid;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Option</p>
+  </td>
+  <td width=417 valign=top style='width:313.0pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-left-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Meaning</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=192 valign=top style='width:144.0pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/out:libfile.lib</p>
+  </td>
+  <td width=417 valign=top style='width:313.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Specifies the name of the output
+  library file.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=192 valign=top style='width:144.0pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/extract:&lt;object file&gt;</p>
+  </td>
+  <td width=417 valign=top style='width:313.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Extracts the specified object file
+  from the library.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=192 valign=top style='width:144.0pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/remove:&lt;object file&gt;</p>
+  </td>
+  <td width=417 valign=top style='width:313.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Removes the specified object file
+  from the library.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=192 valign=top style='width:144.0pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>/verbose</p>
+  </td>
+  <td width=417 valign=top style='width:313.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='mso-list:skip'>Progress report will be printed to
+  standard output.</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoHeader style='mso-list:skip;tab-stops:36.0pt center 8.0cm right 16.0cm'><span
+style='font-family:"Times New Roman";mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h3><a name="_Toc509456977"><span lang=FR>The Bi</span></a><a name=bind></a><span
+style='mso-bookmark:_Toc509456977'><span lang=FR>nd Utility</span></span></h3>
+
+<p class=DefinitionTerm>This program inspects a given object file and appends
+to it a list of imported functions. This list has the following format:</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal><span style='font-family:Courier'>IMPORTS<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Courier'>CRTDLL.dll<o:p></o:p></span></p>
+
+<p class=MsoHeader style='tab-stops:36.0pt center 8.0cm right 16.0cm'><span
+style='font-family:Courier;mso-ansi-language:EN-US'>_fprintf<span
+style='mso-tab-count:1'>                   </span>fprintf<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Courier'>USER32.dll<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Courier'>_LoadLibrary@4<span
+style='mso-tab-count:1'> </span>LoadLibrary<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Courier'>... <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Courier'>$$END$$<o:p></o:p></span></p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal>In words: The list starts with the keyword ‘IMPORTS’,
+followed by a DLL list. Each DLL starts with the name, followed by the imported
+functions from that DLL in the object file.</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal>Usage:</p>
+
+<p class=MsoNormal>The syntax is:</p>
+
+<p class=MsoNormal>bind &lt;file name&gt;</p>
+
+<p class=DefinitionTerm><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=DefinitionList>The argument should be the name of an existing object
+file.</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<h2><span lang=FR>The mergeas<a name=mergeasm></a>m utility</span></h2>
+
+<p class=MsoNormal><span lang=FR style='mso-ansi-language:FR'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=FR style='mso-ansi-language:FR'>This utility will
+take an assembler file as generated by the compiler, and will merge it with the
+C source file. This needs that you instruct the compiler to generate debug
+information with the –g2 option. The usage is very simple&nbsp;:<o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span lang=FR style='font-family:"Courier New";
+mso-ansi-language:FR'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b><span lang=FR style='font-family:"Courier New";
+mso-ansi-language:FR'>mergeasm</span></b><span lang=FR style='font-family:"Courier New";
+mso-ansi-language:FR'> input.asm MergedOutput.asm<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=FR style='font-family:"Courier New";mso-ansi-language:
+FR'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=FR style='mso-bidi-font-family:Arial;mso-ansi-language:
+FR'>This will read the corresponding C input file and merge it with the
+assemble file input.asm, producing a merged «&nbsp;MergedOutput. asm&nbsp;»
+file.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=FR style='mso-ansi-language:FR'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

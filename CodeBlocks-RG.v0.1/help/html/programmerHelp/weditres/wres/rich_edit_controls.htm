@@ -1,0 +1,1019 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>About Rich Edit Controls</title>
+</head>
+
+<body>
+
+<h2>About Rich Edit Controls</h2>
+<hr SIZE="1">
+<p>The original specification for rich edit controls is Microsoft® Rich Edit
+1.0; the current specification is Rich Edit 4.1. Each version of rich edit is a
+superset of the preceding one, except that only Asian builds of Rich Edit 1.0
+have a vertical text option. </p>
+<h3><a name="creating_re_control"></a>Creating a Rich Edit Control</h3>
+<p>To create a rich edit control, call the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+CreateWindowEx</MSHelp:link>
+ function, specifying the rich edit window class. If you are using Rich Edit 1.0
+(Riched32.dll), specify <i>RichEdit</i> for the window class parameter. If you
+are using Rich Edit 2.0 or later (Riched20.dll), specify RICHEDIT_CLASS for the
+window class parameter.</p>
+<p>Rich edit controls support most of the window styles used with edit controls
+as well as additional styles. You should specify the ES_MULTILINE window style
+if you want to allow more than one line of text in the control.</p>
+<div class="clsNote">
+  <b>Note</b>&nbsp;&nbsp; To use visual styles with these controls, an
+  application must include a manifest and must call <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_InitCommonControls_cpp">
+  InitCommonControls</MSHelp:link>
+  at the beginning of the program. For information on visual styles, see <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_inet_themes_overview_cpp">
+  Visual Styles</MSHelp:link>
+  . For information on manifests, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_inet_cookbook_overview_cpp">
+  Using Windows XP Visual Styles</MSHelp:link>
+  .
+</div>
+<h3><a name="text_formatting"></a>Text Formatting</h3>
+<p>An application can send messages to a rich edit control to format characters
+and paragraphs to retrieve formatting information. Paragraph formatting
+attributes include alignment, tabs, indents, numbering, and simple tables. For
+characters, you can specify font name, size, color, and effects such as bold,
+italic, and protected.</p>
+<p>You can apply paragraph formatting by using the <b>EM_SETPARAFORMAT</b>
+message. To determine the current paragraph formatting for the selected text,
+use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_GETPARAFORMAT_cpp">
+EM_GETPARAFORMAT</MSHelp:link>
+ message. The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PARAFORMAT_str_cpp">
+PARAFORMAT</MSHelp:link>
+ or <b>PARAFORMAT2</b> structure is used with both messages to specify paragraph
+formatting attributes.</p>
+<p>You can apply character formatting by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SETCHARFORMAT_cpp">
+EM_SETCHARFORMAT</MSHelp:link>
+ message. To determine the current character formatting for the selected text,
+you can use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_GETCHARFORMAT_cpp">
+EM_GETCHARFORMAT</MSHelp:link>
+ message. The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CHARFORMAT_str_cpp">
+CHARFORMAT</MSHelp:link>
+ or <b>CHARFORMAT2</b> structure is used with both messages to specify character
+attributes.</p>
+<p>You can also use <b>EM_SETCHARFORMAT</b> and <b>EM_GETCHARFORMAT</b> messages
+to set and retrieve the character formatting of the insertion point, which is
+the formatting applied to any subsequently inserted characters. For example, if
+an application sets the default character formatting to bold and the user then
+types a character, that character is bold.</p>
+<p>The character formatting of the insertion point is applied to newly inserted
+text only if the current selection is empty (if the current selection is an
+insertion point). Otherwise, the new text assumes the character formatting of
+the text it replaces. If the selection changes, the default character formatting
+changes to match the first character in the new selection.</p>
+<p>The protected character effect is unique in that it does not change the
+appearance of text. If the user attempts to modify protected text, a rich edit
+control sends its parent window an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EN_PROTECTED_cpp">
+EN_PROTECTED</MSHelp:link>
+ notification message, allowing the parent window to allow or prevent the
+change. To receive this notification message, you must enable it by using the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SETEVENTMASK_cpp">
+EM_SETEVENTMASK</MSHelp:link>
+ message.</p>
+<p>Foreground color is always a character attribute. In Rich Edit 1.0,
+background color is only a property of the rich edit control. To set the default
+background color, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SETBKGNDCOLOR_cpp">
+EM_SETBKGNDCOLOR</MSHelp:link>
+ message. Note, Rich Edit does not support the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_CTLCOLOREDIT_cpp">
+WM_CTLCOLOREDIT</MSHelp:link>
+ message.</p>
+<h3><a name="re_current_selection"></a>Current Selection in a Rich Edit Control</h3>
+<p>The user can select text in a rich edit control by using the mouse or the
+keyboard. The <i>current selection</i> is the range of selected characters, or
+the position of the insertion point if no characters are selected. An
+application can get information about the current selection, set it, determine
+when it changes, and show or hide the selection highlight.</p>
+<p>To determine the current selection in a rich edit control, use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_EXGETSEL_cpp">
+EM_EXGETSEL</MSHelp:link>
+ message. To set the current selection, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_EXSETSEL_cpp">
+EM_EXSETSEL</MSHelp:link>
+ message. The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CHARRANGE_str_cpp">
+CHARRANGE</MSHelp:link>
+ structure is used with both messages and specifies a range of characters. To
+retrieve information about the contents of the current selection, you can use
+the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SELECTIONTYPE_cpp">
+EM_SELECTIONTYPE</MSHelp:link>
+ message.</p>
+<p>An application can detect when the current selection changes by processing
+the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EN_SELCHANGE_cpp">
+EN_SELCHANGE</MSHelp:link>
+ notification message. The notification message specifies a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_SELCHANGE_str_cpp">
+SELCHANGE</MSHelp:link>
+ structure containing information about the new selection. A rich edit control
+sends this notification message only if you enable it by using the <b>EM_SETEVENTMASK</b>
+message.</p>
+<p>By default, a rich edit control shows and hides the selection highlight when
+it gains and loses the focus. You can show or hide the selection highlight at
+any time by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_HIDESELECTION_cpp">
+EM_HIDESELECTION</MSHelp:link>
+ message. For example, an application might provide a Search dialog box to find
+text in a rich edit control. The application might select matching text without
+closing the dialog box, in which case it must use the <b>EM_HIDESELECTION</b>
+message to highlight the selection.</p>
+<p>As with edit controls, you can specify the ES_NOHIDESEL window style to
+prevent a rich edit control from hiding the selection highlight when it loses
+the focus.</p>
+<p>As an alternative to using the <b>EM_EXGETSEL</b> and <b>EM_EXSETSEL</b>
+messages, you can retrieve and set the current selection by using the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_GETSEL_cpp">
+EM_GETSEL</MSHelp:link>
+ and <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SETSEL_cpp">
+EM_SETSEL</MSHelp:link>
+ edit control messages. The <b>EM_GETSEL</b> message packs two 16-bit character
+indexes into its 32-bit return value and therefore, works only for selections
+that fall entirely within the first 64K. However, a rich edit control will never
+contain more than 32K characters of text, unless you extend this limit by using
+the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_LIMITTEXT_cpp">
+EM_LIMITTEXT</MSHelp:link>
+ or <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_EXLIMITTEXT_cpp">
+EM_EXLIMITTEXT</MSHelp:link>
+ message. For selections that extend beyond the first 64KB of text, the <b>EM_GETSEL</b>
+message returns – 1. In such a case you can still use the values returned in <i>wParam</i>
+and <i>lParam</i> to find the start and end characters of the selection.</p>
+<h3><a name="re_operations"></a>Rich Edit Text Operations</h3>
+<p>An application can send messages to retrieve or find text in a rich edit
+control. You can retrieve either the selected text or a specified range of text.</p>
+<p>To get the selected text in a rich edit control, use the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_GETSELTEXT_cpp">
+EM_GETSELTEXT</MSHelp:link>
+ message. The text is copied to the specified character array. You must ensure
+that the array is large enough to hold the selected text plus a terminating null
+character.</p>
+<p>To retrieve a specified range of text, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_GETTEXTRANGE_cpp">
+EM_GETTEXTRANGE</MSHelp:link>
+ message. The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TEXTRANGE_str_cpp">
+TEXTRANGE</MSHelp:link>
+ structure used with this message specifies the text range to retrieve and
+points to a character array that receives the text. Here again, the application
+must ensure that the array is large enough for the specified text plus a
+terminating null character.</p>
+<p>You can search for a string in a rich edit control by using the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_FINDTEXT_cpp">
+EM_FINDTEXT</MSHelp:link>
+ message. The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_FINDTEXT_str_cpp">
+FINDTEXT</MSHelp:link>
+ structure used with this message specifies the text range to search and the
+string to search for. You can also specify such options as whether the search is
+case sensitive.</p>
+<p>Rich Edit 3.0 also supports the HexToUnicode IME, which allows a user to
+convert between hexadecimal and Unicode by using hot keys. For more information,
+see <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HexToUnicode_IME">
+HexToUnicode IME</MSHelp:link>
+.</p>
+<h3><a name="re_word_and_line_breaks"></a>Word and Line Breaks</h3>
+<p>A rich edit control calls a function called a word-break procedure to find
+breaks between words and to determine where it can break lines. The control uses
+this information when performing word-wrap operations and when processing
+CTRL+LEFT ARROW key and CTRL+RIGHT ARROW key combinations. An application can
+send messages to a rich edit control to replace the default word-break
+procedure, to retrieve word-break information, and to determine what line a
+given character falls on.</p>
+<p>Word-break procedures for rich edit controls are similar to those for edit
+controls, but they have additional capabilities: word-break procedures for both
+kinds of controls can determine whether a character is a delimiter and can find
+the nearest word break before or after the specified position. A delimiter is a
+character that marks the end of a word, such as a space. Usually, in an edit
+control, a word break occurs only after delimiters. However, different rules
+apply to most Asian languages.</p>
+<p>Word-break procedures for rich edit controls also group characters into
+character classes, each identified by a value in the range 0x00 through 0x0F.
+Breaks occur either after delimiters or between characters of different classes.
+Thus, a word-break procedure with different classes for alphanumeric and
+punctuation characters would find two word breaks in the string &quot;Win.doc&quot;
+(before and after the period).</p>
+<p>A character's class can be combined with zero or more word-break flags to
+form an 8-bit value. When performing word-wrap operations, a rich edit control
+uses word-break flags to determine where it can break lines. Rich Edit uses the
+following word-break flags.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Flags</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>WBF_BREAKAFTER</td>
+      <td>Lines may be broken after the character.</td>
+    </tr>
+    <tr>
+      <td>WBF_BREAKLINE</td>
+      <td>The character is a delimiter. Delimiters mark the ends of words. Lines
+        may be broken after delimiters.</td>
+    </tr>
+    <tr>
+      <td>WBF_ISWHITE</td>
+      <td>The character is a white-space character. Trailing white-space
+        characters are not included in the length of a line when wrapping.</td>
+    </tr>
+  </tbody>
+</table>
+<p>The WBF_BREAKAFTER value is used to allow wrapping after a character that
+does not mark the end of a word, such as a hyphen.</p>
+<p>You can replace the default word-break procedure for a rich edit control,
+with your own procedure by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SETWORDBREAKPROC_cpp">
+EM_SETWORDBREAKPROC</MSHelp:link>
+ message. For more information about word-break procedures, see the description
+of the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EditWordBreakProc_cpp">
+EditWordBreakProc</MSHelp:link>
+ function.</p>
+<div class="clsNote">
+  <b>Note</b>&nbsp;&nbsp;This replacement is not recommended for Rich Edit
+  control 2.0 and later, due to the complexity of multilingual word breaking.
+</div>
+<p>For Rich Edit 1.0, you can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SETWORDBREAKPROCEX_cpp">
+EM_SETWORDBREAKPROCEX</MSHelp:link>
+ message to replace the default extended word-break procedure with an <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EditWordBreakProcEx_cpp">
+EditWordBreakProcEx</MSHelp:link>
+ function. This function provides additional information about the text, such as
+the character set. You can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_GETWORDBREAKPROCEX_cpp">
+EM_GETWORDBREAKPROCEX</MSHelp:link>
+ message to retrieve the address of the current extended word-break procedure.
+Note that Rich Edit 2.0 and later do not support <b>EditWordBreakProcEx</b>, <b>EM_GETWORDBREAKPROCEX</b>,
+and <b>EM_SETWORDBREAKPROCEX</b>.</p>
+<p>You can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_FINDWORDBREAK_cpp">
+EM_FINDWORDBREAK</MSHelp:link>
+ message to find word breaks or to determine a character's class and word-break
+flags. In turn, the control calls its word-break procedure to get the requested
+information.</p>
+<p>To determine which line a given character falls on, you can use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_EXLINEFROMCHAR_cpp">
+EM_EXLINEFROMCHAR</MSHelp:link>
+ message.</p>
+<h3><a name="re_clipboard_operations"></a>Rich Edit Clipboard Operations</h3>
+<p>An application can paste the contents of the clipboard into a rich edit
+control using either the best available clipboard format or a specific clipboard
+format. You can also determine whether a rich edit control is capable of pasting
+a clipboard format.</p>
+<p>As with an edit control, you can copy or cut the contents of the current
+selection by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_COPY">
+WM_COPY</MSHelp:link>
+ or <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_CUT">
+WM_CUT</MSHelp:link>
+ message. Similarly, you can paste the contents of the clipboard into a rich
+edit control by using the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_PASTE">
+WM_PASTE</MSHelp:link>
+ message. The control pastes the first available format that it recognizes,
+which presumably is the most descriptive format.</p>
+<p>To paste a specific clipboard format, you can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_PASTESPECIAL_cpp">
+EM_PASTESPECIAL</MSHelp:link>
+ message. This message is useful for applications with a <b>Paste Special</b>
+command that enables the user to select the clipboard format. You can use the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_CANPASTE_cpp">
+EM_CANPASTE</MSHelp:link>
+ message to determine whether a given format is recognized by the control.</p>
+<p>You can also use the <b>EM_CANPASTE</b> message to determine whether any
+available clipboard format is recognized by a rich edit control. This message is
+useful when processing the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_initmenupopup">
+WM_INITMENUPOPUP</MSHelp:link>
+ message. An application might enable or gray its <b>Paste</b> command depending
+on whether the control can paste any available format.</p>
+<p>Rich edit controls register two clipboard formats:</p>
+<ul>
+  <li>RTF
+  <li>RichEdit Text and Objects</li>
+</ul>
+<p>An application can register these formats by using the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_registerclipboardformat">
+RegisterClipboardFormat</MSHelp:link>
+ function, specifying the CF_RTF and CF_RETEXTOBJ values.</p>
+<h3><a name="re_streams"></a>Streams</h3>
+<p>You can use streams to transfer data into or out of a rich edit control. A
+stream is defined by an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EDITSTREAM_str_cpp">
+EDITSTREAM</MSHelp:link>
+ structure, which specifies a buffer and an application defined–callback
+function.</p>
+<p>To read data into a rich edit control (that is, stream in the data), use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_STREAMIN_cpp">
+EM_STREAMIN</MSHelp:link>
+ message. The control repeatedly calls the application's callback function,
+which transfers a portion of the data into the buffer each time.</p>
+<p>To save the contents of a rich edit control (that is, stream out the data),
+you can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_STREAMOUT_cpp">
+EM_STREAMOUT</MSHelp:link>
+ message. The control repeatedly writes to the buffer and then calls the
+application's callback function. For each call, the callback function saves the
+contents of the buffer.</p>
+<h3><a name="re_printing"></a>Printing</h3>
+<p>You can send messages to a rich edit control to render its output for a
+specified device, such as a printer. You can also specify the output device for
+which a rich edit control formats its text.</p>
+<p>To format part of a rich edit control's contents for a specific device, you
+can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_FORMATRANGE_cpp">
+EM_FORMATRANGE</MSHelp:link>
+ message. The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_FORMATRANGE_str_cpp">
+FORMATRANGE</MSHelp:link>
+ structure used with this message specifies the range of text to format as well
+as the device context for the target device.</p>
+<p>After formatting text for an output device, you can send the output to the
+device by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_DISPLAYBAND_cpp">
+EM_DISPLAYBAND</MSHelp:link>
+ message. By repeatedly using the <b>EM_FORMATRANGE</b> and <b>EM_DISPLAYBAND</b>
+messages, an application that prints the contents of a rich edit control can
+implement banding. (Banding is the division of output into smaller parts for
+printing purposes.)</p>
+<p>You can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SETTARGETDEVICE_cpp">
+EM_SETTARGETDEVICE</MSHelp:link>
+ message to specify the target device for which a rich edit control formats its
+text. This message is useful for WYSIWYG formatting, in which an application
+positions text using the default printer's font metrics instead of the screen's.</p>
+<h3><a name="bottomless_re_controls"></a>Bottomless Rich Edit Controls</h3>
+<p>An application can resize a rich edit control as needed so that it is always
+the same size as its contents. A rich edit control supports this so-called
+bottomless functionality by sending its parent window an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EN_REQUESTRESIZE_cpp">
+EN_REQUESTRESIZE</MSHelp:link>
+ notification message whenever the size of its content changes.</p>
+<p>When processing the <b>EN_REQUESTRESIZE</b> notification message, an
+application should resize the control to the dimensions in the specified <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_REQRESIZE_str_cpp">
+REQRESIZE</MSHelp:link>
+ structure. An application might also move any information near the control to
+accommodate the control's change in height. To resize the control, you can use
+the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_setwindowpos">
+SetWindowPos</MSHelp:link>
+ function.</p>
+<p>You can force a bottomless rich edit control to send an <b>EN_REQUESTRESIZE</b>
+notification message by using the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_REQUESTRESIZE_cpp">
+EM_REQUESTRESIZE</MSHelp:link>
+ message. This message can be useful when processing the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_size">
+WM_SIZE</MSHelp:link>
+ message.</p>
+<p>To receive <b>EN_REQUESTRESIZE</b> notification messages, you must enable the
+notification by using the <b>EM_SETEVENTMASK</b> message.</p>
+<h3><a name="re_misc_messages"></a>Miscellaneous Notification Messages</h3>
+<p>A rich edit control's parent window can process notification messages to
+monitor events affecting the control. Rich edit controls support all of the
+notification messages used with edit controls as well as several additional
+ones. You can determine which notification messages a rich edit control sends
+its parent window by setting its event mask.</p>
+<p>To set the event mask for a rich edit control, use the <b>EM_SETEVENTMASK</b>
+message. You can retrieve the current event mask for a rich edit control by
+using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_GETEVENTMASK_cpp">
+EM_GETEVENTMASK</MSHelp:link>
+ message. For a list of event mask flags, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Rich_Edit_Control_Event_Mask_Flags_cpp">
+Rich Edit Control Event Mask Flags</MSHelp:link>
+.</p>
+<p>A rich edit control's parent window can filter all keyboard and mouse input
+to the control by processing the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EN_MSGFILTER_cpp">
+EN_MSGFILTER</MSHelp:link>
+ notification message. The parent window can prevent the keyboard or mouse
+message from being processed or can change the message by modifying the
+specified <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_MSGFILTER_str_cpp">
+MSGFILTER</MSHelp:link>
+ structure.</p>
+<p>An application can process the <b>EN_PROTECTED</b> notification message to
+detect when the user attempts to modify protected text. To mark a range of text
+as protected, you can set the protected character effect. For more information,
+see <a href="#text_formatting" target="_self">Text Formatting</a>.</p>
+<p>You can enable the user to drop files in a rich edit control by processing
+the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EN_DROPFILES_cpp">
+EN_DROPFILES</MSHelp:link>
+ notification message. The specified <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ENDROPFILES_str_cpp">
+ENDROPFILES</MSHelp:link>
+ structure contains information about the files being dropped.</p>
+<h3><a name="re_font_binding"></a>Font Binding</h3>
+<p>Rich Edit 3.0 will assign a charset to plain-text characters depending on
+their context. Some examples are:</p>
+<ul>
+  <li>Hangul symbols get HANGUL_CHARSET
+  <li>Non-neutral ANSI characters get ANSI_CHARSET in any event
+  <li>Chinese characters get SHIFTJIS_CHARSET if kana characters are found
+    nearby or GB2312_CHARSET if no kana are found nearby.
+  <li>Greek characters get GREEK_CHARSET</li>
+</ul>
+<div class="clsNote">
+  <b>Note</b>&nbsp;&nbsp;The Rich Edit control uses Unicode internally, so this
+  use of charset differs from the original one used in font specifications. But <b>CHARFORMAT</b>
+  has a well-defined place for the charset.
+</div>
+<p>Neutral characters like blanks and digits are assigned a charset depending on
+their context. For example, a blank surrounded by characters of the same charset
+gets that charset. Neutrals and digits used for bidirectional text are assigned
+charsets in a way based on the Unicode bidirectional algorithm.</p>
+<p>Once charsets are assigned, Rich Edit scans the text around the insertion
+point forward and backward to find the nearest fonts that have been used for the
+charsets. If no font is found for a charset, rich edit uses the font chosen by
+the client for that charset. If the client hasn't specified a font for the
+charset, rich edit uses the default font for that charset. If the client wants
+some other font, the client can always change it, but this approach will work
+most of the time. The current default font choices are based on the following
+table. Note that the default fonts are set per-process, and there are separate
+lists for UI usage and for non-UI usage.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Language</th>
+      <th>UI font name</th>
+      <th>UI font size</th>
+      <th>non-UI font name</th>
+      <th>non-UI font size</th>
+    </tr>
+    <tr>
+      <td>Western, CE, ME, Vietnamese</td>
+      <td>Tahoma</td>
+      <td>8</td>
+      <td>Arial</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>Japanese</td>
+      <td>MS UI Gothic</td>
+      <td>9</td>
+      <td>MS P Gothic</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>Korean</td>
+      <td>Gulim</td>
+      <td>9</td>
+      <td>Gulim</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>Simplified Chinese</td>
+      <td>Simsun</td>
+      <td>9</td>
+      <td>SimSun</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>Traditional Chinese</td>
+      <td>PMingLiU</td>
+      <td>9</td>
+      <td>PMingLiU</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>Thai</td>
+      <td>MS Sans Serif</td>
+      <td>8</td>
+      <td>Tahoma</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>Symbols</td>
+      <td>Wingdings</td>
+      <td>8</td>
+      <td>Wingdings</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>Devanagari</td>
+      <td>Mangal</td>
+      <td>8</td>
+      <td>Mangal</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>Tamil</td>
+      <td>Latha</td>
+      <td>8</td>
+      <td>Latha</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>Georgian, Armenian</td>
+      <td>Arial Unicode</td>
+      <td>8</td>
+      <td>Arial Unicode</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+<p>Therefore, in the default font-binding table (entries have charset, font
+name, size), Rich Edit allows ANSI_CHARSET to match several charsets, while the
+appropriate charset matches other fonts on a one-to-one basis. More precisely,
+rich edit uses the ANSI_CHARSET choice whenever no other alternative is found.
+You will be able to specify a finer granularity than this, for example: assign a
+specific ARABIC_CHARSET for Arabic runs, a specific Greek font for Greek runs,
+for example. This finer granularity will also be used if a font with the desired
+charset stamp is found somewhere in the document before the area being
+font-bound.</p>
+<p>Note that Rich Edit does not currently handle a missing glyph in a font that
+claims to support a charset but is incomplete. At display time in a complex
+script, Rich Edit does end up knowing that such a glyph is missing, but it does
+not cause the backing store to use a new font. Normally, the underlying font
+linking of the OS will accomplish this.</p>
+<p><b>Rich Edit 4.1:</b> To set the default font for a script, call <b>EM_SETCHARFORMAT</b>
+with <b>CHARFORMAT2</b>, specifying yHeight, bCharSet, bPitchAndFamily,
+szFaceName, and lcid. Also, to get the default font for a specific code page,
+call <b>EM_GETCHARFORMAT</b> with <b>CHARFORMAT2</b> specifying bCharSet and
+lcid.</p>
+<h3><a name="unsupported_edit_controls"></a>Unsupported Edit Control
+Functionality</h3>
+<p>Rich edit controls support most but not all functionality for multiline edit
+controls. This section lists the edit control messages and window styles that
+are <i>not</i> supported by rich edit controls.</p>
+<p>The following messages are processed by edit controls but <i>not</i> by rich
+edit controls.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Unsupported message</th>
+      <th>Comments</th>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_FMTLINES_cpp">
+        EM_FMTLINES</MSHelp:link>
+      </td>
+      <td>Not supported.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_GETHANDLE_cpp">
+        EM_GETHANDLE</MSHelp:link>
+      </td>
+      <td>Rich edit controls do not store text as a simple array of characters.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_GETIMESTATUS_cpp">
+        EM_GETIMESTATUS</MSHelp:link>
+      </td>
+      <td>Not supported.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_GETMARGINS_cpp">
+        EM_GETMARGINS</MSHelp:link>
+      </td>
+      <td>Not supported.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SETHANDLE_cpp">
+        EM_SETHANDLE</MSHelp:link>
+      </td>
+      <td>Rich edit controls do not store text as a simple array of characters.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SETIMESTATUS_cpp">
+        EM_SETIMESTATUS</MSHelp:link>
+      </td>
+      <td>Not supported.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SETMARGINS_cpp">
+        EM_SETMARGINS</MSHelp:link>
+      </td>
+      <td>Supported in Rich Edit 3.0.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SETRECTNP_cpp">
+        EM_SETRECTNP</MSHelp:link>
+      </td>
+      <td>Not supported.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_SETTABSTOPS_cpp">
+        EM_SETTABSTOPS</MSHelp:link>
+      </td>
+      <td>The <b>EM_SETPARAFORMAT</b> message is used instead.
+        <p>&nbsp;
+        <p>Supported in Rich Edit 3.0.</p>
+        <p>&nbsp;</p>
+      </td>
+    </tr>
+    <tr>
+      <td><b>WM_CTLCOLOR</b></td>
+      <td>The <b>EM_SETBKGNDCOLOR</b> message is used instead.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_getfont">
+        WM_GETFONT</MSHelp:link>
+      </td>
+      <td>The <b>EM_GETCHARFORMAT</b> message is used instead.</td>
+    </tr>
+  </tbody>
+</table>
+<p>The following window styles are used with multiline edit controls but not
+with rich edit controls: ES_LOWERCASE, ES_UPPERCASE, and ES_OEMCONVERT.</p>
+<h3><a name="rich_edit_shortcut_keys"></a>Rich Edit Shortcut Keys</h3>
+<p>Rich edit controls support the following shortcut keys.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Keys</th>
+      <th>Operations</th>
+      <th>Comments</th>
+    </tr>
+    <tr>
+      <td>Shift+Backspace</td>
+      <td>Generate a LRM/LRM on a bidi keyboard</td>
+      <td>BiDi specific</td>
+    </tr>
+    <tr>
+      <td>Ctrl+Tab</td>
+      <td>Tab</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+Clear</td>
+      <td>Select all</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+Number Pad 5</td>
+      <td>Select all</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+A</td>
+      <td>Select all</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+E</td>
+      <td>Center alignment</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+J</td>
+      <td>Justify alignment</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+R</td>
+      <td>Right alignment</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+L</td>
+      <td>Left alignment</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+C</td>
+      <td>Copy</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+V</td>
+      <td>Paste</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+X</td>
+      <td>Cut</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+Z</td>
+      <td>Undo</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+Y</td>
+      <td>Redo</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+'+' (Ctrl+Shift+'=')</td>
+      <td>Superscript</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+'='</td>
+      <td>Subscript</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+1</td>
+      <td>Line spacing = 1 line.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+2</td>
+      <td>Line spacing = 2 lines.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+5</td>
+      <td>Line spacing = 1.5 lines.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+' (apostrophe)</td>
+      <td>Accent acute</td>
+      <td>After pressing the short cut key, press the appropriate letter (for
+        example a, e, or u). This applies to English, French, German, Italian,
+        and Spanish keyboards only.</td>
+    </tr>
+    <tr>
+      <td>Ctrl+` (grave)</td>
+      <td>Accent grave</td>
+      <td>See Ctrl+' comments.</td>
+    </tr>
+    <tr>
+      <td>Ctrl+~ (tilde)</td>
+      <td>Accent tilde</td>
+      <td>See Ctrl+' comments.</td>
+    </tr>
+    <tr>
+      <td>Ctrl+; (semicolon)</td>
+      <td>Accent umlaut</td>
+      <td>See Ctrl+' comments.</td>
+    </tr>
+    <tr>
+      <td>Ctrl+Shift+6</td>
+      <td>Accent caret (circumflex)</td>
+      <td>See Ctrl+' comments.</td>
+    </tr>
+    <tr>
+      <td>Ctrl+, (comma)</td>
+      <td>Accent cedilla</td>
+      <td>See Ctrl+' comments.</td>
+    </tr>
+    <tr>
+      <td>Ctrl+Shift+' (apostrophe)</td>
+      <td>Activate smart quotes</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Backspace</td>
+      <td>If text is protected, beep and do not delete it. Otherwise, delete
+        previous character.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+Backspace</td>
+      <td>Delete previous word. This generates a VK_F16 code.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>F16</td>
+      <td>Same as Backspace.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+Insert</td>
+      <td>Copy</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Shift+Insert</td>
+      <td>Paste</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Insert</td>
+      <td>Overwrite</td>
+      <td>DBCS does not overwrite.</td>
+    </tr>
+    <tr>
+      <td>Ctrl+Left Arrow</td>
+      <td>Move cursor one word to the left.</td>
+      <td>On bidi keyboard, this depends on the direction of the text.</td>
+    </tr>
+    <tr>
+      <td>Ctrl+Right Arrow</td>
+      <td>Move cursor one word to the right.</td>
+      <td>See Ctrl+Left Arrow comments.</td>
+    </tr>
+    <tr>
+      <td>Ctrl+Left Shift</td>
+      <td>Left alignment</td>
+      <td>In BiDi documents, this is for left-to-right reading order.</td>
+    </tr>
+    <tr>
+      <td>Ctrl+Right Shift</td>
+      <td>Right alignment</td>
+      <td>In BiDi documents, this is for right-to-left reading order.</td>
+    </tr>
+    <tr>
+      <td>Ctrl+Up Arrow</td>
+      <td>Move to the line above.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+Down Arrow</td>
+      <td>Move to the line below.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+Home</td>
+      <td>Move to the beginning of the document.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+End</td>
+      <td>Move to the end of the document.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+Page Up</td>
+      <td>Move one page up.</td>
+      <td>If in SystemEditMode and Single Line control, do nothing.</td>
+    </tr>
+    <tr>
+      <td>Ctrl+Page Down</td>
+      <td>Move one page down.</td>
+      <td>See Ctrl+Page Up comments.</td>
+    </tr>
+    <tr>
+      <td>Ctrl+Delete</td>
+      <td>Delete the next word or selected characters.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Shift+Delete</td>
+      <td>Cut the selected characters.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Esc</td>
+      <td>Stop drag-drop.</td>
+      <td>While doing a drag-drop of text.</td>
+    </tr>
+    <tr>
+      <td>Alt+Esc</td>
+      <td>Change the active application.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Alt+X</td>
+      <td>Converts the Unicode hexadecimal value preceding the insertion point
+        to the corresponding Unicode character.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Alt+Shift+X</td>
+      <td>Converts the Unicode character preceding the insertion point to the
+        corresponding Unicode hexadecimal value.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Alt+0xxx (Number Pad)</td>
+      <td>Inserts Unicode values if xxx is greater than 255. When xxx is less
+        than 256, ASCI range text is inserted based on the current keyboard.</td>
+      <td>Must enter decimal values.</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Alt+Shift+Ctrl+F12</td>
+      <td>Hex to Unicode.</td>
+      <td>In case Alt+X is already taken for another use.</td>
+    </tr>
+    <tr>
+      <td>Alt+Shift+Ctrl+F11</td>
+      <td>Selected text will be output to the debugger window and saved to
+        %temp%\DumpFontInfo.txt.</td>
+      <td>For Debug only (need to set Flag=8 in Win.ini)</td>
+    </tr>
+    <tr>
+      <td>Ctrl+Shift+A</td>
+      <td>Set all caps.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+Shift+L</td>
+      <td>Fiddle bullet style.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ctrl+Shift+Right Arrow</td>
+      <td>Increase font size.</td>
+      <td>Font size changes by 1 point in the range 4pt-11pt; by 2points for
+        12pt-28pt; it changes from 28pt -&gt; 36pt -&gt; 48pt -&gt; 72pt -&gt;
+        80pt; it changes by 10 points in the range 80pt - 1630pt; the maximum
+        value is 1638.</td>
+    </tr>
+    <tr>
+      <td>Ctrl+Shift+Left Arrow</td>
+      <td>Decrease font size.</td>
+      <td>See Ctrl+Shift+Right Arrow comments.</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+
+</html>

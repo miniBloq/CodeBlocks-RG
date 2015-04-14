@@ -1,0 +1,10 @@
+<area shape="rect" href="$classwx_choicebook.html" title="wxChoicebook is a class similar to wxNotebook, but uses a wxChoice control to show..." alt="" coords="5,420,117,452">
+<area shape="rect" href="$classwx_listbook.html" title="wxListbook is a class similar to wxNotebook but which uses a wxListCtrl to show the..." alt="" coords="141,420,229,452">
+<area shape="rect" href="$classwx_notebook.html" title="This class represents a notebook control, which manages multiple windows with associated..." alt="" coords="253,420,349,452">
+<area shape="rect" href="$classwx_toolbook.html" title="wxToolbook is a class similar to wxNotebook but which uses a wxToolBar to show the..." alt="" coords="373,420,469,452">
+<area shape="rect" href="$classwx_treebook.html" title="This class is an extension of the wxNotebook class that allows a tree structured..." alt="" coords="493,420,589,452">
+<area shape="rect" href="$classwx_control.html" title="This is the base class for a control or &quot;widget&quot;." alt="" coords="261,255,341,287">
+<area shape="rect" href="$classwx_window.html" title="wxWindow is the base class for all windows and represents any visible object om screen..." alt="" coords="257,172,345,204">
+<area shape="rect" href="$classwx_evt_handler.html" title="A class that can handle events from the windowing system." alt="" coords="249,89,353,121">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="209,7,284,39">
+<area shape="rect" href="$classwx_trackable.html" title="Add&#45;on base class for a trackable object." alt="" coords="308,7,407,39">

@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Makefile%20Arguments">Makefile Arguments</a>,
+Next:<a rel="next" accesskey="n" href="Goals.html#Goals">Goals</a>,
+Previous:<a rel="previous" accesskey="p" href="Running.html#Running">Running</a>,
+Up:<a rel="up" accesskey="u" href="Running.html#Running">Running</a>
+<hr><br>
+</div>
+
+<h3 class="section">Arguments to Specify the Makefile</h3>
+
+   <p>The way to specify the name of the makefile is with the <code>-f</code> or
+<code>--file</code> option (<code>--makefile</code> also works).  For example,
+<code>-f altmake</code> says to use the file <code>altmake</code> as the makefile.
+
+   <p>If you use the <code>-f</code> flag several times and follow each <code>-f</code>
+with an argument, all the specified files are used jointly as
+makefiles.
+
+   <p>If you do not use the <code>-f</code> or <code>--file</code> flag, the default is
+to try <code>GNUmakefile</code>, <code>makefile</code>, and <code>Makefile</code>, in
+that order, and use the first of these three which exists or can be made
+(see <a href="Makefiles.html#Makefiles">Writing Makefiles</a>).
+
+   </body></html>
+

@@ -1,0 +1,342 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Quick%20Reference">Quick Reference</a>,
+Next:<a rel="next" accesskey="n" href="Error-Messages.html#Error%20Messages">Error Messages</a>,
+Previous:<a rel="previous" accesskey="p" href="Makefile-Conventions.html#Makefile%20Conventions">Makefile Conventions</a>,
+Up:<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr><br>
+</div>
+
+<h2 class="appendix">Quick Reference</h2>
+
+   <p>This appendix summarizes the directives, text manipulation functions,
+and special variables which GNU <code>make</code> understands. 
+See <a href="Special-Targets.html#Special%20Targets">Special Targets</a>, <a href="Catalogue-of-Rules.html#Catalogue%20of%20Rules">Catalogue of Implicit Rules</a>,
+and <a href="Options-Summary.html#Options%20Summary">Summary of Options</a>,
+for other summaries.
+
+   <p>Here is a summary of the directives GNU <code>make</code> recognizes:
+
+     <dl>
+<dt><code>define </code><var>variable</var><code></code>
+     <dd><dt><code>endef</code>
+     <dd>
+Define a multi-line, recursively-expanded variable.<br>
+See <a href="Sequences.html#Sequences">Sequences</a>.
+
+     <br><dt><code>ifdef </code><var>variable</var><code></code>
+     <dd><dt><code>ifndef </code><var>variable</var><code></code>
+     <dd><dt><code>ifeq (</code><var>a</var><code>,</code><var>b</var><code>)</code>
+     <dd><dt><code>ifeq "</code><var>a</var><code>" "</code><var>b</var><code>"</code>
+     <dd><dt><code>ifeq '</code><var>a</var><code>' '</code><var>b</var><code>'</code>
+     <dd><dt><code>ifneq (</code><var>a</var><code>,</code><var>b</var><code>)</code>
+     <dd><dt><code>ifneq "</code><var>a</var><code>" "</code><var>b</var><code>"</code>
+     <dd><dt><code>ifneq '</code><var>a</var><code>' '</code><var>b</var><code>'</code>
+     <dd><dt><code>else</code>
+     <dd><dt><code>endif</code>
+     <dd>
+Conditionally evaluate part of the makefile.<br>
+See <a href="Conditionals.html#Conditionals">Conditionals</a>.
+
+     <br><dt><code>include </code><var>file</var><code></code>
+     <dd><dt><code>-include </code><var>file</var><code></code>
+     <dd><dt><code>sinclude </code><var>file</var><code></code>
+     <dd>
+Include another makefile.<br>
+See <a href="Include.html#Include">Including Other Makefiles</a>.
+
+     <br><dt><code>override </code><var>variable</var><code> = </code><var>value</var><code></code>
+     <dd><dt><code>override </code><var>variable</var><code> := </code><var>value</var><code></code>
+     <dd><dt><code>override </code><var>variable</var><code> += </code><var>value</var><code></code>
+     <dd><dt><code>override </code><var>variable</var><code> ?= </code><var>value</var><code></code>
+     <dd><dt><code>override define </code><var>variable</var><code></code>
+     <dd><dt><code>endef</code>
+     <dd>
+Define a variable, overriding any previous definition, even one from
+the command line.<br>
+See <a href="Override-Directive.html#Override%20Directive">The <code>override</code> Directive</a>.
+
+     <br><dt><code>export</code>
+     <dd>
+Tell <code>make</code> to export all variables to child processes by default.<br>
+See <a href="Variables-Recursion.html#Variables%2fRecursion">Communicating Variables to a Sub-<code>make</code></a>.
+
+     <br><dt><code>export </code><var>variable</var><code></code>
+     <dd><dt><code>export </code><var>variable</var><code> = </code><var>value</var><code></code>
+     <dd><dt><code>export </code><var>variable</var><code> := </code><var>value</var><code></code>
+     <dd><dt><code>export </code><var>variable</var><code> += </code><var>value</var><code></code>
+     <dd><dt><code>export </code><var>variable</var><code> ?= </code><var>value</var><code></code>
+     <dd><dt><code>unexport </code><var>variable</var><code></code>
+     <dd>Tell <code>make</code> whether or not to export a particular variable to child
+processes.<br>
+See <a href="Variables-Recursion.html#Variables%2fRecursion">Communicating Variables to a Sub-<code>make</code></a>.
+
+     <br><dt><code>vpath </code><var>pattern</var><code> </code><var>path</var><code></code>
+     <dd>Specify a search path for files matching a <code>%</code> pattern.<br>
+See <a href="Selective-Search.html#Selective%20Search">The <code>vpath</code> Directive</a>.
+
+     <br><dt><code>vpath </code><var>pattern</var><code></code>
+     <dd>Remove all search paths previously specified for <var>pattern</var>.
+
+     <br><dt><code>vpath</code>
+     <dd>Remove all search paths previously specified in any <code>vpath</code>
+directive. 
+</dl>
+
+   <p>Here is a summary of the text manipulation functions (see <a href="Functions.html#Functions">Functions</a>):
+
+     <dl>
+<dt><code>$(subst </code><var>from</var><code>,</code><var>to</var><code>,</code><var>text</var><code>)</code>
+     <dd>Replace <var>from</var> with <var>to</var> in <var>text</var>.<br>
+See <a href="Text-Functions.html#Text%20Functions">Functions for String Substitution and Analysis</a>.
+
+     <br><dt><code>$(patsubst </code><var>pattern</var><code>,</code><var>replacement</var><code>,</code><var>text</var><code>)</code>
+     <dd>Replace words matching <var>pattern</var> with <var>replacement</var> in <var>text</var>.<br>
+See <a href="Text-Functions.html#Text%20Functions">Functions for String Substitution and Analysis</a>.
+
+     <br><dt><code>$(strip </code><var>string</var><code>)</code>
+     <dd>Remove excess whitespace characters from <var>string</var>.<br>
+See <a href="Text-Functions.html#Text%20Functions">Functions for String Substitution and Analysis</a>.
+
+     <br><dt><code>$(findstring </code><var>find</var><code>,</code><var>text</var><code>)</code>
+     <dd>Locate <var>find</var> in <var>text</var>.<br>
+See <a href="Text-Functions.html#Text%20Functions">Functions for String Substitution and Analysis</a>.
+
+     <br><dt><code>$(filter </code><var>pattern</var><code>...,</code><var>text</var><code>)</code>
+     <dd>Select words in <var>text</var> that match one of the <var>pattern</var> words.<br>
+See <a href="Text-Functions.html#Text%20Functions">Functions for String Substitution and Analysis</a>.
+
+     <br><dt><code>$(filter-out </code><var>pattern</var><code>...,</code><var>text</var><code>)</code>
+     <dd>Select words in <var>text</var> that <em>do not</em> match any of the <var>pattern</var> words.<br>
+See <a href="Text-Functions.html#Text%20Functions">Functions for String Substitution and Analysis</a>.
+
+     <br><dt><code>$(sort </code><var>list</var><code>)</code>
+     <dd>Sort the words in <var>list</var> lexicographically, removing duplicates.<br>
+See <a href="Text-Functions.html#Text%20Functions">Functions for String Substitution and Analysis</a>.
+
+     <br><dt><code>$(dir </code><var>names</var><code>...)</code>
+     <dd>Extract the directory part of each file name.<br>
+See <a href="File-Name-Functions.html#File%20Name%20Functions">Functions for File Names</a>.
+
+     <br><dt><code>$(notdir </code><var>names</var><code>...)</code>
+     <dd>Extract the non-directory part of each file name.<br>
+See <a href="File-Name-Functions.html#File%20Name%20Functions">Functions for File Names</a>.
+
+     <br><dt><code>$(suffix </code><var>names</var><code>...)</code>
+     <dd>Extract the suffix (the last <code>.</code> and following characters) of each file name.<br>
+See <a href="File-Name-Functions.html#File%20Name%20Functions">Functions for File Names</a>.
+
+     <br><dt><code>$(basename </code><var>names</var><code>...)</code>
+     <dd>Extract the base name (name without suffix) of each file name.<br>
+See <a href="File-Name-Functions.html#File%20Name%20Functions">Functions for File Names</a>.
+
+     <br><dt><code>$(addsuffix </code><var>suffix</var><code>,</code><var>names</var><code>...)</code>
+     <dd>Append <var>suffix</var> to each word in <var>names</var>.<br>
+See <a href="File-Name-Functions.html#File%20Name%20Functions">Functions for File Names</a>.
+
+     <br><dt><code>$(addprefix </code><var>prefix</var><code>,</code><var>names</var><code>...)</code>
+     <dd>Prepend <var>prefix</var> to each word in <var>names</var>.<br>
+See <a href="File-Name-Functions.html#File%20Name%20Functions">Functions for File Names</a>.
+
+     <br><dt><code>$(join </code><var>list1</var><code>,</code><var>list2</var><code>)</code>
+     <dd>Join two parallel lists of words.<br>
+See <a href="File-Name-Functions.html#File%20Name%20Functions">Functions for File Names</a>.
+
+     <br><dt><code>$(word </code><var>n</var><code>,</code><var>text</var><code>)</code>
+     <dd>Extract the <var>n</var>th word (one-origin) of <var>text</var>.<br>
+See <a href="File-Name-Functions.html#File%20Name%20Functions">Functions for File Names</a>.
+
+     <br><dt><code>$(words </code><var>text</var><code>)</code>
+     <dd>Count the number of words in <var>text</var>.<br>
+See <a href="File-Name-Functions.html#File%20Name%20Functions">Functions for File Names</a>.
+
+     <br><dt><code>$(wordlist </code><var>s</var><code>,</code><var>e</var><code>,</code><var>text</var><code>)</code>
+     <dd>Returns the list of words in <var>text</var> from <var>s</var> to <var>e</var>.<br>
+See <a href="File-Name-Functions.html#File%20Name%20Functions">Functions for File Names</a>.
+
+     <br><dt><code>$(firstword </code><var>names</var><code>...)</code>
+     <dd>Extract the first word of <var>names</var>.<br>
+See <a href="File-Name-Functions.html#File%20Name%20Functions">Functions for File Names</a>.
+
+     <br><dt><code>$(wildcard </code><var>pattern</var><code>...)</code>
+     <dd>Find file names matching a shell file name pattern (<em>not</em> a
+<code>%</code> pattern).<br>
+See <a href="Wildcard-Function.html#Wildcard%20Function">The Function <code>wildcard</code></a>.
+
+     <br><dt><code>$(error </code><var>text</var><code>...)</code>
+     <dd>
+When this function is evaluated, <code>make</code> generates a fatal error
+with the message <var>text</var>.<br>
+See <a href="Make-Control-Functions.html#Make%20Control%20Functions">Functions That Control Make</a>.
+
+     <br><dt><code>$(warning </code><var>text</var><code>...)</code>
+     <dd>
+When this function is evaluated, <code>make</code> generates a warning with
+the message <var>text</var>.<br>
+See <a href="Make-Control-Functions.html#Make%20Control%20Functions">Functions That Control Make</a>.
+
+     <br><dt><code>$(shell </code><var>command</var><code>)</code>
+     <dd>
+Execute a shell command and return its output.<br>
+See <a href="Shell-Function.html#Shell%20Function">The <code>shell</code> Function</a>.
+
+     <br><dt><code>$(origin </code><var>variable</var><code>)</code>
+     <dd>
+Return a string describing how the <code>make</code> variable <var>variable</var> was
+defined.<br>
+See <a href="Origin-Function.html#Origin%20Function">The <code>origin</code> Function</a>.
+
+     <br><dt><code>$(foreach </code><var>var</var><code>,</code><var>words</var><code>,</code><var>text</var><code>)</code>
+     <dd>
+Evaluate <var>text</var> with <var>var</var> bound to each word in <var>words</var>,
+and concatenate the results.<br>
+See <a href="Foreach-Function.html#Foreach%20Function">The <code>foreach</code> Function</a>.
+
+     <br><dt><code>$(call </code><var>var</var><code>,</code><var>param</var><code>,...)</code>
+     <dd>
+Evaluate the variable <var>var</var> replacing any references to <code>$(1)</code>,
+<code>$(2)</code> with the first, second, etc. <var>param</var> values.<br>
+See <a href="Call-Function.html#Call%20Function">The <code>call</code> Function</a>. 
+</dl>
+
+   <p>Here is a summary of the automatic variables. 
+See <a href="Automatic.html#Automatic">Automatic Variables</a>,
+for full information.
+
+     <dl>
+<dt><code>$@</code>
+     <dd>The file name of the target.
+
+     <br><dt><code>$%</code>
+     <dd>The target member name, when the target is an archive member.
+
+     <br><dt><code>$&lt;</code>
+     <dd>The name of the first prerequisite.
+
+     <br><dt><code>$?</code>
+     <dd>The names of all the prerequisites that are
+newer than the target, with spaces between them. 
+For prerequisites which are archive members, only
+the member named is used (see <a href="Archives.html#Archives">Archives</a>).
+
+     <br><dt><code>$^</code>
+     <dd><dt><code>$+</code>
+     <dd>The names of all the prerequisites, with spaces between them.  For
+prerequisites which are archive members, only the member named is used
+(see <a href="Archives.html#Archives">Archives</a>).  The value of <code>$^</code> omits duplicate
+prerequisites, while <code>$+</code> retains them and preserves their order.
+
+     <br><dt><code>$*</code>
+     <dd>The stem with which an implicit rule matches
+(see <a href="Pattern-Match.html#Pattern%20Match">How Patterns Match</a>).
+
+     <br><dt><code>$(@D)</code>
+     <dd><dt><code>$(@F)</code>
+     <dd>The directory part and the file-within-directory part of <code>$@</code>.
+
+     <br><dt><code>$(*D)</code>
+     <dd><dt><code>$(*F)</code>
+     <dd>The directory part and the file-within-directory part of <code>$*</code>.
+
+     <br><dt><code>$(%D)</code>
+     <dd><dt><code>$(%F)</code>
+     <dd>The directory part and the file-within-directory part of <code>$%</code>.
+
+     <br><dt><code>$(&lt;D)</code>
+     <dd><dt><code>$(&lt;F)</code>
+     <dd>The directory part and the file-within-directory part of <code>$&lt;</code>.
+
+     <br><dt><code>$(^D)</code>
+     <dd><dt><code>$(^F)</code>
+     <dd>The directory part and the file-within-directory part of <code>$^</code>.
+
+     <br><dt><code>$(+D)</code>
+     <dd><dt><code>$(+F)</code>
+     <dd>The directory part and the file-within-directory part of <code>$+</code>.
+
+     <br><dt><code>$(?D)</code>
+     <dd><dt><code>$(?F)</code>
+     <dd>The directory part and the file-within-directory part of <code>$?</code>. 
+</dl>
+
+   <p>These variables are used specially by GNU <code>make</code>:
+
+     <dl>
+<dt><code>MAKEFILES</code>
+     <dd>
+Makefiles to be read on every invocation of <code>make</code>.<br>
+See <a href="MAKEFILES-Variable.html#MAKEFILES%20Variable">The Variable <code>MAKEFILES</code></a>.
+
+     <br><dt><code>VPATH</code>
+     <dd>
+Directory search path for files not found in the current directory.<br>
+See <a href="General-Search.html#General%20Search"><code>VPATH</code> Search Path for All Prerequisites</a>.
+
+     <br><dt><code>SHELL</code>
+     <dd>
+The name of the system default command interpreter, usually <code>/bin/sh</code>. 
+You can set <code>SHELL</code> in the makefile to change the shell used to run
+commands.  See <a href="Execution.html#Execution">Command Execution</a>.
+
+     <br><dt><code>MAKESHELL</code>
+     <dd>
+On MS-DOS only, the name of the command interpreter that is to be used
+by <code>make</code>. This value takes precedence over the value of
+<code>SHELL</code>.  See <a href="Execution.html#Execution">MAKESHELL variable</a>.
+
+     <br><dt><code>MAKE</code>
+     <dd>
+The name with which <code>make</code> was invoked. 
+Using this variable in commands has special meaning. 
+See <a href="MAKE-Variable.html#MAKE%20Variable">How the <code>MAKE</code> Variable Works</a>.
+
+     <br><dt><code>MAKELEVEL</code>
+     <dd>
+The number of levels of recursion (sub-<code>make</code>s).<br>
+See <a href="Variables-Recursion.html#Variables%2fRecursion">Variables/Recursion</a>.
+
+     <br><dt><code>MAKEFLAGS</code>
+     <dd>
+The flags given to <code>make</code>.  You can set this in the environment or
+a makefile to set flags.<br>
+See <a href="Options-Recursion.html#Options%2fRecursion">Communicating Options to a Sub-<code>make</code></a>.
+
+     <p>It is <em>never</em> appropriate to use <code>MAKEFLAGS</code> directly on a
+command line: its contents may not be quoted correctly for use in the
+shell.  Always allow recursive <code>make</code>'s to obtain these values
+through the environment from its parent.
+
+     <br><dt><code>MAKECMDGOALS</code>
+     <dd>
+The targets given to <code>make</code> on the command line.  Setting this
+variable has no effect on the operation of <code>make</code>.<br>
+See <a href="Goals.html#Goals">Arguments to Specify the Goals</a>.
+
+     <br><dt><code>CURDIR</code>
+     <dd>
+Set to the pathname of the current working directory (after all
+<code>-C</code> options are processed, if any).  Setting this variable has no
+effect on the operation of <code>make</code>.<br>
+See <a href="Recursion.html#Recursion">Recursive Use of <code>make</code></a>.
+
+     <br><dt><code>SUFFIXES</code>
+     <dd>
+The default list of suffixes before <code>make</code> reads any makefiles.
+
+     <br><dt><code>.LIBPATTERNS</code>
+     <dd>Defines the naming of the libraries <code>make</code> searches for, and their
+order.<br>
+See <a href="Libraries-Search.html#Libraries%2fSearch">Directory Search for Link Libraries</a>. 
+</dl>
+
+   </body></html>
+

@@ -1,0 +1,5 @@
+<area shape="rect" href="$classwx_protocol.html" title="Represents a protocol for use with wxURL." alt="" coords="40,255,128,287">
+<area shape="rect" href="$classwx_socket_base.html" title="wxSocketBase is the base class for all socket&#45;related objects, and it defines all..." alt="" coords="28,89,140,121">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="47,7,121,39">
+<area shape="rect" href="$classwx_f_t_p.html" title="wxFTP can be used to establish a connection to an FTP server and perform all the..." alt="" coords="5,337,69,369">
+<area shape="rect" href="$classwx_h_t_t_p.html" title="wxHTTP can be used to establish a connection to an HTTP server." alt="" coords="93,337,168,369">

@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/stdother/qsort.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:29 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>qsort</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">Other Standard C Functions</a> &gt; <a href=
+    "qsort.html">qsort</a>
+  </div>
+
+  <div class="name-format">
+    qsort
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdlib&gt;
+  void qsort( void *buf, size_t num, size_t size, int (*compare)(const void *, const void *) );
+</pre>
+
+  <p>The qsort() function sorts <em>buf</em> (which contains
+  <em>num</em> items, each of size <em>size</em>) using <a href=
+  "http://en.wikipedia.org/wiki/Quicksort">Quicksort</a>. The
+  <em>compare</em> function is used to compare the items in
+  <em>buf</em>. <em>compare</em> should return negative if the first
+  argument is less than the second, zero if they are equal, and
+  positive if the first argument is greater than the second. qsort()
+  sorts <em>buf</em> in ascending order.</p>
+
+  <div class="related-examples-format">
+    Example code:
+  </div>
+
+  <div class="related-examples">
+    <p>For example, the following bit of code uses qsort() to sort an
+    array of integers:</p>
+<pre class="prettyprint">
+ int compare_ints( const void* a, const void* b ) {
+   int* arg1 = (int*) a;
+   int* arg2 = (int*) b;
+   if( *arg1 &lt; *arg2 ) return -1;
+   else if( *arg1 == *arg2 ) return 0;
+   else return 1;
+ }              
+
+ int array[] = { -2, 99, 0, -743, 2, 3, 4 };
+ int array_size = 7;            
+
+ ...            
+
+ printf( &quot;Before sorting: &quot; );
+ for( int i = 0; i &lt; array_size; i++ ) {
+   printf( &quot;%d &quot;, array[i] );
+ }
+ printf( &quot;\n&quot; );              
+
+ qsort( array, array_size, sizeof(int), compare_ints );         
+
+ printf( &quot;After sorting: &quot; );
+ for( int i = 0; i &lt; array_size; i++ ) {
+   printf( &quot;%d &quot;, array[i] );
+ }
+ printf( &quot;\n&quot; );              
+</pre>
+
+    <p>When run, this code displays the following output:</p>
+<pre class="prettyprint">
+ Before sorting: -2 99 0 -743 2 3 4
+ After sorting: -743 -2 0 2 3 4 99              
+</pre>
+  </div>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="bsearch.html">bsearch</a><br>
+    (C++ Algorithms) <a href="../cppalgorithm/sort.html">sort</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdother/qsort.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:29 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

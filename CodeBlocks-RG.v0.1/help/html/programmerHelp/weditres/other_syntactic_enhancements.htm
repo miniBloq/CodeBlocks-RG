@@ -1,0 +1,272 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Other Syntactic Enhancements</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509456949"><span style="mso-ansi-language:EN-US">Other
+Syntactic Enhancements</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h2>
+<h3><span style="mso-bidi-font-family:Arial;mso-ansi-language:EN-US">Declarations
+anywhere within a code block<o:p>
+</o:p>
+</span></h3>
+<p class="MsoBodyText3"><span style="font-family:&quot;Times New Roman&quot;;font-weight:
+normal">You can declare an identifier not only at the beginning of a block, but
+anywhere within a compound statement. For instance:<o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</p>
+<p class="MsoNormal"><span style="font-family:Courier">int example(void)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">{<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>int a = 2,b = 3,c = 4,d;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>d = a+b;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>int e = d+a; // e is now declared as an int.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>e += 34;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>return e;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">}<o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</p>
+<p class="MsoNormal">The scope of the identifier extends to the end of the
+current block. Note that this is NOT an extension of the C language, since the
+new ANSI C standard accepts this as normal usage.<o:p>
+</o:p>
+</p>
+<h3><span style="font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US;
+font-weight:normal;mso-bidi-font-weight:bold">The ‘for’ Statement Introduces
+a new scope<o:p>
+</o:p>
+</span></h3>
+<p class="MsoBodyText3"><span style="font-family:&quot;Times New Roman&quot;;font-weight:
+normal">Within a for statement, you can declare local for loop variables. The
+scope of these variables is finished when the for statement ends.<o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</p>
+<p class="MsoNormal"><span style="font-family:Courier">#include &lt;stdio.h&gt;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">int main(void)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">{<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>for (int i = 0; i&lt;
+2;i++) {<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>printf(&quot;outer i is %d\n&quot;,i);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>for (int i = 0;i&lt;2;i++) {<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>printf(&quot;i=%d\n&quot;,i);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>return 0;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">The output of this program is:</p>
+<p class="MsoNormal"><span style="font-family:Courier">outer i is 0<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">i=0<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">i=1<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">outer i is 1<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">i=0<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">i=1<o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</p>
+<p class="MsoNormal">Note that the scope of the identifiers declared within a
+‘for’ scope ends just when the for statement ends, and that the ‘for’
+statement scope is a new scope. Modify the above example as follows to
+demonstrate this:</p>
+<p class="MsoNormal"><span style="font-family:Courier">#include &lt;stdio.h&gt;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">int main(void)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">{<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>for (int i = 0; i&lt;
+2;i++) {<span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>1<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>printf(&quot;outer
+i is %d\n&quot;,i);<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>2<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><b style="mso-bidi-font-weight:normal"><span style="font-family:Courier"><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>int i = 87;<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>3<o:p>
+</o:p>
+</span></b></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>for (int i = 0;i&lt;2;i++) {<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>4<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>printf(&quot;i=%d\n&quot;,i);<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>5<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>}<span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>6<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>7<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>return 0;<span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>8<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier">}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">At the innermost loop, there are three identifiers called
+‘i’.</p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The first i is the outer i. Its scope goes from line 1 to 7 —
+the scope of the for statement.</p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The second i (87) is a local identifier of the compound statement
+that begins in line 1 and ends in line 7. Compound statements can always declare
+local variables.</p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>The third i is declared at the innermost for statement. Its scope
+starts in line 4 and goes up to line 6. It belongs to the scope created by the
+second for statement.</p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Note that for each new scope, the identifiers of the same name are
+shadowed by the new ones, as you would normally expect in C.</p>
+<h4><span lang="FR">Functions with optional arguments</span></h4>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span lang="FR">This
+feature allows you to define some or all of the arguments of a function to have
+default values. If the arguments aren’t supplied, the compiler generates the
+default values and pass them to the called function.</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span lang="FR"><br>
+<u>Example&nbsp;:<o:p>
+</o:p>
+</u></span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span lang="FR" style="font-family:&quot;Courier New&quot;">int
+foo(int a,int b = 45,double c = 0.777)&nbsp;;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span lang="FR">The
+function «&nbsp;foo&nbsp;» needs always the first argument in a call, but if
+arguments b or c aren’t supllied they will default to 45 and 0.777
+respectively.</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span lang="FR">There
+are then three types of call in this example&nbsp;:</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span lang="FR" style="font-family:&quot;Courier New&quot;"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>foo(1)&nbsp;; // This is equivalentd to foo(1,45,0.777)&nbsp;;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span lang="FR" style="font-family:&quot;Courier New&quot;"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>foo(1,2)&nbsp;; // This is equivalent to foo(1,2,0.777)&nbsp;;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span lang="FR" style="font-family:&quot;Courier New&quot;"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>foo(1,3,0.1)&nbsp;;<o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</p>
+
+</body>
+
+</html>

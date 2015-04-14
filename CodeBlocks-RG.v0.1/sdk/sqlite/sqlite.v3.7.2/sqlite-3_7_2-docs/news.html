@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<title>Recent SQLite News</title>
+<style type="text/css">
+body {
+    margin: auto;
+    font-family: Verdana, sans-serif;
+    padding: 8px 1%;
+}
+
+a { color: #044a64 }
+a:visited { color: #734559 }
+
+.logo { position:absolute; margin:3px; }
+.tagline {
+  float:right;
+  text-align:right;
+  font-style:italic;
+  width:300px;
+  margin:12px;
+  margin-top:58px;
+}
+
+.toolbar {
+  text-align: center;
+  line-height: 1.6em;
+  margin: 0;
+  padding: 0px 8px;
+}
+.toolbar a { color: white; text-decoration: none; padding: 6px 12px; }
+.toolbar a:visited { color: white; }
+.toolbar a:hover { color: #044a64; background: white; }
+
+.content    { margin: 5%; }
+.content dt { font-weight:bold; }
+.content dd { margin-bottom: 25px; margin-left:20%; }
+.content ul { padding:0px; padding-left: 15px; margin:0px; }
+
+/* rounded corners */
+.se  { background: url(images/se.gif) 100% 100% no-repeat #044a64}
+.sw  { background: url(images/sw.gif) 0% 100% no-repeat }
+.ne  { background: url(images/ne.gif) 100% 0% no-repeat }
+.nw  { background: url(images/nw.gif) 0% 0% no-repeat }
+
+/* Things for "fancyformat" documents start here. */
+.fancy img+p {font-style:italic}
+.fancy .codeblock i { color: darkblue; }
+.fancy h1,.fancy h2,.fancy h3,.fancy h4 {font-weight:normal;color:#044a64}
+.fancy h2 { margin-left: 10px }
+.fancy h3 { margin-left: 20px }
+.fancy h4 { margin-left: 30px }
+.fancy th {white-space:nowrap;text-align:left;border-bottom:solid 1px #444}
+.fancy th, .fancy td {padding: 0.2em 1ex; vertical-align:top}
+.fancy #toc a        { color: darkblue ; text-decoration: none }
+.fancy .todo         { color: #AA3333 ; font-style : italic }
+.fancy .todo:before  { content: 'TODO:' }
+.fancy p.todo        { border: solid #AA3333 1px; padding: 1ex }
+.fancy img { display:block; }
+.fancy :link:hover, .fancy :visited:hover { background: wheat }
+.fancy p,.fancy ul,.fancy ol { margin: 1em 5ex }
+.fancy li p { margin: 1em 0 }
+/* End of "fancyformat" specific rules. */
+
+</style>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  
+</head>
+<body>
+<div><!-- container div to satisfy validator -->
+
+<a href="index.html">
+<img class="logo" src="images/sqlite370_banner.gif" alt="SQLite Logo"
+ border="0"></a>
+<div><!-- IE hack to prevent disappearing logo--></div>
+<div class="tagline"><font size="6" color="red">*** DRAFT ***</font></div>
+
+<table width=100% style="clear:both"><tr><td>
+  <div class="se"><div class="sw"><div class="ne"><div class="nw">
+  <table width=100% style="padding:0;margin:0;cell-spacing:0"><tr>
+  <td width=100%>
+  <div class="toolbar">
+    <a href="about.html">About</a>
+    <a href="sitemap.html">Sitemap</a>
+    <a href="docs.html">Documentation</a>
+    <a href="download.html">Download</a>
+    <a href="copyright.html">License</a>
+    <a href="news.html">News</a>
+    <a href="support.html">Support</a>
+  </div>
+<script>
+  gMsg = "Search SQLite Docs..."
+  function entersearch() {
+    var q = document.getElementById("q");
+    if( q.value == gMsg ) { q.value = "" }
+    q.style.color = "black"
+    q.style.fontStyle = "normal"
+  }
+  function leavesearch() {
+    var q = document.getElementById("q");
+    if( q.value == "" ) { 
+      q.value = gMsg
+      q.style.color = "#044a64"
+      q.style.fontStyle = "italic"
+    }
+  }
+</script>
+<td>
+    <div style="padding:0 1em 0px 0;white-space:nowrap">
+    <form name=f method="GET" action="http://www.sqlite.org/search">
+      <input id=q name=q type=text
+       onfocus="entersearch()" onblur="leavesearch()" style="width:24ex;padding:1px 1ex; border:solid white 1px; font-size:0.9em ; font-style:italic;color:#044a64;" value="Search SQLite Docs...">
+      <input type=submit value="Go" style="border:solid white 1px;background-color:#044a64;color:white;font-size:0.9em;padding:0 1ex">
+    </form>
+    </div>
+  </table>
+</div></div></div></div>
+</td></tr></table>
+<div class=startsearch></div>
+  
+
+
+<h2>Recent News</h2>
+
+<a name="2010_august_24"></a><h3>2010-August-24 - <a href="releaselog/3_7_2.html">Version 3.7.2</a></h3><p>
+  SQLite <a href="releaselog/3_7_2.html">version 3.7.2</a> fixes a long-standing bug that can cause the
+  database <a href="fileformat2.html#freelist">free-page list</a> to go corrupt if <a href="pragma.html#pragma_incremental_vacuum">incremental_vacuum</a> is used
+  multiple times to
+  partially reduce the size of a database file that contains many hundreds
+  of unused database pages.  The original bug reports together with links
+  to the patch that fixes it can be seen 
+  <a href="http://www.sqlite.org/src/info/5e10420e8d">here</a>.</p>
+
+<p>  This bug has been in the code for at least a year and possibly longer.
+  The bug has nothing to do with the versions 3.7.1 or 3.7.0 or any other
+  recent release.  The fact that the bug was discovered (and fixed)
+  within hours of the 3.7.1 release is purely a coincidence.</p>
+
+<p>  The bug is impossible to hit without using <a href="pragma.html#pragma_incremental_vacuum">incremental_vacuum</a> and is
+  very difficult to hit even with incremental_vacuum.  And the kind of
+  corruption that the bug causes can usually be fixed 
+  simply by running <a href="lang_vacuum.html">VACUUM</a>.  Nevertheless, because the bug can result
+  in database corruption, it is recommended that all SQLite users upgrade
+  to version 3.7.2 or later.
+</p><hr width="50%"><a name="2010_august_23"></a><h3>2010-August-23 - <a href="releaselog/3_7_1.html">Version 3.7.1</a></h3><p>
+  SQLite <a href="releaselog/3_7_1.html">version 3.7.1</a> is a stabilization release for the 3.7.x series.
+  Other than the filesize-in-header bug that was fixed in <a href="releaselog/3_7_0_1.html">version 3.7.0.1</a>,
+  no major problems have been seen in 3.7.0.  Some minor corner-case
+  performance regressions have been fixed.  A typo in the OS/2 interface
+  has been repaired.</p>
+
+<p>  A biggest part of the 3.7.1 release is a cleanup and refactoring of
+  the pager module within SQLite.  This refactoring should have no
+  application-visible effects.  The purpose was to reorganize the code
+  in ways that make it easier to prove correctness.</p>
+
+<p>  The 3.7.1 release adds new experimental methods for obtained more 
+  detailed memory usage information and for controlling database file
+  fragmentation.  And the query planner now does a better job of
+  optimizing the <a href="lang_expr.html#like">LIKE</a> and <a href="lang_expr.html#glob">GLOB</a> operators.</p>
+
+<p>  This release increases the maximum size of database pages from 32KiB to
+  64KiB.  A database with 64KiB pages will not be readable or writable by
+  older versions of SQLite.  Note that further increases in page size
+  are not feasible since the <a href="fileformat2.html">file format</a> uses 16-bit offsets to structures
+  within each page.
+</p><hr width="50%"><a name="2010_august_04"></a><h3>2010-August-04 - <a href="releaselog/3_7_0_1.html">Version 3.7.0.1</a></h3><p>
+  SQLite <a href="releaselog/3_7_0_1.html">version 3.7.0.1</a> is a patch release to fix a bug in the new
+  filesize-in-header feature of the <a href="fileformat2.html">SQLite file format</a>
+  that could cause database corruption if the same database file is
+  written alternately with version 3.7.0 and version 3.6.23.1 or earlier.
+  A performance regression was also fixed in this release.
+</p><hr width="50%"><a name="2010_july_22"></a><h3>2010-July-22 - <a href="releaselog/3_7_0.html">Version 3.7.0</a></h3><p>
+  SQLite <a href="releaselog/3_7_0.html">version 3.7.0</a> is a major release of SQLite that features
+  a new transaction control mechanism using a <a href="wal.html">write-ahead log</a> or <a href="wal.html">WAL</a>.
+  The traditional rollback-journal is still used as the default so there
+  should be no visible change for legacy programs.  But newer programs
+  can take advantage of improved performance and concurrency by enabling
+  the WAL journaling mode.</p>
+
+<p>  SQLite version 3.7.0 also contains some query planner enhancements and
+  a few obscure bug fixes, but the only really big change is the addition
+  of WAL mode.
+</p><hr width="50%"><a name="2010_mar_30"></a><h3>2010-Mar-30 - <a href="releaselog/3_6_23_1.html">Version 3.6.23.1</a></h3><p>
+  SQLite <a href="releaselog/3_6_23_1.html">version 3.6.23.1</a> is a patch release to fix a bug in the
+  offsets() function of <a href="fts3.html">FTS3</a> at the request of the Mozilla.  
+</p><hr width="50%"><a name="2010_mar_09"></a><h3>2010-Mar-09 - <a href="releaselog/3_6_23.html">Version 3.6.23</a></h3><p>
+  SQLite <a href="releaselog/3_6_23.html">version 3.6.23</a> is a regular bimonthly release of SQLite.
+  Upgrading from the prior release is purely optional.</p>
+
+<p>  This release contains new pragmas: the <a href="pragma.html#pragma_secure_delete">secure_delete pragma</a>, and
+  the <a href="pragma.html#pragma_compile_options">compile_options pragma</a>.
+  There are a new SQL functions: <a href="lang_corefunc.html#sqlite_compileoption_used">sqlite_compileoption_used()</a>
+  and <a href="lang_corefunc.html#sqlite_compileoption_get">sqlite_compileoption_get()</a>.
+  New C/C++ interfaces: <a href="c3ref/compileoption_get.html">sqlite3_compileoption_used()</a>,
+  <a href="c3ref/compileoption_get.html">sqlite3_compileoption_get()</a>, <a href="c3ref/c_config_getmalloc.html">SQLITE_CONFIG_LOG</a>, and
+  <a href="c3ref/log.html">sqlite3_log()</a>.</p>
+
+<p>  This release also includes several minor bug fixes and performance
+  improvements.  Support for <a href="compile.html#omit_floating_point">SQLITE_OMIT_FLOATING_POINT</a> is enhanced.
+  There are on-going improvements to <a href="fts3.html">FTS3</a>.</p>
+
+<p>  The ".genfkey" command in the <a href="sqlite.html">Command Line Interface</a> has been
+  removed.  SQLite has supported standard SQL <a href="foreignkeys.html">foreign key constraints</a>
+  since <a href="releaselog/3_6_19.html">version 3.6.19</a> and so the ".genfkey" command was seen as
+  an anachronism.
+</p><hr width="50%"><a name="2010_jan_06"></a><h3>2010-Jan-06 - <a href="releaselog/3_6_22.html">Version 3.6.22</a></h3><p>
+  SQLite <a href="releaselog/3_6_22.html">version 3.6.22</a> is a bug-fix release.  Two bugs have been fixed
+  that might cause incorrect query results.  
+  <ul>
+  <li>Ticket <a href="http://www.sqlite.org/src/info/31338dca7e">31338dca7e</a>
+  describes a
+  problem with queries that have a WHERE clause of the form (x AND y) OR z
+  where x and z come from one table of a join and y comes from a different
+  table.
+  <li> Ticket <a href="http://www.sqlite.org/src/info/eb5548a849">eb5548a849</a>
+  describes
+  a problem where the use of the CAST operator in the WHERE clause can lead
+  to incorrect results if the column being cast to a new datatype is also
+  used in the same WHERE clause without being cast.
+  </ul>
+  Both bugs are obscure,
+  but because they could arise in an application after deployment, it is
+  recommended that all applications upgrade SQLite to version 3.6.22.</p>
+
+<p>  This release also includes other minor bug fixes and performance
+  enhancements, especially in the <a href="fts3.html">FTS3</a> extension.
+</p><hr width="50%">
+
+<a href="oldnews.html">Old news...</a>
+
+        <p align="center"><font size="6" color="red">*** DRAFT ***</font></p>
+      

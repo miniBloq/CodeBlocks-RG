@@ -1,0 +1,573 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Using the Debugger</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509457004"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc435923437">Using
+the Debugger: The Basics</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoCommentText" style="mso-list:skip"><span style="mso-bidi-font-size:
+12.0pt;font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;">&nbsp;</span>There
+are several options for controlling the program execution of the program you
+would like to debug:</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo9"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b style="mso-bidi-font-weight:normal">Same level</b> (F4). This
+means that the debugger will run the program until it reaches the next source
+line. If the current line contains a function call, it will be skipped. You
+remain on the same level. If you reach the end of the function, the line where
+the function call was implemented will be displayed. This is not possible in all
+cases — specifically if your function is a Windows callback, it was called up
+by the operating system. You cannot step through system code, so the debugger
+will stop when control reaches one of the source lines of your program again.</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo9"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b style="mso-bidi-font-weight:normal">Step in</b> (F8). This
+means that the debugger will run the program until it reaches the next source
+line. If there is a function call in the current line, the debugger will try to
+see if it has debug information for the function in question. If yes, execution
+will stop at the first line of that function. If that function does not have any
+debug information, the debugger will arrange to skip that call. In cases where
+the function calls one of the procedures of your program indirectly, the
+debugger will stop when control reaches the next source line of your program. A
+SendMessage call is one example of this. This function will call the callback
+procedure for the window that can be in your program. In this case, the debugger
+will stop at the beginning of the callback procedure.</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo9"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b style="mso-bidi-font-weight:normal">Step out</b> (F9). This
+means that the debugger will run the program until it exits the current function
+and place a stop at the calling function. The same rules apply as in the return
+from a procedure explained in Same level above.</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo9"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b style="mso-bidi-font-weight:normal">Run to cursor</b> (F7). The
+debugger will put a temporary stop at the indicated line and pass control to the
+program being debugged. If control reaches the indicated line, the debugger will
+stop. If not, the program will continue normal execution. Be careful to ensure
+that control MUST reach the line you indicate with F7.</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo9"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b style="mso-bidi-font-weight:normal">Set a breakpoint</b> (F2).
+This will set a breakpoint at the indicated line.</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo9"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b style="mso-bidi-font-weight:normal">Unset a breakpoint</b>
+(F2). If the line that is under the cursor contained a breakpoint, that
+breakpoint will be deleted.</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo9"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b style="mso-bidi-font-weight:normal">Break.</b> This makes the
+debugger stops the program under debug, no matter where it is.</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo9"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b style="mso-bidi-font-weight:normal">Stop debugging</b>. This
+stops the execution of the program under debug, and closes the debugger.</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo9"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b style="mso-bidi-font-weight:normal">Set next statement</b>.
+This can be reached through the right mouse button menu. Using this feature, you
+can skip several lines of code in the current function, or return backwards to
+retrace the execution. Note that you can make the program fail if you set the
+next statement where it would use variables that were initialized in a piece of
+code that you just skipped. The debugger cannot undo what the program has done,
+when you reset the current line to some line before the current one. If the
+program opened, closed, or deleted files, for instance, the debugger does not
+undo those actions.</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:0cm;mso-list:l0 level1 lfo9"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b style="mso-bidi-font-weight:normal">Set next instruction.</b>
+When the ‘Machine instructions’ window is open, you can move the program
+counter explicitly to a new location by pressing the right mouse button anywhere
+on that window. A contextual menu will appear, prompting you to change the
+program counter to the selected line in the ‘Machine instructions’ window.
+To do this, choose this menu item and the program counter will be set to that
+location.</p>
+<table border="1" cellspacing="0" cellpadding="0" style="margin-left:5.4pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+  <tr>
+    <td width="134" valign="top" style="width:100.6pt;border:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><b style="mso-bidi-font-weight:normal"><span lang="FR">Debugger
+      menu<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td width="374" valign="top" style="width:280.45pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><b style="mso-bidi-font-weight:normal"><span lang="FR">Description<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+    <td width="113" valign="top" style="width:3.0cm;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><b style="mso-bidi-font-weight:normal"><span style="mso-ansi-language:EN-US">Accelerator
+      key<o:p>
+      </o:p>
+      </span></b></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="134" valign="top" style="width:100.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Execute<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="374" valign="top" style="width:280.45pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Continues
+      the execution of the program.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">F5<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="134" valign="top" style="width:100.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Step
+      in<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="374" valign="top" style="width:280.45pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">If
+      the line contains a function call, the debugger steps into the called
+      function if debug information for that function is available.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">F8<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="134" valign="top" style="width:100.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Same
+      level<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="374" valign="top" style="width:280.45pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Stops
+      ignoring function calls.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">F4<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="134" valign="top" style="width:100.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Step
+      out<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="374" valign="top" style="width:280.45pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Stops
+      when the current function is finished.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">F9<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="134" valign="top" style="width:100.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Run
+      to cursor<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="374" valign="top" style="width:280.45pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Stops
+      when execution arrives at the line where the text cursor is placed. If
+      this line is never reached, this is equivalent to Execute.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">F7<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="134" valign="top" style="width:100.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Stop
+      debugging<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="374" valign="top" style="width:280.45pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Stops
+      the debugger and returns to the editor.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm">&nbsp;<span style="mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="134" valign="top" style="width:100.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">CPU<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="374" valign="top" style="width:280.45pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Activates
+      the register display.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm">&nbsp;<span style="mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="134" valign="top" style="width:100.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Stack<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="374" valign="top" style="width:280.45pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Shows
+      the call stack.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm">&nbsp;<span style="mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="134" valign="top" style="width:100.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Memory<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="374" valign="top" style="width:280.45pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Allows
+      you to inspect memory contents.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm">&nbsp;<span style="mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="134" valign="top" style="width:100.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Machine
+      instructions<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="374" valign="top" style="width:280.45pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Activates
+      the assembly display.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm">&nbsp;<span style="mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="134" valign="top" style="width:100.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Watchs<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="374" valign="top" style="width:280.45pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Activates
+      the watch window.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm">&nbsp;<span style="mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="134" valign="top" style="width:100.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Evaluate
+      symbol<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="374" valign="top" style="width:280.45pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Lets
+      you evaluate a symbol or a simple expression.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm">&nbsp;<span style="mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="134" valign="top" style="width:100.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Info<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="374" valign="top" style="width:280.45pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Shows
+      several information displays about the program being debugged.&nbsp;<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm">&nbsp;<span style="mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="134" valign="top" style="width:100.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Restart<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="374" valign="top" style="width:280.45pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Stops
+      the program being debugged, and restarts it from the beginning.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm">&nbsp;<span style="mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="134" valign="top" style="width:100.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Break<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="374" valign="top" style="width:280.45pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Interrupts
+      the execution of the program immediately.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm">&nbsp;<span style="mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="134" valign="top" style="width:100.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Breakpoint<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="374" valign="top" style="width:280.45pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Sets
+      or unsets a breakpoint at the line where the text cursor is.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">F2<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="134" valign="top" style="width:100.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Edit
+      breakpoints<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="374" valign="top" style="width:280.45pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Shows
+      the breakpoints dialog box.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm">&nbsp;<span style="mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="134" valign="top" style="width:100.6pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Data
+      breakpoints<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="374" valign="top" style="width:280.45pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Shows
+      the data breakpoints dialog box.<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="113" valign="top" style="width:3.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm">&nbsp;<span style="mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+</table>
+
+</body>
+
+</html>

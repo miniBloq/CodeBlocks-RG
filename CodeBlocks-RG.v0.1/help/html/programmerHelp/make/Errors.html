@@ -1,0 +1,94 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Errors">Errors</a>,
+Next:<a rel="next" accesskey="n" href="Interrupts.html#Interrupts">Interrupts</a>,
+Previous:<a rel="previous" accesskey="p" href="Parallel.html#Parallel">Parallel</a>,
+Up:<a rel="up" accesskey="u" href="Commands.html#Commands">Commands</a>
+<hr><br>
+</div>
+
+<h3 class="section">Errors in Commands</h3>
+
+   <p>After each shell command returns, <code>make</code> looks at its exit status. 
+If the command completed successfully, the next command line is executed
+in a new shell; after the last command line is finished, the rule is
+finished.
+
+   <p>If there is an error (the exit status is nonzero), <code>make</code> gives up on
+the current rule, and perhaps on all rules.
+
+   <p>Sometimes the failure of a certain command does not indicate a problem. 
+For example, you may use the <code>mkdir</code> command to ensure that a
+directory exists.  If the directory already exists, <code>mkdir</code> will
+report an error, but you probably want <code>make</code> to continue regardless.
+
+   <p>To ignore errors in a command line, write a <code>-</code> at the beginning of
+the line's text (after the initial tab).  The <code>-</code> is discarded before
+the command is passed to the shell for execution.
+
+   <p>For example,
+
+<pre class="example">     clean:
+             -rm -f *.o
+     </pre>
+
+<p>This causes <code>rm</code> to continue even if it is unable to remove a file.
+
+   <p>When you run <code>make</code> with the <code>-i</code> or <code>--ignore-errors</code>
+flag, errors are ignored in all commands of all rules.  A rule in the
+makefile for the special target <code>.IGNORE</code> has the same effect, if
+there are no prerequisites.  These ways of ignoring errors are obsolete
+because <code>-</code> is more flexible.
+
+   <p>When errors are to be ignored, because of either a <code>-</code> or the
+<code>-i</code> flag, <code>make</code> treats an error return just like success,
+except that it prints out a message that tells you the status code
+the command exited with, and says that the error has been ignored.
+
+   <p>When an error happens that <code>make</code> has not been told to ignore,
+it implies that the current target cannot be correctly remade, and neither
+can any other that depends on it either directly or indirectly.  No further
+commands will be executed for these targets, since their preconditions
+have not been achieved.
+
+   <p>Normally <code>make</code> gives up immediately in this circumstance, returning a
+nonzero status.  However, if the <code>-k</code> or <code>--keep-going</code>
+flag is specified, <code>make</code>
+continues to consider the other prerequisites of the pending targets,
+remaking them if necessary, before it gives up and returns nonzero status. 
+For example, after an error in compiling one object file, <code>make -k</code>
+will continue compiling other object files even though it already knows
+that linking them will be impossible.  See <a href="Options-Summary.html#Options%20Summary">Summary of Options</a>.
+
+   <p>The usual behavior assumes that your purpose is to get the specified
+targets up to date; once <code>make</code> learns that this is impossible, it
+might as well report the failure immediately.  The <code>-k</code> option says
+that the real purpose is to test as many of the changes made in the
+program as possible, perhaps to find several independent problems so
+that you can correct them all before the next attempt to compile.  This
+is why Emacs' <code>compile</code> command passes the <code>-k</code> flag by
+default.
+
+   <p>Usually when a command fails, if it has changed the target file at all,
+the file is corrupted and cannot be used--or at least it is not
+completely updated.  Yet the file's time stamp says that it is now up to
+date, so the next time <code>make</code> runs, it will not try to update that
+file.  The situation is just the same as when the command is killed by a
+signal; see <a href="Interrupts.html#Interrupts">Interrupts</a>.  So generally the right thing to do is to
+delete the target file if the command fails after beginning to change
+the file.  <code>make</code> will do this if <code>.DELETE_ON_ERROR</code> appears
+as a target.  This is almost always what you want <code>make</code> to do, but
+it is not historical practice; so for compatibility, you must explicitly
+request it.
+
+   </body></html>
+

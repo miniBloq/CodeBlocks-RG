@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/cppqueue/queue_constructor.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>Queue constructor</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C++ Queues</a> &gt; <a href=
+    "queue_constructor.html">Queue constructor</a>
+  </div>
+
+  <div class="name-format">
+    Queue constructor
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;queue&gt;
+  queue();
+  queue( const Container&amp; con );
+</pre>
+
+  <p>Queues have a default constructor as well as a copy constructor
+  that will create a new queue out of the container <em>con</em>.
+  </p>
+
+  <p>For example, the following code creates a queue of strings,
+  populates it with input from the user, and then displays it back to
+  the user:</p>
+
+<pre class="prettyprint">
+  queue&lt;string&gt; waiting_line;
+  while( waiting_line.size() &lt; 5 ) {
+    cout &lt;&lt; "Welcome to the line, please enter your name: ";
+    string s;
+    getline( cin, s );
+    waiting_line.push(s);
+  }
+
+  while( !waiting_line.empty() ) {
+    cout &lt;&lt; "Now serving: " &lt;&lt; waiting_line.front() &lt;&lt; endl;
+    waiting_line.pop();
+  }
+</pre>
+
+  <p>When run, the above code might produce this output:</p>
+
+<pre class="prettyprint">
+  Welcome to the line, please enter your name: Nate
+  Welcome to the line, please enter your name: lizzy 
+  Welcome to the line, please enter your name: Robert B. Parker
+  Welcome to the line, please enter your name: ralph
+  Welcome to the line, please enter your name: Matthew
+  Now serving: Nate
+  Now serving: lizzy
+  Now serving: Robert B. Parker
+  Now serving: ralph
+  Now serving: Matthew
+</pre>
+
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppqueue/queue_constructor.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

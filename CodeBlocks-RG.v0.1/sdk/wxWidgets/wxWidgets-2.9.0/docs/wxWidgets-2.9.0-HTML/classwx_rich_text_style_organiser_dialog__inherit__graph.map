@@ -1,0 +1,6 @@
+<area shape="rect" href="$classwx_dialog.html" title="A dialog box is a window with a title bar and sometimes a system menu, which can..." alt="" coords="76,337,153,369">
+<area shape="rect" href="$classwx_top_level_window.html" title="wxTopLevelWindow is a common base class for wxDialog and wxFrame." alt="" coords="43,255,187,287">
+<area shape="rect" href="$classwx_window.html" title="wxWindow is the base class for all windows and represents any visible object om screen..." alt="" coords="71,172,159,204">
+<area shape="rect" href="$classwx_evt_handler.html" title="A class that can handle events from the windowing system." alt="" coords="63,89,167,121">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="23,7,97,39">
+<area shape="rect" href="$classwx_trackable.html" title="Add&#45;on base class for a trackable object." alt="" coords="121,7,220,39">

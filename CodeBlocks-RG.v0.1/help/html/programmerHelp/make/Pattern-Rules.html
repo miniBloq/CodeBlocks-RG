@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Pattern%20Rules">Pattern Rules</a>,
+Next:<a rel="next" accesskey="n" href="Last-Resort.html#Last%20Resort">Last Resort</a>,
+Previous:<a rel="previous" accesskey="p" href="Chained-Rules.html#Chained%20Rules">Chained Rules</a>,
+Up:<a rel="up" accesskey="u" href="Implicit-Rules.html#Implicit%20Rules">Implicit Rules</a>
+<hr><br>
+</div>
+
+<h3 class="section">Defining and Redefining Pattern Rules</h3>
+
+   <p>You define an implicit rule by writing a <dfn>pattern rule</dfn>.  A pattern
+rule looks like an ordinary rule, except that its target contains the
+character <code>%</code> (exactly one of them).  The target is considered a
+pattern for matching file names; the <code>%</code> can match any nonempty
+substring, while other characters match only themselves.  The prerequisites
+likewise use <code>%</code> to show how their names relate to the target name.
+
+   <p>Thus, a pattern rule <code>%.o : %.c</code> says how to make any file
+<code></code><var>stem</var><code>.o</code> from another file <code></code><var>stem</var><code>.c</code>.
+
+   <p>Note that expansion using <code>%</code> in pattern rules occurs
+<strong>after</strong> any variable or function expansions, which take place
+when the makefile is read.  See <a href="Using-Variables.html#Using%20Variables">How to Use Variables</a>, and <a href="Functions.html#Functions">Functions for Transforming Text</a>.
+
+<ul class="menu">
+<li><a accesskey="1" href="Pattern-Intro.html#Pattern%20Intro">Pattern Intro</a>:                An introduction to pattern rules. 
+<li><a accesskey="2" href="Pattern-Examples.html#Pattern%20Examples">Pattern Examples</a>:             Examples of pattern rules. 
+<li><a accesskey="3" href="Automatic.html#Automatic">Automatic</a>:                    How to use automatic variables in the
+                                  commands of implicit rules. 
+<li><a accesskey="4" href="Pattern-Match.html#Pattern%20Match">Pattern Match</a>:                How patterns match. 
+<li><a accesskey="5" href="Match-Anything-Rules.html#Match-Anything%20Rules">Match-Anything Rules</a>:         Precautions you should take prior to
+                                  defining rules that can match any
+                                  target file whatever. 
+<li><a accesskey="6" href="Canceling-Rules.html#Canceling%20Rules">Canceling Rules</a>:              How to override or cancel built-in rules. 
+</ul>
+
+   </body></html>
+

@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="If%20Function">If Function</a>,
+Next:<a rel="next" accesskey="n" href="Call-Function.html#Call%20Function">Call Function</a>,
+Previous:<a rel="previous" accesskey="p" href="Foreach-Function.html#Foreach%20Function">Foreach Function</a>,
+Up:<a rel="up" accesskey="u" href="Functions.html#Functions">Functions</a>
+<hr><br>
+</div>
+
+<h3 class="section">The <code>if</code> Function</h3>
+
+   <p>The <code>if</code> function provides support for conditional expansion in a
+functional context (as opposed to the GNU <code>make</code> makefile
+conditionals such as <code>ifeq</code> (see <a href="Conditional-Syntax.html#Conditional%20Syntax">Syntax of Conditionals</a>).
+
+   <p>An <code>if</code> function call can contain either two or three arguments:
+
+<pre class="example">     $(if <var>condition</var>,<var>then-part</var>[,<var>else-part</var>])
+     </pre>
+
+   <p>The first argument, <var>condition</var>, first has all preceding and
+trailing whitespace stripped, then is expanded.  If it expands to any
+non-empty string, then the condition is considered to be true.  If it
+expands to an empty string, the condition is considered to be false.
+
+   <p>If the condition is true then the second argument, <var>then-part</var>, is
+evaluated and this is used as the result of the evaluation of the entire
+<code>if</code> function.
+
+   <p>If the condition is false then the third argument, <var>else-part</var>, is
+evaluated and this is the result of the <code>if</code> function.  If there is
+no third argument, the <code>if</code> function evaluates to nothing (the
+empty string).
+
+   <p>Note that only one of the <var>then-part</var> or the <var>else-part</var> will be
+evaluated, never both.  Thus, either can contain side-effects (such as
+<code>shell</code> function calls, etc.)
+
+   </body></html>
+

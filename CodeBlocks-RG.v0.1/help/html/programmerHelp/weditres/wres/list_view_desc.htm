@@ -1,0 +1,1004 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>List</title>
+</head>
+
+<body>
+
+<h1>List-View Controls</h1>
+<hr SIZE="1">
+<p>A list-view control is a window that displays a collection of items; each
+item consists of an icon and a label. List-view controls provide several ways to
+arrange and display items. For example, additional information about each item
+can be displayed in columns to the right of the icon and label. The following
+illustration shows a window with a list-view control in icon view.</p>
+<p><img border="0" src="list_v2.jpg" width="427" height="204"></p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="#ListView_Creation" target="_self">List-View Creation</a>
+  <li><a href="#ListView_Styles_and_Views" target="_self">List-View Styles and
+    Views</a>
+  <li><a href="#ListView_Working_Areas" target="_self">List-View Working Areas</a>
+  <li><a href="#ListView_Image_Lists" target="_self">List-View Image Lists</a>
+  <li><a href="#ListView_Items_and_Subitems" target="_self">List-View Items and
+    Subitems</a>
+  <li><a href="#ListView_Columns" target="_self">List-View Columns</a>
+  <li><a href="#ListView_Scroll_Position" target="_self">List-View Scroll
+    Position</a>
+  <li><a href="#ListView_Label_Editing" target="_self">List-View Label Editing</a>
+  <li><a href="#ListView_Colors" target="_self">List-View Colors</a>
+  <li><a href="#windowsxp" target="_self">List-View Features Supported in
+    Windows XP</a></li>
+</ul>
+<h2><a name="ListView_Creation"></a>List-View Creation</h2>
+<p>To create a list-view control, call the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindow">
+CreateWindow</MSHelp:link>
+ or <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+CreateWindowEx</MSHelp:link>
+ function and specify the WC_LISTVIEW window class. This window class is
+registered when the common controls dynamic-link library (DLL) loads. To ensure
+that this DLL loads, use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_InitCommonControls_cpp">
+InitCommonControls</MSHelp:link>
+ or <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_InitCommonControlsEx_cpp">
+InitCommonControlsEx</MSHelp:link>
+ function. Because list-view controls display both icons and text, as part of
+the creation process you must load the bitmaps and insert the text items.</p>
+<p>Normally you will use the resource editor to create a list view control.</p>
+<h2><a name="ListView_Styles_and_Views"></a>List-View Styles and Views</h2>
+<p>List-view controls display items in four different views. The control's
+window style specifies the current view. Additional window styles specify the
+alignment of items and control-specific features. The following table describes
+the four views.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>View Name</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>Icon view</td>
+      <td>Specified by the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_ICON">
+        LVS_ICON</MSHelp:link>
+        window style. Each item appears as a full-sized icon with a label below
+        it. The user can drag the items to any location in the list-view window.</td>
+    </tr>
+    <tr>
+      <td>Small&nbsp;icon&nbsp;view</td>
+      <td>Specified by the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_SMALLICON">
+        LVS_SMALLICON</MSHelp:link>
+        window style. Each item appears as a small icon with the label to the
+        right of it. The user can drag the items to any location.</td>
+    </tr>
+    <tr>
+      <td>List view</td>
+      <td>Specified by the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_LIST">
+        LVS_LIST</MSHelp:link>
+        window style. Each item appears as a small icon with a label to the
+        right of it. Items are arranged in columns and the user cannot drag them
+        to an arbitrary location.</td>
+    </tr>
+    <tr>
+      <td>Report view</td>
+      <td>Specified by the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_REPORT">
+        LVS_REPORT</MSHelp:link>
+        window style. Each item appears on its own line, with information
+        arranged in columns. The leftmost column is always left justified and
+        contains the small icon and label. Subsequent columns contain subitems
+        as specified by the application. Each column has a header, unless you
+        also specify the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_NOCOLUMNHEADER">
+        LVS_NOCOLUMNHEADER</MSHelp:link>
+        window style.</td>
+    </tr>
+  </tbody>
+</table>
+<p>You can change the view type after you create a list-view control. To
+retrieve and change the window style, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_getwindowlong">
+GetWindowLong</MSHelp:link>
+ and <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_setwindowlong">
+SetWindowLong</MSHelp:link>
+ functions. To determine the window styles of the current view, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_TYPEMASK">
+LVS_TYPEMASK</MSHelp:link>
+ value.</p>
+<p>You can control the way items are arranged in icon or small icon view by
+specifying either the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_ALIGNTOP">
+LVS_ALIGNTOP</MSHelp:link>
+ (default) or <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_ALIGNLEFT">
+LVS_ALIGNLEFT</MSHelp:link>
+ window style.</p>
+<p>You can change the alignment after you create a list-view control. To
+determine the current alignment, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_ALIGNMASK">
+LVS_ALIGNMASK</MSHelp:link>
+ value.</p>
+<p>Additional window styles provide other options, such as whether a user can
+edit labels or select more than one item at a time. For a complete list, see <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_List_view_window_styles_cpp">
+List-View Window Styles</MSHelp:link>
+.</p>
+<h3><a name="Extended_ListView_Styles"></a>Extended List-View Styles</h3>
+<p>The extended list-view control styles provide options such as check boxes,
+flat scroll bars, grid lines, and hot-tracking. For a complete list, see <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Extended_list_view_styles_cpp">
+Extended List-View Styles</MSHelp:link>
+. You do not access extended list-view styles in the same manner as standard
+window styles. You do not use the <b>GetWindowLong</b> and <b>SetWindowLong</b>
+functions to make extended style changes.</p>
+<p>There are two messages that set and retrieve extended style information, <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_SETEXTENDEDLISTVIEWSTYLE_cpp">
+LVM_SETEXTENDEDLISTVIEWSTYLE</MSHelp:link>
+ and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETEXTENDEDLISTVIEWSTYLE_cpp">
+LVM_GETEXTENDEDLISTVIEWSTYLE</MSHelp:link>
+. Instead of sending the messages explicitly, you can use the following
+corresponding macros: <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ListView_SetExtendedListViewStyle_cpp">
+ListView_SetExtendedListViewStyle</MSHelp:link>
+, <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ListView_SetExtendedListViewStyleEx_cpp">
+ListView_SetExtendedListViewStyleEx</MSHelp:link>
+, and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ListView_GetExtendedListViewStyle_cpp">
+ListView_GetExtendedListViewStyle</MSHelp:link>
+.</p>
+<h3><a name="Virtual_ListView_Style"></a>Virtual List-View Style</h3>
+<p>A virtual list view is a list-view control that has the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_OWNERDATA">
+LVS_OWNERDATA</MSHelp:link>
+ style. This style enables the control to handle millions of items because the
+owner receives the burden of managing item data. This allows you to use the
+virtual list-view control with large databases of information, where specific
+methods of data access are already in place.</p>
+<p>A virtual list-view control maintains very little item information itself.
+Except for the item selection and focus information, the owner of the control
+must manage all item information. Other processes request item information from
+the owner by using <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVN_GETDISPINFO_cpp">
+LVN_GETDISPINFO</MSHelp:link>
+ notification messages.</p>
+<p>Because this type of list control is intended for large data sets, it is
+recommended that you cache requested item data to improve retrieval performance.
+The list view provides a cache-hinting mechanism to assist in optimizing the
+cache. The hint is implemented in the form of an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVN_ODCACHEHINT_cpp">
+LVN_ODCACHEHINT</MSHelp:link>
+ notification message.</p>
+<h4><a name="Creating_a_virtual_listview_control"></a>Creating a Virtual
+List-View Control</h4>
+<p>You create virtual list-view controls using the <b>CreateWindow</b> or <b>CreateWindowEx</b>
+function, specifying the LVS_OWNERDATA window style as part of the <i>dwStyle</i>
+function parameter.</p>
+<p>You can use the LVS_OWNERDATA style in combination with most other window
+styles, except the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_SORTASCENDING">
+LVS_SORTASCENDING</MSHelp:link>
+ or <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_SORTDESCENDING">
+LVS_SORTDESCENDING</MSHelp:link>
+ style. All virtual list-view controls default to the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_AUTOARRANGE">
+LVS_AUTOARRANGE</MSHelp:link>
+ style.</p>
+<div class="clsNote">
+  <b>Note</b>&nbsp;&nbsp;Dynamically switching to and from the LVS_OWNERDATA
+  style is not supported.
+</div>
+<h4><a name="Compatibility_issues"></a>Compatibility Issues</h4>
+<p>All four of the list-view styles—icon, small icon, list, and report
+view—support the LVS_OWNERDATA style. List-view controls that have the
+LVS_OWNERDATA style do not store any item-specific information. Therefore, the
+only valid item state flags that you can apply to an item are <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVIS_SELECTED">
+LVIS_SELECTED</MSHelp:link>
+ and <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVIS_FOCUSED">
+LVIS_FOCUSED</MSHelp:link>
+. No other state information is stored. In particular, the list-view control
+does not maintain state or overlay images for each item. However, you can have
+the list-view control query your application for these images by sending it an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_SETCALLBACKMASK_cpp">
+LVM_SETCALLBACKMASK</MSHelp:link>
+ message.</p>
+<p>Most list-view control messages and the associated macros are fully
+supported. However, some messages have limitations or are unsupported when you
+use the LVS_OWNERDATA style. The following table summarizes the affected
+messages.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Message</th>
+      <th>Limitation</th>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_ARRANGE_cpp">
+        LVM_ARRANGE</MSHelp:link>
+      </td>
+      <td>Does not support the LVA_SNAPTOGRID style.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_DELETEALLITEMS_cpp">
+        LVM_DELETEALLITEMS</MSHelp:link>
+      </td>
+      <td>Sets the item count to zero and clears all internal selection
+        variables, but it does not actually delete any items. It makes a
+        notification callback.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_DELETEITEM_cpp">
+        LVM_DELETEITEM</MSHelp:link>
+      </td>
+      <td>Is supported for selection integrity only and does not actually delete
+        an item.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETITEMSTATE_cpp">
+        LVM_GETITEMSTATE</MSHelp:link>
+      </td>
+      <td>Returns only focus and selection states (that is, those states stored
+        by the list-view control).</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETNEXTITEM_cpp">
+        LVM_GETNEXTITEM</MSHelp:link>
+      </td>
+      <td>Does not support the list-view search criteria LVNI_CUT, LVNI_HIDDEN,
+        or LVNI_DROPHILITED. All other criteria are supported.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETWORKAREAS_cpp">
+        LVM_GETWORKAREAS</MSHelp:link>
+      </td>
+      <td>Is not supported.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_INSERTITEM_cpp">
+        LVM_INSERTITEM</MSHelp:link>
+      </td>
+      <td>Is supported for selection integrity only.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_SETITEM_cpp">
+        LVM_SETITEM</MSHelp:link>
+      </td>
+      <td>Is not supported. To set the item state, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ListView_SetItemState_cpp">
+        ListView_SetItemState</MSHelp:link>
+        message.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_SETITEMCOUNT_cpp">
+        LVM_SETITEMCOUNT</MSHelp:link>
+      </td>
+      <td>Sets the number of items currently in the list. If the list-view
+        control sends a notification that requests data for any item up to the
+        maximum set, the owner must be prepared to supply that data. The message
+        parameters support virtual list-view controls.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_SETITEMPOSITION_cpp">
+        LVM_SETITEMPOSITION</MSHelp:link>
+      </td>
+      <td>Is not supported.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_SETITEMSTATE_cpp">
+        LVM_SETITEMSTATE</MSHelp:link>
+      </td>
+      <td>Allows only the selection and focus states to be changed for the item.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_SETITEMTEXT_cpp">
+        LVM_SETITEMTEXT</MSHelp:link>
+      </td>
+      <td>Is not supported. It is the application's responsibility to maintain
+        the item texts.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_SETWORKAREAS_cpp">
+        LVM_SETWORKAREAS</MSHelp:link>
+      </td>
+      <td>Is not supported.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_SORTITEMS_cpp">
+        LVM_SORTITEMS</MSHelp:link>
+      </td>
+      <td>Is not supported. It is the application's responsibility to present
+        the items in the desired order.</td>
+    </tr>
+  </tbody>
+</table>
+<h4><a name="Handling_virtual_listview_messages"></a>Handling Virtual List-View
+Control Notification Messages</h4>
+<p>List-view controls with the LVS_OWNERDATA style send the same notification
+messages as other list-view controls and two additional ones: <b>LVN_ODCACHEHINT</b>
+and <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVN_ODFINDITEM_cpp">
+LVN_ODFINDITEM</MSHelp:link>
+. The following are the most common notifications that the list-view control
+with the LVS_OWNERDATA style sends.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <td>LVN_GETDISPINFO</td>
+      <td>A virtual list-view control maintains very little item information on
+        its own. As a result, it often sends the <b>LVN_GETDISPINFO</b>
+        notification message to request item information. This message is
+        handled in much the same way as callback items in a standard list
+        control. Because the number of items supported by the control can be
+        very large, caching item data improves performance. When handling <b>LVN_GETDISPINFO</b>,
+        the owner of the control first attempts to supply requested item
+        information from the cache (for more information, see <a href="#Cache_management" target="_self">Cache
+        Management</a>). If the requested item is not cached, the owner must be
+        prepared to supply the information by other means.</td>
+    </tr>
+    <tr>
+      <td>LVN_ODCACHEHINT</td>
+      <td>A virtual list view sends the <b>LVN_ODCACHEHINT</b> notification
+        message to assist in optimizing the cache. The notification message
+        provides inclusive index values for a range of items that it recommends
+        be cached. Upon receiving the notification message, the owner must be
+        prepared to load the cache with item information for the requested range
+        so that the information will be readily available when an <b>LVN_GETDISPINFO</b>
+        message is sent.</td>
+    </tr>
+    <tr>
+      <td>LVN_ODFINDITEM</td>
+      <td>The <b>LVN_ODFINDITEM</b> notification message is sent by a virtual
+        list-view control when the control needs the owner to find a particular
+        callback item. The notification message is sent when the list-view
+        control receives quick key access or when it receives an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_FINDITEM_cpp">
+        LVM_FINDITEM</MSHelp:link>
+        message. Search information is sent in the form of an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVFINDINFO_cpp">
+        LVFINDINFO</MSHelp:link>
+        structure, which is a member of the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NMLVFINDITEM_cpp">
+        NMLVFINDITEM</MSHelp:link>
+        structure. The owner must be prepared to search for an item that matches
+        the information given by the list-view control. The owner returns the
+        index of the item if successful, or -1 if no matching item is found.</td>
+    </tr>
+  </tbody>
+</table>
+<h4><a name="Cache_management"></a>Cache Management</h4>
+<p>A list-view control with the LVS_OWNERDATA style produces a large number of <b>LVN_GETDISPINFO</b>
+notification messages and, to assist in optimizing the cache, an <b>LVN_ODCACHEHINT</b>
+message. <b>LVN_ODCACHEHINT</b> messages provide information about the
+recommended items to include within the cache. These messages are sent as <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_NOTIFY_cpp">
+WM_NOTIFY</MSHelp:link>
+ messages, with the <i>lParam</i> value acting as the address of an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NMLVCACHEHINT_cpp">
+NMLVCACHEHINT</MSHelp:link>
+ structure.</p>
+<p>The <b>NMLVCACHEHINT</b> structure includes two integer members, <b>iFrom</b>
+and <b>iTo</b>, that represent the inclusive endpoints of a range of items that
+most likely will be needed. The owner must be prepared to load the cache with
+the item information for each of the items within the recommended range.</p>
+<p>The list control often needs item information for the first item (offset 0).
+The <b>LVN_ODCACHEHINT</b> notification message might not always include item 0,
+but it must always be included in the cache.</p>
+<p>The last items in the list are accessed often. Therefore, the owner might
+want to keep a second cache that includes the items at the end of the list. The
+requested range from <b>LVN_ODCACHEHINT</b> can be checked against the end cache
+to make it available automatically instead of reloading the same end range each
+time.</p>
+<h2><a name="ListView_Working_Areas"></a>List-View Working Areas</h2>
+<p>List-view controls support working areas, which are rectangular virtual areas
+that the list-view control uses to arrange its items. A working area is not a
+window and cannot have a visible border. By default, the list-view control has
+no working areas. By creating a working area, you can create an empty border on
+the left, top, or right of the items or cause a horizontal scroll bar to be
+displayed when there normally would not be one.</p>
+<p>The number of working areas can be retrieved with the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETNUMBEROFWORKAREAS_cpp">
+LVM_GETNUMBEROFWORKAREAS</MSHelp:link>
+ message. The working areas are changed with the <b>LVM_SETWORKAREAS</b> message
+and can be retrieved with the <b>LVM_GETWORKAREAS</b> message. Both of these
+messages take the address of an array of <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_rect_str">
+RECT</MSHelp:link>
+ structures as the <i>lParam</i> and the number of <b>RECT</b> structures as the
+<i>wParam</i>. The <b>left</b> and <b>top</b> members of these structures
+specify the coordinates of the upper-left corner (the origin) of the working
+area, and the <b>right</b> and <b>bottom</b> members specify the lower-right
+corner of the working area. All the coordinates are in client coordinates of the
+list view. The maximum number of working areas allowed is defined by the
+LV_MAX_WORKAREAS value.</p>
+<p>Changing the working area has no effect on list-view controls that have the
+LVS_LIST or LVS_REPORT view, but the working areas will be maintained when the
+view type is changed. With the LVS_ICON and LVS_SMALLICON views, the working
+area can be modified to change the way the items are displayed. Making the width
+of the working area (right - left) greater than the client width of the control
+causes the items to be wrapped at that width and the horizontal scroll bar to be
+displayed. Making the width of the working area narrower than the width of the
+control's client area causes the items to be wrapped within the working area and
+not the client area. Setting the <b>left</b> or <b>top</b> member to a positive
+value causes the items to be displayed starting at the working area, creating an
+empty space between the edge of the control and the items. An empty space can
+also be created between the right edge of the control and the items by making
+the width of the working area less than the client width of the control.</p>
+<h2><a name="ListView_Image_Lists"></a>List-View Image Lists</h2>
+<p>By default, a list-view control does not display item images. To display item
+images, you must create image lists and associate them with the control. A
+list-view control can have three image lists:</p>
+<ul>
+  <li>An image list that contains full-sized icons displayed when the control is
+    in icon view.
+  <li>An image list that contains small icons displayed when the control is in
+    small icon view, list view, or report view.
+  <li>An image list that contains state images, which are displayed to the left
+    of the full-sized or small icon. You can use state images, such as checked
+    and cleared check boxes, to indicate application-defined item states. State
+    images are displayed in icon view, small icon view, list view, and report
+    view.</li>
+</ul>
+<p>The full-sized and small icon image lists can also contain <i>overlay images</i>,
+which are designed to be drawn transparently over the item icons.</p>
+<p>To use overlay images in a list-view control:</p>
+<ol>
+  <li>Call the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ImageList_SetOverlayImage_cpp">
+    ImageList_SetOverlayImage</MSHelp:link>
+    function to assign an overlay image index to an image in the full-sized and
+    small icon image lists. An overlay image is identified by a one-based index.
+  <li>You can associate an overlay image index with an item when you call the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ListView_InsertItem_cpp">
+    ListView_InsertItem</MSHelp:link>
+    or <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ListView_SetItem_cpp">
+    ListView_SetItem</MSHelp:link>
+    macro. Use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_INDEXTOOVERLAYMASK_cpp">
+    INDEXTOOVERLAYMASK</MSHelp:link>
+    macro to specify an overlay image index in the <b>state</b> member of the
+    item's <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVITEM_cpp">
+    LVITEM</MSHelp:link>
+    structure. You must also set the LVIS_OVERLAYMASK bits in the <b>stateMask</b>
+    member.</li>
+</ol>
+<p>If a state image list is specified, a list-view control reserves space to the
+left of each item's icon for a state image.</p>
+<p>To associate a state image with an item, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_INDEXTOSTATEIMAGEMASK_cpp">
+INDEXTOSTATEIMAGEMASK</MSHelp:link>
+ macro to specify a state image index in the <b>state</b> member of the <b>LVITEM</b>
+structure. The index identifies an image in the control's state image list.
+Although image list indexes are zero-based, the control uses one-based indexes
+to identify state images. A state image index of zero indicates that an item has
+no state image.</p>
+<p>By default, when a list-view control is destroyed, it destroys the image
+lists assigned to it. However, if a list-view control has the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_SHAREIMAGELISTS">
+LVS_SHAREIMAGELISTS</MSHelp:link>
+ window style, the application is responsible for destroying the image lists
+when they are no longer in use. You should specify this style if you assign the
+same image lists to multiple list-view controls; otherwise, more than one
+control might try to destroy the same image list.</p>
+<h2><a name="ListView_Items_and_Subitems"></a>List-View Items and Subitems</h2>
+<p>Each item in a list-view control has an icon, a label, a current state, and
+an application-defined value. By using list-view messages, you can add, modify,
+and delete items as well as retrieve information about items.</p>
+<p>Each item can have one or more <i>subitems</i>. A subitem is a string that,
+in report view, is displayed in a column separate from the item's icon and
+label. To specify the text of a subitem, use the <b>LVM_SETITEMTEXT</b> or <b>LVM_SETITEM</b>
+message. All items in a list-view control have the same number of subitems. The
+number of subitems is determined by the number of columns in the list-view
+control. When you add a column to a list-view control, you specify its
+associated subitem index.</p>
+<p>The <b>LVITEM</b> structure defines a list-view item or subitem. The <b>iItem</b>
+member is the zero-based index of the item. The <b>iSubItem</b> member is the
+one-based index of a subitem or zero if the structure contains information about
+an item. Additional members specify the item's text, icon, state, and item data.
+<i>Item data</i> is an application-defined value associated with a list-view
+item.</p>
+<p>To add an item to a list-view control, use the <b>LVM_INSERTITEM</b> message,
+specifying the address of an <b>LVITEM</b> structure. Before adding multiple
+items, you can send the control an <b>LVM_SETITEMCOUNT</b> message, specifying
+the number of items the control will ultimately contain. This message enables
+the list-view control to reallocate its internal data structures only once
+rather than every time you add an item. You can determine the number of items in
+a list-view control by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETITEMCOUNT_cpp">
+LVM_GETITEMCOUNT</MSHelp:link>
+ message. If you are adding a large number of items to a list-view control, you
+can speed up the process by disabling redrawing before adding the items, then
+enable redrawing after the items are added. Use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_wm_setredraw">
+WM_SETREDRAW</MSHelp:link>
+ message to enable and disable redrawing.</p>
+<p>To change the attributes of a list-view item, use the <b>LVM_SETITEM</b>
+message, specifying the address of an <b>LVITEM</b> structure. The <b>mask</b>
+member of this structure specifies the item attributes you want to change. For
+example, to change only the text of an item or subitem, use the <b>LVM_SETITEMTEXT</b>
+message.</p>
+<p>To retrieve information about a list-view item, use the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETITEM_cpp">
+LVM_GETITEM</MSHelp:link>
+ message, specifying the address of the <b>LVITEM</b> structure to fill in. The <b>mask</b>
+member of this structure specifies the item attributes to be retrieved. To
+retrieve only an item or subitem's text, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETITEMTEXT_cpp">
+LVM_GETITEMTEXT</MSHelp:link>
+ message.</p>
+<p>To delete a list-view item, use the <b>LVM_DELETEITEM</b> message. You can
+delete all items in a list-view control by using the <b>LVM_DELETEALLITEMS</b>
+message.</p>
+<h3><a name="ListView_Item_States"></a>List-View Item States</h3>
+<p>An item's state is a value that specifies the item's availability, indicates
+user actions, or otherwise reflects the item's status. A list-view control
+changes some state bits, such as when the user selects an item. An application
+might change other state bits to disable or hide the item or to specify an
+overlay image or state image. For more information about overlay images and
+state images, see <a href="#ListView_Image_Lists" target="_self">List-View Image
+Lists</a>.</p>
+<p>An item's state is specified by the <b>state</b> member of the <b>LVITEM</b>
+structure. When you specify or change an item's state, the <b>stateMask</b>
+member specifies which state bits you need to change. You can change an item's
+state by using the <b>LVM_SETITEMSTATE</b> message. You can specify an item's
+state when you create it or when you change its attributes by using the <b>LVM_SETITEM</b>
+message. To determine an item's current state, use the <b>LVM_GETITEMSTATE</b>
+or <b>LVM_GETITEM</b> message.</p>
+<p>To set an item's overlay image, the <b>stateMask</b> member of the <b>LVITEM</b>
+structure must include the LVIS_OVERLAYMASK value, and the <b>state</b> member
+must include the one-based index of the overlay image shifted left 8 bits by
+using the <b>INDEXTOOVERLAYMASK</b> macro. The index can be zero to specify no
+overlay image.</p>
+<p>To set an item's state image, the <b>stateMask</b> member of the <b>LVITEM</b>
+structure must include the LVIS_STATEIMAGEMASK value, and the <b>state</b>
+member must include the one-based index of the state image shifted left 12 bits
+by using the <b>INDEXTOSTATEIMAGEMASK</b> macro. The index can be zero to
+specify no state image.</p>
+<h3><a name="Callback_Items_and_the_Callback_Mask"></a>Callback Items and the
+Callback Mask</h3>
+<p>For each of its items, a list-view control typically stores the label text,
+the image list index of the item's icons, and a set of bit flags for the item's
+state. You can define callback items or change the control's callback mask to
+indicate that the application, rather than the control, stores some or all of
+this information. You might want to use callbacks if your application stores
+some of this information.</p>
+<p>A <i>callback item</i> in a list-view control is an item for which the
+application stores the text or icon index, or both. You can define callback
+items when you send the <b>LVM_INSERTITEM</b> message to add an item to the
+list-view control. If the application stores the text for the item or subitem,
+set the <b>pszText</b> member of the item's <b>LVITEM</b> structure to
+LPSTR_TEXTCALLBACK. If the application stores the icon index for an item, set
+the <b>iImage</b> member of the item's <b>LVITEM</b> structure to
+I_IMAGECALLBACK.</p>
+<p>The <i>callback mask</i> of a list-view control is a set of bit flags that
+specify the item states for which the application, rather than the control,
+stores the current data. The callback mask applies to all of the control's
+items, unlike the callback item designation, which applies to a specific item.
+The callback mask is zero by default, meaning that the list-view control stores
+all item state information. After creating a list-view control and initializing
+its items, you can send the <b>LVM_SETCALLBACKMASK</b> message to change the
+callback mask. To retrieve the current callback mask, send the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETCALLBACKMASK_cpp">
+LVM_GETCALLBACKMASK</MSHelp:link>
+ message.</p>
+<p>When a list-view control must display or sort a list-view item for which the
+application stores callback information, the control sends the <b>LVN_GETDISPINFO</b>
+notification message to the control's parent window. This message specifies an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NMLVDISPINFO_cpp">
+NMLVDISPINFO</MSHelp:link>
+ structure that contains the type of information required and identifies the
+item or subitem to retrieve. The parent window must process <b>LVN_GETDISPINFO</b>
+to provide the requested data.</p>
+<p>If the list-view control detects a change in an item's callback information,
+such as a change in the text, icon, or state information, the control sends an <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVN_SETDISPINFO_cpp">
+LVN_SETDISPINFO</MSHelp:link>
+ notification message to notify you of the change.</p>
+<p>If you change a callback item's attributes or state bits, you use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_UPDATE_cpp">
+LVM_UPDATE</MSHelp:link>
+ message to force the control to repaint the item. This message also causes the
+control to arrange its items if it has the <b>LVS_AUTOARRANGE</b> style. You can
+use the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_REDRAWITEMS_cpp">
+LVM_REDRAWITEMS</MSHelp:link>
+ message to redraw a range of items by invalidating the corresponding portions
+of the list-view control's client area.</p>
+<p>By effectively using callback items and the callback mask, you can ensure
+that each item attribute is maintained in only one place. Doing this can
+simplify your application, but the only space saved is the memory that would
+otherwise be required to store item labels and subitem text.</p>
+<h3><a name="ListView_Item_Position"></a>List-View Item Position</h3>
+<p>Every list-view item has a position and size, which you can retrieve and set
+using messages. You can also determine which item, if any, is at a specified
+position. The position of list-view items is specified in <i>view coordinates</i>,
+which are client coordinates offset by the scroll position.</p>
+<p>To retrieve and set an item's position, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETITEMPOSITION_cpp">
+LVM_GETITEMPOSITION</MSHelp:link>
+ and <b>LVM_SETITEMPOSITION</b> messages. <b>LVM_GETITEMPOSITION</b> works for
+all views, but <b>LVM_SETITEMPOSITION</b> works only for icon and small icon
+views.</p>
+<p>You can determine which item, if any, is at a particular location by using
+the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_HITTEST_cpp">
+LVM_HITTEST</MSHelp:link>
+ message.</p>
+<p>To retrieve the bounding rectangle for a list item or only for its icon or
+label, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETITEMRECT_cpp">
+LVM_GETITEMRECT</MSHelp:link>
+ message.</p>
+<h3><a name="Arranging_Sorting_and_Finding_Items"></a>Arranging, Sorting, and
+Finding Items</h3>
+<p>You can use list-view messages to arrange and sort items and to find items
+based on their attributes or positions. Arranging repositions items to align on
+a grid, but the indexes of the items do not change. Sorting changes the sequence
+of items (and their corresponding indexes) and then repositions them
+accordingly. You can arrange items only in icon and small icon views, but you
+can sort items in any view. To find items, you send list-view messages that
+specify an item location or property.</p>
+<p>To arrange items, use the <b>LVM_ARRANGE</b> message. You can ensure that
+items are arranged at all times by specifying the LVS_AUTOARRANGE window style.</p>
+<p>To sort items, use the <b>LVM_SORTITEMS</b> message. When you sort using this
+message, you specify an application-defined callback function that the list-view
+control calls to compare the relative order of any two items. The control passes
+to the comparison function the item data associated with each of the two items.
+The item data is the value that was specified in the <b>lParam</b> member of the
+item's <b>LVITEM</b> structure when it was inserted into the list. By specifying
+the appropriate item data and supplying an appropriate comparison function, you
+can sort items by their label, by any subitem, or by any other property. Note
+that sorting items does not reorder the corresponding subitems. When items are
+reordered, their corresponding subitems are carried with them; that is, whole
+rows are kept together. To order the columns separately from one another,
+detaching the subitems from their items, you must regenerate the columns after
+sorting using <b>LVM_SETITEM</b>.</p>
+<p>You can ensure that a list-view control is always sorted by specifying the
+LVS_SORTASCENDING or LVS_SORTDESCENDING window style. Controls with these styles
+use the label text of the items to sort them in ascending or descending order.
+You cannot supply a comparison function when using these window styles. If a
+list-view control has either of these styles, an <b>LVM_INSERTITEM</b> message
+will fail if you try to insert an item that has LPSTR_TEXTCALLBACK as the <b>pszText</b>
+member of its <b>LVITEM</b> structure.</p>
+<p>You can find a list-view item with specific properties by using the <b>LVM_FINDITEM</b>
+message. You can find a list-view item that is in a specified state and has a
+specified relationship to a given item by using the <b>LVM_GETNEXTITEM</b>
+message. For example, you can retrieve the next selected item to the right of a
+specified item.</p>
+<h2><a name="ListView_Columns"></a>List-View Columns</h2>
+<p>Columns control the way items and their subitems are displayed in report
+view. Each column has a title and width and is associated with a specific
+subitem; subitem zero is the item's icon and label. The attributes of a column
+are defined by an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVCOLUMN_cpp">
+LVCOLUMN</MSHelp:link>
+ structure.</p>
+<p>To add a column to a list-view control, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_INSERTCOLUMN_cpp">
+LVM_INSERTCOLUMN</MSHelp:link>
+ message. To delete a column, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_DELETECOLUMN_cpp">
+LVM_DELETECOLUMN</MSHelp:link>
+ message. Note that you cannot delete column zero of a list-view control. You
+can retrieve and change the properties of an existing column by using the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETCOLUMN_cpp">
+LVM_GETCOLUMN</MSHelp:link>
+ and <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_SETCOLUMN_cpp">
+LVM_SETCOLUMN</MSHelp:link>
+ messages. To retrieve or change a column's width, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETCOLUMNWIDTH_cpp">
+LVM_GETCOLUMNWIDTH</MSHelp:link>
+ and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_SETCOLUMNWIDTH_cpp">
+LVM_SETCOLUMNWIDTH</MSHelp:link>
+ messages.</p>
+<p>Unless the LVS_NOCOLUMNHEADER window style is specified, column headers
+appear in report view. The user can click a column header, causing an <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVN_COLUMNCLICK_cpp">
+LVN_COLUMNCLICK</MSHelp:link>
+ notification message to be sent to the parent window. Typically, the parent
+window sorts the list-view control by the specified column when this clicking
+occurs. The user can also drag the column guides between the headers to size the
+columns.</p>
+<p>List-view controls can display images next to column titles. To implement
+this feature, specify the LVCF_IMAGE value and assign the index of the image to
+the <b>iImage</b> member in the <b>LVCOLUMN</b> structure.</p>
+<p>List-view controls can set the order in which columns are displayed. To
+implement this feature, specify the LVCF_ORDER value and assign the column order
+to the <b>iOrder</b> member in the <b>LVCOLUMN</b> structure. The column order
+is zero-based and is in left-to-right order. For example, zero indicates the
+leftmost column.</p>
+<h2><a name="ListView_Scroll_Position"></a>List-View Scroll Position</h2>
+<p>Unless the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_NOSCROLL">
+LVS_NOSCROLL</MSHelp:link>
+ window style is specified, a list-view control can be scrolled to show more
+items than can fit in the client area of the control. You can retrieve a
+list-view control's scroll position and related information, scroll a list-view
+control by a specified amount, or scroll a list-view control so that a specified
+list item is visible.</p>
+<p>In icon view or small icon view, the current scroll position is defined by
+the <i>view origin</i>. The view origin is the set of coordinates, relative to
+the visible area of the list-view control, that correspond to the view
+coordinates (0, 0). To retrieve the current view origin, use the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETORIGIN_cpp">
+LVM_GETORIGIN</MSHelp:link>
+ message. This message should be used only in icon or small icon view; it
+returns an error in list or report view.</p>
+<p>In list or report view, the current scroll position is defined by the <i>top
+index</i>. The top index is the index of the first visible item in the list-view
+control. To retrieve the current top index, use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETTOPINDEX_cpp">
+LVM_GETTOPINDEX</MSHelp:link>
+ message. This message returns a valid result only in list or report view; it
+returns zero in icon or small icon view.</p>
+<p>You can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETVIEWRECT_cpp">
+LVM_GETVIEWRECT</MSHelp:link>
+ message to retrieve the bounding rectangle of all items in a list-view control,
+relative to the visible area of the control.</p>
+<p>The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETCOUNTPERPAGE_cpp">
+LVM_GETCOUNTPERPAGE</MSHelp:link>
+ message returns the number of items that fit in one page of the list-view
+control. This message returns a valid result only in list and report views; in
+icon and small icon views, it returns the total number of items.</p>
+<p>To scroll a list-view control by a specific amount, use the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_SCROLL_cpp">
+LVM_SCROLL</MSHelp:link>
+ message. Using the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_ENSUREVISIBLE_cpp">
+LVM_ENSUREVISIBLE</MSHelp:link>
+ message, you can scroll the list-view control, if necessary, to ensure that a
+specified item is visible.</p>
+<h2><a name="ListView_Label_Editing"></a>List-View Label Editing</h2>
+<p>A list-view control that has the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="LVS_EDITLABELS">
+LVS_EDITLABELS</MSHelp:link>
+ window style enables a user to edit item labels in place. The user begins
+editing by clicking the label of an item that has the focus. Alternatively, an
+application can begin editing automatically by using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_EDITLABEL_cpp">
+LVM_EDITLABEL</MSHelp:link>
+ message. The list-view control notifies the parent window when editing begins
+and when it is canceled or completed. When editing is completed, the parent
+window is responsible for updating the item's label, if appropriate.</p>
+<p>When label editing begins, an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Edit_Controls_cpp">
+edit control</MSHelp:link>
+ is created, positioned, and initialized. Before it is displayed, the list-view
+control sends its parent window an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVN_BEGINLABELEDIT_cpp">
+LVN_BEGINLABELEDIT</MSHelp:link>
+ notification message. If you need to modify the label editing process, you can
+implement a handler for this notification.</p>
+<p>One use for an <b>LVN_BEGINLABELEDIT</b> notification handler is to control
+which labels the user can edit. To prevent label editing, return a nonzero
+value. To customize label editing, have the notification handler retrieve a
+handle to the edit control by sending an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETEDITCONTROL_cpp">
+LVM_GETEDITCONTROL</MSHelp:link>
+ message to the list-view control. Once you have that handle, you can customize
+the edit control by sending the usual EM_XXX messages. For instance, to limit
+the amount of text a user can enter, send the edit control an <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_EM_LIMITTEXT_cpp">
+EM_LIMITTEXT</MSHelp:link>
+ message. You can change the edit control's default text with <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_setwindowtext">
+SetWindowText</MSHelp:link>
+. You can even subclass the edit control to intercept and discard invalid
+characters.</p>
+<p>When label editing is canceled or completed, a list-view control sends its
+parent window an <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVN_ENDLABELEDIT_cpp">
+LVN_ENDLABELEDIT</MSHelp:link>
+ notification message. The <i>lParam</i> parameter is the address of an <b>NMLVDISPINFO</b>
+structure. The <b>item</b> member of this structure is an <b>LVITEM</b>
+structure whose <b>iItem</b> member identifies the item. If editing is canceled,
+the <b>pszText</b> member of the <b>LVITEM</b> structure is NULL; otherwise, <b>pszText</b>
+is the address of the edited text. The parent window is responsible for updating
+the item's label if it wants to keep the new label.</p>
+<h2><a name="ListView_Colors"></a>List-View Colors</h2>
+<p>An application can retrieve and set three colors for a list-view control.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Color</th>
+      <th>Messages used to retrieve and set colors</th>
+    </tr>
+    <tr>
+      <td>Text color</td>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETTEXTCOLOR_cpp">
+        LVM_GETTEXTCOLOR</MSHelp:link>
+        , <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_SETTEXTCOLOR_cpp">
+        LVM_SETTEXTCOLOR</MSHelp:link>
+      </td>
+    </tr>
+    <tr>
+      <td>Text background color</td>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETTEXTBKCOLOR_cpp">
+        LVM_GETTEXTBKCOLOR</MSHelp:link>
+        , <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_SETTEXTBKCOLOR_cpp">
+        LVM_SETTEXTBKCOLOR</MSHelp:link>
+      </td>
+    </tr>
+    <tr>
+      <td>Window background color</td>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_GETBKCOLOR_cpp">
+        LVM_GETBKCOLOR</MSHelp:link>
+        , <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LVM_SETBKCOLOR_cpp">
+        LVM_SETBKCOLOR</MSHelp:link>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>To customize the appearance of a list-view control more significantly, use <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_NM_CUSTOMDRAW_list_view__cpp">
+NM_CUSTOMDRAW (list view)</MSHelp:link>
+. For applications that run on the Windows XP operating system you can apply
+visual styles to customize the control's appearance. For information on using
+visual styles see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_inet_themes_overview_cpp">
+Visual Styles</MSHelp:link>
+ and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_inet_cookbook_overview_cpp">
+Using Windows XP Visual Styles</MSHelp:link>
+.</p>
+<h2><a name="windowsxp"></a>List-View Features Supported in Windows XP</h2>
+<p>The list-view control in the updated version of the common controls delivered
+with Windows XP contains features that enable you to provide an intuitive
+interface for your applications and to present visual information more
+effectively. The features include:</p>
+<ul>
+  <li>Grouping. This makes it easier for users to scan large lists for relevant
+    information.
+  <li>Insertion marks. This enables users to visually follow the changing
+    location of files during and after drag-and-drop operations.
+  <li>Tile view. This provides a compact, yet informative, method for displaying
+    directory, file and other information.</li>
+</ul>
+<p>You can also apply visual styles to common controls defined by ComCtl32.dll
+version 6. Applying visual styles enables you to define the appearance of
+controls and windows. If you want your application to use visual styles, you
+must add an application manifest to ensure that ComCtl32.dll version 6 is
+available. For more information about using manifests and visual styles see <b>Using
+Windows XP Visual Styles</b>.</p>
+<h3><a name="Group_View"></a>Grouping</h3>
+<p>The grouping features of the list-view control in Windows XP, enable you to
+visually group logically related sets of items. These groups are separated on
+the screen by a horizontal group header that contains the title and the number
+of items in the group. The following image shows some grouped items.</p>
+<p><img border="0" src="list_v4.gif" width="254" height="232"></p>
+<p>The grouping application programming interface (API) enables group and group
+element management by providing messages that add items to groups, add groups to
+views, sort group items, and query groups for item size and other information.</p>
+<h3><a name="Insertion_Marks"></a>Insertion Marks</h3>
+<p>Insertion marks show users where dragged items will be placed. Insertion
+marks currently display when the user drags an item into the <b>Start</b> menu
+or Quick Launch bar. The insertion mark also works for lists that are set to
+autoarrange. When a user drags an item to a point between two other items, the
+insertion mark shows the item's expected new location. The following image shows
+an insertion mark.</p>
+<p><img border="0" src="list_v5.gif" width="242" height="85"></p>
+<p>The insertion mark API elements enable placement of insertion marks by
+providing messages and flags that perform hit detection, that specify the
+location and appearance of the insertion mark by item, and that query for
+information about the current size and appearance of the insertion mark.</p>
+<h3><a name="Tile_View"></a>Tile View</h3>
+<p>The tile-view features of the list-view control enable you to provide a
+visual balance between graphical and textual information. The textual
+information displayed for an item in tile view is the same as the columns
+information defined for report view. Tile view functions in combination with
+either the grouping or insertion mark features in the list-view control. The
+tile view uses a 32 x 32 icon and several lines of text, as shown in the
+following image.</p>
+<p><img border="0" src="list_v5.gif" width="302" height="89"></p>
+<p>The tile-view APIs enable you to specify which column fields to display for
+each item, and to collectively control the size and appearance of all items
+within a tile-view window. For clarity, the first line of text in a tile is
+always the item's name.</p>
+
+</body>
+
+</html>

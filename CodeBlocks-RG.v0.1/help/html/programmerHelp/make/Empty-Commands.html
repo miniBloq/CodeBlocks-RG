@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Empty%20Commands">Empty Commands</a>,
+Previous:<a rel="previous" accesskey="p" href="Sequences.html#Sequences">Sequences</a>,
+Up:<a rel="up" accesskey="u" href="Commands.html#Commands">Commands</a>
+<hr><br>
+</div>
+
+<h3 class="section">Using Empty Commands</h3>
+
+   <p>It is sometimes useful to define commands which do nothing.  This is done
+simply by giving a command that consists of nothing but whitespace.  For
+example:
+
+<pre class="example">     target: ;
+     </pre>
+
+<p>defines an empty command string for <code>target</code>.  You could also use a
+line beginning with a tab character to define an empty command string,
+but this would be confusing because such a line looks empty.
+
+   <p>You may be wondering why you would want to define a command string that
+does nothing.  The only reason this is useful is to prevent a target
+from getting implicit commands (from implicit rules or the
+<code>.DEFAULT</code> special target; see <a href="Implicit-Rules.html#Implicit%20Rules">Implicit Rules</a> and
+see <a href="Last-Resort.html#Last%20Resort">Defining Last-Resort Default Rules</a>).
+
+   <p>You may be inclined to define empty command strings for targets that are
+not actual files, but only exist so that their prerequisites can be
+remade.  However, this is not the best way to do that, because the
+prerequisites may not be remade properly if the target file actually does exist. 
+See <a href="Phony-Targets.html#Phony%20Targets">Phony Targets</a>, for a better way to do this.
+
+   </body></html>
+

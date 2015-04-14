@@ -1,0 +1,1677 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>C++ Lists</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C++ Lists</a>
+  </div>
+
+  <div class="name-format">
+    assign
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  void assign( <strong>size_type</strong> num, const <a href=
+"../containers.html">TYPE</a>&amp; val );
+  void assign( <a href=
+"../iterators.html">input_iterator</a> start, <a href=
+"../iterators.html">input_iterator</a> end );
+</pre>
+
+  <p>The assign() function either gives the current list the values
+  from <em>start</em> to <em>end</em>, or gives it <em>num</em> copies
+  of <em>val</em>.</p>
+
+  <p>This function will destroy the previous contents of the list.</p>
+
+  <p>For example, the following code uses assign() to put 10 copies of
+  the integer 42 into a vector:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v;
+ v.assign( 10, 42 );
+ for( int i = 0; i &lt; v.size(); i++ ) {
+   cout &lt;&lt; v[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+</pre>
+
+  <p>The above code displays the following output:</p>
+<pre class="prettyprint">
+ 42 42 42 42 42 42 42 42 42 42          
+</pre>
+
+  <p>The next example shows how assign() can be used to copy one vector
+  to another:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v1;
+ for( int i = 0; i &lt; 10; i++ ) {
+   v1.push_back( i );
+ }              
+
+ vector&lt;int&gt; v2;
+ v2.assign( v1.begin(), v1.end() );             
+
+ for( int i = 0; i &lt; v2.size(); i++ ) {
+   cout &lt;&lt; v2[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+</pre>
+
+  <p>When run, the above code displays the following output:</p>
+<pre class="prettyprint">
+ 0 1 2 3 4 5 6 7 8 9            
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    (C++ Strings) <a href="../cppstring/assign1.html">assign</a><br>
+    <a href="insert.html">insert</a><br>
+    <a href="push_back.html">push_back</a><br>
+    <a href="push_front.html">push_front</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    back
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  <a href="../containers.html">TYPE</a>&amp; back();
+  const <a href="../containers.html">TYPE</a>&amp; back() const;
+</pre>
+
+  <p>The back() function returns a reference to the last element in the
+  list.</p>
+
+  <p>For example:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v;
+ for( int i = 0; i &lt; 5; i++ ) {
+   v.push_back(i);
+ }
+ cout &lt;&lt; &quot;The first element is &quot; &lt;&lt; v.front()
+      &lt;&lt; &quot; and the last element is &quot; &lt;&lt; v.back() &lt;&lt; endl;           
+</pre>
+
+  <p>This code produces the following output:</p>
+<pre class="prettyprint">
+ The first element is 0 and the last element is 4               
+</pre>
+
+  <p>The back() function runs in <a href="../complexity.html">constant
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="front.html">front</a><br>
+    <a href="pop_back.html">pop_back</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    begin
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  iterator begin();
+  const_iterator begin() const;
+</pre>
+
+  <p>The function begin() returns an iterator to the first element of
+  the list. begin() should run in <a href="../complexity.html">constant
+  time</a>.</p>
+
+  <p>For example, the following code uses begin() to initialize an
+  iterator that is used to traverse a list:</p>
+<pre class="prettyprint">
+   // Create a list of characters
+   list&lt;char&gt; charList;
+   for( int i=0; i &lt; 10; i++ ) {
+     charList.push_front( i + 65 );
+   }
+   // Display the list
+   list&lt;char&gt;::iterator theIterator;
+   for( theIterator = charList.begin(); theIterator != charList.end(); theIterator++ ) {
+     cout &lt;&lt; *theIterator;
+   }            
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="end.html">end</a><br>
+    <a href="rbegin.html">rbegin</a><br>
+    <a href="rend.html">rend</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    clear
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  void clear();
+</pre>
+
+  <p>The function clear() deletes all of the elements in the list.
+  clear() runs in <a href="../complexity.html">linear time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="erase.html">erase</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+<div class="name-format">
+  <a name="Container constructors &amp; destructors">Container constructors &amp; destructors</a>
+</div>
+
+<div class="syntax-name-format">Syntax:</div> 
+<pre class="syntax-box">  container();  container( const container&amp; c );  ~container();</pre>
+<p>		<p>
+			Every list has a default constructor, copy constructor, and destructor.
+		</p>
+		<p>
+			The default constructor takes no arguments, creates a new instance of that list, and runs in <a href="../complexity.html">constant time</a>.  The default copy constructor runs in <a href="../complexity.html">linear time</a> and can be used to create a new list that is a copy of the given list <em>c</em>.
+		</p>
+		<p>
+			The default destructor is called when the list should be destroyed.
+		</p>
+		<p>
+			For example, the following code creates a pointer to a vector of integers and then uses the default list constructor to allocate a memory for a new vector:
+		</p>
+<pre class="prettyprint">
+ v = new vector&lt;int&gt;();
+		</pre class="example-code">
+</p>
+<div class="related-name-format">Related topics:</div>
+<div class="related-content"><a href="container_constructors2.html">Special container constructors</a>, <a href="resize.html">resize</a></div>
+
+
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    List constructors
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  list();
+  list( const list&amp; c );
+  list( <strong>size_type</strong> num, const <a href=
+"../containers.html">TYPE</a>&amp; val = <a href=
+"../containers.html">TYPE</a>() );
+  list( <a href=
+"../iterators.html">input_iterator</a> start, <a href=
+"../iterators.html">input_iterator</a> end );
+  ~list();
+</pre>
+
+  <p>The default list constructor takes no arguments, creates a new
+  instance of that list.</p>
+
+  <p>The second constructor is a default copy constructor that can be
+  used to create a new list that is a copy of the given list
+  <em>c</em>.</p>
+
+  <p>The third constructor creates a list with space for <em>num</em>
+  objects. If <em>val</em> is specified, each of those objects will be
+  given that value. For example, the following code creates a vector
+  consisting of five copies of the integer 42:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v1( 5, 42 );         
+</pre>
+
+  <p>The last constructor creates a list that is initialized to contain
+  the elements between <em>start</em> and <em>end</em>. For
+  example:</p>
+<pre class="prettyprint">
+ // create a vector of random integers
+ cout &lt;&lt; &quot;original vector: &quot;;
+ vector&lt;int&gt; v;
+ for( int i = 0; i &lt; 10; i++ ) {
+   int num = (int) rand() % 10;
+   cout &lt;&lt; num &lt;&lt; &quot; &quot;;
+   v.push_back( num );
+ }
+ cout &lt;&lt; endl;            
+
+ // find the first element of v that is even
+ vector&lt;int&gt;::iterator iter1 = v.begin();
+ while( iter1 != v.end() &amp;&amp; *iter1 % 2 != 0 ) {
+   iter1++;
+ }              
+
+ // find the last element of v that is even
+ vector&lt;int&gt;::iterator iter2 = v.end();
+ do {
+   iter2--;
+ } while( iter2 != v.begin() &amp;&amp; *iter2 % 2 != 0 );              
+
+ cout &lt;&lt; &quot;first even number: &quot; &lt;&lt; *iter1 &lt;&lt; &quot;, last even number: &quot; &lt;&lt; *iter2 &lt;&lt; endl;         
+
+ cout &lt;&lt; &quot;new vector: &quot;;
+ vector&lt;int&gt; v2( iter1, iter2 );
+ for( int i = 0; i &lt; v2.size(); i++ ) {
+   cout &lt;&lt; v2[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+</pre>
+
+  <p>When run, this code displays the following output:</p>
+<pre class="prettyprint">
+ original vector: 1 9 7 9 2 7 2 1 9 8
+ first even number: 2, last even number: 8
+ new vector: 2 7 2 1 9          
+</pre>
+
+  <p>All of these constructors run in <a href=
+  "../complexity.html">linear time</a> except the first, which runs in
+  <a href="../complexity.html">constant time</a>.</p>
+
+  <p>The default destructor is called when the list should be
+  destroyed.</p>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    List operators
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  list operator=(const list&amp; c2);
+  bool operator==(const list&amp; c1, const list&amp; c2);
+  bool operator!=(const list&amp; c1, const list&amp; c2);
+  bool operator&lt;(const list&amp; c1, const list&amp; c2);
+  bool operator&gt;(const list&amp; c1, const list&amp; c2);
+  bool operator&lt;=(const list&amp; c1, const list&amp; c2);
+  bool operator&gt;=(const list&amp; c1, const list&amp; c2);
+</pre>
+
+  <p>All of the C++ containers can be compared and assigned with the
+  standard comparison operators: ==, !=, &lt;=, &gt;=, &lt;, &gt;, and
+  =. Performing a comparison or assigning one list to another takes
+  <a href="../complexity.html">linear time</a>.</p>
+
+  <p>Two lists are equal if:</p>
+
+  <ol>
+    <li>Their size is the same, and</li>
+
+    <li>Each member in location i in one list is equal to the the
+    member in location i in the other list.</li>
+  </ol>
+
+  <p>Comparisons among lists are done lexicographically.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    (C++ Strings) <a href="../cppstring/string_operators.html">String
+    operators</a><br>
+    (C++ Strings) <a href="../cppstring/at.html">at</a><br>
+    <a href="merge.html">merge</a><br>
+    <a href="unique.html">unique</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    empty
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  bool empty() const;
+</pre>
+
+  <p>The empty() function returns true if the list has no elements,
+  false otherwise.</p>
+
+  <p>For example, the following code uses empty() as the stopping
+  condition on a (C/C++ Keywords) <a href=
+  "../keywords/while.html">while</a> loop to clear a list and display
+  its contents in reverse order:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v;
+ for( int i = 0; i &lt; 5; i++ ) {
+   v.push_back(i);
+ }
+ while( !v.empty() ) {
+   cout &lt;&lt; v.back() &lt;&lt; endl;
+   v.pop_back();
+ }              
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="size.html">size</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    end
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  iterator end();
+  const_iterator end() const;
+</pre>
+
+  <p>The end() function returns an iterator just past the end of the
+  list.</p>
+
+  <p>Note that before you can access the last element of the list using
+  an iterator that you get from a call to end(), you&#39;ll have to
+  decrement the iterator first.</p>
+
+  <p>For example, the following code uses <a href=
+  "begin.html">begin</a>() and end() to iterate through all of the
+  members of a vector:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v1( 5, 789 );
+ vector&lt;int&gt;::iterator it;
+ for( it = v1.begin(); it != v1.end(); it++ ) {
+   cout &lt;&lt; *it &lt;&lt; endl;
+ }              
+</pre>
+
+  <p>The iterator is initialized with a call to <a href=
+  "begin.html">begin</a>(). After the body of the loop has been
+  executed, the iterator is incremented and tested to see if it is
+  equal to the result of calling end(). Since end() returns an iterator
+  pointing to an element just after the last element of the vector, the
+  loop will only stop once all of the elements of the vector have been
+  displayed.</p>
+
+  <p>end() runs in <a href="../complexity.html">constant time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="begin.html">begin</a><br>
+    <a href="rbegin.html">rbegin</a><br>
+    <a href="rend.html">rend</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    erase
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  iterator erase( iterator loc );
+  iterator erase( iterator start, iterator end );
+</pre>
+
+  <p>The erase() function either deletes the element at location
+  <em>loc</em>, or deletes the elements between <em>start</em> and
+  <em>end</em> (including <em>start</em> but not including
+  <em>end</em>). The return value is the element after the last element
+  erased.</p>
+
+  <p>The first version of erase (the version that deletes a single
+  element at location <em>loc</em>) runs in <a href=
+  "../complexity.html">constant time</a> for lists and <a href=
+  "../complexity.html">linear time</a> for vectors, dequeues, and
+  strings. The multiple-element version of erase always takes <a href=
+  "../complexity.html">linear time</a>.</p>
+
+  <p>For example:</p>
+<pre class="prettyprint">
+ // Create a vector, load it with the first ten characters of the alphabet
+ vector&lt;char&gt; alphaVector;
+ for( int i=0; i &lt; 10; i++ ) {
+   alphaVector.push_back( i + 65 );
+ }
+ int size = alphaVector.size();
+ vector&lt;char&gt;::iterator startIterator;
+ vector&lt;char&gt;::iterator tempIterator;
+ for( int i=0; i &lt; size; i++ ) {
+   startIterator = alphaVector.begin();
+   alphaVector.erase( startIterator );
+   // Display the vector
+   for( tempIterator = alphaVector.begin(); tempIterator != alphaVector.end(); tempIterator++ ) {
+     cout &lt;&lt; *tempIterator;
+   }
+   cout &lt;&lt; endl;
+ }              
+</pre>
+
+  <p>That code would display the following output:</p>
+<pre class="prettyprint">
+ BCDEFGHIJ
+ CDEFGHIJ
+ DEFGHIJ
+ EFGHIJ
+ FGHIJ
+ GHIJ
+ HIJ
+ IJ
+ J              
+</pre>
+
+  <p>In the next example, erase() is called with two iterators to
+  delete a range of elements from a vector:</p>
+<pre class="prettyprint">
+ // create a vector, load it with the first ten characters of the alphabet
+ vector&lt;char&gt; alphaVector;
+ for( int i=0; i &lt; 10; i++ ) {
+   alphaVector.push_back( i + 65 );
+ }
+ // display the complete vector
+ for( int i = 0; i &lt; alphaVector.size(); i++ ) {
+   cout &lt;&lt; alphaVector[i];
+ }
+ cout &lt;&lt; endl;            
+
+ // use erase to remove all but the first two and last three elements
+ // of the vector
+ alphaVector.erase( alphaVector.begin()+2, alphaVector.end()-3 );
+ // display the modified vector
+ for( int i = 0; i &lt; alphaVector.size(); i++ ) {
+   cout &lt;&lt; alphaVector[i];
+ }
+ cout &lt;&lt; endl;            
+</pre>
+
+  <p>When run, the above code displays:</p>
+<pre class="prettyprint">
+ ABCDEFGHIJ
+ ABHIJ          
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="clear.html">clear</a><br>
+    <a href="insert.html">insert</a><br>
+    <a href="pop_back.html">pop_back</a><br>
+    <a href="pop_front.html">pop_front</a><br>
+    <a href="remove.html">remove</a><br>
+    <a href="remove_if.html">remove_if</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    front
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  <a href="../containers.html">TYPE</a>&amp; front();
+  const <a href="../containers.html">TYPE</a>&amp; front() const;
+</pre>
+
+  <p>The front() function returns a reference to the first element of
+  the list, and runs in <a href="../complexity.html">constant
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="back.html">back</a><br>
+    <a href="pop_front.html">pop_front</a><br>
+    <a href="push_front.html">push_front</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    insert
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  iterator insert( iterator loc, const <a href=
+"../containers.html">TYPE</a>&amp; val );
+  void insert( iterator loc, <strong>size_type</strong> num, const <a href="../containers.html">TYPE</a>&amp; val );
+  template&lt;<a href=
+"../containers.html">TYPE</a>&gt; void insert( iterator loc, <a href=
+"../iterators.html">input_iterator</a> start, <a href=
+"../iterators.html">input_iterator</a> end );
+</pre>
+
+  <p>The insert() function either:</p>
+
+  <ul>
+    <li>inserts <em>val</em> before <em>loc</em>, returning an iterator
+    to the element inserted,</li>
+
+    <li>inserts <em>num</em> copies of <em>val</em> before
+    <em>loc</em>, or</li>
+
+    <li>inserts the elements from <em>start</em> to <em>end</em> before
+    <em>loc</em>.</li>
+  </ul>
+
+  <p>For example:</p>
+<pre class="prettyprint">
+ // Create a vector, load it with the first 10 characters of the alphabet
+ vector&lt;char&gt; alphaVector;
+ for( int i=0; i &lt; 10; i++ ) {
+   alphaVector.push_back( i + 65 );
+ }              
+
+ // Insert four C&#39;s into the vector
+ vector&lt;char&gt;::iterator theIterator = alphaVector.begin();
+ alphaVector.insert( theIterator, 4, &#39;C&#39; );             
+
+ // Display the vector
+ for( theIterator = alphaVector.begin(); theIterator != alphaVector.end(); theIterator++ )    {
+   cout &lt;&lt; *theIterator;
+ }              
+</pre>
+
+  <p>This code would display:</p>
+<pre class="prettyprint">
+ CCCCABCDEFGHIJ         
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="assign.html">assign</a><br>
+    <a href="erase.html">erase</a><br>
+    <a href="merge.html">merge</a><br>
+    <a href="push_back.html">push_back</a><br>
+    <a href="push_front.html">push_front</a><br>
+    <a href="splice.html">splice</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    max_size
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  <strong>size_type</strong> max_size() const;
+</pre>
+
+  <p>The max_size() function returns the maximum number of elements
+  that the list can hold. The max_size() function should not be
+  confused with the <a href="size.html">size</a>() or (C++ Strings)
+  <a href="../cppstring/capacity.html">capacity</a>() functions, which
+  return the number of elements currently in the list and the the
+  number of elements that the list will be able to hold before more
+  memory will have to be allocated, respectively.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="size.html">size</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    merge
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  void merge( list &amp;lst );
+  void merge( list &amp;lst, BinPred compfunction );
+</pre>
+
+  <p>The function merge() merges the list with lst, producing a
+  combined list that is ordered with respect to the &lt; operator. If
+  compfunction is specified, then it is used as the comparison function
+  for the lists instead of &lt;.</p>
+
+  <p>merge() runs in <a href="../complexity.html">linear time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="container_operators.html">Container operators</a><br>
+    <a href="insert.html">insert</a><br>
+    <a href="splice.html">splice</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    pop_back
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  void pop_back();
+</pre>
+
+  <p>The pop_back() function removes the last element of the list.</p>
+
+  <p>pop_back() runs in <a href="../complexity.html">constant
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="back.html">back</a><br>
+    <a href="erase.html">erase</a><br>
+    <a href="pop_front.html">pop_front</a><br>
+    <a href="push_back.html">push_back</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    pop_front
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  void pop_front();
+</pre>
+
+  <p>The function pop_front() removes the first element of the
+  list.</p>
+
+  <p>The pop_front() function runs in <a href=
+  "../complexity.html">constant time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="erase.html">erase</a><br>
+    <a href="front.html">front</a><br>
+    <a href="pop_back.html">pop_back</a><br>
+    <a href="push_front.html">push_front</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    push_back
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  void push_back( const <a href=
+"../containers.html">TYPE</a>&amp; val );
+</pre>
+
+  <p>The push_back() function appends <em>val</em> to the end of the
+  list.</p>
+
+  <p>For example, the following code puts 10 integers into a list:</p>
+<pre class="prettyprint">
+   list&lt;int&gt; the_list;
+   for( int i = 0; i &lt; 10; i++ )
+     the_list.push_back( i );           
+</pre>
+
+  <p>When displayed, the resulting list would look like this:</p>
+<pre class="prettyprint">
+ 0 1 2 3 4 5 6 7 8 9            
+</pre>
+
+  <p>push_back() runs in <a href="../complexity.html">constant
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="assign.html">assign</a><br>
+    <a href="insert.html">insert</a><br>
+    <a href="pop_back.html">pop_back</a><br>
+    <a href="push_front.html">push_front</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    push_front
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  void push_front( const <a href=
+"../containers.html">TYPE</a>&amp; val );
+</pre>
+
+  <p>The push_front() function inserts <em>val</em> at the beginning of
+  list.</p>
+
+  <p>push_front() runs in <a href="../complexity.html">constant
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="assign.html">assign</a><br>
+    <a href="front.html">front</a><br>
+    <a href="insert.html">insert</a><br>
+    <a href="pop_front.html">pop_front</a><br>
+    <a href="push_back.html">push_back</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    rbegin
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  <a href="../iterators.html">reverse_iterator</a> rbegin();
+  const_<a href=
+"../iterators.html">reverse_iterator</a> rbegin() const;
+</pre>
+
+  <p>The rbegin() function returns a <a href=
+  "../iterators.html">reverse_iterator</a> to the end of the current
+  list.</p>
+
+  <p>rbegin() runs in <a href="../complexity.html">constant
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="begin.html">begin</a><br>
+    <a href="end.html">end</a><br>
+    <a href="rend.html">rend</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    remove
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  void remove( const <a href="../containers.html">TYPE</a> &amp;val );
+</pre>
+
+  <p>The function remove() removes all elements that are equal to val
+  from the list.</p>
+
+  <p>For example, the following code creates a list of the first 10
+  characters of the alphabet, then uses remove() to remove the letter
+  &#39;E&#39; from the list:</p>
+<pre class="prettyprint">
+   // Create a list that has the first 10 letters of the alphabet
+   list&lt;char&gt; charList;
+   for( int i=0; i &lt; 10; i++ )
+     charList.push_front( i + 65 );
+   // Remove all instances of &#39;E&#39;
+   charList.remove( &#39;E&#39; );              
+</pre>
+
+  <p>Remove runs in <a href="../complexity.html">linear time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="erase.html">erase</a><br>
+    <a href="remove_if.html">remove_if</a><br>
+    <a href="unique.html">unique</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    remove_if
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  void remove_if( UnPred pr );
+</pre>
+
+  <p>The remove_if() function removes all elements from the list for
+  which the unary predicate <em>pr</em> is true.</p>
+
+  <p>remove_if() runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="erase.html">erase</a><br>
+    <a href="remove.html">remove</a><br>
+    <a href="unique.html">unique</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    rend
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  <a href="../iterators.html">reverse_iterator</a> rend();
+  const_<a href="../iterators.html">reverse_iterator</a> rend() const;
+</pre>
+
+  <p>The function rend() returns a <a href=
+  "../iterators.html">reverse_iterator</a> to the beginning of the
+  current list.</p>
+
+  <p>rend() runs in <a href="../complexity.html">constant time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="begin.html">begin</a><br>
+    <a href="end.html">end</a><br>
+    <a href="rbegin.html">rbegin</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    resize
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  void resize( <strong>size_type</strong> num, const <a href=
+"../containers.html">TYPE</a>&amp; val = <a href=
+"../containers.html">TYPE</a>() );
+</pre>
+
+  <p>The function resize() changes the size of the list to
+  <em>size</em>. If <em>val</em> is specified then any newly-created
+  elements will be initialized to have a value of <em>val</em>.</p>
+
+  <p>This function runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    (C++ Multimaps) <a href=
+    "../cppmultimap/multimap_constructors.html">Multimap constructors
+    &amp; destructors</a><br>
+    (C++ Strings) <a href="../cppstring/capacity.html">capacity</a><br>
+    <a href="size.html">size</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    reverse
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  void reverse();
+</pre>
+
+  <p>The function reverse() reverses the list, and takes <a href=
+  "../complexity.html">linear time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="sort.html">sort</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    size
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  <strong>size_type</strong> size() const;
+</pre>
+
+  <p>The size() function returns the number of elements in the current
+  list.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    (C++ Strings) <a href="../cppstring/capacity.html">capacity</a><br>
+    <a href="empty.html">empty</a><br>
+    (C++ Strings) <a href="../cppstring/length.html">length</a><br>
+    <a href="max_size.html">max_size</a><br>
+    <a href="resize.html">resize</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    sort
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  void sort();
+  void sort( BinPred p );
+</pre>
+
+  <p>The sort() function is used to sort lists into ascending order.
+  Ordering is done via the &lt; operator, unless <em>p</em> is
+  specified, in which case it is used to determine if an element is
+  less than another.</p>
+
+  <p>Sorting takes N log N time.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="reverse.html">reverse</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    splice
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  void splice( iterator pos, list&amp; lst );
+  void splice( iterator pos, list&amp; lst, iterator del );
+  void splice( iterator pos, list&amp; lst, iterator start, iterator end );
+</pre>
+
+  <p>The splice() function inserts <em>lst</em> at location
+  <em>pos</em>. If specified, the element(s) at <em>del</em> or from
+  <em>start</em> to <em>end</em> are removed.</p>
+
+  <p>splice() simply moves elements from one list to another, and
+  doesn&#39;t actually do any copying or deleting. Because of this,
+  splice() runs in <a href="../complexity.html">constant time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="insert.html">insert</a><br>
+    <a href="merge.html">merge</a><br>
+    <a href="swap.html">swap</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    swap
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  void swap( container&amp; from );
+</pre>
+
+  <p>The swap() function exchanges the elements of the current list
+  with those of <em>from</em>. This function operates in <a href=
+  "../complexity.html">constant time</a>.</p>
+
+  <p>For example, the following code uses the swap() function to
+  exchange the values of two strings:</p>
+<pre class="prettyprint">
+   string first( &quot;This comes first&quot; );
+   string second( &quot;And this is second&quot; );
+   first.swap( second );
+   cout &lt;&lt; first &lt;&lt; endl;
+   cout &lt;&lt; second &lt;&lt; endl;          
+</pre>
+
+  <p>The above code displays:</p>
+<pre class="prettyprint">
+   And this is second
+   This comes first             
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="splice.html">splice</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    unique
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;list&gt;
+  void unique();
+  void unique( BinPred pr );
+</pre>
+
+  <p>The function unique() removes all consecutive duplicate elements
+  from the list. Note that only consecutive duplicates are removed,
+  which may require that you <a href="sort.html">sort</a>() the list
+  first.</p>
+
+  <p>Equality is tested using the == operator, unless <em>pr</em> is
+  specified as a replacement. The ordering of the elements in a list
+  should not change after a call to unique().</p>
+
+  <p>unique() runs in <a href="../complexity.html">linear time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="container_operators.html">Container operators</a><br>
+    <a href="remove.html">remove</a><br>
+    <a href="remove_if.html">remove_if</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+</body>
+<!-- Mirrored from cppreference.com/cpplist/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

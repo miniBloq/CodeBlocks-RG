@@ -1,0 +1,106 @@
+<TITLE>BGI Documentation for 
+getfillpattern
+</TITLE>
+<H2>
+getfillpattern
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void getfillpattern(char *pattern);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+getfillpattern copies the user-defined fill pattern, as set by setfillpattern, into the 8-byte area pointed to by pattern.
+<P>pattern is a pointer to a sequence of 8 bytes, with each byte corresponding to 8 pixels in the pattern. Whenever a bit in a pattern byte is set to 1, the corresponding pixel will be plotted. For example, the following user-defined fill pattern represents a checkerboard:
+<PRE>
+char checkboard[8] = {
+   0xAA, 0x55, 0xAA, 0x55, 0xAA, 0x55, 0xAA, 0x55
+};
+</PRE>
+
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="getfillsettings.html"> getfillsettings </A>
+<DD><A HREF="setfillpattern.html"> setfillpattern </A>
+
+
+<P><DT><B>Example</B><DD>
+/* getfillpattern example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int maxx, maxy;
+   char pattern[8] = {0x00, 0x70, 0x20, 0x27, 0x25, 0x27, 0x04, 0x04};
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   maxx = getmaxx();
+   maxy = getmaxy();
+   setcolor(getmaxcolor());
+
+   /* select a user-defined fill pattern */
+   setfillpattern(pattern, getmaxcolor());
+
+   /* fill the screen with the pattern */
+   bar(0, 0, maxx, maxy);
+   getch();
+
+   /* get the current user-defined fill pattern */
+
+   getfillpattern(pattern);
+
+
+   /* alter the pattern we grabbed */
+   pattern[4] -= 1;
+   pattern[5] -= 3;
+   pattern[6] += 3;
+   pattern[7] -= 4;
+
+   /* select our new pattern */
+   setfillpattern(pattern, getmaxcolor());
+
+   /* fill the screen with the new pattern */
+   bar(0, 0, maxx, maxy);
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

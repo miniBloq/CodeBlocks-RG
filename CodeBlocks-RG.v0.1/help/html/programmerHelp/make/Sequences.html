@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Sequences">Sequences</a>,
+Next:<a rel="next" accesskey="n" href="Empty-Commands.html#Empty%20Commands">Empty Commands</a>,
+Previous:<a rel="previous" accesskey="p" href="Recursion.html#Recursion">Recursion</a>,
+Up:<a rel="up" accesskey="u" href="Commands.html#Commands">Commands</a>
+<hr><br>
+</div>
+
+<h3 class="section">Defining Canned Command Sequences</h3>
+
+   <p>When the same sequence of commands is useful in making various targets, you
+can define it as a canned sequence with the <code>define</code> directive, and
+refer to the canned sequence from the rules for those targets.  The canned
+sequence is actually a variable, so the name must not conflict with other
+variable names.
+
+   <p>Here is an example of defining a canned sequence of commands:
+
+<pre class="example">     define run-yacc
+     yacc $(firstword $^)
+     mv y.tab.c $@
+     endef
+     </pre>
+
+<p>Here <code>run-yacc</code> is the name of the variable being defined;
+<code>endef</code> marks the end of the definition; the lines in between are the
+commands.  The <code>define</code> directive does not expand variable references
+and function calls in the canned sequence; the <code>$</code> characters,
+parentheses, variable names, and so on, all become part of the value of the
+variable you are defining. 
+See <a href="Defining.html#Defining">Defining Variables Verbatim</a>,
+for a complete explanation of <code>define</code>.
+
+   <p>The first command in this example runs Yacc on the first prerequisite of
+whichever rule uses the canned sequence.  The output file from Yacc is
+always named <code>y.tab.c</code>.  The second command moves the output to the
+rule's target file name.
+
+   <p>To use the canned sequence, substitute the variable into the commands of a
+rule.  You can substitute it like any other variable
+(see <a href="Reference.html#Reference">Basics of Variable References</a>). 
+Because variables defined by <code>define</code> are recursively expanded
+variables, all the variable references you wrote inside the <code>define</code>
+are expanded now.  For example:
+
+<pre class="example">     foo.c : foo.y
+             $(run-yacc)
+     </pre>
+
+<p><code>foo.y</code> will be substituted for the variable <code>$^</code> when it occurs in
+<code>run-yacc</code>'s value, and <code>foo.c</code> for <code>$@</code>.
+
+   <p>This is a realistic example, but this particular one is not needed in
+practice because <code>make</code> has an implicit rule to figure out these
+commands based on the file names involved
+(see <a href="Implicit-Rules.html#Implicit%20Rules">Using Implicit Rules</a>).
+
+   <p>In command execution, each line of a canned sequence is treated just as
+if the line appeared on its own in the rule, preceded by a tab.  In
+particular, <code>make</code> invokes a separate subshell for each line.  You
+can use the special prefix characters that affect command lines
+(<code>@</code>, <code>-</code>, and <code>+</code>) on each line of a canned sequence. 
+See <a href="Commands.html#Commands">Writing the Commands in Rules</a>. 
+For example, using this canned sequence:
+
+<pre class="example">     define frobnicate
+     @echo "frobnicating target $@"
+     frob-step-1 $&lt; -o $@-step-1
+     frob-step-2 $@-step-1 -o $@
+     endef
+     </pre>
+
+<p><code>make</code> will not echo the first line, the <code>echo</code> command. 
+But it <em>will</em> echo the following two command lines.
+
+   <p>On the other hand, prefix characters on the command line that refers to
+a canned sequence apply to every line in the sequence.  So the rule:
+
+<pre class="example">     frob.out: frob.in
+             @$(frobnicate)
+     </pre>
+
+<p>does not echo <em>any</em> commands. 
+(See <a href="Echoing.html#Echoing">Command Echoing</a>, for a full explanation of <code>@</code>.)
+
+   </body></html>
+

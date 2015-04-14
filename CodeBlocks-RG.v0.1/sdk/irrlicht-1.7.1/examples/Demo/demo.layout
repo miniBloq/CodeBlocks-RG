@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Windows" />
+	<File name="CMainMenu.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="575" topLine="0" />
+	</File>
+	<File name="CMainMenu.h" open="0" top="0" tabpos="1">
+		<Cursor position="294" topLine="15" />
+	</File>
+</CodeBlocks_layout_file>

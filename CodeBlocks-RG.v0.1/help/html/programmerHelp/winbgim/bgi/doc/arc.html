@@ -1,0 +1,91 @@
+<TITLE>BGI Documentation for 
+arc
+</TITLE>
+<H2>
+arc
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void arc(int x, int y, int stangle, int endangle, int radius);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+arc draws a circular arc in the current drawing color centered at (x,y) with a radius given by radius. The arc travels from stangle to endangle. If stangle equals 0 and endangle equals 360, the call to arc draws a complete circle.
+<P>
+The angle for arc is reckoned counterclockwise, with 0 degrees at 3 o'clock, 90 degrees at 12 o'clock, and so on.
+<P>
+The linestyle parameter does not affect arcs, circles, ellipses, or pie slices. Only the thickness parameter is used.
+<P>
+If you are using a CGA in high resolution mode or a monochrome graphics adapter, the examples in online Help that show how to use graphics functions might not produce the expected results. If your system runs on a CGA or monochrome adapter, pass the value 1 to those functions that alter the fill or drawing color (setcolor, setfillstyle, and setlinestyle, for example), instead of a symbolic color constant (defined in graphics.h).
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="circle.html"> circle </A>
+<DD><A HREF="ellipse.html">ellipse  </A>
+<DD><A HREF="fillellipse.html">fillellipse  </A>
+<DD><A HREF="getarccoords.html">getarcoords  </A>
+<DD><A HREF="getaspectratio.html">getaspectratio  </A>
+<DD><A HREF="pieslice.html">pieslice  </A>
+<DD><A HREF="sector.html">sector  </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* arc example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+    /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int midx, midy;
+   int stangle = 45, endangle = 135;
+   int radius = 100;
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+   setcolor(getmaxcolor());
+
+   /* draw arc */
+   arc(midx, midy, stangle, endangle, radius);
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

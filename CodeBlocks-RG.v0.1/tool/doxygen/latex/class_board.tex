@@ -1,0 +1,133 @@
+\hypertarget{class_board}{
+\section{Board Class Reference}
+\label{class_board}\index{Board@{Board}}
+}
+
+
+{\ttfamily \#include $<$Board.h$>$}\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_board_a23ec051234acfe51d94664f9ad52a469}{Board} (int size)
+\item 
+\hyperlink{class_board_af73f45730119a1fd8f6670f53f959e68}{$\sim$Board} ()
+\item 
+void \hyperlink{class_board_a525f28458fc0a3ea79fdd69dfaa50192}{setSquare} (Appearance look, int xLoc, int yLoc)
+\item 
+Appearance \hyperlink{class_board_a24e413281caad849124fc21df3b3a4da}{getSquare} (int xLoc, int yLoc)
+\item 
+void \hyperlink{class_board_a912a73d19979c5c630f9537b1555cbc8}{missile} (int xLoc, int yLoc)
+\item 
+bool \hyperlink{class_board_a11d4c986e5c58a9a8544e19f24c67fac}{onGrid} (int x, int y) const 
+\item 
+int \hyperlink{class_board_ae2eb5e315d5c381a33cdb3bb52c42c1c}{getBoatNum} () const 
+\item 
+int \hyperlink{class_board_a055269f475d4935abbd42a79999586b0}{getMissileNum} () const 
+\item 
+int \hyperlink{class_board_a65a9e00ec8f504699ca6226f78516a1e}{getSize} () const 
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_board_ae319e0e79692bad16793a512a2d24ea6}{
+std::ostream \& {\bfseries operator$<$$<$} (std::ostream \&out, const \hyperlink{class_board}{Board} \&board)}
+\label{class_board_ae319e0e79692bad16793a512a2d24ea6}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File \hyperlink{_board_8h_source}{Board.h} Declares a game board class A \hyperlink{class_board}{Board} manages a grid (2D array of Squares. It can draw itself
+
+\begin{DoxyAuthor}{Author}
+jlk 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.0 23-\/08-\/09 
+\end{DoxyVersion}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_board_a23ec051234acfe51d94664f9ad52a469}{
+\index{Board@{Board}!Board@{Board}}
+\index{Board@{Board}!Board@{Board}}
+\subsubsection[{Board}]{\setlength{\rightskip}{0pt plus 5cm}Board::Board (int {\em size})}}
+\label{class_board_a23ec051234acfe51d94664f9ad52a469}
+Constructor 
+\begin{DoxyParams}{Parameters}
+\item[{\em size}]integer number of squares per side \end{DoxyParams}
+\hypertarget{class_board_af73f45730119a1fd8f6670f53f959e68}{
+\index{Board@{Board}!$\sim$Board@{$\sim$Board}}
+\index{$\sim$Board@{$\sim$Board}!Board@{Board}}
+\subsubsection[{$\sim$Board}]{\setlength{\rightskip}{0pt plus 5cm}Board::$\sim$Board ()}}
+\label{class_board_af73f45730119a1fd8f6670f53f959e68}
+Destructor 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_board_ae2eb5e315d5c381a33cdb3bb52c42c1c}{
+\index{Board@{Board}!getBoatNum@{getBoatNum}}
+\index{getBoatNum@{getBoatNum}!Board@{Board}}
+\subsubsection[{getBoatNum}]{\setlength{\rightskip}{0pt plus 5cm}int Board::getBoatNum () const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{class_board_ae2eb5e315d5c381a33cdb3bb52c42c1c}
+\begin{DoxyReturn}{Returns}
+the number of live BOAT squares on the board 
+\end{DoxyReturn}
+\hypertarget{class_board_a055269f475d4935abbd42a79999586b0}{
+\index{Board@{Board}!getMissileNum@{getMissileNum}}
+\index{getMissileNum@{getMissileNum}!Board@{Board}}
+\subsubsection[{getMissileNum}]{\setlength{\rightskip}{0pt plus 5cm}int Board::getMissileNum () const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{class_board_a055269f475d4935abbd42a79999586b0}
+\begin{DoxyReturn}{Returns}
+the number of missiles thrown so far at the fleet 
+\end{DoxyReturn}
+\hypertarget{class_board_a65a9e00ec8f504699ca6226f78516a1e}{
+\index{Board@{Board}!getSize@{getSize}}
+\index{getSize@{getSize}!Board@{Board}}
+\subsubsection[{getSize}]{\setlength{\rightskip}{0pt plus 5cm}int Board::getSize () const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{class_board_a65a9e00ec8f504699ca6226f78516a1e}
+\begin{DoxyReturn}{Returns}
+the size of the board 
+\end{DoxyReturn}
+\hypertarget{class_board_a24e413281caad849124fc21df3b3a4da}{
+\index{Board@{Board}!getSquare@{getSquare}}
+\index{getSquare@{getSquare}!Board@{Board}}
+\subsubsection[{getSquare}]{\setlength{\rightskip}{0pt plus 5cm}Appearance Board::getSquare (int {\em xLoc}, \/  int {\em yLoc})\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{class_board_a24e413281caad849124fc21df3b3a4da}
+Obtains the appearance of a grid square on the board 
+\begin{DoxyParams}{Parameters}
+\item[{\em xLoc}]-\/ integer x location of the square \item[{\em yLoc}]-\/ integer y location of the square \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the appearance of the grid square at coords xLoc yLoc 
+\end{DoxyReturn}
+\hypertarget{class_board_a912a73d19979c5c630f9537b1555cbc8}{
+\index{Board@{Board}!missile@{missile}}
+\index{missile@{missile}!Board@{Board}}
+\subsubsection[{missile}]{\setlength{\rightskip}{0pt plus 5cm}void Board::missile (int {\em xLoc}, \/  int {\em yLoc})}}
+\label{class_board_a912a73d19979c5c630f9537b1555cbc8}
+Implements the effect of a missile arrival 
+\begin{DoxyParams}{Parameters}
+\item[{\em xLoc}]-\/ integer x location of the missile hit \item[{\em yLoc}]-\/ integer y location of the missile hit \end{DoxyParams}
+\hypertarget{class_board_a11d4c986e5c58a9a8544e19f24c67fac}{
+\index{Board@{Board}!onGrid@{onGrid}}
+\index{onGrid@{onGrid}!Board@{Board}}
+\subsubsection[{onGrid}]{\setlength{\rightskip}{0pt plus 5cm}bool Board::onGrid (int {\em x}, \/  int {\em y}) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{class_board_a11d4c986e5c58a9a8544e19f24c67fac}
+Checks whether coordinates are on the grid 
+\begin{DoxyParams}{Parameters}
+\item[{\em x}]-\/x coordinate to check (between 0 and size -\/ 1) \item[{\em y}]-\/y coordinate to check (between 0 and size -\/ 1) \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the locations are on the 
+\end{DoxyReturn}
+\hypertarget{class_board_a525f28458fc0a3ea79fdd69dfaa50192}{
+\index{Board@{Board}!setSquare@{setSquare}}
+\index{setSquare@{setSquare}!Board@{Board}}
+\subsubsection[{setSquare}]{\setlength{\rightskip}{0pt plus 5cm}void Board::setSquare (Appearance {\em look}, \/  int {\em xLoc}, \/  int {\em yLoc})\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{class_board_a525f28458fc0a3ea79fdd69dfaa50192}
+Assigns the appearance of a grid square on the board 
+\begin{DoxyParams}{Parameters}
+\item[{\em look}]-\/ Appearance of the grid square \item[{\em xLoc}]-\/ integer x location of the square \item[{\em yLoc}]-\/ integer y location of the square \end{DoxyParams}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+K:/DOCS/SWIN/HIT3172/2009Sem2/Assign/Assign1/Stage2/SolutionsCodeBlocks/Board.h\item 
+K:/DOCS/SWIN/HIT3172/2009Sem2/Assign/Assign1/Stage2/SolutionsCodeBlocks/Board.cxx\end{DoxyCompactItemize}

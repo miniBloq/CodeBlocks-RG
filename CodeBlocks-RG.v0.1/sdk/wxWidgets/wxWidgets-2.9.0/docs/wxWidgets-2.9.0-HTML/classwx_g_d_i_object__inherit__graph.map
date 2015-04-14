@@ -1,0 +1,11 @@
+<area shape="rect" href="$classwx_animation.html" title="This class encapsulates the concept of a platform&#45;dependent animation." alt="" coords="5,172,101,204">
+<area shape="rect" href="$classwx_bitmap.html" title="This class encapsulates the concept of a platform&#45;dependent bitmap, either monochrome..." alt="" coords="125,172,205,204">
+<area shape="rect" href="$classwx_brush.html" title="A brush is a drawing tool for filling in areas." alt="" coords="229,172,301,204">
+<area shape="rect" href="$classwx_cursor.html" title="A cursor is a small bitmap usually used for denoting where the mouse pointer is,..." alt="" coords="325,172,403,204">
+<area shape="rect" href="$classwx_font.html" title="A font is an object which determines the appearance of text." alt="" coords="427,172,491,204">
+<area shape="rect" href="$classwx_icon_bundle.html" title="This class contains multiple copies of an icon in different sizes." alt="" coords="515,172,619,204">
+<area shape="rect" href="$classwx_palette.html" title="A palette is a table that maps pixel values to RGB colours." alt="" coords="643,172,723,204">
+<area shape="rect" href="$classwx_pen.html" title="A pen is a drawing tool for drawing outlines." alt="" coords="747,172,808,204">
+<area shape="rect" href="$classwx_region.html" title="A wxRegion represents a simple or complex region on a device context or window." alt="" coords="832,172,912,204">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="421,7,496,39">
+<area shape="rect" href="$classwx_icon.html" title="An icon is a small rectangular bitmap usually used for denoting a minimized application..." alt="" coords="133,255,197,287">

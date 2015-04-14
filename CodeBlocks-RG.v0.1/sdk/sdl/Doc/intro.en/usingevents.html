@@ -1,0 +1,164 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Using SDL: Events</title>
+</head>
+
+<body bgcolor="#FFF8DC" text="#000000">
+<TABLE>
+<TR><!--#include file="../menu.tmpl" -->
+<TD>
+
+<p align="center">
+[<a href="usingvideo.html">Prev</a>]
+<a href="toc.html"><font color="#8B0000">Table Of Contents</font> </a>
+[<a href="usingsound.html">Next</a>]
+</p>
+
+<h1><font color="#8B0000">Using the Simple DirectMedia Layer API</font></h1>
+
+<h2>Events </h2>
+
+<table border="0" cellpadding="4">
+    <tr>
+        <td valign="top"><ul>
+            <li><strong>Waiting for events </strong></li>
+        </ul>
+        <blockquote>
+            <p>Wait for events using the SDL_WaitEvent()
+            function.</p>
+        </blockquote>
+        </td>
+        <td valign="top" width="300" bgcolor="#D3D3D3"><b>Tip:</b><br>
+        SDL has international keyboard support, translating key
+        events and placing the UNICODE equivalents into
+        event.key.keysym.unicode. Since this has some processing
+        overhead involved, it must be enabled using
+        SDL_EnableUNICODE().</td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="50">
+    <tr>
+        <td valign="top"><font color="#000080"><strong>Example</strong></font><strong>:
+        </strong><pre>
+{
+    SDL_Event event;
+
+    SDL_WaitEvent(&amp;event);
+
+    <font color="#0000FF">switch</font> (event.type) {
+        <font color="#0000FF">case</font> SDL_KEYDOWN:
+            printf(&quot;<font color="#000000">The %s key was pressed!\n</font>&quot;,
+                   SDL_GetKeyName(event.key.keysym.sym));
+            break;
+        <font color="#0000FF">case</font> SDL_QUIT:
+            exit(0);
+    }
+}
+</pre>
+        </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="4">
+    <tr>
+        <td valign="top"><ul>
+            <li><strong>Polling for events</strong> </li>
+        </ul>
+        <blockquote>
+            <p>Poll for events using the SDL_PollEvent()
+            function. </p>
+        </blockquote>
+        </td>
+        <td valign="top" width="300" bgcolor="#D3D3D3"><b>Tip:</b><br>
+        You can peek at events in the event queue without
+        removing them by passing the SDL_PEEKEVENT action to
+        SDL_PeepEvents(). </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="50">
+    <tr>
+        <td valign="top"><font color="#000080"><strong>Example</strong></font><strong>:
+        </strong><pre>
+{
+    SDL_Event event;
+
+    <font color="#0000FF">while</font> ( SDL_PollEvent(&amp;event) ) {
+        <font color="#0000FF">switch</font> (event.type) {
+            <font color="#0000FF">case</font> SDL_MOUSEMOTION:
+                printf(&quot;<font color="#000000">Mouse moved by %d,%d to (%d,%d)\n</font>&quot;, 
+                       event.motion.xrel, event.motion.yrel,
+                       event.motion.x, event.motion.y);
+                break;
+            <font color="#0000FF">case</font> SDL_MOUSEBUTTONDOWN:
+                printf(&quot;<font color="#000000">Mouse button %d pressed at (%d,%d)\n</font>&quot;,
+                       event.button.button, event.button.x, event.button.y);
+                break;
+            <font color="#0000FF">case</font> SDL_QUIT:
+                exit(0);
+        }
+    }
+}
+</pre>
+        </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="4">
+    <tr>
+        <td valign="top"><ul>
+            <li><strong>Polling event state</strong></li>
+        </ul>
+        <blockquote>
+            <p>In addition to handling events directly, each type
+            of event has a function which allows you to check the
+            application event state. If you use this exclusively,
+            you should ignore all events with the
+            SDL_EventState() function, and call SDL_PumpEvents()
+            periodically to update the application event state.</p>
+        </blockquote>
+        </td>
+        <td valign="top" width="300" bgcolor="#D3D3D3"><b>Tip:</b><br>
+        You can hide or show the system mouse cursor using
+        SDL_ShowCursor(). </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="50">
+    <tr>
+        <td valign="top"><font color="#000080"><strong>Example</strong></font><strong>:
+        </strong><pre>
+{
+    SDL_EventState(SDL_MOUSEMOTION, SDL_IGNORE);
+}
+
+<font color="#008000">void</font> CheckMouseHover(void)
+{
+    <font color="#008000">int</font> mouse_x, mouse_y;
+
+    SDL_PumpEvents();
+
+    SDL_GetMouseState(&amp;mouse_x, &amp;mouse_y);
+    <font color="#0000FF">if</font> ( (mouse_x &lt; 32) &amp;&amp; (mouse_y &lt; 32) ) {
+        printf(&quot;<font color="#000000">Mouse in upper left hand corner!\n</font>&quot;);
+    }
+}
+</pre>
+        </td>
+    </tr>
+</table>
+
+<p align="center">
+[<a href="usingvideo.html">Prev</a>]
+<a href="toc.html"><font color="#8B0000">Table Of Contents</font> </a>
+[<a href="usingsound.html">Next</a>]
+</p>
+
+</TABLE>
+</body>
+</html>

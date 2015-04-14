@@ -1,0 +1,236 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Font Dialog Box</title>
+</head>
+
+<body>
+
+<div class="clsDocBody">
+  <h2>Font Dialog Box</h2>
+  <hr SIZE="1">
+  <p>The <b>Font</b> dialog box lets the user choose attributes for a logical
+  font, such as typeface name, style (bold, italic, or regular), point size,
+  effects (underline, strikeout, and text color), and a script (or character
+  set).</p>
+  <p>You create and display a <b>Font</b> dialog box by initializing a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CHOOSEFONT_str_cpp">
+  CHOOSEFONT</MSHelp:link>
+  structure and passing the structure to the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ChooseFont_cpp">
+  ChooseFont</MSHelp:link>
+  function.</p>
+  <p>The following illustration shows a typical <b>Font</b> dialog box.</p>
+  <p><img border="0" src="font_d5.gif"></p>
+  <p>If the user clicks the <b>OK</b> button, <b>ChooseFont</b> returns TRUE and
+  sets the members of the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LOGFONT_str">
+  LOGFONT</MSHelp:link>
+  structure pointed to by the <b>lpLogFont</b> member of the <b>CHOOSEFONT</b>
+  structure. You can use the <b>LOGFONT</b> structure with the function to
+  create a logical font. <b>ChooseFont</b> also sets other <b>CHOOSEFONT</b>
+  members to indicate the user's selections.</p>
+  <p>If the user cancels the <b>Font</b> dialog box or an error occurs, <b>ChooseFont</b>
+  returns FALSE and the contents of the <b>LOGFONT</b> structure are not
+  defined. You can determine the cause of an error by using the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CommDlgExtendedError_cpp">
+  CommDlgExtendedError</MSHelp:link>
+  function to retrieve the extended error value.</p>
+  <p>The following topics are discussed in this section.</p>
+  <ul>
+    <li><a href="#_win32_Font_Dialog_Initialization_Flags" target="_self">Font
+      Dialog Initialization Flags</a>
+    <li><a href="#_win32_Customizing_the_Font_Dialog_Box" target="_self">Customizing
+      the Font Dialog Box</a></li>
+  </ul>
+  <h2><a name="_win32_Font_Dialog_Initialization_Flags"></a>Font Dialog
+  Initialization Flags</h2>
+  <p>Before calling <b>ChooseFont</b>, the <b>Flags</b> member of the <b>CHOOSEFONT</b>
+  structure must specify CF_SCREENFONTS, CF_PRINTERFONTS, or CF_BOTH, to
+  indicate whether the dialog box should list screen fonts, printer fonts, or
+  both. If you specify CF_PRINTERFONTS or CF_BOTH, the <b>hDC</b> member of the <b>CHOOSEFONT</b>
+  structure must specify a handle to a device context for the printer.</p>
+  <p>You can use the <b>Flags</b> member to enable or disable some of the dialog
+  box controls, and you can use the <b>Flags</b> member in conjunction with
+  other <b>CHOOSEFONT</b> members to control the initial values of some
+  controls.</p>
+  <p><b>To display the controls that allow the user to select strikeout,
+  underline, and color options</b></p>
+  <ul>
+    <li>Set the CF_EFFECTS flag. You can use the <b>rgbColors</b> member of the <b>CHOOSEFONT</b>
+      structure to specify an initial font color.</li>
+  </ul>
+  <p><b>To specify the initial values of the Font, Font Style, Size, Strikeout,
+  and Underline dialog box controls</b></p>
+  <ul>
+    <li>Set the CF_INITTOLOGFONTSTRUCT flag to use members of the <b>LOGFONT</b>
+      structure to specify the initial values.
+    <li>You can also use the CF_NOFACESEL, CF_NOSTYLESEL, and CF_NOSIZESEL flags
+      to selectively prevent the dialog box from displaying initial values for
+      the corresponding controls. This is useful when working with a selection
+      of text that has more than one typeface, style, or point size. These
+      values will also be set in <b>Flags</b> when <b>ChooseFont</b> returns if
+      the user did not select a corresponding value.</li>
+  </ul>
+  <p><b>To initialize the Font Style control to a specified style name</b></p>
+  <ul>
+    <li>Set the CF_USESTYLE flag and use the <b>lpszStyle</b> member to specify
+      the style name.</li>
+  </ul>
+  <p><b>To display the Apply button</b></p>
+  <ul>
+    <li>Set the CF_APPLY flag and provide a hook procedure to process <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_COMMAND_cpp">
+      WM_COMMAND</MSHelp:link>
+      messages for the <b>Apply</b> button. The hook procedure can send the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_CHOOSEFONT_GETLOGFONT_cpp">
+      WM_CHOOSEFONT_GETLOGFONT</MSHelp:link>
+      message to the dialog box to retrieve the address of the <b>LOGFONT</b>
+      structure that contains the current selections for the font.</li>
+  </ul>
+  <p><b>To display the Help button</b></p>
+  <ul>
+    <li>Set the CF_SHOWHELP flag. The <b>hwndOwner</b> member must identify the
+      window to receive the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_HELPMSGSTRING_cpp">
+      HELPMSGSTRING</MSHelp:link>
+      registered message when the user clicks the <b>Help</b> button.</li>
+  </ul>
+  <p><b>To restrict the fonts the dialog box displays</b></p>
+  <ul>
+    <li>Set any combination of the CF_TTONLY, CF_FIXEDPITCHONLY,
+      CF_NOVECTORFONTS, CF_NOVERTFONTS, CF_SCALABLEONLY, and CF_WYSIWYG flags.
+      You can also restrict the available styles, point sizes, and effects the
+      dialog box displays for some fonts by using the CF_NOSIMULATIONS value.</li>
+  </ul>
+  <p><b>To restrict the typeface names, styles, and point sizes that the user
+  can specify</b></p>
+  <ul>
+    <li>Set the CF_FORCEFONTEXIST flag to restrict the user to specifying only
+      valid typeface names, styles, and point sizes.
+    <li>Set the CF_LIMITSIZE flag to restrict the user to specifying point sizes
+      in the range specified by the <b>nSizeMin</b> and <b>nSizeMax</b> members.</li>
+  </ul>
+  <p><b>To restrict or disable the Scripts combo box</b></p>
+  <ul>
+    <li>Set the CF_NOSCRIPTSEL flag to disable the <b>Scripts</b> combo box, or
+      set the CF_SELECTSCRIPT flag to restrict selections in the <b>Scripts</b>
+      combo box to a specified character set.</li>
+  </ul>
+  <h2><a name="_win32_Customizing_the_Font_Dialog_Box"></a>Customizing the Font
+  Dialog Box</h2>
+  <p>You can provide a custom template for the <b>Font</b> dialog box, for
+  example, if you want to include additional controls that are unique to your
+  application. The <b>ChooseFont</b> function uses your custom template in place
+  of the default template.</p>
+  <p><b>To provide a custom template for the Font dialog box</b></p>
+  <ol>
+    <li>Create the custom template by modifying the default template specified
+      in the Font.dlg file. The control identifiers used in the default Font
+      dialog template are defined in the Dlgs.h file.
+    <li>Use the <b>CHOOSEFONT</b> structure to enable the template as follows:
+      <ul>
+        <ul>
+          <li>If your custom template is a resource in an application or dynamic
+            link library, set the CF_ENABLETEMPLATE flag in the <b>Flags</b>
+            member. Use the <b>hInstance</b> and <b>lpTemplateName</b> members
+            of the structure to identify the module and resource name.
+            <p>&nbsp;
+            <p>-Or-</p>
+            <p>&nbsp;</p>
+          <li>If your custom template is already in memory, set the
+            CF_ENABLETEMPLATEHANDLE flag. Use the <b>hInstance</b> member to
+            identify the memory object that contains the template.</li>
+        </ul>
+      </ul>
+    </li>
+  </ol>
+  <p>You can provide a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CCHookProc_cpp">
+  CCHookProc</MSHelp:link>
+  hook procedure for the <b>Font</b> dialog box. The hook procedure can process
+  messages sent to the dialog box. It can also send messages to the dialog box.
+  If you use a custom template to define additional controls, you must provide a
+  hook procedure to process input for your controls.</p>
+  <p><b>To enable a hook procedure for the Font dialog box</b></p>
+  <ol>
+    <li>Set the CF_ENABLEHOOK flag in the <b>Flags</b> member of the <b>CHOOSEFONT</b>
+      structure.
+    <li>Specify the address of the hook procedure in the <b>lpfnHook</b> member.</li>
+  </ol>
+  <p>After processing its <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_INITDIALOG_cpp">
+  WM_INITDIALOG</MSHelp:link>
+  message, the dialog box procedure sends a <b>WM_INITDIALOG</b> message to the
+  hook procedure. The <i>lParam</i> parameter of this message is a pointer to
+  the <b>CHOOSEFONT</b> structure used to initialize the dialog box.</p>
+  <p>The hook procedure can send the <b>WM_CHOOSEFONT_GETLOGFONT</b>, <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_CHOOSEFONT_SETLOGFONT_cpp">
+  WM_CHOOSEFONT_SETLOGFONT</MSHelp:link>
+  , and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_CHOOSEFONT_SETFLAGS_cpp">
+  WM_CHOOSEFONT_SETFLAGS</MSHelp:link>
+  messages to the dialog box to get and set the current values and flags of the
+  dialog box.</p>
+</div>
+<h2><a name="choosing_font"></a>Choosing a Font</h2>
+<p>This topic describes sample code that displays a <b>Font</b> dialog box so a
+user can choose the attributes of a font. The sample code first initializes a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CHOOSEFONT_str_cpp">
+CHOOSEFONT</MSHelp:link>
+ structure, and then calls the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_ChooseFont_cpp">
+ChooseFont</MSHelp:link>
+ function to display the dialog box.</p>
+<p>This example sets the CF_SCREENFONTS flag to specify that the dialog box
+should display only screen fonts. It sets the CF_EFFECTS flag to display
+controls that allow the user to select strikeout, underline, and color options.</p>
+<p>If <b>ChooseFont</b> returns TRUE, indicating that the user clicked the <b>OK</b>
+button, the structure pointed to by the <b>lpLogFont</b> member of the <b>CHOOSEFONT</b>
+structure contains information that describes the font and font attributes
+selected by the user. The <b>rgbColors</b> member contains the selected text
+color. The sample code uses this information to set the font and text color for
+the device context associated with the owner window.</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">HWND hwnd;                <font color="blue">//</font><font color="green"> owner window</font>
+HDC hdc;                  <font color="blue">//</font><font color="green"> display device context of owner window</font>
+
+CHOOSEFONT cf;            <font color="blue">//</font><font color="green"> common dialog box structure</font>
+static LOGFONT lf;        <font color="blue">//</font><font color="green"> logical font structure</font>
+static DWORD rgbCurrent;   <font color="blue">//</font><font color="green"> current text color</font>
+HFONT hfont, hfontPrev;
+DWORD rgbPrev;
+
+<font color="blue">//</font><font color="green"> Initialize CHOOSEFONT</font>
+ZeroMemory(&amp;cf, sizeof(cf));
+cf.lStructSize = sizeof (cf);
+cf.hwndOwner = hwnd;
+cf.lpLogFont = &amp;lf;
+cf.rgbColors = rgbCurrent;
+cf.Flags = CF_SCREENFONTS | CF_EFFECTS;
+
+if (ChooseFont(&amp;cf)==TRUE) {
+    hfont = CreateFontIndirect(cf.lpLogFont);
+    hfontPrev = SelectObject(hdc, hfont);
+    rgbCurrent= cf.rgbColors;
+    rgbPrev = SetTextColor(hdc, rgbCurrent);
+ .
+ .
+ .
+}
+</pre>
+
+</body>
+
+</html>

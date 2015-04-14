@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/cppdeque/erase.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>erase</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C++ Double-ended Queues</a> &gt; <a href=
+    "erase.html">erase</a>
+  </div>
+
+  <div class="name-format">
+    erase
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;deque&gt;
+  iterator erase( iterator loc );
+  iterator erase( iterator start, iterator end );
+</pre>
+
+  <p>The erase() function either deletes the element at location
+  <em>loc</em>, or deletes the elements between <em>start</em> and
+  <em>end</em> (including <em>start</em> but not including
+  <em>end</em>). The return value is the element after the last element
+  erased.</p>
+
+  <p>The first version of erase (the version that deletes a single
+  element at location <em>loc</em>) runs in <a href=
+  "../complexity.html">constant time</a> for lists and <a href=
+  "../complexity.html">linear time</a> for vectors, dequeues, and
+  strings. The multiple-element version of erase always takes <a href=
+  "../complexity.html">linear time</a>.</p>
+
+  <p>For example:</p>
+<pre class="prettyprint">
+ // Create a vector, load it with the first ten characters of the alphabet
+ vector&lt;char&gt; alphaVector;
+ for( int i=0; i &lt; 10; i++ ) {
+   alphaVector.push_back( i + 65 );
+ }
+ int size = alphaVector.size();
+ vector&lt;char&gt;::iterator startIterator;
+ vector&lt;char&gt;::iterator tempIterator;
+ for( int i=0; i &lt; size; i++ ) {
+   startIterator = alphaVector.begin();
+   alphaVector.erase( startIterator );
+   // Display the vector
+   for( tempIterator = alphaVector.begin(); tempIterator != alphaVector.end(); tempIterator++ ) {
+     cout &lt;&lt; *tempIterator;
+   }
+   cout &lt;&lt; endl;
+ }              
+</pre>
+
+  <p>That code would display the following output:</p>
+<pre class="prettyprint">
+ BCDEFGHIJ
+ CDEFGHIJ
+ DEFGHIJ
+ EFGHIJ
+ FGHIJ
+ GHIJ
+ HIJ
+ IJ
+ J              
+</pre>
+
+  <p>In the next example, erase() is called with two iterators to
+  delete a range of elements from a vector:</p>
+<pre class="prettyprint">
+ // create a vector, load it with the first ten characters of the alphabet
+ vector&lt;char&gt; alphaVector;
+ for( int i=0; i &lt; 10; i++ ) {
+   alphaVector.push_back( i + 65 );
+ }
+ // display the complete vector
+ for( int i = 0; i &lt; alphaVector.size(); i++ ) {
+   cout &lt;&lt; alphaVector[i];
+ }
+ cout &lt;&lt; endl;            
+
+ // use erase to remove all but the first two and last three elements
+ // of the vector
+ alphaVector.erase( alphaVector.begin()+2, alphaVector.end()-3 );
+ // display the modified vector
+ for( int i = 0; i &lt; alphaVector.size(); i++ ) {
+   cout &lt;&lt; alphaVector[i];
+ }
+ cout &lt;&lt; endl;            
+</pre>
+
+  <p>When run, the above code displays:</p>
+<pre class="prettyprint">
+ ABCDEFGHIJ
+ ABHIJ          
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="clear.html">clear</a><br>
+    <a href="insert.html">insert</a><br>
+    <a href="pop_back.html">pop_back</a><br>
+    <a href="pop_front.html">pop_front</a><br>
+    (C++ Lists) <a href="../cpplist/remove.html">remove</a><br>
+    (C++ Lists) <a href="../cpplist/remove_if.html">remove_if</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppdeque/erase.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

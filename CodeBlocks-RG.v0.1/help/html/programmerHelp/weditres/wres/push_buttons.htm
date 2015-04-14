@@ -1,0 +1,31 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Push Buttons</title>
+</head>
+
+<body>
+
+<h3><a name="_Toc494631977">Push Buttons</a></h3>
+<p>A <i>push button</i> is a rectangle containing application-defined text
+(label), an icon, or a bitmap that indicates what the button does when the user
+selects it. A push button can be one of two styles: standard or default, as
+defined by the constants BS_PUSHBUTTON and BS_DEFPUSHBUTTON. A standard push
+button is typically used to start an operation. It receives the keyboard focus
+when the user clicks it. A default push button, on the other hand, is typically
+used to indicate the most common or default choice. It is a button that the user
+can select by simply pressing ENTER when a dialog box has the input focus.</p>
+<p>When the user clicks a push button (of either style), it receives the
+keyboard focus. The system sends the button's parent window a <a href="../../api/api2/menus_8wh0.htm"><b>WM_COMMAND</b></a>
+message that contains the <a href="../../api/api2/buttons_8810.htm"><b>BN_CLICKED</b></a>
+notification code. In response, the dialog box typically closes and carries out
+the operation indicated by the button.</p>
+<p>The default push button cannot be a check box, a radio button, or an
+ownerdraw button at the same time.</p>
+
+</body>
+
+</html>

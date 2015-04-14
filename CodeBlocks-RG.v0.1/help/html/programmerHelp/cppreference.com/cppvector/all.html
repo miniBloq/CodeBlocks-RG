@@ -1,0 +1,1526 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>C++ Vectors</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C++ Vectors</a>
+  </div>
+
+  <div class="name-format">
+    assign
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  void assign( <strong>size_type</strong> num, const <a href=
+"../containers.html">TYPE</a>&amp; val );
+  void assign( <a href=
+"../iterators.html">input_iterator</a> start, <a href=
+"../iterators.html">input_iterator</a> end );
+</pre>
+
+  <p>The assign() function either gives the current vector the values
+  from <em>start</em> to <em>end</em>, or gives it <em>num</em> copies
+  of <em>val</em>.</p>
+
+  <p>This function will destroy the previous contents of the
+  vector.</p>
+
+  <p>For example, the following code uses assign() to put 10 copies of
+  the integer 42 into a vector:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v;
+ v.assign( 10, 42 );
+ for( int i = 0; i &lt; v.size(); i++ ) {
+   cout &lt;&lt; v[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+</pre>
+
+  <p>The above code displays the following output:</p>
+<pre class="prettyprint">
+ 42 42 42 42 42 42 42 42 42 42          
+</pre>
+
+  <p>The next example shows how assign() can be used to copy one vector
+  to another:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v1;
+ for( int i = 0; i &lt; 10; i++ ) {
+   v1.push_back( i );
+ }              
+
+ vector&lt;int&gt; v2;
+ v2.assign( v1.begin(), v1.end() );             
+
+ for( int i = 0; i &lt; v2.size(); i++ ) {
+   cout &lt;&lt; v2[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+</pre>
+
+  <p>When run, the above code displays the following output:</p>
+<pre class="prettyprint">
+ 0 1 2 3 4 5 6 7 8 9            
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    (C++ Strings) <a href="../cppstring/assign1.html">assign</a><br>
+    <a href="insert.html">insert</a><br>
+    <a href="push_back.html">push_back</a><br>
+    (C++ Lists) <a href="../cpplist/push_front.html">push_front</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    at
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  <a href=
+"../containers.html">TYPE</a>&amp; at( <strong>size_type</strong> loc );
+  const <a href=
+"../containers.html">TYPE</a>&amp; at( <strong>size_type</strong> loc ) const;
+</pre>
+
+  <p>The at() function returns a reference to the element in the vector
+  at index <em>loc</em>. The at() function is safer than the []
+  operator, because it won&#39;t let you reference items outside the
+  bounds of the vector.</p>
+
+  <p>For example, consider the following code:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v( 5, 1 );
+ for( int i = 0; i &lt; 10; i++ ) {
+   cout &lt;&lt; &quot;Element &quot; &lt;&lt; i &lt;&lt; &quot; is &quot; &lt;&lt; v[i] &lt;&lt; endl;
+ }              
+</pre>
+
+  <p>This code overrunns the end of the vector, producing potentially
+  dangerous results. The following code would be much safer:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v( 5, 1 );
+ for( int i = 0; i &lt; 10; i++ ) {
+   cout &lt;&lt; &quot;Element &quot; &lt;&lt; i &lt;&lt; &quot; is &quot; &lt;&lt; v.at(i) &lt;&lt; endl;
+ }              
+</pre>
+
+  <p>Instead of attempting to read garbage values from memory, the at()
+  function will realize that it is about to overrun the vector and will
+  throw an exception.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="vector_operators.html">Vector operators</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    back
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  <a href="../containers.html">TYPE</a>&amp; back();
+  const <a href="../containers.html">TYPE</a>&amp; back() const;
+</pre>
+
+  <p>The back() function returns a reference to the last element in the
+  vector.</p>
+
+  <p>For example:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v;
+ for( int i = 0; i &lt; 5; i++ ) {
+   v.push_back(i);
+ }
+ cout &lt;&lt; &quot;The first element is &quot; &lt;&lt; v.front()
+      &lt;&lt; &quot; and the last element is &quot; &lt;&lt; v.back() &lt;&lt; endl;           
+</pre>
+
+  <p>This code produces the following output:</p>
+<pre class="prettyprint">
+ The first element is 0 and the last element is 4               
+</pre>
+
+  <p>The back() function runs in <a href="../complexity.html">constant
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="front.html">front</a><br>
+    <a href="pop_back.html">pop_back</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    begin
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  iterator begin();
+  const_iterator begin() const;
+</pre>
+
+  <p>The function begin() returns an iterator to the first element of
+  the vector, and runs in <a href= "../complexity.html">constant
+  time</a>.</p>
+
+  <p>For example, the following code uses begin() to initialize an
+  iterator that is used to traverse the elements of a vector:</p>
+<pre class="prettyprint">
+  vector&lt;string&gt; words;
+  string str;
+  
+  while( cin &gt;&gt; str ) words.push_back(str);
+
+  vector&lt;string&gt;::iterator iter;
+  for( iter = words.begin(); iter != words.end(); iter++ ) {
+    cout &lt;&lt; *iter &lt;&lt; endl;
+  }
+</pre>
+
+  <p>When given this input:</p>
+<pre class="prettyprint">
+  hey mickey you're so fine
+</pre>
+
+  <p>...the above code produces the following output:</p>
+<pre class="prettyprint">
+  hey 
+  mickey 
+  you're 
+  so 
+  fine
+</pre>
+
+
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="vector_operators.html">[] operator</a><br>
+    <a href="at.html">at</a><br>
+    <a href="end.html">end</a><br>
+    <a href="rbegin.html">rbegin</a><br>
+    <a href="rend.html">rend</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    capacity
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  <strong>size_type</strong> capacity() const;
+</pre>
+
+  <p>The capacity() function returns the number of elements that the
+  vector can hold before it will need to allocate more space.</p>
+
+  <p>For example, the following code uses two different methods to set
+  the capacity of two vectors. One method passes an argument to the
+  constructor that suggests an initial size, the other method calls the
+  reserve function to achieve a similar goal:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v1(10);
+ cout &lt;&lt; &quot;The capacity of v1 is &quot; &lt;&lt; v1.capacity() &lt;&lt; endl;
+ vector&lt;int&gt; v2;
+ v2.reserve(20);
+ cout &lt;&lt; &quot;The capacity of v2 is &quot; &lt;&lt; v2.capacity() &lt;&lt; endl;         
+</pre>
+
+  <p>When run, the above code produces the following output:</p>
+<pre class="prettyprint">
+ The capacity of v1 is 10
+ The capacity of v2 is 20               
+</pre>
+
+  <p>C++ containers are designed to grow in size dynamically. This
+  frees the programmer from having to worry about storing an arbitrary
+  number of elements in a container. However, sometimes the programmer
+  can improve the performance of her program by giving hints to the
+  compiler about the size of the containers that the program will use.
+  These hints come in the form of the <a href=
+  "reserve.html">reserve</a>() function and the constructor used in the
+  above example, which tell the compiler how large the container is
+  expected to get.</p>
+
+  <p>The capacity() function runs in <a href=
+  "../complexity.html">constant time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="reserve.html">reserve</a><br>
+    <a href="resize.html">resize</a><br>
+    <a href="size.html">size</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    clear
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  void clear();
+</pre>
+
+  <p>The function clear() deletes all of the elements in the vector.</p>
+
+  <p>clear() runs in <a href="../complexity.html">linear time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="erase.html">erase</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    empty
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  bool empty() const;
+</pre>
+
+  <p>The empty() function returns true if the vector has no elements,
+  false otherwise.</p>
+
+  <p>For example, the following code uses empty() as the stopping
+  condition on a <a href= "../keywords/while.html">while</a> loop to
+  clear a vector and display its contents in reverse order:</p>
+
+<pre class="prettyprint">
+  vector&lt;int&gt; v;
+  for( int i = 0; i &lt; 5; i++ ) {
+    v.push_back(i);
+  }
+  while( !v.empty() ) {
+    cout &lt;&lt; v.back() &lt;&lt; endl;
+    v.pop_back();
+  }              
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="size.html">size</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    end
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  iterator end();
+  const_iterator end() const;
+</pre>
+
+  <p>The end() function returns an iterator just past the end of the
+  vector.</p>
+
+  <p>Note that before you can access the last element of the vector
+  using an iterator that you get from a call to end(), you&#39;ll have
+  to decrement the iterator first.  This is because end() doesn't
+  point to the end of the vector; it points <strong>just past the end
+  of the vector</strong>.</p>  
+
+  <p>For example, in the following code, the first "cout" statement
+  will display garbage, whereas the second statement will actually
+  display the last element of the vector:</p>
+
+<pre class="prettyprint">
+  vector&lt;int&gt; v1;
+  v1.push_back( 0 );
+  v1.push_back( 1 );
+  v1.push_back( 2 );
+  v1.push_back( 3 );
+
+  int bad_val = *(v1.end());
+  cout &lt;&lt; "bad_val is " &lt;&lt; bad_val &lt;&lt; endl;
+
+  int good_val = *(v1.end() - 1);
+  cout &lt;&lt; "good_val is " &lt;&lt; good_val &lt;&lt; endl;
+</pre>
+
+  <p>The next example shows how <a href= "begin.html">begin</a>() and
+  end() can be used to iterate through all of the members of a
+<pre class="prettyprint">
+  ); vector&lt;int&gt;::iterator it; for( it = v1.begin(); it !=
+  v1.end(); it++ ) { cout &lt;&lt; *it &lt;&lt; endl; } </pre>
+
+  <p>The iterator is initialized with a call to <a href=
+  "begin.html">begin</a>(). After the body of the loop has been
+  executed, the iterator is incremented and tested to see if it is
+  equal to the result of calling end(). Since end() returns an iterator
+  pointing to an element just after the last element of the vector, the
+  loop will only stop once all of the elements of the vector have been
+  displayed.</p>
+
+  <p>end() runs in <a href="../complexity.html">constant time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="begin.html">begin</a><br>
+    <a href="rbegin.html">rbegin</a><br>
+    <a href="rend.html">rend</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    erase
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  iterator erase( iterator loc );
+  iterator erase( iterator start, iterator end );
+</pre>
+
+  <p>The erase() function either deletes the element at location
+  <em>loc</em>, or deletes the elements between <em>start</em> and
+  <em>end</em> (including <em>start</em> but not including
+  <em>end</em>). The return value is the element after the last element
+  erased.</p>
+
+  <p>The first version of erase (the version that deletes a single
+  element at location <em>loc</em>) runs in <a href=
+  "../complexity.html">constant time</a> for lists and <a href=
+  "../complexity.html">linear time</a> for vectors, dequeues, and
+  strings. The multiple-element version of erase always takes <a href=
+  "../complexity.html">linear time</a>.</p>
+
+  <p>For example:</p>
+<pre class="prettyprint">
+  // Create a vector, load it with the first ten characters of the alphabet
+  vector&lt;char&gt; alphaVector;
+  for( int i=0; i &lt; 10; i++ ) {
+    alphaVector.push_back( i + 65 );
+  }
+  int size = alphaVector.size();
+  vector&lt;char&gt;::iterator startIterator;
+  vector&lt;char&gt;::iterator tempIterator;
+  for( int i=0; i &lt; size; i++ ) {
+    startIterator = alphaVector.begin();
+    alphaVector.erase( startIterator );
+    // Display the vector
+    for( tempIterator = alphaVector.begin(); tempIterator != alphaVector.end(); tempIterator++ ) {
+      cout &lt;&lt; *tempIterator;
+    }
+    cout &lt;&lt; endl;
+  }              
+</pre>
+
+  <p>That code would display the following output:</p>
+<pre class="prettyprint">
+  BCDEFGHIJ
+  CDEFGHIJ
+  DEFGHIJ
+  EFGHIJ
+  FGHIJ
+  GHIJ
+  HIJ
+  IJ
+  J              
+</pre>
+
+  <p>In the next example, erase() is called with two iterators to
+  delete a range of elements from a vector:</p>
+<pre class="prettyprint">
+  // create a vector, load it with the first ten characters of the alphabet
+  vector&lt;char&gt; alphaVector;
+  for( int i=0; i &lt; 10; i++ ) {
+    alphaVector.push_back( i + 65 );
+  }
+  // display the complete vector
+  for( int i = 0; i &lt; alphaVector.size(); i++ ) {
+    cout &lt;&lt; alphaVector[i];
+  }
+  cout &lt;&lt; endl;            
+
+  // use erase to remove all but the first two and last three elements
+  // of the vector
+  alphaVector.erase( alphaVector.begin()+2, alphaVector.end()-3 );
+  // display the modified vector
+  for( int i = 0; i &lt; alphaVector.size(); i++ ) {
+    cout &lt;&lt; alphaVector[i];
+  }
+  cout &lt;&lt; endl;            
+</pre>
+
+  <p>When run, the above code displays:</p>
+<pre class="prettyprint">
+  ABCDEFGHIJ
+  ABHIJ          
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="clear.html">clear</a><br>
+    <a href="insert.html">insert</a><br>
+    <a href="pop_back.html">pop_back</a><br>
+    (C++ Lists) <a href="../cpplist/pop_front.html">pop_front</a><br>
+    (C++ Lists) <a href="../cpplist/remove.html">remove</a><br>
+    (C++ Lists) <a href="../cpplist/remove_if.html">remove_if</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    front
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  <a href="../containers.html">TYPE</a>&amp; front();
+  const <a href="../containers.html">TYPE</a>&amp; front() const;
+</pre>
+
+  <p>The front() function returns a reference to the first element of
+  the vector, and runs in <a href="../complexity.html">constant
+  time</a>.</p>
+
+  <p>For example, the following code uses a vector and the <a
+  href="../cppalgorithm/sort.html">sort() algorithm</a> to display the
+  first word (in alphabetical order) entered by a user:</p>
+
+<pre class="prettyprint">
+  vector&lt;string&gt; words;
+  string str;
+  
+  while( cin &gt;&gt; str ) words.push_back(str);
+
+  sort( words.begin(), words.end() );
+
+  cout &lt;&lt; "In alphabetical order, the first word is '" &lt;&lt; words.front() &lt;&lt; "'." &lt;&lt; endl;
+</pre>
+
+  <p>When provided with this input:</p>
+<pre class="prettyprint">
+  now is the time for all good men to come to the aid of their country
+</pre>
+
+  <p>...the above code displays:</p>
+<pre class="prettyprint">
+  In alphabetical order, the first word is 'aid'.
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="back.html">back</a><br>
+    (C++ Lists) <a href="../cpplist/pop_front.html">pop_front</a><br>
+    (C++ Lists) <a href="../cpplist/push_front.html">push_front</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    insert
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  iterator insert( iterator loc, const <a href=
+"../containers.html">TYPE</a>&amp; val );
+  void insert( iterator loc, <strong>size_type</strong> num, const <a href="../containers.html">TYPE</a>&amp; val );
+  void insert( iterator loc, <a href=
+"../iterators.html">input_iterator</a> start, <a href=
+"../iterators.html">input_iterator</a> end );
+</pre>
+
+  <p>The insert() function either:</p>
+
+  <ul>
+    <li>inserts <em>val</em> before <em>loc</em>, returning an iterator
+    to the element inserted,</li>
+
+    <li>inserts <em>num</em> copies of <em>val</em> before
+    <em>loc</em>, or</li>
+
+    <li>inserts the elements from <em>start</em> to <em>end</em> before
+    <em>loc</em>.</li>
+  </ul>
+
+  <p>Note that inserting elements into a vector can be relatively
+  time-intensive, since the underlying data structure for a vector is
+  an array.  In order to insert data into an array, you might need to
+  displace a lot of the elements of that array, and this can take <a
+  href="../complexity.html">linear time</a>.  If you are planning on
+  doing a lot of insertions into your vector and you care about speed,
+  you might be better off using a container that has a linked list as
+  its underlying data structure (such as a <a
+  href="http://www.cppreference.com/cpplist/index.html">List</a> or a
+  <a
+  href="http://www.cppreference.com/cppdeque/index.html">Deque</a>).</p>
+
+  <p>For example, the following code uses the insert() function to
+  splice four copies of the character 'C' into a vector of
+  characters:</p>
+
+<pre class="prettyprint">
+ // Create a vector, load it with the first 10 characters of the alphabet
+ vector&lt;char&gt; alphaVector;
+ for( int i=0; i &lt; 10; i++ ) {
+   alphaVector.push_back( i + 65 );
+ }              
+
+ // Insert four C&#39;s into the vector
+ vector&lt;char&gt;::iterator theIterator = alphaVector.begin();
+ alphaVector.insert( theIterator, 4, &#39;C&#39; );             
+
+ // Display the vector
+ for( theIterator = alphaVector.begin(); theIterator != alphaVector.end(); theIterator++ )    {
+   cout &lt;&lt; *theIterator;
+ }              
+</pre>
+
+  <p>This code would display:</p>
+<pre class="prettyprint">
+ CCCCABCDEFGHIJ         
+</pre>
+
+  <p>Here is another example of the insert() function.  In this code,
+  insert() is used to append the contents of one vector onto the end
+  of another:</p>
+
+<pre class="prettyprint">
+  vector&lt;int&gt; v1;
+  v1.push_back( 0 );
+  v1.push_back( 1 );
+  v1.push_back( 2 );
+  v1.push_back( 3 );
+
+  vector&lt;int&gt; v2;
+  v2.push_back( 5 );
+  v2.push_back( 6 );
+  v2.push_back( 7 );
+  v2.push_back( 8 );
+
+  cout &lt;&lt; "Before, v2 is: ";
+  for( int i = 0; i &lt; v2.size(); i++ ) {
+    cout &lt;&lt; v2[i] &lt;&lt; " ";
+  }
+  cout &lt;&lt; endl;
+
+  v2.insert( v2.end(), v1.begin(), v1.end() );
+
+  cout &lt;&lt; "After, v2 is: ";
+  for( int i = 0; i &lt; v2.size(); i++ ) {
+    cout &lt;&lt; v2[i] &lt;&lt; " ";
+  }
+  cout &lt;&lt; endl;
+</pre>
+
+  <p>When run, this code displays:</p>
+
+<pre class="prettyprint">
+  Before, v2 is: 5 6 7 8
+  After, v2 is: 5 6 7 8 0 1 2 3
+</pre>
+
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="assign.html">assign</a><br>
+    <a href="erase.html">erase</a><br>
+    <a href="push_back.html">push_back</a><br>
+    (C++ Lists) <a href="../cpplist/merge.html">merge</a><br>
+    (C++ Lists) <a href="../cpplist/push_front.html">push_front</a><br>
+    (C++ Lists) <a href="../cpplist/splice.html">splice</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    max_size
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  <strong>size_type</strong> max_size() const;
+</pre>
+
+  <p>The max_size() function returns the maximum number of elements
+  that the vector can hold. The max_size() function should not be
+  confused with the <a href="size.html">size</a>() or <a href=
+  "capacity.html">capacity</a>() functions, which return the number of
+  elements currently in the vector and the the number of elements that
+  the vector will be able to hold before more memory will have to be
+  allocated, respectively.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="size.html">size</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    pop_back
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  void pop_back();
+</pre>
+
+  <p>The pop_back() function removes the last element of the
+  vector.</p>
+
+  <p>pop_back() runs in <a href="../complexity.html">constant
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="back.html">back</a><br>
+    <a href="erase.html">erase</a><br>
+    (C++ Lists) <a href="../cpplist/pop_front.html">pop_front</a><br>
+    <a href="push_back.html">push_back</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    push_back
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  void push_back( const <a href=
+"../containers.html">TYPE</a>&amp; val );
+</pre>
+
+  <p>The push_back() function appends <em>val</em> to the end of the
+  vector.</p>
+
+  <p>For example, the following code puts 10 integers into a vector:</p>
+<pre class="prettyprint">
+   vector&lt;int&gt; the_vector;
+   for( int i = 0; i &lt; 10; i++ ) {
+     the_vector.push_back( i );
+   }     
+</pre>
+
+  <p>When displayed, the resulting vector would look like this:</p>
+<pre class="prettyprint">
+ 0 1 2 3 4 5 6 7 8 9            
+</pre>
+
+  <p>push_back() runs in <a href="../complexity.html">constant
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="assign.html">assign</a><br>
+    <a href="insert.html">insert</a><br>
+    <a href="pop_back.html">pop_back</a><br>
+    (C++ Lists) <a href="../cpplist/push_front.html">push_front</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    rbegin
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  <a href="../iterators.html">reverse_iterator</a> rbegin();
+  const_<a href=
+"../iterators.html">reverse_iterator</a> rbegin() const;
+</pre>
+
+  <p>The rbegin() function returns a <a href=
+  "../iterators.html">reverse_iterator</a> to the end of the current
+  vector.</p>
+
+  <p>rbegin() runs in <a href="../complexity.html">constant
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="begin.html">begin</a><br>
+    <a href="end.html">end</a><br>
+    <a href="rend.html">rend</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    rend
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  <a href="../iterators.html">reverse_iterator</a> rend();
+  const_<a href="../iterators.html">reverse_iterator</a> rend() const;
+</pre>
+
+  <p>The function rend() returns a <a href=
+  "../iterators.html">reverse_iterator</a> to the beginning of the
+  current vector.</p>
+
+  <p>rend() runs in <a href="../complexity.html">constant time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="begin.html">begin</a><br>
+    <a href="end.html">end</a><br>
+    <a href="rbegin.html">rbegin</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    reserve
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  void reserve( <strong>size_type</strong> size );
+</pre>
+
+  <p>The reserve() function sets the capacity of the vector to at least
+  <em>size</em>.</p>
+
+  <p>reserve() runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="capacity.html">capacity</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    resize
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  void resize( <strong>size_type</strong> num, const <a href=
+"../containers.html">TYPE</a>&amp; val = <a href=
+"../containers.html">TYPE</a>() );
+</pre>
+
+  <p>The function resize() changes the size of the vector to
+  <em>size</em>. If <em>val</em> is specified then any newly-created
+  elements will be initialized to have a value of <em>val</em>.</p>
+
+  <p>This function runs in <a href="../complexity.html">linear
+  time</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href=
+    "vector_constructors.html">Vector constructors
+    &amp; destructors</a><br>
+    <a href="capacity.html">capacity</a><br>
+    <a href="size.html">size</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    size
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  <strong>size_type</strong> size() const;
+</pre>
+
+  <p>The size() function returns the number of elements in the current
+  vector.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="capacity.html">capacity</a><br>
+    <a href="empty.html">empty</a><br>
+    (C++ Strings) <a href="../cppstring/length.html">length</a><br>
+    <a href="max_size.html">max_size</a><br>
+    <a href="resize.html">resize</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    swap
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  void swap( container&amp; from );
+</pre>
+
+  <p>The swap() function exchanges the elements of the current vector
+  with those of <em>from</em>. This function operates in <a href=
+  "../complexity.html">constant time</a>.</p>
+
+  <p>For example, the following code uses the swap() function to
+  exchange the contents of two vectors:</p>
+<pre class="prettyprint">
+  vector<string> v1;
+  v1.push_back("I'm in v1!");
+
+  vector<string> v2;
+  v2.push_back("And I'm in v2!");
+
+  v1.swap(v2);
+
+  cout << "The first element in v1 is " << v1.front() << endl;
+  cout << "The first element in v2 is " << v2.front() << endl;
+</pre>
+
+  <p>The above code displays:</p>
+<pre class="prettyprint">
+  The first element in v1 is And I'm in v2!
+  The first element in v2 is I'm in v1!
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="vector_operators.html">= operator</a><br>
+    (C++ Lists) <a href="../cpplist/splice.html">splice</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    Vector constructors
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  vector();
+  vector( const vector&amp; c );
+  vector( <strong>size_type</strong> num, const <a href=
+"../containers.html">TYPE</a>&amp; val = <a href=
+"../containers.html">TYPE</a>() );
+  vector( <a href=
+"../iterators.html">input_iterator</a> start, <a href=
+"../iterators.html">input_iterator</a> end );
+  ~vector();
+</pre>
+
+  <p>The default vector constructor takes no arguments, creates a new
+  instance of that vector.</p>
+
+  <p>The second constructor is a default copy constructor that can be
+  used to create a new vector that is a copy of the given vector
+  <em>c</em>.</p>
+
+  <p>The third constructor creates a vector with space for <em>num</em>
+  objects. If <em>val</em> is specified, each of those objects will be
+  given that value. For example, the following code creates a vector
+  consisting of five copies of the integer 42:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v1( 5, 42 );         
+</pre>
+
+  <p>The last constructor creates a vector that is initialized to
+  contain the elements between <em>start</em> and <em>end</em>. For
+  example:</p>
+<pre class="prettyprint">
+ // create a vector of random integers
+ cout &lt;&lt; &quot;original vector: &quot;;
+ vector&lt;int&gt; v;
+ for( int i = 0; i &lt; 10; i++ ) {
+   int num = (int) rand() % 10;
+   cout &lt;&lt; num &lt;&lt; &quot; &quot;;
+   v.push_back( num );
+ }
+ cout &lt;&lt; endl;            
+
+ // find the first element of v that is even
+ vector&lt;int&gt;::iterator iter1 = v.begin();
+ while( iter1 != v.end() &amp;&amp; *iter1 % 2 != 0 ) {
+   iter1++;
+ }              
+
+ // find the last element of v that is even
+ vector&lt;int&gt;::iterator iter2 = v.end();
+ do {
+   iter2--;
+ } while( iter2 != v.begin() &amp;&amp; *iter2 % 2 != 0 );              
+
+ // only proceed if we find both numbers
+ if( iter1 != v.end() &amp;&amp; iter2 != v.begin() ) {
+   cout &lt;&lt; &quot;first even number: &quot; &lt;&lt; *iter1 &lt;&lt; &quot;, last even number: &quot; &lt;&lt; *iter2 &lt;&lt; endl;         
+
+   cout &lt;&lt; &quot;new vector: &quot;;
+   vector&lt;int&gt; v2( iter1, iter2 );
+   for( int i = 0; i &lt; v2.size(); i++ ) {
+     cout &lt;&lt; v2[i] &lt;&lt; &quot; &quot;;
+   }
+   cout &lt;&lt; endl;
+ }
+</pre>
+
+  <p>When run, this code displays the following output:</p>
+<pre class="prettyprint">
+ original vector: 1 9 7 9 2 7 2 1 9 8
+ first even number: 2, last even number: 8
+ new vector: 2 7 2 1 9          
+</pre>
+
+  <p>All of these constructors run in <a href=
+  "../complexity.html">linear time</a> except the first, which runs in
+  <a href="../complexity.html">constant time</a>.</p>
+
+  <p>The default destructor is called when the vector should be
+  destroyed.</p>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+
+  <div class="name-format">
+    Vector operators
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  <a href=
+"../containers.html">TYPE</a>&amp; operator[]( <strong>size_type</strong> index );
+  const <a href=
+"../containers.html">TYPE</a>&amp; operator[]( <strong>size_type</strong> index ) const;
+  vector operator=(const vector&amp; c2);
+  bool operator==(const vector&amp; c1, const vector&amp; c2);
+  bool operator!=(const vector&amp; c1, const vector&amp; c2);
+  bool operator&lt;(const vector&amp; c1, const vector&amp; c2);
+  bool operator&gt;(const vector&amp; c1, const vector&amp; c2);
+  bool operator&lt;=(const vector&amp; c1, const vector&amp; c2);
+  bool operator&gt;=(const vector&amp; c1, const vector&amp; c2);
+</pre>
+
+  <p>All of the C++ containers can be compared and assigned with the
+  standard comparison operators: ==, !=, &lt;=, &gt;=, &lt;, &gt;, and
+  =. Individual elements of a vector can be examined with the []
+  operator.</p>
+
+  <p>Performing a comparison or assigning one vector to another takes
+  <a href="../complexity.html">linear time</a>. The [] operator runs in
+  <a href="../complexity.html">constant time</a>.</p>
+
+  <p>Two vectors are equal if:</p>
+
+  <ol>
+    <li>Their size is the same, and</li>
+
+    <li>Each member in location i in one vector is equal to the the
+    member in location i in the other vector.</li>
+  </ol>
+
+  <p>Comparisons among vectors are done lexicographically.</p>
+
+  <p>For example, the following code uses the [] operator to access all
+  of the elements of a vector:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v( 5, 1 );
+ for( int i = 0; i &lt; v.size(); i++ ) {
+   cout &lt;&lt; &quot;Element &quot; &lt;&lt; i &lt;&lt; &quot; is &quot; &lt;&lt; v[i] &lt;&lt; endl;
+ }              
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="at.html">at</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>
+<hr>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/all.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

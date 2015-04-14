@@ -1,0 +1,93 @@
+<TITLE>BGI Documentation for 
+outtext
+</TITLE>
+<H2>
+outtext
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void outtext(char *textstring);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+outtext displays a text string in the viewport, using the current font, direction, and size.
+<P>
+outtext outputs textstring at the current position (CP). If the horizontal text justification is LEFT_TEXT and the text direction is HORIZ_DIR, the CP's x-coordinate is advanced by textwidth(textstring). Otherwise, the CP remains unchanged.
+<P>
+To maintain code compatibility when using several fonts, use textwidth and textheight to determine the dimensions of the string.
+<P>
+If a string is printed with the default font using outtext, any part of the string that extends outside the current viewport is truncated.
+<P>
+outtext is for use in graphics mode; it will not work in text mode.
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="gettextsettings.html"> gettextsettings </A>
+<DD><A HREF="outtextxy.html"> outtextxy </A>
+<DD><A HREF="settextjustify.html"> settextjustify </A>
+<DD><A HREF="textheight.html"> textheight </A>
+<DD><A HREF="textwidth.html"> textwidth </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* outtext example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int midx, midy;
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+
+   /* move the CP to the center of the screen */
+   moveto(midx, midy);
+
+   /* output text starting at the CP */
+   outtext("This ");
+   outtext("is ");
+   outtext("a ");
+   outtext("test.");
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

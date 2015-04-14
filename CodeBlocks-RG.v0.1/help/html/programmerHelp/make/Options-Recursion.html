@@ -1,0 +1,124 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Options%2fRecursion">Options/Recursion</a>,
+Next:<a rel="next" accesskey="n" href="-w-Option.html#-w%20Option">-w Option</a>,
+Previous:<a rel="previous" accesskey="p" href="Variables-Recursion.html#Variables%2fRecursion">Variables/Recursion</a>,
+Up:<a rel="up" accesskey="u" href="Recursion.html#Recursion">Recursion</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">Communicating Options to a Sub-<code>make</code></h4>
+
+   <p>Flags such as <code>-s</code> and <code>-k</code> are passed automatically to the
+sub-<code>make</code> through the variable <code>MAKEFLAGS</code>.  This variable is
+set up automatically by <code>make</code> to contain the flag letters that
+<code>make</code> received.  Thus, if you do <code>make&nbsp;-ks</code> then
+<code>MAKEFLAGS</code> gets the value <code>ks</code>.
+
+   <p>As a consequence, every sub-<code>make</code> gets a value for <code>MAKEFLAGS</code>
+in its environment.  In response, it takes the flags from that value and
+processes them as if they had been given as arguments. 
+See <a href="Options-Summary.html#Options%20Summary">Summary of Options</a>.
+
+   <p>Likewise variables defined on the command line are passed to the
+sub-<code>make</code> through <code>MAKEFLAGS</code>.  Words in the value of
+<code>MAKEFLAGS</code> that contain <code>=</code>, <code>make</code> treats as variable
+definitions just as if they appeared on the command line. 
+See <a href="Overriding.html#Overriding">Overriding Variables</a>.
+
+   <p>The options <code>-C</code>, <code>-f</code>, <code>-o</code>, and <code>-W</code> are not put
+into <code>MAKEFLAGS</code>; these options are not passed down.
+
+   <p>The <code>-j</code> option is a special case (see <a href="Parallel.html#Parallel">Parallel Execution</a>). 
+If you set it to some numeric value <code>N</code> and your operating system
+supports it (most any UNIX system will; others typically won't), the
+parent <code>make</code> and all the sub-<code>make</code>s will communicate to
+ensure that there are only <code>N</code> jobs running at the same time
+between them all.  Note that any job that is marked recursive
+(see <a href="Instead-of-Execution.html#Instead%20of%20Execution">Instead of Executing the Commands</a>)
+doesn't count against the total jobs (otherwise we could get <code>N</code>
+sub-<code>make</code>s running and have no slots left over for any real work!)
+
+   <p>If your operating system doesn't support the above communication, then
+<code>-j 1</code> is always put into <code>MAKEFLAGS</code> instead of the value you
+specified.  This is because if the <code>-j</code> option were passed down
+to sub-<code>make</code>s, you would get many more jobs running in parallel
+than you asked for.  If you give <code>-j</code> with no numeric argument,
+meaning to run as many jobs as possible in parallel, this is passed
+down, since multiple infinities are no more than one.
+
+   <p>If you do not want to pass the other flags down, you must change the
+value of <code>MAKEFLAGS</code>, like this:
+
+<pre class="example">     subsystem:
+             cd subdir &amp;&amp; $(MAKE) MAKEFLAGS=
+     </pre>
+
+   <p>The command line variable definitions really appear in the variable
+<code>MAKEOVERRIDES</code>, and <code>MAKEFLAGS</code> contains a reference to this
+variable.  If you do want to pass flags down normally, but don't want to
+pass down the command line variable definitions, you can reset
+<code>MAKEOVERRIDES</code> to empty, like this:
+
+<pre class="example">     MAKEOVERRIDES =
+     </pre>
+
+<p>This is not usually useful to do.  However, some systems have a small
+fixed limit on the size of the environment, and putting so much
+information into the value of <code>MAKEFLAGS</code> can exceed it.  If you
+see the error message <code>Arg list too long</code>, this may be the problem. 
+(For strict compliance with POSIX.2, changing <code>MAKEOVERRIDES</code> does
+not affect <code>MAKEFLAGS</code> if the special target <code>.POSIX</code> appears
+in the makefile.  You probably do not care about this.)
+
+   <p>A similar variable <code>MFLAGS</code> exists also, for historical
+compatibility.  It has the same value as <code>MAKEFLAGS</code> except that it
+does not contain the command line variable definitions, and it always
+begins with a hyphen unless it is empty (<code>MAKEFLAGS</code> begins with a
+hyphen only when it begins with an option that has no single-letter
+version, such as <code>--warn-undefined-variables</code>).  <code>MFLAGS</code> was
+traditionally used explicitly in the recursive <code>make</code> command, like
+this:
+
+<pre class="example">     subsystem:
+             cd subdir &amp;&amp; $(MAKE) $(MFLAGS)
+     </pre>
+
+<p>but now <code>MAKEFLAGS</code> makes this usage redundant.  If you want your
+makefiles to be compatible with old <code>make</code> programs, use this
+technique; it will work fine with more modern <code>make</code> versions too.
+
+   <p>The <code>MAKEFLAGS</code> variable can also be useful if you want to have
+certain options, such as <code>-k</code> (see <a href="Options-Summary.html#Options%20Summary">Summary of Options</a>), set each time you run <code>make</code>.  You simply put a value for
+<code>MAKEFLAGS</code> in your environment.  You can also set <code>MAKEFLAGS</code> in
+a makefile, to specify additional flags that should also be in effect for
+that makefile.  (Note that you cannot use <code>MFLAGS</code> this way.  That
+variable is set only for compatibility; <code>make</code> does not interpret a
+value you set for it in any way.)
+
+   <p>When <code>make</code> interprets the value of <code>MAKEFLAGS</code> (either from the
+environment or from a makefile), it first prepends a hyphen if the value
+does not already begin with one.  Then it chops the value into words
+separated by blanks, and parses these words as if they were options given
+on the command line (except that <code>-C</code>, <code>-f</code>, <code>-h</code>,
+<code>-o</code>, <code>-W</code>, and their long-named versions are ignored; and there
+is no error for an invalid option).
+
+   <p>If you do put <code>MAKEFLAGS</code> in your environment, you should be sure not
+to include any options that will drastically affect the actions of
+<code>make</code> and undermine the purpose of makefiles and of <code>make</code>
+itself.  For instance, the <code>-t</code>, <code>-n</code>, and <code>-q</code> options, if
+put in one of these variables, could have disastrous consequences and would
+certainly have at least surprising and probably annoying effects.
+
+   </body></html>
+

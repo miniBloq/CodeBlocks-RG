@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/stdmath/div.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>div</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">Standard C Math</a> &gt; <a href="div.html">div</a>
+  </div>
+
+  <div class="name-format">
+    div
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;cstdlib&gt;
+  <strong>div_t</strong> div( int numerator, int denominator );
+</pre>
+
+  <p>The function div() returns the quotient and remainder of the
+  operation <em>numerator</em> / <em>denominator</em>. The
+  <strong>div_t</strong> structure is defined in cstdlib, and has at
+  least:</p>
+<pre class="prettyprint">
+   int quot;   // The quotient
+   int rem;    // The remainder         
+</pre>
+
+  <p>For example, the following code displays the quotient and
+  remainder of x/y:</p>
+<pre class="prettyprint">
+   <strong>div_t</strong> temp;
+   temp = div( x, y );
+   printf( &quot;%d divided by %d yields %d with a remainder of %d\n&quot;,
+           x, y, temp.quot, temp.rem );         
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="ldiv.html">ldiv</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdmath/div.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Multiple%20Rules">Multiple Rules</a>,
+Next:<a rel="next" accesskey="n" href="Static-Pattern.html#Static%20Pattern">Static Pattern</a>,
+Previous:<a rel="previous" accesskey="p" href="Multiple-Targets.html#Multiple%20Targets">Multiple Targets</a>,
+Up:<a rel="up" accesskey="u" href="Rules.html#Rules">Rules</a>
+<hr><br>
+</div>
+
+<h3 class="section">Multiple Rules for One Target</h3>
+
+   <p>One file can be the target of several rules.  All the prerequisites
+mentioned in all the rules are merged into one list of prerequisites for
+the target.  If the target is older than any prerequisite from any rule,
+the commands are executed.
+
+   <p>There can only be one set of commands to be executed for a file.  If
+more than one rule gives commands for the same file, <code>make</code> uses
+the last set given and prints an error message.  (As a special case,
+if the file's name begins with a dot, no error message is printed. 
+This odd behavior is only for compatibility with other implementations
+of <code>make</code>... you should avoid using it).  Occasionally it is
+useful to have the same target invoke multiple commands which are
+defined in different parts of your makefile; you can use
+<dfn>double-colon rules</dfn> (see <a href="Double-Colon.html#Double-Colon">Double-Colon</a>) for this.
+
+   <p>An extra rule with just prerequisites can be used to give a few extra
+prerequisites to many files at once.  For example, makefiles often
+have a variable, such as <code>objects</code>, containing a list of all the
+compiler output files in the system being made.  An easy way to say
+that all of them must be recompiled if <code>config.h</code> changes is to
+write the following:
+
+<pre class="example">     objects = foo.o bar.o
+     foo.o : defs.h
+     bar.o : defs.h test.h
+     $(objects) : config.h
+     </pre>
+
+   <p>This could be inserted or taken out without changing the rules that really
+specify how to make the object files, making it a convenient form to use if
+you wish to add the additional prerequisite intermittently.
+
+   <p>Another wrinkle is that the additional prerequisites could be specified with
+a variable that you set with a command argument to <code>make</code>
+(see <a href="Overriding.html#Overriding">Overriding Variables</a>).  For example,
+
+<pre class="example">     extradeps=
+     $(objects) : $(extradeps)
+     </pre>
+
+<p>means that the command <code>make extradeps=foo.h</code> will consider
+<code>foo.h</code> as a prerequisite of each object file, but plain <code>make</code>
+will not.
+
+   <p>If none of the explicit rules for a target has commands, then <code>make</code>
+searches for an applicable implicit rule to find some commands
+see <a href="Implicit-Rules.html#Implicit%20Rules">Using Implicit Rules</a>).
+
+   </body></html>
+

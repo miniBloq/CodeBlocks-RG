@@ -1,0 +1,156 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Phony%20Targets">Phony Targets</a>,
+Next:<a rel="next" accesskey="n" href="Force-Targets.html#Force%20Targets">Force Targets</a>,
+Previous:<a rel="previous" accesskey="p" href="Directory-Search.html#Directory%20Search">Directory Search</a>,
+Up:<a rel="up" accesskey="u" href="Rules.html#Rules">Rules</a>
+<hr><br>
+</div>
+
+<h3 class="section">Phony Targets</h3>
+
+   <p>A phony target is one that is not really the name of a file.  It is just a
+name for some commands to be executed when you make an explicit request. 
+There are two reasons to use a phony target: to avoid a conflict with
+a file of the same name, and to improve performance.
+
+   <p>If you write a rule whose commands will not create the target file, the
+commands will be executed every time the target comes up for remaking. 
+Here is an example:
+
+<pre class="example">     clean:
+             rm *.o temp
+     </pre>
+
+<p>Because the <code>rm</code> command does not create a file named <code>clean</code>,
+probably no such file will ever exist.  Therefore, the <code>rm</code> command
+will be executed every time you say <code>make clean</code>.
+
+   <p>The phony target will cease to work if anything ever does create a file
+named <code>clean</code> in this directory.  Since it has no prerequisites, the
+file <code>clean</code> would inevitably be considered up to date, and its
+commands would not be executed.  To avoid this problem, you can explicitly
+declare the target to be phony, using the special target <code>.PHONY</code>
+(see <a href="Special-Targets.html#Special%20Targets">Special Built-in Target Names</a>) as follows:
+
+<pre class="example">     .PHONY : clean
+     </pre>
+
+<p>Once this is done, <code>make clean</code> will run the commands regardless of
+whether there is a file named <code>clean</code>.
+
+   <p>Since it knows that phony targets do not name actual files that could be
+remade from other files, <code>make</code> skips the implicit rule search for
+phony targets (see <a href="Implicit-Rules.html#Implicit%20Rules">Implicit Rules</a>).  This is why declaring a target
+phony is good for performance, even if you are not worried about the
+actual file existing.
+
+   <p>Thus, you first write the line that states that <code>clean</code> is a
+phony target, then you write the rule, like this:
+
+<pre class="example">     .PHONY: clean
+     clean:
+             rm *.o temp
+     </pre>
+
+   <p>Another example of the usefulness of phony targets is in conjunction
+with recursive invocations of <code>make</code> (for more information, see
+<a href="Recursion.html#Recursion">Recursive Use of <code>make</code></a>).  In this case the
+makefile will often contain a variable which lists a number of
+subdirectories to be built.  One way to handle this is with one rule
+whose command is a shell loop over the subdirectories, like this:
+
+<pre class="example">     SUBDIRS = foo bar baz
+     
+     subdirs:
+             for dir in $(SUBDIRS); do \
+               $(MAKE) -C $$dir; \
+             done
+     </pre>
+
+   <p>There are a few problems with this method, however.  First, any error
+detected in a submake is not noted by this rule, so it will continue to
+build the rest of the directories even when one fails.  This can be
+overcome by adding shell commands to note the error and exit, but then
+it will do so even if <code>make</code> is invoked with the <code>-k</code> option,
+which is unfortunate.  Second, and perhaps more importantly, you cannot
+take advantage of the parallel build capabilities of make using this
+method, since there is only one rule.
+
+   <p>By declaring the subdirectories as phony targets (you must do this as
+the subdirectory obviously always exists; otherwise it won't be built)
+you can remove these problems:
+
+<pre class="example">     SUBDIRS = foo bar baz
+     
+     .PHONY: subdirs $(SUBDIRS)
+     
+     subdirs: $(SUBDIRS)
+     
+     $(SUBDIRS):
+             $(MAKE) -C $@
+     
+     foo: baz
+     </pre>
+
+   <p>Here we've also declared that the <code>foo</code> subdirectory cannot be
+built until after the <code>baz</code> subdirectory is complete; this kind of
+relationship declaration is particularly important when attempting
+parallel builds.
+
+   <p>A phony target should not be a prerequisite of a real target file; if it
+is, its commands are run every time <code>make</code> goes to update that
+file.  As long as a phony target is never a prerequisite of a real
+target, the phony target commands will be executed only when the phony
+target is a specified goal (see <a href="Goals.html#Goals">Arguments to Specify the Goals</a>).
+
+   <p>Phony targets can have prerequisites.  When one directory contains multiple
+programs, it is most convenient to describe all of the programs in one
+makefile <code>./Makefile</code>.  Since the target remade by default will be the
+first one in the makefile, it is common to make this a phony target named
+<code>all</code> and give it, as prerequisites, all the individual programs.  For
+example:
+
+<pre class="example">     all : prog1 prog2 prog3
+     .PHONY : all
+     
+     prog1 : prog1.o utils.o
+             cc -o prog1 prog1.o utils.o
+     
+     prog2 : prog2.o
+             cc -o prog2 prog2.o
+     
+     prog3 : prog3.o sort.o utils.o
+             cc -o prog3 prog3.o sort.o utils.o
+     </pre>
+
+<p>Now you can say just <code>make</code> to remake all three programs, or specify
+as arguments the ones to remake (as in <code>make prog1 prog3</code>).
+
+   <p>When one phony target is a prerequisite of another, it serves as a subroutine
+of the other.  For example, here <code>make cleanall</code> will delete the
+object files, the difference files, and the file <code>program</code>:
+
+<pre class="example">     .PHONY: cleanall cleanobj cleandiff
+     
+     cleanall : cleanobj cleandiff
+             rm program
+     
+     cleanobj :
+             rm *.o
+     
+     cleandiff :
+             rm *.diff
+     </pre>
+
+   </body></html>
+

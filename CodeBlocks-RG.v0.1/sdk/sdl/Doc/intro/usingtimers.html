@@ -1,0 +1,114 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Using SDL: Timers</title>
+</head>
+
+<body bgcolor="#FFF8DC" text="#000000">
+<TABLE>
+<TR><!--#include file="../menu.tmpl" -->
+<TD>
+
+<p align="center">
+[<a href="usingthreads.html">Prev</a>]
+<a href="toc.html"><font color="#8B0000">Table Of Contents</font> </a>
+[<a href="usingendian.html">Next</a>]
+</p>
+
+<h1><font color="#8B0000">Using the Simple DirectMedia Layer API</font></h1>
+
+<h2>Timers</h2>
+
+<table border="0" cellpadding="4">
+    <tr>
+        <td valign="top"><ul>
+            <li><strong>Get the current time, in milliseconds</strong>
+            </li>
+        </ul>
+        <blockquote>
+            <p>SDL_GetTicks() tells how many milliseconds have
+            past since an arbitrary point in the past. </p>
+        </blockquote>
+        </td>
+        <td valign="top" width="300" bgcolor="#D3D3D3"><strong>Tip:</strong><br>
+        In general, when implementing a game, it is better to
+        move objects in the game based on time rather than on
+        framerate. This produces consistent gameplay on both fast
+        and slow systems. </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="50">
+    <tr>
+        <td valign="top"><font color="#000080"><strong>Example</strong></font><strong>:
+        </strong><pre>
+<font color="#0000FF">#define</font> TICK_INTERVAL    30
+
+<font color="#008000">Uint32</font> TimeLeft(void)
+{
+    <font color="#0000FF">static</font> <font color="#008000">Uint32</font> next_time = 0;
+    <font color="#008000">Uint32</font> now;
+
+    now = SDL_GetTicks();
+    <font color="#0000FF">if</font> ( next_time &lt;= now ) {
+        next_time = now+TICK_INTERVAL;
+        <font color="#0000FF">return</font>(0);
+    }
+    <font color="#0000FF">return</font>(next_time-now);
+}
+</pre>
+        </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="4">
+    <tr>
+        <td valign="top"><ul>
+            <li><strong>Wait a specified number of milliseconds </strong></li>
+        </ul>
+        <blockquote>
+            <p>SDL_Delay() allows you to wait for some number of
+            milliseconds. </p>
+            <p>Since the operating systems supported by SDL are
+            multi-tasking, there is no way to guarantee that your
+            application will delay exactly the requested time.
+            This should be used more as a way of idling for a
+            while rather than to wake up at a particular time. </p>
+        </blockquote>
+        </td>
+        <td valign="top" width="300" bgcolor="#D3D3D3"><strong>Tip:</strong><br>
+        Most operating systems have a scheduler timeslice of
+        about 10 ms. You can use SDL_Delay(1) as a way of giving
+        up CPU for the current timeslice, allowing other threads
+        to run. This is important if you have a thread in a tight
+        loop but want other threads (like audio) to keep running.</td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="50">
+    <tr>
+        <td valign="top"><font color="#000080"><strong>Example</strong></font><strong>:</strong>
+        <pre>
+{
+    <font color="#0000FF">while</font> ( game_running ) {
+        UpdateGameState();
+        SDL_Delay(TimeLeft());
+    }
+}
+ </pre>
+        </td>
+    </tr>
+</table>
+
+<p align="center">
+[<a href="usingthreads.html">Prev</a>]
+<a href="toc.html"><font color="#8B0000">Table Of Contents</font> </a>
+[<a href="usingendian.html">Next</a>]
+</p>
+
+</TABLE>
+</body>
+</html>

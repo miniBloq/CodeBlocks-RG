@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>WinBGIm Grids  Animation</title>
+<link href="../CSS/1colNheader.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="wrapper">
+  <div id="header">
+    <table width="92%" border="0" cellpadding="6">
+      <tr>
+        <td><h1>WinBGIm by Example:&nbsp;</h1>
+        <p class="title">Game Building </p></td>
+        <td class="style14"><img src="topleft.gif" alt="image: Portion of grid" width="199" height="185" align="absmiddle" /></td>
+        <td><h2 class="style14">Grids and Moving Characters </h2></td>
+      </tr>
+    </table>
+    </div>
+  <div id="main">
+    <p class="abstract">Many platform games or simulations involve building a grid of cells (or tiles) representing a simulated &quot;world&quot; where some characters can move within the grid.</p>
+    <p class="abstract">This example show how simple it is to display grids with WinBGIm graphics and small GIF images. It also demonstrates how to move characters on the grid. </p>
+    <p class="abstract">Ample comments in the example  explain the sticky points. </p>
+    <hr />
+    <h2>Before we start</h2>
+    <h5 class="style15"><a href="bgiGamelib.zip">Download the example in a zip file: <img src="dirs.gif" alt="image: directories" width="176" height="57" align="middle" /></a></h5>
+    <p class="style1">With <span class="style25">Quincy </span>the example can be built by loading the project <em>gridTest[gridTest.exe].PRJ</em> and building it.<br />
+    ___________    </p>
+    <h2 class="style1">Three C++ classes:  </h2>
+    The example is made up of 3 C++ classes, one BGI utility module, and a driver program:
+    <p class="style2"><span class="style1">The <em class="Highlight">Grid</em> class represents a 2D array of Cells. <img src="grid.gif" alt="image: square grid" width="83" height="83" /> A grid object can draw itself to screen by asking each of its cells to draw itself in turn.</span> </p>
+    <p class="style1">___________</p>
+    <p><span class="style2"><span class="style1">The <em class="Highlight">Cell</em> class represents a small square area. A unit of  grid. A cell object can draw itself when requested by the grid. It has a colour and it may also have a &quot;tile&quot; (a small GIF image that is displayed on the cell area). <br />
+      In the example, 3 different tiles are used in various cells: the green &quot;grass&quot; tile <img src="grass.png" alt="image: grass tile" width="18" height="18" /> is used to represent grassed areas, red &quot;brick&quot; tiles <img src="brick.png" alt="image: brick tile" width="18" height="18" /> are used to display walls. A blue smiley &quot;bob&quot; tile <img src="bob.png" alt="image: bob character tile" width="18" height="18" /> is used to represent a character that can move on the grid.<br />
+      The cells are 20x20 pixels square, and the tiles are all 18x18 pixels squares, leaving 1 pixel at the side for a cell border. Using a 20x20 pixel tile would eliminate the borders. Smaller tiles may be needed for larger grids. <br />
+      <br />
+      A number of variables of Cell are </span></span><strong><em>static (or class-wide) </em></strong>variables<span class="style2"><span class="style1">. This is for example the case of the tile images. All the individual cells that have the same appearance share the same class-wide ImageBuffer instance. This instance gets drawn repeatedly on the grid at all the various locations where that tile is needed. Having a single image per tile type for the whole Cell class, rather than having one separate image per Cell object offers great savings in memory space.<br />
+      <br />
+    Static variables are created by the program before main() starts, so the ImageBuffer constructor for the tiles runs before the main window is initialized. This creates a small problem as ImageBuffers require a window for their initialisation. This is remedied by instantiating a  global window variable before the ImageBuffer constructor is called (at the top of <em>cell.cpp</em>. After the imageBuffers are created, the small helper window is  closed at the start of main() by a call to &quot;closegraph()&quot;. </span></span></p>
+    <p><span class="style2"><span class="style1"><span class="abstract"><em>Note: This is a rare case when a global variable is useful.</em></span></span></span></p>
+    <p class="style1">___________</p>
+    <p class="style2"><span class="style1">The <em class="Highlight">ImageBuffer</em> class is a low level class that manages the storage of images in memory. It can read image files to memory and it can draw the images on the screen. This is used by the cell to draw its &quot;tile&quot; image if it has been given one. <br />
+      <br />
+    </span><span class="style1">___________</span></p>
+    <p><span class="style1">The <em class="Highlight">BGI_util</em> module is not a class, but it contains a set of functions that make it easier to use the WinBGIm graphics library. <br />
+      It contains a very essential function: <span class="style26"><code>synchronise()</code></span>, that is used after each major drawing call to synchronise the active screen page and the visual screen page in a process called double-buffering.<br />
+      </span><em><strong>Double buffering</strong></em><span class="style1"> avoids flickering of the screen during fast drawing. <br />
+    In double buffering, two page &quot;buffers&quot; are used. The image is drawn by the program in the background on the <em>active page</em> buffer. The <em>visual page</em> is what the user sees and does not change during this background drawing. When all the background drawing is done, the <span class="style27"><code>synchronise()</code></span> function swaps the two pages. At that stage the changes to the drawing become visible. <span class="style27"><code>synchronise()</code></span> then copies the new drawing to the other page so the two page buffers end up containing the same image. </span></p>
+    <p class="style1">___________</p>
+    <p class="style2"><span class="style1">The driver, <em class="Highlight">gridTest.cpp</em> initialises the graphics window and creates a small 10 x 10 cells grid. The grid in this small example is defined by a simple mathematical formula that creates something that looks a bit like a  game or maze grid. <br />
+    </span><span class="style1">In a typical application the grid structure (its array of cells that represents the &quot;game world&quot;) is more likely to be read from file. <br />
+    After this initialisation, the program goes into its <em><strong>animation loop.</strong></em> <br />
+    At the beginning of each cycle in the animation loop, the  character (Bob here) decides where to move, then the cells that have changed are redrawn. In this simple example, the old &quot;Bob&quot; cell is overdrawn by a &quot;grass&quot; cell, then the &quot;Bob&quot; cell is drawn over a grass cell at its new location.</span></p>
+    <hr />
+    <h2 class="style1"><span class="style29">Communication between classes</span>:</h2>
+    <p class="style1">The Cell does not know about the Grid, or the window. <br />
+    This is a good design. Low-level classes, like Cell, should not know anything about other programs or classes that may use it. Cell therefore  does not know its own coordinates on the window or on the grid. As a solution to this, the Cell draws itself on request from the grid. The grid can give the cell its window coordinates as function parameters when it calls the <code>draw()</code> Cell function. </p>
+    <hr />
+    <p class="abstract">- <strong>WinGBIm</strong> is a basic graphics drawing package that emulates one of the most successful graphics libraries of all times, the Borland Graphics Interface (BGI). WinbGIm adds some extra facilities, like the possibility of catching mouse clicks and mouse position. <br />
+      The success of BGI was due to its simplicity.
+      The code of graphical programs produced with WinBGIm is very simple, compared to that of other graphics packages. </p>
+    <p class="abstract">Basic help about functions available in the WinBGIm library is given by the Quincy menu: <a href="../../programmerHelp/winbgim/bgi/doc/index.html">Help-&gt;Programmer's Help</a>. <br />
+      ______<br />
+      - You'll understand really well how this code works if you implement your own modifications and extensions to the grid example. </p>
+  </div>
+  <div id="footer">
+    <div align="center" class="Lowlight"><em>Maintained by <img src="../../pics/email.gif" alt="image: mainainer's email" width="167" height="18" align="absmiddle" /> - Modified: 8 January 2006 </em></div>
+  </div>
+</div>
+</body>
+</html>

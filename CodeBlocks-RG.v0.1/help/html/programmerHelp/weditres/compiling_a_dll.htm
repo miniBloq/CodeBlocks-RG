@@ -1,0 +1,438 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Compiling a DLL</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509457100"><span style="mso-ansi-language:EN-US">Compiling a
+DLL</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoBodyText">A DLL is a Dynamic Link Library. This acronym means that
+the library is loaded when the program starts by the loader, and not linked
+statically with the program code like with a normal library.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal"><span style="font-family:&quot;Times New Roman&quot;">To
+build such a library:<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText" style="margin-left:36.0pt;text-indent:-36.0pt;mso-list:
+l8 level1 lfo3">1)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="color:black">Define your project as a DLL project</span>.<span style="mso-spacerun: yes">&nbsp;
+</span>If you are using lcclnk directly in the command line, you should add the
+–DLL option to the linker.</p>
+<p class="MsoNormal"><span style="font-family:&quot;Times New Roman&quot;">This
+is done in the project definition panel by checking the corresponding radio
+button.<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText" style="margin-left:36.0pt;text-indent:-36.0pt;mso-list:
+l8 level1 lfo3">2)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>In your code, <span style="color:black">mark the functions of the DLL you
+want to export</span> as such.</p>
+<p class="MsoNormal"><span style="font-family:&quot;Times New Roman&quot;">An
+“exported” function is a function that is visible <b style="mso-bidi-font-weight:normal"><i style="mso-bidi-font-style:normal">outside</i></b>
+the DLL, and can be called from other places in the program. There are two ways
+of doing this.</span><span style="font-family:&quot;Times New Roman&quot;"><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;">The
+first is by declaring it explicitly in the program text:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-list:skip"><b style="mso-bidi-font-weight:normal"><span style="font-family:&quot;Courier New&quot;">int
+__declspec(dllexport) MyFunction(int f) { … }<o:p>
+</o:p>
+</span></b><span style="font-family:&quot;Times New Roman&quot;"><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;">This
+instructs the compiler to add a special instruction for the linker to add this
+name (in this case <b style="mso-bidi-font-weight:normal">MyFunction </b>) to
+the export table of the DLL.<o:p>
+</o:p>
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;">The
+second method is to build a definition file (.def) where you write the list of
+exported functions from the DLL. This is just an ASCII text file whose extension
+<b style="mso-bidi-font-weight:normal"><i style="mso-bidi-font-style:
+normal">must</i></b> be .def, with the list of the exported functions of the
+DLL. An example of such a file is:<o:p>
+</o:p>
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;">EXPORTS<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;">MyFunction<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;">The
+first line must be the keyword EXPORTS, followed by the names of the exported
+functions, one in each line.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;">The
+formal syntax is:</span></p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal" style="mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;">IDENTIFIER<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>[DATA]<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;">IDENTIFIER
+is a placeholder for the name of the exported symbol. It can be followed by the
+keyword DATA, which means that the exported symbol is not a function, but a data
+item. This is important to specify, since the entries generated in the import
+library are not the same.<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText" style="mso-list:skip">3)<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>You should build an <span style="color:red">import library</span>.</p>
+<p class="MsoBodyText2" style="margin-left:36.0pt;mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;">This
+is done automatically by lcclnk. If you want to do it manually, you should type
+the following command:<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText2" style="margin-left:36.0pt;mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:72.0pt;mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;;color:black">buildlib
+mydll.exp mydll.lib<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:36.0pt;mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;;color:black">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:36.0pt;mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;;color:black">The
+‘buildlib’ utility takes an ASCII description of the DLL exported entries in
+a similar format as the .def described above, and will output a library that can
+be used with the linker to build the finished product.</span><a style="mso-footnote-id:ftn1" href="#_ftn1" name="_ftnref1" title><span style="mso-special-character: footnote; font-size: 8.0pt; mso-bidi-font-size: 12.0pt; font-family: Times New Roman; color: black; mso-text-raise: 0pt" class="MsoFootnoteReference">[1]</span></a><span style="font-family:&quot;Times New Roman&quot;;color:black"><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l10 level1 lfo5;
+tab-stops:list 18.0pt"><span style="font-family:&quot;Times New Roman&quot;;
+color:black">4)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-family:&quot;Times New Roman&quot;;color:black">You
+should declare the imported symbols in the executable that uses the DLL.<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText2" style="margin-left:36.0pt"><span style="font-family:&quot;Times New Roman&quot;;
+color:black">This means, add an “extern” declaration in your code or header
+file.<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText2" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:
+l10 level1 lfo5;tab-stops:list 18.0pt"><span style="font-family:&quot;Times New Roman&quot;;color:black">5)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>You should link your executable with the import library.<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText2" style="margin-left:0cm"><span style="font-family:&quot;Times New Roman&quot;">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText2" style="margin-left:0cm"><span style="font-family:&quot;Times New Roman&quot;">You
+are then finished. <o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText2" style="margin-left:0cm"><span style="font-family:&quot;Times New Roman&quot;">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText2" style="margin-left:0cm"><span style="font-family:&quot;Times New Roman&quot;">To
+debug your DLL with Wedit’s debugger, change the name of the executable to
+start in the project configuration tab ‘Debugger’ and write the name of the
+executable that uses your DLL. Then, follow the executable until a DLL function
+call appears. Next, press F8 to enter the function in the DLL. Remember that
+both the executable and the DLL should have been compiled with debug information
+turned on!<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText2" style="margin-left:0cm"><span style="font-family:&quot;Times New Roman&quot;">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText2" style="margin-left:0cm"><span style="font-family:&quot;Times New Roman&quot;">DLLs
+should have a DllMain or LibMain <span style="color:red">entry point function</span>,
+that is called up by the system when the DLL is loaded or unloaded, and allows
+you to initialize/cleanup elements. This function MUST be declared as follows:<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText2" style="margin-left:0cm">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoPlainText">#include &lt;windows.h&gt;</p>
+<p class="MsoPlainText"><font size="1">/*----------------------------------------------------------------------</font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;</font></span><font size="1">Procedure:<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b style="mso-bidi-font-weight:normal">LibMain</b></font></p>
+<p class="MsoPlainText"><font size="1">Purpose:<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">DLL
+entry point called up when a DLL is loaded or</span></i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1"><i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">unloaded
+by a process, and when new threads are<o:p>
+</o:p>
+</span></i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1"><i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">created
+or destroyed</span></i>.</font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;</font></span><font size="1">Input:<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>hDllInst: <i style="mso-bidi-font-style:
+normal"><span style="mso-bidi-font-family: Times New Roman">Instance handle of
+the DLL<o:p>
+</o:p>
+</span></i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1">fdwReason: <i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">event:
+attach/detach<o:p>
+</o:p>
+</span></i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1">lpvReserved: <i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">not
+used<o:p>
+</o:p>
+</span></i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;</font></span><font size="1">Output:<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">The
+return value is used only when the fdwReason is<o:p>
+</o:p>
+</span></i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1">DLL_PROCESS_ATTACH. <i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">True
+means that the DLL has<o:p>
+</o:p>
+</span></i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1"><i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">successfully
+loaded. False means that the DLL is unable<o:p>
+</o:p>
+</span></i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1"><i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">to
+initialize and should be unloaded immediately.<o:p>
+</o:p>
+</span></i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;</font></span><font size="1">Errors:</font></p>
+<p class="MsoPlainText"><font size="1">----------------------------------------------------------------------*/</font></p>
+<p class="MsoPlainText"><font size="1">BOOL WINAPI LibMain(HINSTANCE hDLL,DWORD
+Reason,LPVOID Reserved)</font></p>
+<p class="MsoPlainText"><font size="1">{</font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;
+</font></span><font size="1">switch (Reason) <i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">//
+Code indicating the reason for this function being called up.</span></i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;
+</font></span><font size="1">{</font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1">case DLL_PROCESS_ATTACH:</font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1"><i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">//
+The DLL is being loaded for the first time by a given process.<o:p>
+</o:p>
+</span></i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1"><i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">//
+Perform per-process initialization here.<span style="mso-spacerun: yes">&nbsp; </span>If
+the initialization<o:p>
+</o:p>
+</span></i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1"><i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">//
+is successful, return TRUE; if unsuccessful, return FALSE.</span></i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1">break;</font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1">case DLL_PROCESS_DETACH:</font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1"><i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">//
+The DLL is being unloaded by a given process.<span style="mso-spacerun: yes">&nbsp;
+</span>Do any<o:p>
+</o:p>
+</span></i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1"><i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">//
+pre-process clean up here, such as undoing what was done in<o:p>
+</o:p>
+</span></i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1"><i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">//
+DLL_PROCESS_ATTACH.<span style="mso-spacerun: yes">&nbsp; </span>The return
+value is ignored.</span></i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1">break;</font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1">case DLL_THREAD_ATTACH:</font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;</font></span><font size="1"><i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">//
+A thread is being created in a process that has already loaded<o:p>
+</o:p>
+</span></i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1"><span style="mso-bidi-font-family: Times New Roman">//
+<i style="mso-bidi-font-style:normal">this DLL.<span style="mso-spacerun: yes">&nbsp;
+</span>Perform any per-thread initialization here.<span style="mso-spacerun:
+yes">&nbsp; </span>The<o:p>
+</o:p>
+</i></span></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1"><i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">//
+return value is ignored.</span></i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1">break;</font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1">case DLL_THREAD_DETACH:</font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1"><i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">//
+A thread is exiting cleanly in a process that has already<o:p>
+</o:p>
+</span></i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1"><i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">//
+loaded this DLL.<span style="mso-spacerun: yes">&nbsp; </span>Perform any
+per-thread clean up here.<span style="mso-spacerun: yes">&nbsp; </span>The<o:p>
+</o:p>
+</span></i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1"><i style="mso-bidi-font-style:normal"><span style="mso-bidi-font-family: Times New Roman">//
+return value is ignored.</span><o:p>
+</o:p>
+</i></font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span><font size="1">break;</font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;
+</font></span><font size="1">}</font></p>
+<p class="MsoPlainText"><span style="mso-spacerun: yes"><font size="1">&nbsp;&nbsp;&nbsp;
+</font></span><font size="1">return TRUE;</font></p>
+<p class="MsoPlainText"><font size="1">}</font></p>
+<h3><span style="mso-ansi-language:EN-US">The Definitions File (.def)<o:p>
+</o:p>
+</span></h3>
+<p class="DefinitionTerm">This file is needed to define the exports of a DLL or
+mark the data sections of an executable as shared, i.e., usable by other
+programs.</p>
+<p class="DefinitionList" style="margin-left:0cm"><span style="font-size:10.0pt;
+font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText">The different directives in this file are:</p>
+<p class="MsoBodyText" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:
+l6 level1 lfo7;tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>EXPORTS. This is followed by the exports list. The exports list
+should have an entrgy in each line, for instance: MyFunction or _MyFunction=Function,
+to change the name of the exported symbol.</p>
+<p class="MsoBodyText" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:
+l6 level1 lfo7;tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>SECTION. This should be followed by one single line containing
+DATA SHARED, if you want to make the data sections (.data AND .bss) shared.</p>
+<p class="MsoBodyText" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:
+l6 level1 lfo7;tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>STACKSIZE. This is ignored and is here for compatibility with
+older versions of the .def files.</p>
+<p class="MsoBodyText" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:
+l6 level1 lfo7;tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>DESCRIPTION. This is ignored and is here for compatibility with
+older versions of the .def files.</p>
+<p class="MsoBodyText">An example of this is the following file:</p>
+<p class="MsoBodyText">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoBodyText"><span style="font-family:Courier">Library Mydll<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText"><span style="font-family:Courier">EXPORTS<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText"><span style="font-family:Courier">Myfunction<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText"><span style="font-family:Courier">_MyOtherFunction=Other<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText"><span style="font-family:Courier">SECTION<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText"><span style="font-family:Courier">DATA SHARED<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoBodyText">The first line must contain the name of the DLL or file
+that you are building, but this is not required. The Exports section contains
+two exports: A function called “MyFunction”, and a function called
+“Other”, which is associated to the “MyOtherFunction” procedure, and
+which will not be visible with that name, since its exported name will be
+“Other”.</p>
+<p class="MsoBodyText">The SECTION part defines the data sections (.data and .bss
+sections) as shared, i.e., accessible by other programs.</p>
+<p class="MsoBodyText">&nbsp;<o:p>
+</o:p>
+</p>
+<div style="mso-element:footnote-list">
+  <br clear="all">
+  <hr align="left" size="1" width="33%">
+  <div style="mso-element:footnote" id="ftn1">
+    <p class="MsoFootnoteText" style="margin-right:6.75pt;text-indent:0cm;mso-list:
+skip;tab-stops:432.0pt"><a style="mso-footnote-id:ftn1" href="#_ftnref1" name="_ftn1" title><span style="mso-special-character: footnote; mso-ansi-font-size: 10.0pt; mso-text-raise: 0pt; mso-ansi-language: EN-US" class="MsoFootnoteReference">[1]</span></a><span style="mso-ansi-language:EN-US">
+    The format of the .exp file is as follows&nbsp;:<o:p>
+    </o:p>
+    </span></p>
+    <p class="MsoFootnoteText" style="margin-right:6.75pt;text-indent:0cm;mso-list:
+skip;tab-stops:432.0pt"><span style="mso-ansi-language:EN-US">The first line
+    should contain the name of the DLL you are using, i.e., Mydll.dll or
+    whatever. Since it is a file name, case is NOT significant. No path
+    information should be included. Just the name of the DLL.<o:p>
+    </o:p>
+    </span></p>
+    <p class="MsoFootnoteText" style="margin-right:6.75pt;text-indent:0cm;mso-list:
+skip;tab-stops:432.0pt"><span style="mso-ansi-language:EN-US">The following
+    lines should contain three columns, separated by tabs or spaces. <o:p>
+    </o:p>
+    </span></p>
+    <p class="MsoFootnoteText" style="margin-right:6.75pt;text-indent:0cm;mso-list:
+skip;tab-stops:432.0pt"><span style="mso-ansi-language:EN-US">The first one is
+    the name of the symbol as published by the compiler, i.e., if your symbol is
+    MyFunction, the column should contain _MyFunction. In the case of a _stdcall
+    function it would be <span class="MsoHyperlink">_MyFunction@12</span>&nbsp;.<o:p>
+    </o:p>
+    </span></p>
+    <p class="MsoFootnoteText" style="margin-right:6.75pt;text-indent:0cm;mso-list:
+skip;tab-stops:432.0pt"><span style="mso-ansi-language:EN-US">The second one
+    should contain the name of the symbol as exported from the DLL. Normally
+    this should be the same as the column 1, but sometimes you want to export
+    the functions without the leading underscore, for instance for using them
+    with another language processor like Visual Basic.<o:p>
+    </o:p>
+    </span></p>
+    <p class="MsoFootnoteText" style="margin-right:6.75pt;text-indent:0cm;mso-list:
+skip;tab-stops:432.0pt"><span style="mso-ansi-language:EN-US">The third column
+    is optional. If present it should contain the column DATA, meaning that this
+    is an exported DATA symbol.<o:p>
+    </o:p>
+    </span></p>
+    <p class="MsoFootnoteText" style="margin-right:6.75pt;text-indent:0cm;mso-list:
+skip;tab-stops:432.0pt"><span style="mso-ansi-language:EN-US">The .exp file is
+    generated automatically by lcclnk.<o:p>
+    </o:p>
+    </span></p>
+    <p class="MsoFootnoteText" style="margin-left:1.0cm;mso-list:skip"><span style="mso-ansi-language:EN-US">&nbsp;<o:p>
+    </o:p>
+    </span></p>
+  </div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="AppAllBulletDemos" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug Win32">
+				<Option output="..\..\..\..\AppAllBulletDemos_Debug" prefix_auto="1" extension_auto="1" />
+				<Option object_output="AppAllBulletDemos.dir\Debug" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D_IRR_STATIC_LIB_" />
+					<Add option="-D_CRT_SECURE_NO_WARNINGS" />
+					<Add option="-D_CRT_SECURE_NO_DEPRECATE" />
+					<Add option="-D_SCL_SECURE_NO_WARNINGS" />
+					<Add option='-DCMAKE_INTDIR=\&quot;Debug\&quot;' />
+					<Add option="-W" />
+					<Add option="-O0" />
+					<Add option="-frtti" />
+					<Add directory="..\..\..\..\Glut" />
+					<Add directory="..\..\..\..\Extras" />
+					<Add directory="..\..\..\..\Extras\GIMPACTUtils" />
+					<Add directory="..\..\..\..\Extras\ConvexDecomposition" />
+					<Add directory="..\..\..\..\Extras\LibXML" />
+					<Add directory="..\..\..\..\Extras\LibXML\include" />
+					<Add directory="..\..\..\..\src" />
+					<Add directory="..\..\..\..\Demos\OpenGL" />
+					<Add directory="..\..\..\..\Extras\Serialize\BulletFileLoader" />
+					<Add directory="..\..\..\..\Extras\Serialize\BulletWorldImporter" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="..\..\..\..\Glut" />
+					<Add directory="..\..\..\..\Extras" />
+					<Add directory="..\..\..\..\Extras\GIMPACTUtils" />
+					<Add directory="..\..\..\..\Extras\ConvexDecomposition" />
+					<Add directory="..\..\..\..\Extras\LibXML" />
+					<Add directory="..\..\..\..\Extras\LibXML\include" />
+					<Add directory="..\..\..\..\src" />
+					<Add directory="..\..\..\..\Demos\OpenGL" />
+					<Add directory="..\..\..\..\Extras\Serialize\BulletFileLoader" />
+					<Add directory="..\..\..\..\Extras\Serialize\BulletWorldImporter" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="$(NOINHERIT)" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="winspool" />
+					<Add library="shell32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="comdlg32" />
+					<Add library="advapi32" />
+					<Add library="..\..\Extras\glui\Debug\GLUI" />
+					<Add library="..\..\Extras\GIMPACTUtils\Debug\GIMPACTUtils" />
+					<Add library="..\..\Extras\ConvexDecomposition\Debug\ConvexDecomposition" />
+					<Add library="..\OpenGL\Debug\OpenGLSupport" />
+					<Add library="..\..\Extras\Serialize\BulletWorldImporter\Debug\BulletWorldImporter" />
+					<Add library="..\..\src\BulletSoftBody\Debug\BulletSoftBody" />
+					<Add library="..\..\src\BulletDynamics\Debug\BulletDynamics" />
+					<Add library="..\..\src\BulletCollision\Debug\BulletCollision" />
+					<Add library="..\..\Extras\Serialize\BulletFileLoader\Debug\BulletFileLoader" />
+					<Add library="..\..\src\LinearMath\Debug\LinearMath" />
+					<Add library="..\..\..\..\Glut\glut32" />
+					<Add library="opengl32" />
+					<Add library="glu32" />
+					<Add directory="C:\MinGW\lib\Debug" />
+					<Add directory="C:\MinGW\lib" />
+				</Linker>
+			</Target>
+			<Target title="Release Win32">
+				<Option output="..\..\..\..\AppAllBulletDemos" prefix_auto="1" extension_auto="1" />
+				<Option object_output="AppAllBulletDemos.dir\Release" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_IRR_STATIC_LIB_" />
+					<Add option="-D_CRT_SECURE_NO_WARNINGS" />
+					<Add option="-D_CRT_SECURE_NO_DEPRECATE" />
+					<Add option="-D_SCL_SECURE_NO_WARNINGS" />
+					<Add option='-DCMAKE_INTDIR=\&quot;Release\&quot;' />
+					<Add option="-W" />
+					<Add option="-O2" />
+					<Add option="-frtti" />
+					<Add directory="..\..\..\..\Glut" />
+					<Add directory="..\..\..\..\Extras" />
+					<Add directory="..\..\..\..\Extras\GIMPACTUtils" />
+					<Add directory="..\..\..\..\Extras\ConvexDecomposition" />
+					<Add directory="..\..\..\..\Extras\LibXML" />
+					<Add directory="..\..\..\..\Extras\LibXML\include" />
+					<Add directory="..\..\..\..\src" />
+					<Add directory="..\..\..\..\Demos\OpenGL" />
+					<Add directory="..\..\..\..\Extras\Serialize\BulletFileLoader" />
+					<Add directory="..\..\..\..\Extras\Serialize\BulletWorldImporter" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="..\..\..\..\Glut" />
+					<Add directory="..\..\..\..\Extras" />
+					<Add directory="..\..\..\..\Extras\GIMPACTUtils" />
+					<Add directory="..\..\..\..\Extras\ConvexDecomposition" />
+					<Add directory="..\..\..\..\Extras\LibXML" />
+					<Add directory="..\..\..\..\Extras\LibXML\include" />
+					<Add directory="..\..\..\..\src" />
+					<Add directory="..\..\..\..\Demos\OpenGL" />
+					<Add directory="..\..\..\..\Extras\Serialize\BulletFileLoader" />
+					<Add directory="..\..\..\..\Extras\Serialize\BulletWorldImporter" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="$(NOINHERIT)" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="winspool" />
+					<Add library="shell32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="comdlg32" />
+					<Add library="advapi32" />
+					<Add library="..\..\Extras\glui\Release\GLUI" />
+					<Add library="..\..\Extras\GIMPACTUtils\Release\GIMPACTUtils" />
+					<Add library="..\..\Extras\ConvexDecomposition\Release\ConvexDecomposition" />
+					<Add library="..\OpenGL\Release\OpenGLSupport" />
+					<Add library="..\..\Extras\Serialize\BulletWorldImporter\Release\BulletWorldImporter" />
+					<Add library="..\..\src\BulletSoftBody\Release\BulletSoftBody" />
+					<Add library="..\..\src\BulletDynamics\Release\BulletDynamics" />
+					<Add library="..\..\src\BulletCollision\Release\BulletCollision" />
+					<Add library="..\..\Extras\Serialize\BulletFileLoader\Release\BulletFileLoader" />
+					<Add library="..\..\src\LinearMath\Release\LinearMath" />
+					<Add library="..\..\..\..\Glut\glut32" />
+					<Add library="opengl32" />
+					<Add library="glu32" />
+					<Add directory="C:\MinGW\lib\Release" />
+					<Add directory="C:\MinGW\lib" />
+				</Linker>
+			</Target>
+			<Target title="MinSizeRel Win32">
+				<Option output="..\..\..\..\AppAllBulletDemos_MinsizeRel" prefix_auto="1" extension_auto="1" />
+				<Option object_output="AppAllBulletDemos.dir\MinSizeRel" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_IRR_STATIC_LIB_" />
+					<Add option="-D_CRT_SECURE_NO_WARNINGS" />
+					<Add option="-D_CRT_SECURE_NO_DEPRECATE" />
+					<Add option="-D_SCL_SECURE_NO_WARNINGS" />
+					<Add option='-DCMAKE_INTDIR=\&quot;MinSizeRel\&quot;' />
+					<Add option="-W" />
+					<Add option="-O1" />
+					<Add option="-frtti" />
+					<Add directory="..\..\..\..\Glut" />
+					<Add directory="..\..\..\..\Extras" />
+					<Add directory="..\..\..\..\Extras\GIMPACTUtils" />
+					<Add directory="..\..\..\..\Extras\ConvexDecomposition" />
+					<Add directory="..\..\..\..\Extras\LibXML" />
+					<Add directory="..\..\..\..\Extras\LibXML\include" />
+					<Add directory="..\..\..\..\src" />
+					<Add directory="..\..\..\..\Demos\OpenGL" />
+					<Add directory="..\..\..\..\Extras\Serialize\BulletFileLoader" />
+					<Add directory="..\..\..\..\Extras\Serialize\BulletWorldImporter" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="..\..\..\..\Glut" />
+					<Add directory="..\..\..\..\Extras" />
+					<Add directory="..\..\..\..\Extras\GIMPACTUtils" />
+					<Add directory="..\..\..\..\Extras\ConvexDecomposition" />
+					<Add directory="..\..\..\..\Extras\LibXML" />
+					<Add directory="..\..\..\..\Extras\LibXML\include" />
+					<Add directory="..\..\..\..\src" />
+					<Add directory="..\..\..\..\Demos\OpenGL" />
+					<Add directory="..\..\..\..\Extras\Serialize\BulletFileLoader" />
+					<Add directory="..\..\..\..\Extras\Serialize\BulletWorldImporter" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="$(NOINHERIT)" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="winspool" />
+					<Add library="shell32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="comdlg32" />
+					<Add library="advapi32" />
+					<Add library="..\..\Extras\glui\MinSizeRel\GLUI" />
+					<Add library="..\..\Extras\GIMPACTUtils\MinSizeRel\GIMPACTUtils" />
+					<Add library="..\..\Extras\ConvexDecomposition\MinSizeRel\ConvexDecomposition" />
+					<Add library="..\OpenGL\MinSizeRel\OpenGLSupport" />
+					<Add library="..\..\Extras\Serialize\BulletWorldImporter\MinSizeRel\BulletWorldImporter" />
+					<Add library="..\..\src\BulletSoftBody\MinSizeRel\BulletSoftBody" />
+					<Add library="..\..\src\BulletDynamics\MinSizeRel\BulletDynamics" />
+					<Add library="..\..\src\BulletCollision\MinSizeRel\BulletCollision" />
+					<Add library="..\..\Extras\Serialize\BulletFileLoader\MinSizeRel\BulletFileLoader" />
+					<Add library="..\..\src\LinearMath\MinSizeRel\LinearMath" />
+					<Add library="..\..\..\..\Glut\glut32" />
+					<Add library="opengl32" />
+					<Add library="glu32" />
+					<Add directory="C:\MinGW\lib\MinSizeRel" />
+					<Add directory="C:\MinGW\lib" />
+				</Linker>
+			</Target>
+			<Target title="RelWithDebInfo Win32">
+				<Option output="..\..\..\..\AppAllBulletDemos_RelWithDebugInfo" prefix_auto="1" extension_auto="1" />
+				<Option object_output="AppAllBulletDemos.dir\RelWithDebInfo" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_IRR_STATIC_LIB_" />
+					<Add option="-D_CRT_SECURE_NO_WARNINGS" />
+					<Add option="-D_CRT_SECURE_NO_DEPRECATE" />
+					<Add option="-D_SCL_SECURE_NO_WARNINGS" />
+					<Add option='-DCMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;' />
+					<Add option="-W" />
+					<Add option="-O2" />
+					<Add option="-frtti" />
+					<Add directory="..\..\..\..\Glut" />
+					<Add directory="..\..\..\..\Extras" />
+					<Add directory="..\..\..\..\Extras\GIMPACTUtils" />
+					<Add directory="..\..\..\..\Extras\ConvexDecomposition" />
+					<Add directory="..\..\..\..\Extras\LibXML" />
+					<Add directory="..\..\..\..\Extras\LibXML\include" />
+					<Add directory="..\..\..\..\src" />
+					<Add directory="..\..\..\..\Demos\OpenGL" />
+					<Add directory="..\..\..\..\Extras\Serialize\BulletFileLoader" />
+					<Add directory="..\..\..\..\Extras\Serialize\BulletWorldImporter" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="..\..\..\..\Glut" />
+					<Add directory="..\..\..\..\Extras" />
+					<Add directory="..\..\..\..\Extras\GIMPACTUtils" />
+					<Add directory="..\..\..\..\Extras\ConvexDecomposition" />
+					<Add directory="..\..\..\..\Extras\LibXML" />
+					<Add directory="..\..\..\..\Extras\LibXML\include" />
+					<Add directory="..\..\..\..\src" />
+					<Add directory="..\..\..\..\Demos\OpenGL" />
+					<Add directory="..\..\..\..\Extras\Serialize\BulletFileLoader" />
+					<Add directory="..\..\..\..\Extras\Serialize\BulletWorldImporter" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="$(NOINHERIT)" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="winspool" />
+					<Add library="shell32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="comdlg32" />
+					<Add library="advapi32" />
+					<Add library="..\..\Extras\glui\RelWithDebInfo\GLUI" />
+					<Add library="..\..\Extras\GIMPACTUtils\RelWithDebInfo\GIMPACTUtils" />
+					<Add library="..\..\Extras\ConvexDecomposition\RelWithDebInfo\ConvexDecomposition" />
+					<Add library="..\OpenGL\RelWithDebInfo\OpenGLSupport" />
+					<Add library="..\..\Extras\Serialize\BulletWorldImporter\RelWithDebInfo\BulletWorldImporter" />
+					<Add library="..\..\src\BulletSoftBody\RelWithDebInfo\BulletSoftBody" />
+					<Add library="..\..\src\BulletDynamics\RelWithDebInfo\BulletDynamics" />
+					<Add library="..\..\src\BulletCollision\RelWithDebInfo\BulletCollision" />
+					<Add library="..\..\Extras\Serialize\BulletFileLoader\RelWithDebInfo\BulletFileLoader" />
+					<Add library="..\..\src\LinearMath\RelWithDebInfo\LinearMath" />
+					<Add library="..\..\..\..\Glut\glut32" />
+					<Add library="opengl32" />
+					<Add library="glu32" />
+					<Add directory="C:\MinGW\lib\RelWithDebInfo" />
+					<Add directory="C:\MinGW\lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="..\..\..\..\Demos\AllBulletDemos\Main.cpp" />
+		<Unit filename="..\..\..\..\Demos\AllBulletDemos\DemoEntries.cpp" />
+		<Unit filename="..\..\..\..\Demos\CcdPhysicsDemo\CcdPhysicsDemo.cpp" />
+		<Unit filename="..\..\..\..\Demos\BasicDemo\BasicDemo.cpp" />
+		<Unit filename="..\..\..\..\Demos\BspDemo\BspDemo.cpp" />
+		<Unit filename="..\..\..\..\Demos\BspDemo\BspConverter.cpp" />
+		<Unit filename="..\..\..\..\Demos\BspDemo\BspLoader.cpp" />
+		<Unit filename="..\..\..\..\Demos\DynamicControlDemo\MotorDemo.cpp" />
+		<Unit filename="..\..\..\..\Demos\ConcaveDemo\ConcavePhysicsDemo.cpp" />
+		<Unit filename="..\..\..\..\Demos\ConcaveRaycastDemo\ConcaveRaycastDemo.cpp" />
+		<Unit filename="..\..\..\..\Demos\ConcaveConvexcastDemo\ConcaveConvexcastDemo.cpp" />
+		<Unit filename="..\..\..\..\Demos\ConvexDecompositionDemo\ConvexDecompositionDemo.cpp" />
+		<Unit filename="..\..\..\..\Demos\SliderConstraintDemo\SliderConstraintDemo.cpp" />
+		<Unit filename="..\..\..\..\Demos\RagdollDemo\RagdollDemo.cpp" />
+		<Unit filename="..\..\..\..\Demos\GimpactTestDemo\GimpactTestDemo.cpp" />
+		<Unit filename="..\..\..\..\Demos\Raytracer\Raytracer.cpp" />
+		<Unit filename="..\..\..\..\Demos\GjkConvexCastDemo\LinearConvexCastDemo.cpp" />
+		<Unit filename="..\..\..\..\Demos\ForkLiftDemo\ForkLiftDemo.cpp" />
+		<Unit filename="..\..\..\..\Demos\SoftDemo\SoftDemo.cpp" />
+		<Unit filename="..\..\..\..\Demos\ConstraintDemo\ConstraintDemo.cpp" />
+		<Unit filename="..\..\..\bullet.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

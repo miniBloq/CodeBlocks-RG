@@ -1,0 +1,262 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Options%20Summary">Options Summary</a>,
+Previous:<a rel="previous" accesskey="p" href="Testing.html#Testing">Testing</a>,
+Up:<a rel="up" accesskey="u" href="Running.html#Running">Running</a>
+<hr><br>
+</div>
+
+<h3 class="section">Summary of Options</h3>
+
+   <p>Here is a table of all the options <code>make</code> understands:
+
+     <dl>
+<dt><code>-b</code>
+     <dd><dt><code>-m</code>
+     <dd>These options are ignored for compatibility with other versions of <code>make</code>.
+
+     <br><dt><code>-B</code>
+     <dd><dt><code>--always-make</code>
+     <dd>Consider all targets out-of-date.  GNU <code>make</code> proceeds to
+consider targets and their prerequisites using the normal algorithms;
+however, all these targets are remade, regardless of the status of
+their prerequisites.
+
+     <br><dt><code>-C </code><var>dir</var><code></code>
+     <dd><dt><code>--directory=</code><var>dir</var><code></code>
+     <dd>Change to directory <var>dir</var> before reading the makefiles.  If multiple
+<code>-C</code> options are specified, each is interpreted relative to the
+previous one: <code>-C / -C etc</code> is equivalent to <code>-C /etc</code>. 
+This is typically used with recursive invocations of <code>make</code>
+(see <a href="Recursion.html#Recursion">Recursive Use of <code>make</code></a>).
+
+     <br><dt><code>-d</code>
+     <dd>
+
+     <p>Print debugging information in addition to normal processing.  The
+debugging information says which files are being considered for
+remaking, which file-times are being compared and with what results,
+which files actually need to be remade, which implicit rules are
+considered and which are applied--everything interesting about how
+<code>make</code> decides what to do.  The <code>-d</code> option is equivalent to
+<code>--debug=a</code> (see below).
+
+     <br><dt><code>--debug[=</code><var>options</var><code>]</code>
+     <dd>
+
+     <p>Print debugging information in addition to normal processing.  Various
+levels and types of output can be chosen.  With no arguments, print the
+"basic" level of debugging.  Possible arguments are below; only the
+first character is considered, and values must be comma- or
+space-separated.
+
+          <dl>
+<dt><code>a (</code><i>all</i><code>)</code>
+          <dd>All types of debugging output are enabled.  This is equivalent to using
+<code>-d</code>.
+
+          <br><dt><code>b (</code><i>basic</i><code>)</code>
+          <dd>Basic debugging prints each target that was found to be out-of-date, and
+whether the build was successful or not.
+
+          <br><dt><code>v (</code><i>verbose</i><code>)</code>
+          <dd>A level above <code>basic</code>; includes messages about which makefiles were
+parsed, prerequisites that did not need to be rebuilt, etc.  This option
+also enables <code>basic</code> messages.
+
+          <br><dt><code>i (</code><i>implicit</i><code>)</code>
+          <dd>Prints messages describing the implicit rule searches for each target. 
+This option also enables <code>basic</code> messages.
+
+          <br><dt><code>j (</code><i>jobs</i><code>)</code>
+          <dd>Prints messages giving details on the invocation of specific subcommands.
+
+          <br><dt><code>m (</code><i>makefile</i><code>)</code>
+          <dd>By default, the above messages are not enabled while trying to remake
+the makefiles.  This option enables messages while rebuilding makefiles,
+too.  Note that the <code>all</code> option does enable this option.  This
+option also enables <code>basic</code> messages. 
+</dl>
+
+     <br><dt><code>-e</code>
+     <dd><dt><code>--environment-overrides</code>
+     <dd>Give variables taken from the environment precedence
+over variables from makefiles. 
+See <a href="Environment.html#Environment">Variables from the Environment</a>.
+
+     <br><dt><code>-f </code><var>file</var><code></code>
+     <dd><dt><code>--file=</code><var>file</var><code></code>
+     <dd><dt><code>--makefile=</code><var>file</var><code></code>
+     <dd>Read the file named <var>file</var> as a makefile. 
+See <a href="Makefiles.html#Makefiles">Writing Makefiles</a>.
+
+     <br><dt><code>-h</code>
+     <dd><dt><code>--help</code>
+     <dd>
+
+     <p>Remind you of the options that <code>make</code> understands and then exit.
+
+     <br><dt><code>-i</code>
+     <dd><dt><code>--ignore-errors</code>
+     <dd>Ignore all errors in commands executed to remake files. 
+See <a href="Errors.html#Errors">Errors in Commands</a>.
+
+     <br><dt><code>-I </code><var>dir</var><code></code>
+     <dd><dt><code>--include-dir=</code><var>dir</var><code></code>
+     <dd>Specifies a directory <var>dir</var> to search for included makefiles. 
+See <a href="Include.html#Include">Including Other Makefiles</a>.  If several <code>-I</code>
+options are used to specify several directories, the directories are
+searched in the order specified.
+
+     <br><dt><code>-j [</code><var>jobs</var><code>]</code>
+     <dd><dt><code>--jobs[=</code><var>jobs</var><code>]</code>
+     <dd>Specifies the number of jobs (commands) to run simultaneously.  With no
+argument, <code>make</code> runs as many jobs simultaneously as possible.  If
+there is more than one <code>-j</code> option, the last one is effective. 
+See <a href="Parallel.html#Parallel">Parallel Execution</a>,
+for more information on how commands are run. 
+Note that this option is ignored on MS-DOS.
+
+     <br><dt><code>-k</code>
+     <dd><dt><code>--keep-going</code>
+     <dd>Continue as much as possible after an error.  While the target that
+failed, and those that depend on it, cannot be remade, the other
+prerequisites of these targets can be processed all the same. 
+See <a href="Testing.html#Testing">Testing the Compilation of a Program</a>.
+
+     <br><dt><code>-l [</code><var>load</var><code>]</code>
+     <dd><dt><code>--load-average[=</code><var>load</var><code>]</code>
+     <dd><dt><code>--max-load[=</code><var>load</var><code>]</code>
+     <dd>Specifies that no new jobs (commands) should be started if there are
+other jobs running and the load average is at least <var>load</var> (a
+floating-point number).  With no argument, removes a previous load
+limit.  See <a href="Parallel.html#Parallel">Parallel Execution</a>.
+
+     <br><dt><code>-n</code>
+     <dd><dt><code>--just-print</code>
+     <dd><dt><code>--dry-run</code>
+     <dd><dt><code>--recon</code>
+     <dd>
+
+     <p>Print the commands that would be executed, but do not execute them. 
+See <a href="Instead-of-Execution.html#Instead%20of%20Execution">Instead of Executing the Commands</a>.
+
+     <br><dt><code>-o </code><var>file</var><code></code>
+     <dd><dt><code>--old-file=</code><var>file</var><code></code>
+     <dd><dt><code>--assume-old=</code><var>file</var><code></code>
+     <dd>Do not remake the file <var>file</var> even if it is older than its
+prerequisites, and do not remake anything on account of changes in
+<var>file</var>.  Essentially the file is treated as very old and its rules
+are ignored.  See <a href="Avoiding-Compilation.html#Avoiding%20Compilation">Avoiding Recompilation of Some Files</a>.
+
+     <br><dt><code>-p</code>
+     <dd><dt><code>--print-data-base</code>
+     <dd>Print the data base (rules and variable values) that results from
+reading the makefiles; then execute as usual or as otherwise specified. 
+This also prints the version information given by the <code>-v</code> switch
+(see below).  To print the data base without trying to remake any files,
+use <code>make&nbsp;-qp</code>.  To print the data base of predefined rules and
+variables, use <code>make&nbsp;-p&nbsp;-f&nbsp;/dev/null</code>.  The data base output
+contains filename and linenumber information for command and variable
+definitions, so it can be a useful debugging tool in complex environments.
+
+     <br><dt><code>-q</code>
+     <dd><dt><code>--question</code>
+     <dd>"Question mode".  Do not run any commands, or print anything; just
+return an exit status that is zero if the specified targets are already
+up to date, one if any remaking is required, or two if an error is
+encountered.  See <a href="Instead-of-Execution.html#Instead%20of%20Execution">Instead of Executing the Commands</a>.
+
+     <br><dt><code>-r</code>
+     <dd><dt><code>--no-builtin-rules</code>
+     <dd>Eliminate use of the built-in implicit rules (see <a href="Implicit-Rules.html#Implicit%20Rules">Using Implicit Rules</a>).  You can still define your own by writing
+pattern rules (see <a href="Pattern-Rules.html#Pattern%20Rules">Defining and Redefining Pattern Rules</a>).  The <code>-r</code> option also clears out the default list of
+suffixes for suffix rules (see <a href="Suffix-Rules.html#Suffix%20Rules">Old-Fashioned Suffix Rules</a>).  But you can still define your own suffixes with a rule for
+<code>.SUFFIXES</code>, and then define your own suffix rules.  Note that only
+<em>rules</em> are affected by the <code>-r</code> option; default variables
+remain in effect (see <a href="Implicit-Variables.html#Implicit%20Variables">Variables Used by Implicit Rules</a>); see the <code>-R</code> option below.
+
+     <br><dt><code>-R</code>
+     <dd><dt><code>--no-builtin-variables</code>
+     <dd>Eliminate use of the built-in rule-specific variables (see <a href="Implicit-Variables.html#Implicit%20Variables">Variables Used by Implicit Rules</a>).  You can still define
+your own, of course.  The <code>-R</code> option also automatically enables
+the <code>-r</code> option (see above), since it doesn't make sense to have
+implicit rules without any definitions for the variables that they use.
+
+     <br><dt><code>-s</code>
+     <dd><dt><code>--silent</code>
+     <dd><dt><code>--quiet</code>
+     <dd>
+
+     <p>Silent operation; do not print the commands as they are executed. 
+See <a href="Echoing.html#Echoing">Command Echoing</a>.
+
+     <br><dt><code>-S</code>
+     <dd><dt><code>--no-keep-going</code>
+     <dd><dt><code>--stop</code>
+     <dd>
+
+     <p>Cancel the effect of the <code>-k</code> option.  This is never necessary
+except in a recursive <code>make</code> where <code>-k</code> might be inherited
+from the top-level <code>make</code> via <code>MAKEFLAGS</code>
+(see <a href="Recursion.html#Recursion">Recursive Use of <code>make</code></a>)
+or if you set <code>-k</code> in <code>MAKEFLAGS</code> in your environment.
+
+     <br><dt><code>-t</code>
+     <dd><dt><code>--touch</code>
+     <dd>
+
+     <p>Touch files (mark them up to date without really changing them)
+instead of running their commands.  This is used to pretend that the
+commands were done, in order to fool future invocations of
+<code>make</code>.  See <a href="Instead-of-Execution.html#Instead%20of%20Execution">Instead of Executing the Commands</a>.
+
+     <br><dt><code>-v</code>
+     <dd><dt><code>--version</code>
+     <dd>Print the version of the <code>make</code> program plus a copyright, a list
+of authors, and a notice that there is no warranty; then exit.
+
+     <br><dt><code>-w</code>
+     <dd><dt><code>--print-directory</code>
+     <dd>Print a message containing the working directory both before and after
+executing the makefile.  This may be useful for tracking down errors
+from complicated nests of recursive <code>make</code> commands. 
+See <a href="Recursion.html#Recursion">Recursive Use of <code>make</code></a>.  (In practice, you
+rarely need to specify this option since <code>make</code> does it for you;
+see <a href="-w-Option.html#-w%20Option">The <code>--print-directory</code> Option</a>.)
+
+     <dt><code>--no-print-directory</code>
+     <dd>Disable printing of the working directory under <code>-w</code>. 
+This option is useful when <code>-w</code> is turned on automatically,
+but you do not want to see the extra messages. 
+See <a href="-w-Option.html#-w%20Option">The <code>--print-directory</code> Option</a>.
+
+     <br><dt><code>-W </code><var>file</var><code></code>
+     <dd><dt><code>--what-if=</code><var>file</var><code></code>
+     <dd><dt><code>--new-file=</code><var>file</var><code></code>
+     <dd><dt><code>--assume-new=</code><var>file</var><code></code>
+     <dd>Pretend that the target <var>file</var> has just been modified.  When used
+with the <code>-n</code> flag, this shows you what would happen if you were
+to modify that file.  Without <code>-n</code>, it is almost the same as
+running a <code>touch</code> command on the given file before running
+<code>make</code>, except that the modification time is changed only in the
+imagination of <code>make</code>. 
+See <a href="Instead-of-Execution.html#Instead%20of%20Execution">Instead of Executing the Commands</a>.
+
+     <br><dt><code>--warn-undefined-variables</code>
+     <dd>Issue a warning message whenever <code>make</code> sees a reference to an
+undefined variable.  This can be helpful when you are trying to debug
+makefiles which use variables in complex ways. 
+</dl>
+
+   </body></html>
+

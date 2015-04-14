@@ -1,0 +1,321 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Page Setup Dialog Box</title>
+</head>
+
+<body>
+
+<div class="clsDocBody">
+  <h2>Page Setup Dialog Box</h2>
+  <hr SIZE="1">
+  <p>The <b>Page Setup</b> dialog box lets the user set the following attributes
+  of the printed page:</p>
+  <ul>
+    <li>The paper type (envelope, legal, letter, and so on)
+    <li>The paper source (manual feed, tractor feed, sheet feeder, and so on)
+    <li>The page orientation (portrait or landscape)
+    <li>The width of the page margins</li>
+  </ul>
+  <p>The attributes presented in the dialog box vary, depending on the
+  capabilities of the printer.</p>
+  <p>You create and display a <b>Page Setup</b> dialog box by initializing a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PAGESETUPDLG_str_cpp">
+  PAGESETUPDLG</MSHelp:link>
+  structure and passing the structure to the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PageSetupDlg_cpp">
+  PageSetupDlg</MSHelp:link>
+  function.</p>
+  <p>The following illustration shows a typical <b>Page Setup</b> dialog box.</p>
+  <p><img border="0" src="page_s7.gif" width="366" height="415"></p>
+  <p>If the user clicks the <b>OK</b> button, <b>PageSetupDlg</b> returns TRUE
+  after setting various members in the <b>PAGESETUPDLG</b> structure to specify
+  the user's selections. The <b>ptPaperSize</b> and <b>rtMargin</b> members
+  contain the values specified by the user. The <b>hDevMode</b> and <b>hDevNames</b>
+  members contain global memory handles for the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DEVMODE_str">
+  DEVMODE</MSHelp:link>
+  and <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DEVNAMES_str_cpp">
+  DEVNAMES</MSHelp:link>
+  structures. These structures contain additional page information as well as
+  information about the printer. You can use this information to prepare the
+  output to be sent to the selected printer.</p>
+  <p>If the user cancels the <b>Page Setup</b> dialog box or an error occurs, <b>PageSetupDlg</b>
+  returns FALSE. To determine the cause of the error, call the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CommDlgExtendedError_cpp">
+  CommDlgExtendedError</MSHelp:link>
+  function to retrieve the extended error value.</p>
+  <p>This section discusses the following topics.</p>
+  <ul>
+    <li><a href="#_win32_Initializing_the_Page_Setup_Dialog_Box" target="_self">Initializing
+      the Page Setup Dialog Box</a>
+    <li><a href="#_win32_Customizing_the_Page_Setup_Dialog_Box" target="_self">Customizing
+      the Page Setup Dialog Box</a>
+    <li><a href="#_win32_Customizing_the_Sample_Page" target="_self">Customizing
+      the Sample Page</a></li>
+    <li><a href="#example">Example</a></li>
+  </ul>
+  <h2><a name="_win32_Initializing_the_Page_Setup_Dialog_Box"></a>Initializing
+  the Page Setup Dialog Box</h2>
+  <p>By default, the <b>Page Setup</b> dialog box displays information about the
+  current default printer. To direct the dialog box to display information about
+  a specific printer, set the members of a <b>DEVMODE</b> or <b>DEVNAMES</b>
+  structure and assign the global memory handles of these structures to the
+  corresponding member in <b>PAGESETUPDLG</b>. If you specify the name of a
+  printer that is not currently installed, the dialog box displays an error
+  message. To prevent the dialog box from displaying error messages, use the
+  PSD_NOWARNING value. To retrieve information about the default printer without
+  displaying the <b>Page Setup</b> dialog box, use the PSD_RETURNDEFAULT value.</p>
+  <p>If the default measurement system is inches, the dialog box uses
+  thousandths of inches as the default unit of measurement. If the default
+  measurement system is metric, the dialog box uses hundredths of millimeters as
+  the default unit of measurement. To override the default unit of measurement,
+  set the PSD_INHUNDREDTHSOFMILLIMETERS or PSD_INTHOUSANDTHSOFINCHES flag in the
+  <b>Flags</b> member of the <b>PAGESETUPDLG</b> structure.</p>
+  <p>The initial values for the margins are one inch, by default. If you set the
+  PSD_MARGINS flag, the dialog box displays the initial margin values specified
+  in the <b>rtMargin</b> member. The default minimum values that the user can
+  specify for the margins are the minimum margins allowed by the printer. If you
+  set the PSD_MINMARGINS flag, the dialog box enforces the minimum margins
+  specified in the <b>rtMinMargin</b> member.</p>
+  <p>To prevent users from selecting certain options, set any combination of the
+  following flags to disable the corresponding controls.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>Flag</th>
+        <th>Meaning</th>
+      </tr>
+      <tr>
+        <td>PSD_DISABLEMARGINS</td>
+        <td>Disables the edit controls in which the user enters the margin
+          settings.</td>
+      </tr>
+      <tr>
+        <td>PSD_DISABLEORIENTATION</td>
+        <td>Disables the <b>Portrait</b> and <b>Landscape</b> radio buttons.</td>
+      </tr>
+      <tr>
+        <td>PSD_DISABLEPAPER</td>
+        <td>Disables the controls for selecting the paper size and paper source.</td>
+      </tr>
+      <tr>
+        <td>PSD_DISABLEPRINTER</td>
+        <td>Disables the <b>Printer</b> button.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h2><a name="_win32_Customizing_the_Page_Setup_Dialog_Box"></a>Customizing the
+  Page Setup Dialog Box</h2>
+  <p>You can provide a custom template for the <b>Page Setup</b> dialog box, for
+  example, if you want to include additional controls that are unique to your
+  application. The <b>PageSetupDlg</b> function uses your custom template in
+  place of the default template.</p>
+  <p><b>To provide a custom template for the Page Setup dialog box</b></p>
+  <ol>
+    <li>Create the custom template by modifying the default template specified
+      in the Prnsetup.dlg file. The control identifiers used in the default Page
+      Setup dialog template are defined in the Dlgs.h file.
+    <li>Use the <b>PAGESETUPDLG</b> structure to enable the template as follows:
+      <ul>
+        <ul>
+          <li>If your custom template is a resource in an application or
+            dynamic-link library, set the PSD_ENABLEPAGESETUPTEMPLATE flag in
+            the <b>Flags</b> member. Use the <b>hInstance</b> and <b>lpPageSetupTemplateName</b>
+            members of the structure to identify the module and resource name.
+            <p>&nbsp;
+            <p><b>-Or-</b></p>
+            <p>&nbsp;</p>
+          <li>If your custom template is already in memory, set the
+            PSD_ENABLEPAGESETUPTEMPLATEHANDLE flag. Use the <b>hPageSetupTemplate</b>
+            member to identify the memory object that contains the template.</li>
+        </ul>
+      </ul>
+    </li>
+  </ol>
+  <p>To filter messages sent to the dialog box procedure, you can provide a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PageSetupHook_cpp">
+  PageSetupHook</MSHelp:link>
+  hook procedure. If you use a custom template to define additional controls,
+  you must provide a <b>PageSetupHook</b> hook procedure to process input for
+  your controls. In addition, you can provide a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PagePaintHook_cpp">
+  PagePaintHook</MSHelp:link>
+  hook procedure to customize the contents of the sample page displayed by the <b>Page
+  Setup</b> dialog box. For more information about the <b>PagePaintHook</b> hook
+  procedure, see <a href="#_win32_Customizing_the_Sample_Page" target="_self">Customizing
+  the Sample Page</a>.</p>
+  <p><b>To enable a PageSetupHook hook procedure</b></p>
+  <ol>
+    <li>Set the PSD_ENABLEPAGESETUPHOOK flag in the <b>Flags</b> member of the <b>PAGESETUPDLG</b>
+      structure.
+    <li>Specify the address of the hook procedure in the <b>lpfnPageSetupHook</b>
+      member.</li>
+  </ol>
+  <p>After processing its <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_INITDIALOG_cpp">
+  WM_INITDIALOG</MSHelp:link>
+  message, the dialog box procedure sends a <b>WM_INITDIALOG</b> message to the <b>PageSetupHook</b>
+  hook procedure. The <i>lParam</i> parameter of this message is a pointer to
+  the <b>PAGESETUPDLG</b> structure used to initialize the dialog box.</p>
+  <h2><a name="_win32_Customizing_the_Sample_Page"></a>Customizing the Sample
+  Page</h2>
+  <p>The <b>Page Setup</b> dialog box includes an image of a sample page that
+  shows how the user's selections affect the appearance of the printed output.
+  The image consists of a rectangle that represents the selected paper or
+  envelope type, with a dotted-line rectangle representing the current margins,
+  and partial (Greek text) characters to show how text looks on the printed
+  page.</p>
+  <p>When you call the <b>PageSetupDlg</b> function, you can provide a <b>PagePaintHook</b>
+  hook procedure to customize the appearance of the sample page.</p>
+  <p><b>To enable a PagePaintHook hook procedure</b></p>
+  <ol>
+    <li>Set the PSD_ENABLEPAGEPAINTHOOK flag in the <b>Flags</b> member of the <b>PAGESETUPDLG</b>
+      structure.
+    <li>Specify the address of the hook procedure in the <b>lpfnPagePaintHook</b>
+      member.</li>
+  </ol>
+  <p>Whenever the dialog box is about to draw the contents of the sample page,
+  the hook procedure receives the following messages in the order in which they
+  are listed.</p>
+  <table class="clsStd">
+    <tbody>
+      <tr>
+        <th>Message</th>
+        <th>Meaning</th>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_PSD_PAGESETUPDLG_cpp">
+          WM_PSD_PAGESETUPDLG</MSHelp:link>
+        </td>
+        <td>The dialog box is about to draw the sample page. The hook procedure
+          can use this message to prepare to draw the contents of the sample
+          page.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_PSD_FULLPAGERECT_cpp">
+          WM_PSD_FULLPAGERECT</MSHelp:link>
+        </td>
+        <td>The dialog box is about to draw the sample page. This message
+          specifies the bounding rectangle of the sample page.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_PSD_MINMARGINRECT_cpp">
+          WM_PSD_MINMARGINRECT</MSHelp:link>
+        </td>
+        <td>The dialog box is about to draw the sample page. This message
+          specifies the margin rectangle.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_PSD_MARGINRECT_cpp">
+          WM_PSD_MARGINRECT</MSHelp:link>
+        </td>
+        <td>The dialog box is about to draw the margin rectangle.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_PSD_GREEKTEXTRECT_cpp">
+          WM_PSD_GREEKTEXTRECT</MSHelp:link>
+        </td>
+        <td>The dialog box is about to draw the Greek text inside the margin
+          rectangle.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_PSD_ENVSTAMPRECT_cpp">
+          WM_PSD_ENVSTAMPRECT</MSHelp:link>
+        </td>
+        <td>The dialog box is about to draw in the envelope-stamp rectangle of
+          an envelope sample page. This message is sent for envelopes only.</td>
+      </tr>
+      <tr>
+        <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_PSD_YAFULLPAGERECT_cpp">
+          WM_PSD_YAFULLPAGERECT</MSHelp:link>
+        </td>
+        <td>The dialog box is about to draw the return address portion of an
+          envelope sample page. This message is sent for envelopes and other
+          paper sizes.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>If the hook procedure returns TRUE for any of the first three messages of a
+  drawing sequence (<b>WM_PSD_PAGESETUPDLG</b>, <b>WM_PSD_FULLPAGERECT</b>, or <b>WM_PSD_MINMARGINRECT</b>)
+  the dialog box sends no more messages and does not draw in the sample page
+  until the next time the system needs to redraw the sample page. If the hook
+  procedure returns FALSE for all three messages, the dialog box sends the
+  remaining messages of the drawing sequence.</p>
+  <p>If the hook procedure returns TRUE for any of the remaining messages in a
+  drawing sequence, the dialog box does not draw the corresponding portion of
+  the sample page. If the hook procedure returns FALSE for any of these
+  messages, the dialog box draws that portion of the sample page.</p>
+  <p>To prevent the dialog box from drawing the contents of the sample page, you
+  can set the PSD_DISABLEPAGEPAINTING flag. This flag does not affect your <b>PagePaintHook</b>
+  hook procedure, which still receives all the <b>WM_PSD_*</b> messages and can
+  draw the sample page contents.</p>
+</div>
+<h3><a name="example"></a>Example</h3>
+<p>This example describes sample code that displays a <b>Page Setup</b> dialog
+box so a user can select the attributes of the printed page, such as the paper
+type, paper source, page orientation, and page margins. The sample code first
+initializes a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PAGESETUPDLG_str_cpp">
+PAGESETUPDLG</MSHelp:link>
+ structure, and then calls the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PageSetupDlg_cpp">
+PageSetupDlg</MSHelp:link>
+ function to display the dialog box.</p>
+<p>This example sets the PSD_MARGINS flag in the <b>Flags</b> member and uses
+the <b>rtMargin</b> member to specify the initial margin values. It sets the
+PSD_INTHOUSANDTHSOFINCHES flag to ensure that the dialog box expresses margin
+dimensions in thousandths of an inch.</p>
+<p>On input, the sample code sets the <b>hDevMode</b> and <b>hDevNames</b>
+members to NULL. If the function returns TRUE, the function uses these members
+to return handles to and <b>DEVNAMES</b> structures containing the user's input
+and information about the printer. You can use this information to prepare the
+output to be sent to the selected printer.</p>
+<p>The example also enables a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_PagePaintHook_cpp">
+PagePaintHook</MSHelp:link>
+ hook procedure to customize drawing of the contents of the sample page.</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">PAGESETUPDLG psd;    <font color="blue">//</font><font color="green"> common dialog box structure</font>
+HWND hwnd;           <font color="blue">//</font><font color="green"> owner window</font>
+
+<font color="blue">//</font><font color="green"> Initialize PAGESETUPDLG</font>
+ZeroMemory(&amp;psd, sizeof(psd));
+psd.lStructSize = sizeof(psd);
+psd.hwndOwner   = hwnd;
+psd.hDevMode    = NULL; <font color="blue">//</font><font color="green"> Don't forget to free or store hDevMode</font>
+psd.hDevNames   = NULL; <font color="blue">//</font><font color="green"> Don't forget to free or store hDevNames</font>
+psd.Flags       = PSD_INTHOUSANDTHSOFINCHES | PSD_MARGINS | 
+                  PSD_ENABLEPAGEPAINTHOOK; 
+psd.rtMargin.top = 1000;
+psd.rtMargin.left = 1250;
+psd.rtMargin.right = 1250;
+psd.rtMargin.bottom = 1000;
+psd.lpfnPagePaintHook = PaintHook;
+
+if (PageSetupDlg(&amp;psd)==TRUE) {
+    <font color="blue">//</font><font color="green"> check paper size and margin values here</font>
+}
+</pre>
+
+</body>
+
+</html>

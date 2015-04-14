@@ -1,0 +1,143 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>SDL: What Can It Do?</title>
+</head>
+
+<body bgcolor="#FFF8DC" text="#000000">
+<TABLE>
+<TR><!--#include file="../menu.tmpl" -->
+<TD>
+
+<p align="center">
+[<a href="whatisit.html">Prev</a>]
+<a href="toc.html"><font color="#8B0000">Table Of Contents</font> </a>
+[<a href="whatplatforms.html">Next</a>]
+</p>
+
+<h1><font color="#8B0000">What can it do?</font></h1>
+
+<table border="0" cellpadding="4">
+    <tr>
+        <td><strong>Video</strong><ul>
+            <li>Set a video mode at any depth (8-bpp or greater)
+                with optional conversion, if the video mode is
+                not supported by the hardware. </li>
+            <li>Write directly to a linear graphics framebuffer. </li>
+            <li>Create surfaces with colorkey or alpha blending
+                attributes. </li>
+            <li>Surface blits are automatically converted to the
+                target format using optimized blitters and are
+                hardware accelerated, when possible. MMX
+                optimized blits are available for the x86. </li>
+            <li>Hardware accelerated blit and fill operations are
+                used if supported by the hardware. </li>
+        </ul>
+        </td>
+        <td valign="top" width="200" bgcolor="#D3D3D3"><b>Tip:</b>
+        <br>
+        You can set your application's title-bar (if any) and
+        icon using the SDL_WM_SetCaption(<b>)</b> and
+        SDL_WM_SetIcon(<b>)</b> functions respectively. </td>
+    </tr>
+    <tr>
+        <td valign="top"><strong>Events</strong><ul>
+            <li>Events provided for: <ul>
+                    <li>Application visibility changes </li>
+                    <li>Keyboard input </li>
+                    <li>Mouse input </li>
+                    <li>User-requested quit </li>
+                </ul>
+            </li>
+            <li>Each event can be enabled or disabled with
+                SDL_EventState(). </li>
+            <li>Events are passed through a user-specified filter
+                function before being posted to the internal
+                event queue. </li>
+            <li>Thread-safe event queue. </li>
+        </ul>
+        </td>
+        <td valign="top" width="200" bgcolor="#D3D3D3"><b>Tip:</b>
+        <br>
+        Use SDL_PeepEvents() to search for an event of a
+        particular type in the event queue. </td>
+    </tr>
+    <tr>
+        <td valign="top"><strong>Audio</strong><ul>
+            <li>Set audio playback of 8-bit and 16-bit audio,
+                mono or stereo, with optional conversion if the
+                format is not supported by the hardware. </li>
+            <li>Audio runs independently in a separate thread,
+                filled via a user callback mechanism. </li>
+            <li>Designed for custom software audio mixers, but
+                the example archive contains a complete
+                audio/music output library. </li>
+        </ul>
+        </td>
+        <td valign="top" width="200" bgcolor="#D3D3D3"><b>Tip:</b>
+        <br>
+        Use the SDL_LockAudio<b>()</b> and SDL_UnlockAudio(<b>)</b>
+        functions to synchronize access data shared by the audio
+        callback and the rest of the program. </td>
+    </tr>
+    <tr>
+        <td valign="top"><strong>CD-ROM audio</strong><ul>
+            <li>Complete CD audio control API </li>
+        </ul>
+        </td>
+        <td valign="top" width="200" bgcolor="#D3D3D3"><b>Tip:</b>
+        <br>
+        If you pass a NULL CD-ROM handle to the CD-ROM API
+        functions, they will act on the last CD-ROM that was
+        opened. </td>
+    </tr>
+    <tr>
+        <td valign="top"><strong>Threads</strong><ul>
+            <li>Simple thread creation API </li>
+            <li>Simple binary semaphores for synchronization </li>
+        </ul>
+        </td>
+        <td valign="top" width="200" bgcolor="#D3D3D3"><b>Tip:</b>
+        <br>
+        Do not use C library functions like I/O and memory
+        management from threads if you can help it - they lock
+        resources used by other threads. </td>
+    </tr>
+    <tr>
+        <td valign="top"><strong>Timers</strong><ul>
+            <li>Get the number of milliseconds elapsed </li>
+            <li>Wait a specified number of milliseconds </li>
+            <li>Set a single periodic timer with 10ms resolution </li>
+        </ul>
+        </td>
+        <td valign="top" width="200" bgcolor="#D3D3D3"><b>Tip:</b>
+        <br>
+        You can easily replace the Win32 GetTickCount() with
+        SDL_GetTicks() </td>
+    </tr>
+    <tr>
+        <td><strong>Endian independence</strong><ul>
+            <li>Detect the endianness of the current system </li>
+            <li>Routines for fast swapping of data values </li>
+            <li>Read and write data of a specified endianness </li>
+        </ul>
+        </td>
+        <td valign="top" width="200" bgcolor="#D3D3D3"><b>Tip:</b>
+        <br>
+        When reading your data files, you may need to byteswap
+        16-bit graphics </td>
+    </tr>
+</table>
+
+<p align="center">
+[<a href="whatisit.html">Prev</a>]
+<a href="toc.html"><font color="#8B0000">Table Of Contents</font> </a>
+[<a href="whatplatforms.html">Next</a>]
+</p>
+
+</TABLE>
+</body>
+</html>

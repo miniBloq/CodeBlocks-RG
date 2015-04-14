@@ -1,0 +1,1710 @@
+
+obj\m328_16MHz\AnalogReadSerial.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000014  00800100  0000098e  00000a22  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000098e  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          000000a0  00800114  00800114  00000a36  2**0
+                  ALLOC
+  3 .debug_aranges 00000438  00000000  00000000  00000a36  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_pubnames 00000a01  00000000  00000000  00000e6e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00003f1e  00000000  00000000  0000186f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000e21  00000000  00000000  0000578d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000291f  00000000  00000000  000065ae  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000750  00000000  00000000  00008ed0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00001085  00000000  00000000  00009620  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00002765  00000000  00000000  0000a6a5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000003f0  00000000  00000000  0000ce0a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+{
+	// can't actually set the register here because the default setting
+	// will connect AVCC and the AREF pin, which would cause a short if
+	// there's something connected to AREF.
+	analog_reference = mode;
+}
+   0:	0c 94 35 00 	jmp	0x6a	; 0x6a <__ctors_end>
+
+HardwareSerial::HardwareSerial(ring_buffer *rx_buffer,
+  volatile uint8_t *ubrrh, volatile uint8_t *ubrrl,
+  volatile uint8_t *ucsra, volatile uint8_t *ucsrb,
+  volatile uint8_t *udr,
+  uint8_t rxen, uint8_t txen, uint8_t rxcie, uint8_t udre, uint8_t u2x)
+   4:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  for (int i = 0; i < s.length(); i++) {
+    write(s[i]);
+  }
+}
+
+void Print::print(const char str[])
+   8:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+	timer0_millis = m;
+	timer0_overflow_count++;
+}
+
+unsigned long millis()
+{
+   c:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  10:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  14:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  18:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  1c:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  20:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  24:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  28:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  2c:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  30:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  34:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  38:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  3c:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  40:	0c 94 ba 03 	jmp	0x774	; 0x774 <__vector_16>
+  44:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  48:	0c 94 95 00 	jmp	0x12a	; 0x12a <__vector_18>
+  4c:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  50:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  54:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  58:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  5c:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  60:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+  64:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+
+00000068 <__ctors_start>:
+  68:	40 02       	muls	r20, r16
+
+0000006a <__ctors_end>:
+  6a:	11 24       	eor	r1, r1
+  6c:	1f be       	out	0x3f, r1	; 63
+  6e:	cf ef       	ldi	r28, 0xFF	; 255
+  70:	d4 e0       	ldi	r29, 0x04	; 4
+  72:	de bf       	out	0x3e, r29	; 62
+  74:	cd bf       	out	0x3d, r28	; 61
+
+00000076 <__do_copy_data>:
+  76:	11 e0       	ldi	r17, 0x01	; 1
+  78:	a0 e0       	ldi	r26, 0x00	; 0
+  7a:	b1 e0       	ldi	r27, 0x01	; 1
+  7c:	ee e8       	ldi	r30, 0x8E	; 142
+  7e:	f9 e0       	ldi	r31, 0x09	; 9
+  80:	02 c0       	rjmp	.+4      	; 0x86 <.do_copy_data_start>
+
+00000082 <.do_copy_data_loop>:
+  82:	05 90       	lpm	r0, Z+
+  84:	0d 92       	st	X+, r0
+
+00000086 <.do_copy_data_start>:
+  86:	a4 31       	cpi	r26, 0x14	; 20
+  88:	b1 07       	cpc	r27, r17
+  8a:	d9 f7       	brne	.-10     	; 0x82 <.do_copy_data_loop>
+
+0000008c <__do_clear_bss>:
+  8c:	11 e0       	ldi	r17, 0x01	; 1
+  8e:	a4 e1       	ldi	r26, 0x14	; 20
+  90:	b1 e0       	ldi	r27, 0x01	; 1
+  92:	01 c0       	rjmp	.+2      	; 0x96 <.do_clear_bss_start>
+
+00000094 <.do_clear_bss_loop>:
+  94:	1d 92       	st	X+, r1
+
+00000096 <.do_clear_bss_start>:
+  96:	a4 3b       	cpi	r26, 0xB4	; 180
+  98:	b1 07       	cpc	r27, r17
+  9a:	e1 f7       	brne	.-8      	; 0x94 <.do_clear_bss_loop>
+
+0000009c <__do_global_ctors>:
+  9c:	10 e0       	ldi	r17, 0x00	; 0
+  9e:	ca e6       	ldi	r28, 0x6A	; 106
+  a0:	d0 e0       	ldi	r29, 0x00	; 0
+  a2:	04 c0       	rjmp	.+8      	; 0xac <.do_global_ctors_start>
+
+000000a4 <.do_global_ctors_loop>:
+  a4:	22 97       	sbiw	r28, 0x02	; 2
+  a6:	fe 01       	movw	r30, r28
+  a8:	0e 94 c1 04 	call	0x982	; 0x982 <__tablejump__>
+
+000000ac <.do_global_ctors_start>:
+  ac:	c8 36       	cpi	r28, 0x68	; 104
+  ae:	d1 07       	cpc	r29, r17
+  b0:	c9 f7       	brne	.-14     	; 0xa4 <.do_global_ctors_loop>
+  b2:	0e 94 7a 02 	call	0x4f4	; 0x4f4 <main>
+  b6:	0c 94 c5 04 	jmp	0x98a	; 0x98a <_exit>
+
+000000ba <__bad_interrupt>:
+  ba:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000be <loop>:
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int sensorValue = analogRead(0);
+  be:	80 e0       	ldi	r24, 0x00	; 0
+  c0:	0e 94 73 00 	call	0xe6	; 0xe6 <analogRead>
+  c4:	bc 01       	movw	r22, r24
+  Serial.println(sensorValue, DEC);
+  c6:	88 e9       	ldi	r24, 0x98	; 152
+  c8:	91 e0       	ldi	r25, 0x01	; 1
+  ca:	4a e0       	ldi	r20, 0x0A	; 10
+  cc:	50 e0       	ldi	r21, 0x00	; 0
+  ce:	0e 94 9f 03 	call	0x73e	; 0x73e <_ZN5Print7printlnEii>
+}
+  d2:	08 95       	ret
+
+000000d4 <setup>:
+ 
+ This example code is in the public domain.
+ */
+
+void setup() {
+  Serial.begin(9600);
+  d4:	88 e9       	ldi	r24, 0x98	; 152
+  d6:	91 e0       	ldi	r25, 0x01	; 1
+  d8:	40 e8       	ldi	r20, 0x80	; 128
+  da:	55 e2       	ldi	r21, 0x25	; 37
+  dc:	60 e0       	ldi	r22, 0x00	; 0
+  de:	70 e0       	ldi	r23, 0x00	; 0
+  e0:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <_ZN14HardwareSerial5beginEl>
+}
+  e4:	08 95       	ret
+
+000000e6 <analogRead>:
+
+int analogRead(uint8_t pin)
+{
+  e6:	98 2f       	mov	r25, r24
+
+	// the MUX5 bit of ADCSRB selects whether we're reading from channels
+	// 0 to 7 (MUX5 low) or 8 to 15 (MUX5 high).
+	ADCSRB = (ADCSRB & ~(1 << MUX5)) | (((pin >> 3) & 0x01) << MUX5);
+#else
+	if (pin >= 14) pin -= 14; // allow for channel or pin numbers
+  e8:	8e 30       	cpi	r24, 0x0E	; 14
+  ea:	08 f0       	brcs	.+2      	; 0xee <analogRead+0x8>
+  ec:	9e 50       	subi	r25, 0x0E	; 14
+#endif
+  
+	// set the analog reference (high two bits of ADMUX) and select the
+	// channel (low 4 bits).  this also sets ADLAR (left-adjust result)
+	// to 0 (the default).
+	ADMUX = (analog_reference << 6) | (pin & 0x07);
+  ee:	97 70       	andi	r25, 0x07	; 7
+  f0:	80 91 00 01 	lds	r24, 0x0100
+  f4:	82 95       	swap	r24
+  f6:	88 0f       	add	r24, r24
+  f8:	88 0f       	add	r24, r24
+  fa:	80 7c       	andi	r24, 0xC0	; 192
+  fc:	89 2b       	or	r24, r25
+  fe:	80 93 7c 00 	sts	0x007C, r24
+
+	// without a delay, we seem to read from the wrong channel
+	//delay(1);
+
+	// start the conversion
+	sbi(ADCSRA, ADSC);
+ 102:	80 91 7a 00 	lds	r24, 0x007A
+ 106:	80 64       	ori	r24, 0x40	; 64
+ 108:	80 93 7a 00 	sts	0x007A, r24
+
+	// ADSC is cleared when the conversion finishes
+	while (bit_is_set(ADCSRA, ADSC));
+ 10c:	80 91 7a 00 	lds	r24, 0x007A
+ 110:	86 fd       	sbrc	r24, 6
+ 112:	fc cf       	rjmp	.-8      	; 0x10c <analogRead+0x26>
+
+	// we have to read ADCL first; doing so locks both ADCL
+	// and ADCH until ADCH is read.  reading ADCL second would
+	// cause the results of each conversion to be discarded,
+	// as ADCL and ADCH would be locked when it completed.
+	low = ADCL;
+ 114:	20 91 78 00 	lds	r18, 0x0078
+	high = ADCH;
+ 118:	40 91 79 00 	lds	r20, 0x0079
+ 11c:	94 2f       	mov	r25, r20
+ 11e:	80 e0       	ldi	r24, 0x00	; 0
+ 120:	30 e0       	ldi	r19, 0x00	; 0
+ 122:	28 2b       	or	r18, r24
+ 124:	39 2b       	or	r19, r25
+
+	// combine the two bytes
+	return (high << 8) | low;
+}
+ 126:	c9 01       	movw	r24, r18
+ 128:	08 95       	ret
+
+0000012a <__vector_18>:
+#else
+
+#if defined(__AVR_ATmega8__)
+SIGNAL(SIG_UART_RECV)
+#else
+SIGNAL(USART_RX_vect)
+ 12a:	1f 92       	push	r1
+ 12c:	0f 92       	push	r0
+ 12e:	0f b6       	in	r0, 0x3f	; 63
+ 130:	0f 92       	push	r0
+ 132:	11 24       	eor	r1, r1
+ 134:	2f 93       	push	r18
+ 136:	3f 93       	push	r19
+ 138:	4f 93       	push	r20
+ 13a:	5f 93       	push	r21
+ 13c:	6f 93       	push	r22
+ 13e:	7f 93       	push	r23
+ 140:	8f 93       	push	r24
+ 142:	9f 93       	push	r25
+ 144:	af 93       	push	r26
+ 146:	bf 93       	push	r27
+ 148:	ef 93       	push	r30
+ 14a:	ff 93       	push	r31
+#endif
+{
+#if defined(__AVR_ATmega8__)
+  unsigned char c = UDR;
+#else
+  unsigned char c = UDR0;
+ 14c:	40 91 c6 00 	lds	r20, 0x00C6
+ring_buffer rx_buffer3 = { { 0 }, 0, 0 };
+#endif
+
+inline void store_char(unsigned char c, ring_buffer *rx_buffer)
+{
+  int i = (rx_buffer->head + 1) % RX_BUFFER_SIZE;
+ 150:	e0 91 94 01 	lds	r30, 0x0194
+ 154:	f0 91 95 01 	lds	r31, 0x0195
+ 158:	cf 01       	movw	r24, r30
+ 15a:	01 96       	adiw	r24, 0x01	; 1
+ 15c:	60 e8       	ldi	r22, 0x80	; 128
+ 15e:	70 e0       	ldi	r23, 0x00	; 0
+ 160:	0e 94 5b 04 	call	0x8b6	; 0x8b6 <__divmodhi4>
+ 164:	9c 01       	movw	r18, r24
+
+  // if we should be storing the received character into the location
+  // just before the tail (meaning that the head would advance to the
+  // current location of the tail), we're about to overflow the buffer
+  // and so we don't write the character or advance the head.
+  if (i != rx_buffer->tail) {
+ 166:	80 91 96 01 	lds	r24, 0x0196
+ 16a:	90 91 97 01 	lds	r25, 0x0197
+ 16e:	28 17       	cp	r18, r24
+ 170:	39 07       	cpc	r19, r25
+ 172:	39 f0       	breq	.+14     	; 0x182 <__vector_18+0x58>
+    rx_buffer->buffer[rx_buffer->head] = c;
+ 174:	ec 5e       	subi	r30, 0xEC	; 236
+ 176:	fe 4f       	sbci	r31, 0xFE	; 254
+ 178:	40 83       	st	Z, r20
+    rx_buffer->head = i;
+ 17a:	30 93 95 01 	sts	0x0195, r19
+ 17e:	20 93 94 01 	sts	0x0194, r18
+  unsigned char c = UDR;
+#else
+  unsigned char c = UDR0;
+#endif
+  store_char(c, &rx_buffer);
+}
+ 182:	ff 91       	pop	r31
+ 184:	ef 91       	pop	r30
+ 186:	bf 91       	pop	r27
+ 188:	af 91       	pop	r26
+ 18a:	9f 91       	pop	r25
+ 18c:	8f 91       	pop	r24
+ 18e:	7f 91       	pop	r23
+ 190:	6f 91       	pop	r22
+ 192:	5f 91       	pop	r21
+ 194:	4f 91       	pop	r20
+ 196:	3f 91       	pop	r19
+ 198:	2f 91       	pop	r18
+ 19a:	0f 90       	pop	r0
+ 19c:	0f be       	out	0x3f, r0	; 63
+ 19e:	0f 90       	pop	r0
+ 1a0:	1f 90       	pop	r1
+ 1a2:	18 95       	reti
+
+000001a4 <_ZN14HardwareSerial5beginEl>:
+  _u2x = u2x;
+}
+
+// Public Methods //////////////////////////////////////////////////////////////
+
+void HardwareSerial::begin(long baud)
+ 1a4:	5f 92       	push	r5
+ 1a6:	6f 92       	push	r6
+ 1a8:	7f 92       	push	r7
+ 1aa:	8f 92       	push	r8
+ 1ac:	9f 92       	push	r9
+ 1ae:	af 92       	push	r10
+ 1b0:	bf 92       	push	r11
+ 1b2:	cf 92       	push	r12
+ 1b4:	df 92       	push	r13
+ 1b6:	ef 92       	push	r14
+ 1b8:	ff 92       	push	r15
+ 1ba:	0f 93       	push	r16
+ 1bc:	1f 93       	push	r17
+ 1be:	cf 93       	push	r28
+ 1c0:	df 93       	push	r29
+ 1c2:	ec 01       	movw	r28, r24
+ 1c4:	3a 01       	movw	r6, r20
+ 1c6:	4b 01       	movw	r8, r22
+{
+  uint16_t baud_setting;
+  bool use_u2x;
+
+  // U2X mode is needed for baud rates higher than (CPU Hz / 16)
+  if (baud > F_CPU / 16) {
+ 1c8:	41 34       	cpi	r20, 0x41	; 65
+ 1ca:	82 e4       	ldi	r24, 0x42	; 66
+ 1cc:	58 07       	cpc	r21, r24
+ 1ce:	8f e0       	ldi	r24, 0x0F	; 15
+ 1d0:	68 07       	cpc	r22, r24
+ 1d2:	80 e0       	ldi	r24, 0x00	; 0
+ 1d4:	78 07       	cpc	r23, r24
+ 1d6:	0c f0       	brlt	.+2      	; 0x1da <_ZN14HardwareSerial5beginEl+0x36>
+ 1d8:	7f c0       	rjmp	.+254    	; 0x2d8 <_ZN14HardwareSerial5beginEl+0x134>
+  } else {
+    // figure out if U2X mode would allow for a better connection
+    
+    // calculate the percent difference between the baud-rate specified and
+    // the real baud rate for both U2X and non-U2X mode (0-255 error percent)
+    uint8_t nonu2x_baud_error = abs((int)(255-((F_CPU/(16*(((F_CPU/8/baud-1)/2)+1))*255)/baud)));
+ 1da:	60 e8       	ldi	r22, 0x80	; 128
+ 1dc:	74 e8       	ldi	r23, 0x84	; 132
+ 1de:	8e e1       	ldi	r24, 0x1E	; 30
+ 1e0:	90 e0       	ldi	r25, 0x00	; 0
+ 1e2:	a4 01       	movw	r20, r8
+ 1e4:	93 01       	movw	r18, r6
+ 1e6:	0e 94 90 04 	call	0x920	; 0x920 <__divmodsi4>
+ 1ea:	21 50       	subi	r18, 0x01	; 1
+ 1ec:	30 40       	sbci	r19, 0x00	; 0
+ 1ee:	40 40       	sbci	r20, 0x00	; 0
+ 1f0:	50 40       	sbci	r21, 0x00	; 0
+ 1f2:	ca 01       	movw	r24, r20
+ 1f4:	b9 01       	movw	r22, r18
+ 1f6:	22 e0       	ldi	r18, 0x02	; 2
+ 1f8:	30 e0       	ldi	r19, 0x00	; 0
+ 1fa:	40 e0       	ldi	r20, 0x00	; 0
+ 1fc:	50 e0       	ldi	r21, 0x00	; 0
+ 1fe:	0e 94 90 04 	call	0x920	; 0x920 <__divmodsi4>
+ 202:	59 01       	movw	r10, r18
+ 204:	6a 01       	movw	r12, r20
+ 206:	a6 01       	movw	r20, r12
+ 208:	95 01       	movw	r18, r10
+ 20a:	20 95       	com	r18
+ 20c:	30 95       	com	r19
+ 20e:	40 95       	com	r20
+ 210:	50 95       	com	r21
+ 212:	94 e0       	ldi	r25, 0x04	; 4
+ 214:	22 0f       	add	r18, r18
+ 216:	33 1f       	adc	r19, r19
+ 218:	44 1f       	adc	r20, r20
+ 21a:	55 1f       	adc	r21, r21
+ 21c:	9a 95       	dec	r25
+ 21e:	d1 f7       	brne	.-12     	; 0x214 <_ZN14HardwareSerial5beginEl+0x70>
+ 220:	60 e0       	ldi	r22, 0x00	; 0
+ 222:	74 e2       	ldi	r23, 0x24	; 36
+ 224:	84 ef       	ldi	r24, 0xF4	; 244
+ 226:	90 e0       	ldi	r25, 0x00	; 0
+ 228:	0e 94 90 04 	call	0x920	; 0x920 <__divmodsi4>
+ 22c:	ca 01       	movw	r24, r20
+ 22e:	b9 01       	movw	r22, r18
+ 230:	2f ef       	ldi	r18, 0xFF	; 255
+ 232:	30 e0       	ldi	r19, 0x00	; 0
+ 234:	40 e0       	ldi	r20, 0x00	; 0
+ 236:	50 e0       	ldi	r21, 0x00	; 0
+ 238:	0e 94 3c 04 	call	0x878	; 0x878 <__mulsi3>
+ 23c:	a4 01       	movw	r20, r8
+ 23e:	93 01       	movw	r18, r6
+ 240:	0e 94 90 04 	call	0x920	; 0x920 <__divmodsi4>
+ 244:	c9 01       	movw	r24, r18
+ 246:	81 50       	subi	r24, 0x01	; 1
+ 248:	9f 4f       	sbci	r25, 0xFF	; 255
+ 24a:	18 16       	cp	r1, r24
+ 24c:	19 06       	cpc	r1, r25
+ 24e:	1c f4       	brge	.+6      	; 0x256 <_ZN14HardwareSerial5beginEl+0xb2>
+ 250:	52 2e       	mov	r5, r18
+ 252:	5a 94       	dec	r5
+ 254:	03 c0       	rjmp	.+6      	; 0x25c <_ZN14HardwareSerial5beginEl+0xb8>
+ 256:	55 24       	eor	r5, r5
+ 258:	53 94       	inc	r5
+ 25a:	52 1a       	sub	r5, r18
+    uint8_t u2x_baud_error = abs((int)(255-((F_CPU/(8*(((F_CPU/4/baud-1)/2)+1))*255)/baud)));
+ 25c:	60 e0       	ldi	r22, 0x00	; 0
+ 25e:	79 e0       	ldi	r23, 0x09	; 9
+ 260:	8d e3       	ldi	r24, 0x3D	; 61
+ 262:	90 e0       	ldi	r25, 0x00	; 0
+ 264:	a4 01       	movw	r20, r8
+ 266:	93 01       	movw	r18, r6
+ 268:	0e 94 90 04 	call	0x920	; 0x920 <__divmodsi4>
+ 26c:	21 50       	subi	r18, 0x01	; 1
+ 26e:	30 40       	sbci	r19, 0x00	; 0
+ 270:	40 40       	sbci	r20, 0x00	; 0
+ 272:	50 40       	sbci	r21, 0x00	; 0
+ 274:	ca 01       	movw	r24, r20
+ 276:	b9 01       	movw	r22, r18
+ 278:	22 e0       	ldi	r18, 0x02	; 2
+ 27a:	30 e0       	ldi	r19, 0x00	; 0
+ 27c:	40 e0       	ldi	r20, 0x00	; 0
+ 27e:	50 e0       	ldi	r21, 0x00	; 0
+ 280:	0e 94 90 04 	call	0x920	; 0x920 <__divmodsi4>
+ 284:	20 95       	com	r18
+ 286:	30 95       	com	r19
+ 288:	40 95       	com	r20
+ 28a:	50 95       	com	r21
+ 28c:	83 e0       	ldi	r24, 0x03	; 3
+ 28e:	22 0f       	add	r18, r18
+ 290:	33 1f       	adc	r19, r19
+ 292:	44 1f       	adc	r20, r20
+ 294:	55 1f       	adc	r21, r21
+ 296:	8a 95       	dec	r24
+ 298:	d1 f7       	brne	.-12     	; 0x28e <_ZN14HardwareSerial5beginEl+0xea>
+ 29a:	60 e0       	ldi	r22, 0x00	; 0
+ 29c:	74 e2       	ldi	r23, 0x24	; 36
+ 29e:	84 ef       	ldi	r24, 0xF4	; 244
+ 2a0:	90 e0       	ldi	r25, 0x00	; 0
+ 2a2:	0e 94 90 04 	call	0x920	; 0x920 <__divmodsi4>
+ 2a6:	ca 01       	movw	r24, r20
+ 2a8:	b9 01       	movw	r22, r18
+ 2aa:	2f ef       	ldi	r18, 0xFF	; 255
+ 2ac:	30 e0       	ldi	r19, 0x00	; 0
+ 2ae:	40 e0       	ldi	r20, 0x00	; 0
+ 2b0:	50 e0       	ldi	r21, 0x00	; 0
+ 2b2:	0e 94 3c 04 	call	0x878	; 0x878 <__mulsi3>
+ 2b6:	a4 01       	movw	r20, r8
+ 2b8:	93 01       	movw	r18, r6
+ 2ba:	0e 94 90 04 	call	0x920	; 0x920 <__divmodsi4>
+ 2be:	c9 01       	movw	r24, r18
+ 2c0:	81 50       	subi	r24, 0x01	; 1
+ 2c2:	9f 4f       	sbci	r25, 0xFF	; 255
+ 2c4:	18 16       	cp	r1, r24
+ 2c6:	19 06       	cpc	r1, r25
+ 2c8:	1c f4       	brge	.+6      	; 0x2d0 <_ZN14HardwareSerial5beginEl+0x12c>
+ 2ca:	82 2f       	mov	r24, r18
+ 2cc:	81 50       	subi	r24, 0x01	; 1
+ 2ce:	02 c0       	rjmp	.+4      	; 0x2d4 <_ZN14HardwareSerial5beginEl+0x130>
+ 2d0:	81 e0       	ldi	r24, 0x01	; 1
+ 2d2:	82 1b       	sub	r24, r18
+    
+    // prefer non-U2X mode because it handles clock skew better
+    use_u2x = (nonu2x_baud_error > u2x_baud_error);
+  }
+  
+  if (use_u2x) {
+ 2d4:	85 15       	cp	r24, r5
+ 2d6:	00 f5       	brcc	.+64     	; 0x318 <_ZN14HardwareSerial5beginEl+0x174>
+    *_ucsra = 1 << _u2x;
+ 2d8:	e8 85       	ldd	r30, Y+8	; 0x08
+ 2da:	f9 85       	ldd	r31, Y+9	; 0x09
+ 2dc:	81 e0       	ldi	r24, 0x01	; 1
+ 2de:	90 e0       	ldi	r25, 0x00	; 0
+ 2e0:	0a 88       	ldd	r0, Y+18	; 0x12
+ 2e2:	02 c0       	rjmp	.+4      	; 0x2e8 <_ZN14HardwareSerial5beginEl+0x144>
+ 2e4:	88 0f       	add	r24, r24
+ 2e6:	99 1f       	adc	r25, r25
+ 2e8:	0a 94       	dec	r0
+ 2ea:	e2 f7       	brpl	.-8      	; 0x2e4 <_ZN14HardwareSerial5beginEl+0x140>
+ 2ec:	80 83       	st	Z, r24
+    baud_setting = (F_CPU / 4 / baud - 1) / 2;
+ 2ee:	60 e0       	ldi	r22, 0x00	; 0
+ 2f0:	79 e0       	ldi	r23, 0x09	; 9
+ 2f2:	8d e3       	ldi	r24, 0x3D	; 61
+ 2f4:	90 e0       	ldi	r25, 0x00	; 0
+ 2f6:	a4 01       	movw	r20, r8
+ 2f8:	93 01       	movw	r18, r6
+ 2fa:	0e 94 90 04 	call	0x920	; 0x920 <__divmodsi4>
+ 2fe:	21 50       	subi	r18, 0x01	; 1
+ 300:	30 40       	sbci	r19, 0x00	; 0
+ 302:	40 40       	sbci	r20, 0x00	; 0
+ 304:	50 40       	sbci	r21, 0x00	; 0
+ 306:	ca 01       	movw	r24, r20
+ 308:	b9 01       	movw	r22, r18
+ 30a:	22 e0       	ldi	r18, 0x02	; 2
+ 30c:	30 e0       	ldi	r19, 0x00	; 0
+ 30e:	40 e0       	ldi	r20, 0x00	; 0
+ 310:	50 e0       	ldi	r21, 0x00	; 0
+ 312:	0e 94 90 04 	call	0x920	; 0x920 <__divmodsi4>
+ 316:	04 c0       	rjmp	.+8      	; 0x320 <_ZN14HardwareSerial5beginEl+0x17c>
+  } else {
+    *_ucsra = 0;
+ 318:	e8 85       	ldd	r30, Y+8	; 0x08
+ 31a:	f9 85       	ldd	r31, Y+9	; 0x09
+ 31c:	10 82       	st	Z, r1
+    baud_setting = (F_CPU / 8 / baud - 1) / 2;
+ 31e:	95 01       	movw	r18, r10
+  }
+
+  // assign the baud_setting, a.k.a. ubbr (USART Baud Rate Register)
+  *_ubrrh = baud_setting >> 8;
+ 320:	ec 81       	ldd	r30, Y+4	; 0x04
+ 322:	fd 81       	ldd	r31, Y+5	; 0x05
+ 324:	30 83       	st	Z, r19
+  *_ubrrl = baud_setting;
+ 326:	ee 81       	ldd	r30, Y+6	; 0x06
+ 328:	ff 81       	ldd	r31, Y+7	; 0x07
+ 32a:	20 83       	st	Z, r18
+
+  sbi(*_ucsrb, _rxen);
+ 32c:	ea 85       	ldd	r30, Y+10	; 0x0a
+ 32e:	fb 85       	ldd	r31, Y+11	; 0x0b
+ 330:	20 81       	ld	r18, Z
+ 332:	41 e0       	ldi	r20, 0x01	; 1
+ 334:	50 e0       	ldi	r21, 0x00	; 0
+ 336:	ca 01       	movw	r24, r20
+ 338:	0e 84       	ldd	r0, Y+14	; 0x0e
+ 33a:	02 c0       	rjmp	.+4      	; 0x340 <_ZN14HardwareSerial5beginEl+0x19c>
+ 33c:	88 0f       	add	r24, r24
+ 33e:	99 1f       	adc	r25, r25
+ 340:	0a 94       	dec	r0
+ 342:	e2 f7       	brpl	.-8      	; 0x33c <_ZN14HardwareSerial5beginEl+0x198>
+ 344:	28 2b       	or	r18, r24
+ 346:	20 83       	st	Z, r18
+  sbi(*_ucsrb, _txen);
+ 348:	ea 85       	ldd	r30, Y+10	; 0x0a
+ 34a:	fb 85       	ldd	r31, Y+11	; 0x0b
+ 34c:	20 81       	ld	r18, Z
+ 34e:	ca 01       	movw	r24, r20
+ 350:	0f 84       	ldd	r0, Y+15	; 0x0f
+ 352:	02 c0       	rjmp	.+4      	; 0x358 <_ZN14HardwareSerial5beginEl+0x1b4>
+ 354:	88 0f       	add	r24, r24
+ 356:	99 1f       	adc	r25, r25
+ 358:	0a 94       	dec	r0
+ 35a:	e2 f7       	brpl	.-8      	; 0x354 <_ZN14HardwareSerial5beginEl+0x1b0>
+ 35c:	28 2b       	or	r18, r24
+ 35e:	20 83       	st	Z, r18
+  sbi(*_ucsrb, _rxcie);
+ 360:	ea 85       	ldd	r30, Y+10	; 0x0a
+ 362:	fb 85       	ldd	r31, Y+11	; 0x0b
+ 364:	80 81       	ld	r24, Z
+ 366:	08 88       	ldd	r0, Y+16	; 0x10
+ 368:	02 c0       	rjmp	.+4      	; 0x36e <_ZN14HardwareSerial5beginEl+0x1ca>
+ 36a:	44 0f       	add	r20, r20
+ 36c:	55 1f       	adc	r21, r21
+ 36e:	0a 94       	dec	r0
+ 370:	e2 f7       	brpl	.-8      	; 0x36a <_ZN14HardwareSerial5beginEl+0x1c6>
+ 372:	84 2b       	or	r24, r20
+ 374:	80 83       	st	Z, r24
+}
+ 376:	df 91       	pop	r29
+ 378:	cf 91       	pop	r28
+ 37a:	1f 91       	pop	r17
+ 37c:	0f 91       	pop	r16
+ 37e:	ff 90       	pop	r15
+ 380:	ef 90       	pop	r14
+ 382:	df 90       	pop	r13
+ 384:	cf 90       	pop	r12
+ 386:	bf 90       	pop	r11
+ 388:	af 90       	pop	r10
+ 38a:	9f 90       	pop	r9
+ 38c:	8f 90       	pop	r8
+ 38e:	7f 90       	pop	r7
+ 390:	6f 90       	pop	r6
+ 392:	5f 90       	pop	r5
+ 394:	08 95       	ret
+
+00000396 <_ZN14HardwareSerial9availableEv>:
+  cbi(*_ucsrb, _rxcie);  
+}
+
+int HardwareSerial::available(void)
+{
+  return (RX_BUFFER_SIZE + _rx_buffer->head - _rx_buffer->tail) % RX_BUFFER_SIZE;
+ 396:	dc 01       	movw	r26, r24
+ 398:	12 96       	adiw	r26, 0x02	; 2
+ 39a:	ed 91       	ld	r30, X+
+ 39c:	fc 91       	ld	r31, X
+ 39e:	13 97       	sbiw	r26, 0x03	; 3
+ 3a0:	e0 58       	subi	r30, 0x80	; 128
+ 3a2:	ff 4f       	sbci	r31, 0xFF	; 255
+ 3a4:	81 91       	ld	r24, Z+
+ 3a6:	91 91       	ld	r25, Z+
+ 3a8:	80 58       	subi	r24, 0x80	; 128
+ 3aa:	9f 4f       	sbci	r25, 0xFF	; 255
+ 3ac:	20 81       	ld	r18, Z
+ 3ae:	31 81       	ldd	r19, Z+1	; 0x01
+ 3b0:	82 1b       	sub	r24, r18
+ 3b2:	93 0b       	sbc	r25, r19
+ 3b4:	60 e8       	ldi	r22, 0x80	; 128
+ 3b6:	70 e0       	ldi	r23, 0x00	; 0
+ 3b8:	0e 94 5b 04 	call	0x8b6	; 0x8b6 <__divmodhi4>
+}
+ 3bc:	08 95       	ret
+
+000003be <_ZN14HardwareSerial4peekEv>:
+
+int HardwareSerial::peek(void)
+{
+  if (_rx_buffer->head == _rx_buffer->tail) {
+ 3be:	dc 01       	movw	r26, r24
+ 3c0:	12 96       	adiw	r26, 0x02	; 2
+ 3c2:	ed 91       	ld	r30, X+
+ 3c4:	fc 91       	ld	r31, X
+ 3c6:	13 97       	sbiw	r26, 0x03	; 3
+ 3c8:	ee 57       	subi	r30, 0x7E	; 126
+ 3ca:	ff 4f       	sbci	r31, 0xFF	; 255
+ 3cc:	20 81       	ld	r18, Z
+ 3ce:	31 81       	ldd	r19, Z+1	; 0x01
+ 3d0:	92 91       	ld	r25, -Z
+ 3d2:	82 91       	ld	r24, -Z
+ 3d4:	e0 58       	subi	r30, 0x80	; 128
+ 3d6:	f0 40       	sbci	r31, 0x00	; 0
+ 3d8:	82 17       	cp	r24, r18
+ 3da:	93 07       	cpc	r25, r19
+ 3dc:	19 f4       	brne	.+6      	; 0x3e4 <_ZN14HardwareSerial4peekEv+0x26>
+ 3de:	2f ef       	ldi	r18, 0xFF	; 255
+ 3e0:	3f ef       	ldi	r19, 0xFF	; 255
+ 3e2:	05 c0       	rjmp	.+10     	; 0x3ee <_ZN14HardwareSerial4peekEv+0x30>
+    return -1;
+  } else {
+    return _rx_buffer->buffer[_rx_buffer->tail];
+ 3e4:	e2 0f       	add	r30, r18
+ 3e6:	f3 1f       	adc	r31, r19
+ 3e8:	80 81       	ld	r24, Z
+ 3ea:	28 2f       	mov	r18, r24
+ 3ec:	30 e0       	ldi	r19, 0x00	; 0
+  }
+}
+ 3ee:	c9 01       	movw	r24, r18
+ 3f0:	08 95       	ret
+
+000003f2 <_ZN14HardwareSerial4readEv>:
+
+int HardwareSerial::read(void)
+ 3f2:	cf 93       	push	r28
+ 3f4:	df 93       	push	r29
+{
+  // if the head isn't ahead of the tail, we don't have any characters
+  if (_rx_buffer->head == _rx_buffer->tail) {
+ 3f6:	dc 01       	movw	r26, r24
+ 3f8:	12 96       	adiw	r26, 0x02	; 2
+ 3fa:	ed 91       	ld	r30, X+
+ 3fc:	fc 91       	ld	r31, X
+ 3fe:	13 97       	sbiw	r26, 0x03	; 3
+ 400:	ef 01       	movw	r28, r30
+ 402:	ce 57       	subi	r28, 0x7E	; 126
+ 404:	df 4f       	sbci	r29, 0xFF	; 255
+ 406:	48 81       	ld	r20, Y
+ 408:	59 81       	ldd	r21, Y+1	; 0x01
+ 40a:	e0 58       	subi	r30, 0x80	; 128
+ 40c:	ff 4f       	sbci	r31, 0xFF	; 255
+ 40e:	80 81       	ld	r24, Z
+ 410:	91 81       	ldd	r25, Z+1	; 0x01
+ 412:	e0 58       	subi	r30, 0x80	; 128
+ 414:	f0 40       	sbci	r31, 0x00	; 0
+ 416:	84 17       	cp	r24, r20
+ 418:	95 07       	cpc	r25, r21
+ 41a:	19 f4       	brne	.+6      	; 0x422 <_ZN14HardwareSerial4readEv+0x30>
+ 41c:	2f ef       	ldi	r18, 0xFF	; 255
+ 41e:	3f ef       	ldi	r19, 0xFF	; 255
+ 420:	0c c0       	rjmp	.+24     	; 0x43a <_ZN14HardwareSerial4readEv+0x48>
+    return -1;
+  } else {
+    unsigned char c = _rx_buffer->buffer[_rx_buffer->tail];
+ 422:	e4 0f       	add	r30, r20
+ 424:	f5 1f       	adc	r31, r21
+ 426:	20 81       	ld	r18, Z
+    _rx_buffer->tail = (_rx_buffer->tail + 1) % RX_BUFFER_SIZE;
+ 428:	ca 01       	movw	r24, r20
+ 42a:	01 96       	adiw	r24, 0x01	; 1
+ 42c:	60 e8       	ldi	r22, 0x80	; 128
+ 42e:	70 e0       	ldi	r23, 0x00	; 0
+ 430:	0e 94 5b 04 	call	0x8b6	; 0x8b6 <__divmodhi4>
+ 434:	99 83       	std	Y+1, r25	; 0x01
+ 436:	88 83       	st	Y, r24
+    return c;
+ 438:	30 e0       	ldi	r19, 0x00	; 0
+  }
+}
+ 43a:	c9 01       	movw	r24, r18
+ 43c:	df 91       	pop	r29
+ 43e:	cf 91       	pop	r28
+ 440:	08 95       	ret
+
+00000442 <_ZN14HardwareSerial5flushEv>:
+  // don't reverse this or there may be problems if the RX interrupt
+  // occurs after reading the value of rx_buffer_head but before writing
+  // the value to rx_buffer_tail; the previous value of rx_buffer_head
+  // may be written to rx_buffer_tail, making it appear as if the buffer
+  // were full, not empty.
+  _rx_buffer->head = _rx_buffer->tail;
+ 442:	dc 01       	movw	r26, r24
+ 444:	12 96       	adiw	r26, 0x02	; 2
+ 446:	ed 91       	ld	r30, X+
+ 448:	fc 91       	ld	r31, X
+ 44a:	13 97       	sbiw	r26, 0x03	; 3
+ 44c:	ee 57       	subi	r30, 0x7E	; 126
+ 44e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 450:	80 81       	ld	r24, Z
+ 452:	91 81       	ldd	r25, Z+1	; 0x01
+ 454:	92 93       	st	-Z, r25
+ 456:	82 93       	st	-Z, r24
+}
+ 458:	08 95       	ret
+
+0000045a <_ZN14HardwareSerial5writeEh>:
+
+void HardwareSerial::write(uint8_t c)
+ 45a:	fc 01       	movw	r30, r24
+{
+  while (!((*_ucsra) & (1 << _udre)))
+ 45c:	a0 85       	ldd	r26, Z+8	; 0x08
+ 45e:	b1 85       	ldd	r27, Z+9	; 0x09
+ 460:	21 89       	ldd	r18, Z+17	; 0x11
+ 462:	8c 91       	ld	r24, X
+ 464:	90 e0       	ldi	r25, 0x00	; 0
+ 466:	02 2e       	mov	r0, r18
+ 468:	02 c0       	rjmp	.+4      	; 0x46e <_ZN14HardwareSerial5writeEh+0x14>
+ 46a:	95 95       	asr	r25
+ 46c:	87 95       	ror	r24
+ 46e:	0a 94       	dec	r0
+ 470:	e2 f7       	brpl	.-8      	; 0x46a <_ZN14HardwareSerial5writeEh+0x10>
+ 472:	80 ff       	sbrs	r24, 0
+ 474:	f6 cf       	rjmp	.-20     	; 0x462 <_ZN14HardwareSerial5writeEh+0x8>
+    ;
+
+  *_udr = c;
+ 476:	04 84       	ldd	r0, Z+12	; 0x0c
+ 478:	f5 85       	ldd	r31, Z+13	; 0x0d
+ 47a:	e0 2d       	mov	r30, r0
+ 47c:	60 83       	st	Z, r22
+}
+ 47e:	08 95       	ret
+
+00000480 <_GLOBAL__I_rx_buffer>:
+
+HardwareSerial::HardwareSerial(ring_buffer *rx_buffer,
+  volatile uint8_t *ubrrh, volatile uint8_t *ubrrl,
+  volatile uint8_t *ucsra, volatile uint8_t *ucsrb,
+  volatile uint8_t *udr,
+  uint8_t rxen, uint8_t txen, uint8_t rxcie, uint8_t udre, uint8_t u2x)
+ 480:	85 e0       	ldi	r24, 0x05	; 5
+ 482:	91 e0       	ldi	r25, 0x01	; 1
+ 484:	90 93 99 01 	sts	0x0199, r25
+ 488:	80 93 98 01 	sts	0x0198, r24
+{
+  _rx_buffer = rx_buffer;
+ 48c:	84 e1       	ldi	r24, 0x14	; 20
+ 48e:	91 e0       	ldi	r25, 0x01	; 1
+ 490:	90 93 9b 01 	sts	0x019B, r25
+ 494:	80 93 9a 01 	sts	0x019A, r24
+  _ubrrh = ubrrh;
+ 498:	85 ec       	ldi	r24, 0xC5	; 197
+ 49a:	90 e0       	ldi	r25, 0x00	; 0
+ 49c:	90 93 9d 01 	sts	0x019D, r25
+ 4a0:	80 93 9c 01 	sts	0x019C, r24
+  _ubrrl = ubrrl;
+ 4a4:	84 ec       	ldi	r24, 0xC4	; 196
+ 4a6:	90 e0       	ldi	r25, 0x00	; 0
+ 4a8:	90 93 9f 01 	sts	0x019F, r25
+ 4ac:	80 93 9e 01 	sts	0x019E, r24
+  _ucsra = ucsra;
+ 4b0:	80 ec       	ldi	r24, 0xC0	; 192
+ 4b2:	90 e0       	ldi	r25, 0x00	; 0
+ 4b4:	90 93 a1 01 	sts	0x01A1, r25
+ 4b8:	80 93 a0 01 	sts	0x01A0, r24
+  _ucsrb = ucsrb;
+ 4bc:	81 ec       	ldi	r24, 0xC1	; 193
+ 4be:	90 e0       	ldi	r25, 0x00	; 0
+ 4c0:	90 93 a3 01 	sts	0x01A3, r25
+ 4c4:	80 93 a2 01 	sts	0x01A2, r24
+  _udr = udr;
+ 4c8:	86 ec       	ldi	r24, 0xC6	; 198
+ 4ca:	90 e0       	ldi	r25, 0x00	; 0
+ 4cc:	90 93 a5 01 	sts	0x01A5, r25
+ 4d0:	80 93 a4 01 	sts	0x01A4, r24
+  _rxen = rxen;
+ 4d4:	84 e0       	ldi	r24, 0x04	; 4
+ 4d6:	80 93 a6 01 	sts	0x01A6, r24
+  _txen = txen;
+ 4da:	83 e0       	ldi	r24, 0x03	; 3
+ 4dc:	80 93 a7 01 	sts	0x01A7, r24
+  _rxcie = rxcie;
+ 4e0:	87 e0       	ldi	r24, 0x07	; 7
+ 4e2:	80 93 a8 01 	sts	0x01A8, r24
+  _udre = udre;
+ 4e6:	85 e0       	ldi	r24, 0x05	; 5
+ 4e8:	80 93 a9 01 	sts	0x01A9, r24
+  _u2x = u2x;
+ 4ec:	81 e0       	ldi	r24, 0x01	; 1
+ 4ee:	80 93 aa 01 	sts	0x01AA, r24
+// Preinstantiate Objects //////////////////////////////////////////////////////
+
+#if defined(__AVR_ATmega8__)
+HardwareSerial Serial(&rx_buffer, &UBRRH, &UBRRL, &UCSRA, &UCSRB, &UDR, RXEN, TXEN, RXCIE, UDRE, U2X);
+#else
+HardwareSerial Serial(&rx_buffer, &UBRR0H, &UBRR0L, &UCSR0A, &UCSR0B, &UDR0, RXEN0, TXEN0, RXCIE0, UDRE0, U2X0);
+ 4f2:	08 95       	ret
+
+000004f4 <main>:
+#include <WProgram.h>
+
+int main(void)
+{
+	init();
+ 4f4:	0e 94 02 04 	call	0x804	; 0x804 <init>
+
+	setup();
+ 4f8:	0e 94 6a 00 	call	0xd4	; 0xd4 <setup>
+    
+	for (;;)
+		loop();
+ 4fc:	0e 94 5f 00 	call	0xbe	; 0xbe <loop>
+ 500:	fd cf       	rjmp	.-6      	; 0x4fc <main+0x8>
+
+00000502 <_ZN5Print5writeEPKc>:
+#include "Print.h"
+
+// Public Methods //////////////////////////////////////////////////////////////
+
+/* default implementation: may be overridden */
+void Print::write(const char *str)
+ 502:	0f 93       	push	r16
+ 504:	1f 93       	push	r17
+ 506:	cf 93       	push	r28
+ 508:	df 93       	push	r29
+ 50a:	8c 01       	movw	r16, r24
+ 50c:	eb 01       	movw	r28, r22
+ 50e:	09 c0       	rjmp	.+18     	; 0x522 <_ZN5Print5writeEPKc+0x20>
+{
+  while (*str)
+    write(*str++);
+ 510:	21 96       	adiw	r28, 0x01	; 1
+ 512:	d8 01       	movw	r26, r16
+ 514:	ed 91       	ld	r30, X+
+ 516:	fc 91       	ld	r31, X
+ 518:	01 90       	ld	r0, Z+
+ 51a:	f0 81       	ld	r31, Z
+ 51c:	e0 2d       	mov	r30, r0
+ 51e:	c8 01       	movw	r24, r16
+ 520:	09 95       	icall
+// Public Methods //////////////////////////////////////////////////////////////
+
+/* default implementation: may be overridden */
+void Print::write(const char *str)
+{
+  while (*str)
+ 522:	68 81       	ld	r22, Y
+ 524:	66 23       	and	r22, r22
+ 526:	a1 f7       	brne	.-24     	; 0x510 <_ZN5Print5writeEPKc+0xe>
+    write(*str++);
+}
+ 528:	df 91       	pop	r29
+ 52a:	cf 91       	pop	r28
+ 52c:	1f 91       	pop	r17
+ 52e:	0f 91       	pop	r16
+ 530:	08 95       	ret
+
+00000532 <_ZN5Print5writeEPKhj>:
+
+/* default implementation: may be overridden */
+void Print::write(const uint8_t *buffer, size_t size)
+ 532:	ef 92       	push	r14
+ 534:	ff 92       	push	r15
+ 536:	0f 93       	push	r16
+ 538:	1f 93       	push	r17
+ 53a:	cf 93       	push	r28
+ 53c:	df 93       	push	r29
+ 53e:	8c 01       	movw	r16, r24
+ 540:	7b 01       	movw	r14, r22
+ 542:	ea 01       	movw	r28, r20
+ 544:	0c c0       	rjmp	.+24     	; 0x55e <_ZN5Print5writeEPKhj+0x2c>
+{
+  while (size--)
+    write(*buffer++);
+ 546:	d7 01       	movw	r26, r14
+ 548:	6d 91       	ld	r22, X+
+ 54a:	7d 01       	movw	r14, r26
+ 54c:	d8 01       	movw	r26, r16
+ 54e:	ed 91       	ld	r30, X+
+ 550:	fc 91       	ld	r31, X
+ 552:	01 90       	ld	r0, Z+
+ 554:	f0 81       	ld	r31, Z
+ 556:	e0 2d       	mov	r30, r0
+ 558:	c8 01       	movw	r24, r16
+ 55a:	09 95       	icall
+ 55c:	21 97       	sbiw	r28, 0x01	; 1
+}
+
+/* default implementation: may be overridden */
+void Print::write(const uint8_t *buffer, size_t size)
+{
+  while (size--)
+ 55e:	20 97       	sbiw	r28, 0x00	; 0
+ 560:	91 f7       	brne	.-28     	; 0x546 <_ZN5Print5writeEPKhj+0x14>
+    write(*buffer++);
+}
+ 562:	df 91       	pop	r29
+ 564:	cf 91       	pop	r28
+ 566:	1f 91       	pop	r17
+ 568:	0f 91       	pop	r16
+ 56a:	ff 90       	pop	r15
+ 56c:	ef 90       	pop	r14
+ 56e:	08 95       	ret
+
+00000570 <_ZN5Print11printNumberEmh>:
+  println();
+}
+
+// Private Methods /////////////////////////////////////////////////////////////
+
+void Print::printNumber(unsigned long n, uint8_t base)
+ 570:	2f 92       	push	r2
+ 572:	3f 92       	push	r3
+ 574:	4f 92       	push	r4
+ 576:	5f 92       	push	r5
+ 578:	6f 92       	push	r6
+ 57a:	7f 92       	push	r7
+ 57c:	8f 92       	push	r8
+ 57e:	9f 92       	push	r9
+ 580:	af 92       	push	r10
+ 582:	bf 92       	push	r11
+ 584:	cf 92       	push	r12
+ 586:	df 92       	push	r13
+ 588:	ef 92       	push	r14
+ 58a:	ff 92       	push	r15
+ 58c:	0f 93       	push	r16
+ 58e:	1f 93       	push	r17
+ 590:	df 93       	push	r29
+ 592:	cf 93       	push	r28
+ 594:	cd b7       	in	r28, 0x3d	; 61
+ 596:	de b7       	in	r29, 0x3e	; 62
+ 598:	a0 97       	sbiw	r28, 0x20	; 32
+ 59a:	0f b6       	in	r0, 0x3f	; 63
+ 59c:	f8 94       	cli
+ 59e:	de bf       	out	0x3e, r29	; 62
+ 5a0:	0f be       	out	0x3f, r0	; 63
+ 5a2:	cd bf       	out	0x3d, r28	; 61
+ 5a4:	1c 01       	movw	r2, r24
+ 5a6:	6a 01       	movw	r12, r20
+ 5a8:	7b 01       	movw	r14, r22
+{
+  unsigned char buf[8 * sizeof(long)]; // Assumes 8-bit chars. 
+  unsigned long i = 0;
+
+  if (n == 0) {
+ 5aa:	41 15       	cp	r20, r1
+ 5ac:	51 05       	cpc	r21, r1
+ 5ae:	61 05       	cpc	r22, r1
+ 5b0:	71 05       	cpc	r23, r1
+ 5b2:	49 f4       	brne	.+18     	; 0x5c6 <_ZN5Print11printNumberEmh+0x56>
+  write(str);
+}
+
+void Print::print(char c, int base)
+{
+  print((long) c, base);
+ 5b4:	40 e3       	ldi	r20, 0x30	; 48
+ 5b6:	50 e0       	ldi	r21, 0x00	; 0
+ 5b8:	60 e0       	ldi	r22, 0x00	; 0
+ 5ba:	70 e0       	ldi	r23, 0x00	; 0
+ 5bc:	20 e0       	ldi	r18, 0x00	; 0
+ 5be:	30 e0       	ldi	r19, 0x00	; 0
+ 5c0:	0e 94 52 03 	call	0x6a4	; 0x6a4 <_ZN5Print5printEli>
+ 5c4:	56 c0       	rjmp	.+172    	; 0x672 <_ZN5Print11printNumberEmh+0x102>
+  unsigned char buf[8 * sizeof(long)]; // Assumes 8-bit chars. 
+  unsigned long i = 0;
+
+  if (n == 0) {
+    print('0');
+    return;
+ 5c6:	88 24       	eor	r8, r8
+ 5c8:	99 24       	eor	r9, r9
+ 5ca:	54 01       	movw	r10, r8
+  } 
+
+  while (n > 0) {
+    buf[i++] = n % base;
+ 5cc:	42 2e       	mov	r4, r18
+ 5ce:	55 24       	eor	r5, r5
+ 5d0:	66 24       	eor	r6, r6
+ 5d2:	77 24       	eor	r7, r7
+ 5d4:	01 e0       	ldi	r16, 0x01	; 1
+ 5d6:	10 e0       	ldi	r17, 0x00	; 0
+ 5d8:	0c 0f       	add	r16, r28
+ 5da:	1d 1f       	adc	r17, r29
+ 5dc:	08 0d       	add	r16, r8
+ 5de:	19 1d       	adc	r17, r9
+ 5e0:	c7 01       	movw	r24, r14
+ 5e2:	b6 01       	movw	r22, r12
+ 5e4:	a3 01       	movw	r20, r6
+ 5e6:	92 01       	movw	r18, r4
+ 5e8:	0e 94 6e 04 	call	0x8dc	; 0x8dc <__udivmodsi4>
+ 5ec:	f8 01       	movw	r30, r16
+ 5ee:	60 83       	st	Z, r22
+ 5f0:	08 94       	sec
+ 5f2:	81 1c       	adc	r8, r1
+ 5f4:	91 1c       	adc	r9, r1
+ 5f6:	a1 1c       	adc	r10, r1
+ 5f8:	b1 1c       	adc	r11, r1
+    n /= base;
+ 5fa:	c7 01       	movw	r24, r14
+ 5fc:	b6 01       	movw	r22, r12
+ 5fe:	a3 01       	movw	r20, r6
+ 600:	92 01       	movw	r18, r4
+ 602:	0e 94 6e 04 	call	0x8dc	; 0x8dc <__udivmodsi4>
+ 606:	c9 01       	movw	r24, r18
+ 608:	da 01       	movw	r26, r20
+ 60a:	6c 01       	movw	r12, r24
+ 60c:	7d 01       	movw	r14, r26
+  if (n == 0) {
+    print('0');
+    return;
+  } 
+
+  while (n > 0) {
+ 60e:	c1 14       	cp	r12, r1
+ 610:	d1 04       	cpc	r13, r1
+ 612:	e1 04       	cpc	r14, r1
+ 614:	f1 04       	cpc	r15, r1
+ 616:	f1 f6       	brne	.-68     	; 0x5d4 <_ZN5Print11printNumberEmh+0x64>
+ 618:	81 e0       	ldi	r24, 0x01	; 1
+ 61a:	e8 2e       	mov	r14, r24
+ 61c:	f1 2c       	mov	r15, r1
+ 61e:	ec 0e       	add	r14, r28
+ 620:	fd 1e       	adc	r15, r29
+ 622:	e8 0c       	add	r14, r8
+ 624:	f9 1c       	adc	r15, r9
+    buf[i++] = n % base;
+    n /= base;
+  }
+
+  for (; i > 0; i--)
+ 626:	3e 01       	movw	r6, r28
+ 628:	08 94       	sec
+ 62a:	61 1c       	adc	r6, r1
+ 62c:	71 1c       	adc	r7, r1
+    print((char) (buf[i - 1] < 10 ?
+      '0' + buf[i - 1] :
+      'A' + buf[i - 1] - 10));
+ 62e:	d5 01       	movw	r26, r10
+ 630:	c4 01       	movw	r24, r8
+ 632:	01 97       	sbiw	r24, 0x01	; 1
+ 634:	a1 09       	sbc	r26, r1
+ 636:	b1 09       	sbc	r27, r1
+ 638:	6c 01       	movw	r12, r24
+ 63a:	c8 18       	sub	r12, r8
+ 63c:	d9 08       	sbc	r13, r9
+ 63e:	16 c0       	rjmp	.+44     	; 0x66c <_ZN5Print11printNumberEmh+0xfc>
+ 640:	f6 01       	movw	r30, r12
+ 642:	ee 0d       	add	r30, r14
+ 644:	ff 1d       	adc	r31, r15
+ 646:	40 81       	ld	r20, Z
+ 648:	4a 30       	cpi	r20, 0x0A	; 10
+ 64a:	10 f4       	brcc	.+4      	; 0x650 <_ZN5Print11printNumberEmh+0xe0>
+ 64c:	40 5d       	subi	r20, 0xD0	; 208
+ 64e:	01 c0       	rjmp	.+2      	; 0x652 <_ZN5Print11printNumberEmh+0xe2>
+ 650:	49 5c       	subi	r20, 0xC9	; 201
+  write(str);
+}
+
+void Print::print(char c, int base)
+{
+  print((long) c, base);
+ 652:	55 27       	eor	r21, r21
+ 654:	47 fd       	sbrc	r20, 7
+ 656:	50 95       	com	r21
+ 658:	65 2f       	mov	r22, r21
+ 65a:	75 2f       	mov	r23, r21
+ 65c:	c1 01       	movw	r24, r2
+ 65e:	20 e0       	ldi	r18, 0x00	; 0
+ 660:	30 e0       	ldi	r19, 0x00	; 0
+ 662:	0e 94 52 03 	call	0x6a4	; 0x6a4 <_ZN5Print5printEli>
+ 666:	08 94       	sec
+ 668:	e1 08       	sbc	r14, r1
+ 66a:	f1 08       	sbc	r15, r1
+  while (n > 0) {
+    buf[i++] = n % base;
+    n /= base;
+  }
+
+  for (; i > 0; i--)
+ 66c:	6e 14       	cp	r6, r14
+ 66e:	7f 04       	cpc	r7, r15
+ 670:	39 f7       	brne	.-50     	; 0x640 <_ZN5Print11printNumberEmh+0xd0>
+    print((char) (buf[i - 1] < 10 ?
+      '0' + buf[i - 1] :
+      'A' + buf[i - 1] - 10));
+}
+ 672:	a0 96       	adiw	r28, 0x20	; 32
+ 674:	0f b6       	in	r0, 0x3f	; 63
+ 676:	f8 94       	cli
+ 678:	de bf       	out	0x3e, r29	; 62
+ 67a:	0f be       	out	0x3f, r0	; 63
+ 67c:	cd bf       	out	0x3d, r28	; 61
+ 67e:	cf 91       	pop	r28
+ 680:	df 91       	pop	r29
+ 682:	1f 91       	pop	r17
+ 684:	0f 91       	pop	r16
+ 686:	ff 90       	pop	r15
+ 688:	ef 90       	pop	r14
+ 68a:	df 90       	pop	r13
+ 68c:	cf 90       	pop	r12
+ 68e:	bf 90       	pop	r11
+ 690:	af 90       	pop	r10
+ 692:	9f 90       	pop	r9
+ 694:	8f 90       	pop	r8
+ 696:	7f 90       	pop	r7
+ 698:	6f 90       	pop	r6
+ 69a:	5f 90       	pop	r5
+ 69c:	4f 90       	pop	r4
+ 69e:	3f 90       	pop	r3
+ 6a0:	2f 90       	pop	r2
+ 6a2:	08 95       	ret
+
+000006a4 <_ZN5Print5printEli>:
+void Print::print(unsigned int n, int base)
+{
+  print((unsigned long) n, base);
+}
+
+void Print::print(long n, int base)
+ 6a4:	ef 92       	push	r14
+ 6a6:	ff 92       	push	r15
+ 6a8:	0f 93       	push	r16
+ 6aa:	1f 93       	push	r17
+ 6ac:	cf 93       	push	r28
+ 6ae:	df 93       	push	r29
+ 6b0:	ec 01       	movw	r28, r24
+ 6b2:	7a 01       	movw	r14, r20
+ 6b4:	8b 01       	movw	r16, r22
+{
+  if (base == 0) {
+ 6b6:	21 15       	cp	r18, r1
+ 6b8:	31 05       	cpc	r19, r1
+ 6ba:	41 f4       	brne	.+16     	; 0x6cc <_ZN5Print5printEli+0x28>
+    write(n);
+ 6bc:	e8 81       	ld	r30, Y
+ 6be:	f9 81       	ldd	r31, Y+1	; 0x01
+ 6c0:	01 90       	ld	r0, Z+
+ 6c2:	f0 81       	ld	r31, Z
+ 6c4:	e0 2d       	mov	r30, r0
+ 6c6:	64 2f       	mov	r22, r20
+ 6c8:	09 95       	icall
+ 6ca:	1b c0       	rjmp	.+54     	; 0x702 <_ZN5Print5printEli+0x5e>
+  } else if (base == 10) {
+ 6cc:	2a 30       	cpi	r18, 0x0A	; 10
+ 6ce:	31 05       	cpc	r19, r1
+ 6d0:	b1 f4       	brne	.+44     	; 0x6fe <_ZN5Print5printEli+0x5a>
+    if (n < 0) {
+ 6d2:	77 ff       	sbrs	r23, 7
+ 6d4:	10 c0       	rjmp	.+32     	; 0x6f6 <_ZN5Print5printEli+0x52>
+  write(str);
+}
+
+void Print::print(char c, int base)
+{
+  print((long) c, base);
+ 6d6:	4d e2       	ldi	r20, 0x2D	; 45
+ 6d8:	50 e0       	ldi	r21, 0x00	; 0
+ 6da:	60 e0       	ldi	r22, 0x00	; 0
+ 6dc:	70 e0       	ldi	r23, 0x00	; 0
+ 6de:	20 e0       	ldi	r18, 0x00	; 0
+ 6e0:	30 e0       	ldi	r19, 0x00	; 0
+ 6e2:	0e 94 52 03 	call	0x6a4	; 0x6a4 <_ZN5Print5printEli>
+  if (base == 0) {
+    write(n);
+  } else if (base == 10) {
+    if (n < 0) {
+      print('-');
+      n = -n;
+ 6e6:	10 95       	com	r17
+ 6e8:	00 95       	com	r16
+ 6ea:	f0 94       	com	r15
+ 6ec:	e0 94       	com	r14
+ 6ee:	e1 1c       	adc	r14, r1
+ 6f0:	f1 1c       	adc	r15, r1
+ 6f2:	01 1d       	adc	r16, r1
+ 6f4:	11 1d       	adc	r17, r1
+    }
+    printNumber(n, 10);
+ 6f6:	ce 01       	movw	r24, r28
+ 6f8:	b8 01       	movw	r22, r16
+ 6fa:	a7 01       	movw	r20, r14
+ 6fc:	2a e0       	ldi	r18, 0x0A	; 10
+  } else {
+    printNumber(n, base);
+ 6fe:	0e 94 b8 02 	call	0x570	; 0x570 <_ZN5Print11printNumberEmh>
+  }
+}
+ 702:	df 91       	pop	r29
+ 704:	cf 91       	pop	r28
+ 706:	1f 91       	pop	r17
+ 708:	0f 91       	pop	r16
+ 70a:	ff 90       	pop	r15
+ 70c:	ef 90       	pop	r14
+ 70e:	08 95       	ret
+
+00000710 <_ZN5Print7printlnEv>:
+void Print::print(double n, int digits)
+{
+  printFloat(n, digits);
+}
+
+void Print::println(void)
+ 710:	0f 93       	push	r16
+ 712:	1f 93       	push	r17
+ 714:	8c 01       	movw	r16, r24
+  write(str);
+}
+
+void Print::print(char c, int base)
+{
+  print((long) c, base);
+ 716:	4d e0       	ldi	r20, 0x0D	; 13
+ 718:	50 e0       	ldi	r21, 0x00	; 0
+ 71a:	60 e0       	ldi	r22, 0x00	; 0
+ 71c:	70 e0       	ldi	r23, 0x00	; 0
+ 71e:	20 e0       	ldi	r18, 0x00	; 0
+ 720:	30 e0       	ldi	r19, 0x00	; 0
+ 722:	0e 94 52 03 	call	0x6a4	; 0x6a4 <_ZN5Print5printEli>
+
+void Print::println(void)
+{
+  print('\r');
+  print('\n');  
+}
+ 726:	c8 01       	movw	r24, r16
+ 728:	4a e0       	ldi	r20, 0x0A	; 10
+ 72a:	50 e0       	ldi	r21, 0x00	; 0
+ 72c:	60 e0       	ldi	r22, 0x00	; 0
+ 72e:	70 e0       	ldi	r23, 0x00	; 0
+ 730:	20 e0       	ldi	r18, 0x00	; 0
+ 732:	30 e0       	ldi	r19, 0x00	; 0
+ 734:	0e 94 52 03 	call	0x6a4	; 0x6a4 <_ZN5Print5printEli>
+ 738:	1f 91       	pop	r17
+ 73a:	0f 91       	pop	r16
+ 73c:	08 95       	ret
+
+0000073e <_ZN5Print7printlnEii>:
+{
+  print(b, base);
+  println();
+}
+
+void Print::println(int n, int base)
+ 73e:	cf 92       	push	r12
+ 740:	df 92       	push	r13
+ 742:	ef 92       	push	r14
+ 744:	ff 92       	push	r15
+ 746:	0f 93       	push	r16
+ 748:	1f 93       	push	r17
+ 74a:	8c 01       	movw	r16, r24
+ 74c:	6b 01       	movw	r12, r22
+ 74e:	9a 01       	movw	r18, r20
+  print((unsigned long) b, base);
+}
+
+void Print::print(int n, int base)
+{
+  print((long) n, base);
+ 750:	ee 24       	eor	r14, r14
+ 752:	d7 fc       	sbrc	r13, 7
+ 754:	e0 94       	com	r14
+ 756:	fe 2c       	mov	r15, r14
+ 758:	b7 01       	movw	r22, r14
+ 75a:	a6 01       	movw	r20, r12
+ 75c:	0e 94 52 03 	call	0x6a4	; 0x6a4 <_ZN5Print5printEli>
+}
+
+void Print::println(int n, int base)
+{
+  print(n, base);
+  println();
+ 760:	c8 01       	movw	r24, r16
+ 762:	0e 94 88 03 	call	0x710	; 0x710 <_ZN5Print7printlnEv>
+}
+ 766:	1f 91       	pop	r17
+ 768:	0f 91       	pop	r16
+ 76a:	ff 90       	pop	r15
+ 76c:	ef 90       	pop	r14
+ 76e:	df 90       	pop	r13
+ 770:	cf 90       	pop	r12
+ 772:	08 95       	ret
+
+00000774 <__vector_16>:
+volatile unsigned long timer0_overflow_count = 0;
+volatile unsigned long timer0_millis = 0;
+static unsigned char timer0_fract = 0;
+
+SIGNAL(TIMER0_OVF_vect)
+{
+ 774:	1f 92       	push	r1
+ 776:	0f 92       	push	r0
+ 778:	0f b6       	in	r0, 0x3f	; 63
+ 77a:	0f 92       	push	r0
+ 77c:	11 24       	eor	r1, r1
+ 77e:	2f 93       	push	r18
+ 780:	3f 93       	push	r19
+ 782:	8f 93       	push	r24
+ 784:	9f 93       	push	r25
+ 786:	af 93       	push	r26
+ 788:	bf 93       	push	r27
+	// copy these to local variables so they can be stored in registers
+	// (volatile variables must be read from memory on every access)
+	unsigned long m = timer0_millis;
+ 78a:	80 91 af 01 	lds	r24, 0x01AF
+ 78e:	90 91 b0 01 	lds	r25, 0x01B0
+ 792:	a0 91 b1 01 	lds	r26, 0x01B1
+ 796:	b0 91 b2 01 	lds	r27, 0x01B2
+	unsigned char f = timer0_fract;
+ 79a:	30 91 b3 01 	lds	r19, 0x01B3
+
+	m += MILLIS_INC;
+ 79e:	01 96       	adiw	r24, 0x01	; 1
+ 7a0:	a1 1d       	adc	r26, r1
+ 7a2:	b1 1d       	adc	r27, r1
+	f += FRACT_INC;
+ 7a4:	23 2f       	mov	r18, r19
+ 7a6:	2d 5f       	subi	r18, 0xFD	; 253
+	if (f >= FRACT_MAX) {
+ 7a8:	2d 37       	cpi	r18, 0x7D	; 125
+ 7aa:	20 f0       	brcs	.+8      	; 0x7b4 <__vector_16+0x40>
+		f -= FRACT_MAX;
+ 7ac:	2d 57       	subi	r18, 0x7D	; 125
+		m += 1;
+ 7ae:	01 96       	adiw	r24, 0x01	; 1
+ 7b0:	a1 1d       	adc	r26, r1
+ 7b2:	b1 1d       	adc	r27, r1
+	}
+
+	timer0_fract = f;
+ 7b4:	20 93 b3 01 	sts	0x01B3, r18
+	timer0_millis = m;
+ 7b8:	80 93 af 01 	sts	0x01AF, r24
+ 7bc:	90 93 b0 01 	sts	0x01B0, r25
+ 7c0:	a0 93 b1 01 	sts	0x01B1, r26
+ 7c4:	b0 93 b2 01 	sts	0x01B2, r27
+	timer0_overflow_count++;
+ 7c8:	80 91 ab 01 	lds	r24, 0x01AB
+ 7cc:	90 91 ac 01 	lds	r25, 0x01AC
+ 7d0:	a0 91 ad 01 	lds	r26, 0x01AD
+ 7d4:	b0 91 ae 01 	lds	r27, 0x01AE
+ 7d8:	01 96       	adiw	r24, 0x01	; 1
+ 7da:	a1 1d       	adc	r26, r1
+ 7dc:	b1 1d       	adc	r27, r1
+ 7de:	80 93 ab 01 	sts	0x01AB, r24
+ 7e2:	90 93 ac 01 	sts	0x01AC, r25
+ 7e6:	a0 93 ad 01 	sts	0x01AD, r26
+ 7ea:	b0 93 ae 01 	sts	0x01AE, r27
+}
+ 7ee:	bf 91       	pop	r27
+ 7f0:	af 91       	pop	r26
+ 7f2:	9f 91       	pop	r25
+ 7f4:	8f 91       	pop	r24
+ 7f6:	3f 91       	pop	r19
+ 7f8:	2f 91       	pop	r18
+ 7fa:	0f 90       	pop	r0
+ 7fc:	0f be       	out	0x3f, r0	; 63
+ 7fe:	0f 90       	pop	r0
+ 800:	1f 90       	pop	r1
+ 802:	18 95       	reti
+
+00000804 <init>:
+
+void init()
+{
+	// this needs to be called before setup() or some functions won't
+	// work there
+	sei();
+ 804:	78 94       	sei
+	
+	// on the ATmega168, timer 0 is also used for fast hardware pwm
+	// (using phase-correct PWM would mean that timer 0 overflowed half as often
+	// resulting in different millis() behavior on the ATmega8 and ATmega168)
+#if !defined(__AVR_ATmega8__)
+	sbi(TCCR0A, WGM01);
+ 806:	84 b5       	in	r24, 0x24	; 36
+ 808:	82 60       	ori	r24, 0x02	; 2
+ 80a:	84 bd       	out	0x24, r24	; 36
+	sbi(TCCR0A, WGM00);
+ 80c:	84 b5       	in	r24, 0x24	; 36
+ 80e:	81 60       	ori	r24, 0x01	; 1
+ 810:	84 bd       	out	0x24, r24	; 36
+	// set timer 0 prescale factor to 64
+#if defined(__AVR_ATmega8__)
+	sbi(TCCR0, CS01);
+	sbi(TCCR0, CS00);
+#else
+	sbi(TCCR0B, CS01);
+ 812:	85 b5       	in	r24, 0x25	; 37
+ 814:	82 60       	ori	r24, 0x02	; 2
+ 816:	85 bd       	out	0x25, r24	; 37
+	sbi(TCCR0B, CS00);
+ 818:	85 b5       	in	r24, 0x25	; 37
+ 81a:	81 60       	ori	r24, 0x01	; 1
+ 81c:	85 bd       	out	0x25, r24	; 37
+#endif
+	// enable timer 0 overflow interrupt
+#if defined(__AVR_ATmega8__)
+	sbi(TIMSK, TOIE0);
+#else
+	sbi(TIMSK0, TOIE0);
+ 81e:	ee e6       	ldi	r30, 0x6E	; 110
+ 820:	f0 e0       	ldi	r31, 0x00	; 0
+ 822:	80 81       	ld	r24, Z
+ 824:	81 60       	ori	r24, 0x01	; 1
+ 826:	80 83       	st	Z, r24
+	// this is better for motors as it ensures an even waveform
+	// note, however, that fast pwm mode can achieve a frequency of up
+	// 8 MHz (with a 16 MHz clock) at 50% duty cycle
+
+	// set timer 1 prescale factor to 64
+	sbi(TCCR1B, CS11);
+ 828:	e1 e8       	ldi	r30, 0x81	; 129
+ 82a:	f0 e0       	ldi	r31, 0x00	; 0
+ 82c:	80 81       	ld	r24, Z
+ 82e:	82 60       	ori	r24, 0x02	; 2
+ 830:	80 83       	st	Z, r24
+	sbi(TCCR1B, CS10);
+ 832:	80 81       	ld	r24, Z
+ 834:	81 60       	ori	r24, 0x01	; 1
+ 836:	80 83       	st	Z, r24
+	// put timer 1 in 8-bit phase correct pwm mode
+	sbi(TCCR1A, WGM10);
+ 838:	e0 e8       	ldi	r30, 0x80	; 128
+ 83a:	f0 e0       	ldi	r31, 0x00	; 0
+ 83c:	80 81       	ld	r24, Z
+ 83e:	81 60       	ori	r24, 0x01	; 1
+ 840:	80 83       	st	Z, r24
+
+	// set timer 2 prescale factor to 64
+#if defined(__AVR_ATmega8__)
+	sbi(TCCR2, CS22);
+#else
+	sbi(TCCR2B, CS22);
+ 842:	e1 eb       	ldi	r30, 0xB1	; 177
+ 844:	f0 e0       	ldi	r31, 0x00	; 0
+ 846:	80 81       	ld	r24, Z
+ 848:	84 60       	ori	r24, 0x04	; 4
+ 84a:	80 83       	st	Z, r24
+#endif
+	// configure timer 2 for phase correct pwm (8-bit)
+#if defined(__AVR_ATmega8__)
+	sbi(TCCR2, WGM20);
+#else
+	sbi(TCCR2A, WGM20);
+ 84c:	e0 eb       	ldi	r30, 0xB0	; 176
+ 84e:	f0 e0       	ldi	r31, 0x00	; 0
+ 850:	80 81       	ld	r24, Z
+ 852:	81 60       	ori	r24, 0x01	; 1
+ 854:	80 83       	st	Z, r24
+
+	// set a2d prescale factor to 128
+	// 16 MHz / 128 = 125 KHz, inside the desired 50-200 KHz range.
+	// XXX: this will not work properly for other clock speeds, and
+	// this code should use F_CPU to determine the prescale factor.
+	sbi(ADCSRA, ADPS2);
+ 856:	ea e7       	ldi	r30, 0x7A	; 122
+ 858:	f0 e0       	ldi	r31, 0x00	; 0
+ 85a:	80 81       	ld	r24, Z
+ 85c:	84 60       	ori	r24, 0x04	; 4
+ 85e:	80 83       	st	Z, r24
+	sbi(ADCSRA, ADPS1);
+ 860:	80 81       	ld	r24, Z
+ 862:	82 60       	ori	r24, 0x02	; 2
+ 864:	80 83       	st	Z, r24
+	sbi(ADCSRA, ADPS0);
+ 866:	80 81       	ld	r24, Z
+ 868:	81 60       	ori	r24, 0x01	; 1
+ 86a:	80 83       	st	Z, r24
+
+	// enable a2d conversions
+	sbi(ADCSRA, ADEN);
+ 86c:	80 81       	ld	r24, Z
+ 86e:	80 68       	ori	r24, 0x80	; 128
+ 870:	80 83       	st	Z, r24
+	// here so they can be used as normal digital i/o; they will be
+	// reconnected in Serial.begin()
+#if defined(__AVR_ATmega8__)
+	UCSRB = 0;
+#else
+	UCSR0B = 0;
+ 872:	10 92 c1 00 	sts	0x00C1, r1
+#endif
+ 876:	08 95       	ret
+
+00000878 <__mulsi3>:
+ 878:	62 9f       	mul	r22, r18
+ 87a:	d0 01       	movw	r26, r0
+ 87c:	73 9f       	mul	r23, r19
+ 87e:	f0 01       	movw	r30, r0
+ 880:	82 9f       	mul	r24, r18
+ 882:	e0 0d       	add	r30, r0
+ 884:	f1 1d       	adc	r31, r1
+ 886:	64 9f       	mul	r22, r20
+ 888:	e0 0d       	add	r30, r0
+ 88a:	f1 1d       	adc	r31, r1
+ 88c:	92 9f       	mul	r25, r18
+ 88e:	f0 0d       	add	r31, r0
+ 890:	83 9f       	mul	r24, r19
+ 892:	f0 0d       	add	r31, r0
+ 894:	74 9f       	mul	r23, r20
+ 896:	f0 0d       	add	r31, r0
+ 898:	65 9f       	mul	r22, r21
+ 89a:	f0 0d       	add	r31, r0
+ 89c:	99 27       	eor	r25, r25
+ 89e:	72 9f       	mul	r23, r18
+ 8a0:	b0 0d       	add	r27, r0
+ 8a2:	e1 1d       	adc	r30, r1
+ 8a4:	f9 1f       	adc	r31, r25
+ 8a6:	63 9f       	mul	r22, r19
+ 8a8:	b0 0d       	add	r27, r0
+ 8aa:	e1 1d       	adc	r30, r1
+ 8ac:	f9 1f       	adc	r31, r25
+ 8ae:	bd 01       	movw	r22, r26
+ 8b0:	cf 01       	movw	r24, r30
+ 8b2:	11 24       	eor	r1, r1
+ 8b4:	08 95       	ret
+
+000008b6 <__divmodhi4>:
+ 8b6:	97 fb       	bst	r25, 7
+ 8b8:	09 2e       	mov	r0, r25
+ 8ba:	07 26       	eor	r0, r23
+ 8bc:	0a d0       	rcall	.+20     	; 0x8d2 <__divmodhi4_neg1>
+ 8be:	77 fd       	sbrc	r23, 7
+ 8c0:	04 d0       	rcall	.+8      	; 0x8ca <__divmodhi4_neg2>
+ 8c2:	49 d0       	rcall	.+146    	; 0x956 <__udivmodhi4>
+ 8c4:	06 d0       	rcall	.+12     	; 0x8d2 <__divmodhi4_neg1>
+ 8c6:	00 20       	and	r0, r0
+ 8c8:	1a f4       	brpl	.+6      	; 0x8d0 <__divmodhi4_exit>
+
+000008ca <__divmodhi4_neg2>:
+ 8ca:	70 95       	com	r23
+ 8cc:	61 95       	neg	r22
+ 8ce:	7f 4f       	sbci	r23, 0xFF	; 255
+
+000008d0 <__divmodhi4_exit>:
+ 8d0:	08 95       	ret
+
+000008d2 <__divmodhi4_neg1>:
+ 8d2:	f6 f7       	brtc	.-4      	; 0x8d0 <__divmodhi4_exit>
+ 8d4:	90 95       	com	r25
+ 8d6:	81 95       	neg	r24
+ 8d8:	9f 4f       	sbci	r25, 0xFF	; 255
+ 8da:	08 95       	ret
+
+000008dc <__udivmodsi4>:
+ 8dc:	a1 e2       	ldi	r26, 0x21	; 33
+ 8de:	1a 2e       	mov	r1, r26
+ 8e0:	aa 1b       	sub	r26, r26
+ 8e2:	bb 1b       	sub	r27, r27
+ 8e4:	fd 01       	movw	r30, r26
+ 8e6:	0d c0       	rjmp	.+26     	; 0x902 <__udivmodsi4_ep>
+
+000008e8 <__udivmodsi4_loop>:
+ 8e8:	aa 1f       	adc	r26, r26
+ 8ea:	bb 1f       	adc	r27, r27
+ 8ec:	ee 1f       	adc	r30, r30
+ 8ee:	ff 1f       	adc	r31, r31
+ 8f0:	a2 17       	cp	r26, r18
+ 8f2:	b3 07       	cpc	r27, r19
+ 8f4:	e4 07       	cpc	r30, r20
+ 8f6:	f5 07       	cpc	r31, r21
+ 8f8:	20 f0       	brcs	.+8      	; 0x902 <__udivmodsi4_ep>
+ 8fa:	a2 1b       	sub	r26, r18
+ 8fc:	b3 0b       	sbc	r27, r19
+ 8fe:	e4 0b       	sbc	r30, r20
+ 900:	f5 0b       	sbc	r31, r21
+
+00000902 <__udivmodsi4_ep>:
+ 902:	66 1f       	adc	r22, r22
+ 904:	77 1f       	adc	r23, r23
+ 906:	88 1f       	adc	r24, r24
+ 908:	99 1f       	adc	r25, r25
+ 90a:	1a 94       	dec	r1
+ 90c:	69 f7       	brne	.-38     	; 0x8e8 <__udivmodsi4_loop>
+ 90e:	60 95       	com	r22
+ 910:	70 95       	com	r23
+ 912:	80 95       	com	r24
+ 914:	90 95       	com	r25
+ 916:	9b 01       	movw	r18, r22
+ 918:	ac 01       	movw	r20, r24
+ 91a:	bd 01       	movw	r22, r26
+ 91c:	cf 01       	movw	r24, r30
+ 91e:	08 95       	ret
+
+00000920 <__divmodsi4>:
+ 920:	97 fb       	bst	r25, 7
+ 922:	09 2e       	mov	r0, r25
+ 924:	05 26       	eor	r0, r21
+ 926:	0e d0       	rcall	.+28     	; 0x944 <__divmodsi4_neg1>
+ 928:	57 fd       	sbrc	r21, 7
+ 92a:	04 d0       	rcall	.+8      	; 0x934 <__divmodsi4_neg2>
+ 92c:	d7 df       	rcall	.-82     	; 0x8dc <__udivmodsi4>
+ 92e:	0a d0       	rcall	.+20     	; 0x944 <__divmodsi4_neg1>
+ 930:	00 1c       	adc	r0, r0
+ 932:	38 f4       	brcc	.+14     	; 0x942 <__divmodsi4_exit>
+
+00000934 <__divmodsi4_neg2>:
+ 934:	50 95       	com	r21
+ 936:	40 95       	com	r20
+ 938:	30 95       	com	r19
+ 93a:	21 95       	neg	r18
+ 93c:	3f 4f       	sbci	r19, 0xFF	; 255
+ 93e:	4f 4f       	sbci	r20, 0xFF	; 255
+ 940:	5f 4f       	sbci	r21, 0xFF	; 255
+
+00000942 <__divmodsi4_exit>:
+ 942:	08 95       	ret
+
+00000944 <__divmodsi4_neg1>:
+ 944:	f6 f7       	brtc	.-4      	; 0x942 <__divmodsi4_exit>
+ 946:	90 95       	com	r25
+ 948:	80 95       	com	r24
+ 94a:	70 95       	com	r23
+ 94c:	61 95       	neg	r22
+ 94e:	7f 4f       	sbci	r23, 0xFF	; 255
+ 950:	8f 4f       	sbci	r24, 0xFF	; 255
+ 952:	9f 4f       	sbci	r25, 0xFF	; 255
+ 954:	08 95       	ret
+
+00000956 <__udivmodhi4>:
+ 956:	aa 1b       	sub	r26, r26
+ 958:	bb 1b       	sub	r27, r27
+ 95a:	51 e1       	ldi	r21, 0x11	; 17
+ 95c:	07 c0       	rjmp	.+14     	; 0x96c <__udivmodhi4_ep>
+
+0000095e <__udivmodhi4_loop>:
+ 95e:	aa 1f       	adc	r26, r26
+ 960:	bb 1f       	adc	r27, r27
+ 962:	a6 17       	cp	r26, r22
+ 964:	b7 07       	cpc	r27, r23
+ 966:	10 f0       	brcs	.+4      	; 0x96c <__udivmodhi4_ep>
+ 968:	a6 1b       	sub	r26, r22
+ 96a:	b7 0b       	sbc	r27, r23
+
+0000096c <__udivmodhi4_ep>:
+ 96c:	88 1f       	adc	r24, r24
+ 96e:	99 1f       	adc	r25, r25
+ 970:	5a 95       	dec	r21
+ 972:	a9 f7       	brne	.-22     	; 0x95e <__udivmodhi4_loop>
+ 974:	80 95       	com	r24
+ 976:	90 95       	com	r25
+ 978:	bc 01       	movw	r22, r24
+ 97a:	cd 01       	movw	r24, r26
+ 97c:	08 95       	ret
+
+0000097e <__tablejump2__>:
+ 97e:	ee 0f       	add	r30, r30
+ 980:	ff 1f       	adc	r31, r31
+
+00000982 <__tablejump__>:
+ 982:	05 90       	lpm	r0, Z+
+ 984:	f4 91       	lpm	r31, Z+
+ 986:	e0 2d       	mov	r30, r0
+ 988:	09 94       	ijmp
+
+0000098a <_exit>:
+ 98a:	f8 94       	cli
+
+0000098c <__stop_program>:
+ 98c:	ff cf       	rjmp	.-2      	; 0x98c <__stop_program>

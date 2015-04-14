@@ -1,0 +1,137 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Combo Box Styles</title>
+</head>
+
+<body>
+
+<h1>Combo Box Styles</h1>
+<hr SIZE="1">
+<p>To create a combo box using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindow">
+CreateWindow</MSHelp:link>
+ or <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+CreateWindowEx</MSHelp:link>
+ function, specify the COMBOBOX class, appropriate window style constants, and a
+combination of the following combo box styles.</p>
+<p class="clsRef">Constants</p>
+<blockquote>
+  <dl class="clsRef">
+    <dt><b>CBS_AUTOHSCROLL</b>&nbsp;
+    <dd>Automatically scrolls the text in an edit control to the right when the
+      user types a character at the end of the line. If this style is not set,
+      only text that fits within the rectangular boundary is allowed.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>CBS_DISABLENOSCROLL</b>&nbsp;
+    <dd>Shows a disabled vertical scroll bar in the list box when the box does
+      not contain enough items to scroll. Without this style, the scroll bar is
+      hidden when the list box does not contain enough items.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>CBS_DROPDOWN</b>&nbsp;
+    <dd>Similar to CBS_SIMPLE, except that the list box is not displayed unless
+      the user selects an icon next to the edit control.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>CBS_DROPDOWNLIST</b>&nbsp;
+    <dd>Similar to CBS_DROPDOWN, except that the edit control is replaced by a
+      static text item that displays the current selection in the list box.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b><a name="CBS_HASSTRINGS">CBS_HASSTRINGS</a></b>&nbsp;
+    <dd>Specifies that an owner-drawn combo box contains items consisting of
+      strings. The combo box maintains the memory and address for the strings so
+      the application can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_GETLBTEXT_cpp">
+      CB_GETLBTEXT</MSHelp:link>
+      message to retrieve the text for a particular item.
+      <p>For accessibility issues, see <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_msaa_Exposing_Owner_Drawn_Combo_Box_Items">
+      Exposing Owner-Drawn Combo Box Items</MSHelp:link>
+      </p>
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>CBS_LOWERCASE</b>&nbsp;
+    <dd>Converts to lowercase all text in both the selection field and the list.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>CBS_NOINTEGRALHEIGHT</b>&nbsp;
+    <dd>Specifies that the size of the combo box is exactly the size specified
+      by the application when it created the combo box. Normally, the system
+      sizes a combo box so that it does not display partial items.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>CBS_OEMCONVERT</b>&nbsp;
+    <dd>Converts text entered in the combo box edit control from the Windows
+      character set to the OEM character set and then back to the Windows
+      character set. This ensures proper character conversion when the
+      application calls the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CharToOem">
+      CharToOem</MSHelp:link>
+      function to convert a Windows string in the combo box to OEM characters.
+      This style is most useful for combo boxes that contain file names and
+      applies only to combo boxes created with the CBS_SIMPLE or CBS_DROPDOWN
+      style.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>CBS_OWNERDRAWFIXED</b>&nbsp;
+    <dd>Specifies that the owner of the list box is responsible for drawing its
+      contents and that the items in the list box are all the same height. The
+      owner window receives a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_MEASUREITEM_cpp">
+      WM_MEASUREITEM</MSHelp:link>
+      message when the combo box is created and a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_DRAWITEM_cpp">
+      WM_DRAWITEM</MSHelp:link>
+      message when a visual aspect of the combo box has changed.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>CBS_OWNERDRAWVARIABLE</b>&nbsp;
+    <dd>Specifies that the owner of the list box is responsible for drawing its
+      contents and that the items in the list box are variable in height. The
+      owner window receives a <b>WM_MEASUREITEM</b> message for each item in the
+      combo box when you create the combo box and a <b>WM_DRAWITEM</b> message
+      when a visual aspect of the combo box has changed.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>CBS_SIMPLE</b>&nbsp;
+    <dd>Displays the list box at all times. The current selection in the list
+      box is displayed in the edit control.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>CBS_SORT</b>&nbsp;
+    <dd>Automatically sorts strings added to the list box.
+      <p>&nbsp;</p>
+      <dl class="clsRef">
+      </dl>
+    <dt><b>CBS_UPPERCASE</b>&nbsp;
+    <dd>Converts to uppercase all text in both the selection field and the list.</dd>
+  </dl>
+</blockquote>
+
+</body>
+
+</html>

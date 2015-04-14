@@ -1,0 +1,1966 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="fr">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Method descriptions</title>
+</head>
+
+<body>
+
+<h2>Method descriptions</h2>
+<h4><a href="#Buttons">Buttons</a></h4>
+<blockquote>
+<p><font face="Courier New"><a href="#Click">Click</a> <a href="#GetBitmap">GetBitmap</a> <a href="#GetImage">GetImage</a>
+<a href="#GetState">GetState</a> <a href="#SetBitmap">SetBitmap</a> <a href="#SetImage">SetImage</a></font></p>
+</blockquote>
+<h4><a href="#Checkbox">Checkbox</a></h4>
+<blockquote>
+  <p><font face="Courier New"><a href="#GetCheck">GetCheck</a> <a href="#GetStateCheckbox">GetState</a>
+  <a href="#GetStyle">GetStyle</a> <a href="#SetCheck">SetCheck</a> <a href="#SetStateCheckbox">SetState</a>
+  <a href="#SetStyleCheckbox">SetStyle</a></font></p>
+</blockquote>
+<h4><a href="#Combox">Combobox</a></h4>
+<blockquote>
+  <p><font face="Courier New"><a href="#AddString">AddString</a> <a href="#ClearSelection">ClearSelection</a>
+  <a href="#DeleteString">DeleteString</a> <a href="#FindString">FindString</a> <a href="#FindStringExact">FindStringExact</a>&nbsp;</font></p>
+  <p><font face="Courier New"><a href="#GetCount">GetCount</a> <a href="#GetCurSel">GetCurSel</a>
+  <a href="#GetDroppedState">GetDroppedState</a> <a href="#GetDroppedWidth">GetDroppedWidth</a>
+  <a href="#GetEditSel">GetEditSel</a></font></p>
+  <p><a href="#GetEditSel"><font face="Courier New">GetEditSel</font></a><font face="Courier New">
+  <a href="#GetItemHeight">GetItemHeight</a> <a href="#GetLBText">GetLBText</a> <a href="#GetLBTextLen">GetLBTextLen</a>
+  <a href="#GetTopIndex">GetTopIndex</a></font></p>
+  <p><font face="Courier New"><a href="#InsertString">InsertString</a> <a href="#LimitText">LimitText</a>
+  <a href="#ResetContent">ResetContent</a> <a href="#ShowDropDown">ShowDropDown</a>
+  <a href="#SelectString">SelectString</a></font></p>
+  <p><font face="Courier New"><a href="#SetCurSel">SetCurSel</a> <a href="#SetDroppedWidth">SetDroppedWidth</a>
+  <a href="#SetEditSel">SetEditSel</a> <a href="#SetItemHeight">SetItemHeight</a>
+  <a href="#SetTopIndex">SetTopIndex</a></font></p>
+</blockquote>
+<h4><a href="#Edit control with only a single line">Edit control with only a
+single line</a></h4>
+<blockquote>
+<p align="left"><a href="#CanUndo"><font face="Courier New">CanUndo</font></a><font face="Courier New">
+<a href="#CharFromPos">CharFromPos</a> <a href="#ClearSelectionEF">ClearSelection</a>
+<a href="#EmptyUndoBuffer">EmptyUndoBuffer</a> <a href="#GetLimitText">GetLimitText</a></font></p>
+<p align="left"><font face="Courier New"><a href="#GetMargins">GetMargins</a></font></p>
+</blockquote>
+<h4><a href="#Edit control with multiple lines">Edit control with multiple lines</a></h4>
+<h4><a href="#Listbox">Listbox</a></h4>
+<blockquote>
+<p><a href="#AddStringLB"><font face="Courier New">AddString</font></a></p>
+</blockquote>
+<h4><a href="#Listview">Listview</a></h4>
+<h4><a href="#Radiobuttons">Radiobuttons</a></h4>
+<h4><a href="#Scrollbar">Scrollbar</a></h4>
+<h4><a href="#Tab Control">Tab control</a></h4>
+<h4><a href="#Tree control">Tree control</a></h4>
+<hr>
+<p><a name="Buttons">Buttons</a></p>
+
+<table border="1" width="882">
+  <tr>
+    <td width="269"><b>Method</b></td>
+    <td width="520"><b>Short description</b></td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">void <a name="Click">Click</a>(void)</font></td>
+    <td width="520">This will simulate a click on the button.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">HANDLE <a name="GetBitmap">GetBitmap</a>(void)</font></td>
+    <td width="520">Retrieves the handle of the bitmap associated with the button.&nbsp;
+      The return value is a handle to the image, if any; otherwise, it is NULL</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2"> HANDLE <a name="GetImage">GetImage</a>(int type)</font></td>
+    <td width="520">Retrieves the handle of the image associated with the button (bitmap or
+icon). The parameter should either IMAGE_BITMAP or IMAGE_ICON. Other values will
+      provoke an undefined result.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="GetState">GetState</a>(void)</font></td>
+    <td width="520">The return value specifies the current state of the button.&nbsp;
+      See <a href="#Button states">button states</a>.&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">HANDLE <a name="SetBitmap">SetBitmap</a>(HANDLE)</font></td>
+    <td width="520">Sets a bitmap to a button. The return value is a handle to
+      the image previously associated with the button, if any; otherwise, it is
+      NULL</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">HANDLE <a name="SetImage">SetImage</a>(int type, HANDLE
+      image)</font></td>
+    <td width="520">Sets a handle (of an image) to a button.The type parameter
+      should either IMAGE_BITMAP or IMAGE_ICON. The return value is a handle to
+      the image previously associated with the button, if any; otherwise, it is
+      NULL</td>
+  </tr>
+</table>
+
+<hr>
+
+<p><a name="Checkbox">Checkbox</a></p>
+<table border="1" width="100%">
+  <tr>
+    <td width="34%"><font face="Courier New" size="2">int <a name="GetCheck">GetCheck</a>(void)</font></td>
+    <td width="66%">Returns the check state of the button (checked or unchecked)</td>
+  </tr>
+  <tr>
+    <td width="34%"><font face="Courier New" size="2">int <a name="GetStateCheckbox">GetState</a>(void)</font></td>
+    <td width="66%">Retrieves the state of the checkbox</td>
+  </tr>
+  <tr>
+    <td width="34%"><font face="Courier New" size="2">DWORD <a name="GetStyle">GetStyle</a>(void)</font></td>
+    <td width="66%">Retrieves the style of the checkbox</td>
+  </tr>
+  <tr>
+    <td width="34%"><font face="Courier New" size="2">int <a name="SetCheck">SetCheck</a>(int state)</font></td>
+    <td width="66%">Sets/unsets&nbsp; the checked state. Returns always zero.</td>
+  </tr>
+  <tr>
+    <td width="34%"><font face="Courier New" size="2">int <a name="SetStateCheckbox">SetState</a>(int state)</font></td>
+    <td width="66%">Sets the button state. Returns always zero.</td>
+  </tr>
+  <tr>
+    <td width="34%"><font face="Courier New" size="2">int <a name="SetStyleCheckbox">SetStyle</a>(int style)</font></td>
+    <td width="66%">Sets the style of the button window. Return always zero.</td>
+  </tr>
+</table>
+<hr>
+
+<p><a name="Combox">Combobox</a></p>
+
+<table border="1" width="882">
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="AddString">AddString</a>(char *str)</font></td>
+    <td width="520">Adds a string to the combo box. If the combo box does not
+      have the CBS_SORT style, the string is added to the end of the list.
+      Otherwise, the string is inserted into the list, and the list is sorted.
+      <p>The return value is the zero-based index to the string in the list box
+      of the combo box. If an error occurs, the return value is CB_ERR. If
+      insufficient space is available to store the new string, it is CB_ERRSPACE</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">void <a name="ClearSelection"> ClearSelection</a>(void)</font></td>
+    <td width="520">Clears the selection if any.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="DeleteString">DeleteString</a>(position)</font></td>
+    <td width="520">Deletes string at the given <i> position</i>, that must be a
+      zero based index of the string to delete. The return value is a count of
+      the strings remaining in the list. If the <i>wParam</i> parameter
+      specifies an index greater than the number of items in the list, the
+      return value is CB_ERR.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="FindString">FindString</a>(int
+      startAfter, char *pattern)</font></td>
+    <td width="520">Find the first line that matches the pattern.
+      <dl>
+        <dt><i>startAfter</i>
+        <dd>Specifies the zero-based index of the item preceding the first item
+          to be searched. When the search reaches the bottom of the list box, it
+          continues from the top of the list box back to the item specified by
+          the <i>startAfter</i> parameter. If is –1, the entire list box is
+          searched from the beginning.
+        <dt><i>pattern</i>
+        <dd>Pointer to the null-terminated string that contains the characters
+          for which to search. The search is not case sensitive, so this string
+          can contain any combination of uppercase and lowercase letters.</dd>
+      </dl>
+      The return value is the zero-based index of the matching item. If the
+      search is unsuccessful, it is CB_ERR.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="FindStringExact">FindStringExact</a>(int
+      startAfter, char *pattern)</font></td>
+    <td width="520">Find the first line that matches exactly the pattern.
+      <dl>
+        <dt><i>startAfter</i>
+        <dd>Specifies the zero-based index of the item preceding the first item
+          to be searched. When the search reaches the bottom of the list box, it
+          continues from the top of the list box back to the item specified by
+          the <i>startAfter</i> parameter. If is –1, the entire list box is
+          searched from the beginning.
+        <dt><i>pattern</i>
+        <dd>Pointer to the null-terminated string that contains the characters
+          for which to search. This string can contain any combination of
+          uppercase and lowercase letters.</dd>
+      </dl>
+      The return value is the zero-based index of the matching item. If the
+      search is unsuccessful, it is CB_ERR.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="GetCount">GetCount</a>(void)</font></td>
+    <td width="520">Retrives the number of items in the combo box.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="GetCurSel">GetCurSel</a>(void)</font></td>
+    <td width="520">Retrieves the index of the current selection. If there is no
+      selection, the returned value is CB_ERR.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="GetDroppedState">GetDroppedState</a>(void)</font></td>
+    <td width="520">If the list box is visible, the return value is TRUE;
+      otherwise, it is FALSE</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="GetDroppedWidth">GetDroppedWidth</a>(void)</font></td>
+    <td width="520">If the message succeeds, the return value is the width, in
+      pixels. Otherwise the return value is FALSE.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">unsigned int <a name="GetEditSel">GetEditSel</a>(int
+      *pStart, int
+      *pEnd)</font></td>
+    <td width="520">Retrieves the position of the selection.The return value is
+      a zero-based DWORD value with the starting position of the selection in
+      the low-order word and with the ending position of the first character
+      after the last selected character in the high-order word.
+      <p>Since this return value will go up to 65535 chars, the return values
+      are stored in both pointers too.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="GetItemHeight">GetItemHeight</a>(int index)</font></td>
+    <td width="520">Retrieves the height of an item.
+      <p>The <i>index</i> argument specifies the combo box component whose
+      height is to be retrieved. This parameter must be –1 to retrieve the
+      height of the selection field. It must be zero to retrieve the height of
+      list items, unless the combo box has the CBS_OWNERDRAWVARIABLE style. In
+      that case, the <i>wParam</i> parameter is the zero-based index of a
+      specific list item.</p>
+      <p>The return value is the height, in pixels, of the list items in a combo
+      box. If the combo box has the CBS_OWNERDRAWVARIABLE style, it is the
+      height of the item specified by the <i>wParam</i> parameter. If <i>wParam</i>
+      is –1, the return value is the height of the edit control (or
+      static-text) portion of the combo box. If an error occurs, the return
+      value is CB_ERR</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="GetLBText">GetLBText</a>(int
+      position,char *outbuf)</font></td>
+    <td width="520">Retrieves a string from the combo box at the given position.
+      The data is copied to <i>outbuf</i>. It is assumed that the destination
+      buffer is big enough to hold the data. You can query this length with the
+      method <font face="Courier New">GetLBTextLen</font>.
+      <p>The return value is the length of the string, in TCHARs, excluding the
+      terminating null character. If <i>wParam</i> does not specify a valid
+      index, the return value is CB_ERR.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="GetLBTextLen">GetLBTextLen</a>(int position)</font></td>
+    <td width="520">Retrieves the length of a string at a given position.
+      <p>The return value is the length of the string, in <b>TCHAR</b>s,
+      excluding the terminating null character. If an ANSI string this is the
+      number of bytes, and if it is a Unicode string this is the number of
+      characters. Under certain conditions, this value may actually be greater
+      than the length of the text.&nbsp; This occurs with certain mixtures of
+      ANSI and Unicode, and is due to the operating system allowing for the
+      possible existence of double-byte character set (DBCS) characters within
+      the text. The return value, however, will always be at least as large as
+      the actual length of the text; so you can always use it to guide buffer
+      allocation. This behavior can occur when an application uses both ANSI
+      functions and common dialogs, which use Unicode.</p>
+      <p>If the <i>position</i> parameter does not specify a valid index, the
+      return value is CB_ERR.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="GetTopIndex">GetTopIndex</a>(void)</font></td>
+    <td width="520">Retrieves the index of the first visible line in the combo
+      box.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="InsertString">InsertString</a>(int
+      position, char *str)</font></td>
+    <td width="520">Inserts a string into the combo box at the given position.
+      The combo box will not be sorted.
+      <blockquote>
+        <dl>
+          <dt><i>position</i>
+          <dd>Specifies the zero-based index of the position at which to insert
+            the string. If this parameter is –1, the string is added to the
+            end of the list.
+          <dt><i>str</i>
+          <dd>Pointer to the null-terminated string to be inserted. .</dd>
+        </dl>
+      </blockquote>
+      <p>The return value is the index of the position at which the string was
+      inserted. If an error occurs, the return value is CB_ERR. If there is
+      insufficient space available to store the new string, it is CB_ERRSPACE.</p>
+      <p>If the combo box has WS_HSCROLL style and you insert a string wider
+      than the combo box, you should send a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_LB_SETHORIZONTALEXTENT_cpp">
+      LB_SETHORIZONTALEXTENT</MSHelp:link>
+      message to ensure the horizontal scrollbar appears.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="LimitText">LimitText</a>(int nchars)</font></td>
+    <td width="520">Sets the maximum number of chars that the control accepts.
+      The nchars argument specifies the maximum number of characters the user
+      can enter, not including the null terminator. If this parameter is zero,
+      the text length is limited to 0x7FFFFFFE characters.
+      <p>If the combo box does not have the CBS_AUTOHSCROLL style, setting the
+      text limit to be larger than the size of the edit control has no effect.
+      This method limits only the text the user can enter. It has no effect on
+      any text already in the edit control when the message is sent, nor does it
+      affect the length of the text copied to the edit control when a string in
+      the list box is selected.</p>
+      <p>The default limit to the text a user can enter in the edit control is
+      30,000 characters.</p>
+      <p>The return value is always TRUE.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="ResetContent">ResetContent</a>(void)</font></td>
+    <td width="520">Erases all strings from the combo box. Return value is
+      always CB_OKAY.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="ShowDropDown">ShowDropDown</a>(int bShow)</font></td>
+    <td width="520">Specifies if the combo box drop down list box is visible
+      (bShow is TRUE) or hidden (bShow is FALSE). The return value is always
+      TRUE.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="SelectString">SelectString</a>(int
+      startAfter,char *line)</font></td>
+    <td width="520">Searches the list of a combo box for an item that begins
+      with the characters in a specified string. If a matching item is found, it
+      is selected and copied to the edit control.
+      <dl>
+        <dt><i>startAfter</i>
+        <dd>Specifies the zero-based index of the item preceding the first item
+          to be searched. When the search reaches the bottom of the list, it
+          continues from the top of the list back to the item specified by the <i>wParam</i>
+          parameter. If <i>wParam</i> is –1, the entire list is searched from
+          the beginning.
+        <dt><i>line</i>
+        <dd>Pointer to the null-terminated string that contains the characters
+          for which to search. The search is not case sensitive, so this string
+          can contain any combination of uppercase and lowercase letters.</dd>
+      </dl>
+      <p class="clsRef">Return Value: if the string is found, the return value
+      is the index of the selected item. If the search is unsuccessful, the
+      return value is CB_ERR and the current selection is not changed.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="SetCurSel">SetCurSel</a>(int index)</font></td>
+    <td width="520">Sets the current line selection; The <i>index</i> parameter
+      specifies the zero-based index of the string to select. If this parameter
+      is –1, any current selection in the list is removed and the edit control
+      is cleared.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="SetDroppedWidth">SetDroppedWidth</a>(int width)</font></td>
+    <td width="520">Set the maximum allowable width, in pixels, of the list box
+      of a combo box with the CBS_DROPDOWN or CBS_DROPDOWNLIST style. Returns
+      the new width of the list box.if successful, CB_ERR otherwise.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="SetEditSel">SetEditSel</a>(int Start,int
+      End)</font></td>
+    <td width="520">Selects characters in the edit control of a combo box. The
+      Start parameter specifies the start of the selection. If this parameter is
+      -1 the selection is removed. The End parameter specifies the position of
+      the end of the selection. If this parameter is -1 all text from the start
+      position to the end of the text will be selected.
+      <p>Returns TRUE if successful.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="SetItemHeight">SetItemHeight</a>(int index,
+      int height)</font></td>
+    <td width="520">Sets the height of an item. The index parameter specifies
+      the component of the combo box for which to set the height. This parameter
+      must be –1 to set the height of the selection field. It must be zero to
+      set the height of list items, unless the combo box has the
+      CBS_OWNERDRAWVARIABLE style. In that case, the <i>wParam</i> parameter is
+      the zero-based index of a specific list item.
+      <p>The selection field height in a combo box is set independently of the
+      height of the list items. An application must ensure that the height of
+      the selection field is not smaller than the height of a particular list
+      item. Returns CB_ERR if failure.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="SetTopIndex">SetTopIndex</a>(int index)</font></td>
+    <td width="520">Retrieves the zero-based index of the first visible item in
+      the list box portion of a combo box. Initially, the item with index 0 is
+      at the top of the list box, but if the list box contents have been
+      scrolled, another item may be at the top.</td>
+  </tr>
+</table>
+
+<hr>
+
+<p><a name="Edit control with only a single line">Edit control with only a
+single line</a></p>
+
+<table border="1" width="882">
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="CanUndo">CanUndo</a>(void)</font></td>
+    <td width="520">If there are actions in the control's undo queue, the return value is nonzero.<br>
+      If the undo queue is empty, the return value is zero.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="CharFromPos">CharFromPos</a>(POINT pt)</font></td>
+    <td width="520">Retrieves information about the character closest to a
+      specified point in the client area of an edit control. The argument <i>pt</i>
+      specifies the coordinates of a point in the control's client area. The
+      coordinates are in screen units and are relative to the upper-left corner
+      of the control's client area.
+      <p>The low-order word specifies the zero-based index of the character
+      nearest the specified point. This index is relative to the beginning of
+      the control, not the beginning of the line. If the specified point is
+      beyond the last character in the edit control, the return value indicates
+      the last character in the control. The high-order word specifies the
+      zero-based index of the line that contains the character. For single-line
+      edit controls, this value is zero. The index indicates the line delimiter
+      if the specified point is beyond the last visible character in a line</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">void <a name="ClearSelectionEF">ClearSelection</a>(void)</font></td>
+    <td width="520">Clears the selection.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">void <a name="EmptyUndoBuffer">EmptyUndoBuffer</a>(void)</font></td>
+    <td width="520">Empties the undo buffer.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="GetLimitText">GetLimitText</a>(void)</font></td>
+    <td width="520">Retrieves the length of the maximum length of the text the
+      control accepts</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int <a name="GetMargins">GetMargins</a>(int *pleft, int
+      *pright)</font></td>
+    <td width="520">Retrives the borders of the selection.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetModify(void)</font></td>
+    <td width="520">Returns non zero if the text has been modified, zero
+      otherwise</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetPasswordChar(void)</font></td>
+    <td width="520">Returns the code of the password char.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetRect(RECT *pRect)</font></td>
+    <td width="520">Retrieves the client area coordinates of a specified
+      character in an edit control.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetSel(void)</font></td>
+    <td width="520">Returns the index of the selection or CB_ERR if none exists.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">PosFromChar(int index)</font></td>
+    <td width="520">Retrieves the position of a char</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">ReplaceSel(char
+      *NewText,int bCanUndo)</font></td>
+    <td width="520">Replaces the current selection in an edit control with the specified text.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetLimitText(int limit)</font></td>
+    <td width="520">Sets the maximum number of chars the control will accept.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetMargins(int left,int
+      right)</font></td>
+    <td width="520">Sets the widths of the left and right margins for an edit
+      control. The message redraws the control to reflect the new margins.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetModify(int bModified)</font></td>
+    <td width="520">Sets the state of the text to modified or not.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetPasswordChar(int
+      charCode)</font></td>
+    <td width="520">Sets the character that will be shown when the control is
+      used as a password entry field.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetReadOnly(int bReadOnly)</font></td>
+    <td width="520">Sets the control to read only or not.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetSel(int start,int
+      end,int bScroll)</font></td>
+    <td width="520">Sets the selection to the given limits. If bScroll is TRUE
+      it scrolls the control</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetScrollCaret(void)</font></td>
+    <td width="520">Scrolls the caret into view if necessary</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">Undo(void)</font></td>
+    <td width="520">Undoes the last edit action.</td>
+  </tr>
+</table>
+
+<hr>
+
+<p><a name="Edit control with multiple lines">Edit control with multiple lines</a></p>
+
+<table border="1" width="882">
+  <tr>
+    <td width="269"><font face="Courier New" size="2">CanUndo(void)</font></td>
+    <td width="520">If there are actions in the control's undo queue, the return value is nonzero.<br>
+      If the undo queue is empty, the return value is zero.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">CharFromPos(POINT pt)</font></td>
+    <td width="520">Returns the index from a given position</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">ClearSelection(void)</font></td>
+    <td width="520">Clears the selection.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">EmptyUndoBuffer()</font></td>
+    <td width="520">Empties the undo buffer.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">FmtLines(void)</font></td>
+    <td width="520">Sets a flag that determines whether a multiline edit control
+      includes soft line-break characters. A soft line break consists of two
+      carriage returns and a line feed and is inserted at the end of a line that
+      is broken because of wordwrapping.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetFirstVisibleLine(void)</font></td>
+    <td width="520">Retrieves the index of the first visible line.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetLimitText(void)</font></td>
+    <td width="520">Retrieves the length of the maximum length of the text the
+      control accepts</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetLine(int Linenr,char
+      *outbuf,int Nbmax)</font></td>
+    <td width="520">Retrieves a line from the control</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetLineCount(void)</font></td>
+    <td width="520">Returns the number of lines in the control</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetMargins(int *pleft, int
+      *pright)</font></td>
+    <td width="520">Retrives the borders of the selection.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetModify(void)</font></td>
+    <td width="520">Returns non zero if the text has been modified, zero
+      otherwise</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetPasswordChar(void)</font></td>
+    <td width="520">Returns the code of the password char.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetRect(RECT *pRect)</font></td>
+    <td width="520">Retrieves the client area coordinates of a specified
+      character in an edit control.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetSel(void)</font></td>
+    <td width="520">Returns the index of the selection or CB_ERR if none exists.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">LineIndex(int lines,int
+      chars)</font></td>
+    <td width="520">Retrieves the character index of the first character of a
+      specified line in a multiline edit control. A character index is the
+      zero-based index of the character from the beginning of the edit control</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">LineLength(int line)</font></td>
+    <td width="520">Retrieves the line length of the given line.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">LineScroll(int line)</font></td>
+    <td width="520">Scrolls the text in a multiline edit control</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">PosFromChar(int index)</font></td>
+    <td width="520">Retrieves the position of a char</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">ReplaceSel(char
+      *NewText,int bCanUndo)</font></td>
+    <td width="520">Replaces the current selection in an edit control with the specified text.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">Scroll(void)</font></td>
+    <td width="520">Scrolls the text vertically in a multiline edit control.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetLimitText(int limit)</font></td>
+    <td width="520">Sets the maximum number of chars the control will accept.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetMargins(int left,int
+      right)</font></td>
+    <td width="520">Sets the widths of the left and right margins for an edit
+      control. The message redraws the control to reflect the new margins.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetModify(int bModified)</font></td>
+    <td width="520">Sets the state of the text to modified or not.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetPasswordChar(int
+      charCode)</font></td>
+    <td width="520">Sets the character that will be shown when the control is
+      used as a password entry field.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetReadOnly(int bReadOnly)</font></td>
+    <td width="520">Sets the control to read only or not.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetSel(int start,int
+      end,int bScroll)</font></td>
+    <td width="520">Sets the selection to the given limits. If bScroll is TRUE
+      it scrolls the control</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetScrollCaret(void)</font></td>
+    <td width="520">Scrolls the caret into view if necessary</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetTabsStops(int nTabs, int *TabArray)</font></td>
+    <td width="520">Sets the position of the tabulations.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">Undo(void)</font></td>
+    <td width="520">Undoes the last edit action.</td>
+  </tr>
+</table>
+
+<hr>
+
+<p><a name="Listbox">Listbox</a></p>
+
+<table border="1" width="882">
+  <tr>
+    <td width="269"><font face="Courier New" size="2"><a name="AddStringLB">AddString</a>(char *str)</font></td>
+    <td width="520">Adds a string to a list box, sorting if the list box has the
+      LBS_SORT style.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">DeleteString(position)</font></td>
+    <td width="520">Deletes the string at the given position</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">FindString(int
+      startAfter,char *pattern)</font></td>
+    <td width="520">Searches the listbox for a string that matches the given
+      pattern</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">FindStringExact(int
+      startAfter,char *pattern)</font></td>
+    <td width="520">Searches the listbox for a string that matcges exactly.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetAnchorIndex(void)</font></td>
+    <td width="520">Retrieves the first index of a multiple selection.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetCount(void)</font></td>
+    <td width="520">Retrieves the number of items in the listbox</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetCurSel(void)</font></td>
+    <td width="520">Retrieves the index of the current selection</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetCaretIndex(void)</font></td>
+    <td width="520">Retrieves the caret index of the current selection</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetHorizontalExtent(void)</font></td>
+    <td width="520">Retrieves from a list box the width, in pixels, by which the
+      list box can be scrolled horizontally (the scrollable width) if the list
+      box has a horizontal scroll bar.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetItemHeight(int
+      position)</font></td>
+    <td width="520">Retrieves the height of items in a list box.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetItemRect(int index,
+      RECT *prect)</font></td>
+    <td width="520">Retrieves the bounding rectangle for an item.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetText(int position,char
+      *outbuf)</font></td>
+    <td width="520">Retrieves the text of a line at the given position.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetSel(void)</font></td>
+    <td width="520">Retrieves the selection of a list box.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetTopIndex(void)</font></td>
+    <td width="520">Retrieves the index of the first visible item in a list box.
+      Initially the item with index 0 is at the top of the list box, but if the
+      list box contents have been scrolled another item may be at the top.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetTextLen(int position)</font></td>
+    <td width="520">Retrieves the text length of a line in the list box</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetSelCount(void)</font></td>
+    <td width="520">Retrieves the number of items selected.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">GetSelItems(int
+      nbOfItems,int *items)</font></td>
+    <td width="520">Fills a buffer with an array of integers that specify the
+      item numbers of selected items in a multiple-selection list box.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">InsertString(int index
+      ,char *str)</font></td>
+    <td width="520">Inserts the given string at the specified index position. </td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">ItemFromPoint(POINT pt,
+      int *bOutside)</font></td>
+    <td width="520">Retrieves the zero-based index of the item nearest the
+      specified point in a list box. </td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SelectString(int
+      startAfter, char *pattern)</font></td>
+    <td width="520">Searches a list box for an item that begins with the
+      characters in a specified string. If a matching item is found, the item is
+      selected. The search starts at the number given by the searchAfter
+      parameter </td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SelItemRange(int
+      bSelect,int first,int last)</font></td>
+    <td width="520">Selects or deselects one or more consecutive items in a
+      multiple-selection list box. </td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetAnchorIndex(int index)</font></td>
+    <td width="520">Sets the anchor item—that is, the item from which a
+      multiple selection starts. A multiple selection spans all items from the
+      anchor item to the caret item. </td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetCaretIndex(int index)</font></td>
+    <td width="520">Sets the focus rectangle to the item at the specified index
+      in a multiple-selection list box. If the item is not visible, it is
+      scrolled into view. </td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetColumnWidth(int Width)</font></td>
+    <td width="520">Sets the width, in pixels, of all columns in the list box. </td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetHorizontalExtent(int
+      cExtent)</font></td>
+    <td width="520">Sets the width, in pixels, by which a list box can be
+      scrolled horizontally (the scrollable width). If the width of the list box
+      is smaller than this value, the horizontal scroll bar horizontally scrolls
+      items in the list box. If the width of the list box is equal to or greater
+      than this value, the horizontal scroll bar is hidden. </td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetItemHeight(int
+      position, int height)</font></td>
+    <td width="520">Sets the height, in pixels, of items in a list box. If the
+      list box has the LBS_OWNERDRAWVARIABLE style, this message sets the height
+      of the item specified by the <i>wParam</i> parameter. Otherwise, this
+      message sets the height of all items in the list box. </td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetSel(int position, int
+      bSelect)</font></td>
+    <td width="520">Sets the selection to the specified index </td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetTabStops(int nTabs,int
+      *array)</font></td>
+    <td width="520">Sets the tab stops positions in a list box. </td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">SetTopIndex(int position)</font></td>
+    <td width="520">Set the position of the first line visible in a list box,
+      scrolling if necessary to bring it into view.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">ResetContent(void)</font></td>
+    <td width="520">Clears the list box from all strings</td>
+  </tr>
+</table>
+
+<hr>
+
+<p><a name="Listview">Listview</a></p>
+
+<table border="1" width="882">
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int Arrange(int code)</font></td>
+    <td width="520">
+      <dl>
+        <dt>Arranges items in icon view.
+        <dt><i>code</i></dt>
+        <dd>Alignment. This can be one of the following values:
+          <dl>
+            <dt><span class="clsLiteral">LVA_ALIGNLEFT</span>
+            <dd>Aligns items along the left edge of the window.
+            <dt><span class="clsLiteral">LVA_ALIGNTOP</span>
+            <dd>Aligns items along the top edge of the window.
+            <dt><span class="clsLiteral">LVA_DEFAULT</span>
+            <dd>Aligns items according to the list-view control's current
+              alignment styles (the default value).
+            <dt><span class="clsLiteral">LVA_SNAPTOGRID</span>
+            <dd>Snaps all icons to the nearest grid position.</dd>
+          </dl>
+        </dd>
+      </dl>
+      <p>Returns TRUE if successful, or FALSE otherwise.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int DeleteAllItems(void)</font></td>
+    <td width="520">Removes all items from a list-view control. Returns TRUE if
+      successful, or FALSE otherwise.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int DeleteColumn(int
+      iColumn)</font></td>
+    <td width="520">Removes a column from a list-view control. Returns TRUE if
+      successful, or FALSE otherwise. <i>iColumn</i> is the index of the column
+      to delete.</td>
+  </tr>
+  <tr>
+    <td width="269"><font face="Courier New" size="2">int DeleteItem(int iItem)</font></td>
+    <td width="520">Removes an item from a list-view control. The iItem
+      parameter is the index of the list view item to delete.Returns TRUE if
+      successful, or FALSE otherwise.&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="269">&nbsp;</td>
+    <td width="520">&nbsp;</td>
+  </tr>
+</table>
+
+<hr>
+
+<p><a name="Radiobuttons">Radiobuttons</a></p>
+<table border="1" width="95%">
+  <tr>
+    <td width="35%"><font face="Courier New" size="2">GetCheck(void)</font></td>
+    <td width="65%">Returns the state of the button (checked or unchecked)</td>
+  </tr>
+  <tr>
+    <td width="35%"><font face="Courier New" size="2">GetState(void)</font></td>
+    <td width="65%">Retrieves the state of the checkbox</td>
+  </tr>
+  <tr>
+    <td width="35%"><font face="Courier New" size="2">GetStyle(void)</font></td>
+    <td width="65%">Retrieves the style of the checkbox</td>
+  </tr>
+  <tr>
+    <td width="35%"><font face="Courier New" size="2">SetCheck(int bChecked)</font></td>
+    <td width="65%">Sets/unsets&nbsp; the checked state.</td>
+  </tr>
+  <tr>
+    <td width="35%"><font face="Courier New" size="2">SetState(int state)</font></td>
+    <td width="65%">Sets the button state</td>
+  </tr>
+  <tr>
+    <td width="35%"><font face="Courier New" size="2">SetStyle(int style)</font></td>
+    <td width="65%">Sets the style of the button window</td>
+  </tr>
+</table>
+<p><a name="Scrollbar">Scrollbar</a></p>
+<table border="1" width="95%" height="273">
+  <tr>
+    <td width="35%" height="16"><font face="Courier New" size="2">EnableScrollbar(int
+      arrowState)</font></td>
+    <td width="65%" height="16">Enables or disables one or both scroll bar
+      arrows</td>
+  </tr>
+  <tr>
+    <td width="35%" height="16"><font face="Courier New" size="2">EnableArrows(void)</font></td>
+    <td width="65%" height="16">Enables the arrows of the scroll bar.</td>
+  </tr>
+  <tr>
+    <td width="35%" height="38"><font face="Courier New" size="2">GetInfo(SCROLLINFO
+      *lpsi)</font></td>
+    <td width="65%" height="38">Retrieves the parameters of a scroll bar,
+      including the minimum and maximum scrolling positions, the page size, and
+      the position of the scroll box (thumb).</td>
+  </tr>
+  <tr>
+    <td width="35%" height="19"><font face="Courier New" size="2">GetPos(void)</font></td>
+    <td width="65%" height="19">Retrieves the position of the thumb.</td>
+  </tr>
+  <tr>
+    <td width="35%" height="38"><font face="Courier New" size="2">GetRange(int
+      *pMin,int *pmax)</font></td>
+    <td width="65%" height="38">Retrieves the current minimum and maximum scroll
+      box (thumb) positions for the specified scroll bar.</td>
+  </tr>
+  <tr>
+    <td width="35%" height="57"><font face="Courier New" size="2">SetInfo(SCROLLINFO
+      *lpsi,int bRedraw)</font></td>
+    <td width="65%" height="57">Sets the parameters of a scroll bar, including
+      the minimum and maximum scrolling positions, the page size, and the
+      position of the scroll box (thumb). The function also redraws the scroll
+      bar, if requested</td>
+  </tr>
+  <tr>
+    <td width="35%" height="19"><font face="Courier New" size="2">SetPos(int
+      pos,int bRedraw)</font></td>
+    <td width="65%" height="19">Sets the position of the thumb.</td>
+  </tr>
+  <tr>
+    <td width="35%" height="19"><font face="Courier New" size="2">SetRange(int
+      min,int max,int bRedraw)</font></td>
+    <td width="65%" height="19">Sets the range of the scrollbar</td>
+  </tr>
+  <tr>
+    <td width="35%" height="19"><font face="Courier New" size="2">ShowScrollBar(int
+      bShow)</font></td>
+    <td width="65%" height="19">Shows or hides the scroll bar.</td>
+  </tr>
+</table>
+<hr>
+<p><a name="Tab Control">Tab Control</a></p>
+<table border="1" width="94%" height="18">
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">int AdjustRect(int
+      fLarger,RECT *lpRect)</font></td>
+    <td width="65%" height="1">Calculates a tab control's display area given a
+      window rectangle, or calculates the window rectangle that would correspond
+      to a specified display area.
+      <dl>
+        <dt><i>fLarger</i>
+        <dd>Operation to perform. If this parameter is TRUE, <i>lpRect</i>
+          specifies a display rectangle and receives the corresponding window
+          rectangle. If this parameter is FALSE, <i>lpRect</i> specifies a
+          window rectangle and receives the corresponding display area.</dd>
+        <dt>Returns TRUE if sucessfull, zero otherwise.</dt>
+      </dl>
+    </td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">int DeleteAllItems(void)</font></td>
+    <td width="65%" height="1">Removes all items from a tab control.</td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">int DeleteItem(int item)</font></td>
+    <td width="65%" height="1">Removes an item from a tab control. The <i>item</i>
+      parameter is the index of the item to delete. Returns TRUE if sucessfull,
+      zero otherwise.</td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">GetCurFocus(void)</font></td>
+    <td width="65%" height="1">Returns the index of the item that has the focus
+      in a tab control.</td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">GetCurSel(void)</font></td>
+    <td width="65%" height="1">Returns the index the currently selected tab in a tab
+      control.</td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">HANDLE GetImageList(void)</font></td>
+    <td width="65%" height="1">Retrieves the image list associated with a tab
+      control.</td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">int GetItem(int item,TC_ITEM *Itemdata)</font></td>
+    <td width="65%" height="1">Retrieves information about a tab in a tab
+      control.
+      <dl>
+        <dt><i>item</i>
+        <dd>Index of the tab.
+        <dt><i>itemdata</i>
+        <dd>Pointer to a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TCITEM_cpp">
+          TCITEM</MSHelp:link>
+          structure that specifies the information to retrieve and receives
+          information about the tab. When the message is sent, the <b>mask</b>
+          member specifies which attributes to return. If the <b>mask</b> member
+          specifies the TCIF_TEXT value, the <b>pszText</b> member must contain
+          the address of the buffer that receives the item text, and the <b>cchTextMax</b>
+          member must specify the size of the buffer.</dd>
+        <dt>Returns TRUE if successful, or FALSE otherwise.</dt>
+      </dl>
+      <p>If the TCIF_TEXT flag is set in the <b>mask</b> member of the <b>TCITEM</b>
+      structure, the control may change the <b>pszText</b> member of the
+      structure to point to the new text instead of filling the buffer with the
+      requested text. The control may set the <b>pszText</b> member to NULL to
+      indicate that no text is associated with the item.</td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">int GetItemCount(void)</font></td>
+    <td width="65%" height="1">Returns the number of items if successful, or
+      zero otherwise.</td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">int GetItemRect(int item, RECT *lpRect)</font></td>
+    <td width="65%" height="1">Retrieves the bounding rectangle for a tab in a
+      tab control.</td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">int GetRowCount(void)</font></td>
+    <td width="65%" height="1">Retrieves the current number of rows of tabs in a
+      tab control</td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">int GetToolTips(void)</font></td>
+    <td width="65%" height="1">Retrieves the handle to the ToolTip control
+      associated with a tab control</td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">int
+      HitTest(TCHTTESTINFO *info)</font></td>
+    <td width="65%" height="1">Determines which tab, if any, is at a specified
+      screen position. For information about the info parameter see <a href="#TCHITTESTINFO">TCHITTESTINFO</a>.</td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">int InsertItem(int item, TC_ITEM *itmeinfo)</font></td>
+    <td width="65%" height="1">Inserts a new tab in a tab control.</td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">int RemoveImage(int image)</font></td>
+    <td width="65%" height="1">Removes an image from a tab control's image list</td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">SetCurFocus(int item)</font></td>
+    <td width="65%" height="1">Set current focus</td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">SetCurSel(int item)</font></td>
+    <td width="65%" height="1">Sets the current selection</td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">SetImageList(HIMAGELIST
+      imglist)</font></td>
+    <td width="65%" height="1">Assigns an image list to a tab control</td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">SetItem(inbt
+      item,TC_ITEM *itemData)</font></td>
+    <td width="65%" height="1">Modifies an item.</td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">SetItemExtra(int
+      nBytes)</font></td>
+    <td width="65%" height="1">Sets the number of bytes per tab reserved for
+      application-defined data in a tab control.</td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">SetItemSize(int
+      cx,int cy)</font></td>
+    <td width="65%" height="1">Sets the width and height of tabs in a
+      fixed-width or owner-drawn tab control</td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">SetPadding(int
+      cx,int cy)</font></td>
+    <td width="65%" height="1">Sets the amount of space (padding) around each
+      tab's icon and label in a tab control</td>
+  </tr>
+  <tr>
+    <td width="35%" height="1"><font face="Courier New" size="2">SetToolTips(HWND
+      hwndTT)</font></td>
+    <td width="65%" height="1">Assigns a ToolTip control to a tab control</td>
+  </tr>
+</table>
+<hr>
+<p><a name="Tree control">Tree control</a></p>
+<table border="1" width="93%" height="17">
+  <tr>
+    <td width="36%" height="1"><font size="2" face="Courier New">CreateDragImage(HTREEITEM
+      item)</font></td>
+    <td width="64%" height="1">Creates a dragging bitmap for the specified item
+      in a tree-view control. The message also creates an image list for the
+      bitmap and adds the bitmap to the image list. An application can display
+      the image when dragging the item by using the image list functions
+      <p>Returns the handle to the image list to which the dragging bitmap was
+      added if successful, or NULL otherwise.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font size="2" face="Courier New">int DeleteAllItems(void)</font></td>
+    <td width="64%" height="1">Deletes all items in the tree control.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font size="2" face="Courier New">int DeleteItem(HTREEITEM
+      item)</font></td>
+    <td width="64%" height="1">Deletes an item.
+      <p>Once an item is deleted, its handle is invalid and cannot be used. The
+      parent window receives a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_DELETEITEM_cpp">
+      TVN_DELETEITEM</MSHelp:link>
+      notification message when each item is removed.</p>
+      <p>If the item label is being edited, the edit operation is canceled and
+      the parent window receives the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_ENDLABELEDIT_cpp">
+      TVN_ENDLABELEDIT</MSHelp:link>
+      notification message.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font size="2" face="Courier New">HWND
+      EditLabel(HTREEITEM item)</font></td>
+    <td width="64%" height="1">Begins in-place editing of the specified item's
+      text, replacing the text of the item with a single-line edit control
+      containing the text. This message implicitly selects and focuses the
+      specified item.
+      <p class="clsRef">Return Value: Returns the handle to the edit control
+      used to edit the item text if successful, or NULL otherwise.&nbsp;</p>
+      <p>This method sends a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_BEGINLABELEDIT_cpp">
+      TVN_BEGINLABELEDIT</MSHelp:link>
+      notification message to the parent of the tree-view control. When the user
+      completes or cancels editing, the edit control is destroyed and the handle
+      is no longer valid. You can subclass the edit control, but do not destroy
+      it. The control must have the focus before you send this message to the
+      control. Focus can be set using the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_setfocus">
+      SetFocus</MSHelp:link>
+      function.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font size="2" face="Courier New">int EndEditLabelNow(int
+      bCancel)</font></td>
+    <td width="64%" height="1">Ends the editing of a tree-view item's label.&nbsp;
+      <p><i>bCancel</i> is a variable that indicates whether the editing is canceled without being saved to the label. If this
+      parameter is TRUE, the system cancels editing without saving the changes. Otherwise, the system
+      saves the changes to the label.</p>
+      <p class="clsRef">Return Value</p>
+      <blockquote>
+        Returns TRUE if successful, or FALSE otherwise
+      </blockquote>
+    </td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">int EnsureVisible(HTREEITEM
+      item)</font></td>
+    <td width="64%" height="1">Ensures that a tree-view item is visible,
+      expanding the parent item or scrolling the tree-view control, if necessary.
+      <p class="clsRef">Return Value:&nbsp; nonzero if the system scrolled the
+      items in the tree-view control and no items were expanded. Otherwise, the
+      return value is zero.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">int Expand(HTREEITEM
+      item, int Action)</font></td>
+    <td width="64%" height="1">Expands an item.
+      <dl>
+        <dt><i>Action</i>
+        <dd>Can be one or more of the following values:
+          <dl>
+            <dt><span class="clsLiteral">TVE_COLLAPSE</span>
+            <dd>Collapses the list.</dd>
+            <dt><span class="clsLiteral">TVE_COLLAPSERESET</span>
+            <dd>Collapses the list and removes the child items. The
+              TVIS_EXPANDEDONCE state flag is reset. This flag must be used with
+              the TVE_COLLAPSE flag.
+            <dt><span class="clsLiteral">TVE_EXPAND</span>
+            <dd>Expands the list.
+            <dt><span class="clsLiteral">TVE_EXPANDPARTIAL</span>
+            <dd><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Shell_Versions">
+              Partially expands the list. In this state the child items are
+              visible and the parent item's plus sign (+), indicating that it
+              can be expanded, is displayed. This flag must be used in
+              combination with the TVE_EXPAND flag.
+            <dt><span class="clsLiteral">TVE_TOGGLE</span>
+            <dd>Collapses the list if it is expanded or expands it if it is
+              collapsed.</dd>
+          </dl>
+        </dd>
+      </dl>
+      <dl>
+        <dt><i>item</i>
+        <dd>Handle to the parent item to expand or collapse.</dd>
+        <dt>&nbsp;</dt>
+        <dt>Returns nonzero if the operation was successful, or zero otherwise</dt>
+      </dl>
+    </td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">HWND
+      EditLabel(HTREEITEM item)</font></td>
+    <td width="64%" height="1">Begins in-place editing of the specified item's
+      text, replacing the text of the item with a single-line edit control
+      containing the text. This message implicitly selects and focuses the
+      specified item.
+      <p>Returns the handle to the edit control used to edit the item text if
+      successful, or NULL otherwise</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">HTREEITEM
+      GetChild(HITEM item)</font></td>
+    <td width="64%" height="1">Retrieves the tree-view item that is the child of
+      the specified item or NULL if no such an item exists.
+      <p>&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">int
+      GetCount(void)</font></td>
+    <td width="64%" height="1">Retrieves a count of the items in a tree-view
+      control.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">HTREEITEM
+      GetDropHilite(void)</font></td>
+    <td width="64%" height="1">Retrieves the item that is the target of a
+      drag-and-drop operation. Returns NULL if no such an item exists.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">HWND
+      GetEditControl(void)</font></td>
+    <td width="64%" height="1">Retrieves the handle to the edit control being
+      used to edit a tree-view item's text.
+      <p>When label editing begins, an edit control is created, but not
+      positioned or displayed. Before it is displayed, the tree-view control
+      sends its parent window an <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_BEGINLABELEDIT_cpp">
+      TVN_BEGINLABELEDIT</MSHelp:link>
+      notification message.</p>
+      <p>To customize label editing, implement a handler for <b>TVN_BEGINLABELEDIT</b>
+      and have it send a <b>TVM_GETEDITCONTROL</b> message to the tree-view
+      control. If a label is being edited, the return value will be a handle to
+      the edit control. Use this handle to customize the edit control by sending
+      the usual <b>EM_XXX</b> messages</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">HTREEITEM
+      GetFirstVisibleItem(void)</font></td>
+    <td width="64%" height="1">Retrieves the first item that is visible in the
+      tree-view window.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">HIMAGELIST
+      GetImageList(int type)</font></td>
+    <td width="64%" height="1">Retrieves the handle to the normal or state image
+      list associated with a tree-view control.
+      <dl>
+        <dt><i>type</i>
+        <dd>Type of image list to retrieve. This parameter can be one of the
+          following values:
+          <dl>
+            <dt><span class="clsLiteral">TVSIL_NORMAL</span>
+            <dd>Indicates the normal image list, which contains selected,
+              nonselected, and overlay images for the items of a tree-view
+              control.
+            <dt><span class="clsLiteral">TVSIL_STATE</span>
+            <dd>Indicates the state image list. You can use state images to
+              indicate application-defined item states. A state image is
+              displayed to the left of an item's selected or nonselected image.</dd>
+          </dl>
+        </dd>
+      </dl>
+    </td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">int
+      GetIndent(void)</font></td>
+    <td width="64%" height="1">Returns the amount of indentation</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">int
+      GetISearchString(char *outbuf)</font></td>
+    <td width="64%" height="1">Retrieves the incremental search string for a
+      tree-view control. The tree-view control uses the incremental search
+      string to select an item based on characters typed by the user. The result
+      will be stored in the given buffer. Returns the number of characters in
+      the incremental search string.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">int
+      GetItem(TV_ITEM *pItem)</font></td>
+    <td width="64%" height="1">Retrieves some or all of a tree-view item's
+      attributes.
+      <dl>
+        <dt><i>pitem</i>
+        <dd>Pointer to a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVITEM_cpp">
+          TVITEM</MSHelp:link>
+          structure that specifies the information to retrieve and receives
+          information about the item. With <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Shell_Versions">
+          version 4.71</MSHelp:link>
+          and later, you can use a <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVITEMEX_cpp">
+          TVITEMEX</MSHelp:link>
+          structure instead.</dd>
+        <dt>Returns TRUE if successful, or FALSE otherwise.</dt>
+      </dl>
+    </td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">int
+      GetItemRect(HTREEITEM hItem, RECT *pRect, int bTextOnly)</font></td>
+    <td width="64%" height="1">Retrieves the bounding rectangle for a tree-view
+      item and indicates whether the item is visible.
+      <blockquote>
+        <dl>
+          <dt><i>bTextOnly</i>
+          <dd>Value specifying the portion of the item for which to retrieve the
+            bounding rectangle. If this parameter is TRUE, the bounding
+            rectangle includes only the text of the item. Otherwise, it includes
+            the entire line that the item occupies in the tree-view control.
+          <dt><i>pRect</i>
+          <dd>Pointer to a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_rect_str">
+            RECT</MSHelp:link>
+            structure that, when sending the message, contains the handle of the
+            item to retrieve the rectangle for.&nbsp; The coordinates are
+            relative to the upper-left corner of the tree-view control.</dd>
+        </dl>
+      </blockquote>
+      <p class="clsRef">Return Value</p>
+      If the item is visible and the bounding rectangle was successfully
+      retrieved, the return value is TRUE. Otherwise, the message returns FALSE
+      and does not retrieve the bounding rectangle.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">int
+      GetItemState(HTREEITEM hItem,int mask)</font></td>
+    <td width="64%" height="1">Retrieves some or all of a tree-view item's state
+      attributes.
+      <blockquote>
+        <dl>
+          <dt><i>hItem</i>
+          <dd>Handle to the item.
+          <dt><i><a name="mask">mask</a></i>
+          <dd>Mask used to specify the states to query for.
+            <dl>
+              <dd>Array of flags that indicate which of the other structure
+                members contain valid data. When this structure is used with the
+                <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_GETITEM_cpp">
+                TVM_GETITEM</MSHelp:link>
+                message, the <b><span title="UINT" style="CURSOR: hand">mask</span></b>
+                member indicates the item attributes to retrieve. This member
+                can be one or more of the following values.
+                <dl>
+                  <dt><span class="clsLiteral">TVIF_CHILDREN</span>
+                  <dd>The <b><span title="int" style="CURSOR: hand">cChildren</span></b>
+                    member is valid.
+                  <dt><span class="clsLiteral">TVIF_DI_SETITEM</span>
+                  <dd>The tree-view control will retain the supplied information
+                    and will not request it again. This flag is valid only when
+                    processing the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_GETDISPINFO_cpp">
+                    TVN_GETDISPINFO</MSHelp:link>
+                    notification.
+                  <dt><span class="clsLiteral">TVIF_HANDLE</span>
+                  <dd>The <b><span title="HTREEITEM" style="CURSOR: hand">hItem</span></b>
+                    member is valid.
+                  <dt><span class="clsLiteral">TVIF_IMAGE</span>
+                  <dd>The <b><span title="int" style="CURSOR: hand">iImage</span></b>
+                    member is valid.
+                  <dt><span class="clsLiteral">TVIF_INTEGRAL</span>
+                  <dd>The <b><span title="int" style="CURSOR: hand">iIntegral</span></b>
+                    member is valid.
+                  <dt><span class="clsLiteral">TVIF_PARAM</span>
+                  <dd>The <b><span title="LPARAM" style="CURSOR: hand">lParam</span></b>
+                    member is valid.
+                  <dt><span class="clsLiteral">TVIF_SELECTEDIMAGE</span>
+                  <dd>The <b><span title="int" style="CURSOR: hand">iSelectedImage</span></b>
+                    member is valid.
+                  <dt><span class="clsLiteral">TVIF_STATE</span>
+                  <dd>The <b><span title="UINT" style="CURSOR: hand">state</span></b>
+                    and <b><span title="UINT" style="CURSOR: hand">stateMask</span></b>
+                    members are valid.
+                  <dt><span class="clsLiteral">TVIF_TEXT</span>
+                  <dd>The <b><span title="LPTSTR" style="CURSOR: hand">pszText</span></b>
+                    and <b><span title="int" style="CURSOR: hand">cchTextMax</span></b>
+                    members are valid.</dd>
+                </dl>
+              </dd>
+            </dl>
+          </dd>
+        </dl>
+      </blockquote>
+      <p class="clsRef">Return Value: returns a <b>UINT</b> value with the
+      appropriate state bits set to TRUE. Only those bits that are are specified
+      by <i>stateMask</i> and that are TRUE will be set. This value is
+      equivalent to the <b>state</b> member of <b>TVITEMEX</b></td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">int
+      GetItemText(HTREEITEM hItem, char *outbuf, int nbChar)</font></td>
+    <td width="64%" height="1">Retrieves the text associated with an item,
+      storing the data in <i>outbuf</i>. The maximum number of characters that
+      outbuf can hold is given in the <i>nbChar</i> parameter.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">HTREEITEM
+      GetNextItem(HTREEITEM hItem, int flag)</font></td>
+    <td width="64%" height="1">Retrieves the next sibling item of the given
+      item. Returns a handle to it or NULL if there isn't any.&nbsp;
+      <p>Flag is a parameter specifying the item to retrieve. This parameter can
+      be one of the following values:
+      <dl>
+        <dt><span class="clsLiteral">TVGN_CARET</span>
+        <dd>Retrieves the currently selected item. You can use the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TreeView_GetSelection_cpp">
+          TreeView_GetSelection</MSHelp:link>
+          macro to send this message.
+        <dt><span class="clsLiteral">TVGN_CHILD</span>
+        <dd>Retrieves the first child item of the item specified by the <i>hitem</i>
+          parameter. You can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TreeView_GetChild_cpp">
+          TreeView_GetChild</MSHelp:link>
+          macro to send this message.
+        <dt><span class="clsLiteral">TVGN_DROPHILITE</span>
+        <dd>Retrieves the item that is the target of a drag-and-drop operation.
+          You can use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TreeView_GetDropHilight_cpp">
+          TreeView_GetDropHilight</MSHelp:link>
+          macro to send this message.
+        <dt><span class="clsLiteral">TVGN_FIRSTVISIBLE</span>
+        <dd>Retrieves the first item that is visible in the tree-view window.
+          You can use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TreeView_GetFirstVisible_cpp">
+          TreeView_GetFirstVisible</MSHelp:link>
+          macro to send this message.
+        <dt><span class="clsLiteral">TVGN_LASTVISIBLE</span>
+        <dd><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Shell_Versions">
+          Version 4.71</MSHelp:link>
+          . Retrieves the last expanded item in the tree. This does not retrieve
+          the last item visible in the tree-view window. You can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TreeView_GetLastVisible_cpp">
+          TreeView_GetLastVisible</MSHelp:link>
+          macro to send this message.
+        <dt><span class="clsLiteral">TVGN_NEXT</span>
+        <dd>Retrieves the next sibling item. You can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TreeView_GetNextSibling_cpp">
+          TreeView_GetNextSibling</MSHelp:link>
+          macro to send this message.
+        <dt><span class="clsLiteral">TVGN_NEXTVISIBLE</span>
+        <dd>Retrieves the next visible item that follows the specified item. The
+          specified item must be visible. Use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_GETITEMRECT_cpp">
+          TVM_GETITEMRECT</MSHelp:link>
+          message to determine whether an item is visible. You can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TreeView_GetNextVisible_cpp">
+          TreeView_GetNextVisible</MSHelp:link>
+          macro to send this message.
+        <dt><span class="clsLiteral">TVGN_PARENT</span>
+        <dd>Retrieves the parent of the specified item. You can use the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TreeView_GetParent_cpp">
+          TreeView_GetParent</MSHelp:link>
+          macro to send this message.
+        <dt><span class="clsLiteral">TVGN_PREVIOUS</span>
+        <dd>Retrieves the previous sibling item. You can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TreeView_GetPrevSibling_cpp">
+          TreeView_GetPrevSibling</MSHelp:link>
+          macro to send this message.
+        <dt><span class="clsLiteral">TVGN_PREVIOUSVISIBLE</span>
+        <dd>Retrieves the first visible item that precedes the specified item.
+          The specified item must be visible. Use the <b>TVM_GETITEMRECT</b>
+          message to determine whether an item is visible. You can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TreeView_GetPrevVisible_cpp">
+          TreeView_GetPrevVisible</MSHelp:link>
+          macro to send this message.
+        <dt><span class="clsLiteral">TVGN_ROOT</span>
+        <dd>Retrieves the topmost or very first item of the tree-view control.
+          You can use the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TreeView_GetRoot_cpp">
+          TreeView_GetRoot</MSHelp:link>
+          macro to send this message.</dd>
+      </dl>
+    </td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">HTREEITEM
+      GetNextSibling(HTREEITEM item)</font></td>
+    <td width="64%" height="1">Retrieves the next sibling of the given item.
+      Returns its handle or NULL if none exists.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">HTREEITEM
+      GetNextVisible(HTREEITEM item)</font></td>
+    <td width="64%" height="1">Retrieves the next visible item.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">HTREEITEM
+      GetParent(HTREEITEM item)</font></td>
+    <td width="64%" height="1">Retrieves the parent item.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">HTREEITEM
+      GetPrevSibling(HTREEITEM item)</font></td>
+    <td width="64%" height="1">Retrieves the previous sibling</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">HTREEITEM
+      GetPrevVisible(HTREEITEM item)</font></td>
+    <td width="64%" height="1">Retrieves the previous visible item.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">HTREEITEM
+      GetRoot(void)</font></td>
+    <td width="64%" height="1">Retrieves the root item.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">HTREEITEM
+      GetSelected(void)</font></td>
+    <td width="64%" height="1">Retrieves the currently selected item</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">int
+      GetVisibleCount(void)</font></td>
+    <td width="64%" height="1">Retrieves the number of visible items.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">int
+      HasChildren(HTREEITEM hItem)</font></td>
+    <td width="64%" height="1">Returns TRUE if the given item has children, zero
+      otherwise.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font size="2" face="Courier New">HTREEITEM
+      HitTest(TV_HITTESTINFO *pInfo)</font></td>
+    <td width="64%" height="1">Determines the location of the specified point
+      relative to the client area of a tree-view control. See <a href="#TVHITTESTINFO">TVHITTESTINFO</a>
+      for info about this structure.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font size="2" face="Courier New">HTREEITEM
+      InsertItem( TV_INSERTSTRUCT *pInsItem)</font></td>
+    <td width="64%" height="1">Inserts a new item in a tree-view control.
+      Returns the handle to the new item if successful, or NULL otherwise. For a
+      description of the argument see the <a href="#TVINSERTSTRUCT Structure">TV_INSERTSTRUCT</a>
+      description.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">int
+      Select(HTREEITEM hItem,int flag)</font></td>
+    <td width="64%" height="1">
+      <dl>
+        <dt>Selects the specified tree-view item, scrolls the item into view, or
+          redraws the item in the style used to indicate the target of a
+          drag-and-drop operation.
+        <dt><i>flag</i></dt>
+        <dd>This parameter can be one of the following values:
+          <dl>
+            <dt><span class="clsLiteral">TVGN_CARET</span>
+            <dd>Sets the selection to the specified item. The tree-view
+              control's parent window receives the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_SELCHANGING_cpp">
+              TVN_SELCHANGING</MSHelp:link>
+              and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_SELCHANGED_cpp">
+              TVN_SELCHANGED</MSHelp:link>
+              notification messages.
+            <dt><span class="clsLiteral">TVGN_DROPHILITE</span>
+            <dd>Redraws the specified item in the style used to indicate the
+              target of a drag-and-drop operation.
+            <dt><span class="clsLiteral">TVGN_FIRSTVISIBLE</span>
+            <dd>Ensures that the specified item is visible, and, if possible,
+              displays it at the top of the control's window. Tree-view controls
+              display as many items as will fit in the window. If the specified
+              item is near the bottom of the control's hierarchy of items, it
+              might not become the first visible item, depending on how many
+              items fit in the window.</dd>
+          </dl>
+        <dt><i>hitem</i>
+        <dd>Handle to an item. If <i>hitem</i> is NULL, the control is set to
+          have no selected item.</dd>
+        <dt>Returns TRUE if successful, or FALSE otherwise.</dt>
+      </dl>
+    </td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">int
+      SelectDropTarget(HTREEITEM hItem)</font></td>
+    <td width="64%" height="1">Redraws the specified item in the style used to
+      indicate the target of a drag-and-drop operation.
+      <p>Returns TRUE if successful, or FALSE otherwise.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">int
+      SelectItem(HTREEITEM hItem)</font></td>
+    <td width="64%" height="1">Sets the selection to the specified item. The
+      tree-view control's parent window receives the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_SELCHANGING_cpp">
+      TVN_SELCHANGING</MSHelp:link>
+      and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_SELCHANGED_cpp">
+      TVN_SELCHANGED</MSHelp:link>
+      notification messages.
+      <p>Returns TRUE if successful, or FALSE otherwise.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">int
+      SelectFirstVisible(HTREEITEM hItem)</font></td>
+    <td width="64%" height="1">Ensures that the specified item is visible, and,
+      if possible, displays it at the top of the control's window. Tree-view
+      controls display as many items as will fit in the window. If the specified
+      item is near the bottom of the control's hierarchy of items, it might not
+      become the first visible item, depending on how many items fit in the
+      window.
+      <p>Returns TRUE if successful, or FALSE otherwise.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">void
+      SetImageList(HIMAGELIST Image, int Type)</font></td>
+    <td width="64%" height="1">Sets the normal or state image list for a
+      tree-view control and redraws the control using the new images.
+      <dl>
+        <dt><i>Type</i>
+        <dd>Type of image list to set. This parameter can be one of the
+          following values:
+          <dl>
+            <dt><span class="clsLiteral">TVSIL_NORMAL</span>
+            <dd>Indicates the normal image list, which contains selected,
+              nonselected, and overlay images for the items of a tree-view
+              control.
+            <dt><span class="clsLiteral">TVSIL_STATE</span>
+            <dd>Indicates the state image list. You can use state images to
+              indicate application-defined item states. A state image is
+              displayed to the left of an item's selected or nonselected image.</dd>
+          </dl>
+        <dt><i>Image</i>
+        <dd>Handle to the image list. If it is NULL, the message removes the
+          specified image list from the tree-view control</dd>
+      </dl>
+    </td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">int
+      SetItem(TV_ITEM *pItem)</font></td>
+    <td width="64%" height="1">Sets some or all of a tree-view item's attributes.
+      Returns TRUE if successful, or FALSE otherwise.</td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">int
+      SetItemState(HTREEITEM hItem, int state, int mask)</font></td>
+    <td width="64%" height="1">Sets the state of an item. The <i>mask</i>
+      argument is described <a href="#mask">here</a>. The state argument can
+      have the following values:
+      <table border="1" width="100%">
+        <tr>
+          <td width="32%">TVIS_BOLD</td>
+          <td width="68%">The item is bold</td>
+        </tr>
+        <tr>
+          <td width="32%">TVIS_CUT</td>
+          <td width="68%">The item is selected as part of a cut-and-paste
+            operation.</td>
+        </tr>
+        <tr>
+          <td width="32%">TVIS_DROPHILITED</td>
+          <td width="68%">The item is selected as a drag-and-drop target.</td>
+        </tr>
+        <tr>
+          <td width="32%">TVIS_EXPANDED</td>
+          <td width="68%">The item's list of child items is currently expanded;
+            that is, the child items are visible. This value applies only to
+            parent items.</td>
+        </tr>
+        <tr>
+          <td width="32%">TVIS_EXPANDEDONCE</td>
+          <td width="68%">The item's list of child items has been expanded at
+            least once. The <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_ITEMEXPANDING_cpp">
+            TVN_ITEMEXPANDING</MSHelp:link>
+            and <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVN_ITEMEXPANDED_cpp">
+            TVN_ITEMEXPANDED</MSHelp:link>
+            notification messages are not generated for parent items that have
+            this state set in response to a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_EXPAND_cpp">
+            TVM_EXPAND</MSHelp:link>
+            message. Using TVE_COLLAPSE and TVE_COLLAPSERESET with <b>TVM_EXPAND</b>
+            will cause this state to be reset. This value applies only to parent
+            items.</td>
+        </tr>
+        <tr>
+          <td width="32%">TVIS_EXPANDPARTIAL</td>
+          <td width="68%">A partially expanded tree-view item. In this state,
+            some, but not all, of the child items are visible and the parent
+            item's plus symbol is displayed.</td>
+        </tr>
+        <tr>
+          <td width="32%">TVIS_SELECTED</td>
+          <td width="68%">The item is selected. Its appearance depends on
+            whether it has the focus. The item will be drawn using the system
+            colors for selection.</td>
+        </tr>
+      </table>
+      <dl class="clsRef">
+      </dl>
+      <dl>
+        <dt><b>Note:</b>&nbsp;
+        <dd>When you set or retrieve an item's overlay image index or state
+          image index, you must specify the following masks in the <b>stateMask</b>
+          member of the <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVITEM_cpp">
+          TVITEM</MSHelp:link>
+          structure. These values can also be used to mask off the state bits
+          that are not of interest.
+        <dd>
+          <dl class="clsRef">
+          </dl>
+        </dd>
+        <dt>TVIS_OVERLAYMASK&nbsp;
+        <dd>Mask for the bits used to specify the item's overlay image index.
+          <dl class="clsRef">
+          </dl>
+        <dt>TVIS_STATEIMAGEMASK&nbsp;
+        <dd>Mask for the bits used to specify the item's state image index.</dd>
+      </dl>
+    </td>
+  </tr>
+  <tr>
+    <td width="36%" height="1"><font face="Courier New" size="2">int
+      SetItemText(HTREEITEM hItem, char *text)</font></td>
+    <td width="64%" height="1">Sets the text of an item. Returns TRUE if
+      successful, zero otherwise.</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<hr>
+<p><a name="Button states">Button states</a></p>
+<table width="817">
+  <tr>
+    <td width="299">Value</td>
+    <td width="504">Meaning</td>
+  </tr>
+  <tr>
+    <td width="299">0x0003</td>
+    <td width="504">Specifies the check state (radio buttons and check boxes
+      only). A value of BST_UNCHECKED indicates the button is cleared; a value
+      of BST_CHECKED indicates the button is checked. A radio button is checked
+      when it contains a dot; a check box is checked when it contains an X. A
+      value of BST_INDETERMINATE indicates the check state is indeterminate
+      (applies only if the button has the BS_3STATE or BS_AUTO3STATE style). A
+      three-state check box is grayed when its state is indeterminate.</td>
+  </tr>
+  <tr>
+    <td width="299">BST_CHECKED</td>
+    <td width="504">Indicates the button is checked.</td>
+  </tr>
+  <tr>
+    <td width="299">BST_FOCUS</td>
+    <td width="504">Specifies the focus state. A nonzero value indicates that
+      the button has the keyboard focus.</td>
+  </tr>
+  <tr>
+    <td width="299">BST_INDETERMINATE</td>
+    <td width="504">Indicates the button is grayed because the state of the
+      button is indeterminate. This value applies only if the button has the
+      BS_3STATE or BS_AUTO3STATE style.</td>
+  </tr>
+  <tr>
+    <td width="299">BST_PUSHED</td>
+    <td width="504">Specifies the highlight state. A nonzero value indicates
+      that the button is highlighted. A button is automatically highlighted when
+      the user positions the cursor over it and presses and holds the left mouse
+      button. The highlighting is removed when the user releases the mouse
+      button.</td>
+  </tr>
+  <tr>
+    <td width="299">BST_UNCHECKED</td>
+    <td width="504">Indicates the button is cleared. Same as a return value of
+      zero.</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<h4><a name="TVINSERTSTRUCT Structure">TVINSERTSTRUCT Structure</a></h4>
+<p>Contains information used to add a new item to a tree-view control. This
+structure is used with the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_INSERTITEM_cpp">
+TVM_INSERTITEM</MSHelp:link>
+ message. The structure is identical to the <b>TV_INSERTSTRUCT</b> structure,
+but it has been renamed to follow current naming conventions.</p>
+<p class="clsRef">Syntax</p>
+<blockquote xmlns:xsl="http://www.w3.org/TR/WD-xsl">
+  <pre class="clsSyntax">typedef struct tagTVINSERTSTRUCT {
+    HTREEITEM hParent;
+    HTREEITEM hInsertAfter;
+    union
+    {
+        TVITEMEX itemex;
+        TVITEM item;
+    } ;
+} TVINSERTSTRUCT, *LPTVINSERTSTRUCT;
+</pre>
+</blockquote>
+<p class="clsRef">Members</p>
+<blockquote>
+  <dl>
+    <dt><b>hParent</b>
+    <dd>Handle to the parent item. If this member is the TVI_ROOT value or NULL,
+      the item is inserted at the root of the tree-view control.
+    <dt><b>hInsertAfter</b>
+    <dd>Handle to the item after which the new item is to be inserted, or one of
+      the following values:
+      <dl>
+        <dt><span class="clsLiteral">TVI_FIRST</span>
+        <dd>Inserts the item at the beginning of the list.
+        <dt><span class="clsLiteral">TVI_LAST</span>
+        <dd>Inserts the item at the end of the list.
+        <dt><span class="clsLiteral">TVI_ROOT</span>
+        <dd>Add the item as a root item.
+        <dt><span class="clsLiteral">TVI_SORT</span>
+        <dd>Inserts the item into the list in alphabetical order.</dd>
+      </dl>
+    <dt><b>itemex</b>
+    <dd><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Shell_Versions">
+      <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVITEMEX_cpp">
+      TVITEMEX</MSHelp:link>
+      structure that contains information about the item to add.
+    <dt><b>item</b>
+    <dd><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVITEM_cpp">
+      TVITEM</MSHelp:link>
+      structure that contains information about the item to add</dd>
+  </dl>
+</blockquote>
+
+<hr>
+<h3><a name="TCHITTESTINFO">TCHITTESTINFO</a> Structure</h3>
+<p>Contains information about a hit test. </p>
+<blockquote>
+  <pre class="clsSyntax" xml:space="preserve">typedef struct tagTCHITTESTINFO&nbsp;{
+    POINT&nbsp;pt;
+    UINT&nbsp;flags;
+} TCHITTESTINFO, *LPTCHITTESTINFO;</pre>
+</blockquote>
+<p class="clsRef">Members</p>
+<blockquote>
+  <dl>
+    <dt><b>pt</b>
+    <dd>Position to hit test, in client coordinates.
+    <dt><b>flags</b>
+    <dd>Variable that receives the results of a hit test. The tab control sets
+      this member to one of the following values:
+      <dl>
+        <dt><span class="clsLiteral">TCHT_NOWHERE</span>
+        <dd>The position is not over a tab.
+        <dt><span class="clsLiteral">TCHT_ONITEM</span>
+        <dd>The position is over a tab but not over its icon or its text. For
+          owner-drawn tab controls, this value is specified if the position is
+          anywhere over a tab.
+        <dt><span class="clsLiteral">TCHT_ONITEMICON</span>
+        <dd>The position is over a tab's icon.
+        <dt><span class="clsLiteral">TCHT_ONITEMLABEL</span>
+        <dd>The position is over a tab's text.
+        <dt>&nbsp;
+        <dd>TCHT_ONITEM is a bitwise-OR operation on TCHT_ONITEMICON and
+          TCHT_ONITEMLABEL.</dd>
+      </dl>
+    </dd>
+  </dl>
+</blockquote>
+<hr>
+<h3><a name="TVHITTESTINFO">TVHITTESTINFO</a> Structure</h3>
+<p>Contains information used to determine the location of a point relative to a
+tree-view control. This structure is used with the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_TVM_HITTEST_cpp">
+TVM_HITTEST</MSHelp:link>
+ message. The structure is identical to the <b>TV_HITTESTINFO</b> structure, but
+it has been renamed to follow current naming conventions.</p>
+<blockquote>
+  <pre class="clsSyntax" xml:space="preserve">typedef struct tagTVHITTESTINFO&nbsp;{
+    POINT&nbsp;pt;
+    UINT&nbsp;flags;
+    HTREEITEM&nbsp;hItem;
+} TVHITTESTINFO, *LPTVHITTESTINFO;</pre>
+</blockquote>
+<p class="clsRef">Members</p>
+<blockquote>
+  <dl>
+    <dt><b>pt</b>
+    <dd>Client coordinates of the point to test.
+    <dt><b>flags</b>
+    <dd>Variable that receives information about the results of a hit test. This
+      member can be one or more of the following values:
+      <dl>
+        <dt><span class="clsLiteral">TVHT_ABOVE</span>
+        <dd>Above the client area.
+        <dt><span class="clsLiteral">TVHT_BELOW</span>
+        <dd>Below the client area.
+        <dt><span class="clsLiteral">TVHT_NOWHERE</span>
+        <dd>In the client area, but below the last item.
+        <dt><span class="clsLiteral">TVHT_ONITEM</span>
+        <dd>On the bitmap or label associated with an item.
+        <dt><span class="clsLiteral">TVHT_ONITEMBUTTON</span>
+        <dd>On the button associated with an item.
+        <dt><span class="clsLiteral">TVHT_ONITEMICON</span>
+        <dd>On the bitmap associated with an item.
+        <dt><span class="clsLiteral">TVHT_ONITEMINDENT</span>
+        <dd>In the indentation associated with an item.
+        <dt><span class="clsLiteral">TVHT_ONITEMLABEL</span>
+        <dd>On the label (string) associated with an item.
+        <dt><span class="clsLiteral">TVHT_ONITEMRIGHT</span>
+        <dd>In the area to the right of an item.
+        <dt><span class="clsLiteral">TVHT_ONITEMSTATEICON</span>
+        <dd>On the state icon for a tree-view item that is in a user-defined
+          state.
+        <dt><span class="clsLiteral">TVHT_TOLEFT</span>
+        <dd>To the left of the client area.
+        <dt><span class="clsLiteral">TVHT_TORIGHT</span>
+        <dd>To the right of the client area.</dd>
+      </dl>
+    <dt><b>hItem</b>
+    <dd>Handle to the item that occupies the point.</dd>
+  </dl>
+</blockquote>
+
+</body>
+
+</html>

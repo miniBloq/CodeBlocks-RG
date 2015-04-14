@@ -1,0 +1,101 @@
+<TITLE>BGI Documentation for 
+installuserfont
+</TITLE>
+<H2>
+installuserfont
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+int installuserfont(char *name);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+name is a file name in the current directory (pathname is not supported) of a font file containing a stroked font. Up to twenty fonts can be installed at one time.
+
+
+<P><DT><B>Return Value</B><DD>
+installuserfont returns a font ID number that can then be passed to settextstyle to select the corresponding font. If the internal font table is full, a value of -11 (grError) is returned.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+installuserfont is not available in the <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="settextstyle.html"> settextstyle </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* installuserfont example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+/* function prototype */
+void checkerrors(void);
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode;
+   int userfont;
+   int midx, midy;
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+
+   /* check for any initialization errors */
+   checkerrors();
+
+   /* install a user-defined font file */
+
+   userfont = installuserfont("USER.CHR");
+
+   /* check for any installation errors */
+   checkerrors();
+
+   /* select the user font */
+   settextstyle(userfont, HORIZ_DIR, 4);
+
+   /* output some text */
+   outtextxy(midx, midy, "Testing!");
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+
+/* check for and report any graphics errors */
+void checkerrors(void)
+{
+   int errorcode;
+
+   /* read result of last graphics operation */
+   errorcode = graphresult();
+
+   if (errorcode != grOk) {
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+
+      exit(1);
+   }
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

@@ -1,0 +1,82 @@
+<TITLE>BGI Documentation for 
+rectangle
+</TITLE>
+<H2>
+rectangle
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void rectangle(int left, int top, int right, int bottom);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+rectangle draws a rectangle in the current line style, thickness, and drawing color.
+<P>
+(left,top) is the upper left corner of the rectangle, and (right,bottom) is its lower right corner.
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="bar.html"> bar </A>
+<DD><A HREF="bar3d.html"> bar3d </A>
+<DD><A HREF="setcolor.html"> setcolor </A>
+<DD><A HREF="setlinestyle.html"> setlinestyle </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* rectangle example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int left, top, right, bottom;
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   left = getmaxx() / 2 - 50;
+   top = getmaxy() / 2 - 50;
+   right = getmaxx() / 2 + 50;
+   bottom = getmaxy() / 2 + 50;
+
+   /* draw a rectangle */
+   rectangle(left,top,right,bottom);
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

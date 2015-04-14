@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Win32 Release" />
+	<File name="camera\camera.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="365" topLine="30" />
+	</File>
+	<File name="camera\camera.h" open="0" top="0" tabpos="0">
+		<Cursor position="831" topLine="45" />
+	</File>
+	<File name="gui\about.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="1530" topLine="30" />
+	</File>
+	<File name="gui\camview.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="974" topLine="20" />
+	</File>
+	<File name="gui\frame.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="0" topLine="30" />
+	</File>
+	<File name="worker.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="0" topLine="30" />
+	</File>
+	<File name="wxopencv.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="363" topLine="0" />
+	</File>
+</CodeBlocks_layout_file>

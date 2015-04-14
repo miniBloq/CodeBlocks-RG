@@ -1,0 +1,264 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Text%20Functions">Text Functions</a>,
+Next:<a rel="next" accesskey="n" href="File-Name-Functions.html#File%20Name%20Functions">File Name Functions</a>,
+Previous:<a rel="previous" accesskey="p" href="Syntax-of-Functions.html#Syntax%20of%20Functions">Syntax of Functions</a>,
+Up:<a rel="up" accesskey="u" href="Functions.html#Functions">Functions</a>
+<hr><br>
+</div>
+
+<h3 class="section">Functions for String Substitution and Analysis</h3>
+
+   <p>Here are some functions that operate on strings:
+
+     <dl>
+<dt><code>$(subst </code><var>from</var><code>,</code><var>to</var><code>,</code><var>text</var><code>)</code>
+     <dd>Performs a textual replacement on the text <var>text</var>: each occurrence
+of <var>from</var> is replaced by <var>to</var>.  The result is substituted for
+the function call.  For example,
+
+     <pre class="example">          $(subst ee,EE,feet on the street)
+          </pre>
+
+     <p>substitutes the string <code>fEEt on the strEEt</code>.
+
+     <br><dt><code>$(patsubst </code><var>pattern</var><code>,</code><var>replacement</var><code>,</code><var>text</var><code>)</code>
+     <dd>Finds whitespace-separated words in <var>text</var> that match
+<var>pattern</var> and replaces them with <var>replacement</var>.  Here
+<var>pattern</var> may contain a <code>%</code> which acts as a wildcard,
+matching any number of any characters within a word.  If
+<var>replacement</var> also contains a <code>%</code>, the <code>%</code> is replaced
+by the text that matched the <code>%</code> in <var>pattern</var>.  Only the first
+<code>%</code> in the <var>pattern</var> and <var>replacement</var> is treated this
+way; any subsequent <code>%</code> is unchanged.
+
+     <p><code>%</code> characters in <code>patsubst</code> function invocations can be
+quoted with preceding backslashes (<code>\</code>).  Backslashes that would
+otherwise quote <code>%</code> characters can be quoted with more backslashes. 
+Backslashes that quote <code>%</code> characters or other backslashes are
+removed from the pattern before it is compared file names or has a stem
+substituted into it.  Backslashes that are not in danger of quoting
+<code>%</code> characters go unmolested.  For example, the pattern
+<code>the\%weird\\%pattern\\</code> has <code>the%weird\</code> preceding the
+operative <code>%</code> character, and <code>pattern\\</code> following it.  The
+final two backslashes are left alone because they cannot affect any
+<code>%</code> character.
+
+     <p>Whitespace between words is folded into single space characters;
+leading and trailing whitespace is discarded.
+
+     <p>For example,
+
+     <pre class="example">          $(patsubst %.c,%.o,x.c.c bar.c)
+          </pre>
+
+     <p>produces the value <code>x.c.o bar.o</code>.
+
+     <p>Substitution references (see <a href="Substitution-Refs.html#Substitution%20Refs">Substitution References</a>) are a simpler way to get the effect of the <code>patsubst</code>
+function:
+
+     <pre class="example">          $(<var>var</var>:<var>pattern</var>=<var>replacement</var>)
+          </pre>
+
+     <p>is equivalent to
+
+     <pre class="example">          $(patsubst <var>pattern</var>,<var>replacement</var>,$(<var>var</var>))
+          </pre>
+
+     <p>The second shorthand simplifies one of the most common uses of
+<code>patsubst</code>: replacing the suffix at the end of file names.
+
+     <pre class="example">          $(<var>var</var>:<var>suffix</var>=<var>replacement</var>)
+          </pre>
+
+     <p>is equivalent to
+
+     <pre class="example">          $(patsubst %<var>suffix</var>,%<var>replacement</var>,$(<var>var</var>))
+          </pre>
+
+     <p>For example, you might have a list of object files:
+
+     <pre class="example">          objects = foo.o bar.o baz.o
+          </pre>
+
+     <p>To get the list of corresponding source files, you could simply write:
+
+     <pre class="example">          $(objects:.o=.c)
+          </pre>
+
+     <p>instead of using the general form:
+
+     <pre class="example">          $(patsubst %.o,%.c,$(objects))
+          </pre>
+
+     <br><dt><code>$(strip </code><var>string</var><code>)</code>
+     <dd>Removes leading and trailing whitespace from <var>string</var> and replaces
+each internal sequence of one or more whitespace characters with a
+single space.  Thus, <code>$(strip a b  c )</code> results in <code>a&nbsp;b&nbsp;c</code>.
+
+     <p>The function <code>strip</code> can be very useful when used in conjunction
+with conditionals.  When comparing something with the empty string
+<code></code> using <code>ifeq</code> or <code>ifneq</code>, you usually want a string of
+just whitespace to match the empty string (see <a href="Conditionals.html#Conditionals">Conditionals</a>).
+
+     <p>Thus, the following may fail to have the desired results:
+
+     <pre class="example">          .PHONY: all
+          ifneq   "$(needs_made)" ""
+          all: $(needs_made)
+          else
+          all:;@echo 'Nothing to make!'
+          endif
+          </pre>
+
+     <p>Replacing the variable reference <code>$(needs_made)</code> with the
+function call <code>$(strip&nbsp;$(needs_made))</code> in the <code>ifneq</code>
+directive would make it more robust.
+
+     <br><dt><code>$(findstring </code><var>find</var><code>,</code><var>in</var><code>)</code>
+     <dd>Searches <var>in</var> for an occurrence of <var>find</var>.  If it occurs, the
+value is <var>find</var>; otherwise, the value is empty.  You can use this
+function in a conditional to test for the presence of a specific
+substring in a given string.  Thus, the two examples,
+
+     <pre class="example">          $(findstring a,a b c)
+          $(findstring a,b c)
+          </pre>
+
+     <p>produce the values <code>a</code> and <code></code> (the empty string),
+respectively.  See <a href="Testing-Flags.html#Testing%20Flags">Testing Flags</a>, for a practical application of
+<code>findstring</code>.
+
+     <br><dt><code>$(filter </code><var>pattern</var><code>...,</code><var>text</var><code>)</code>
+     <dd>Returns all whitespace-separated words in <var>text</var> that <em>do</em> match
+any of the <var>pattern</var> words, removing any words that <em>do not</em>
+match.  The patterns are written using <code>%</code>, just like the patterns
+used in the <code>patsubst</code> function above.
+
+     <p>The <code>filter</code> function can be used to separate out different types
+of strings (such as file names) in a variable.  For example:
+
+     <pre class="example">          sources := foo.c bar.c baz.s ugh.h
+          foo: $(sources)
+                  cc $(filter %.c %.s,$(sources)) -o foo
+          </pre>
+
+     <p>says that <code>foo</code> depends of <code>foo.c</code>, <code>bar.c</code>,
+<code>baz.s</code> and <code>ugh.h</code> but only <code>foo.c</code>, <code>bar.c</code> and
+<code>baz.s</code> should be specified in the command to the
+compiler.
+
+     <br><dt><code>$(filter-out </code><var>pattern</var><code>...,</code><var>text</var><code>)</code>
+     <dd>Returns all whitespace-separated words in <var>text</var> that <em>do not</em>
+match any of the <var>pattern</var> words, removing the words that <em>do</em>
+match one or more.  This is the exact opposite of the <code>filter</code>
+function.
+
+     <p>For example, given:
+
+     <pre class="example">          objects=main1.o foo.o main2.o bar.o
+          mains=main1.o main2.o
+          </pre>
+
+     <p>the following generates a list which contains all the object files not
+in <code>mains</code>:
+
+     <pre class="example">          $(filter-out $(mains),$(objects))
+          </pre>
+
+     <br><dt><code>$(sort </code><var>list</var><code>)</code>
+     <dd>Sorts the words of <var>list</var> in lexical order, removing duplicate
+words.  The output is a list of words separated by single spaces. 
+Thus,
+
+     <pre class="example">          $(sort foo bar lose)
+          </pre>
+
+     <p>returns the value <code>bar foo lose</code>.
+
+     <p>Incidentally, since <code>sort</code> removes duplicate words, you can use
+it for this purpose even if you don't care about the sort order.
+
+     <br><dt><code>$(word </code><var>n</var><code>,</code><var>text</var><code>)</code>
+     <dd>Returns the <var>n</var>th word of <var>text</var>.  The legitimate values of
+<var>n</var> start from 1.  If <var>n</var> is bigger than the number of words
+in <var>text</var>, the value is empty.  For example,
+
+     <pre class="example">          $(word 2, foo bar baz)
+          </pre>
+
+     <p>returns <code>bar</code>.
+
+     <br><dt><code>$(wordlist </code><var>s</var><code>,</code><var>e</var><code>,</code><var>text</var><code>)</code>
+     <dd>Returns the list of words in <var>text</var> starting with word <var>s</var> and
+ending with word <var>e</var> (inclusive).  The legitimate values of <var>s</var>
+and <var>e</var> start from 1.  If <var>s</var> is bigger than the number of words
+in <var>text</var>, the value is empty.  If <var>e</var> is bigger than the number
+of words in <var>text</var>, words up to the end of <var>text</var> are returned. 
+If <var>s</var> is greater than <var>e</var>, nothing is returned.  For example,
+
+     <pre class="example">          $(wordlist 2, 3, foo bar baz)
+          </pre>
+
+     <p>returns <code>bar baz</code>.
+
+     <br><dt><code>$(words </code><var>text</var><code>)</code>
+     <dd>Returns the number of words in <var>text</var>. 
+Thus, the last word of <var>text</var> is
+<code>$(word&nbsp;$(words&nbsp;</code><var>text</var><code>),</code><var>text</var><code>)</code>.
+
+     <br><dt><code>$(firstword </code><var>names</var><code>...)</code>
+     <dd>The argument <var>names</var> is regarded as a series of names, separated
+by whitespace.  The value is the first name in the series.  The rest
+of the names are ignored.
+
+     <p>For example,
+
+     <pre class="example">          $(firstword foo bar)
+          </pre>
+
+     <p>produces the result <code>foo</code>.  Although <code>$(firstword
+</code><var>text</var><code>)</code> is the same as <code>$(word 1,</code><var>text</var><code>)</code>, the
+<code>firstword</code> function is retained for its simplicity. 
+</dl>
+
+   <p>Here is a realistic example of the use of <code>subst</code> and
+<code>patsubst</code>.  Suppose that a makefile uses the <code>VPATH</code> variable
+to specify a list of directories that <code>make</code> should search for
+prerequisite files
+(see <a href="General-Search.html#General%20Search"><code>VPATH</code> Search Path for All Prerequisites</a>). 
+This example shows how to
+tell the C compiler to search for header files in the same list of
+directories.
+
+   <p>The value of <code>VPATH</code> is a list of directories separated by colons,
+such as <code>src:../headers</code>.  First, the <code>subst</code> function is used to
+change the colons to spaces:
+
+<pre class="example">     $(subst :, ,$(VPATH))
+     </pre>
+
+<p>This produces <code>src ../headers</code>.  Then <code>patsubst</code> is used to turn
+each directory name into a <code>-I</code> flag.  These can be added to the
+value of the variable <code>CFLAGS</code>, which is passed automatically to the C
+compiler, like this:
+
+<pre class="example">     override CFLAGS += $(patsubst %,-I%,$(subst :, ,$(VPATH)))
+     </pre>
+
+<p>The effect is to append the text <code>-Isrc -I../headers</code> to the
+previously given value of <code>CFLAGS</code>.  The <code>override</code> directive is
+used so that the new value is assigned even if the previous value of
+<code>CFLAGS</code> was specified with a command argument (see <a href="Override-Directive.html#Override%20Directive">The <code>override</code> Directive</a>).
+
+   </body></html>
+

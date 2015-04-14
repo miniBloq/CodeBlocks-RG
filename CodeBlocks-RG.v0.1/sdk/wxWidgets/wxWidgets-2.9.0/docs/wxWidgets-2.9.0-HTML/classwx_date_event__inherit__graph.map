@@ -1,0 +1,4 @@
+<area shape="rect" href="$classwx_calendar_event.html" title="The wxCalendarEvent class is used together with wxCalendarCtrl." alt="" coords="8,337,136,369">
+<area shape="rect" href="$classwx_command_event.html" title="This event class contains information about command events, which originate from..." alt="" coords="5,172,139,204">
+<area shape="rect" href="$classwx_event.html" title="An event is a structure holding information about an event passed to a callback or..." alt="" coords="36,89,108,121">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="35,7,109,39">

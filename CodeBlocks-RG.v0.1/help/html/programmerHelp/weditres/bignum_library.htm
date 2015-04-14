@@ -1,0 +1,1788 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The bignum Library</title>
+</head>
+
+<body>
+
+<h2 align="left" style="text-align:left"><a name="_Toc517363333"><span style="mso-ansi-language:EN-US">The
+bignum Library</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</h2>
+<p class="MsoBodyText">This library is an adaptation of the “miracl” bignum
+library published by Mike Scott in 1989. Since then, Mike has developed his
+library further. The latest version can be downloaded from his web site <o:p>
+</o:p>
+<o:p>
+</o:p>
+</p>
+<p class="MsoNormal"><a href="ftp://ftp.compapp.dcu.ie/pub/crypto/miracl.zip"><font size="4">ftp.compapp.dcu.ie/pub/crypto/miracl.zip</font></a><o:p>
+</o:p>
+</p>
+<p class="MsoBodyText">I had worked a lot in the 1989 version, rewriting the
+essential parts of it in pure assembly. It runs quite fast now, and I am
+convinced it is a very useful package.<o:p>
+</o:p>
+<span style="mso-bidi-font-family:Arial"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText">The interface this library presents is described in “bignums.h”.
+Basically, most operators (addition, subtraction, etc.) are overloaded there, so
+that you can use the library using a practical infix notation (you write c = a +
+b instead of quadsum(a,b,c) to make an addition).<o:p>
+</o:p>
+<o:p>
+</o:p>
+</p>
+<h4><span style="mso-ansi-language:EN-US">Practical considerations:<o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</h4>
+<p class="MsoBodyText">Note that the bignum library is designed to work with the
+garbage collector. Most operators that need to, for instance “+”, “-“
+etc., return a new bignum, that will be garbage collected automatically if it is
+no longer needed. This can be costly, and if you prefer trading speed for
+notational convenience, you can use the normal C interface and instead of
+writing: <o:p>
+</o:p>
+<o:p>
+</o:p>
+</p>
+<p class="MsoBodyText" style="text-indent:36.0pt"><span style="font-family:Courier">c
+= (a + b)/(a - b);//creates temporary objects for a+b and a-b<o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</p>
+<p class="MsoBodyText">you write:<span style="font-family:Arial"><o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>c = newBignum(0);<span style="mso-tab-count:1">&nbsp;
+</span>//allocate result<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>quadsum(a,b,tmp);<span style="mso-tab-count:1">&nbsp;
+</span>// tmp = a + b<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>quadsub(a,b,c);<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;
+</span>// c = a - b<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:Courier"><span style="mso-tab-count:
+1">&nbsp;&nbsp;&nbsp;&nbsp; </span>quaddiv(tmp,c,c);<span style="mso-tab-count:1">&nbsp;
+</span>// c = tmp/c = (a+b)/(a-b)<o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</p>
+<p class="MsoBodyText">In this latter case, you create only a single temporary
+that can later be reused. In the former case, you create two. This is absolutely
+unnoticeable in MOST cases. The convenience of the infix notation largely
+compensates the occasional stops to collect unneeded structures. Of course, you
+can trade execution speed for development speed.<o:p>
+</o:p>
+<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">Note that the public interface of the bignum library is an
+opaque data structure:</p>
+<p class="MsoNormal" style="margin-left:72.0pt"><span style="font-family:Courier">typedef
+struct _mp {<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:72.0pt"><span style="font-family:Courier"><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>void *mp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" style="margin-left:72.0pt"><span style="font-family:Courier">}
+pBignum;<o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</p>
+<p class="MsoNormal">This allows for changes in the bignum representation to be
+made transparently to your code. You could plug in a completely different bignum
+library, or get the latest version of Mike Scott and plug it in, without any
+changes to the bignum client code. Note that this is just a glorified pointer.
+Before using it, you must initialize it to a new bignum, either as a result of
+an operation or as the result of newBignum().<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">The library is presented as a DLL. When loaded, the DLL
+will automatically initialize the bignum system to a precision of 300 bits. You
+can change this using the <span style="font-family:&quot;Courier New&quot;">BignumPrecision()</span>
+API.<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;</span></p>
+<p class="MsoNormal"><b>Example:<o:p>
+</o:p>
+</b></p>
+<p class="MsoNormal">This example prints the powers of two from 127 to zero.<span style="font-family:&quot;Courier New&quot;"><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">#include
+&lt;bignums.h&gt;<o:p>
+</o:p>
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span lang="FR" style="font-family:&quot;Courier New&quot;;mso-ansi-language:
+FR">int main(void)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">{<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;"><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>pBignum a,b,c;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;"><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>char buffer[4096];<o:p>
+</o:p>
+<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;"><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;
+</span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;</span>c = 2; // Note the overloaded assignment<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;"><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>for (int i = 127;i&gt; 0;i--) {<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;"><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>b = newBignum(i);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;"><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>a = quadpow(c,b);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;"><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>quadformat(a,buffer);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;"><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>printf(&quot;[%3d] %s\n&quot;,i,buffer);<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;"><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;"><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>return 0;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">}<o:p>
+</o:p>
+</span></p>
+<p class="MsoBodyText"><b>Output:<o:p>
+</o:p>
+</b></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">[127]
+170141183460469231731687303715884105728<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">[126]
+85070591730234615865843651857942052864<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">[125]
+42535295865117307932921825928971026432<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">[124]
+21267647932558653966460912964485513216<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">[123]
+10633823966279326983230456482242756608<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">[122]
+5316911983139663491615228241121378304<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">[121]
+2658455991569831745807614120560689152<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">[120]
+1329227995784915872903807060280344576<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;">[119]
+664613997892457936451903530140172288<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">…</p>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<h4><span style="mso-ansi-language:EN-US">Interface overview<o:p>
+</o:p>
+</span></h4>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<div align="center">
+  <table border="1" cellspacing="0" cellpadding="0" style="margin-left:-20.95pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="DefinitionTerm"><b><span style="font-family:Arial">Function<o:p>
+        </o:p>
+        </span></b></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="DefinitionTerm"><b><span style="font-family:Arial">Description<o:p>
+        </o:p>
+        </span></b></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="636" colspan="2" valign="top" style="width:476.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="DefinitionTerm" align="center" style="text-align:center"><b><span style="font-family:Arial">Initialization<o:p>
+        </o:p>
+        </span></b></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int <b>BignumPrecision</b>(int);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="DefinitionTerm"><span style="font-family:Arial">Sets the
+        precision to a given value. Each big number is represented as a vector
+        of integers. For each integer, the precision increases of 30 bits. The
+        argument is the number of integers to reserve for each big number. For
+        instance, if you request a precision of 30, 30 integers of 30 bits
+        precision will be used, i.e. 900 bits per big number.<o:p>
+        </o:p>
+        </span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="636" colspan="2" valign="top" style="width:476.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal" align="center" style="text-align:center"><b>Creation<o:p>
+        </o:p>
+        </b></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>newBignum</b>(void)<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoCommentText"><span style="mso-bidi-font-size:12.0pt;font-family:
+  Arial">Returns a new big number initialized to zero<o:p>
+        </o:p>
+        </span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>newBignum</b>(int);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoCommentText"><span style="mso-bidi-font-size:12.0pt;font-family:
+  Arial">Returns a new bignum initialized to the given integer.<o:p>
+        </o:p>
+        </span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>newBignum</b>(double);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoCommentText"><span style="mso-bidi-font-size:12.0pt;font-family:
+  Arial">Returns a new big number initialized to the given double precision
+        number.<o:p>
+        </o:p>
+        </span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>newBignum</b>(long long);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoCommentText"><span style="mso-bidi-font-size:12.0pt;font-family:
+  Arial">Returns a new big number initialized to the given long long integer.<o:p>
+        </o:p>
+        </span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>newBignum</b>(char *);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Returns a new big number initialized to the
+        converted value of the given string.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="636" colspan="2" valign="top" style="width:476.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal" align="center" style="text-align:center"><b>Conversions<o:p>
+        </o:p>
+        </b></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>atoquad</b>(char *);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Converts the given string to a newly allocated big
+        number.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>longToquad</b>(long);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>doubleToquad</b>(double);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>longlongToquad</b>(long long);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Converts the given 32 bit integer,double precision,
+        or long long number to a newly allocated big number.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>long2quad</b>(long,pBignum);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>double2quad</b>(double,pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Converts the given 32 bit integer or double
+        precision number<span style="mso-spacerun: yes">&nbsp; </span>into a big
+        number. Sotrage is not allocated, the result is stored in the given
+        bignum, that must have been previously allocated.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span lang="FR" style="font-size:10.0pt;mso-bidi-font-size:
+  12.0pt;font-family:&quot;Courier New&quot;;mso-ansi-language:FR">double <b>quad2double</b>(pBignum);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">long long <b>quadToll</b>(pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Returns a double precision or a long long number
+        from a big number.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="636" colspan="2" valign="top" style="width:476.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal" align="center" style="text-align:center"><b>Formatting<o:p>
+        </o:p>
+        </b></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>quadexpformat</b>(pBignum x,
+        unsigned char *outbuf, int width, int decimals);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Formats a given big number “x” as text in the
+        buffer pointed to by “outbuf”, with the given width and decimals.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">void <b>quadtoa</b>(pBignum,unsigned char
+        *outbuf);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Formats a given big number as text in the given
+        output buffer.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="636" colspan="2" valign="top" style="width:476.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal" align="center" style="text-align:center"><b>Comparisons<o:p>
+        </o:p>
+        </b></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator&lt;(pBignum a,pBignum b);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator&lt;(pBignum,long);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator&lt;(pBignum,double);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator&lt;(long,pBignum);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator&lt;(double,pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoCommentText"><span style="mso-bidi-font-size:12.0pt;font-family:
+  &quot;Courier New&quot;">(a&lt;b)?1:0<o:p>
+        </o:p>
+        </span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator&lt;=(pBignum,pBignum);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator&lt;=(pBignum,long);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator&lt;=(pBignum,double);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator&lt;=(long,pBignum);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator&lt;=(double,pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoCommentText"><span style="mso-bidi-font-size:12.0pt;font-family:
+  &quot;Courier New&quot;">(a&lt;=b)?1:0<o:p>
+        </o:p>
+        </span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator==(pBignum,pBignum);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator==(pBignum,long);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator==(pBignum,double);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator==(long,pBignum);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator==(double,pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoCommentText"><span style="mso-bidi-font-size:12.0pt;font-family:
+  &quot;Courier New&quot;">(a==b)?1:0;<o:p>
+        </o:p>
+        </span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator&gt;=(pBignum,pBignum);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator&gt;=(pBignum,long);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator&gt;=(pBignum,double);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator&gt;=(long,pBignum);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator&gt;=(double,pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoCommentText"><span style="mso-bidi-font-size:12.0pt;font-family:
+  &quot;Courier New&quot;">(a&gt;=b)?1:0;<o:p>
+        </o:p>
+        </span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator&gt;(pBignum,pBignum);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator&gt;(pBignum,long);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator&gt;(pBignum,double);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator&gt;(long,pBignum);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator&gt;(double,pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoCommentText"><span style="mso-bidi-font-size:12.0pt;font-family:
+  &quot;Courier New&quot;">(a&gt;b)?1:0;<o:p>
+        </o:p>
+        </span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator!=(pBignum,pBignum);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator!=(pBignum,long);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator!=(pBignum,double);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator!=(long,pBignum);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int operator!=(double,pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoCommentText"><span style="mso-bidi-font-size:12.0pt;font-family:
+  &quot;Courier New&quot;">(a!=b)?1:0;<o:p>
+        </o:p>
+        </span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum operator=(pBignum &amp;,int);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum operator=(double &amp;,pBignum);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum operator=(pBignum &amp;,double);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal">&nbsp;<span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:&quot;Courier New&quot;"><o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Assignments from int, double or to double.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int <b>quadcmp</b>(pBignum a,pBignum b)<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Returns –1 if a &lt; b, 0 if a == b, and 1 if a
+        &gt; b</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="636" colspan="2" valign="top" style="width:476.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal" align="center" style="text-align:center"><b>Addition<o:p>
+        </o:p>
+        </b></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">operator+(pBignum,pBignum);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum operator+(pBignum,long);<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">… other conversions<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Returns newly allocated big number with the result
+        of the addition.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">operator+=(pBignum,pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Returns the addition of the first operand and the
+        second. No new storage, the result is stored in the first operator.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="636" colspan="2" valign="top" style="width:476.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal" align="center" style="text-align:center"><b>Sustraction<o:p>
+        </o:p>
+        </b></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">operator-(pBignum,pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Returns newly allocated big number with the result
+        of the sustraction.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">operator-=(pBignum,pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Returns a pointer to the first argument. The
+        substraction is stored in the first argument, no new storage is used.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="636" colspan="2" valign="top" style="width:476.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal" align="center" style="text-align:center"><b>Multiplication<o:p>
+        </o:p>
+        </b></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">operator *(pBignum,pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Returns newly allocated big number with the result
+        of the multiplication.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">operator *=(pBignum,pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Stores the multiplication result in its first
+        argument. Returns first argument.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="636" colspan="2" valign="top" style="width:476.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal" align="center" style="text-align:center"><b>Division<o:p>
+        </o:p>
+        </b></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">operator /(pBignum,pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Returns newly allocated big number with the result
+        of the division.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">operator /=(pBignum,pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="DefinitionTerm"><span style="font-family:Arial">Stores the
+        division result in its first argument. Returns first argument..<o:p>
+        </o:p>
+        </span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="636" colspan="2" valign="top" style="width:476.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="DefinitionTerm" align="center" style="text-align:center"><b><span style="font-family:Arial">Math
+        functions<o:p>
+        </o:p>
+        </span></b></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadisqrt</b>(pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="DefinitionTerm"><span style="font-family:Arial">Returns a
+        newly allocated big number with the integer square root of its argument.<o:p>
+        </o:p>
+        </span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadsqrt</b>(pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Returns a newly allocated big number with the
+        square root of its argument.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>logb2</b>(pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Returns a newly allocated big number with the log
+        base 2 of its argument.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadln</b>(pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Returns the natural logarithm of its arguments in a
+        newly allocated big number.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadpow</b>(pBignum,pBignum)<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadpow</b>(pBignum,int);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Returns a newly allocated big number with the
+        result of elevating the first argument to the second argument power,
+        i.e.</p>
+        <p class="MsoNormal" align="center" style="text-align:center"><span style="font-family:&quot;Courier New&quot;">result
+        = first <sup>Second</sup><o:p>
+        </o:p>
+        </span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <font size="2">pBignum <b>quadpowmod</b>(pBignum x,pBignum y, pBignum
+        mod);</font>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        Returns x^y modulo mod. All arguments must be integers
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadexp</b>(pBignum)<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Returns newly allocated big number containing e
+        raised to the first argument.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadrand</b>(pBignum)<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Returns a random number between 0 and the given big
+        number</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadpgcd</b>(pBignum x,<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;"><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>pBignum y);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Returns the gcd of the two big numbers</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadround</b>(pBignum x,int
+        n);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Rounds the given number to n places. Returns a new
+        number, the input is not modified.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadratio</b>(int numerator,<o:p>
+        </o:p>
+        </span></p>
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;"><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;</span>int denominator);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Returns a new big number built as a ratio from the
+        given integers.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">int <b>quadintegerp</b>(pBignum x);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Returns 1 if the given big number is represented as
+        an exact integer, or 0 if it is represented as a ratio.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadfloor</b>(pBignum x);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Returns the largest integer less than x</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadtrunc</b>(pBignum x);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Return the nearest integer to x but not larger.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>fact</b>(int n);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Returns n!</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="636" colspan="2" valign="top" style="width:476.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal" align="center" style="text-align:center"><b>Trig<o:p>
+        </o:p>
+        </b></p>
+        <p class="MsoNormal" align="left" style="text-align:left">Note: All
+        arguments must be in radians.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadsin</b>(pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Sinus</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadcos</b>(pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Cosinus</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadacos</b>(pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Arc cosinus</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadasin</b>(pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Arc sinus</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadtan</b>(pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Tangent</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadatan</b>(pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Arc tangent</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadtanh</b>(pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Hyperbolic tangent</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadatanh</b>(pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Hyperbolic arc tangent</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadsinh</b>(pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Hyperbolic sinus</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadasinh</b>(pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Hyperbolic arc sinus</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadcosh</b>(pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Hyperbolic cosinus</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="329" valign="top" style="width:246.75pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal"><span style="font-size:10.0pt;mso-bidi-font-size:12.0pt;
+  font-family:&quot;Courier New&quot;">pBignum <b>quadacosh</b>(pBignum);<o:p>
+        </o:p>
+        </span></p>
+      </td>
+      <td width="307" valign="top" style="width:230.1pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+        <p class="MsoNormal">Hyperbolic arc cosinus</p>
+      </td>
+    </tr>
+  </table>
+</div>
+<p class="MsoNormal">&nbsp;</p>
+<h3><span lang="FR">Debugger support.</span></h3>
+<p class="MsoNormal" style="margin-left:31.2pt">Bignums are recognized in the
+latest versions of wedit and the debugger shows them as numbers.<o:p>
+</o:p>
+</p>
+<h3><span lang="FR">Important considerations when writing bignum code</span></h3>
+<p class="MsoNormalIndent" style="margin-left:36.0pt;text-indent:-18.0pt;
+mso-list:l0 level1 lfo3;tab-stops:list 36.0pt"><span style="mso-bidi-font-family: Arial; mso-ansi-language: EN-US">·<span style="font-style: normal; font-variant: normal; font-weight: normal; font-size: 7.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="mso-ansi-language: EN-US">A pBignum is actually a <b><u>pointer</u></b>
+to a number. This is more efficient, but can lead to mistakes. When you write:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:36.0pt;text-indent:0cm"><span style="font-family:&quot;Courier New&quot;;mso-ansi-language:EN-US">pBignum
+a;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:36.0pt;text-indent:0cm"><span style="font-family:&quot;Courier New&quot;;mso-ansi-language:EN-US">//
+Some code here<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:36.0pt;text-indent:0cm"><span style="font-family:&quot;Courier New&quot;;mso-ansi-language:EN-US">pBignum
+b = a;<o:p>
+</o:p>
+</span></p>
+<p class="MsoCommentText" style="margin-left:36.0pt"><span style="mso-bidi-font-size:
+12.0pt;font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><o:p>
+</o:p>
+</span></p>
+<p class="MsoCommentText" style="margin-left:36.0pt"><span style="mso-bidi-font-size: 12.0pt; mso-bidi-font-family: Times New Roman"><span style="mso-spacerun: yes">&nbsp;</span>After
+this assignment both </span><span style="mso-bidi-font-size: 12.0pt">a</span><span style="mso-bidi-font-size: 12.0pt; mso-bidi-font-family: Times New Roman">
+and </span><span style="mso-bidi-font-size: 12.0pt">b</span><span style="mso-bidi-font-size: 12.0pt; mso-bidi-font-family: Times New Roman">
+point to the same number! If you modify b, a will get modified too. To avoid
+this problem you should write</span><span style="mso-bidi-font-size:
+12.0pt;font-family:&quot;Courier New&quot;"><o:p>
+</o:p>
+</span></p>
+<p class="MsoCommentText" style="margin-left:36.0pt"><span style="mso-bidi-font-size:
+12.0pt;font-family:&quot;Courier New&quot;"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>pBignum b = quadcopy(a);<o:p>
+</o:p>
+</span><span style="mso-bidi-font-size:
+12.0pt;font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+</o:p>
+</span></p>
+<p class="MsoCommentText" style="margin-left:36.0pt"><span style="mso-bidi-font-size: 12.0pt; mso-bidi-font-family: Times New Roman">This
+forces </span><span style="mso-bidi-font-size: 12.0pt">b</span><span style="mso-bidi-font-size: 12.0pt; mso-bidi-font-family: Times New Roman">
+to point to a different area of memory, i.e. a copy of </span><span style="mso-bidi-font-size: 12.0pt">a</span><span style="mso-bidi-font-size: 12.0pt; mso-bidi-font-family: Times New Roman">.<span style="mso-spacerun: yes">&nbsp;
+</span>This semantics are obvious for double precision numbers or for integers,
+but here they must be explicitly enforced by the programmer.<o:p>
+</o:p>
+</span></p>
+<p class="MsoCommentText" style="margin-left:36.0pt;text-indent:-18.0pt;
+mso-list:l0 level1 lfo3;tab-stops:list 36.0pt"><span style="mso-bidi-font-size:12.0pt;font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="mso-bidi-font-size: 12.0pt; mso-bidi-font-family: Times New Roman">Avoid
+floating point numbers when working with bignums if possible. For instance, do <b>not</b>
+write:</span><span style="mso-bidi-font-size:12.0pt;font-family:
+Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+</o:p>
+</span></p>
+<p class="MsoCommentText" style="margin-left:36.0pt"><span style="mso-bidi-font-size:
+12.0pt;font-family:&quot;Courier New&quot;">pBignum a = 0.5; // WRONG</span><span style="mso-bidi-font-size:
+12.0pt;font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+</o:p>
+</span></p>
+<p class="MsoCommentText" style="margin-left:36.0pt"><span style="mso-bidi-font-size: 12.0pt; mso-bidi-font-family: Times New Roman">You
+should write:</span><span style="mso-bidi-font-size:
+12.0pt;font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+</o:p>
+</span><span style="mso-bidi-font-size:
+12.0pt;font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+</o:p>
+</span></p>
+<p class="MsoCommentText" style="margin-left:36.0pt"><span style="mso-bidi-font-size:
+12.0pt;font-family:&quot;Courier New&quot;">pBignum a = quadratio(1,2); //OK<o:p>
+</o:p>
+</span><span style="mso-bidi-font-size:
+12.0pt;font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>
+</o:p>
+</span></p>
+<p class="MsoCommentText" style="margin-left:36.0pt"><span style="mso-bidi-font-size: 12.0pt; mso-bidi-font-family: Times New Roman">The
+later expression stores <u>exactly</u> 1/2. The former stores an approximation
+to 1/2 that will be good in the first 16 digits only.<o:p>
+</o:p>
+</span></p>
+<p class="MsoCommentText" style="margin-left:36.0pt"><span style="mso-bidi-font-size:
+12.0pt;font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;">&nbsp;<o:p>
+</o:p>
+</span></p>
+<h3><span style="mso-ansi-language:EN-US">Bignum implementation<o:p>
+</o:p>
+</span></h3>
+<p class="MsoNormal">&nbsp;Bignums are stored in two ways:</p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l1 level1 lfo5;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>As a large integer: The first word (32 bits) contains the length
+and the sign, followed by the data, 30 bits for each 32 bit word.</p>
+<p class="MsoNormal" style="margin-left:18.0pt;text-indent:-18.0pt;mso-list:l1 level1 lfo5;
+tab-stops:list 18.0pt"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>As a ratio of two integers, represented as a numerator and
+denominator. This allows for a floating point (or maybe floating slash)
+representation.<o:p>
+</o:p>
+</p>
+<p class="MsoBodyText">In both cases, the library returns a pointer to these
+opaque data. No direct access is provided, so the underlying library or DLL can
+be changed as needed, without affecting user code, as long as the interface of
+the dll is the same.<o:p>
+</o:p>
+<span style="font-family:Arial"><o:p>
+</o:p>
+</span></p>
+<p class="MsoCommentText" style="margin-left:36.0pt"><span style="mso-bidi-font-size: 12.0pt; mso-bidi-font-family: Times New Roman">Here
+is an excerpt from the &quot;Miracl&quot; reference manual that explains the
+basic implementation of the library.<o:p>
+</o:p>
+</span></p>
+<h3><a name="_Toc462542711"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc346532559">Floating-Slash
+numbers</span></a><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</h3>
+<p class="MsoNormal">The straightforward way to represent rational numbers is as
+reduced fractions, as a numerator and denominator with all common factors
+cancelled out. These numbers can then be added, subtracted, multiplied and
+divided in the obvious way and the result reduced by dividing both numerator and
+denominator by their Greatest Common Divisor. An efficient GCD subroutine, using
+Lehmers modification of the classical euclidean algorithm for multiprecision
+numbers [Knuth81], is included in the MIRACL package.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">An alternative way to represent rationals would be as a
+finite continued fraction [Knuth81]. Every rational number <i style="mso-bidi-font-style:
+normal">p/q</i> can be written as</p>
+<p class="MsoNormal" align="center" style="text-align:center"><span style="mso-text-raise:-43.0pt"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:187.5pt;
+ height:96.75pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/msoclip1/01/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img border="0" src="bignum1.gif" v:shapes="_x0000_i1025" width="250" height="129"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.2" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1102926967">
+ </o:OLEObject>
+</xml><![endif]-->
+</span></p>
+<p class="MsoNormal">or more elegantly as <i style="mso-bidi-font-style:normal">p/q</i>
+= [<i style="mso-bidi-font-style:normal">a<sub>0</sub>/a<sub>1</sub>/a<sub>2</sub>/..../a<sub>n</sub></i>]
+where the <i style="mso-bidi-font-style:normal">a<sub>i</sub></i> are positive
+integers, usually quite small.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">For example<o:p>
+</o:p>
+<o:p>
+</o:p>
+</p>
+<p class="MsoNormal" align="center" style="text-align:center"><span style="mso-text-raise:-12.0pt"><!--[if gte vml 1]><v:shape id="_x0000_i1026"
+ type="#_x0000_t75" style='width:170.25pt;height:45.75pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/msoclip1/01/clip_image003.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img border="0" src="bignum2.gif" v:shapes="_x0000_i1026" width="227" height="61"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.2" ShapeID="_x0000_i1026"
+  DrawAspect="Content" ObjectID="_1102926968">
+ </o:OLEObject>
+</xml><![endif]-->
+</span><o:p>
+</o:p>
+<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">Note that the <i style="mso-bidi-font-style:normal">a<sub>i</sub></i>
+elements of the above continued fraction representation are easily found as the
+quotients generated as a by-product when the euclidean GCD algorithm is applied
+to <i style="mso-bidi-font-style:normal">p</i> and <i style="mso-bidi-font-style:
+normal">q</i>.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">As we are committed to fixed length representation of
+rationals, a problem arises when the result of some operation exceeds this fixed
+length. There is a necessity for some scheme of truncation, or rounding. While
+there is no obvious way to truncate a large fraction, it is a simple matter to
+truncate the continued fraction representation. The resulting, smaller, fraction
+is called a best rational approximation, or a convergent, to the original
+fraction.<o:p>
+</o:p>
+<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">Consider truncating 277/642 = [0/2/3/6/1/3/3]. Simply drop
+the last element from the CF representation, giving [0/2/3/6/1/3] = 85/197,
+which is a very close approximation to 277/642 (error = 0.0018%). Chopping more
+terms from the CF expansion gives the successive convergents as 22/51, 19/44,
+3/7, 1/2, 0/1. As the fractions get smaller, the error increases. Obviously the
+truncation rule for a computer implementation should be to choose the biggest
+convergent that fits the computer representation.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">The type of rounding described above is also called
+‘Mediant rounding’. If <i style="mso-bidi-font-style:normal">p/q</i> and <i style="mso-bidi-font-style:normal">r/s</i>
+are two neighbouring representable slash numbers astride a gap, then their
+mediant is the unrepresentable <i style="mso-bidi-font-style:normal">(p+r)/(q+s)</i>.
+All larger fractions between <i style="mso-bidi-font-style:normal">p/q</i> and
+the mediant will round to <i style="mso-bidi-font-style:normal">p/q</i>, and
+those between <i style="mso-bidi-font-style:normal">r/s</i> and the mediant will
+round to <i style="mso-bidi-font-style:normal">r/s</i>. The mediant itself
+rounds to the ‘simpler’ of <i style="mso-bidi-font-style:normal">p/q</i> and
+<i style="mso-bidi-font-style:normal">r/s</i>.</p>
+<p class="MsoNormal">&nbsp;This is theoretically a very good way to round, much
+better than the rather arbitrary and base-dependent methods used in
+floating-point arithmetic, and is the method used here. The full theoretical
+basis of floating-slash arithmetic is described in detail by Matula &amp;
+Kornerup [Matula85]. It should be noted that our <i style="mso-bidi-font-style:normal">flash</i>
+representation is in fact a cross between the fixed- and floating-slash systems
+analysed by Matula &amp; Kornerup, as our slash can only float between words,
+and not between bits. However the characteristics of the <i style="mso-bidi-font-style:
+normal">flash</i> data-type will tend to those of floating-slash, as the
+precision is increased.</p>
+<p class="MsoNormal">&nbsp;The MIRACL routine <b style="mso-bidi-font-weight:normal">round</b>
+implements mediant rounding. If the result of an arithmetic operation is the
+fraction <i style="mso-bidi-font-style:normal">p/q</i>, then the euclidean GCD
+algorithm is applied as before to <i style="mso-bidi-font-style:normal">p</i>
+and <i style="mso-bidi-font-style:normal">q</i>. However this time the objective
+is not to use the algorithm to calculate the GCD per se, but to use its
+quotients to build successive convergents to <i style="mso-bidi-font-style:
+normal">p/q</i>. This process is stopped when the next convergent is too large
+to fit the <i style="mso-bidi-font-style:normal">flash</i> representation. The
+complete algorithm is given below (Kornerup &amp; Matula [Korn83])<o:p>
+</o:p>
+</p>
+<p class="MsoNormal"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Given <i style="mso-bidi-font-style:normal">p</i><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; font-family: Symbol; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial">³</span>0
+and <i style="mso-bidi-font-style:normal">q</i><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; font-family: Symbol; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial">³</span>1</p>
+<p class="MsoNormal">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormal"><span style="mso-tab-count: 1; font-size: 16.0pt; mso-bidi-font-size: 12.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><i style="mso-bidi-font-style:
+normal"><span lang="FR" style="font-size:16.0pt;mso-bidi-font-size:12.0pt;
+mso-ansi-language:FR">b<sub>-2</sub>=p<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>x<sub>-2</sub>=0<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>y<sub>-2</sub>=1<o:p>
+</o:p>
+</span></i></p>
+<p class="MsoNormal"><i style="mso-bidi-font-style:normal"><span lang="FR" style="font-size:16.0pt;mso-bidi-font-size:12.0pt;mso-ansi-language:FR"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>b<sub>-1</sub>=q<span style="mso-tab-count:
+2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>x<sub>-1</sub>=1<span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>y<sub>-1</sub>=0</span></i><span lang="FR" style="font-size:16.0pt;mso-bidi-font-size:12.0pt;mso-ansi-language:
+FR"><o:p>
+</o:p>
+</span><span lang="FR" style="font-size:16.0pt;mso-bidi-font-size:
+12.0pt;mso-ansi-language:FR"><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">Now for <i style="mso-bidi-font-style:normal">i=0,1,..... </i>and
+for <i style="mso-bidi-font-style:normal">b<sub>i-1</sub>&gt;0, </i>find the
+quotient <i style="mso-bidi-font-style:normal">a<sub>i</sub></i> and remainder <i style="mso-bidi-font-style:normal">b<sub>i</sub></i>
+when <i style="mso-bidi-font-style:
+normal">b<sub>i-2</sub></i> is divided by <i style="mso-bidi-font-style:normal">b<sub>i-1</sub>,</i>
+such that<o:p>
+</o:p>
+</p>
+<p class="MsoNormal"><span style="mso-tab-count: 1; font-size: 16.0pt; mso-bidi-font-size: 12.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><i style="mso-bidi-font-style:
+normal"><span lang="FR" style="font-size:16.0pt;mso-bidi-font-size:12.0pt;
+mso-ansi-language:FR">b<sub>i</sub> = -a<sub>i</sub>.b<sub>i-1</sub> + b<sub>i-2</sub></span></i><span lang="FR" style="font-size:14.0pt;mso-bidi-font-size:12.0pt;mso-ansi-language:
+FR"> <o:p>
+</o:p>
+</span><span lang="FR" style="mso-ansi-language:FR"><o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">Then calculate<o:p>
+</o:p>
+<o:p>
+</o:p>
+</p>
+<p class="MsoNormal"><span style="mso-tab-count: 1; font-size: 16.0pt; mso-bidi-font-size: 12.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><i style="mso-bidi-font-style:
+normal"><span lang="FR" style="font-size:16.0pt;mso-bidi-font-size:12.0pt;
+mso-ansi-language:FR">x<sub>i</sub> = a<sub>i</sub>.x<sub>i-1</sub> + x<sub>i-2</sub><o:p>
+</o:p>
+</span></i></p>
+<p class="MsoNormal"><i style="mso-bidi-font-style:normal"><span style="mso-tab-count: 1; font-size: 16.0pt; mso-bidi-font-size: 12.0pt; mso-ansi-language: FR" lang="FR">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></i><i style="mso-bidi-font-style:
+normal"><span style="font-size:16.0pt;mso-bidi-font-size:12.0pt">y<sub>i</sub> =
+a<sub>i</sub>.y<sub>i-1</sub> + y<sub>i-2</sub></span></i><span style="font-size:14.0pt;mso-bidi-font-size:12.0pt"><o:p>
+</o:p>
+</span><o:p>
+</o:p>
+</p>
+<p class="MsoNormal">Stop when <span style="mso-text-raise:-15.0pt"><!--[if gte vml 1]><v:shape
+ id="_x0000_i1027" type="#_x0000_t75" style='width:15pt;height:33pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/msoclip1/01/clip_image005.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img border="0" src="bignum3.gif" v:shapes="_x0000_i1027" width="20" height="44"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.2" ShapeID="_x0000_i1027"
+  DrawAspect="Content" ObjectID="_1102926969">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-spacerun: yes">&nbsp;</span>is to big to fit the <i style="mso-bidi-font-style:normal">flash</i>
+representation, and take <span style="mso-text-raise:-15.0pt"><!--[if gte vml 1]><v:shape id="_x0000_i1028"
+ type="#_x0000_t75" style='width:21.75pt;height:33pt' o:ole="">
+ <v:imagedata src="file:///C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/msoclip1/01/clip_image007.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img border="0" src="bignum4.gif" v:shapes="_x0000_i1028" width="29" height="44"></span><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Equation.2" ShapeID="_x0000_i1028"
+  DrawAspect="Content" ObjectID="_1102926970">
+ </o:OLEObject>
+</xml><![endif]-->
+<span style="mso-spacerun: yes">&nbsp;</span>as the rounded result.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">If applied to 277/642, this process will give the same
+sequence of convergents as stated earlier.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">Since this rounding procedure must be applied to the result
+of each arithmetic operation, and since it is potentially rather slow, a lot of
+effort has been made to optimise its implementation. Lehmer's idea of operating
+only with the most significant piece of each number for as long as possible
+[Knuth81] is used, so that for most of the iterations only single-precision
+arithmetic is needed. Special care is taken to avoid the rounded result
+overshooting the limits of the <i style="mso-bidi-font-style:normal">flash</i>
+representation [Scott89a]. The application of the basic arithmetic routines to
+the calculation of elementary functions such as <i style="mso-bidi-font-style:
+normal">log(x)</i>, <i style="mso-bidi-font-style:normal">exp(x)</i>, <i style="mso-bidi-font-style:normal">sin(x)</i>,
+<i style="mso-bidi-font-style:
+normal">cos(x)</i>, <i style="mso-bidi-font-style:normal">tan(x)</i> etc., uses
+the fast algorithms described by Brent [Brent76].</p>
+<p class="MsoNormal">A disadvantage of using a <i style="mso-bidi-font-style:
+normal">flash</i> type of variable to approximate real arithmetic is the
+non-uniformity in gap-size between representable values (Matula &amp; Kornerup
+[Matula85]).<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">To illustrate this consider a floating-slash system which
+is constrained to have the product of numerator and denominator less than 256.
+Observe that the first representable fraction less than 1/1 in such a system is
+15/16, a gap of 1/16. The next fraction larger than 0/1 is 1/255, a gap of
+1/255. In general, for a <i style="mso-bidi-font-style:normal">k</i>-bit
+floating-slash system, the gap size varies from smaller than 2<sup>-k</sup> to a
+worst case 2<sup>-k/2</sup>. In practise this means that a real value that falls
+into one of the larger gaps, will be represented by a fraction which will be
+accurate to only half its usual precision. Fortunately such large gaps are rare,
+and increasingly so for higher precision, occurring only near simple fractions.
+However it does mean that real results can only be completely trusted to half
+the given decimal places. A partial solution to this problem would be to
+represent rationals directly as continued fractions. This gives a much better
+uniformity of gap-size (Kornerup &amp; Matula [Korn85]), but would be very
+difficult to implement using a high level language.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">Arithmetic on <i style="mso-bidi-font-style:normal">flash</i>
+data-types is undoubtedly slower than on an equivalent sized multiprecision
+floating-point type (e.g. [Brent78]). The advantages of the <i style="mso-bidi-font-style:normal">flash</i>
+approach are its ability to exactly represent rational numbers, and do exact
+arithmetic on them. Even when rounding is needed, the result often works out
+correctly, due to the tendency of mediant-rounding to prefer a simple fraction
+over a complex one. For example the <i style="mso-bidi-font-style:normal">roots</i>
+program (Chapter 8) when asked to find the square root of 2 and then square the
+result, comes back with the exact answer of 2, despite much internal rounding.</p>
+
+</body>
+
+</html>

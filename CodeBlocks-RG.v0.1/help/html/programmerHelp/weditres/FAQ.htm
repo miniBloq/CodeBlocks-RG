@@ -1,0 +1,685 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Frequently Asked Questions</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509457104"><span style="mso-ansi-language:EN-US">Frequently
+Asked Questions (FAQs)</span></a><span style="mso-ansi-language:
+EN-US"><o:p>
+</o:p>
+</span></h2>
+<h4 style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language: EN-US; font-weight: normal"><font size="4">1) I get an &quot;undefined
+reference to &quot;_foo@12&quot;. What do I do ?<o:p>
+ </font>
+</span><span style="font-size:10.0pt;
+mso-ansi-language:EN-US;font-weight:normal">
+</o:p>
+</span></h4>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt"><span style="mso-ansi-language:EN-US">This
+means that the linker is missing the definitions of a library or that you have
+forgotten to add a source file in the list of sources. You should add the
+library where the definition of foo is (ignore the leading underscore, and
+anything after the '@').<o:p>
+</o:p>
+</span></p>
+<h4 style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language: EN-US; font-weight: normal"><font size="4">2) How do I add a library to the
+project?<o:p>
+ </font>
+</span><span style="font-size:10.0pt;
+mso-ansi-language:EN-US;font-weight:normal">
+</o:p>
+</span></h4>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:21.25pt"><span style="mso-ansi-language:EN-US">Go
+to the main menu in the 'options' menu bar. There choose 'Configuration'. The
+Configuration tab opens. In this tab, choose the 'Linker' tab. There you will
+find an entry field with 'Additional Libraries'. Write in the name of your
+library. For lcc libraries, you do not need to indicate the path. For other
+libraries you should indicate it.<o:p>
+</o:p>
+</span></p>
+<h4 style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language: EN-US; font-weight: normal"><font size="4">3) I still get an undefined to _xxx
+even if I do include the library.<o:p>
+ </font>
+</span><span style="font-size:10.0pt;
+mso-ansi-language:EN-US;font-weight:normal">
+</o:p>
+</span></h4>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt"><span style="mso-ansi-language:EN-US">This
+can happen when you use a _stdcall function, but forget to include the
+corresponding header file. For instance, if you call CreateWindow without
+include &lt;windows.h&gt; you will get an undefined reference. Please include
+the corresponding header file.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US"><b style="mso-bidi-font-weight: normal; mso-ansi-language: EN-US"><font size="4">4)
+How do I call an external program from the IDE?<o:p>
+ </font></b><b style="mso-bidi-font-weight:normal">
+</o:p>
+</b>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm"><span style="mso-ansi-language:
+EN-US">In the 'Options' menu there is an option 'Add utility'. Use this.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US"><b style="mso-bidi-font-weight: normal; mso-ansi-language: EN-US"><font size="4">5)
+How can I determine in which library the function 'xxx' is located?<o:p>
+ </font></b><b style="mso-bidi-font-weight:normal">
+</o:p>
+</b>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt"><span style="mso-ansi-language:EN-US">Go
+to the 'Search' menu bar and start GREP. Type the name of the function as the
+pattern to search, and give the \lcc\include\*.exp file pattern. This will find
+which .exp has this function defined in it (if at all). Then add that library to
+the link command line.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US"><b style="mso-bidi-font-weight: normal; mso-ansi-language: EN-US"><font size="4">6)
+How do I generate an import library for my DLL?<o:p>
+ </font></b><b style="mso-bidi-font-weight:normal">
+</o:p>
+</b>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Build
+a text file containing:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:1.0cm"><span style="mso-ansi-language:
+EN-US">&nbsp;<o:p>
+</o:p>
+</span></p>
+<table border="1" cellspacing="0" cellpadding="0" style="margin-left:31.85pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .75pt;
+ mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr>
+    <td width="191" valign="top" style="width:142.9pt;border-top:solid windowtext .75pt;
+  border-left:solid windowtext .75pt;border-bottom:none;border-right:none;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">MYDLL.dll<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="191" valign="top" style="width:142.9pt;border:none;border-top:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm">&nbsp;<span style="mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="157" valign="top" style="width:117.85pt;border-top:solid windowtext .75pt;
+  border-left:none;border-bottom:none;border-right:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm">&nbsp;<span style="mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="191" valign="top" style="width:142.9pt;border:none;border-left:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US"><a href="mailto:_foo@12">_foo@12</a><o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="191" valign="top" style="width:142.9pt;border:none;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">foo<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="157" valign="top" style="width:117.85pt;border:none;border-right:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm">&nbsp;<span style="mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="191" valign="top" style="width:142.9pt;border:none;border-left:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">_linelength<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="191" valign="top" style="width:142.9pt;border:none;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">linelength<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="157" valign="top" style="width:117.85pt;border:none;border-right:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">data<o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="191" valign="top" style="width:142.9pt;border-top:none;border-left:
+  solid windowtext .75pt;border-bottom:solid windowtext .75pt;border-right:
+  none;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US"><a href="mailto:_alternatefoo@12">_alternatefoo@12</a><o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="191" valign="top" style="width:142.9pt;border:none;border-bottom:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">foo<o:p>
+      </o:p>
+      </span></p>
+    </td>
+    <td width="157" valign="top" style="width:117.85pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm">&nbsp;<span style="mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:0cm;margin-bottom:.0001pt"><span style="mso-ansi-language:EN-US">This
+file should contain the name of the DLL in the first line, then a series of
+exports. In the first column you should write the name of the function, as
+decorated by the compiler: A leading underscore, and a '@nn' for all _stdcall
+functions. The number following the @ means the number of arguments * 4. In the
+second column, you should write the name as it was exported from the DLL. This
+is optional. If absent, the buildlib utility will use the name of the function
+minus the decorations. The third column (optional) is only necessary if you want
+to export a data item and not a function.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt"><span style="mso-ansi-language:EN-US">You
+can build aliases (alternatefoo and foo are different names for the same DLL
+entry point).<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US"><b style="mso-bidi-font-weight: normal; mso-ansi-language: EN-US"><font size="4">7)
+Why is my executable so big?<o:p>
+ </font></b><b style="mso-bidi-font-weight:normal">
+</o:p>
+</b>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">Do
+not forget to instruct the linker to eliminate the debug information.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US"><b style="mso-bidi-font-weight: normal; mso-ansi-language: EN-US"><font size="4">8)
+How do I pass command line parameters to my program when I use the debugger?<o:p>
+ </font></b><b style="mso-bidi-font-weight:normal">
+</o:p>
+</b>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">Use
+the ‘Debugger’ tab in the ‘Configuration’ options.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US"><b style="mso-bidi-font-weight: normal; mso-ansi-language: EN-US"><font size="4">9)
+How do I start the debugger with a given executable without building a project?<o:p>
+ </font></b><b style="mso-bidi-font-weight:normal">
+</o:p>
+</b>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">At
+the command line enter:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-US">Wedit myprogram.exe &lt;optional arguments&gt;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">or
+use the ‘File-&gt;Open menu’ option, and enter the name of the executable
+you want to debug.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US"><b style="mso-bidi-font-weight: normal; mso-ansi-language: EN-US"><font size="4">10)
+Why does my program crash when I change the 'Optimize' option?<o:p>
+ </font></b><b style="mso-bidi-font-weight:normal">
+</o:p>
+</b>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">This
+can be a problem in the compiler, but before blaming the compiler, remember the
+following:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:l0 level1 lfo13"><span style="font-family:Symbol;
+mso-ansi-language:EN-US">·</span><span style="mso-ansi-language:EN-US">When
+optimizing, the compiler does not initialize local variables to known 'bad'
+values, as it does when compiling in a normal setting with debugging info. If
+you use an uninitialized variable then, in a normal compilation the program will
+crash.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:l0 level1 lfo13"><span style="font-family:Symbol;
+mso-ansi-language:EN-US">·</span><span style="mso-ansi-language:EN-US">Tighter
+memory layout and register usage when optimizing can produce different behavior
+when uninitialized variables are used.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:l0 level1 lfo13"><span style="font-family:Symbol;
+mso-ansi-language:EN-US">·</span><span style="mso-ansi-language:EN-US">The
+ASSERT macro can contain code with side effects. If those side effects are not
+being compiled because the ASSERT macro is not active in an optimized version,
+those side effects are not there in the optimized build, which can provoke
+different program behavior.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US"><b style="mso-bidi-font-weight: normal; mso-ansi-language: EN-US"><font size="4">11)
+How do I obtain a stack trace when my program crashes?<o:p>
+ </font></b><b style="mso-bidi-font-weight:normal">
+</o:p>
+</b>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">Compile
+all modules with the -g4 option or set the corresponding option in Wedit.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US"><b style="mso-bidi-font-weight: normal; mso-ansi-language: EN-US"><font size="4">12)
+How do I use an MSVC import library with lcc?<o:p>
+ </font></b><b style="mso-bidi-font-weight:normal">
+</o:p>
+</b>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm">You can
+use the &quot;Import foreign library&quot; in the &quot;Utils&quot; menu of the
+IDE. That option does essentially the following actions:<span style="mso-ansi-language:EN-US"></o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:l1 level1 lfo15"><b style="mso-bidi-font-weight:
+normal"><span style="mso-ansi-language:EN-US">1.</span></b><span style="mso-ansi-language:EN-US">Use
+the pedump utility to build an ASCII .exp file from the library.<b style="mso-bidi-font-weight:normal"><o:p>
+</o:p>
+</b></span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:l1 level1 lfo15"><b style="mso-bidi-font-weight:
+normal"><span style="mso-ansi-language:EN-US">2.</span></b><span style="mso-ansi-language:EN-US">Use
+the buildlib utility to build a library from the generated exp file.<b style="mso-bidi-font-weight:normal"><o:p>
+</o:p>
+</b></span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><b style="mso-bidi-font-weight:normal"><span style="mso-ansi-language:EN-US">Example:<o:p>
+</o:p>
+</span></b></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><b style="mso-bidi-font-weight:normal"><span style="mso-ansi-language:EN-US">d:\lcc\test&gt;
+pedump /EXP qprowinm.lib &gt;qprowinm.exp<o:p>
+</o:p>
+</span></b></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><b style="mso-bidi-font-weight:normal"><span style="mso-ansi-language:EN-US">d:\lcc\test&gt;
+buildlib qprowinm.exp qprowinl.lib<o:p>
+</o:p>
+</span></b></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">The
+first line instructs pedump to generate a file suitable for the buildlib
+utility. In the first line, the generated file should contain the name of the
+DLL to which this import library is referring. If that name does not appear, it
+is highly probable that this is NOT an import library, but a normal library that
+should work without any problems with lcc.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">The
+second line instructs the buildlib utility to use the generated qprowinm.exp to
+build an import library using the lcc format. If the name of the DLL was not
+found, this step will fail.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:42.5pt;text-indent:-14.15pt;
+mso-list:l5 level1 lfo17"><font size="4"><span style="mso-ansi-language: EN-US; mso-bidi-font-weight: normal"><span style="font-family: Arial; mso-bidi-font-family: Times New Roman; mso-ansi-language: EN-US; mso-bidi-font-weight: normal">13) </span><b style="mso-bidi-font-weight: normal; mso-ansi-language: EN-US">How
+do I list the exported symbols from an object file/executable file/DLL?<o:p>
+ </b></span></font><span style="mso-ansi-language:EN-US"><b style="mso-bidi-font-weight:normal">
+</o:p>
+</b>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><span style="mso-ansi-language:EN-US">Use
+pedump with the following arguments:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm"><b style="mso-bidi-font-weight:normal"><span style="mso-ansi-language:EN-US">pedump
+/exp &lt;filename&gt;<o:p>
+</o:p>
+</span></b></p>
+<p class="MsoNormalIndent" style="margin-left:0cm;text-indent:0cm;mso-list:l9 level1 lfo19"><b style="mso-bidi-font-weight: normal; mso-ansi-language: EN-US"><font size="4"><span style="font-family: Arial; mso-bidi-font-family: Times New Roman; mso-ansi-language: EN-US; mso-bidi-font-weight: normal">14)
+</span><span style="mso-ansi-language: EN-US; mso-bidi-font-weight: normal">What is the difference between lcc
+4.1 and lcc-win32?<o:p>
+</span></font></b><span style="mso-ansi-language:EN-US"><b style="mso-bidi-font-weight:normal">
+</o:p>
+</b>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt"><span style="mso-ansi-language:EN-US">Lcc
+4.1 is a continuation by Dave Hanson and Chris Fraser of their work with the
+original LCC compiler. Lcc-win32 is derived from lcc 3.6 and has diverged
+considerably since. The purposes of the two systems are quite different.<span style="mso-spacerun: yes">&nbsp;
+</span>Lcc 4.1 needs MSVC to run and is not very well adapted to the Windows
+environment. It is conceived as an environment to learn how a cross compiler
+works and can generate code for a wide spectrum of machines. Lcc-win32 is a
+stand alone compiler system, requiring nothing else. It is limited, however, to
+the Windows/x86 environment and is not a cross compiler.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:l9 level1 lfo19"><font size="4"><span style="mso-ansi-language: EN-US; mso-bidi-font-weight: normal"><span style="font-family: Arial; mso-bidi-font-family: Times New Roman; mso-ansi-language: EN-US; mso-bidi-font-weight: normal">15) </span><b style="mso-bidi-font-weight: normal; mso-ansi-language: EN-US">The
+wizard stops with 'Code generation fails' in my Windows 95 system. What should I
+do?<o:p>
+ </b></span></font><span style="mso-ansi-language:EN-US"><b style="mso-bidi-font-weight:normal">
+</o:p>
+</b>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt"><span style="mso-ansi-language:EN-US">In
+some older Windows 95 systems, the wizard fails mysteriously. I have spent a lot
+of time tracking this and never was able to determine why. When I call the
+PropertySheet primitive, in some systems the answer will be minus one, and
+nothing will be shown. This problem disappears with a newer version of the
+system. I am sorry about this, but there is nothing that can be done. You must
+acquire the latest service release and upgrade your system.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:l9 level1 lfo19"><font size="4"><span style="mso-ansi-language: EN-US; mso-bidi-font-weight: normal"><span style="font-family: Arial; mso-bidi-font-family: Times New Roman; mso-ansi-language: EN-US; mso-bidi-font-weight: normal">16) </span><b style="mso-bidi-font-weight: normal; mso-ansi-language: EN-US">How
+do I build a DLL?<o:p>
+ </b></span></font><span style="mso-ansi-language:EN-US"><b style="mso-bidi-font-weight:normal">
+</o:p>
+</b>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">There
+are several ways of doing this. <o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:67.6pt;margin-bottom:.0001pt;text-indent:-18.0pt;
+mso-list:l0 level1 lfo20"><span style="font-family:Symbol;
+mso-ansi-language:EN-US">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="mso-ansi-language:EN-US">You can use the integrated
+development environment, specifying explicitly the ‘DLL’ option. This is the
+easiest.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:67.6pt;margin-bottom:.0001pt;text-indent:-18.0pt;
+mso-list:l0 level1 lfo20"><span style="font-family:Symbol;
+mso-ansi-language:EN-US">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="mso-ansi-language:EN-US">You can call up the
+‘wizard’ and generate the DLL skeleton of your DLL with it. You specify to
+the wizard in its dialog boxes where on your disk you want the code to be
+written.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:67.6pt;margin-bottom:.0001pt;text-indent:-18.0pt;
+mso-list:l0 level1 lfo20"><span style="font-family:Symbol;
+mso-ansi-language:EN-US">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="mso-ansi-language:EN-US">You can link your program
+using the –DLL option, without forgetting to specify the .def if necessary.
+This assumes you work from the command line.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:l2 level1 lfo22"><font size="4"><span style="mso-ansi-language: EN-US; mso-bidi-font-weight: normal"><span style="font-family: Arial; mso-bidi-font-family: Times New Roman; mso-ansi-language: EN-US; mso-bidi-font-weight: normal">14) </span><b style="mso-bidi-font-weight: normal; mso-ansi-language: EN-US">What
+does it mean “compiler error in kids”&nbsp;?&nbsp;<o:p>
+ </b></span></font><span style="mso-ansi-language:EN-US"><b style="mso-bidi-font-weight:normal">
+</o:p>
+</b>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt"><span style="mso-ansi-language:EN-US">This
+means that the compiler has found a combination of operations that it does not
+know how to generate. This error can occasionally appear when you are using the
+long long integers. This data type has been introduced relatively recently, and
+there may be some combinations of operations that are still not possible. In the
+event that you get this message, please send me a bug report.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:skip"><span style="mso-ansi-language:EN-US">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:l2 level1 lfo22"><font size="4"><span style="mso-ansi-language: EN-US; mso-bidi-font-weight: normal"><span style="font-family: Arial; mso-bidi-font-family: Times New Roman; mso-ansi-language: EN-US; mso-bidi-font-weight: normal">15) </span><b style="mso-bidi-font-weight: normal; mso-ansi-language: EN-US">How
+can I use the debugger of lcc with Microsoft’s compiler?<o:p>
+ </b></span></font><span style="mso-ansi-language:EN-US"><b style="mso-bidi-font-weight:normal">
+</o:p>
+</b>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt"><span style="mso-ansi-language:EN-US">You
+should compile with the debug information set to the standard NB09 and avoid the
+program database. This can be accomplished with the following command line to
+the Microsoft compiler ‘cl’:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:skip"><span style="font-family:
+Courier;mso-ansi-language:EN-US"><b style="mso-bidi-font-weight:normal">cl /Z7 foo.c /link /pdb:none<o:p>
+ </b>
+</span><b style="mso-bidi-font-weight: normal; mso-ansi-language: EN-US"><span style="font-family: Courier; mso-ansi-language: EN-US; mso-bidi-font-weight: normal"><font size="4">
+</o:p>
+</font>
+</span></b></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:l2 level1 lfo22"><font size="4"><span style="mso-ansi-language: EN-US; mso-bidi-font-weight: normal"><span style="font-family: Arial; mso-bidi-font-family: Times New Roman; mso-ansi-language: EN-US; mso-bidi-font-weight: normal">16) </span><b style="mso-bidi-font-weight: normal; mso-ansi-language: EN-US">When
+I start my program, a ‘DOS box’ (console) appears. How can I get rid of it?<o:p>
+ </b></span></font><span style="mso-ansi-language:EN-US"><b style="mso-bidi-font-weight:normal">
+</o:p>
+</b>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt"><span style="mso-ansi-language:EN-US">You
+have not defined your program as a Windows (GUI) program. To do this, go to the
+‘Linker configuration’ tab, and check the ‘Windows program’ radio
+button. This will add the option ‘Subsystem Windows’ to the linker command
+line.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:skip"><span style="mso-ansi-language:EN-US">When Windows starts a
+program, it looks at its header for the ‘Windows’ bit. If the program is not
+marked as a GUI program, it will open a console window before starting it. The
+linker defaults to a ‘console’ application, and not to a Windows
+application.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:l2 level1 lfo22"><font size="4"><span style="mso-ansi-language: EN-US; mso-bidi-font-weight: normal"><span style="font-family: Arial; mso-bidi-font-family: Times New Roman; mso-ansi-language: EN-US; mso-bidi-font-weight: normal">17) </span><b style="mso-bidi-font-weight: normal; mso-ansi-language: EN-US">The
+linker indicates that <span class="MsoHyperlink">_LibMain@12</span> is not
+defined when I try to link my DLL. What does this mean and how do I get rid of
+it?<o:p>
+ </b></span></font><span style="mso-ansi-language:EN-US"><b style="mso-bidi-font-weight:normal">
+</o:p>
+</b>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt"><span style="mso-ansi-language:EN-US"><span style="mso-spacerun: yes">&nbsp;
+</span>This means you did not define the entry point of your DLL. Generate a DLL
+skeleton with the wizard. Or write the following function:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:skip"><span style="font-size:8.0pt;mso-bidi-font-size:10.0pt;
+font-family:Courier;mso-ansi-language:EN-US">BOOL WINAPI __declspec(dllexport)
+LibMain(HINSTANCE hDLLInst,DWORD fdwReason,LPVOID lpvReserved)<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:skip"><span style="font-size:8.0pt;mso-bidi-font-size:10.0pt;
+font-family:Courier;mso-ansi-language:EN-US">{<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:skip"><span style="font-size:8.0pt;mso-bidi-font-size:10.0pt;
+font-family:Courier;mso-ansi-language:EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>return 1;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:skip"><span style="font-size:8.0pt;mso-bidi-font-size:10.0pt;
+font-family:Courier;mso-ansi-language:EN-US">}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.05pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:l2 level1 lfo22"><font size="4"><span style="mso-ansi-language: EN-US; mso-bidi-font-weight: normal"><span style="font-family: Arial; mso-bidi-font-family: Times New Roman; mso-ansi-language: EN-US; mso-bidi-font-weight: normal">18) </span><b style="mso-bidi-font-weight: normal; mso-ansi-language: EN-US">How
+do I print a message to be shown in the debugger?<o:p>
+ </b></span></font><span style="mso-ansi-language:EN-US"><b style="mso-bidi-font-weight:normal">
+</o:p>
+</b>
+</span></p>
+<p class="MsoNormal" style="margin-bottom:6.0pt">With the OutputDebugString()
+function. If the application has no debugger, the system debugger displays the
+string. If the application has no debugger and the system debugger is not
+active, <b style="mso-bidi-font-weight:normal">OutputDebugString</b> does
+nothing.</p>
+<p class="MsoNormal" style="margin-top:0cm;margin-right:12.0pt;margin-bottom:
+6.0pt;margin-left:0cm;text-indent:0cm;mso-list:l2 level1 lfo22"><b style="mso-bidi-font-weight:normal"><font size="4"><span style="mso-bidi-font-size: 12.0pt; mso-bidi-font-weight: normal">19) </span>How do I debug a DLL?<o:p>
+ </font>
+</o:p>
+</b></p>
+<p class="MsoBlockText" style="margin-top:0cm;margin-right:0cm;margin-bottom:
+6.0pt;margin-left:0cm"><span style="font-family:&quot;Times New Roman&quot;">The
+debugger cannot start a DLL like a normal executable. You have to define an
+executable that will be started by the debugger. This executable should be
+linked with the import library of your DLL, and should contain debug
+information. When this is done, Wedit will trace calls into the DLL in exactly
+the same manner as it will trace calls into any other function. This will work
+too if the DLL is loaded with LoadLibrary, instead of being linked in the
+executable. The drawback of the LoadLibrary method is that breakpoints cannot be
+re-established, since Wedit has no way to know which DLLs the program will
+dynamically load.<o:p>
+</o:p>
+</span></p>
+<p class="MsoBlockText" style="margin-top:0cm;margin-right:-.35pt;margin-bottom:
+6.0pt;margin-left:0cm;text-indent:0cm;mso-list:l2 level1 lfo22"><b style="mso-bidi-font-weight:normal"><font size="4"><span style="mso-bidi-font-weight: normal">20)
+</span></font><span style="font-family:&quot;Times New Roman&quot;"><font size="4">My dialog box does
+not show up in the screen!<o:p>
+ </font>
+</span></b><span style="font-family:&quot;Times New Roman&quot;"><b style="mso-bidi-font-weight:normal">
+</o:p>
+</b>
+</span></p>
+<p class="MsoBlockText" style="margin-top:0cm;margin-right:-.35pt;margin-bottom:
+6.0pt;margin-left:0cm"><span style="font-family:&quot;Times New Roman&quot;">This
+can happen if you have a control defined in ComCtl32.dll, and you did not call</span>
+<span style="font-family:Courier">InitCommonControlsEx</span>. <span style="font-family:&quot;Times New Roman&quot;">When
+you use one of the controls in that DLL, you have to call that function before
+you make the call to DialogBox. If you fail to do that, Windows will not find
+the class of the list view, slider, etc., and it will refuse to load the entire
+dialog box. A sample code for how to do that is:</span></p>
+<p class="MsoBlockText" style="margin-top:0cm;margin-right:-.35pt;margin-bottom:
+6.0pt;margin-left:0cm;mso-list:skip"><span style="font-family:Courier">INITCOMMONCONTROLSEX
+icex; <o:p>
+</o:p>
+</span></p>
+<p class="MsoBlockText" style="margin-top:0cm;margin-right:-.35pt;margin-bottom:
+6.0pt;margin-left:0cm;mso-list:skip"><span style="font-family:Courier">memset(&amp;icex,0,sizeof(icex));<o:p>
+</o:p>
+</span></p>
+<p class="MsoBlockText" style="margin-top:0cm;margin-right:-.35pt;margin-bottom:
+6.0pt;margin-left:0cm;mso-list:skip"><span style="font-family:Courier">icex.dwSize
+= sizeof(icex);<o:p>
+</o:p>
+</span></p>
+<p class="MsoBlockText" style="margin-top:0cm;margin-right:-.35pt;margin-bottom:
+6.0pt;margin-left:0cm;mso-list:skip"><span style="font-family:Courier">icex.dwICC
+= ICC_DATE_CLASSES; </span><i style="mso-bidi-font-style:normal">// The month
+calendar control will be added.</i><span style="font-family:Courier"><o:p>
+</o:p>
+</span></p>
+<p class="MsoBlockText" style="margin-top:0cm;margin-right:-.35pt;margin-bottom:
+6.0pt;margin-left:0cm;mso-list:skip"><span style="font-family:Courier">InitCommonControlsEx(&amp;icex);<o:p>
+</o:p>
+</span></p>
+<p class="MsoBlockText" style="margin-top:0cm;margin-right:-.35pt;margin-bottom:
+6.0pt;margin-left:0cm;mso-list:skip">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm;
+mso-list:l2 level1 lfo22"><font size="4"><span style="mso-ansi-language: EN-US; mso-bidi-font-weight: normal"><span style="font-family: Arial; mso-bidi-font-family: Times New Roman; mso-ansi-language: EN-US; mso-bidi-font-weight: normal">21) </span><b style="mso-bidi-font-weight: normal; mso-ansi-language: EN-US">How
+do I send a bug report?<o:p>
+ </b></span></font><span style="mso-ansi-language:EN-US"><b style="mso-bidi-font-weight:normal">
+</o:p>
+</b>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">The
+purpose of a bug report is to allow the lcc developers to reproduce the bug so
+that they can understand it and then correct it. In this context, it is of
+paramount importance that the error report states clearly the symptoms of the
+error and the code that produces this error. If you write things such as: ‘It
+does not work’ or ‘It writes an error message’, there will be NO WAY to
+help you, since we will NOT be able to reproduce the error or find out what is
+really not working&nbsp;!<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">You
+should specify what the actions were that produced a crash, if you were working
+within the IDE. Then you should specify the symptoms you see (error message,
+etc.). If the error is produced by a sequence of C code, try to find out what
+the smallest piece of code is that reproduces the bug. It is impossible to find
+out what is not working if we receive a bunch of C files with the comment: This
+does not work.<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US">Send
+your bug reports to:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormalIndent" style="margin-top:6.0pt;margin-right:-.35pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-indent:0cm"><span style="mso-ansi-language:EN-US" class="MsoHyperlink">Jacob@jacob.remcomp.fr</span><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></p>
+
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Variables%20Simplify">Variables Simplify</a>,
+Next:<a rel="next" accesskey="n" href="make-Deduces.html#make%20Deduces">make Deduces</a>,
+Previous:<a rel="previous" accesskey="p" href="How-Make-Works.html#How%20Make%20Works">How Make Works</a>,
+Up:<a rel="up" accesskey="u" href="Introduction.html#Introduction">Introduction</a>
+<hr><br>
+</div>
+
+<h3 class="section">Variables Make Makefiles Simpler</h3>
+
+   <p>In our example, we had to list all the object files twice in the rule for
+<code>edit</code> (repeated here):
+
+<pre class="example">     edit : main.o kbd.o command.o display.o \
+                   insert.o search.o files.o utils.o
+             cc -o edit main.o kbd.o command.o display.o \
+                        insert.o search.o files.o utils.o
+     </pre>
+
+   <p>Such duplication is error-prone; if a new object file is added to the
+system, we might add it to one list and forget the other.  We can eliminate
+the risk and simplify the makefile by using a variable.  <dfn>Variables</dfn>
+allow a text string to be defined once and substituted in multiple places
+later (see <a href="Using-Variables.html#Using%20Variables">How to Use Variables</a>).
+
+   <p>It is standard practice for every makefile to have a variable named
+<code>objects</code>, <code>OBJECTS</code>, <code>objs</code>, <code>OBJS</code>, <code>obj</code>,
+or <code>OBJ</code> which is a list of all object file names.  We would
+define such a variable <code>objects</code> with a line like this in the
+makefile:
+
+<pre class="example">     objects = main.o kbd.o command.o display.o \
+               insert.o search.o files.o utils.o
+     </pre>
+
+<p>Then, each place we want to put a list of the object file names, we can
+substitute the variable's value by writing <code>$(objects)</code>
+(see <a href="Using-Variables.html#Using%20Variables">How to Use Variables</a>).
+
+   <p>Here is how the complete simple makefile looks when you use a variable
+for the object files:
+
+<pre class="example">     objects = main.o kbd.o command.o display.o \
+               insert.o search.o files.o utils.o
+     
+     edit : $(objects)
+             cc -o edit $(objects)
+     main.o : main.c defs.h
+             cc -c main.c
+     kbd.o : kbd.c defs.h command.h
+             cc -c kbd.c
+     command.o : command.c defs.h command.h
+             cc -c command.c
+     display.o : display.c defs.h buffer.h
+             cc -c display.c
+     insert.o : insert.c defs.h buffer.h
+             cc -c insert.c
+     search.o : search.c defs.h buffer.h
+             cc -c search.c
+     files.o : files.c defs.h buffer.h command.h
+             cc -c files.c
+     utils.o : utils.c defs.h
+             cc -c utils.c
+     clean :
+             rm edit $(objects)
+     </pre>
+
+   </body></html>
+

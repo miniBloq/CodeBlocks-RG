@@ -1,0 +1,154 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>CPU</title>
+</head>
+
+<body>
+
+<h2 style="mso-list:skip"><a name="_Toc509457008"><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc430176232">CP</span></a><span style="mso-ansi-language: EN-US; mso-bookmark: _Toc430176232">U</span><span style="mso-ansi-language:EN-US"><o:p>
+</o:p>
+</span></h2>
+<p class="MsoNormal" style="mso-list:skip">This menu option in the debugger menu
+will open/close the machine state property sheet. This allows you to see the
+contents of the machine registers. You cannot currently modify the register
+contents.<span style="mso-spacerun: yes">&nbsp; </span>This option should be
+available in the future.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal" style="mso-list:skip">The first set of registers shown is
+the integer register set:</p>
+<p class="MsoNormal" style="margin-left:1.0cm;mso-list:skip">&nbsp;<o:p>
+</o:p>
+</p>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-left:3.5pt;
+ border-collapse:collapse;mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr>
+    <td width="416" valign="top" style="width:11.0cm;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-left:24.85pt;mso-list:skip"><!--[if gte vml 1]><v:shapetype
+   id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+   path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+   <v:stroke joinstyle="miter"/>
+   <v:formulas>
+    <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+    <v:f eqn="sum @0 1 0"/>
+    <v:f eqn="sum 0 0 @1"/>
+    <v:f eqn="prod @2 1 2"/>
+    <v:f eqn="prod @3 21600 pixelWidth"/>
+    <v:f eqn="prod @3 21600 pixelHeight"/>
+    <v:f eqn="sum @0 0 1"/>
+    <v:f eqn="prod @6 1 2"/>
+    <v:f eqn="prod @7 21600 pixelWidth"/>
+    <v:f eqn="sum @8 21600 0"/>
+    <v:f eqn="prod @7 21600 pixelHeight"/>
+    <v:f eqn="sum @10 21600 0"/>
+   </v:formulas>
+   <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+   <o:lock v:ext="edit" aspectratio="t"/>
+  </v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:276.75pt;
+   height:238.5pt' o:ole="" fillcolor="window">
+   <v:imagedata src="file:///C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/msoclip1/01/clip_image001.wmz"
+    o:title=""/>
+  </v:shape><![endif]-->
+      <img src="cpu.ht24.gif" v:shapes="_x0000_i1025" width="369" height="318"><!--[if gte mso 9]><xml>
+   <o:OLEObject Type="Embed" ProgID="Word.Picture.8" ShapeID="_x0000_i1025"
+    DrawAspect="Content" ObjectID="_1102937693">
+   </o:OLEObject>
+  </xml><![endif]-->
+      </p>
+    </td>
+    <td width="189" valign="top" style="width:5.0cm;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-left:14.15pt;text-indent:-14.15pt;
+  mso-list:l0 level1 lfo9"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span>Six integer registers (eax, ebx ecx, edx, esi and edi)</p>
+      <p class="MsoNormal" style="margin-left:14.15pt;text-indent:-14.15pt;
+  mso-list:l0 level1 lfo9"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span>Flags. Since the debugger sets the machine in single
+      stepping, that flag is always on.</p>
+      <p class="MsoNormal" style="margin-left:14.15pt;text-indent:-14.15pt;
+  mso-list:l0 level1 lfo9"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span>Three system registers: the program counter (eip), the stack
+      pointer esp, and the frame pointer ebp.</p>
+      <p class="MsoNormal" style="margin-left:14.15pt;text-indent:-14.15pt;
+  mso-list:l0 level1 lfo9"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span></span>Display of the stack frame, at right.</p>
+      <p class="MsoNormal">You can change the base for displaying numbers with
+      the radio buttons ‘Hex’ or ‘Decimal’.</p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal" style="mso-list:skip">The second set of machine registers
+are the FPU registers and their associated flags.<o:p>
+</o:p>
+</p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr>
+    <td width="430" valign="top" style="width:322.45pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-left:1.0cm;mso-list:skip"><!--[if gte vml 1]><v:shape
+   id="_x0000_i1026" type="#_x0000_t75" style='width:277.5pt;height:239.25pt'
+   fillcolor="window">
+   <v:imagedata src="file:///C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/msoclip1/01/clip_image003.png"
+    o:title=""/>
+  </v:shape><![endif]-->
+      <img src="cpu.ht25.jpg" v:shapes="_x0000_i1026" width="370" height="319"></p>
+    </td>
+    <td width="184" valign="top" style="width:138.15pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">The 8 FPU registers are shown
+      at the left.</p>
+      <p class="MsoNormal" style="mso-list:skip">At the upper right, the tag
+      word is displayed. The top of stack (TOS) is shown in a read only entry
+      field.</p>
+      <p class="MsoNormal" style="mso-list:skip">Status flags of the FPU (C0-C3)
+      and the other flags are shown in the two columns of checkboxes below.</p>
+      <p class="MsoNormal" style="mso-list:skip">&nbsp;<o:p>
+      </o:p>
+      </p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal" style="margin-left:1.0cm;mso-list:skip">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoBodyText" style="mso-list:skip">The third set of registers is the
+mmx registers. Use this set only if you use the MMX intrinsics and your machine
+is an MMX machine.</p>
+<p class="MsoNormal" style="margin-left:1.0cm;mso-list:skip">&nbsp;<o:p>
+</o:p>
+</p>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;
+ mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr>
+    <td width="430" valign="top" style="width:322.45pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="margin-left:1.0cm;mso-list:skip"><!--[if gte vml 1]><v:shape
+   id="_x0000_i1027" type="#_x0000_t75" style='width:277.5pt;height:239.25pt'
+   fillcolor="window">
+   <v:imagedata src="cpu.ht26.gif"
+    o:title=""/>
+  </v:shape><![endif]-->
+      <img src="cpu.ht26.gif" v:shapes="_x0000_i1027" width="370" height="319"></p>
+    </td>
+    <td width="184" valign="top" style="width:138.15pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Using the ‘Units’ button at
+      the right, you can change the display from 8 bits, to 16 or 32 bits since
+      each mmx register can have 8 characters as 8 bits quantities, or 4 16-bits
+      words, or two 32-bits double words.</p>
+      <p class="MsoNormal" style="mso-list:skip">Using the ‘Base’ radio
+      buttons, you can display the data either in binary, decimal or hexadecimal
+      form.</p>
+      <p class="MsoHeader" style="mso-list:skip;tab-stops:36.0pt center 8.0cm right 16.0cm">&nbsp;<span style="font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US"><o:p>
+      </o:p>
+      </span></p>
+    </td>
+  </tr>
+</table>
+<p class="MsoNormal" style="margin-left:1.0cm;mso-list:skip">&nbsp;<o:p>
+</o:p>
+</p>
+
+</body>
+
+</html>

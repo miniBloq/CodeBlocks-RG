@@ -1,0 +1,111 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The lcclib Utility</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509456976"><span lang="FR">The lc</span></a><span lang="FR" style="mso-bookmark: _Toc509456976">clib
+Utility</span></h2>
+<p class="MsoBodyTextIndent" style="margin-left:0cm"><span style="font-family:
+&quot;Times New Roman&quot;">The purpose of this utility is to build library
+files (.lib) from a list of object files. The general format of the command line
+is:<o:p>
+</o:p>
+</span><b style="mso-bidi-font-weight:normal"><o:p>
+</o:p>
+</b></p>
+<p class="MsoNormal" style="margin-left:27.0pt;mso-list:skip"><b style="mso-bidi-font-weight:normal">lcclib
+&lt;options&gt;<span style="mso-spacerun: yes">&nbsp; </span>&lt;library
+file&gt;<span style="mso-spacerun: yes">&nbsp; </span>&lt;object files &gt;<o:p>
+</o:p>
+<o:p>
+</o:p>
+</b></p>
+<p class="MsoBodyTextIndent"><span style="font-family:&quot;Times New Roman&quot;">Options:<o:p>
+</o:p>
+</span></p>
+<table border="1" cellspacing="0" cellpadding="0" width="609" style="width:457.0pt;
+ margin-left:3.5pt;border-collapse:collapse;border:none;mso-border-alt:solid windowtext 1.5pt;
+ mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr>
+    <td width="192" valign="top" style="width:144.0pt;border-top:1.5pt;border-left:
+  1.5pt;border-bottom:.75pt;border-right:.75pt;border-color:windowtext;
+  border-style:solid;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Option</p>
+    </td>
+    <td width="417" valign="top" style="width:313.0pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-left-alt:solid windowtext .75pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Meaning</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="192" valign="top" style="width:144.0pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/out:libfile.lib</p>
+    </td>
+    <td width="417" valign="top" style="width:313.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Specifies the name of the
+      output library file.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="192" valign="top" style="width:144.0pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/extract:&lt;object file&gt;</p>
+    </td>
+    <td width="417" valign="top" style="width:313.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Extracts the specified object
+      file from the library.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="192" valign="top" style="width:144.0pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext .75pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/remove:&lt;object file&gt;</p>
+    </td>
+    <td width="417" valign="top" style="width:313.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .75pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Removes the specified object
+      file from the library.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="192" valign="top" style="width:144.0pt;border-top:none;border-left:
+  solid windowtext 1.5pt;border-bottom:solid windowtext 1.5pt;border-right:
+  solid windowtext .75pt;mso-border-top-alt:solid windowtext .75pt;padding:
+  0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">/verbose</p>
+    </td>
+    <td width="417" valign="top" style="width:313.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.5pt;border-right:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0cm 3.5pt 0cm 3.5pt">
+      <p class="MsoNormal" style="mso-list:skip">Progress report will be printed
+      to standard output.</p>
+    </td>
+  </tr>
+</table>
+
+</body>
+
+</html>

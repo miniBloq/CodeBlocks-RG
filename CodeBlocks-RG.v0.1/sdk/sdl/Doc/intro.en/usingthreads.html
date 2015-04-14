@@ -1,0 +1,186 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Using SDL: Threads</title>
+</head>
+
+<body bgcolor="#FFF8DC" text="#000000">
+<TABLE>
+<TR><!--#include file="../menu.tmpl" -->
+<TD>
+
+<p align="center">
+[<a href="usingcdrom.html">Prev</a>]
+<a href="toc.html"><font color="#8B0000">Table Of Contents</font> </a>
+[<a href="usingtimers.html">Next</a>]
+</p>
+
+<h1><font color="#8B0000">Using the Simple DirectMedia Layer API</font></h1>
+
+<h2>Threads</h2>
+
+<table border="0" cellpadding="4">
+    <tr>
+        <td valign="top"><ul>
+            <li><strong>Create a simple thread</strong></li>
+        </ul>
+        <blockquote>
+            <p>Creating a thread is done by passing a function to
+            SDL_CreateThread(). When the function returns, if
+            successful, your function is now running concurrently
+            with the rest of your application, in its own running
+            context (stack, registers, etc.) and able to access
+            memory and file handles used by the rest of the
+            application. </p>
+        </blockquote>
+        </td>
+        <td valign="top" width="200" bgcolor="#D3D3D3"><strong>Tip:</strong><br>
+        The second argument to SDL_CreateThread() is passed as a
+        parameter to the thread function. You can use this to
+        pass in values on the stack, or just a pointer to data
+        for use by the thread.</td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="50">
+    <tr>
+        <td valign="top"><font color="#000080"><strong>Example</strong></font><strong>:</strong>
+        <pre>
+<font color="#0000FF">#include</font> &quot;<font color="#000000">SDL_thread.h</font>&quot;
+
+<font color="#008000">int</font> global_data = 0;
+
+<font color="#008000">int</font> thread_func(<font
+color="#008000">void *</font>unused)
+{
+    <font color="#008000">int</font> last_value = 0;
+
+    <font color="#0000FF">while</font> ( global_data != -1 ) {
+        <font color="#0000FF">if</font> ( global_data != last_value ) {
+            printf(&quot;<font color="#000000">Data value changed to %d\n</font>&quot;, global_data);
+            last_value = global_data;
+        }
+        SDL_Delay(100);
+    }
+    printf(&quot;<font color="#000000">Thread quitting\n</font>&quot;);
+    <font color="#0000FF">return</font>(0);
+}
+
+{
+    SDL_Thread *thread;
+    <font color="#008000">int</font> i;
+
+    thread = SDL_CreateThread(thread_func, NULL);
+    <font color="#0000FF">if</font> ( thread == NULL ) {
+        fprintf(stderr, &quot;<font color="#000000">Unable to create thread: %s\n</font>&quot;, SDL_GetError());
+        return;
+    }
+
+    <font color="#0000FF">for</font> ( i=0; i&lt;5; ++i ) {
+        printf(&quot;<font color="#000000">Changing value to %d\n</font>&quot;, i);
+        global_data = i;
+        SDL_Delay(1000);
+    }
+
+    printf(&quot;<font color="#000000">Signaling thread to quit\n</font>&quot;);
+    global_data = -1;
+    SDL_WaitThread(thread, NULL);
+}
+</pre>
+        </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="4">
+    <tr>
+        <td valign="top"><ul>
+            <li><strong>Synchronizing access to a resource </strong></li>
+        </ul>
+        <blockquote>
+            <p>You can prevent more than one thread from
+            accessing a resource by creating a mutex and
+            surrounding access to that resource with lock
+            (SDL_mutexP()) and unlock (SDL_mutexV()) calls. </p>
+        </blockquote>
+        </td>
+        <td valign="top" width="200" bgcolor="#D3D3D3"><strong>Tip:</strong><br>
+        Any data that can be accessed by more than one thread should
+        be protected by a mutex. </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="50">
+    <tr>
+        <td valign="top"><font color="#000080"><strong>Example</strong></font><strong>:
+        </strong><pre>
+<font color="#0000FF">#include</font> &quot;<font color="#000000">SDL_thread.h</font>&quot;
+<font color="#0000FF">#include</font> &quot;<font color="#000000">SDL_mutex.h</font>&quot;
+
+<font color="#008000">int</font> potty = 0;
+<font color="#008000">int</font> gotta_go;
+
+<font color="#008000">int</font> thread_func(<font
+color="#008000">void *</font>data)
+{
+    SDL_mutex *lock = (SDL_mutex *)data;
+    <font color="#008000">int</font> times_went;
+
+    times_went = 0;
+    <font color="#0000FF">while</font> ( gotta_go ) {
+        SDL_mutexP(lock);    <font color="#FF0000">/* Lock  the potty */</font>
+        ++potty;
+        printf(&quot;<font color="#000000">Thread %d using the potty\n</font>&quot;, SDL_ThreadID());
+        <font color="#0000FF">if</font> ( potty &gt; 1 ) {
+            printf(&quot;<font color="#000000">Uh oh, somebody else is using the potty!\n</font>&quot;);
+        }
+        --potty;
+        SDL_mutexV(lock);
+        ++times_went;
+    }
+    printf(&quot;<font color="#000000">Yep\n</font>&quot;);
+    <font color="#0000FF">return</font>(times_went);
+}
+
+{
+    <font color="#0000FF">const</font> <font color="#008000">int</font> progeny = 5;
+    SDL_Thread *kids[progeny];
+    SDL_mutex  *lock;
+    <font color="#008000">int</font> i, lots;
+
+    <font color="#FF0000">/* Create the synchronization lock */</font>
+    lock = SDL_CreateMutex();
+
+    gotta_go = 1;
+    <font color="#0000FF">for</font> ( i=0; i&lt;progeny; ++i ) {
+        kids[i] = SDL_CreateThread(thread_func, lock);
+    }
+
+    SDL_Delay(5*1000);
+    SDL_mutexP(lock);
+    printf(&quot;<font color="#000000">Everybody done?\n</font>&quot;);
+    gotta_go = 0;
+    SDL_mutexV(lock);
+
+    <font color="#0000FF">for</font> ( i=0; i&lt;progeny; ++i ) {
+        SDL_WaitThread(kids[i], &amp;lots);
+        printf(&quot;<font color="#000000">Thread %d used the potty %d times\n</font>&quot;, i+1, lots);
+    }
+    SDL_DestroyMutex(lock);
+}
+</pre>
+        </td>
+    </tr>
+</table>
+
+<p align="center">
+[<a href="usingcdrom.html">Prev</a>]
+<a href="toc.html"><font color="#8B0000">Table Of Contents</font> </a>
+[<a href="usingtimers.html">Next</a>]
+</p>
+
+</TABLE>
+</body>
+</html>

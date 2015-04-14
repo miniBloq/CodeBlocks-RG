@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="anitest" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Win32 DLL Release">
+				<Option output="DLLRelease\anitest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\DLLRelease" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-DWIN32" />
+					<Add option="-D__WXMSW__" />
+					<Add option="-D_UNICODE" />
+					<Add option="-DWXUSINGDLL" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-DNOPCH" />
+					<Add directory="." />
+					<Add directory=".\..\..\include" />
+					<Add directory=".\..\..\samples" />
+					<Add directory="$(#wx)\lib\gcc_dll\mswu" />
+					<Add directory="$(#wx)\lib\gcc_dll" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="." />
+					<Add directory=".\..\..\include" />
+					<Add directory=".\..\..\samples" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="libwxmsw29u_richtext.a" />
+					<Add library="libwxmsw29u_xrc.a" />
+					<Add library="libwxmsw29u_aui.a" />
+					<Add library="libwxmsw29u_media.a" />
+					<Add library="libwxbase29u_net.a" />
+					<Add library="libwxmsw29u_gl.a" />
+					<Add library="libwxbase29u_xml.a" />
+					<Add library="libwxmsw29u_adv.a" />
+					<Add library="libwxmsw29u_html.a" />
+					<Add library="libwxmsw29u_core.a" />
+					<Add library="libwxbase29u.a" />
+					<Add library="libwxpng.a" />
+					<Add library="libwxjpeg.a" />
+					<Add library="libwxtiff.a" />
+					<Add library="libwxzlib.a" />
+					<Add library="libwxregexu.a" />
+					<Add library="libwxexpat.a" />
+					<Add directory="$(#wx)\lib\gcc_dll" />
+				</Linker>
+			</Target>
+			<Target title="Win32 DLL Debug">
+				<Option output="DLLDebug\anitest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\DLLDebug" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-Wall" />
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D__WXMSW__" />
+					<Add option="-D__WXDEBUG__" />
+					<Add option="-D_UNICODE" />
+					<Add option="-DWXUSINGDLL" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-DNOPCH" />
+					<Add directory="." />
+					<Add directory=".\..\..\include" />
+					<Add directory=".\..\..\samples" />
+					<Add directory="$(#wx)\lib\gcc_dll\mswud" />
+					<Add directory="$(#wx)\lib\gcc_dll" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="." />
+					<Add directory=".\..\..\include" />
+					<Add directory=".\..\..\samples" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="libwxmsw29ud_richtext.a" />
+					<Add library="libwxmsw29ud_xrc.a" />
+					<Add library="libwxmsw29ud_aui.a" />
+					<Add library="libwxmsw29ud_media.a" />
+					<Add library="libwxbase29ud_net.a" />
+					<Add library="libwxmsw29ud_gl.a" />
+					<Add library="libwxbase29ud_xml.a" />
+					<Add library="libwxmsw29ud_adv.a" />
+					<Add library="libwxmsw29ud_html.a" />
+					<Add library="libwxmsw29ud_core.a" />
+					<Add library="libwxbase29ud.a" />
+					<Add library="libwxpngd.a" />
+					<Add library="libwxjpegd.a" />
+					<Add library="libwxtiffd.a" />
+					<Add library="libwxzlibd.a" />
+					<Add library="libwxregexud.a" />
+					<Add library="libwxexpatd.a" />
+					<Add directory="$(#wx)\lib\gcc_dll" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="anitest.cpp" />
+		<Unit filename="anitest.h" />
+		<Unit filename="..\sample.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

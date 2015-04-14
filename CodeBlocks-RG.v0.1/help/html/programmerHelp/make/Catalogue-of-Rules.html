@@ -1,0 +1,242 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Catalogue%20of%20Rules">Catalogue of Rules</a>,
+Next:<a rel="next" accesskey="n" href="Implicit-Variables.html#Implicit%20Variables">Implicit Variables</a>,
+Previous:<a rel="previous" accesskey="p" href="Using-Implicit.html#Using%20Implicit">Using Implicit</a>,
+Up:<a rel="up" accesskey="u" href="Implicit-Rules.html#Implicit%20Rules">Implicit Rules</a>
+<hr><br>
+</div>
+
+<h3 class="section">Catalogue of Implicit Rules</h3>
+
+   <p>Here is a catalogue of predefined implicit rules which are always
+available unless the makefile explicitly overrides or cancels them. 
+See <a href="Canceling-Rules.html#Canceling%20Rules">Canceling Implicit Rules</a>, for information on
+canceling or overriding an implicit rule.  The <code>-r</code> or
+<code>--no-builtin-rules</code> option cancels all predefined rules.
+
+   <p>Not all of these rules will always be defined, even when the <code>-r</code>
+option is not given.  Many of the predefined implicit rules are
+implemented in <code>make</code> as suffix rules, so which ones will be
+defined depends on the <dfn>suffix list</dfn> (the list of prerequisites of
+the special target <code>.SUFFIXES</code>).  The default suffix list is:
+<code>.out</code>, <code>.a</code>, <code>.ln</code>, <code>.o</code>, <code>.c</code>, <code>.cc</code>,
+<code>.C</code>, <code>.p</code>, <code>.f</code>, <code>.F</code>, <code>.r</code>, <code>.y</code>,
+<code>.l</code>, <code>.s</code>, <code>.S</code>, <code>.mod</code>, <code>.sym</code>, <code>.def</code>,
+<code>.h</code>, <code>.info</code>, <code>.dvi</code>, <code>.tex</code>, <code>.texinfo</code>,
+<code>.texi</code>, <code>.txinfo</code>, <code>.w</code>, <code>.ch</code> <code>.web</code>,
+<code>.sh</code>, <code>.elc</code>, <code>.el</code>.  All of the implicit rules
+described below whose prerequisites have one of these suffixes are
+actually suffix rules.  If you modify the suffix list, the only
+predefined suffix rules in effect will be those named by one or two of
+the suffixes that are on the list you specify; rules whose suffixes fail
+to be on the list are disabled.  See <a href="Suffix-Rules.html#Suffix%20Rules">Old-Fashioned Suffix Rules</a>, for full details on suffix rules.
+
+     <dl>
+<dt>Compiling C programs
+     <dd><code></code><var>n</var><code>.o</code> is made automatically from <code></code><var>n</var><code>.c</code> with
+a command of the form <code>$(CC) -c $(CPPFLAGS) $(CFLAGS)</code>.
+
+     <br><dt>Compiling C++ programs
+     <dd><code></code><var>n</var><code>.o</code> is made automatically from <code></code><var>n</var><code>.cc</code> or
+<code></code><var>n</var><code>.C</code> with a command of the form <code>$(CXX) -c $(CPPFLAGS)
+$(CXXFLAGS)</code>.  We encourage you to use the suffix <code>.cc</code> for C++
+source files instead of <code>.C</code>.
+
+     <br><dt>Compiling Pascal programs
+     <dd><code></code><var>n</var><code>.o</code> is made automatically from <code></code><var>n</var><code>.p</code>
+with the command <code>$(PC) -c $(PFLAGS)</code>.
+
+     <br><dt>Compiling Fortran and Ratfor programs
+     <dd><code></code><var>n</var><code>.o</code> is made automatically from <code></code><var>n</var><code>.r</code>,
+<code></code><var>n</var><code>.F</code> or <code></code><var>n</var><code>.f</code> by running the
+Fortran compiler.  The precise command used is as follows:
+
+          <dl>
+<dt><code>.f</code>
+          <dd><code>$(FC) -c $(FFLAGS)</code>. 
+<br><dt><code>.F</code>
+          <dd><code>$(FC) -c $(FFLAGS) $(CPPFLAGS)</code>. 
+<br><dt><code>.r</code>
+          <dd><code>$(FC) -c $(FFLAGS) $(RFLAGS)</code>. 
+</dl>
+
+     <br><dt>Preprocessing Fortran and Ratfor programs
+     <dd><code></code><var>n</var><code>.f</code> is made automatically from <code></code><var>n</var><code>.r</code> or
+<code></code><var>n</var><code>.F</code>.  This rule runs just the preprocessor to convert a
+Ratfor or preprocessable Fortran program into a strict Fortran
+program.  The precise command used is as follows:
+
+          <dl>
+<dt><code>.F</code>
+          <dd><code>$(FC) -F $(CPPFLAGS) $(FFLAGS)</code>. 
+<br><dt><code>.r</code>
+          <dd><code>$(FC) -F $(FFLAGS) $(RFLAGS)</code>. 
+</dl>
+
+     <br><dt>Compiling Modula-2 programs
+     <dd><code></code><var>n</var><code>.sym</code> is made from <code></code><var>n</var><code>.def</code> with a command
+of the form <code>$(M2C) $(M2FLAGS) $(DEFFLAGS)</code>.  <code></code><var>n</var><code>.o</code>
+is made from <code></code><var>n</var><code>.mod</code>; the form is:
+<code>$(M2C)&nbsp;$(M2FLAGS)&nbsp;$(MODFLAGS)</code>.
+
+     <br><dt>Assembling and preprocessing assembler programs
+     <dd><code></code><var>n</var><code>.o</code> is made automatically from <code></code><var>n</var><code>.s</code> by
+running the assembler, <code>as</code>.  The precise command is
+<code>$(AS) $(ASFLAGS)</code>.
+
+     <p><code></code><var>n</var><code>.s</code> is made automatically from <code></code><var>n</var><code>.S</code> by
+running the C preprocessor, <code>cpp</code>.  The precise command is
+<code>$(CPP)&nbsp;$(CPPFLAGS)</code>.
+
+     <br><dt>Linking a single object file
+     <dd><code></code><var>n</var><code></code> is made automatically from <code></code><var>n</var><code>.o</code> by running
+the linker (usually called <code>ld</code>) via the C compiler.  The precise
+command used is <code>$(CC)&nbsp;$(LDFLAGS)&nbsp;</code><var>n</var><code>.o&nbsp;$(LOADLIBES)&nbsp;$(LDLIBS)</code>.
+
+     <p>This rule does the right thing for a simple program with only one
+source file.  It will also do the right thing if there are multiple
+object files (presumably coming from various other source files), one
+of which has a name matching that of the executable file.  Thus,
+
+     <pre class="example">          x: y.o z.o
+          </pre>
+
+     <p>when <code>x.c</code>, <code>y.c</code> and <code>z.c</code> all exist will execute:
+
+     <pre class="example">          cc -c x.c -o x.o
+          cc -c y.c -o y.o
+          cc -c z.c -o z.o
+          cc x.o y.o z.o -o x
+          rm -f x.o
+          rm -f y.o
+          rm -f z.o
+          </pre>
+
+     <p>In more complicated cases, such as when there is no object file whose
+name derives from the executable file name, you must write an explicit
+command for linking.
+
+     <p>Each kind of file automatically made into <code>.o</code> object files will
+be automatically linked by using the compiler (<code>$(CC)</code>,
+<code>$(FC)</code> or <code>$(PC)</code>; the C compiler <code>$(CC)</code> is used to
+assemble <code>.s</code> files) without the <code>-c</code> option.  This could be
+done by using the <code>.o</code> object files as intermediates, but it is
+faster to do the compiling and linking in one step, so that's how it's
+done.
+
+     <br><dt>Yacc for C programs
+     <dd><code></code><var>n</var><code>.c</code> is made automatically from <code></code><var>n</var><code>.y</code> by
+running Yacc with the command <code>$(YACC) $(YFLAGS)</code>.
+
+     <br><dt>Lex for C programs
+     <dd><code></code><var>n</var><code>.c</code> is made automatically from <code></code><var>n</var><code>.l</code> by
+running Lex.  The actual command is <code>$(LEX) $(LFLAGS)</code>.
+
+     <br><dt>Lex for Ratfor programs
+     <dd><code></code><var>n</var><code>.r</code> is made automatically from <code></code><var>n</var><code>.l</code> by
+running Lex.  The actual command is <code>$(LEX) $(LFLAGS)</code>.
+
+     <p>The convention of using the same suffix <code>.l</code> for all Lex files
+regardless of whether they produce C code or Ratfor code makes it
+impossible for <code>make</code> to determine automatically which of the two
+languages you are using in any particular case.  If <code>make</code> is
+called upon to remake an object file from a <code>.l</code> file, it must
+guess which compiler to use.  It will guess the C compiler, because
+that is more common.  If you are using Ratfor, make sure <code>make</code>
+knows this by mentioning <code></code><var>n</var><code>.r</code> in the makefile.  Or, if you
+are using Ratfor exclusively, with no C files, remove <code>.c</code> from
+the list of implicit rule suffixes with:
+
+     <pre class="example">          .SUFFIXES:
+          .SUFFIXES: .o .r .f .l ...
+          </pre>
+
+     <br><dt>Making Lint Libraries from C, Yacc, or Lex programs
+     <dd><code></code><var>n</var><code>.ln</code> is made from <code></code><var>n</var><code>.c</code> by running <code>lint</code>. 
+The precise command is <code>$(LINT)&nbsp;$(LINTFLAGS)&nbsp;$(CPPFLAGS)&nbsp;-i</code>. 
+The same command is used on the C code produced from
+<code></code><var>n</var><code>.y</code> or <code></code><var>n</var><code>.l</code>.
+
+     <br><dt>TeX and Web
+     <dd><code></code><var>n</var><code>.dvi</code> is made from <code></code><var>n</var><code>.tex</code> with the command
+<code>$(TEX)</code>.  <code></code><var>n</var><code>.tex</code> is made from <code></code><var>n</var><code>.web</code> with
+<code>$(WEAVE)</code>, or from <code></code><var>n</var><code>.w</code> (and from <code></code><var>n</var><code>.ch</code> if
+it exists or can be made) with <code>$(CWEAVE)</code>.  <code></code><var>n</var><code>.p</code> is
+made from <code></code><var>n</var><code>.web</code> with <code>$(TANGLE)</code> and <code></code><var>n</var><code>.c</code>
+is made from <code></code><var>n</var><code>.w</code> (and from <code></code><var>n</var><code>.ch</code> if it exists
+or can be made) with <code>$(CTANGLE)</code>.
+
+     <br><dt>Texinfo and Info
+     <dd><code></code><var>n</var><code>.dvi</code> is made from <code></code><var>n</var><code>.texinfo</code>,
+<code></code><var>n</var><code>.texi</code>, or <code></code><var>n</var><code>.txinfo</code>, with the command
+<code>$(TEXI2DVI)&nbsp;$(TEXI2DVI_FLAGS)</code>.  <code></code><var>n</var><code>.info</code> is made from
+<code></code><var>n</var><code>.texinfo</code>, <code></code><var>n</var><code>.texi</code>, or <code></code><var>n</var><code>.txinfo</code>, with
+the command <code>$(MAKEINFO)&nbsp;$(MAKEINFO_FLAGS)</code>.
+
+     <br><dt>RCS
+     <dd>Any file <code></code><var>n</var><code></code> is extracted if necessary from an RCS file
+named either <code></code><var>n</var><code>,v</code> or <code>RCS/</code><var>n</var><code>,v</code>.  The precise
+command used is <code>$(CO)&nbsp;$(COFLAGS)</code>.  <code></code><var>n</var><code></code> will not be
+extracted from RCS if it already exists, even if the RCS file is
+newer.  The rules for RCS are terminal
+(see <a href="Match-Anything-Rules.html#Match-Anything%20Rules">Match-Anything Pattern Rules</a>),
+so RCS files cannot be generated from another source; they must
+actually exist.
+
+     <br><dt>SCCS
+     <dd>Any file <code></code><var>n</var><code></code> is extracted if necessary from an SCCS file
+named either <code>s.</code><var>n</var><code></code> or <code>SCCS/s.</code><var>n</var><code></code>.  The precise
+command used is <code>$(GET)&nbsp;$(GFLAGS)</code>.  The rules for SCCS are
+terminal (see <a href="Match-Anything-Rules.html#Match-Anything%20Rules">Match-Anything Pattern Rules</a>),
+so SCCS files cannot be generated from another source; they must
+actually exist.
+
+     <p>For the benefit of SCCS, a file <code></code><var>n</var><code></code> is copied from
+<code></code><var>n</var><code>.sh</code> and made executable (by everyone).  This is for
+shell scripts that are checked into SCCS.  Since RCS preserves the
+execution permission of a file, you do not need to use this feature
+with RCS.
+
+     <p>We recommend that you avoid using of SCCS.  RCS is widely held to be
+superior, and is also free.  By choosing free software in place of
+comparable (or inferior) proprietary software, you support the free
+software movement. 
+</dl>
+
+   <p>Usually, you want to change only the variables listed in the table
+above, which are documented in the following section.
+
+   <p>However, the commands in built-in implicit rules actually use
+variables such as <code>COMPILE.c</code>, <code>LINK.p</code>, and
+<code>PREPROCESS.S</code>, whose values contain the commands listed above.
+
+   <p><code>make</code> follows the convention that the rule to compile a
+<code>.</code><var>x</var><code></code> source file uses the variable <code>COMPILE.</code><var>x</var><code></code>. 
+Similarly, the rule to produce an executable from a <code>.</code><var>x</var><code></code>
+file uses <code>LINK.</code><var>x</var><code></code>; and the rule to preprocess a
+<code>.</code><var>x</var><code></code> file uses <code>PREPROCESS.</code><var>x</var><code></code>.
+
+   <p>Every rule that produces an object file uses the variable
+<code>OUTPUT_OPTION</code>.  <code>make</code> defines this variable either to
+contain <code>-o $@</code>, or to be empty, depending on a compile-time
+option.  You need the <code>-o</code> option to ensure that the output goes
+into the right file when the source file is in a different directory,
+as when using <code>VPATH</code> (see <a href="Directory-Search.html#Directory%20Search">Directory Search</a>).  However,
+compilers on some systems do not accept a <code>-o</code> switch for object
+files.  If you use such a system, and use <code>VPATH</code>, some
+compilations will put their output in the wrong place. 
+A possible workaround for this problem is to give <code>OUTPUT_OPTION</code>
+the value <code>;&nbsp;mv&nbsp;$*.o&nbsp;$@</code>.
+
+   </body></html>
+

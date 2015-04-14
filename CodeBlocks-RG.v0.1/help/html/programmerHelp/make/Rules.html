@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Rules">Rules</a>,
+Next:<a rel="next" accesskey="n" href="Commands.html#Commands">Commands</a>,
+Previous:<a rel="previous" accesskey="p" href="Makefiles.html#Makefiles">Makefiles</a>,
+Up:<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr><br>
+</div>
+
+<h2 class="chapter">Writing Rules</h2>
+
+   <p>A <dfn>rule</dfn> appears in the makefile and says when and how to remake
+certain files, called the rule's <dfn>targets</dfn> (most often only one per rule). 
+It lists the other files that are the <dfn>prerequisites</dfn> of the target, and
+<dfn>commands</dfn> to use to create or update the target.
+
+   <p>The order of rules is not significant, except for determining the
+<dfn>default goal</dfn>: the target for <code>make</code> to consider, if you do
+not otherwise specify one.  The default goal is the target of the first
+rule in the first makefile.  If the first rule has multiple targets,
+only the first target is taken as the default.  There are two
+exceptions: a target starting with a period is not a default unless it
+contains one or more slashes, <code>/</code>, as well; and, a target that
+defines a pattern rule has no effect on the default goal. 
+(See <a href="Pattern-Rules.html#Pattern%20Rules">Defining and Redefining Pattern Rules</a>.)
+
+   <p>Therefore, we usually write the makefile so that the first rule is the
+one for compiling the entire program or all the programs described by
+the makefile (often with a target called <code>all</code>). 
+See <a href="Goals.html#Goals">Arguments to Specify the Goals</a>.
+
+<ul class="menu">
+<li><a accesskey="1" href="Rule-Example.html#Rule%20Example">Rule Example</a>:                 An example explained. 
+<li><a accesskey="2" href="Rule-Syntax.html#Rule%20Syntax">Rule Syntax</a>:                  General syntax explained. 
+<li><a accesskey="3" href="Prerequisite-Types.html#Prerequisite%20Types">Prerequisite Types</a>:           There are two types of prerequisites. 
+<li><a accesskey="4" href="Wildcards.html#Wildcards">Wildcards</a>:                    Using wildcard characters such as `*'. 
+<li><a accesskey="5" href="Directory-Search.html#Directory%20Search">Directory Search</a>:             Searching other directories for source files. 
+<li><a accesskey="6" href="Phony-Targets.html#Phony%20Targets">Phony Targets</a>:                Using a target that is not a real file's name. 
+<li><a accesskey="7" href="Force-Targets.html#Force%20Targets">Force Targets</a>:                You can use a target without commands
+                                  or prerequisites to mark other
+                                  targets as phony. 
+<li><a accesskey="8" href="Empty-Targets.html#Empty%20Targets">Empty Targets</a>:                When only the date matters and the
+                                  files are empty. 
+<li><a accesskey="9" href="Special-Targets.html#Special%20Targets">Special Targets</a>:              Targets with special built-in meanings. 
+<li><a href="Multiple-Targets.html#Multiple%20Targets">Multiple Targets</a>:             When to make use of several targets in a rule. 
+<li><a href="Multiple-Rules.html#Multiple%20Rules">Multiple Rules</a>:               How to use several rules with the same target. 
+<li><a href="Static-Pattern.html#Static%20Pattern">Static Pattern</a>:               Static pattern rules apply to multiple targets
+                                  and can vary the prerequisites according to
+                                  the target name. 
+<li><a href="Double-Colon.html#Double-Colon">Double-Colon</a>:                 How to use a special kind of rule to allow
+                                  several independent rules for one target. 
+<li><a href="Automatic-Prerequisites.html#Automatic%20Prerequisites">Automatic Prerequisites</a>:      How to automatically generate rules giving
+                                  prerequisites from source files themselves. 
+</ul>
+
+   </body></html>
+

@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Remaking%20Makefiles">Remaking Makefiles</a>,
+Next:<a rel="next" accesskey="n" href="Overriding-Makefiles.html#Overriding%20Makefiles">Overriding Makefiles</a>,
+Previous:<a rel="previous" accesskey="p" href="Special-Variables.html#Special%20Variables">Special Variables</a>,
+Up:<a rel="up" accesskey="u" href="Makefiles.html#Makefiles">Makefiles</a>
+<hr><br>
+</div>
+
+<h3 class="section">How Makefiles Are Remade</h3>
+
+   <p>Sometimes makefiles can be remade from other files, such as RCS or SCCS
+files.  If a makefile can be remade from other files, you probably want
+<code>make</code> to get an up-to-date version of the makefile to read in.
+
+   <p>To this end, after reading in all makefiles, <code>make</code> will consider
+each as a goal target and attempt to update it.  If a makefile has a
+rule which says how to update it (found either in that very makefile or
+in another one) or if an implicit rule applies to it (see <a href="Implicit-Rules.html#Implicit%20Rules">Using Implicit Rules</a>), it will be updated if necessary.  After
+all makefiles have been checked, if any have actually been changed,
+<code>make</code> starts with a clean slate and reads all the makefiles over
+again.  (It will also attempt to update each of them over again, but
+normally this will not change them again, since they are already up to
+date.)
+
+   <p>If you know that one or more of your makefiles cannot be remade and you
+want to keep <code>make</code> from performing an implicit rule search on
+them, perhaps for efficiency reasons, you can use any normal method of
+preventing implicit rule lookup to do so.  For example, you can write an
+explicit rule with the makefile as the target, and an empty command
+string (see <a href="Empty-Commands.html#Empty%20Commands">Using Empty Commands</a>).
+
+   <p>If the makefiles specify a double-colon rule to remake a file with
+commands but no prerequisites, that file will always be remade
+(see <a href="Double-Colon.html#Double-Colon">Double-Colon</a>).  In the case of makefiles, a makefile that has a
+double-colon rule with commands but no prerequisites will be remade every
+time <code>make</code> is run, and then again after <code>make</code> starts over
+and reads the makefiles in again.  This would cause an infinite loop:
+<code>make</code> would constantly remake the makefile, and never do anything
+else.  So, to avoid this, <code>make</code> will <strong>not</strong> attempt to
+remake makefiles which are specified as targets of a double-colon rule
+with commands but no prerequisites.
+
+   <p>If you do not specify any makefiles to be read with <code>-f</code> or
+<code>--file</code> options, <code>make</code> will try the default makefile names;
+see <a href="Makefile-Names.html#Makefile%20Names">What Name to Give Your Makefile</a>.  Unlike
+makefiles explicitly requested with <code>-f</code> or <code>--file</code> options,
+<code>make</code> is not certain that these makefiles should exist.  However,
+if a default makefile does not exist but can be created by running
+<code>make</code> rules, you probably want the rules to be run so that the
+makefile can be used.
+
+   <p>Therefore, if none of the default makefiles exists, <code>make</code> will try
+to make each of them in the same order in which they are searched for
+(see <a href="Makefile-Names.html#Makefile%20Names">What Name to Give Your Makefile</a>)
+until it succeeds in making one, or it runs out of names to try.  Note
+that it is not an error if <code>make</code> cannot find or make any makefile;
+a makefile is not always necessary.
+
+   <p>When you use the <code>-t</code> or <code>--touch</code> option
+(see <a href="Instead-of-Execution.html#Instead%20of%20Execution">Instead of Executing the Commands</a>),
+you would not want to use an out-of-date makefile to decide which
+targets to touch.  So the <code>-t</code> option has no effect on updating
+makefiles; they are really updated even if <code>-t</code> is specified. 
+Likewise, <code>-q</code> (or <code>--question</code>) and <code>-n</code> (or
+<code>--just-print</code>) do not prevent updating of makefiles, because an
+out-of-date makefile would result in the wrong output for other targets. 
+Thus, <code>make -f mfile -n foo</code> will update <code>mfile</code>, read it in,
+and then print the commands to update <code>foo</code> and its prerequisites
+without running them.  The commands printed for <code>foo</code> will be those
+specified in the updated contents of <code>mfile</code>.
+
+   <p>However, on occasion you might actually wish to prevent updating of even
+the makefiles.  You can do this by specifying the makefiles as goals in
+the command line as well as specifying them as makefiles.  When the
+makefile name is specified explicitly as a goal, the options <code>-t</code>
+and so on do apply to them.
+
+   <p>Thus, <code>make -f mfile -n mfile foo</code> would read the makefile
+<code>mfile</code>, print the commands needed to update it without actually
+running them, and then print the commands needed to update <code>foo</code>
+without running them.  The commands for <code>foo</code> will be those
+specified by the existing contents of <code>mfile</code>.
+
+   </body></html>
+

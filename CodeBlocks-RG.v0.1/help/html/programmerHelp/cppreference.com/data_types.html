@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/data_types.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:22:10 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>C/C++ Data Types</title>
+  <link href="cppreference.css" rel="stylesheet" type="text/css">
+  <link href="prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="index-2.html">cppreference.com</a> &gt; C/C++ Data Types
+  </div>
+
+  <h1>C/C++ Data Types</h1>
+
+  <p>There are five data types for C: <strong>void</strong>,
+  <strong>int</strong>, <strong>float</strong>,
+  <strong>double</strong>, and <strong>char</strong>.</p>
+
+  <table class="misc-table">
+    <tr class="misc-table-tr-1">
+      <th>Type</th>
+
+      <th>Description</th>
+    </tr>
+
+    <tr class="misc-table-tr-2">
+      <td><code>void</code></td>
+
+      <td>associated with no data type</td>
+    </tr>
+
+    <tr class="misc-table-tr-1">
+      <td><code>int</code></td>
+
+      <td>integer</td>
+    </tr>
+
+    <tr class="misc-table-tr-2">
+      <td><code>float</code></td>
+
+      <td>floating-point number</td>
+    </tr>
+
+    <tr class="misc-table-tr-1">
+      <td><code>double</code></td>
+
+      <td>double precision floating-point number</td>
+    </tr>
+
+    <tr class="misc-table-tr-2">
+      <td><code>char</code></td>
+
+      <td>character</td>
+    </tr>
+  </table><br>
+  <br>
+
+  <p>C++ defines two more: <strong>bool</strong> and
+  <strong>wchar_t</strong>.</p>
+
+  <table class="misc-table">
+    <tr class="misc-table-tr-1">
+      <th>Type</th>
+
+      <th>Description</th>
+    </tr>
+
+    <tr class="misc-table-tr-2">
+      <td><code>bool</code></td>
+
+      <td>Boolean value, true or false</td>
+    </tr>
+
+    <tr class="misc-table-tr-1">
+      <td><code>wchar_t</code></td>
+
+      <td>wide character</td>
+    </tr>
+  </table><br>
+  <br>
+
+  <h2>Type Modifiers</h2>
+
+  <p>Several of these types can be modified using
+  <strong>signed</strong>, <strong>unsigned</strong>,
+  <strong>short</strong>, and <strong>long</strong>. When one of these
+  type modifiers is used by itself, a data type of <strong>int</strong>
+  is assumed. A complete list of possible data types follows:</p>
+
+  <table class="misc-table">
+    <tr class="misc-table-tr-2">
+      <td><code>bool</code></td>
+    </tr>
+
+    <tr class="misc-table-tr-1">
+      <td><code>char</code></td>
+    </tr>
+
+    <tr class="misc-table-tr-2">
+      <td><code>unsigned char</code></td>
+    </tr>
+
+    <tr class="misc-table-tr-1">
+      <td><code>signed char</code></td>
+    </tr>
+
+    <tr class="misc-table-tr-2">
+      <td><code>int</code></td>
+    </tr>
+
+    <tr class="misc-table-tr-1">
+      <td><code>unsigned int</code></td>
+    </tr>
+
+    <tr class="misc-table-tr-2">
+      <td><code>signed int</code></td>
+    </tr>
+
+    <tr class="misc-table-tr-1">
+      <td><code>short int</code></td>
+    </tr>
+
+    <tr class="misc-table-tr-2">
+      <td><code>unsigned short int</code></td>
+    </tr>
+
+    <tr class="misc-table-tr-1">
+      <td><code>signed short int</code></td>
+    </tr>
+
+    <tr class="misc-table-tr-2">
+      <td><code>long int</code></td>
+    </tr>
+
+    <tr class="misc-table-tr-1">
+      <td><code>signed long int</code></td>
+    </tr>
+
+    <tr class="misc-table-tr-2">
+      <td><code>unsigned long int</code></td>
+    </tr>
+
+    <tr class="misc-table-tr-1">
+      <td><code>float</code></td>
+    </tr>
+
+    <tr class="misc-table-tr-2">
+      <td><code>double</code></td>
+    </tr>
+
+    <tr class="misc-table-tr-1">
+      <td><code>long double</code></td>
+    </tr>
+
+    <tr class="misc-table-tr-2">
+      <td><code>wchar_t</code></td>
+    </tr>
+  </table>
+
+  <h2>Type Sizes and Ranges</h2>
+
+  <p>The size and range of any data type is compiler and architecture
+  dependent. The &quot;cfloat&quot; (or &quot;float.h&quot;) header
+  file often defines minimum and maximum values for the various data
+  types. You can use the <a href="keywords/sizeof.html">sizeof</a>
+  operator to determine the size of any data type, in bytes. However,
+  many architectures implement data types of a standard size.
+  <strong>ints</strong> and <strong>floats</strong> are often 32-bit,
+  <strong>chars</strong> 8-bit, and <strong>doubles</strong> are
+  usually 64-bit. <strong>bools</strong> are often implemented as 8-bit
+  data types.</p>
+  </div>
+  </td>
+  
+<td width="120" valign="top">
+<script type="text/javascript"><!--
+  google_ad_client = "pub-6243170425937584";
+  google_ad_width = 120;
+  google_ad_height = 600;
+  google_ad_format = "120x600_as";
+  google_ad_type = "text";
+  google_ad_channel ="";
+  google_color_border = "EEEEFF";
+  google_color_bg = "FFFFFF";
+  google_color_link = "000000";
+  google_color_url = "336699html.html";
+  google_color_text = "333333";
+  //--></script>
+<script type="text/javascript"
+  src="../pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</td>
+
+
+<script src="../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/data_types.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:22:10 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

@@ -1,0 +1,95 @@
+<TITLE>BGI Documentation for 
+setfillpattern
+</TITLE>
+<H2>
+setfillpattern
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void setfillpattern(char *upattern, int color);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+setfillpattern is like setfillstyle, except that you use it to set a user-defined 8x8 pattern rather than a predefined pattern.
+<P>
+upattern is a pointer to a sequence of 8 bytes, with each byte corresponding to 8 pixels in the pattern. Whenever a bit in a pattern byte is set to 1, the corresponding pixel is plotted.
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+The <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> version allows the
+color
+argument to be an ordinary BGI color (from 0 to 15) or an
+<A HREF="wincolor.html">RGB color</A>.
+
+<P><DT><B>See also</B>
+<DD><A HREF="getfillpattern.html"> getfillpattern </A>
+<DD><A HREF="getfillsettings.html"> getfillsettings </A>
+<DD><A HREF="graphresult.html"> graphresult </A>
+<DD><A HREF="sector.html"> sector </A>
+<DD><A HREF="setfillstyle.html"> setfillstyle </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* setfillpattern example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int maxx, maxy;
+
+   /* a user-defined fill pattern */
+   char pattern[8] = {0x00, 0x70, 0x20, 0x27, 0x24, 0x24, 0x07, 0x00};
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk)    /* an error occurred */
+
+   {
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   maxx = getmaxx();
+   maxy = getmaxy();
+   setcolor(getmaxcolor());
+
+   /* select a user-defined fill pattern */
+   setfillpattern(pattern, getmaxcolor());
+
+   /* fill the screen with the pattern */
+   bar(0, 0, maxx, maxy);
+
+   /* clean up */
+   getch();
+   closegraph();
+
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head><title>Maple Reference Documentation</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<link rel="stylesheet" href="minimal.css" type="text/css">
+</head><body> 
+<!-- minimalist html; this is designed to be copy/pasted into a website -->
+<!-- STARTDOC -->
+<h1>Maple Reference Documentation: GPIO</h1>
+<p>
+In addition to any special features or peripheral functions, all of the
+numbered Maple header pins can function as programmable digital input/output.
+
+<p>
+The current and voltage limitations have not been copied over from the stm32
+datasheet; see that reference linked at the bottom. In particular a number
+of GPIO pins are 5v tolerant (which means that applying 5v to a pin and
+reading it as input or allowing it to drain to ground will not damage that
+pin), while some are not. 
+
+<ul>
+  <li><a href="#pins">Pin Mapping Mega Table</a>
+  <li><a href="#modes">GPIO Modes</a>
+  <li><a href="#functions">Function Reference</a>
+  <li><a href="#links">Recommended Reading</a>
+</ul>
+
+<h2><a name="pins">Pin Mapping Mega Table</a></h2>
+
+This huge reference table shows the available functionality on every GPIO pin,
+by peripheral type. The STM32 pin is the port and number that the header is
+connected to on the microcontroller.
+
+<table style="font-size: .8em;">
+<tr><th>Pin <th>STM32 Pin   <th>ADC     <th>Timer          <th>I2C        <th>UART        <th>SPI         <th>5v OK?
+<tr><th>D0  <td>PA3         <td>ADC3    <td>TIM2_CH4       <td>-          <td>USART2_RX   <td>-           <td>No
+<tr><th>D1  <td>PA2         <td>ADC2    <td>TIM2_CH3       <td>-          <td>USART2_TX   <td>-           <td>No
+<tr><th>D2  <td>PA0         <td>ADC0    <td>TIM2_CH1_ETR   <td>-          <td>USART2_CTS  <td>-           <td>No
+<tr><th>D3  <td>PA1         <td>ADC1    <td>TIM2_CH2       <td>-          <td>USART2_RTS  <td>-           <td>No
+<tr><th>D4  <td>PB5         <td>-       <td>-              <td>ISC1_SMBA  <td>-           <td>-           <td>No
+<tr><th>D5  <td>PB6         <td>-       <td>TIM4_CH1       <td>I2C1_SCL   <td>-           <td>-           <td>Yes
+<tr><th>D6  <td>PA8         <td>-       <td>TIM1_CH1       <td>-          <td>USART1_CK   <td>-           <td>Yes
+<tr><th>D7  <td>PA9         <td>-       <td>TIM1_CH2       <td>-          <td>USART1_TX   <td>-           <td>Yes
+<tr><th>D8  <td>PA10        <td>-       <td>TIM1_CH3       <td>-          <td>USART1_RX   <td>-           <td>Yes
+<tr><th>D9  <td>PB7         <td>-       <td>TIM4_CH2       <td>I2C1_SDA   <td>-           <td>-           <td>Yes
+<tr><th>D10 <td>PA4         <td>ADC4    <td>-              <td>-          <td>USART2_CK   <td>SPI1_NSS    <td>No
+<tr><th>D11 <td>PA7         <td>ADC7    <td>TIM3_CH2       <td>-          <td>-           <td>SPI1_MOSI   <td>No
+<tr><th>D12 <td>PA6         <td>ADC6    <td>TIM3_CH1       <td>-          <td>-           <td>SPI1_MISO   <td>No
+<tr><th>D13 <td>PA5         <td>ADC5    <td>-              <td>-          <td>-           <td>SPI1_SCK    <td>No
+<tr><th>D14 <td>PB8         <td>-       <td>TIM4_CH3       <td>-          <td>-           <td>-           <td>Yes
+
+<tr><td colspan="8" align="center"><i>Analog header</i>
+<tr><th>D15 <td>PC0         <td>ADC10   <td>-              <td>-          <td>-           <td>-           <td>No
+<tr><th>D16 <td>PC1         <td>ADC11   <td>-              <td>-          <td>-           <td>-           <td>No
+<tr><th>D17 <td>PC2         <td>ADC12   <td>-              <td>-          <td>-           <td>-           <td>No
+<tr><th>D18 <td>PC3         <td>ADC13   <td>-              <td>-          <td>-           <td>-           <td>No
+<tr><th>D19 <td>PC4         <td>ADC14   <td>-              <td>-          <td>-           <td>-           <td>No
+<tr><th>D20 <td>PC5         <td>ADC15   <td>-              <td>-          <td>-           <td>-           <td>No
+
+<tr><td colspan="8" align="center"><i>External header</i>
+<tr><th>D21 <td>PC13        <td>-       <td>-              <td>-          <td>-           <td>-           <td>No
+<tr><th>D22 <td>PC14        <td>-       <td>-              <td>-          <td>-           <td>-           <td>No
+<tr><th>D23 <td>PC15        <td>-       <td>-              <td>-          <td>-           <td>-           <td>No
+<tr><th>D24 <td>PB9         <td>-       <td>TIM4_CH4       <td>-          <td>-           <td>-           <td>Yes
+<tr><th>D25 <td>PD2         <td>-       <td>TIM3_ETR       <td>-          <td>-           <td>-           <td>Yes
+<tr><th>D26 <td>PC10        <td>-       <td>-              <td>-          <td>-           <td>-           <td>Yes
+<tr><th>D27 <td>PB0         <td>ADC8    <td>TIM3_CH3       <td>-          <td>-           <td>-           <td>No
+<tr><th>D28 <td>PB1         <td>ADC9    <td>TIM3_CH4       <td>-          <td>-           <td>-           <td>No
+<tr><th>D29 <td>PB10        <td>-       <td>-              <td>I2C2_SCL   <td>USART3_TX   <td>-           <td>Yes
+<tr><th>D30 <td>PB11        <td>-       <td>-              <td>I2C2_SDA   <td>USART3_RX   <td>-           <td>Yes
+<tr><th>D31 <td>PB12        <td>-       <td>TIM1_BKIN      <td>I2C2_SMBAL <td>USART3_CK   <td>SPI2_NSS    <td>Yes
+<tr><th>D32 <td>PB13        <td>-       <td>TIM1_CH1N      <td>-          <td>USART3_CTS  <td>SPI2_SCK    <td>Yes
+<tr><th>D33 <td>PB14        <td>-       <td>TIM1_CH2N      <td>-          <td>USART3_RTS  <td>SPI2_MISO   <td>Yes
+<tr><th>D34 <td>PB15        <td>-       <td>TIM1_CH3N      <td>-          <td>-           <td>SPI2_MOSI   <td>Yes
+<tr><th>D35 <td>PC6         <td>-       <td>-              <td>-          <td>-           <td>-           <td>Yes
+<tr><th>D36 <td>PC7         <td>-       <td>-              <td>-          <td>-           <td>-           <td>Yes
+<tr><th>D37 <td>PC8         <td>-       <td>-              <td>-          <td>-           <td>-           <td>Yes
+<tr><th>D38 <td>PC9         <td>-       <td>-              <td>-          <td>-           <td>-           <td>Yes
+</table>
+
+<h2><a name="modes">GPIO Modes</a></h2>
+<dl>
+  <dt>OUTPUT
+  <dd>Basic digital output: when the pin set high the voltage is held at +3.3v
+  (Vcc) and when set low it is pulled down to ground.
+    
+  <dt>OUTPUT_OPEN_DRAIN
+  <dd>In open drain mode, the pin indicates "low" by accepting current flow to
+  ground and "high" by providing increased impedence. An example use would be
+  to connect a pin to a bus line (which is pulled up to a positive voltage by a
+  seperate supply through a large resistor). When the pin is high, not much
+  current flows through to ground and the line stays at positive voltage; when
+  the pin is low the bus "drains" to ground with a small amount of current
+  constantly flowing through the large resistor from the external supply. In
+  this mode no current is ever actually /sourced/ from the pin. 
+
+  <dt>INPUT (or INPUT_FLOATING)
+  <dd>Basic digital input. The pin voltage is sampled; when it is closer to
+  3.3v (Vcc) the pin status is high, and when it is closer to 0v (ground) it is
+  low. If no external circuit is pulling the pin voltage to high or low, it
+  will tend to randomly oscillate and be very sensitive to noise (eg a breath
+  of air across the pin will cause the state to flip).
+
+  <dt>INPUT_PULLUP
+  <dd>The state of the pin in this mode is reported the same way as with INPUT,
+  but the pin voltage is gently "pulled up" towards +3.3v. This means the state
+  will be high unless an external device is specifically pulling the pin down
+  to ground, in which case the "gentle" pull up will not effect the state of
+  the input.
+
+  <dt>INPUT_PULLDOWN
+  <dd>The state of the pin in this mode is reported the same way as with INPUT,
+  but the pin voltage is gently "pulled down" towards 0v. This means the state
+  will be low unless an external device is specifically pulling the pin up to
+  3.3v, in which case the "gentle" pull down will not effect the state of the
+  input.
+
+  <dt>INPUT_ANALOG
+  <dd>This is a special mode for when the pin will be used for analog (not
+  digital) reads. See the <a href="./adc.html">ADC</a> page.
+
+  <dt>PWM
+  <dd>This is a special mode for when the pin will be used for PWM output (a
+  special case of digital output). See the <a href="./pwm.html">PWM</a> page.
+</dl>
+
+<h2><a name="functions">Funtion Reference</a></h2>
+<dl>
+  <dt><code>pinMode(pin_number, MODE)</code>
+  <dd>Usually called from within <code>setup()</code> to configure the pin.
+  <code>MODE</code> is one of the set listed above.
+
+  <dt><code>digitalRead(pin_number)</code>
+  <dd>Returns 0 (low) or 1 (high).
+
+  <dt><code>digitalWrite(pin_number, value))</code>
+  <dd>Sets the pin to high (1) or low (0).
+</dl>
+
+<h2><a name="links">Recommended Reading</a></h2>
+<ul>
+  <li>STMicro documentation for STM32F103RB microcontroller:<ul>
+    <li><a href="http://www.st.com/mcu/devicedocs-STM32F103RB-110.html">All</a>
+    <li><a href="http://www.st.com/stonline/products/literature/ds/13587.pdf">Datasheet (pdf)</a>
+    <li><a href="http://www.st.com/stonline/products/literature/rm/13902.pdf">Reference Manual (pdf)</a>
+  </ul>
+</ul>
+
+<div class="box">
+<h3><i>About this Document</i></h3>
+A more recent version of this document may be available from the 
+<a href="http://leaflabs.com">LeafLabs website</a>. Our documentation is
+versioned on <a href="http://github.com">github</a>; you can track changes
+to the master branch at <a href="http://github.com/leaflabs/maple-ide/tree/master/build/shared/reference/">this link</a>.
+<p>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+<img alt="Creative Commons License" style="border-width:0" 
+    src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a>
+<br /><i>This documentation is released under a 
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+Creative Commons Attribution-Share Alike 3.0</a> license.</i>
+<p>
+Translations are welcomed; give us a ping to make sure we aren't in the
+process of revising or editing first.
+</div>
+<!-- ENDDOC -->
+</body></html>

@@ -1,0 +1,75 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The string table editor</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509457079"><span lang="FR" style="mso-bookmark: _Toc430175802">The
+string table editor</span></a></h2>
+<p class="MsoBodyText">This utility allows you to edit the string tables
+contained in your resource file. String tables are a resource kind for storing
+character strings in the resource section of the executable instead of using
+string literal in the program text itself.</p>
+<p class="MsoBodyText">The original motivation for this was the ever-growing
+need under windows 3.0 to have more memory with the space severely limited to
+64K for the stack, all character strings, and all static data. This lead to
+trying to make more space in the data segment by putting the strings somewhere
+else, and loading /<span class="MsoPageNumber">unloadin</span><span class="MsoPageNumber">g</span>
+them as needed.</p>
+<p class="MsoBodyText">But there are many other beneficial side effects, so the
+usage of string tables has stayed with us even in windows 98. One of the good
+side effects is the separation from message text from the code itself, so that
+if you need to translate the program into another language you do not need to
+edit the source files, but just the resource file, what is far easier for the
+person who is doing the translation, since he/she doesn’t have to be a
+programmer AND a foreign language expert, a rare combination.</p>
+<p class="MsoBodyText"><span style="font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;">&nbsp;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal" align="center" style="text-align:center"><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:366pt;
+ height:348pt' fillcolor="window">
+ <v:imagedata src="string3.gif"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="string3.gif" v:shapes="_x0000_i1025" width="488" height="464"></p>
+<p class="MsoNormal" align="center" style="text-align:center">&nbsp;<o:p>
+</o:p>
+</p>
+<p class="MsoBodyText">The string editor presents a simple interface. You double
+click in a string to edit one, or you can add/delete strings, as you may esteem
+necessary.</p>
+<p class="MsoBodyText">The ‘Save’ button doesn’t save the modified
+resources to the disk immediately, but just writes it to the resource file in
+memory. It will get written to disk when you exit weditres.</p>
+<div style="mso-element:comment-list">
+  <hr class="msocomoff" align="left" size="1" width="33%">
+</div>
+
+</body>
+
+</html>

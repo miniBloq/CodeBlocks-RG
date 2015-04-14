@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/cppstring/index.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:22:14 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>C++ Strings</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C++ Strings</a>
+  </div>
+
+  <div class="name-format">
+    C++ Strings
+  </div>
+
+  <p><a href="all.html">Display all entries</a> for C++ Strings on one
+  page, or view entries individually:</p>
+
+  <table class="category-table">
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "string_constructors.html">String constructors</a></td>
+
+      <td class="category-table-td">create strings from arrays of
+      characters and other strings</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "string_operators.html">String operators</a></td>
+
+      <td class="category-table-td">concatenate strings, assign
+      strings, use strings for I/O, compare strings</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "append.html">append</a></td>
+
+      <td class="category-table-td">append characters and strings onto
+      a string</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "assign1.html">assign</a></td>
+
+      <td class="category-table-td">give a string values from strings
+      of characters and other C++ strings</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href="at.html">at</a></td>
+
+      <td class="category-table-td">returns the character at a specific
+      location</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href="begin.html">begin</a></td>
+
+      <td class="category-table-td">returns an iterator to the
+      beginning of the string</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href="c_str.html">c_str</a></td>
+
+      <td class="category-table-td">returns a non-modifiable standard
+      C character array version of the string</td> </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "capacity.html">capacity</a></td>
+
+      <td class="category-table-td">returns the number of characters that
+      the string can hold</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href="clear.html">clear</a></td>
+
+      <td class="category-table-td">removes all characters from the
+      string</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "compare.html">compare</a></td>
+
+      <td class="category-table-td">compares two strings</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href="copy.html">copy</a></td>
+
+      <td class="category-table-td">copies characters from a string
+      into an array</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href="data.html">data</a></td>
+
+      <td class="category-table-td">returns a pointer to the first
+      character of a string</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href="empty.html">empty</a></td>
+
+      <td class="category-table-td">true if the string has no
+      characters</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href="end.html">end</a></td>
+
+      <td class="category-table-td">returns an iterator just past the
+      last character of a string</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href="erase.html">erase</a></td>
+
+      <td class="category-table-td">removes characters from a string</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href="find.html">find</a></td>
+
+      <td class="category-table-td">find characters in the string</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "find_first_not_of.html">find_first_not_of</a></td>
+
+      <td class="category-table-td">find first absence of
+      characters</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "find_first_of.html">find_first_of</a></td>
+
+      <td class="category-table-td">find first occurrence of
+      characters</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "find_last_not_of.html">find_last_not_of</a></td>
+
+      <td class="category-table-td">find last absence of
+      characters</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "find_last_of.html">find_last_of</a></td>
+
+      <td class="category-table-td">find last occurrence of
+      characters</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "getline.html">getline</a></td>
+
+      <td class="category-table-td">read data from an I/O stream into a
+      string</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "insert.html">insert</a></td>
+
+      <td class="category-table-td">insert characters into a
+      string</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "length.html">length</a></td>
+
+      <td class="category-table-td">returns the length of the
+      string</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "max_size.html">max_size</a></td>
+
+      <td class="category-table-td">returns the maximum number of
+      characters that the string can hold</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "push_back.html">push_back</a></td>
+
+      <td class="category-table-td">add a character to the end of the
+      string</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "rbegin.html">rbegin</a></td>
+
+      <td class="category-table-td">returns a <a href=
+      "../iterators.html">reverse_iterator</a> to the end of the
+      string</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href="rend.html">rend</a></td>
+
+      <td class="category-table-td">returns a <a href=
+      "../iterators.html">reverse_iterator</a> to the beginning of the
+      string</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "replace.html">replace</a></td>
+
+      <td class="category-table-td">replace characters in the
+      string</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "reserve.html">reserve</a></td>
+
+      <td class="category-table-td">sets the minimum capacity of the
+      string</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href=
+      "resize.html">resize</a></td>
+
+      <td class="category-table-td">change the size of the string</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href="rfind.html">rfind</a></td>
+
+      <td class="category-table-td">find the last occurrence of a
+      substring</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href="size.html">size</a></td>
+
+      <td class="category-table-td">returns the number of items in the
+      string</td>
+    </tr>
+
+    <tr class="category-table-tr-2">
+      <td class="category-table-td"><a href=
+      "substr.html">substr</a></td>
+
+      <td class="category-table-td">returns a certain substring</td>
+    </tr>
+
+    <tr class="category-table-tr-1">
+      <td class="category-table-td"><a href="swap.html">swap</a></td>
+
+      <td class="category-table-td">swap the contents of this string
+      with another</td>
+    </tr>
+  </table>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppstring/index.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:22:14 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

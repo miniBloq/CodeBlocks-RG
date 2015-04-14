@@ -1,0 +1,72 @@
+<TITLE>BGI Documentation for 
+setcurrentwindow
+</TITLE>
+<H2>
+setcurrentwindow
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include "graphics.h"
+void setcurrentwindow(int window);
+</PRE>
+
+
+
+<DT><B>Description</B><IMG SRC="win.gif" ALT="[WIN]"><DD>
+The 
+setcurrentwindow
+function is available in the
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation of BGI
+graphics.
+You do not need to include conio.h; just include graphics.h.
+<p>
+The function changes the current window for all graphics operations to
+the specified window.  This window number must be a number returned
+by the initiwindow functiion. The current window is the window where
+all other graphics operations will take place.
+<p>
+Note: Initwindow and initgraph both
+set the current window to the newly created window, so there
+is no need to call setcurrentwindow immediately after opening a new
+window.
+parameters have default values.
+
+<P><DT><B>See also</B>
+<DD><A HREF="getcurrentwindow.html"> getcurrentwindow </A>
+<DD><A HREF="initgraph.html"> initgraph </A>
+<DD><A HREF="initwindow.html"> initwindow </A>
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* setcurrentwindow example */ 
+#include <graphics.h>
+
+int main(void)
+{
+   int big;
+   int w, w_right, w_below ;
+   int width, height; // Total width and height of w_left;
+   
+   big = initwindow(getmaxwidth( ), getmaxheight( ), "Big");   
+   w = initwindow(300, 200, "Top/Left Corner");
+   width = getwindowwidth( );
+   height = getwindowheight( );
+   w_right = initwindow(300, 200, "Right", width, 0);
+   w_below = initwindow(300, 200, "Below", 0, height);
+
+   setcurrentwindow(big);
+   line(0, 0, getmaxwidth( )-1, getmaxheight( )-1);
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

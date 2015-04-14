@@ -1,0 +1,5 @@
+<area shape="rect" href="$classwx_static_box_sizer.html" title="wxStaticBoxSizer is a sizer derived from wxBoxSizer but adds a static box around..." alt="" coords="5,255,131,287">
+<area shape="rect" href="$classwx_std_dialog_button_sizer.html" title="This class creates button layouts which conform to the standard button spacing and..." alt="" coords="155,255,320,287">
+<area shape="rect" href="$classwx_wrap_sizer.html" title="A wrap sizer lays out its items in a single line, like a box sizer &#45;&#45; as long as..." alt="" coords="344,255,445,287">
+<area shape="rect" href="$classwx_sizer.html" title="wxSizer is the abstract base class used for laying out subwindows in a window." alt="" coords="203,89,272,121">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="200,7,275,39">

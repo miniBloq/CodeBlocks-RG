@@ -1,0 +1,4 @@
+<area shape="rect" href="$classwx_rich_text_character_style_definition.html" title="This class represents a character style definition, usually added to a wxRichTextStyleSheet..." alt="" coords="5,172,240,204">
+<area shape="rect" href="$classwx_rich_text_paragraph_style_definition.html" title="This class represents a paragraph style definition, usually added to a wxRichTextStyleSheet..." alt="" coords="264,172,504,204">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="216,7,291,39">
+<area shape="rect" href="$classwx_rich_text_list_style_definition.html" title="This class represents a list style definition, usually added to a wxRichTextStyleSheet..." alt="" coords="287,255,481,287">

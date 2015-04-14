@@ -1,0 +1,23 @@
+<area shape="rect" href="$classwx_colour_dialog.html" title="This class represents the colour chooser dialog." alt="" coords="815,5,932,37">
+<area shape="rect" href="$classwx_dir_dialog.html" title="This class represents the directory chooser dialog." alt="" coords="825,61,921,93">
+<area shape="rect" href="$classwx_file_dialog.html" title="This class represents the file chooser dialog." alt="" coords="824,117,923,149">
+<area shape="rect" href="$classwx_find_replace_dialog.html" title="wxFindReplaceDialog is a standard modeless dialog which is used to allow the user..." alt="" coords="796,173,951,205">
+<area shape="rect" href="$classwx_font_dialog.html" title="This class represents the font chooser dialog." alt="" coords="821,229,925,261">
+<area shape="rect" href="$classwx_message_dialog.html" title="This class represents a dialog that shows a single or multi&#45;line message, with a..." alt="" coords="805,285,941,317">
+<area shape="rect" href="$classwx_multi_choice_dialog.html" title="This class represents a dialog that shows a list of strings, and allows the user..." alt="" coords="800,341,947,373">
+<area shape="rect" href="$classwx_page_setup_dialog.html" title="This class represents the page setup common dialog." alt="" coords="801,397,945,429">
+<area shape="rect" href="$classwx_print_dialog.html" title="This class represents the print and print setup common dialogs." alt="" coords="821,453,925,485">
+<area shape="rect" href="$classwx_progress_dialog.html" title="This class represents a dialog that shows a short message and a progress bar." alt="" coords="807,509,940,541">
+<area shape="rect" href="$classwx_property_sheet_dialog.html" title="This class represents a property sheet dialog: a tabbed dialog for showing settings..." alt="" coords="792,565,955,597">
+<area shape="rect" href="$classwx_rich_text_style_organiser_dialog.html" title="This class shows a style sheet and allows the user to edit, add and remove styles..." alt="" coords="764,621,983,653">
+<area shape="rect" href="$classwx_single_choice_dialog.html" title="This class represents a dialog that shows a list of strings, and allows the user..." alt="" coords="793,677,953,709">
+<area shape="rect" href="$classwx_symbol_picker_dialog.html" title="wxSymbolPickerDialog presents the user with a choice of fonts and a grid of available..." alt="" coords="793,733,953,765">
+<area shape="rect" href="$classwx_text_entry_dialog.html" title="This class represents a dialog that requests a one&#45;line text string from the user..." alt="" coords="807,789,940,821">
+<area shape="rect" href="$classwx_wizard.html" title="wxWizard is the central class for implementing &#39;wizard&#45;like&#39; dialogs." alt="" coords="833,845,913,877">
+<area shape="rect" href="$classwx_top_level_window.html" title="wxTopLevelWindow is a common base class for wxDialog and wxFrame." alt="" coords="443,425,587,457">
+<area shape="rect" href="$classwx_window.html" title="wxWindow is the base class for all windows and represents any visible object om screen..." alt="" coords="307,425,395,457">
+<area shape="rect" href="$classwx_evt_handler.html" title="A class that can handle events from the windowing system." alt="" coords="155,425,259,457">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="19,397,93,429">
+<area shape="rect" href="$classwx_trackable.html" title="Add&#45;on base class for a trackable object." alt="" coords="7,453,105,485">
+<area shape="rect" href="$classwx_rich_text_formatting_dialog.html" title="This dialog allows the user to edit a character and/or paragraph style." alt="" coords="1032,565,1227,597">
+<area shape="rect" href="$classwx_password_entry_dialog.html" title="This class represents a dialog that requests a one&#45;line password string from the..." alt="" coords="1045,789,1213,821">

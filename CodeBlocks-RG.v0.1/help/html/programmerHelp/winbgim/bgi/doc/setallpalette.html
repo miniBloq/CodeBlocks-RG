@@ -1,0 +1,188 @@
+<TITLE>BGI Documentation for 
+setallpalette
+</TITLE>
+<H2>
+setallpalette
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void setallpalette(struct palettetype *palette);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+setallpalette sets the current palette to the values given in the palettetype structure pointed to by palette.
+<P>
+You can partially (or completely) change the colors in the EGA/VGA palette with setallpalette.
+<P>
+The MAXCOLORS constant and the palettetype structure used by setallpalette are defined in graphics.h as follows:
+<PRE>
+#define MAXCOLORS  15
+
+struct palettetype {
+   unsigned char size;
+   signed char colors[MAXCOLORS + 1];
+};
+</PRE>
+size gives the number of colors in the palette for the current graphics driver in the current mode.
+<P>
+colors is an array of size bytes containing the actual raw color numbers for each entry in the palette. If an element of colors is -1, the palette color for that entry is not changed.
+<P>
+The elements in the colors array used by setallpalette can be
+represented by symbolic constants which are defined in graphics.h. See
+Actual Color Table given here:
+<TABLE>
+<TR><TD><B>Name</B><TD><B>Value</B>
+<TR><TD>BLACK <TD>0
+<TR><TD>BLUE<TD>1
+<TR><TD>GREEN<TD>2
+<TR><TD>CYAN<TD>3
+<TR><TD>RED<TD>4
+<TR><TD>MAGENTA<TD>5
+<TR><TD>BROWN<TD>6
+<TR><TD>LIGHTGRAY<TD>7
+<TR><TD>DARKGRAY<TD>8
+<TR><TD>LIGHTBLUE<TD>9
+<TR><TD>LIGHTGREEN<TD>10
+<TR><TD>LIGHTCYAN<TD>11
+<TR><TD>LIGHTRED<TD>12
+<TR><TD>LIGHTMAGENTA<TD>13
+<TR><TD>YELLOW<TD>14
+<TR><TD>WHITE<TD>15
+<TR><TD>EGA_BROWN<TD>20
+<TR><TD>EGA_DARKGRAY<TD>56
+<TR><TD>EGA_LIGHTBLUE<TD>57
+<TR><TD>EGA_LIGHTGREEN<TD>58
+<TR><TD>EGA_LIGHTCYAN<TD>59
+<TR><TD>EGA_LIGHTRED<TD>60
+<TR><TD>EGA_LIGHTMAGENTA<TD>61
+<TR><TD>EGA_YELLOW<TD>62
+<TR><TD>EGA_WHITE<TD>63
+</TABLE>
+
+
+Changes made to the palette are seen immediately onscreen. Each time a palette color is changed, all occurrences of that color onscreen change to the new color value.
+<P>
+Note:	Valid colors depend on the current graphics driver and current graphics mode.
+<P>
+setallpalette cannot be used with the IBM-8514 driver.
+
+
+
+<P><DT><B>Return Value</B><DD>
+If invalid input is passed to setallpalette, graphresult returns -11 (grError), and the current palette remains unchanged.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+The <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> version of
+setallpalette expects a palettetype object of up to 16 colors.
+Each color is one of the 16 BGI color numbers (0 through 15). If you
+want
+to set a palette color to an 
+<A HREF="wincolor.html">RGB color</A>,
+then use <A HREF="setrgbpalette.html">setrgbpalette</A>.
+<P>
+In the windows version, changing the palette effects only future
+drawing.
+Currently drawn pixels do not change their color when the palette
+changes
+(no "palette animation").
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="getpalette.html"> getpalette </A>
+<DD><A HREF="getpalettesize.html"> getpalettesize </A>
+<DD><A HREF="graphresult.html"> graphresult </A>
+<DD><A HREF="setbkcolor.html"> setbkcolor </A>
+<DD><A HREF="setcolor.html"> setcolor </A>
+<DD><A HREF="setpalette.html"> setpalette </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+
+<P><DT><B>See also</B>
+<DD><A HREF="getpalette.html"> getpalette </A>
+<DD><A HREF="getpalettesize.html"> getpalettesize </A>
+<DD><A HREF="graphresult.html"> graphresult </A>
+<DD><A HREF="setbkcolor.html"> setbkcolor </A>
+<DD><A HREF="setcolor.html"> setcolor </A>
+<DD><A HREF="setpalette.html"> setpalette </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* setallpalette example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   struct palettetype pal;
+   int color, maxcolor, ht;
+   int y = 10;
+   char msg[80];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk)    /* an error occurred */
+
+   {
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   maxcolor = getmaxcolor();
+   ht = 2 * textheight("W");
+
+   /* grab a copy of the palette */
+   getpalette(&pal);
+
+   /* display the default palette colors */
+   for (color=1; color&lt;=maxcolor; color++) {
+      setcolor(color);
+      sprintf(msg, "Color: %d", color);
+
+      outtextxy(1, y, msg);
+      y += ht;
+   }
+
+   /* wait for a key */
+   getch();
+
+   /* black out the colors one by one */
+   for (color=1; color&lt;=maxcolor; color++) {
+      setpalette(color, BLACK);
+      getch();
+   }
+
+   /* restore the palette colors */
+   setallpalette(&pal);
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

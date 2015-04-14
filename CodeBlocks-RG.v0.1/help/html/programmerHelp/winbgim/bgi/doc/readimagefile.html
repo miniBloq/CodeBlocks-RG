@@ -1,0 +1,41 @@
+<TITLE>BGI Documentation for 
+readimagefile
+</TITLE>
+<H2>
+readimagefile
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include "graphics.h"
+void readimagefile(
+    const char* title=NULL,	
+    int left=0, int right=0, int right=INT_MAX, int bottom=INT_MAX
+    );
+</PRE>
+
+
+
+<DT><B>Description</B><IMG SRC="win.gif" ALT="[WIN]"><DD>
+The 
+readimagefile
+function is available in the
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation of BGI
+graphics.
+You do not need to include conio.h; just include graphics.h.
+The function reads a BMP, GIF, JPG, ICO, EMF or WMF image file and
+displays it in part of the current active window.  
+The filename may be NULL (in which case a windows file save dialog box is
+opened to allow the user to select a file name).
+
+<P><DT><B>See also</B>
+<DD><A HREF="getimage.html"> getimage </A>
+<DD><A HREF="printimage.html"> printimage </A>
+<DD><A HREF="writeimagefile.html"> writeimagefile </A>
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

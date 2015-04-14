@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="wxOpenCV0" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Win32 Release">
+				<Option output="C:/Home/Julian/Work/SNAPI-XDF/OpenCV/wxopencv/Release/wxopencv" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Release" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-W" />
+					<Add option="-fexceptions" />
+					<Add option="-fpermissive" />
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-D_MBCS" />
+					<Add option="-D__WXMSW__" />
+					<Add option="-DNOPCH" />
+					<Add directory="$(#wx)/lib/gcc_dll/mswud" />
+					<Add directory="$(#wx)/include" />
+					<Add directory="$(CODEBLOCKS)/sdk/OpenCV2.0/otherlibs/highgui" />
+					<Add directory="$(CODEBLOCKS)/sdk/OpenCV2.0/cxcore/include" />
+					<Add directory="$(CODEBLOCKS)/sdk/OpenCV2.0/cvaux/include" />
+					<Add directory="." />
+					<Add directory="$(CODEBLOCKS)/sdk/OpenCV2.0/cv/include" />
+					<Add directory="$(CODEBLOCKS)/sdk/OpenCV2.0/include/opencv" />
+				</Compiler>
+				<Linker>
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="winspool" />
+					<Add library="comdlg32" />
+					<Add library="advapi32" />
+					<Add library="shell32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="odbc32" />
+					<Add library="odbccp32" />
+					<Add library="cv" />
+					<Add library="vfw32" />
+					<Add library="highgui" />
+					<Add library="cvaux" />
+					<Add library="cxcore" />
+					<Add library="cvcam" />
+					<Add library="wxmsw26_adv" />
+					<Add library="wxmsw26_core" />
+					<Add library="wxbase26" />
+					<Add library="wxtiff" />
+					<Add library="wxjpeg" />
+					<Add library="wxpng" />
+					<Add library="wxzlib" />
+					<Add library="wxregex" />
+					<Add library="wxexpat" />
+					<Add library="winmm" />
+					<Add library="comctl32" />
+					<Add library="rpcrt4" />
+					<Add library="wsock32" />
+				</Linker>
+			</Target>
+			<Target title="Win32 Debug">
+				<Option output="C:/Home/Julian/Work/SNAPI-XDF/OpenCV/wxopencv/Debug/wxopencv" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Debug" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-W" />
+					<Add option="-g" />
+					<Add option="-fexceptions" />
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-D_MBCS" />
+					<Add directory="." />
+					<Add directory="$(#wx)/lib/gcc_dll/mswud" />
+					<Add directory="$(#wx)/include" />
+					<Add directory="$(CODEBLOCKS)/sdk/OpenCV2.0/src/highgui" />
+					<Add directory="$(CODEBLOCKS)/sdk/OpenCV2.0/src/cxcore/include" />
+					<Add directory="$(CODEBLOCKS)/sdk/OpenCV2.0/src/cvaux/include" />
+					<Add directory="$(CODEBLOCKS)/sdk/OpenCV2.0/src/cv/include" />
+				</Compiler>
+				<Linker>
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="gdi32" />
+					<Add library="winspool" />
+					<Add library="comdlg32" />
+					<Add library="advapi32" />
+					<Add library="shell32" />
+					<Add library="ole32" />
+					<Add library="oleaut32" />
+					<Add library="uuid" />
+					<Add library="odbc32" />
+					<Add library="odbccp32" />
+					<Add library="cvd" />
+					<Add library="vfw32" />
+					<Add library="highguid" />
+					<Add library="cvauxd" />
+					<Add library="cxcored" />
+					<Add library="cvcam" />
+					<Add library="wxmsw26d_adv" />
+					<Add library="wxmsw26d_core" />
+					<Add library="wxbase26d" />
+					<Add library="wxtiffd" />
+					<Add library="wxjpegd" />
+					<Add library="wxpngd" />
+					<Add library="wxzlibd" />
+					<Add library="wxregexd" />
+					<Add library="wxexpatd" />
+					<Add library="winmm" />
+					<Add library="comctl32" />
+					<Add library="rpcrt4" />
+					<Add library="wsock32" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="Icon0035.ico" />
+		<Unit filename="camera.ico" />
+		<Unit filename="camera/camera.cpp" />
+		<Unit filename="camera/camera.h" />
+		<Unit filename="gui/about.cpp" />
+		<Unit filename="gui/about.h" />
+		<Unit filename="gui/camview.cpp" />
+		<Unit filename="gui/camview.h" />
+		<Unit filename="gui/frame.cpp" />
+		<Unit filename="gui/frame.h" />
+		<Unit filename="worker.cpp" />
+		<Unit filename="worker.h" />
+		<Unit filename="wxopencv.cpp" />
+		<Unit filename="wxopencv.h" />
+		<Unit filename="wxopencv.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="wxopencvabout.bmp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

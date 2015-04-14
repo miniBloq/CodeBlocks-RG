@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Commands%2fSearch">Commands/Search</a>,
+Next:<a rel="next" accesskey="n" href="Implicit-Search.html#Implicit%2fSearch">Implicit/Search</a>,
+Previous:<a rel="previous" accesskey="p" href="Search-Algorithm.html#Search%20Algorithm">Search Algorithm</a>,
+Up:<a rel="up" accesskey="u" href="Directory-Search.html#Directory%20Search">Directory Search</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">Writing Shell Commands with Directory Search</h4>
+
+   <p>When a prerequisite is found in another directory through directory search,
+this cannot change the commands of the rule; they will execute as written. 
+Therefore, you must write the commands with care so that they will look for
+the prerequisite in the directory where <code>make</code> finds it.
+
+   <p>This is done with the <dfn>automatic variables</dfn> such as <code>$^</code>
+(see <a href="Automatic.html#Automatic">Automatic Variables</a>). 
+For instance, the value of <code>$^</code> is a
+list of all the prerequisites of the rule, including the names of
+the directories in which they were found, and the value of
+<code>$@</code> is the target.  Thus:
+
+<pre class="example">     foo.o : foo.c
+             cc -c $(CFLAGS) $^ -o $@
+     </pre>
+
+<p>(The variable <code>CFLAGS</code> exists so you can specify flags for C
+compilation by implicit rules; we use it here for consistency so it will
+affect all C compilations uniformly;
+see <a href="Implicit-Variables.html#Implicit%20Variables">Variables Used by Implicit Rules</a>.)
+
+   <p>Often the prerequisites include header files as well, which you do not
+want to mention in the commands.  The automatic variable <code>$&lt;</code> is
+just the first prerequisite:
+
+<pre class="example">     VPATH = src:../headers
+     foo.o : foo.c defs.h hack.h
+             cc -c $(CFLAGS) $&lt; -o $@
+     </pre>
+
+   </body></html>
+

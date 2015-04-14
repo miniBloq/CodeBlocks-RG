@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Last%20Resort">Last Resort</a>,
+Next:<a rel="next" accesskey="n" href="Suffix-Rules.html#Suffix%20Rules">Suffix Rules</a>,
+Previous:<a rel="previous" accesskey="p" href="Pattern-Rules.html#Pattern%20Rules">Pattern Rules</a>,
+Up:<a rel="up" accesskey="u" href="Implicit-Rules.html#Implicit%20Rules">Implicit Rules</a>
+<hr><br>
+</div>
+
+<h3 class="section">Defining Last-Resort Default Rules</h3>
+
+   <p>You can define a last-resort implicit rule by writing a terminal
+match-anything pattern rule with no prerequisites (see <a href="Match-Anything-Rules.html#Match-Anything%20Rules">Match-Anything Rules</a>).  This is just like any other pattern rule; the only thing
+special about it is that it will match any target.  So such a rule's
+commands are used for all targets and prerequisites that have no commands
+of their own and for which no other implicit rule applies.
+
+   <p>For example, when testing a makefile, you might not care if the source
+files contain real data, only that they exist.  Then you might do this:
+
+<pre class="example">     %::
+             touch $@
+     </pre>
+
+<p>to cause all the source files needed (as prerequisites) to be created
+automatically.
+
+   <p>You can instead define commands to be used for targets for which there
+are no rules at all, even ones which don't specify commands.  You do
+this by writing a rule for the target <code>.DEFAULT</code>.  Such a rule's
+commands are used for all prerequisites which do not appear as targets in
+any explicit rule, and for which no implicit rule applies.  Naturally,
+there is no <code>.DEFAULT</code> rule unless you write one.
+
+   <p>If you use <code>.DEFAULT</code> with no commands or prerequisites:
+
+<pre class="example">     .DEFAULT:
+     </pre>
+
+<p>the commands previously stored for <code>.DEFAULT</code> are cleared. 
+Then <code>make</code> acts as if you had never defined <code>.DEFAULT</code> at all.
+
+   <p>If you do not want a target to get the commands from a match-anything
+pattern rule or <code>.DEFAULT</code>, but you also do not want any commands
+to be run for the target, you can give it empty commands (see <a href="Empty-Commands.html#Empty%20Commands">Defining Empty Commands</a>).
+
+   <p>You can use a last-resort rule to override part of another makefile. 
+See <a href="Overriding-Makefiles.html#Overriding%20Makefiles">Overriding Part of Another Makefile</a>.
+
+   </body></html>
+

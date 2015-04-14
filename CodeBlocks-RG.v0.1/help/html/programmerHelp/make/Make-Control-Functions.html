@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Make%20Control%20Functions">Make Control Functions</a>,
+Previous:<a rel="previous" accesskey="p" href="Shell-Function.html#Shell%20Function">Shell Function</a>,
+Up:<a rel="up" accesskey="u" href="Functions.html#Functions">Functions</a>
+<hr><br>
+</div>
+
+<h3 class="section">Functions That Control Make</h3>
+
+   <p>These functions control the way make runs.  Generally, they are used to
+provide information to the user of the makefile or to cause make to stop
+if some sort of environmental error is detected.
+
+     <dl>
+<dt><code>$(error </code><var>text</var><code>...)</code>
+     <dd>Generates a fatal error where the message is <var>text</var>.  Note that the
+error is generated whenever this function is evaluated.  So, if you put
+it inside a command script or on the right side of a recursive variable
+assignment, it won't be evaluated until later.  The <var>text</var> will be
+expanded before the error is generated.
+
+     <p>For example,
+
+     <pre class="example">          ifdef ERROR1
+          $(error error is $(ERROR1))
+          endif
+          </pre>
+
+     <p>will generate a fatal error during the read of the makefile if the
+<code>make</code> variable <code>ERROR1</code> is defined.  Or,
+
+     <pre class="example">          ERR = $(error found an error!)
+          
+          .PHONY: err
+          err: ; $(ERR)
+          </pre>
+
+     <p>will generate a fatal error while <code>make</code> is running, if the
+<code>err</code> target is invoked.
+
+     <br><dt><code>$(warning </code><var>text</var><code>...)</code>
+     <dd>This function works similarly to the <code>error</code> function, above,
+except that <code>make</code> doesn't exit.  Instead, <var>text</var> is expanded
+and the resulting message is displayed, but processing of the makefile
+continues.
+
+     <p>The result of the expansion of this function is the empty string. 
+</dl>
+
+   </body></html>
+

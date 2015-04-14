@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Pattern%20Intro">Pattern Intro</a>,
+Next:<a rel="next" accesskey="n" href="Pattern-Examples.html#Pattern%20Examples">Pattern Examples</a>,
+Previous:<a rel="previous" accesskey="p" href="Pattern-Rules.html#Pattern%20Rules">Pattern Rules</a>,
+Up:<a rel="up" accesskey="u" href="Pattern-Rules.html#Pattern%20Rules">Pattern Rules</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">Introduction to Pattern Rules</h4>
+
+   <p>A pattern rule contains the character <code>%</code> (exactly one of them)
+in the target; otherwise, it looks exactly like an ordinary rule.  The
+target is a pattern for matching file names; the <code>%</code> matches any
+nonempty substring, while other characters match only themselves.
+
+   <p>For example, <code>%.c</code> as a pattern matches any file name that ends in
+<code>.c</code>.  <code>s.%.c</code> as a pattern matches any file name that starts
+with <code>s.</code>, ends in <code>.c</code> and is at least five characters long. 
+(There must be at least one character to match the <code>%</code>.)  The substring
+that the <code>%</code> matches is called the <dfn>stem</dfn>.
+
+   <p><code>%</code> in a prerequisite of a pattern rule stands for the same stem
+that was matched by the <code>%</code> in the target.  In order for
+the pattern rule to apply, its target pattern must match the file name
+under consideration, and its prerequisite patterns must name files that
+exist or can be made.  These files become prerequisites of the target.
+
+   <p>Thus, a rule of the form
+
+<pre class="example">     %.o : %.c ; <var>command</var>...
+     </pre>
+
+<p>specifies how to make a file <code></code><var>n</var><code>.o</code>, with another file
+<code></code><var>n</var><code>.c</code> as its prerequisite, provided that <code></code><var>n</var><code>.c</code>
+exists or can be made.
+
+   <p>There may also be prerequisites that do not use <code>%</code>; such a prerequisite
+attaches to every file made by this pattern rule.  These unvarying
+prerequisites are useful occasionally.
+
+   <p>A pattern rule need not have any prerequisites that contain <code>%</code>, or
+in fact any prerequisites at all.  Such a rule is effectively a general
+wildcard.  It provides a way to make any file that matches the target
+pattern.  See <a href="Last-Resort.html#Last%20Resort">Last Resort</a>.
+
+   <p>Pattern rules may have more than one target.  Unlike normal rules, this
+does not act as many different rules with the same prerequisites and
+commands.  If a pattern rule has multiple targets, <code>make</code> knows that
+the rule's commands are responsible for making all of the targets.  The
+commands are executed only once to make all the targets.  When searching
+for a pattern rule to match a target, the target patterns of a rule other
+than the one that matches the target in need of a rule are incidental:
+<code>make</code> worries only about giving commands and prerequisites to the file
+presently in question.  However, when this file's commands are run, the
+other targets are marked as having been updated themselves.
+
+   <p>The order in which pattern rules appear in the makefile is important
+since this is the order in which they are considered. 
+Of equally applicable
+rules, only the first one found is used.  The rules you write take precedence
+over those that are built in.  Note however, that a rule whose
+prerequisites actually exist or are mentioned always takes priority over a
+rule with prerequisites that must be made by chaining other implicit rules.
+
+   </body></html>
+

@@ -1,0 +1,9 @@
+<area shape="rect" href="$classwx_bitmap_combo_box.html" title="A combobox that displays bitmap in front of the list items." alt="" coords="173,420,320,452">
+<area shape="rect" href="$classwx_control.html" title="This is the base class for a control or &quot;widget&quot;." alt="" coords="65,255,145,287">
+<area shape="rect" href="$classwx_window.html" title="wxWindow is the base class for all windows and represents any visible object om screen..." alt="" coords="53,172,141,204">
+<area shape="rect" href="$classwx_evt_handler.html" title="A class that can handle events from the windowing system." alt="" coords="45,89,149,121">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="5,7,80,39">
+<area shape="rect" href="$classwx_trackable.html" title="Add&#45;on base class for a trackable object." alt="" coords="104,7,203,39">
+<area shape="rect" href="$classwx_item_container.html" title="This class is an abstract base class for some wxWidgets controls which contain several..." alt="" coords="187,255,307,287">
+<area shape="rect" href="$classwx_item_container_immutable.html" title="wxItemContainer defines an interface which is implemented by all controls which have..." alt="" coords="165,172,347,204">
+<area shape="rect" href="$classwx_text_entry.html" title="Common base class for single line text entry fields." alt="" coords="331,255,424,287">

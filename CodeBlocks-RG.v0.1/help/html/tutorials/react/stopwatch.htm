@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>WinBGIm Grids  Animation</title>
+<link href="../CSS/1colNheader.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.style10 {
+	color: #3C505E;
+	font-size: xx-small;
+	font-style: italic;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+h5 {
+	font-size: small;
+	color: rgb(90, 95, 102);
+}
+</style>
+</head>
+
+<body>
+<div id="wrapper">
+  <div id="header">
+    <table width="92%" border="0" cellpadding="8">
+      <tr>
+        <td width="419"><h1 align="left">Example C++ Program:</h1>
+        <p align="left"><span class="title">a Simple C++ Class </span><br />          
+        </p></td>
+        <td width="262"><span class="style14"><img src="largeStopwatch.gif" alt="image: Portion of grid" width="106" height="130" align="absmiddle" /></span></td>
+        <td width="247"><h2><span class="style43">Stopwatch  </span></h2></td>
+      </tr>
+    </table>
+  </div>
+  <div id="main">
+    <p class="abstract">This practical and simple Stopwatch class shows the basic components of  C++ classes.</p>
+    <p class="abstract">Stopwatch objects may be used in many programs that require accurate timing. </p>
+    <hr />
+    <h2>    Background </h2>
+    <table border="0" cellpadding="6">
+      <tr>
+        <td width="629"><p>A <span class="Highlight">class</span> is an abstraction that represents a real-world or system entity.<br />
+          It contains data (class attributes) and functions (class operations). </p>
+        <p>An <span class="Highlight">object</span> is an instance of the class (expressed in C++ as a variable with the class as its type).</p></td>
+        <td width="314"><img src="classDiagram.gif" alt="Stopwatch class diagram" width="366" height="172" /></td>
+      </tr>
+    </table>
+    <p>The Stopwatch class has a single  data item, <em>startTicks</em>, the number of system clock ticks from the start of the program to the moment the stopwatch was started.</p>
+    <p>It has  two operations:<br />
+      <em>- start()</em>, which sets <em>startTicks</em> to the number of clock ticks since the program started running.<br />
+      - <em>getElapsedTime()</em>, which returns the number of seconds (and decimal fractions of second) since the stopwatch was started.</p>
+    <p><span class="abstract"><strong>Note</strong> that unlike a real stopwatch, this class can return any number of timings from the start of counting. </span><br />
+      ___________ </p>
+    <h2><img src="stopwatch.gif" alt="small stopwatch image" width="51" height="64" align="absmiddle" /> Class Header </h2>
+    <p>C++ declares  classes in  header (<em>.h) </em>files.<br />
+  A class header presents the class interface, including everything a programmer must know to use the class in programs. It does not include the code implementation of the class which is in the <em>.cpp</em> file.</p>
+    <p><em>Stopwatch.h </em>contains the Stopwatch class declaration: </p>
+    <p>The <code class="keyword">public:</code> section contains the member functions declarations, <br />
+      <span class="keyword"><code>void</code></span><code> start(<span class="keyword">void</span>);<br />
+            <span class="keyword">double</span> getElapsedTime(void);</code></p>
+    <p>It also displays a <u>default constructor</u>,<br />
+      <code>Stopwatch();</code></p>
+    <p>The <span class="Highlight">constructor</span> is always called when an object is created:<br /> 
+    - It is called implicitly when a Stopwatch object is created at compile-time as a local variable for example:<br />
+    <code>Stopwatch watch; <span class="comment">// Constructor called automatically</span> </code></p>
+    <p>- It is called explicitly when a Stopwatch object is created dynamically at runtime by using &quot;<code class="keyword">new</code>&quot;: </p>
+    <p><code>Stopwatch *watchPtr = <span class="keyword">new</span> Stopwatch();</code></p>
+    <p class="abstract"><strong>Note</strong> that  &quot;new&quot; returns a pointer to the new object.</p>
+    <p><span class="Highlight">Calling a member function</span> of an object requires using the <span class="Highlight">.</span> (dot) notation. For example:<br />
+      watch.start(); 
+        <br />
+    When using a pointer to an object, the <span class="Highlight">-&gt;</span> (arrow) notation must be used instead: <br />
+    <code>watchPtr-&gt;start();</code></p>
+    <p>The <code class="keyword">private:</code> section contains class members (usually mostly data, but sometimes also functions) not directly accessible from outside the class. Private data is maintained and accessed by the public member functions. </p>
+    <p>Stopwatch maintains information about the number of system ticks from the start of the program to the moment the <code>start()</code> member function is called. It is this information that allows accurate time computation: </p>
+    <p><code>clock_t startTicks;</code></p>
+    <p><span class="abstract"><strong>Note</strong> that </span><code>clock_t</code> <span class="abstract">is a type defined in the standard C header &quot;ctime&quot; (in fact a long integer). In order to have access to this, the header must be <code>#include(d)</code> at the start of Stopwatch.h..</span> </p>
+    <p>___________ </p>
+    <h2> <img src="stopwatch.gif" alt="small stopwatch image" width="51" height="64" align="absmiddle" /> Class Implementation</h2>
+    <p>      The implementation of the class is found in file <em>Stopwatch.cpp</em>. There is no need to look inside this <em>.cpp </em>file in order to use the class; the information in the header is enough <span class="abstract">(This is called &quot;information hiding, and is great to avoid information overload)</span>. </p>
+    <p>      We will  now look briefly into <em>Stopwatch.cpp</em>, however, to see how the stopwatch works: </p>
+    <p>System time is computed accurately by using the system <code>clock()</code> function. It returns the number of clock ticks since the start of the program. <br />
+    The number of clock ticks is the most accurate time measurement available on any system. A number of clock ticks must be divided by the value of the macro CLOCKS_PER_SEC to obtain the equivalent  number of seconds and decimal fractions of seconds. CLOCKS_PER_SEC is defined in the &lt;ctime&gt; header. This is used by the Stopwatch member function <em>getElapsedTime()</em>:</p>
+    <pre><span class="comment">/*
+ * Report elapsed time in seconds and decimal parts of seconds
+ * since start.
+ *
+ * @return number of seconds since start, or 0 if watch not started.
+ */</span>
+<span class="keyword">double</span> Stopwatch::getElapsedTime()
+{
+	<span class="keyword">if</span>(!startTicks) /<span class="comment">/ Then current object was not started
+</span> 	 	<span class="keyword">return</span> 0;
+ 
+	/<span class="comment">/ clock(), and CLOCKS_PER_SEC are defined in header &lt;ctime&gt;
+</span>	<span class="keyword">return static_cast</span>&lt;<span class="keyword">double</span>&gt;(clock() - startTicks) / CLOCKS_PER_SEC;
+}</pre>
+    <p>This code checks that the current object <em>startTicks</em> data has been initialised by the <em>start()</em> member function. If that was not the case, the elapsed time returned would be invalid.</p>
+    <p>If <em>start()</em> has not been called before <em>getElapsedTime()</em>, then startTicks will have value 0 as it is initialised by the constructor. In this case a value of 0 is returned.</p>
+    <p>In order to compute the elapsed time, a floating point number division must be called. This is ensured by converting the number of system ticks to <em>double</em> prior to division:</p>
+    <p><span class="keyword"><code>static_cast</code></span><code>&lt;<span class="keyword">double</span>&gt;(clock() - startTicks) </code></p>
+    <hr />
+    <p class="abstract">- The accuracy of the stopwatch is operating system dependent. On my machine under Windows XP, for example, the number of system ticks is updated only every 20 milliseconds. This is therefore the limit of resolution of the stopwatch for my system. Quite sufficient for most purposes. </p>
+  </div>
+  <div id="footer">
+    <div align="center" class="style10"><span class="style20">Maintained by</span> <img src="email.gif" alt="image: mainainer's email" width="167" height="18" align="absmiddle" /> <span class="style20">- Modified: 7 January 2006</span> </div>
+  </div>
+</div>
+</body>
+</html>

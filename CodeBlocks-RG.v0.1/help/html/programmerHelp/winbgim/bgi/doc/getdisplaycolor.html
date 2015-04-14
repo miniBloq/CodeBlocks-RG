@@ -1,0 +1,90 @@
+<TITLE>BGI Documentation for 
+getcolor
+</TITLE>
+<H2>
+getdisplaycolor
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+int getdisplaycolor( int color );
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+The 
+getdisplaycolor
+function is available in the
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation of BGI
+graphics.
+getdisplaycolor is used to get an color that the current actual
+display device can display.
+
+<P><DT><B>Return Value</B><DD>
+getdisplaycolor(color) returns the color number that will actually be drawn
+when a program calls putpixel(0, 0, color). 
+This is not always identical to color because some display devices
+cannot display all possible colors.  However, the display color
+will always be as close
+as possible to the requested color.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+In the <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> version, the user
+might set colors to an
+<A HREF="wincolor.html">RGB color</A>. Therefore, the return value
+from getdisplaycolor might be an ordinary BGI color (integer from 0 to 15)
+or an RGB color.
+
+<P><DT><B>See also</B>
+<DD><A HREF="getpixel.html"> getpixel </A>
+<DD><A HREF="putpixel.html"> putpixel </A>
+<DD><A HREF="wincolor.html"> wincolor </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* getdisplaycolor example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(void)
+{
+   int r, g, b; // Components of r, g and b for a color.
+   int color_request, color_actual;
+
+   /* initialize graphics window */
+   initwindow(300, 300);
+
+   /* Get a user-defined color */
+   cout &lt;&lt; "Please enter amounts of red, green and blue: ";
+   cin &gt;&gt; r &gt;&gt; g &gt;&gt; b;
+
+   /* Compute what this color will display as. */
+   color_request = COLOR(r, g, b);
+   color_actual = getdisplaycolor(color_request);
+   if (IS_BGI_COLOR(color_actual))
+   {
+      cout &lt;&lt; "That will display as BGI color number " &lt;&lt; color_actual &lt;&lt; endl;
+   }
+   else
+   {
+       cout &lt;&lt; "That color will display on this machine with components:\n"
+	    &lt;&lt; "Red:   " &lt;&lt; RED_VALUE(color_actual)   &lt;&lt; '\n'
+            &lt;&lt; "Green: " &lt;&lt; GREEN_VALUE(color_actual) &lt;&lt; '\n'
+            &lt;&lt; "Blue:  " &lt;&lt; BLUE_VALUE(color_actual)  &lt;&lt; '\n';
+   }
+}
+</PRE>
+
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

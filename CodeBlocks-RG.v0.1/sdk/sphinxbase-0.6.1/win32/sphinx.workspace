@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="Workspace">
+		<Project filename="sphinxbase/sphinxbase.cbp" active="1" />
+		<Project filename="sphinx_pitch/sphinx_pitch.cbp" />
+		<Project filename="../../../../../Projects/_Info/Software/AudioVoiceSound/CMUSphinx/sphinxbase-0.6.1/win32/sphinx_lm_convert/sphinx_lm_convert.cbp" />
+		<Project filename="../../../../../Projects/_Info/Software/AudioVoiceSound/CMUSphinx/sphinxbase-0.6.1/win32/sphinx_jsgf2fsg/sphinx_jsgf2fsg.cbp" />
+		<Project filename="../../../../../Projects/_Info/Software/AudioVoiceSound/CMUSphinx/sphinxbase-0.6.1/win32/sphinx_fe/sphinx_fe.cbp" />
+		<Project filename="../../../../../Projects/_Info/Software/AudioVoiceSound/CMUSphinx/sphinxbase-0.6.1/win32/sphinx_cepview/sphinx_cepview.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>

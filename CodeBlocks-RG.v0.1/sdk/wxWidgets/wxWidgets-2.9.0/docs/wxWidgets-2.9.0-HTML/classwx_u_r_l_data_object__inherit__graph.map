@@ -1,0 +1,3 @@
+<area shape="rect" href="$classwx_text_data_object.html" title="wxTextDataObject is a specialization of wxDataObjectSimple for text data." alt="" coords="13,172,144,204">
+<area shape="rect" href="$classwx_data_object_simple.html" title="This is the simplest possible implementation of the wxDataObject class." alt="" coords="5,89,152,121">
+<area shape="rect" href="$classwx_data_object.html" title="A wxDataObject represents data that can be copied to or from the clipboard, or dragged..." alt="" coords="27,7,131,39">

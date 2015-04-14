@@ -1,0 +1,715 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Date and Time Picker Controls</title>
+</head>
+
+<body>
+
+<h2>Date and Time Picker Controls</h2>
+<hr SIZE="1">
+<p>A <i>date and time picker (DTP) control</i> provides a simple and intuitive
+interface through which to exchange date and time information with a user. For
+example, with a DTP control you can ask the user to enter a date and then
+retrieve his or her selection with ease.</p>
+<h3><a name="About_Date_and_Time_"></a>About Date and Time Picker Controls</h3>
+<p>Date and time picker controls are implemented in <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Shell_Versions">
+version 4.70</MSHelp:link>
+ and later of Comctl32.dll. To create a DTP control call <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CreateWindowEx">
+CreateWindowEx</MSHelp:link>
+ and specify DATETIMEPICK_CLASS as the window class. The class is registered
+when the date and time picker class is loaded from the common control
+dynamic-link library (DLL). Register this class by calling the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_InitCommonControlsEx_cpp">
+InitCommonControlsEx</MSHelp:link>
+ function, while specifying the ICC_DATE_CLASSES bit flag in the accompanying <MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_INITCOMMONCONTROLSEX_4vvx_cpp">
+INITCOMMONCONTROLSEX</MSHelp:link>
+ structure.</p>
+<div class="clsNote">
+  <b>Note</b>&nbsp;&nbsp;
+  <p>&nbsp;
+  <ul>
+    <li>Windows does not support dates prior to 1601. See the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_com_filetime">
+      FILETIME</MSHelp:link>
+      structure for details.
+    <li>The DTP control is based on the Gregorian calendar, which was introduced
+      in 1753. It will not calculate dates that are consistent with the Julian
+      calendar that was in use prior to 1753.</li>
+  </ul>
+  <p>&nbsp;</p>
+</div>
+<h3><a name="Date_and_Time_Picker_UI"></a>Date and Time Picker User Interface</h3>
+<p>The client area of a date and time picker (DTP) control displays date and
+time information and acts as the interface through which users modify the
+information. The control's display consists of fields that are defined by the
+control's <a href="#dtp_format_chars" target="_self">Format Strings</a>.
+Additionally, the control will display a check box when the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="DTS_SHOWNONE">
+DTS_SHOWNONE</MSHelp:link>
+ style is in use.</p>
+<p>Each field in the control displays a portion of the date and time information
+that the control stores internally. The user can click a field to set keyboard
+focus and then provide keyboard input to change the information represented by
+that field. The DTP control automatically updates internal information based on
+the user's input. The control recognizes the following as valid input.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Input Category</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>Arrow Keys</td>
+      <td>The control accepts arrow keys to navigate the fields in the control
+        and change values. The user can press the or keys to move through the
+        control. If the user attempts to move past the last field in a given
+        direction, the keyboard focus &quot;wraps around&quot; to the field on
+        the opposite side of the control. The and keys change values in the
+        current field incrementally.</td>
+    </tr>
+    <tr>
+      <td>End and Home</td>
+      <td>The control accepts the VK_END and VK_HOME virtual keys to change the
+        value within the current field to its upper and lower limits,
+        respectively.</td>
+    </tr>
+    <tr>
+      <td>Function Keys</td>
+      <td>The key activates edit mode. The key causes the control to display a
+        drop-down month calendar control (pressing does this as well).</td>
+    </tr>
+    <tr>
+      <td>Numbers</td>
+      <td>The control accepts numeric input in two-character segments. If the
+        value entered by the user is invalid (like setting the month to 14), the
+        control rejects it and resets the display to the previous value.</td>
+    </tr>
+    <tr>
+      <td>Plus and Minus</td>
+      <td>The control accepts the VK_ADD and VK_SUBTRACT virtual keys from the
+        numeric keypad to increment and decrement the value in the current
+        field.</td>
+    </tr>
+  </tbody>
+</table>
+<p>DTP controls that do not use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="DTS_UPDOWN">
+DTS_UPDOWN</MSHelp:link>
+ style display an arrow button. If the user clicks this button, a month calendar
+control drops down. The user can select a specific date by clicking an area of
+the calendar.</p>
+<h3><a name="Date_and_Time_Picker_Styles"></a>Date and Time Picker Control
+Styles and Formats</h3>
+<p>Date and time picker (DTP) controls have several <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_Date_and_Time_Picker_Control_Styles_cpp">
+Date and Time Picker Control Styles</MSHelp:link>
+ that determine a control's appearance and behavior. Specify the style when
+creating the control with the <i>dwStyle</i> parameter of <b>CreateWindowEx</b>.
+To retrieve or change the window style after you have created the control, use <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_getwindowlong">
+GetWindowLong</MSHelp:link>
+ and <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_setwindowlong">
+SetWindowLong</MSHelp:link>
+.</p>
+<h4><a name="dtp_preset_formats"></a>Preset Formats</h4>
+<p>There are three preset formats available for displaying the date and one for
+displaying time. Set these formats by choosing one of the following window
+styles:</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="DTS_LONGDATEFORMAT">
+        DTS_LONGDATEFORMAT</MSHelp:link>
+      </td>
+      <td>The display will look like: &quot;Friday, April 19, 1996&quot;.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="DTS_SHORTDATEFORMAT">
+        DTS_SHORTDATEFORMAT</MSHelp:link>
+      </td>
+      <td>The display will look like: &quot;4/19/96&quot;.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="DTS_SHORTDATECENTURYFORMAT">
+        DTS_SHORTDATECENTURYFORMAT</MSHelp:link>
+      </td>
+      <td><b>Version 5.80</b>. The display will look like:
+        &quot;4/19/1996&quot;.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="DTS_TIMEFORMAT">
+        DTS_TIMEFORMAT</MSHelp:link>
+      </td>
+      <td>The display will look like: &quot;5:31:42 PM&quot;.</td>
+    </tr>
+  </tbody>
+</table>
+<h4><a name="xxxCustom_format_string"></a>Custom formats</h4>
+<p>A DTP control relies on a format string to determine how it will display
+fields of information. If the preset formats are not sufficient, you can create
+a custom format by defining your own format string. Custom formats provide
+greater flexibility for an application. They enable you to specify the order in
+which the control will display fields of information. You can include body text
+as well as callback fields for requesting information from the user. Once the
+string is created, you assign it to the DTP control with a <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DTM_SETFORMAT_cpp">
+DTM_SETFORMAT</MSHelp:link>
+ message.</p>
+<h4><a name="dtp_format_chars"></a>Format Strings</h4>
+<p>A DTP format string consists of a series of elements that represent a
+particular piece of information and define its display format. The elements will
+be displayed in the order they appear in the format string.</p>
+<p>Date and time format elements will be replaced by the actual date and time.
+They are defined by the following groups of characters:</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Element</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>&quot;d&quot;</td>
+      <td>The one- or two-digit day.</td>
+    </tr>
+    <tr>
+      <td>&quot;dd&quot;</td>
+      <td>The two-digit day. Single-digit day values are preceded by a zero.</td>
+    </tr>
+    <tr>
+      <td>&quot;ddd&quot;</td>
+      <td>The three-character weekday abbreviation.</td>
+    </tr>
+    <tr>
+      <td>&quot;dddd&quot;</td>
+      <td>The full weekday name.</td>
+    </tr>
+    <tr>
+      <td>&quot;h&quot;</td>
+      <td>The one- or two-digit hour in 12-hour format.</td>
+    </tr>
+    <tr>
+      <td>&quot;hh&quot;</td>
+      <td>The two-digit hour in 12-hour format. Single-digit values are preceded
+        by a zero.</td>
+    </tr>
+    <tr>
+      <td>&quot;H&quot;</td>
+      <td>The one- or two-digit hour in 24-hour format.</td>
+    </tr>
+    <tr>
+      <td>&quot;HH&quot;</td>
+      <td>The two-digit hour in 24-hour format. Single-digit values are preceded
+        by a zero.</td>
+    </tr>
+    <tr>
+      <td>&quot;m&quot;</td>
+      <td>The one- or two-digit minute.</td>
+    </tr>
+    <tr>
+      <td>&quot;mm&quot;</td>
+      <td>The two-digit minute. Single-digit values are preceded by a zero.</td>
+    </tr>
+    <tr>
+      <td>&quot;M&quot;</td>
+      <td>The one- or two-digit month number.</td>
+    </tr>
+    <tr>
+      <td>&quot;MM&quot;</td>
+      <td>The two-digit month number. Single-digit values are preceded by a
+        zero.</td>
+    </tr>
+    <tr>
+      <td>&quot;MMM&quot;</td>
+      <td>The three-character month abbreviation.</td>
+    </tr>
+    <tr>
+      <td>&quot;MMMM&quot;</td>
+      <td>The full month name.</td>
+    </tr>
+    <tr>
+      <td>&quot;t&quot;</td>
+      <td>The one-letter AM/PM abbreviation (that is, AM is displayed as
+        &quot;A&quot;).</td>
+    </tr>
+    <tr>
+      <td>&quot;tt&quot;</td>
+      <td>The two-letter AM/PM abbreviation (that is, AM is displayed as
+        &quot;AM&quot;).</td>
+    </tr>
+    <tr>
+      <td>&quot;yy&quot;</td>
+      <td>The last two digits of the year (that is, 1996 would be displayed as
+        &quot;96&quot;).</td>
+    </tr>
+    <tr>
+      <td>&quot;yyyy&quot;</td>
+      <td>The full year (that is, 1996 would be displayed as &quot;1996&quot;).</td>
+    </tr>
+  </tbody>
+</table>
+<p>To make the information more readable, you can add body text to the format
+string by enclosing it in single quotes. Spaces and punctuation marks do not
+need to be quoted.</p>
+<div class="clsNote">
+  <b>Note</b>&nbsp;&nbsp; Nonformat characters that are not delimited by single
+  quotes will result in unpredictable display by the DTP control.
+</div>
+<p>For example, to display the current date with the format &quot;'Today is:
+04:22:31 Tuesday Mar 23, 1996&quot;, the format string is &quot;'Today is: 'hh':'m':'s
+dddd MMM dd', 'yyyy&quot;. To include a single quote in your body text, use two
+consecutive single quotes. For example, &quot;'Don''t forget' MMM dd',' yyyy&quot;
+produces output that looks like: Don't forget Mar 23, 1996. It is not necessary
+to use quotes with the comma, so &quot;'Don''t forget' MMM dd, yyyy&quot; is
+also valid, and produces the same output.</p>
+<h4><a name="Callback_fields"></a>Callback fields</h4>
+<p>In addition to the standard <a href="#dtp_format_chars" target="_self">Format
+Strings</a> and body text, you can also define certain parts of the display as <a href="#Callback_fields" target="_self">Callback
+fields</a>. These fields can be used to query the user for information. To
+declare a callback field, include one or more &quot;X&quot; characters (ASCII
+Code 88) anywhere in the format string. You can create callback fields that have
+a unique identity by repeating the &quot;X&quot; character. Thus, the format
+string &quot;XX dddd MMM dd', 'yyy XXX&quot; contains two unique callback
+fields, &quot;XX&quot; and &quot;XXX&quot;. Like other DTP control fields,
+callback fields are displayed in left-to-right order based on their location in
+the format string.</p>
+<p>When the DTP control parses the format string and encounters a callback
+field, it sends <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DTN_FORMAT_cpp">
+DTN_FORMAT</MSHelp:link>
+ and <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DTN_FORMATQUERY_cpp">
+DTN_FORMATQUERY</MSHelp:link>
+ notification messages. The format string element corresponding to the callback
+field is included with the notifications to allow the receiving application to
+determine which callback field is being queried. The owner of the control must
+respond to these notifications to ensure that the custom information is properly
+displayed.</p>
+<h3><a name="Date_notification_messages"></a>Date and Time Picker Control
+Notification Messages</h3>
+<p>A date and time picker (DTP) control sends notification messages when it
+receives user input or processes and reacts to callback fields. The parent of
+the control receives these notification messages in the form of <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_NOTIFY_cpp">
+WM_NOTIFY</MSHelp:link>
+ messages.</p>
+<p>The following notification messages are used with DTP controls.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Notification</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DTN_CLOSEUP_cpp">
+        DTN_CLOSEUP</MSHelp:link>
+      </td>
+      <td>Indicates that the drop-down month calendar is about to be removed.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DTN_DATETIMECHANGE_cpp">
+        DTN_DATETIMECHANGE</MSHelp:link>
+      </td>
+      <td>Signals a change within the DTP control.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DTN_DROPDOWN_cpp">
+        DTN_DROPDOWN</MSHelp:link>
+      </td>
+      <td>Indicates that the drop-down month calendar is about to be displayed.</td>
+    </tr>
+    <tr>
+      <td><b>DTN_FORMAT</b></td>
+      <td>Requests text to display in a portion of the format string described
+        as a callback field.</td>
+    </tr>
+    <tr>
+      <td><b>DTN_FORMATQUERY</b></td>
+      <td>Requests information about the maximum allowable size of the text to
+        be displayed in a callback field.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DTN_USERSTRING_cpp">
+        DTN_USERSTRING</MSHelp:link>
+      </td>
+      <td>Signals the end of a user's edit operation within the control. This
+        notification is sent only by DTP controls that use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="DTS_APPCANPARSE">
+        DTS_APPCANPARSE</MSHelp:link>
+        style.</td>
+    </tr>
+    <tr>
+      <td><MSHelp:link tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_DTN_WMKEYDOWN_cpp">
+        DTN_WMKEYDOWN</MSHelp:link>
+      </td>
+      <td>Signals that the user has pressed a key in a callback field of the DTP
+        control.</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="dtp_creating"></a>Creating a Date and Time Picker Control</h3>
+<p>To create a date and time picker (DTP) control, use the <b>CreateWindowEx</b>
+function, specifying DATETIMEPICK_CLASS as the window class. You must first
+register the window class by calling the <b>InitCommonControlsEx</b> function,
+while specifying the ICC_DATE_CLASSES bit in the accompanying <b>INITCOMMONCONTROLSEX</b>
+structure.</p>
+<p>The following example creates a DTP control in an existing modeless dialog
+box. It uses the DTS_SHOWNONE style to enable the user to simulate deactivation
+of the date within the control.</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">		
+<font color="blue">//</font><font color="green">  CreateDatePick creates a DTP control within a dialog box.</font>
+<font color="blue">//</font><font color="green">  Returns the handle to the new DTP control if successful, or NULL </font>
+<font color="blue">//</font><font color="green">  otherwise.</font>
+<font color="blue">//</font>
+<font color="blue">//</font><font color="green">    hwndMain - The handle to the main window.</font>
+<font color="blue">//</font><font color="green">    g_hinst  - global handle to the program instance.</font>
+
+HWND WINAPI CreateDatePick(hwndMain)
+{
+    HWND hwndDP = NULL;
+    HWND hwndDlg = NULL;
+    INITCOMMONCONTROLSEX icex;
+
+    icex.dwSize = sizeof(icex);
+    icex.dwICC = ICC_DATE_CLASSES;
+
+    InitCommonControlsEx(&amp;icex);
+
+    hwndDlg = CreateDialog  (g_hinst,
+                             MAKEINTRESOURCE(IDD_DIALOG1),
+                             hwndMain,
+                             DlgProc);
+
+    if(hwnDlg)
+        hwndDP = CreateWindowEx(0,
+                             DATETIMEPICK_CLASS,
+                             &quot;DateTime&quot;,
+                             WS_BORDER|WS_CHILD|WS_VISIBLE|DTS_SHOWNONE,
+                             20,50,220,20,
+                             hwndDlg,
+                             NULL,
+                             g_hinst,
+                             NULL);
+
+    return (hwndDP);
+}
+
+		</pre>
+<h3><a name="dtp_processing_notifications"></a>Processing Date and Time Picker
+Notifications</h3>
+<p>The following example processes the <b>DTN_DATETIMECHANGE</b>, <b>DTN_FORMAT</b>,
+<b>DTN_FORMATQUERY</b>, and <b>DTN_WMKEYDOWN</b> notifications by calling the <i>DoDateTimeChange</i>,
+<i>DoFormatQuery</i>, <i>DoFormat</i>, and <i>DoWMKeydown</i>
+application-defined functions.</p>
+<p>Other topics in this chapter provide additional information on these
+notifications. See <b>Supporting Callback Fields</b> and <b>Processing the
+DTN_DATETIMECHANGE Notification Message</b> for additional information.</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">		
+BOOL WINAPI DoNotify(HWND hwnd, WPARAM wParam, LPARAM lParam)
+{
+    LPNMHDR hdr = (LPNMHDR)lParam;
+
+    switch(hdr-&gt;code){
+
+        case DTN_DATETIMECHANGE:{
+            LPNMDATETIMECHANGE lpChange = (LPNMDATETIMECHANGE)lParam;
+            DoDateTimeChange(lpChange);
+        }
+	    break;
+
+        case DTN_FORMATQUERY:{
+            LPNMDATETIMEFORMATQUERY lpDTFQuery = (LPNMDATETIMEFORMATQUERY)lParam;
+
+            <font color="blue">//</font><font color="green"> Process DTN_FORMATQUERY to ensure that the control</font>
+            <font color="blue">//</font><font color="green"> displays callback information properly.</font>
+            DoFormatQuery(hdr-&gt;hwndFrom, lpDTFQuery);
+        }
+        break;
+
+        case DTN_FORMAT:{
+            LPNMDATETIMEFORMAT lpNMFormat = (LPNMDATETIMEFORMAT) lParam;
+
+            <font color="blue">//</font><font color="green"> Process DTN_FORMAT to supply information about callback</font>
+            <font color="blue">//</font><font color="green"> fields (fields) in the DTP control.</font>
+            DoFormat(hdr-&gt;hwndFrom, lpNMFormat);
+        }
+        break;
+
+        case DTN_WMKEYDOWN:{
+            LPNMDATETIMEWMKEYDOWN lpDTKeystroke = 
+                            (LPNMDATETIMEWMKEYDOWN)lParam;
+
+            <font color="blue">//</font><font color="green"> Process DTN_WMKEYDOWN to respond to a user's keystroke in</font>
+            <font color="blue">//</font><font color="green"> a callback field.</font>
+            DoWMKeydown(hdr-&gt;hwndFrom, lpDTKeystroke);
+        }
+        break;
+    }
+
+    <font color="blue">//</font><font color="green"> All of the above notifications require the owner to return zero.</font>
+    return FALSE;
+}
+		</pre>
+<p>&nbsp;</p>
+<h3><a name="dtp_processing_DTN_DATETIMECHANGE"></a>Processing the
+DTN_DATETIMECHANGE Notification</h3>
+<p>A date and time picker (DTP) control sends the <b>DTN_DATETIMECHANGE</b>
+message whenever a change occurs. This message will be generated if the user
+changes one of the fields in the control or changes the state of the control's
+check box (DTS_SHOWNONE only).</p>
+<p>The following example is an application-defined function designed to update a
+static control within a dialog box. The text within the static control is
+changed to reflect the current state of the DTP control.</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">		
+void WINAPI DoDateTimeChange(LPNMDATETIMECHANGE lpChange)
+{
+    <font color="blue">//</font><font color="green"> If the user has unchecked the DTP's check box, change the</font>
+    <font color="blue">//</font><font color="green"> text in a static control to show the appropriate message.</font>
+    <font color="blue">//</font>
+    <font color="blue">//</font><font color="green"> g_hwndDlg - a program-global address of a dialog box.</font>
+
+    if(lpChange-&gt;dwFlags == GDT_NONE)
+        SetDlgItemText(g_hwndDlg, IDC_STATUS, &quot;Disabled&quot;);
+    else
+        SetDlgItemText(g_hwndDlg, IDC_STATUS, &quot;Active&quot;);
+}
+
+		</pre>
+<h3><a name="_win32_dtp_callback_fields"></a>Supporting Callback Fields in a DTP
+control</h3>
+<p>If you plan to use callback fields with the date and time picker (DTP)
+controls in your application, you must be prepared to handle <b>DTN_FORMATQUERY</b>,
+<b>DTN_FORMAT</b>, and <b>DTN_WMKEYDOWN</b> notification messages. For
+additional information about callback fields, see <b>Callback fields</b>.</p>
+<p>This section contains information about how your application can process
+these notification messages. There are several examples of source code for
+application-defined functions. The following list shows notification messages
+with sample functions that process them.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <td><b>Notification Message</b></td>
+      <td><b>Sample Function</b></td>
+    </tr>
+    <tr>
+      <td><b>DTN_FORMATQUERY</b></td>
+      <td><b>DoFormatQuery</b></td>
+    </tr>
+    <tr>
+      <td><b>DTN_FORMAT</b></td>
+      <td><b>DoFormat</b></td>
+    </tr>
+    <tr>
+      <td><b>DTN_WMKEYDOWN</b></td>
+      <td><b>DoWMKeydown</b></td>
+    </tr>
+  </tbody>
+</table>
+<h4><a name="dtp_sample_DoFormatQuery"></a>The DoFormatQuery application-defined
+function</h4>
+<p>A date and time picker (DTP) control sends a <b>DTN_FORMATQUERY</b>
+notification message to request information about the maximum possible size of a
+callback field within the control. Handling this message ensures that all fields
+are displayed properly. The following <i>DoFormatQuery</i> application-defined
+function processes the <b>DTN_FORMATQUERY</b> notification message by
+calculating the width of the widest possible string for a given callback field.</p>
+<div class="clsNote">
+</div>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">		
+<font color="blue">//</font><font color="green">  DoFormatQuery processes DTN_FORMATQUERY messages to ensure that the</font>
+<font color="blue">//</font><font color="green">  DTP control displays callback fields properly.</font>
+<font color="blue">//</font>
+
+void WINAPI DoFormatQuery(
+ HWND hwndDP, 
+ LPNMDATETIMEFORMATQUERY lpDTFQuery)
+{
+    HDC hdc;
+    HFONT hFont, hOrigFont;
+
+    <font color="blue">//</font><font color="green">  Prepare the device context for GetTextExtentPoint32 call.</font>
+    hdc = GetDC(hwndDP);
+
+    hFont = FORWARD_WM_GETFONT(hwndDP, SendMessage);
+
+    if(!hFont)
+        hFont = (HFONT)GetStockObject(DEFAULT_GUI_FONT);
+
+    hOrigFont = SelectObject(hdc, hFont);
+
+    <font color="blue">//</font><font color="green"> Check to see if this is the callback segment desired. If so,</font>
+    <font color="blue">//</font><font color="green"> use the longest text segment to determine the maximum </font>
+    <font color="blue">//</font><font color="green"> width of the callback field, and then place the information into </font>
+    <font color="blue">//</font><font color="green"> the NMDATETIMEFORMATQUERY structure.</font>
+    if(!lstrcmp(&quot;XX&quot;,lpDTFQuery-&gt;pszFormat))
+	    GetTextExtentPoint32 (hdc,
+                          &quot;366&quot;,  <font color="blue">//</font><font color="green"> widest date string</font>
+                          3,
+	                      &amp;lpDTFQuery-&gt;szMax);
+
+    <font color="blue">//</font><font color="green"> Reset the font in the device context; then release the context.</font>
+    SelectObject(hdc,hOrigFont);
+    ReleaseDC(hwndDP, hdc);
+}
+
+		</pre>
+<h4><a name="dtp_sample_DoFormat"></a>The DoFormat application-defined function</h4>
+<p>A date and time picker (DTP) control sends the <b>DTN_FORMAT</b> notification
+to request text that will be displayed in a callback field of the control. By
+handling this notification message, you allow the DTP control to display
+information that it does not natively support.</p>
+<p>The following <i>DoFormat</i> application-defined function processes <b>DTN_FORMAT</b>
+notification messages by providing a text string for a callback field. <i>DoFormat</i>
+calls the <i>GetDayNum</i> application-defined function to request the day
+number to be used in the callback string.</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">		
+<font color="blue">//</font><font color="green">  DoFormat processes DTN_FORMAT to provide the text for a callback</font>
+<font color="blue">//</font><font color="green">  field in a DTP control. In this example, the callback field</font>
+<font color="blue">//</font><font color="green">  contains a value for the day of year. The function calls the </font>
+<font color="blue">//</font><font color="green">  application-defined function GetDayNum (below) to retrieve</font>
+<font color="blue">//</font><font color="green">  the correct value. StringCchPrintf truncates the formatted string if</font>
+<font color="blue">//</font><font color="green">  the entire string will not fit into the destination buffer. </font>
+
+void WINAPI DoFormat(HWND hwndDP, LPNMDATETIMEFORMAT lpDTFormat)
+{
+HRESULT hr = StringCchPrintf(lpDTFormat-&gt;szDisplay,
+                sizeof(lpDTFormat-&gt;szDisplay)/sizeof(lpDTFormat-&gt;szDisplay[0]),
+                &quot;%d&quot;,GetDayNum(&amp;lpDTFormat-&gt;st));
+if(SUCCEEDED(hr))
+{
+<font color="blue">//</font><font color="green"> TODO: Write code to handle the case when the function succeeds.      </font>
+}
+else
+{
+<font color="blue">//</font><font color="green"> TODO: Write code to handle the case when the function fails or the string </font>
+<font color="blue">//</font><font color="green"> is truncated.</font>
+}
+
+		</pre>
+<h4><a name="dtp_sample_GetDayNum"></a>The GetDayNum application-defined
+function</h4>
+<p>The application-defined sample function <i>DoFormat</i> calls the following <i>GetDayNum</i>
+application-defined function to request the day number based on the current
+date. <i>GetDayNum</i> returns an INT value that represents the current day of
+the year, from 0 to 366. This function calls another application-defined
+function, <i>IsLeapYr</i>, during processing.</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">		
+<font color="blue">//</font><font color="green">  GetDayNum is an application-defined function that retrieves the </font>
+<font color="blue">//</font><font color="green">  correct day of year value based on the contents of a given </font>
+<font color="blue">//</font><font color="green">  SYSTEMTIME structure. This function calls the IsLeapYr function to </font>
+<font color="blue">//</font><font color="green">  check if the current year is a leap year. The function returns an </font>
+<font color="blue">//</font><font color="green">  integer value that represents the day of year.</font>
+
+int WINAPI GetDayNum(SYSTEMTIME *st)
+{
+    int iNormYearAccum[ ] = {31,59,90,120,151,181,
+                            212,243,273,304,334,365};
+    int iLeapYearAccum[ ] = {31,60,91,121,152,182,
+                            213,244,274,305,335,366};
+    int iDayNum;
+
+    if(IsLeapYr(st-&gt;wYear))
+        iDayNum=iLeapYearAccum[st-&gt;wMonth-2]+st-&gt;wDay;
+    else
+        iDayNum=iNormYearAccum[st-&gt;wMonth-2]+st-&gt;wDay;
+
+    return (iDayNum);
+}
+		</pre>
+<h4><a name="dtp_sample_IsLeapYr"></a>The IsLeapYr application-defined function</h4>
+<p>The application-defined sample function <i>GetDayNum</i> calls the <i>IsLeapYr</i>
+function to determine whether the current year is a leap year. <i>IsLeapYr</i>
+returns a BOOL value that is TRUE if it is a leap year and FALSE otherwise.</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1"><font color="blue">//</font><font color="green">  IsLeapYr determines if a given year value is a leap year. The</font>
+<font color="blue">//</font><font color="green">  function returns TRUE if the current year is a leap year, and </font>
+<font color="blue">//</font><font color="green">  FALSE otherwise.</font>
+
+BOOL WINAPI IsLeapYr(int iYear)
+{
+    int iQuotient;
+    BOOL fLeapYr = FALSE;
+
+    <font color="blue">//</font><font color="green"> If the year is evenly divisible by 4 and not by 100, then this </font>
+    <font color="blue">//</font><font color="green"> is a leap year.</font>
+    if(!(iYear%4) &amp;&amp; (iYear%100)) 
+        fLeapYr = TRUE;
+    else{
+        <font color="blue">//</font><font color="green"> If the year is evenly divisible by 4 and 100, then check to</font>
+        <font color="blue">//</font><font color="green"> see if the quotient of year divided by 100 is also evenly </font>
+        <font color="blue">//</font><font color="green"> divisible by 4. If it is, then this is a leap year.</font>
+        if(!(iYear%4) &amp;&amp; !(iYear%100)){
+            iQuotient = iYear/100;
+            if(!(iQuotient%4)) fLeapYr = TRUE;
+        }
+    }
+
+    return (fLeapYr);
+}
+
+		</pre>
+<h4><a name="dtp_sample_DoWMKeydown"></a>The DoWMKeydown application-defined
+function</h4>
+<p>Date and time picker (DTP) controls send the <b>DTN_WMKEYDOWN</b> message to
+report that the user has typed input in a callback field. Handling this message
+allows you to emulate the same keyboard responses supported for standard DTP
+fields or provide custom responses. The following <i>DoWMKeydown</i>
+application-defined function provides an example of how <b>DTN_WMKEYDOWN</b>
+notifications can be handled.</p>
+<pre class="clsCode" style="DISPLAY: none" AUTOHILITE="1">		
+<font color="blue">//</font><font color="green">  DoWMKeydown increments or decrements the day of month according </font>
+<font color="blue">//</font><font color="green">  to user keyboard input.</font>
+
+void WINAPI DoWMKeydown(
+ HWND hwndDP,
+ LPNMDATETIMEWMKEYDOWN lpDTKeystroke)
+{
+    int delta =1;
+    if(!lstrcmp(lpDTKeystroke-&gt;pszFormat,&quot;XX&quot;)){
+        switch(lpDTKeystroke-&gt;nVirtKey){
+            case VK_DOWN:
+            case VK_SUBTRACT:
+                delta = -1;  <font color="blue">//</font><font color="green"> fall through</font>
+
+            case VK_UP:
+            case VK_ADD:
+                lpDTKeystroke-&gt;st.wDay += delta;
+                break;
+        }
+    }
+}
+
+		</pre>
+
+</body>
+
+</html>

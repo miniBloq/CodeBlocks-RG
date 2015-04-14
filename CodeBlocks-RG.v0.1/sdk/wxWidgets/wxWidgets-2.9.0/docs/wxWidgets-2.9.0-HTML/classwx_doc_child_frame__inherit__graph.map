@@ -1,0 +1,6 @@
+<area shape="rect" href="$classwx_frame.html" title="A frame is a window whose size and position can (usually) be changed by the user..." alt="" coords="59,337,136,369">
+<area shape="rect" href="$classwx_top_level_window.html" title="wxTopLevelWindow is a common base class for wxDialog and wxFrame." alt="" coords="25,255,169,287">
+<area shape="rect" href="$classwx_window.html" title="wxWindow is the base class for all windows and represents any visible object om screen..." alt="" coords="53,172,141,204">
+<area shape="rect" href="$classwx_evt_handler.html" title="A class that can handle events from the windowing system." alt="" coords="45,89,149,121">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="5,7,80,39">
+<area shape="rect" href="$classwx_trackable.html" title="Add&#45;on base class for a trackable object." alt="" coords="104,7,203,39">

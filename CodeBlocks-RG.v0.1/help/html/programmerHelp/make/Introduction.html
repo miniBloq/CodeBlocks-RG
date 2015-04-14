@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Introduction">Introduction</a>,
+Next:<a rel="next" accesskey="n" href="Makefiles.html#Makefiles">Makefiles</a>,
+Previous:<a rel="previous" accesskey="p" href="Overview.html#Overview">Overview</a>,
+Up:<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr><br>
+</div>
+
+<h2 class="chapter">An Introduction to Makefiles</h2>
+
+   <p>You need a file called a <dfn>makefile</dfn> to tell <code>make</code> what to do. 
+Most often, the makefile tells <code>make</code> how to compile and link a
+program.
+
+   <p>In this chapter, we will discuss a simple makefile that describes how to
+compile and link a text editor which consists of eight C source files
+and three header files.  The makefile can also tell <code>make</code> how to
+run miscellaneous commands when explicitly asked (for example, to remove
+certain files as a clean-up operation).  To see a more complex example
+of a makefile, see <a href="Complex-Makefile.html#Complex%20Makefile">Complex Makefile</a>.
+
+   <p>When <code>make</code> recompiles the editor, each changed C source file
+must be recompiled.  If a header file has changed, each C source file
+that includes the header file must be recompiled to be safe.  Each
+compilation produces an object file corresponding to the source file. 
+Finally, if any source file has been recompiled, all the object files,
+whether newly made or saved from previous compilations, must be linked
+together to produce the new executable editor.
+
+<ul class="menu">
+<li><a accesskey="1" href="Rule-Introduction.html#Rule%20Introduction">Rule Introduction</a>:            What a rule looks like. 
+<li><a accesskey="2" href="Simple-Makefile.html#Simple%20Makefile">Simple Makefile</a>:              A Simple Makefile
+<li><a accesskey="3" href="How-Make-Works.html#How%20Make%20Works">How Make Works</a>:               How <code>make</code> Processes This Makefile
+<li><a accesskey="4" href="Variables-Simplify.html#Variables%20Simplify">Variables Simplify</a>:           Variables Make Makefiles Simpler
+<li><a accesskey="5" href="make-Deduces.html#make%20Deduces">make Deduces</a>:                 Letting <code>make</code> Deduce the Commands
+<li><a accesskey="6" href="Combine-By-Prerequisite.html#Combine%20By%20Prerequisite">Combine By Prerequisite</a>:      Another Style of Makefile
+<li><a accesskey="7" href="Cleanup.html#Cleanup">Cleanup</a>:                      Rules for Cleaning the Directory
+</ul>
+
+   </body></html>
+

@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Environment">Environment</a>,
+Next:<a rel="next" accesskey="n" href="Target-specific.html#Target-specific">Target-specific</a>,
+Previous:<a rel="previous" accesskey="p" href="Defining.html#Defining">Defining</a>,
+Up:<a rel="up" accesskey="u" href="Using-Variables.html#Using%20Variables">Using Variables</a>
+<hr><br>
+</div>
+
+<h3 class="section">Variables from the Environment</h3>
+
+   <p>Variables in <code>make</code> can come from the environment in which
+<code>make</code> is run.  Every environment variable that <code>make</code> sees when
+it starts up is transformed into a <code>make</code> variable with the same name
+and value.  But an explicit assignment in the makefile, or with a command
+argument, overrides the environment.  (If the <code>-e</code> flag is specified,
+then values from the environment override assignments in the makefile. 
+See <a href="Options-Summary.html#Options%20Summary">Summary of Options</a>. 
+But this is not recommended practice.)
+
+   <p>Thus, by setting the variable <code>CFLAGS</code> in your environment, you can
+cause all C compilations in most makefiles to use the compiler switches you
+prefer.  This is safe for variables with standard or conventional meanings
+because you know that no makefile will use them for other things.  (But
+this is not totally reliable; some makefiles set <code>CFLAGS</code> explicitly
+and therefore are not affected by the value in the environment.)
+
+   <p>When <code>make</code> is invoked recursively, variables defined in the
+outer invocation can be passed to inner invocations through the
+environment (see <a href="Recursion.html#Recursion">Recursive Use of <code>make</code></a>).  By
+default, only variables that came from the environment or the command
+line are passed to recursive invocations.  You can use the
+<code>export</code> directive to pass other variables. 
+See <a href="Variables-Recursion.html#Variables%2fRecursion">Communicating Variables to a Sub-<code>make</code></a>, for full details.
+
+   <p>Other use of variables from the environment is not recommended.  It is not
+wise for makefiles to depend for their functioning on environment variables
+set up outside their control, since this would cause different users to get
+different results from the same makefile.  This is against the whole
+purpose of most makefiles.
+
+   <p>Such problems would be especially likely with the variable <code>SHELL</code>,
+which is normally present in the environment to specify the user's choice
+of interactive shell.  It would be very undesirable for this choice to
+affect <code>make</code>.  So <code>make</code> ignores the environment value of
+<code>SHELL</code> (except on MS-DOS and MS-Windows, where <code>SHELL</code> is
+usually not set.  See <a href="Execution.html#Execution">Special handling of SHELL on MS-DOS</a>.)
+
+   </body></html>
+

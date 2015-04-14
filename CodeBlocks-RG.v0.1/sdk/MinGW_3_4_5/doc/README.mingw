@@ -1,0 +1,6 @@
+This version of binutils was compiled from the vanila 2.18.50-20080109
+snapshot.  It was compiled with the following options:
+
+./configure --disable-nls
+
+make CFLAGS="-s -O2 -mms-bitfields -mtune=i686"

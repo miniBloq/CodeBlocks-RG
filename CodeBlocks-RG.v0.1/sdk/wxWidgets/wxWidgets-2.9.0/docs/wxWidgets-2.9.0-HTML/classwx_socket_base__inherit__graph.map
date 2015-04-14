@@ -1,0 +1,7 @@
+<area shape="rect" href="$classwx_datagram_socket.html" title="wxDatagramSocket" alt="" coords="5,172,144,204">
+<area shape="rect" href="$classwx_socket_client.html" title="wxSocketClient" alt="" coords="168,172,283,204">
+<area shape="rect" href="$classwx_socket_server.html" title="wxSocketServer" alt="" coords="307,172,427,204">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="188,7,263,39">
+<area shape="rect" href="$classwx_protocol.html" title="Represents a protocol for use with wxURL." alt="" coords="181,255,269,287">
+<area shape="rect" href="$classwx_f_t_p.html" title="wxFTP can be used to establish a connection to an FTP server and perform all the..." alt="" coords="147,337,211,369">
+<area shape="rect" href="$classwx_h_t_t_p.html" title="wxHTTP can be used to establish a connection to an HTTP server." alt="" coords="235,337,309,369">

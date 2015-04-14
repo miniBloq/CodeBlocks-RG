@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Override%20Directive">Override Directive</a>,
+Next:<a rel="next" accesskey="n" href="Defining.html#Defining">Defining</a>,
+Previous:<a rel="previous" accesskey="p" href="Appending.html#Appending">Appending</a>,
+Up:<a rel="up" accesskey="u" href="Using-Variables.html#Using%20Variables">Using Variables</a>
+<hr><br>
+</div>
+
+<h3 class="section">The <code>override</code> Directive</h3>
+
+   <p>If a variable has been set with a command argument
+(see <a href="Overriding.html#Overriding">Overriding Variables</a>),
+then ordinary assignments in the makefile are ignored.  If you want to set
+the variable in the makefile even though it was set with a command
+argument, you can use an <code>override</code> directive, which is a line that
+looks like this:
+
+<pre class="example">     override <var>variable</var> = <var>value</var>
+     </pre>
+
+<p>or
+
+<pre class="example">     override <var>variable</var> := <var>value</var>
+     </pre>
+
+   <p>To append more text to a variable defined on the command line, use:
+
+<pre class="example">     override <var>variable</var> += <var>more text</var>
+     </pre>
+
+<p>See <a href="Appending.html#Appending">Appending More Text to Variables</a>.
+
+   <p>The <code>override</code> directive was not invented for escalation in the war
+between makefiles and command arguments.  It was invented so you can alter
+and add to values that the user specifies with command arguments.
+
+   <p>For example, suppose you always want the <code>-g</code> switch when you run the
+C compiler, but you would like to allow the user to specify the other
+switches with a command argument just as usual.  You could use this
+<code>override</code> directive:
+
+<pre class="example">     override CFLAGS += -g
+     </pre>
+
+   <p>You can also use <code>override</code> directives with <code>define</code> directives. 
+This is done as you might expect:
+
+<pre class="example">     override define foo
+     bar
+     endef
+     </pre>
+
+<p>See <a href="Defining.html#Defining">Defining Variables Verbatim</a>.
+
+</body></html>
+

@@ -1,0 +1,7 @@
+<area shape="rect" href="$classwx_text_ctrl.html" title="A text control allows text to be displayed and edited." alt="" coords="109,337,195,369">
+<area shape="rect" href="$classwx_control.html" title="This is the base class for a control or &quot;widget&quot;." alt="" coords="57,255,137,287">
+<area shape="rect" href="$classwx_window.html" title="wxWindow is the base class for all windows and represents any visible object om screen..." alt="" coords="53,172,141,204">
+<area shape="rect" href="$classwx_evt_handler.html" title="A class that can handle events from the windowing system." alt="" coords="45,89,149,121">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="5,7,80,39">
+<area shape="rect" href="$classwx_trackable.html" title="Add&#45;on base class for a trackable object." alt="" coords="104,7,203,39">
+<area shape="rect" href="$classwx_text_entry.html" title="Common base class for single line text entry fields." alt="" coords="161,255,255,287">

@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/cppio/examples.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>C++ I/O Examples</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C++ I/O</a> &gt; <a href="examples.html">Examples</a>
+  </div>
+
+  <div class="name-format">
+    C++ I/O Examples
+  </div>
+
+  <h2>Reading From Files</h2>
+
+  <p>Assume that we have a file named <em>data.txt</em> that
+  contains this text:</p>
+
+  <pre class="example-data">
+  Fry: One Jillion dollars.
+  [Everyone gasps.]
+  Auctioneer: Sir, that's not a number.
+  [Everyone gasps.] 
+</pre>
+
+  <p>We could use this code to read data from the file, word by word:</p>
+
+<pre class="prettyprint">
+  ifstream fin("data.txt");
+  string s;
+  while( fin &gt;&gt; s ) {
+    cout &lt;&lt; "Read from file: " &lt;&lt; s &lt;&lt; endl;
+  }
+</pre>
+
+  <p>When used in this manner, we'll get space-delimited bits of text
+  from the file:</p>
+
+  <pre class="example-output">
+  Read from file: Fry:
+  Read from file: One
+  Read from file: Jillion
+  Read from file: dollars.
+  Read from file: [Everyone
+  Read from file: gasps.]
+  Read from file: Auctioneer:
+  Read from file: Sir,
+  Read from file: that's
+  Read from file: not
+  Read from file: a
+  Read from file: number.
+  Read from file: [Everyone
+  Read from file: gasps.]
+</pre>
+
+  <p>Note that in the previous example, all of the whitespace that
+  separated words (including newlines) was lost.  If we were
+  interested in preserving whitespace, we could read the file in
+  line-by-line using the <a href="getline.html">I/O getline() function</a>.</p>
+
+<pre class="prettyprint">
+  ifstream fin("data.txt");
+  const int LINE_LENGTH = 100;
+  char str[LINE_LENGTH];
+
+  while( fin.getline(str,LINE_LENGTH) ) {
+    cout &lt;&lt; "Read from file: " &lt;&lt; str &lt;&lt; endl;
+  }
+</pre>
+
+  <p>Reading line-by-line produces the following output:</p>
+
+  <pre class="example-output">
+  Read from file: Fry: One Jillion dollars.
+  Read from file: [Everyone gasps.]
+  Read from file: Auctioneer: Sir, that's not a number.
+  Read from file: [Everyone gasps.]
+</pre>
+
+  <p>If you want to avoid reading into character arrays, you can use
+  the <a href="../cppstring/getline.html">C++ string getline()</a> function
+  to read lines into <a href="../cppstring/index-2.html">strings</a>:</p>
+
+<pre class="prettyprint">
+  ifstream fin("data.txt");
+  string s;
+  while( getline(fin,s) ) {
+    cout &lt;&lt; "Read from file: " &lt;&lt; s &lt;&lt; endl;
+  }
+</pre>
+
+  <h2>Checking For Errors</h2>
+
+  <p>Simply evaluating an I/O object in a boolean context will return
+  false if any errors have occurred:</p>
+
+<pre class="prettyprint">
+  string filename = "data.txt";
+  ifstream fin( filename.c_str() );
+  if( !fin ) {
+    cout &lt;&lt; "Error opening " &lt;&lt; filename &lt;&lt; " for input" &lt;&lt; endl;
+    exit(-1);
+  }
+</pre>
+
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/examples.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

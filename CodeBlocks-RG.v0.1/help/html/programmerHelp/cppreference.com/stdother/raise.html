@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/stdother/raise.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>raise</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">Other Standard C Functions</a> &gt; <a href=
+    "raise.html">raise</a>
+  </div>
+
+  <div class="name-format">
+    raise
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;csignal&gt;
+  int raise( int signal );
+</pre>
+
+  <p>The raise() function sends the specified <em>signal</em> to the
+  program. Some signals:</p>
+
+  <table class="code-table">
+    <tr>
+      <th class="code-table-th">Signal</th>
+
+      <th class="code-table-th">Meaning</th>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">SIGABRT</td>
+
+      <td class="code-table-td">Termination error</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">SIGFPE</td>
+
+      <td class="code-table-td">Floating pointer error</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">SIGILL</td>
+
+      <td class="code-table-td">Bad instruction</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">SIGINT</td>
+
+      <td class="code-table-td">User presed CTRL-C</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">SIGSEGV</td>
+
+      <td class="code-table-td">Illegal memory access</td>
+    </tr>
+
+    <tr>
+      <td class="code-table-td">SIGTERM</td>
+
+      <td class="code-table-td">Terminate program</td>
+    </tr>
+  </table>
+
+  <p>The return value is zero upon success, nonzero on failure.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="signal.html">signal</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/stdother/raise.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

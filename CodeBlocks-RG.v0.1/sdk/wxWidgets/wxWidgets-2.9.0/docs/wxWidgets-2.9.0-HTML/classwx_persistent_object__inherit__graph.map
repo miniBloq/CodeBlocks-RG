@@ -1,0 +1,6 @@
+<area shape="rect" href="$classwx_persistent_window.html" title="Base class for persistent windows." alt="" coords="247,5,425,37">
+<area shape="rect" href="$classwx_persistent_window.html" title="wxPersistentWindow\&lt; wxBookCtrlBase \&gt;" alt="" coords="200,61,472,93">
+<area shape="rect" href="$classwx_persistent_window.html" title="wxPersistentWindow\&lt; wxTopLevelWindow \&gt;" alt="" coords="189,117,483,149">
+<area shape="rect" href="$classwx_persistent_book_ctrl.html" title="Persistence adapter for wxBookCtrlBase." alt="" coords="531,61,680,93">
+<area shape="rect" href="$classwx_persistent_tree_book.html" title="Persistence adapter for wxTreebook." alt="" coords="729,61,887,93">
+<area shape="rect" href="$classwx_persistent_t_l_w.html" title="Persistence adapter for wxTopLevelWindow." alt="" coords="541,117,669,149">

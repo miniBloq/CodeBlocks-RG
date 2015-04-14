@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Interrupts">Interrupts</a>,
+Next:<a rel="next" accesskey="n" href="Recursion.html#Recursion">Recursion</a>,
+Previous:<a rel="previous" accesskey="p" href="Errors.html#Errors">Errors</a>,
+Up:<a rel="up" accesskey="u" href="Commands.html#Commands">Commands</a>
+<hr><br>
+</div>
+
+<h3 class="section">Interrupting or Killing <code>make</code></h3>
+
+   <p>If <code>make</code> gets a fatal signal while a command is executing, it may
+delete the target file that the command was supposed to update.  This is
+done if the target file's last-modification time has changed since
+<code>make</code> first checked it.
+
+   <p>The purpose of deleting the target is to make sure that it is remade from
+scratch when <code>make</code> is next run.  Why is this?  Suppose you type
+<kbd>Ctrl-c</kbd> while a compiler is running, and it has begun to write an
+object file <code>foo.o</code>.  The <kbd>Ctrl-c</kbd> kills the compiler, resulting
+in an incomplete file whose last-modification time is newer than the source
+file <code>foo.c</code>.  But <code>make</code> also receives the <kbd>Ctrl-c</kbd> signal
+and deletes this incomplete file.  If <code>make</code> did not do this, the next
+invocation of <code>make</code> would think that <code>foo.o</code> did not require
+updating--resulting in a strange error message from the linker when it
+tries to link an object file half of which is missing.
+
+   <p>You can prevent the deletion of a target file in this way by making the
+special target <code>.PRECIOUS</code> depend on it.  Before remaking a target,
+<code>make</code> checks to see whether it appears on the prerequisites of
+<code>.PRECIOUS</code>, and thereby decides whether the target should be deleted
+if a signal happens.  Some reasons why you might do this are that the
+target is updated in some atomic fashion, or exists only to record a
+modification-time (its contents do not matter), or must exist at all
+times to prevent other sorts of trouble.
+
+   </body></html>
+

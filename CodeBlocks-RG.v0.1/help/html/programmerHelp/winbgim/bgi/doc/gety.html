@@ -1,0 +1,81 @@
+<TITLE>BGI Documentation for 
+gety
+</TITLE>
+<H2>
+gety
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+int gety(void);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+gety returns the current graphics position's y-coordinate. The value is viewport-relative.
+
+
+<P><DT><B>Return Value</B><DD>
+gety returns the y-coordinate of the current position.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="getmaxy.html"> getmaxy </A>
+<DD><A HREF="getviewsettings.html"> getviewsettings </A>
+<DD><A HREF="getx.html"> getx </A>
+<DD><A HREF="moveto.html"> moveto </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* gety example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   char msg[80];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   /* move to the screen center point */
+   moveto(getmaxx() / 2, getmaxy() / 2);
+
+   /* create a message string */
+   sprintf(msg, "&lt;-(%d, %d) is the here.", getx(), gety());
+
+   /* display the message */
+   outtext(msg);
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="make%20Deduces">make Deduces</a>,
+Next:<a rel="next" accesskey="n" href="Combine-By-Prerequisite.html#Combine%20By%20Prerequisite">Combine By Prerequisite</a>,
+Previous:<a rel="previous" accesskey="p" href="Variables-Simplify.html#Variables%20Simplify">Variables Simplify</a>,
+Up:<a rel="up" accesskey="u" href="Introduction.html#Introduction">Introduction</a>
+<hr><br>
+</div>
+
+<h3 class="section">Letting <code>make</code> Deduce the Commands</h3>
+
+   <p>It is not necessary to spell out the commands for compiling the individual
+C source files, because <code>make</code> can figure them out: it has an
+<dfn>implicit rule</dfn> for updating a <code>.o</code> file from a correspondingly
+named <code>.c</code> file using a <code>cc -c</code> command.  For example, it will
+use the command <code>cc -c main.c -o main.o</code> to compile <code>main.c</code> into
+<code>main.o</code>.  We can therefore omit the commands from the rules for the
+object files.  See <a href="Implicit-Rules.html#Implicit%20Rules">Using Implicit Rules</a>.
+
+   <p>When a <code>.c</code> file is used automatically in this way, it is also
+automatically added to the list of prerequisites.  We can therefore omit
+the <code>.c</code> files from the prerequisites, provided we omit the commands.
+
+   <p>Here is the entire example, with both of these changes, and a variable
+<code>objects</code> as suggested above:
+
+<pre class="example">     objects = main.o kbd.o command.o display.o \
+               insert.o search.o files.o utils.o
+     
+     edit : $(objects)
+             cc -o edit $(objects)
+     
+     main.o : defs.h
+     kbd.o : defs.h command.h
+     command.o : defs.h command.h
+     display.o : defs.h buffer.h
+     insert.o : defs.h buffer.h
+     search.o : defs.h buffer.h
+     files.o : defs.h buffer.h command.h
+     utils.o : defs.h
+     
+     .PHONY : clean
+     clean :
+             rm edit $(objects)
+     </pre>
+
+<p>This is how we would write the makefile in actual practice.  (The
+complications associated with <code>clean</code> are described elsewhere. 
+See <a href="Phony-Targets.html#Phony%20Targets">Phony Targets</a>, and <a href="Errors.html#Errors">Errors in Commands</a>.)
+
+   <p>Because implicit rules are so convenient, they are important.  You
+will see them used frequently.
+
+   </body></html>
+

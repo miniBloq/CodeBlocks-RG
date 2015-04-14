@@ -1,0 +1,173 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Special%20Targets">Special Targets</a>,
+Next:<a rel="next" accesskey="n" href="Multiple-Targets.html#Multiple%20Targets">Multiple Targets</a>,
+Previous:<a rel="previous" accesskey="p" href="Empty-Targets.html#Empty%20Targets">Empty Targets</a>,
+Up:<a rel="up" accesskey="u" href="Rules.html#Rules">Rules</a>
+<hr><br>
+</div>
+
+<h3 class="section">Special Built-in Target Names</h3>
+
+   <p>Certain names have special meanings if they appear as targets.
+
+     <dl>
+<dt><code>.PHONY</code>
+     <dd>
+The prerequisites of the special target <code>.PHONY</code> are considered to
+be phony targets.  When it is time to consider such a target,
+<code>make</code> will run its commands unconditionally, regardless of
+whether a file with that name exists or what its last-modification
+time is.  See <a href="Phony-Targets.html#Phony%20Targets">Phony Targets</a>.
+
+     <br><dt><code>.SUFFIXES</code>
+     <dd>
+The prerequisites of the special target <code>.SUFFIXES</code> are the list
+of suffixes to be used in checking for suffix rules. 
+See <a href="Suffix-Rules.html#Suffix%20Rules">Old-Fashioned Suffix Rules</a>.
+
+     <br><dt><code>.DEFAULT</code>
+     <dd>
+The commands specified for <code>.DEFAULT</code> are used for any target for
+which no rules are found (either explicit rules or implicit rules). 
+See <a href="Last-Resort.html#Last%20Resort">Last Resort</a>.  If <code>.DEFAULT</code> commands are specified, every
+file mentioned as a prerequisite, but not as a target in a rule, will have
+these commands executed on its behalf.  See <a href="Implicit-Rule-Search.html#Implicit%20Rule%20Search">Implicit Rule Search Algorithm</a>.
+
+     <br><dt><code>.PRECIOUS</code>
+     <dd>
+
+     <p>The targets which <code>.PRECIOUS</code> depends on are given the following
+special treatment: if <code>make</code> is killed or interrupted during the
+execution of their commands, the target is not deleted. 
+See <a href="Interrupts.html#Interrupts">Interrupting or Killing <code>make</code></a>.  Also, if the
+target is an intermediate file, it will not be deleted after it is no
+longer needed, as is normally done.  See <a href="Chained-Rules.html#Chained%20Rules">Chains of Implicit Rules</a>.  In this latter respect it overlaps with the
+<code>.SECONDARY</code> special target.
+
+     <p>You can also list the target pattern of an implicit rule (such as
+<code>%.o</code>) as a prerequisite file of the special target <code>.PRECIOUS</code>
+to preserve intermediate files created by rules whose target patterns
+match that file's name.
+
+     <br><dt><code>.INTERMEDIATE</code>
+     <dd>
+
+     <p>The targets which <code>.INTERMEDIATE</code> depends on are treated as
+intermediate files.  See <a href="Chained-Rules.html#Chained%20Rules">Chains of Implicit Rules</a>. 
+<code>.INTERMEDIATE</code> with no prerequisites has no effect.
+
+     <br><dt><code>.SECONDARY</code>
+     <dd>
+
+     <p>The targets which <code>.SECONDARY</code> depends on are treated as
+intermediate files, except that they are never automatically deleted. 
+See <a href="Chained-Rules.html#Chained%20Rules">Chains of Implicit Rules</a>.
+
+     <p><code>.SECONDARY</code> with no prerequisites causes all targets to be treated
+as secondary (i.e., no target is removed because it is considered
+intermediate).
+
+     <br><dt><code>.DELETE_ON_ERROR</code>
+     <dd>
+
+     <p>If <code>.DELETE_ON_ERROR</code> is mentioned as a target anywhere in the
+makefile, then <code>make</code> will delete the target of a rule if it has
+changed and its commands exit with a nonzero exit status, just as it
+does when it receives a signal.  See <a href="Errors.html#Errors">Errors in Commands</a>.
+
+     <br><dt><code>.IGNORE</code>
+     <dd>
+If you specify prerequisites for <code>.IGNORE</code>, then <code>make</code> will
+ignore errors in execution of the commands run for those particular
+files.  The commands for <code>.IGNORE</code> are not meaningful.
+
+     <p>If mentioned as a target with no prerequisites, <code>.IGNORE</code> says to
+ignore errors in execution of commands for all files.  This usage of
+<code>.IGNORE</code> is supported only for historical compatibility.  Since
+this affects every command in the makefile, it is not very useful; we
+recommend you use the more selective ways to ignore errors in specific
+commands.  See <a href="Errors.html#Errors">Errors in Commands</a>.
+
+     <br><dt><code>.LOW_RESOLUTION_TIME</code>
+     <dd>
+If you specify prerequisites for <code>.LOW_RESOLUTION_TIME</code>,
+<code>make</code> assumes that these files are created by commands that
+generate low resolution time stamps.  The commands for
+<code>.LOW_RESOLUTION_TIME</code> are not meaningful.
+
+     <p>The high resolution file time stamps of many modern hosts lessen the
+chance of <code>make</code> incorrectly concluding that a file is up to
+date.  Unfortunately, these hosts provide no way to set a high
+resolution file time stamp, so commands like <code>cp -p</code> that
+explicitly set a file's time stamp must discard its subsecond part.  If
+a file is created by such a command, you should list it as a
+prerequisite of <code>.LOW_RESOLUTION_TIME</code> so that <code>make</code> does
+not mistakenly conclude that the file is out of date.  For example:
+
+     <pre class="example">          .LOW_RESOLUTION_TIME: dst
+          dst: src
+                  cp -p src dst
+          </pre>
+
+     <p>Since <code>cp -p</code> discards the subsecond part of <code>src</code>'s time
+stamp, <code>dst</code> is typically slightly older than <code>src</code> even when
+it is up to date.  The <code>.LOW_RESOLUTION_TIME</code> line causes
+<code>make</code> to consider <code>dst</code> to be up to date if its time stamp
+is at the start of the same second that <code>src</code>'s time stamp is in.
+
+     <p>Due to a limitation of the archive format, archive member time stamps
+are always low resolution.  You need not list archive members as
+prerequisites of <code>.LOW_RESOLUTION_TIME</code>, as <code>make</code> does this
+automatically.
+
+     <br><dt><code>.SILENT</code>
+     <dd>
+If you specify prerequisites for <code>.SILENT</code>, then <code>make</code> will
+not print the commands to remake those particular files before executing
+them.  The commands for <code>.SILENT</code> are not meaningful.
+
+     <p>If mentioned as a target with no prerequisites, <code>.SILENT</code> says not
+to print any commands before executing them.  This usage of
+<code>.SILENT</code> is supported only for historical compatibility.  We
+recommend you use the more selective ways to silence specific commands. 
+See <a href="Echoing.html#Echoing">Command Echoing</a>.  If you want to silence all commands
+for a particular run of <code>make</code>, use the <code>-s</code> or
+<code>--silent</code> option (see <a href="Options-Summary.html#Options%20Summary">Options Summary</a>).
+
+     <br><dt><code>.EXPORT_ALL_VARIABLES</code>
+     <dd>
+Simply by being mentioned as a target, this tells <code>make</code> to
+export all variables to child processes by default. 
+See <a href="Variables-Recursion.html#Variables%2fRecursion">Communicating Variables to a Sub-<code>make</code></a>.
+
+     <br><dt><code>.NOTPARALLEL</code>
+     <dd>
+
+     <p>If <code>.NOTPARALLEL</code> is mentioned as a target, then this invocation of
+<code>make</code> will be run serially, even if the <code>-j</code> option is
+given.  Any recursively invoked <code>make</code> command will still be run in
+parallel (unless its makefile contains this target).  Any prerequisites
+on this target are ignored. 
+</dl>
+
+   <p>Any defined implicit rule suffix also counts as a special target if it
+appears as a target, and so does the concatenation of two suffixes, such
+as <code>.c.o</code>.  These targets are suffix rules, an obsolete way of
+defining implicit rules (but a way still widely used).  In principle, any
+target name could be special in this way if you break it in two and add
+both pieces to the suffix list.  In practice, suffixes normally begin with
+<code>.</code>, so these special target names also begin with <code>.</code>. 
+See <a href="Suffix-Rules.html#Suffix%20Rules">Old-Fashioned Suffix Rules</a>.
+
+   </body></html>
+

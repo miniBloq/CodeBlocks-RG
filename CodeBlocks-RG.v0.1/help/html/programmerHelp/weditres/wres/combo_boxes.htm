@@ -1,0 +1,100 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="fr">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Combo boxes</title>
+</head>
+
+<body>
+
+<h2>Combo boxes</h2>
+<p>A combo box consists of a list and a selection field. The list presents the
+options that a user can select and the selection field displays the current
+selection. Except in drop-down list boxes, the selection field is an edit
+control and can be used to enter text not available in the list.</p>
+<p>Combo boxes can be characterized by type and style. Combo box types determine
+whether the combo box list is a drop-down list and whether the selection field
+is an edit control. A drop-down list appears only when the user opens it, so it
+uses less screen space than a list that is always visible. If the selection
+field is an edit control, the user can enter information not available in the
+list; otherwise, the user can only select items in the list.</p>
+<p>The following table shows the three combo box types and indicates their
+drop-down list and edit control attributes.</p>
+<table class="clsStd">
+  <tbody>
+    <tr>
+      <th>Combo box type</th>
+      <th>Drop-down list</th>
+      <th>Edit control</th>
+    </tr>
+    <tr>
+      <td>Drop-down combo box</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Drop-down list box</td>
+      <td>Yes</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>Simple combo box</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+<p>Combo box styles define specific properties of a combo box. You can combine
+styles; however some styles only apply to certain combo box types. </p>
+<p>Styles</p>
+<ul>
+  <li><b>No height adjust</b>.Specifies that the size of the combo box is
+    exactly the size specified by the application when it created the combo box.
+    Normally, the system sizes a combo box so that it does not display partial
+    items.</li>
+  <li><b>Local memory</b>. Specifies that an owner-drawn combo box contains
+    items consisting of strings. The combo box maintains the memory and address
+    for the strings so the application can use the <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CB_GETLBTEXT_cpp">
+    CB_GETLBTEXT</MSHelp:link>
+    message to retrieve the text for a particular item.</li>
+  <li><b>DOS char convertion</b>.Converts text entered in the combo box edit
+    control from the Windows character set to the OEM character set and then
+    back to the Windows character set. This ensures proper character conversion
+    when the application calls the <MSHelp:link 
+tabIndex=0 xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_CharToOem">
+    CharToOem</MSHelp:link>
+    function to convert a Windows string in the combo box to OEM characters.
+    This style is most useful for combo boxes that contain file names and
+    applies only to combo boxes created with the CBS_SIMPLE or CBS_DROPDOWN
+    style.</li>
+  <li><b>Owner draw fixed</b>.Specifies that the owner of the list box is
+    responsible for drawing its contents and that the items in the list box are
+    all the same height. The owner window receives a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_MEASUREITEM_cpp">
+    WM_MEASUREITEM</MSHelp:link>
+    message when the combo box is created and a <MSHelp:link tabIndex=0 
+xmlns:MSHelp="http://msdn.microsoft.com/mshelp" 
+keywords="_win32_WM_DRAWITEM_cpp">
+    WM_DRAWITEM</MSHelp:link>
+    message when a visual aspect of the combo box has changed.</li>
+  <li><b>Owner draw variable</b>.Specifies that the owner of the list box is
+    responsible for drawing its contents and that the items in the list box are
+    variable in height. The owner window receives a <b>WM_MEASUREITEM</b>
+    message for each item in the combo box when you create the combo box and a <b>WM_DRAWITEM</b>
+    message when a visual aspect of the combo box has changed.</li>
+  <li><b>Auto hscroll</b>. Automatically scrolls the text in an edit control to
+    the right when the user types a character at the end of the line. If this
+    style is not set, only text that fits within the rectangular boundary is
+    allowed.</li>
+</ul>
+
+</body>
+
+</html>

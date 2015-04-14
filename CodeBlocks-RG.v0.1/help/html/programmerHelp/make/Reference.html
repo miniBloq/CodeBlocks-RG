@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Reference">Reference</a>,
+Next:<a rel="next" accesskey="n" href="Flavors.html#Flavors">Flavors</a>,
+Previous:<a rel="previous" accesskey="p" href="Using-Variables.html#Using%20Variables">Using Variables</a>,
+Up:<a rel="up" accesskey="u" href="Using-Variables.html#Using%20Variables">Using Variables</a>
+<hr><br>
+</div>
+
+<h3 class="section">Basics of Variable References</h3>
+
+   <p>To substitute a variable's value, write a dollar sign followed by the name
+of the variable in parentheses or braces: either <code>$(foo)</code> or
+<code>${foo}</code> is a valid reference to the variable <code>foo</code>.  This
+special significance of <code>$</code> is why you must write <code>$$</code> to have
+the effect of a single dollar sign in a file name or command.
+
+   <p>Variable references can be used in any context: targets, prerequisites,
+commands, most directives, and new variable values.  Here is an
+example of a common case, where a variable holds the names of all the
+object files in a program:
+
+<pre class="example">     objects = program.o foo.o utils.o
+     program : $(objects)
+             cc -o program $(objects)
+     
+     $(objects) : defs.h
+     </pre>
+
+   <p>Variable references work by strict textual substitution.  Thus, the rule
+
+<pre class="example">     foo = c
+     prog.o : prog.$(foo)
+             $(foo)$(foo) -$(foo) prog.$(foo)
+     </pre>
+
+<p>could be used to compile a C program <code>prog.c</code>.  Since spaces before
+the variable value are ignored in variable assignments, the value of
+<code>foo</code> is precisely <code>c</code>.  (Don't actually write your makefiles
+this way!)
+
+   <p>A dollar sign followed by a character other than a dollar sign,
+open-parenthesis or open-brace treats that single character as the
+variable name.  Thus, you could reference the variable <code>x</code> with
+<code>$x</code>.  However, this practice is strongly discouraged, except in
+the case of the automatic variables (see <a href="Automatic.html#Automatic">Automatic Variables</a>).
+
+   </body></html>
+

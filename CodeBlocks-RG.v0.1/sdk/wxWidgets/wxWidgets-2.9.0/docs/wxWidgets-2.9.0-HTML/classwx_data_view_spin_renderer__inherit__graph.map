@@ -1,0 +1,3 @@
+<area shape="rect" href="$classwx_data_view_custom_renderer.html" title="You need to derive a new class from wxDataViewCustomRenderer in order to write a..." alt="" coords="5,172,205,204">
+<area shape="rect" href="$classwx_data_view_renderer.html" title="This class is used by wxDataViewCtrl to render the individual cells." alt="" coords="29,89,181,121">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="68,7,143,39">

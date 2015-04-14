@@ -1,0 +1,89 @@
+<TITLE>BGI Documentation for 
+getpalettesize
+</TITLE>
+<H2>
+getpalettesize
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+int getpalettesize(void);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+getpalettesize is used to determine how many palette entries can be set for the current graphics mode. For example, the EGA in color mode returns 16.
+
+
+<P><DT><B>Return Value</B><DD>
+getpalettesize returns the number of palette entries in the current palette.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+The <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> version of
+getpalettesize returns
+16 for the
+palette color. However, in addition to the palette colors,
+the programmer may also use 
+<A HREF="wincolor.html">RGB colors</A>.
+
+<P><DT><B>See also</B>
+<DD><A HREF="setallpalette.html"> setallpalette </A>
+<DD><A HREF="setpalette.html"> setpalette </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* getpalettesize example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main()
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int midx, midy;
+   char psize[80];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+
+   /* convert palette size info into string */
+   sprintf(psize, "The palette has %d modifiable entries.",getpalettesize());
+
+   /* display the information */
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+   outtextxy(midx, midy, psize);
+
+   /* clean up */
+   getch();
+   closegraph();
+
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

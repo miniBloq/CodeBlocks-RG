@@ -1,0 +1,91 @@
+<TITLE>BGI Documentation for 
+moverel
+</TITLE>
+<H2>
+moverel
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void moverel(int dx, int dy);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+moverel moves the current position (CP) dx pixels in the x direction and dy pixels in the y direction.
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="moveto.html"> moveto </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* moverel example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   char msg[80];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   /* move the CP to location (20,30) */
+   moveto(20,30);
+
+   /* plot a pixel at the CP */
+   putpixel(getx(), gety(), getmaxcolor());
+
+   /* create and output a message at (20,30) */
+   sprintf(msg, " (%d, %d)", getx(), gety());
+   outtextxy(20,30, msg);
+
+   /* move to a point a relative distance away from the current CP */
+   moverel(100, 100);
+
+
+   /* plot a pixel at the CP */
+   putpixel(getx(), gety(), getmaxcolor());
+
+   /* create and output a message at CP */
+   sprintf(msg, " (%d, %d)", getx(), gety());
+   outtext(msg);
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

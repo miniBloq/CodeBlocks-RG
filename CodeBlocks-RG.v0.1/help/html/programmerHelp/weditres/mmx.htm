@@ -1,0 +1,1483 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./mmx_files/filelist.xml">
+<link rel=Edit-Time-Data href="./mmx_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>Proposal for an MMX C-Interface</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Jacob Navia</o:Author>
+  <o:LastAuthor>jacob navia</o:LastAuthor>
+  <o:Revision>5</o:Revision>
+  <o:TotalTime>109</o:TotalTime>
+  <o:LastPrinted>2254-05-16T19:52:00Z</o:LastPrinted>
+  <o:Created>2001-05-26T07:27:00Z</o:Created>
+  <o:LastSaved>2001-11-21T12:16:00Z</o:LastSaved>
+  <o:Pages>6</o:Pages>
+  <o:Words>1922</o:Words>
+  <o:Characters>10961</o:Characters>
+  <o:Company>logiciels/informatique</o:Company>
+  <o:Lines>91</o:Lines>
+  <o:Paragraphs>21</o:Paragraphs>
+  <o:CharactersWithSpaces>13460</o:CharactersWithSpaces>
+  <o:Version>9.4402</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:HyphenationZone>21</w:HyphenationZone>
+  <w:DrawingGridHorizontalSpacing>6 pt</w:DrawingGridHorizontalSpacing>
+  <w:DrawingGridVerticalSpacing>6 pt</w:DrawingGridVerticalSpacing>
+  <w:DisplayVerticalDrawingGridEvery>0</w:DisplayVerticalDrawingGridEvery>
+  <w:UseMarginsForDrawingGridOrigin/>
+  <w:Compatibility>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:UsePrinterMetrics/>
+   <w:WW6BorderRules/>
+   <w:FootnoteLayoutLikeWW8/>
+   <w:ShapeLayoutLikeWW8/>
+   <w:AlignTablesRowByRow/>
+   <w:ForgetLastTabAlignment/>
+   <w:AutoSpaceLikeWord95/>
+   <w:LayoutRawTableWidth/>
+   <w:LayoutTableRowsApart/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:"Lucida Sans Unicode";
+	panose-1:2 11 6 2 3 5 4 2 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-2147476737 14699 0 0 63 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:10.0pt;
+	font-family:"Lucida Sans Unicode";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+h1
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:14.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-bidi-font-family:"Times New Roman";
+	mso-font-kerning:14.0pt;
+	mso-ansi-language:FR;
+	mso-bidi-font-weight:normal;}
+h2
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:FR;
+	mso-bidi-font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+h3
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:13.0pt;
+	font-family:Arial;
+	mso-ansi-language:FR;}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{mso-style-next:Normal;
+	margin-top:18.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:right 16.0cm;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	text-transform:uppercase;
+	mso-ansi-language:FR;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.MsoToc2, li.MsoToc2, div.MsoToc2
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:10.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:right 16.0cm;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:FR;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.MsoToc3, li.MsoToc3, div.MsoToc3
+	{mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:20.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:right 16.0cm;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.MsoToc4, li.MsoToc4, div.MsoToc4
+	{mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:30.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:right 16.0cm;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.MsoToc5, li.MsoToc5, div.MsoToc5
+	{mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:40.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:right 16.0cm;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.MsoToc6, li.MsoToc6, div.MsoToc6
+	{mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:50.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:right 16.0cm;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.MsoToc7, li.MsoToc7, div.MsoToc7
+	{mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:60.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:right 16.0cm;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.MsoToc8, li.MsoToc8, div.MsoToc8
+	{mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:70.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:right 16.0cm;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.MsoToc9, li.MsoToc9, div.MsoToc9
+	{mso-style-next:Normal;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:80.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:right 16.0cm;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	mso-layout-grid-align:none;
+	punctuation-wrap:simple;
+	text-autospace:none;
+	font-size:10.0pt;
+	font-family:"Lucida Sans Unicode";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:FR;}
+span.MsoFootnoteReference
+	{vertical-align:super;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:36.0pt;
+	mso-footer-margin:36.0pt;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:-2;
+	mso-list-type:simple;
+	mso-list-template-ids:-884855586;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-text:*;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0cm;
+	text-indent:0cm;}
+@list l0:level1 lfo2
+	{mso-level-number-format:bullet;
+	mso-level-numbering:continue;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	mso-level-legacy:yes;
+	mso-level-legacy-indent:18.0pt;
+	mso-level-legacy-space:0cm;
+	margin-left:18.0pt;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1029"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=EN-US style='tab-interval:35.4pt'>
+
+<div class=Section1>
+
+<h2><span style='mso-ansi-language:EN-US'>Proposal for an MMX C-Interface</span><span
+style='font-family:"Lucida Sans Unicode";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'><o:p></o:p></span></h2>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h2><a name="_Toc386630042"><span style='mso-ansi-language:EN-US'>Introduction</span></a><span
+style='mso-ansi-language:EN-US'><o:p></o:p></span></h2>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>The objective of this
+proposal is to provide a high level interface for programmers using lcc2 for
+accessing all new MMX instructions.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>The MMX instruction
+set is accessible through intrinsic functions, that are recognized and inlined
+by the compiler.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>The data type used by
+all MMX intrinsics is an 8 byte union, described in ‘mmx.h’. The interface is
+designed to work at maximum speed when vectors of this datatype are used. The
+internal loop necessary to apply the given operation to all elements of the
+data vectors is generated in-line. The dimensions of both arrays should be
+identical.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>Scalar extension is
+provided, i.e. one of the inputs to the MMX intrinsics can be a scalar, that
+will be automatically extended by the compiler to apply the mmx operation to
+all elements of the input vector.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>Since the MMX
+instructions and floating point instructions are incompatible, it is assumed
+that a function does not mix floating point and mmx. An emms instruction will
+be issued in the function epilogue if the mmx instruction set is used.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>Obviously, the
+assembler interface is still available, and assembler instructions can be used
+direcly. In this case, it is the programmer’s responsability to issue the
+‘emms’ instruction.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h3><a name="_Toc386630043"><span style='mso-ansi-language:EN-US'>INSTRUCTION
+SYNTAX</span></a><span style='mso-ansi-language:EN-US'><o:p></o:p></span></h3>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>Instructions vary by: <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-ansi-language:EN-US'>Data type: packed
+bytes, packed words, packed doublewords or quadwords<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-ansi-language:EN-US'>Signed - Unsigned
+numbers<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-ansi-language:EN-US'>Wraparound -
+Saturate arithmetic<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-ansi-language:EN-US'>Scalar/Vector
+data<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>A typical MMX
+instruction has this syntax: <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-ansi-language:EN-US'>Prefix: <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-ansi-language:EN-US'>‘_’ to indicate
+that this is a compiler reserved word.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-ansi-language:EN-US'>‘p’ for Packed,
+as Intel suggests.</span><a style='mso-footnote-id:ftn1' href="#_ftn1"
+name="_ftnref1" title=""><span class=MsoFootnoteReference><span lang=FR><span
+style='mso-special-character:footnote'><![if !supportFootnotes]>[1]<![endif]></span></span></span></a><span
+style='mso-ansi-language:EN-US'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-ansi-language:EN-US'>Instruction
+operation: for example - ADD, CMP, or XOR<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-ansi-language:EN-US'>Suffix: <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:53.4pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-ansi-language:EN-US'>US for Unsigned
+Saturation <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:53.4pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-ansi-language:EN-US'>S for Signed
+saturation <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:53.4pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-ansi-language:EN-US'>B, W, D, Q for
+the data type: packed byte, packed word, packed doubleword, or quadword.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:53.4pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2'><![if !supportLists]><span
+style='font-family:Symbol;mso-ansi-language:EN-US'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-ansi-language:EN-US'>‘i’ for
+‘immediate’ (scalar) data. If this suffix is not present, the function operates
+over two arrays.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h3><a name="_Toc386630044"><span style='mso-ansi-language:EN-US'>Description
+of the interface</span></a><span style='mso-ansi-language:EN-US'><o:p></o:p></span></h3>
+
+<h2><a name="_Toc386630045"><span style='mso-ansi-language:EN-US'>Pack with
+signed saturation</span></a><span style='mso-ansi-language:EN-US'><o:p></o:p></span></h2>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>The pack operation
+operates with words (packed to bytes) or with dwords (packed to words).<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _packsswb(_mmxdata *array1,_mmxdata
+*array2,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Description<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>Each element of array1
+will be packed with the corresponding element of array2. The result is written to
+array1. The number of elements of both arrays is given by ‘n’.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Mode of operation:<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>while (n-- &gt; 0) {<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](7..0)<span style="mso-spacerun: yes">   </span>=
+SaturateSignedWordToSignedByte array1[n](15..0);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](15..8)<span style="mso-spacerun: yes">  </span>=
+SaturateSignedWordToSignedByte array1[n](31..16);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](23..16) = SaturateSignedWordToSignedByte array1[n](47..32);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](31..24) = SaturateSignedWordToSignedByte array1[n](63..48);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](39..32) = SaturateSignedWordToSignedByte array2[n](15..0);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](47..40) = SaturateSignedWordToSignedByte array2[n](31..16);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](55..48) = SaturateSignedWordToSignedByte array2[n](47..32);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](63..56) = SaturateSignedWordToSignedByte array2[n](63..48);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _packsswbi(_mmxdata *array,_mmxdata
+*imm,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Description<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>Each element of array1
+will be packed with imm. The result is written to array1. The number of
+elements of array1 is given by ‘n’.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Mode of operation:<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>while (n-- &gt; 0) {<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](7..0)<span style="mso-spacerun: yes">   </span>=
+SaturateSignedWordToSignedByte array[n](15..0);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](15..8)<span style="mso-spacerun: yes">  </span>=
+SaturateSignedWordToSignedByte array[n](31..16);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](23..16) = SaturateSignedWordToSignedByte array[n](47..32);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](31..24) = SaturateSignedWordToSignedByte array[n](63..48);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](39..32) = SaturateSignedWordToSignedByte imm(15..0);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](47..40) = SaturateSignedWordToSignedByte imm[n](31..16);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](55..48) = SaturateSignedWordToSignedByte imm[n](47..32);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](63..56) = SaturateSignedWordToSignedByte imm[n](63..48);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _packssdw(_mmxdata *array1,_mmxdata
+*array2,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Description<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>Each element of array1
+will be packed with the corresponding element of array2. The result is written
+to array1. The number of elements of both arrays is given by ‘n’.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Mode of operation:<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>while (n-- &gt; 0) {<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](15..0)<span style="mso-spacerun: yes">  </span>=
+SaturateSignedDwordToSignedWord array1[n](31..0);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](31..16) = SaturateSignedDwordToSignedWord array1[n](63..32);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](47..32) = SaturateSignedDwordToSignedWord array2[n](31..0);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](63..48) = SaturateSignedDwordToSignedWord array2[n](63..32);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _packssdwi(_mmxdata *array,_mmxdata
+*imm,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Description<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>Each element of array1
+will be packed with the corresponding element of array2. The result is written
+to array1. The number of elements of both arrays is given by ‘n’.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Mode of operation:<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>while (n-- &gt; 0) {<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](15..0)<span style="mso-spacerun: yes">  </span>=
+SaturateSignedDwordToSignedWord array1[n](31..0);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](31..16) = SaturateSignedDwordToSignedWord array1[n](63..32);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](47..32) = SaturateSignedDwordToSignedWord imm(31..0);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](63..48) = SaturateSignedDwordToSignedWord imm(63..32);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>}<o:p></o:p></span></p>
+
+<h2><a name="_Toc386630046"><span style='mso-ansi-language:EN-US'>Pack with
+unsigned saturation</span></a><span style='mso-ansi-language:EN-US'><o:p></o:p></span></h2>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _packuswb(_mmxdata *array1,_mmxdata
+*array2,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Description<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>Each element of array1
+will be packed with the corresponding element of array2. The result is written
+to array1. The number of elements of both arrays is given by ‘n’.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Mode of operation:<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal align=center style='text-align:center'><b style='mso-bidi-font-weight:
+normal'><span lang=FR><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:261.75pt;
+ height:93pt'>
+ <v:imagedata src="./mmx_files/image001.gif" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=349 height=124
+src="./mmx_files/image001.gif" v:shapes="_x0000_i1025"><![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=FR><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span lang=FR><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>while (n-- &gt; 0) {<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](7..0)<span style="mso-spacerun: yes">   </span>=
+SaturateSignedWordToUnsignedByte array1[n](15..0);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](15..8)<span style="mso-spacerun: yes">  </span>=
+SaturateSignedWordToUnsignedByte array1[n](31..15);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](23..16) = SaturateSignedWordToUnsignedByte array1[n](47..32);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](31..24) = SaturateSignedWordToUnsignedByte array1[n](63..48);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](39..32) = SaturateSignedWordToUnsignedByte array2[n](15..0);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](47..40) = SaturateSignedWordToUnsignedByte array2[n](31..16);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](55..48) = SaturateSignedWordToUnsignedByte array2[n](47..32);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](63..56) = SaturateSignedWordToUnsignedByte array2[n](63..48);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _packuswbi(_mmxdata *array,_mmxdata
+*imm,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Description<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>Each element of array1
+will be packed with imm. The result is written to array1. The number of
+elements of array is given by ‘n’.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Mode of operation:<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>while (n-- &gt; 0) {<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](7..0)<span style="mso-spacerun: yes">   </span>=
+SaturateSignedWordToUnsignedByte array[n](15..0);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](15..8)<span style="mso-spacerun: yes">  </span>=
+SaturateSignedWordToUnsignedByte array[n](31..15);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](23..16) = SaturateSignedWordToUnsignedByte array[n](47..32);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](31..24) = SaturateSignedWordToUnsignedByte array[n](63..48);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](39..32) = SaturateSignedWordToUnsignedByte imm[n](15..0);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](47..40) = SaturateSignedWordToUnsignedByte imm[n](31..16);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](55..48) = SaturateSignedWordToUnsignedByte imm[n](47..32);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](63..56) = SaturateSignedWordToUnsignedByte imm[n](63..48);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>}<o:p></o:p></span></p>
+
+<h2><a name="_Toc386630047"><span style='mso-ansi-language:EN-US'>Packed Add</span></a><span
+style='mso-ansi-language:EN-US'><o:p></o:p></span></h2>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>Packed add byte<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _paddb(_mmxdata *array1,_mmxdata
+*array2,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Description<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>Each element of array1
+will be added with each corresponding element of array2. The result is written
+to array1. The number of elements of both arrays is given by ‘n’.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Mode of operation:<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>while (n-- &gt; 0) {<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](7..0)<span style="mso-spacerun: yes">   </span>=
+array1[n](7..0) + array2[n](7..0);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](15..8)<span style="mso-spacerun: yes">  </span>=
+array1[n](15..8) + array2[n](15..8);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](23..16) = array1[n](23..16)+ array2[n](23..16);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](31..24) = array1[n](31..24) + array2[n](31..24);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](39..32) = array1[n](39..32) + array2[n](39..32);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](47..40) = array1[n](47..40)+ array2[n](47..40);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](55..48) = array1[n](55..48) + array2[n](55..48);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](63..56) = array1[n](63..56) + array2[n](63..56);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _paddbi(_mmxdata *array1,_mmxdata
+*imm,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Description<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>Each element of array1
+will be added with imm. The result is written to array1. The number of elements
+of array is given by ‘n’.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Mode of operation:<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>while (n-- &gt; 0) {<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](7..0)<span style="mso-spacerun: yes">  </span>=<span
+style="mso-spacerun: yes">  </span>array[n](7..0)<span style="mso-spacerun:
+yes">   </span>+ imm[n](7..0);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](15..8) =<span style="mso-spacerun: yes"> 
+</span>array[n](15..8)<span style="mso-spacerun: yes">  </span>+ imm[n](15..8);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](23..16) = array[n](23..16) + imm[n](23..16);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](31..24) = array[n](31..24) + imm[n](31..24);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](39..32) = array[n](39..32) + imm[n](39..32);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](47..40) = array[n](47..40) + imm[n](47..40);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](55..48) = array[n](55..48) + imm[n](55..48);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](63..56) = array[n](63..56) + imm[n](63..56);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>Packed add word<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _paddw(_mmxdata *array1,_mmxdata
+*array2,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Description<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>Each element of array1
+will be added with each corresponding element of array2. The result is written
+to array1. The number of elements of both arrays is given by ‘n’.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Mode of operation:<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>while (n-- &gt; 0) {<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](15..0)&lt;--array1[n](15..0) + array2[n](15..0);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](31..16)&lt;--array1[n](31..16) + array2[n](31..16);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](47..32)&lt;--array1[n](47..32) + array2[n](47..32);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](63..48)&lt;--array1[n](63..48) + array2[n](63..48);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _paddwi(_mmxdata *array1,_mmxdata
+*imm,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Description<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>Each element of array1
+will be added with imm. The result is written to array1. The number of elements
+of array is given by ‘n’.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Mode of operation:<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>while (n-- &gt; 0) {<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](15..0)&lt;--array[n](15..0) + imm(15..0);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](31..16)&lt;--array[n](31..16) + imm(31..16);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](47..32)&lt;--array[n](47..32) + imm(47..32);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](63..48)&lt;--array[n](63..48) + imm[n](63..48);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>Packed add double word<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _paddd(_mmxdata *array1,_mmxdata
+*array2,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Description<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>Each element of array1
+will be added with each corresponding element of array2. The result is written
+to array1. The number of elements of both arrays is given by ‘n’.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Mode of operation:<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>while (n-- &gt; 0) {<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](31..0)&lt;--array1[n](31..0) + array1[n](31..0);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array1[n](63..32)&lt;--array1[n](63..32) + array1[n](63..32);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _padddi(_mmxdata *array,_mmxdata
+*imm,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>Each element of array1
+will be added with imm. The result is written to array1. The number of elements
+of array is given by ‘n’.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Mode of operation:<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>while (n-- &gt; 0) {<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](31..0)&lt;--array1[n](31..0) + imm(31..0);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><span style="mso-spacerun: yes">   
+</span>array[n](63..32)&lt;--array1[n](63..32) + imm(63..32);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<h2><a name="_Toc386630048"><span style='mso-ansi-language:EN-US'>Packed Add with
+saturation</span></a><span style='mso-ansi-language:EN-US'><o:p></o:p></span></h2>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>Packed add byte with saturation<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>a) Signed variants<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _paddsb(_mmxdata *array1,_mmxdata
+*array2,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _paddsbi(_mmxdata *array1,_mmxdata
+*array2,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>b) Unsigned variant<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _paddusb(_mmxdata *array1,_mmxdata
+*array2,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _paddusbi(_mmxdata *array1,_mmxdata
+*array2,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Description<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>Each element of array1
+will be added with each corresponding element of array2. The result is written
+to array1. The number of elements of both arrays is given by ‘n’. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>For the signed
+operation, if the result of the add is saturated to 0x7f or to 0x80 in case of
+overflow/underflow respectively.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>For the unsigned
+operation, the saturation values are 0xFF and 0x00 in case of
+overflow/underflow.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>Packed add word with saturation<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _paddsw(_mmxdata *array1,_mmxdata
+*array2,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _paddswi(_mmxdata *array1,_mmxdata
+*imm,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'>Description<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>Same operation as in
+paddsb above. The saturation values are 0x7FFF and 0x8000 for the signed operation,
+and 0xFFFF and 0x00 for signed / unsigned operations.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New";mso-bidi-font-family:
+"Times New Roman";mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h2><a name="_Toc386630049"><span style='mso-ansi-language:EN-US'>Packed And.</span></a><span
+style='mso-ansi-language:EN-US'><o:p></o:p></span></h2>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _pand(_mmxdata *array1,_mmxdata
+*array2,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _pandi(_mmxdata *array1,_mmxdata
+*imm,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>The bitwise logical
+AND operation is done between each 64 bit element of the arrays. The result is
+written to the array1.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h2><a name="_Toc386630050"><span style='mso-ansi-language:EN-US'>Packed And.
+Not</span></a><span style='mso-ansi-language:EN-US'><o:p></o:p></span></h2>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _pandn(_mmxdata *array1,_mmxdata
+*array2,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _pandni(_mmxdata *array1,_mmxdata
+*imm,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>First a bitwise logical
+NOT on the 64 bits of each element is performed, inverting each bit of the
+source operand(array2). Then,the bitwise logical AND operation is done between
+each 64 bit element of the arrays. The result is written to the array1.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h2><span style='mso-ansi-language:EN-US'>Replicate<o:p></o:p></span></h2>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _replicatebyte(_mmxdata *dst,unsigned
+char c);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _replicateword(_mmxdata *dst,unsigned
+short w);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>void _stdcall _replicatedword(_mmxdata *dst,unsigned
+int i);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>This instructions
+replcate either a byte, a word or a double word into the mmx data pointed to by
+the ‘dst’ argument. Its use is essentially meant for comparisons.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>The first 64 bits of
+the first argument will be filled with the given integer, either as bytes,
+words, or double words.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><u><span style='mso-ansi-language:EN-US'>Example:<o:p></o:p></span></u></p>
+
+<p class=MsoNormal align=center style='text-align:center'><b style='mso-bidi-font-weight:
+normal'><span style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>_replicatebyte(&amp;mmxdata,’ ‘);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>Then, mmxdata will
+contain 8 spaces, and can be later used as an argument for comparison
+functions.<o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<h2><span style='mso-ansi-language:EN-US'>Reduce<o:p></o:p></span></h2>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>int _stdcall _reduceBooleanb(_mmxdata *map,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>int _stdcall _reduceCmpeqb(_mmxdata *map,_mmxdata
+*imm,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>int _stdcall _reduceGtb(_mmxdata *map,_mmxdata
+*imm,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'>int _stdcall _reduceLtb(_mmxdata *map,_mmxdata
+*imm,int n);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>This instructions add
+a boolean vector counting the non zero members and return a 32 bit integer with
+the result.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>_reduceBooleanb, sums
+all true bytes<span style="mso-spacerun: yes">  </span>(11111111) in a logical
+vector that is the result of a previous comparison.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>_reduceCmpeqb makes a
+comparisons and then adds the hits<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>_reduceLtb and
+_reduceGtb test for Greater than or less than, and add up the ‘true’ bytes.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>‘True’ bytes are those
+set to all ones (11111111b, or 0xFFH or 255 decimal)<span style="mso-spacerun:
+yes">  </span>by a previous mmx logical operation.<o:p></o:p></span></p>
+
+<p class=MsoNormal><u><span style='mso-ansi-language:EN-US'>Example:<o:p></o:p></span></u></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'>If the mm data element
+space contains a set of 8 space bytes (32), the following will count the number
+of spaces in the character vector ‘data’:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><b style='mso-bidi-font-weight:
+normal'><span style='mso-ansi-language:EN-US'>_reduceCmpeqb(data,&amp;space,len/8);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Courier New";mso-bidi-font-family:"Times New Roman";
+mso-ansi-language:EN-US'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+</div>
+
+<div style='mso-element:footnote-list'><![if !supportFootnotes]><br clear=all>
+
+<hr align=left size=1 width="33%">
+
+<![endif]>
+
+<div style='mso-element:footnote' id=ftn1>
+
+<p class=MsoFootnoteText><a style='mso-footnote-id:ftn1' href="#_ftnref1"
+name="_ftn1" title=""><span class=MsoFootnoteReference><span lang=FR><span
+style='mso-special-character:footnote'><![if !supportFootnotes]>[1]<![endif]></span></span></span></a><span
+style='mso-ansi-language:EN-US'>I would better use ‘p’ for parallel, but this
+is a matter of taste...<o:p></o:p></span></p>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

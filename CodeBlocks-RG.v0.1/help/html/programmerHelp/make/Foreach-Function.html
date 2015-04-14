@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Foreach%20Function">Foreach Function</a>,
+Next:<a rel="next" accesskey="n" href="If-Function.html#If%20Function">If Function</a>,
+Previous:<a rel="previous" accesskey="p" href="File-Name-Functions.html#File%20Name%20Functions">File Name Functions</a>,
+Up:<a rel="up" accesskey="u" href="Functions.html#Functions">Functions</a>
+<hr><br>
+</div>
+
+<h3 class="section">The <code>foreach</code> Function</h3>
+
+   <p>The <code>foreach</code> function is very different from other functions.  It
+causes one piece of text to be used repeatedly, each time with a different
+substitution performed on it.  It resembles the <code>for</code> command in the
+shell <code>sh</code> and the <code>foreach</code> command in the C-shell <code>csh</code>.
+
+   <p>The syntax of the <code>foreach</code> function is:
+
+<pre class="example">     $(foreach <var>var</var>,<var>list</var>,<var>text</var>)
+     </pre>
+
+<p>The first two arguments, <var>var</var> and <var>list</var>, are expanded before
+anything else is done; note that the last argument, <var>text</var>, is
+<strong>not</strong> expanded at the same time.  Then for each word of the expanded
+value of <var>list</var>, the variable named by the expanded value of <var>var</var>
+is set to that word, and <var>text</var> is expanded.  Presumably <var>text</var>
+contains references to that variable, so its expansion will be different
+each time.
+
+   <p>The result is that <var>text</var> is expanded as many times as there are
+whitespace-separated words in <var>list</var>.  The multiple expansions of
+<var>text</var> are concatenated, with spaces between them, to make the result
+of <code>foreach</code>.
+
+   <p>This simple example sets the variable <code>files</code> to the list of all files
+in the directories in the list <code>dirs</code>:
+
+<pre class="example">     dirs := a b c d
+     files := $(foreach dir,$(dirs),$(wildcard $(dir)/*))
+     </pre>
+
+   <p>Here <var>text</var> is <code>$(wildcard $(dir)/*)</code>.  The first repetition
+finds the value <code>a</code> for <code>dir</code>, so it produces the same result
+as <code>$(wildcard a/*)</code>; the second repetition produces the result
+of <code>$(wildcard b/*)</code>; and the third, that of <code>$(wildcard c/*)</code>.
+
+   <p>This example has the same result (except for setting <code>dirs</code>) as
+the following example:
+
+<pre class="example">     files := $(wildcard a/* b/* c/* d/*)
+     </pre>
+
+   <p>When <var>text</var> is complicated, you can improve readability by giving it
+a name, with an additional variable:
+
+<pre class="example">     find_files = $(wildcard $(dir)/*)
+     dirs := a b c d
+     files := $(foreach dir,$(dirs),$(find_files))
+     </pre>
+
+<p>Here we use the variable <code>find_files</code> this way.  We use plain <code>=</code>
+to define a recursively-expanding variable, so that its value contains an
+actual function call to be reexpanded under the control of <code>foreach</code>;
+a simply-expanded variable would not do, since <code>wildcard</code> would be
+called only once at the time of defining <code>find_files</code>.
+
+   <p>The <code>foreach</code> function has no permanent effect on the variable
+<var>var</var>; its value and flavor after the <code>foreach</code> function call are
+the same as they were beforehand.  The other values which are taken from
+<var>list</var> are in effect only temporarily, during the execution of
+<code>foreach</code>.  The variable <var>var</var> is a simply-expanded variable
+during the execution of <code>foreach</code>.  If <var>var</var> was undefined
+before the <code>foreach</code> function call, it is undefined after the call. 
+See <a href="Flavors.html#Flavors">The Two Flavors of Variables</a>.
+
+   <p>You must take care when using complex variable expressions that result in
+variable names because many strange things are valid variable names, but
+are probably not what you intended.  For example,
+
+<pre class="smallexample">     files := $(foreach Esta escrito en espanol!,b c ch,$(find_files))
+     </pre>
+
+<p>might be useful if the value of <code>find_files</code> references the variable
+whose name is <code>Esta escrito en espanol!</code> (es un nombre bastante largo,
+no?), but it is more likely to be a mistake.
+
+   </body></html>
+

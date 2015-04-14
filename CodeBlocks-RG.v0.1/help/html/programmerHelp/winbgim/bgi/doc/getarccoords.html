@@ -1,0 +1,98 @@
+<TITLE>BGI Documentation for 
+getarccoords
+</TITLE>
+<H2>
+getarccoords
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void getarccoords(struct arccoordstype *arccoords);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+getarccoords fills in the arccoordstype structure pointed to by arccoords with information about the last call to arc. The arccoordstype structure is defined in graphics.h as follows:
+<PRE>
+struct arccoordstype {
+   int x, y;
+   int xstart, ystart, xend, yend;
+};
+</PRE>
+The members of this structure are used to specify the center point (x,y), the starting position (xstart, ystart), and the ending position (xend, yend) of the arc. These values are useful if you need to make a line meet at the end of an arc.
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="arc.html"> arc </A>
+<DD><A HREF="fillellipse.html"> fillellipse </A>
+<DD><A HREF="sector.html"> sector </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* getarccoords example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   struct arccoordstype arcinfo;
+   int midx, midy;
+   int stangle = 45, endangle = 270;
+   char sstr[80], estr[80];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+
+   /* draw arc and get coordinates */
+   setcolor(getmaxcolor());
+   arc(midx, midy, stangle, endangle, 100);
+   getarccoords(&arcinfo);
+
+   /* convert arc information into strings */
+   sprintf(sstr, "*- (%d, %d)", arcinfo.xstart, arcinfo.ystart);
+
+   sprintf(estr, "*- (%d, %d)", arcinfo.xend, arcinfo.yend);
+
+   /* output the arc information */
+   outtextxy(arcinfo.xstart, arcinfo.ystart, sstr);
+   outtextxy(arcinfo.xend, arcinfo.yend, estr);
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

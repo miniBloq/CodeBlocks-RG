@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release" />
+	<File name="testapp.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="18065" topLine="648" />
+	</File>
+	<File name="..\webconnect\dom.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="12970" topLine="696" />
+	</File>
+	<File name="..\webconnect\dom.h" open="0" top="0" tabpos="0">
+		<Cursor position="1126" topLine="24" />
+	</File>
+	<File name="..\webconnect\nsbase.h" open="0" top="0" tabpos="0">
+		<Cursor position="7944" topLine="245" />
+	</File>
+	<File name="..\webconnect\nsptr.h" open="0" top="0" tabpos="0">
+		<Cursor position="748" topLine="17" />
+	</File>
+	<File name="..\webconnect\promptservice.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="41548" topLine="1355" />
+	</File>
+	<File name="..\webconnect\webcontrol.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1784" topLine="47" />
+	</File>
+	<File name="..\webconnect\webcontrol.h" open="0" top="0" tabpos="1">
+		<Cursor position="20652" topLine="648" />
+	</File>
+</CodeBlocks_layout_file>

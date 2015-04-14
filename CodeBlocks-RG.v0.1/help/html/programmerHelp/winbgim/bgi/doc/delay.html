@@ -1,0 +1,72 @@
+<TITLE>BGI Documentation for 
+delay
+</TITLE>
+<H2>
+delay 
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include "graphics.h"
+void delay(int millisec);
+</PRE>
+
+
+
+<DT><B>Description</B><IMG SRC="win.gif" ALT="[WIN]"><DD>
+The 
+delay 
+function is available in the
+<A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> implementation of BGI
+graphics.
+You do not need to include conio.h; just include graphics.h.
+The function pauses the computation for the the specified number of
+milliseconds.
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+None.
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* delay example */ 
+
+#include "graphics.h"
+
+int main(void)
+{
+   int midx, midy, i;
+
+   /* initialize the window size */
+   initwindow(100, 100);
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+
+   /* loop through the fill patterns with 4 second delays */
+   for (i=SOLID_FILL; i&lt;USER_FILL; i++) {
+      /* set the fill style */
+      setfillstyle(i, getmaxcolor());
+
+      /* draw the bar */
+      bar(midx-50, midy-50, midx+50, midy+50);
+      delay(4000);
+   }
+
+   /* clean up */
+   closegraph();
+   return 0;
+
+}
+</PRE>
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

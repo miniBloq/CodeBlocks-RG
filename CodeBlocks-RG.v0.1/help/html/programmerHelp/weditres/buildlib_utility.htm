@@ -1,0 +1,47 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The buildlib Utility</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509456975"><span lang="FR">The buildlib </span></a><span lang="FR" style="mso-bookmark: _Toc509456975">Utility</span></h2>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;This utility reads an ASCII
+description of symbols and produces an import library that allows you to link
+your executable with a specific DLL.</p>
+<p class="MsoNormal" style="mso-list:skip">It has no command line options and
+the input arguments are as follows:</p>
+<p class="MsoNormal" style="mso-list:skip"><font face="Courier New">&nbsp;buildlib
+&lt;ASCII description&gt; &lt;output library&gt;</font></p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;The first argument has to be a
+text file that contains the list of symbols to be built into the library; the
+second argument is the name of the library.</p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;Normally, the extension used in
+lcc-win32 for this textual description is .exp. See the directory \lcc\buildlib
+for numerous examples of these file types.</p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;The format of the text file is
+as follows:</p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;First line: Name of the DLL
+this import library should bind to. This is mandatory.</p>
+<p class="MsoNormal" style="mso-list:skip">All other lines have a column format
+with 1 mandatory column and two optional columns.</p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;The first column should contain
+the symbol name as emitted by the compiler, i.e., with all decorations, such as
+leading underscore, and '@nn' decoration for _stdcall symbols.</p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;The second column is optional.
+It indicates the name of the symbol as it is exported from the DLL. This can be
+different from the decorated form.<span style="mso-spacerun: yes">&nbsp; </span>For
+example, you may want to export a function without any decorations so that you
+can your DLL in other environments. If you omit this column, buildlib will strip
+decorations from the symbol names.</p>
+<p class="MsoNormal" style="mso-list:skip">&nbsp;The third column is also
+optional, consisting of a single keyword 'data'. If present, this means that the
+exported symbol is not a function, but a data item, i.e., a variable.</p>
+
+</body>
+
+</html>

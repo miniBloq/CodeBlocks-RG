@@ -1,0 +1,165 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The accelerator table editor</title>
+</head>
+
+<body>
+
+<h2><a name="_Toc509457080"><span lang="FR" style="mso-bookmark: _Toc490454514">The
+accelerator table editor</span></a></h2>
+<p class="MsoNormal">An accelerator table is an association from keyboard keys
+combinations with a command item. This can be a menu command item, but this is
+not necessarily the case. When the user presses the defined keyboard keys
+combination (Ctrl+Shift+N, for example), the window procedure associated with
+the accelerator table will receive a WM_COMMAND message, containing the
+numerical value that you associated with this keyboard combination.</p>
+<p class="MsoNormal">&nbsp;For instance, when you want that Ctrl+Shift+N do
+something special in your application, you define an accelerator key like</p>
+<p class="MsoNormal">&nbsp;1) In your header file:</p>
+<p class="MsoNormal">&nbsp;<span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;">#define MENU_STOPCALCULATING<span style="mso-tab-count:1">
+</span>3000<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;2) In your resource file:</p>
+<p class="MsoNormal">&nbsp;<span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;">&quot;^N&quot;<span style="mso-tab-count:1"> </span>MENU_STOPCALCULATING<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;
+</span>SHIFT CONTROL<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">&nbsp;3) In your window procedure:</p>
+<p class="MsoNormal">&nbsp;<span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;">switch(message) {<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>...<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>case WM_COMMAND:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>switch(LOWORD(wParam)) {<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><span style="mso-tab-count:3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>case MENU_STOPCALCULATING:<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><span style="mso-tab-count:4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>if (CalculationsStarted()) {<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><span style="mso-tab-count:5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>StopCals();<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><span style="mso-tab-count:4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><span style="mso-tab-count:4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>break;<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;">}<o:p>
+</o:p>
+</span></p>
+<p class="MsoNormal">You <i style="mso-bidi-font-style:normal">can</i> have a
+menu item somewhere, with an item 'Stop calculations&quot; but this is not
+mandatory. You receive from windows this message when you do not forget to add
+the TranslateMessage step in that famous MainLoop of your window procedure.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">You can edit this table graphically from Weditres. To call
+the corresponding editor you should either use the menu item in the 'Objects'
+bar, or use the directory tree. There, (if there is already a resource table
+defined in the application), you will find your table. Just double click in its
+name and the accelerator editor will be called automatically.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">The editor for this resource type is very simple. It will
+show you at startup a list of all defined items. You can perform the usual
+actions (Add, Modify, and Delete), with three buttons at the lower right.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">If there is no accelerator table defined, the editor will
+automatically start the 'Add' action, supposing you are not very interested in
+contemplating an empty list. The Add/Change dialog box edits a single line of
+the accelerator table.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">Instead of showing here yet another screen shot, I think it
+is better to spend more time explaining the concepts behind this.</p>
+<p class="MsoNormal">&nbsp;Each entry in the table consists of:</p>
+<p class="MsoNormal" style="margin-left:28.3pt;text-indent:-14.15pt;mso-list:
+l0 level1 lfo3"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>A numerical value. This is the result of pressing the combination
+of keys.</p>
+<p class="MsoNormal" style="margin-left:28.3pt;text-indent:-14.15pt;mso-list:
+l0 level1 lfo3"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>An associated numerical identifier.</p>
+<p class="MsoNormal" style="margin-left:28.3pt;text-indent:-14.15pt;mso-list:
+l0 level1 lfo3"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>A set of flags that determine how the numerical value is
+interpreted.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">You can define either plain Ascii keys combinations, or you
+can set the 'Virtual Key' flag, that indicates to Windows that the value is to
+be interpreted as a value for a virtual key, i.e. a key like VK_F1, VK_BACK,
+etc. All those values are defined in &lt;windows.h&gt;, and they give the
+programmer a view of the keyboard that is independent from the type of keyboard
+that is used.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">It is important to be clear that the ASCII/VIRTUAL KEY
+flags are alternatives (hence the radio buttons in the editor). You can only use
+one of those.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">You can add flags specifying:</p>
+<p class="MsoNormal">CONTROL: That flag means that the CONTROL key has to be
+pressed for the keys combination to be valid.</p>
+<p class="MsoNormal">SHIFT: Ditto but with the key Shift.</p>
+<p class="MsoNormal">ALT: The same for the Alt key.</p>
+<p class="MsoNormal">NOINVERT: This means that the menu item associated with the
+same identifier should not be highlighted if it exists at all.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">These flags are not alternatives, they can all be set for
+the same key combination. They can be set/unset using the checkboxes in the
+dialog box that edits each line of the table.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">The accelerator resource is named following the same
+conventions as the naming of all other resource types: either with a character
+string or an identifier. You load the resource using the <span style="font-family:&quot;Courier New&quot;">LoadAccelerators</span>
+window function that searches for the specified accelerator table.<o:p>
+</o:p>
+</p>
+<p class="MsoNormal">&nbsp;</p>
+
+</body>
+
+</html>

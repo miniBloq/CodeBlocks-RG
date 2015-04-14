@@ -1,0 +1,5 @@
+<area shape="rect" href="$classwx_generic_validator.html" title="wxGenericValidator performs data transfer (but not validation or filtering) for many..." alt="" coords="5,255,144,287">
+<area shape="rect" href="$classwx_text_validator.html" title="wxTextValidator validates text controls, providing a variety of filtering behaviours..." alt="" coords="168,255,288,287">
+<area shape="rect" href="$classwx_evt_handler.html" title="A class that can handle events from the windowing system." alt="" coords="99,89,203,121">
+<area shape="rect" href="$classwx_object.html" title="This is the root class of many of the wxWidgets classes." alt="" coords="59,7,133,39">
+<area shape="rect" href="$classwx_trackable.html" title="Add&#45;on base class for a trackable object." alt="" coords="157,7,256,39">

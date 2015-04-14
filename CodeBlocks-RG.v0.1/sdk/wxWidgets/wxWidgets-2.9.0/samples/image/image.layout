@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Win32 DLL Release" />
+	<File name="canvas.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="16747" topLine="532" />
+	</File>
+	<File name="canvas.h" open="0" top="0" tabpos="1">
+		<Cursor position="519" topLine="40" />
+	</File>
+	<File name="image.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="18783" topLine="563" />
+	</File>
+</CodeBlocks_layout_file>

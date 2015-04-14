@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Wildcard%20Pitfall">Wildcard Pitfall</a>,
+Next:<a rel="next" accesskey="n" href="Wildcard-Function.html#Wildcard%20Function">Wildcard Function</a>,
+Previous:<a rel="previous" accesskey="p" href="Wildcard-Examples.html#Wildcard%20Examples">Wildcard Examples</a>,
+Up:<a rel="up" accesskey="u" href="Wildcards.html#Wildcards">Wildcards</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">Pitfalls of Using Wildcards</h4>
+
+   <p>Now here is an example of a naive way of using wildcard expansion, that
+does not do what you would intend.  Suppose you would like to say that the
+executable file <code>foo</code> is made from all the object files in the
+directory, and you write this:
+
+<pre class="example">     objects = *.o
+     
+     foo : $(objects)
+             cc -o foo $(CFLAGS) $(objects)
+     </pre>
+
+<p>The value of <code>objects</code> is the actual string <code>*.o</code>.  Wildcard
+expansion happens in the rule for <code>foo</code>, so that each <em>existing</em>
+<code>.o</code> file becomes a prerequisite of <code>foo</code> and will be recompiled if
+necessary.
+
+   <p>But what if you delete all the <code>.o</code> files?  When a wildcard matches
+no files, it is left as it is, so then <code>foo</code> will depend on the
+oddly-named file <code>*.o</code>.  Since no such file is likely to exist,
+<code>make</code> will give you an error saying it cannot figure out how to
+make <code>*.o</code>.  This is not what you want!
+
+   <p>Actually it is possible to obtain the desired result with wildcard
+expansion, but you need more sophisticated techniques, including the
+<code>wildcard</code> function and string substitution. 
+See <a href="Wildcard-Function.html#Wildcard%20Function">The Function <code>wildcard</code></a>.
+
+   <p>Microsoft operating systems (MS-DOS and MS-Windows) use backslashes to
+separate directories in pathnames, like so:
+
+<pre class="example">       c:\foo\bar\baz.c
+     </pre>
+
+   <p>This is equivalent to the Unix-style <code>c:/foo/bar/baz.c</code> (the
+<code>c:</code> part is the so-called drive letter).  When <code>make</code> runs on
+these systems, it supports backslashes as well as the Unix-style forward
+slashes in pathnames.  However, this support does <em>not</em> include the
+wildcard expansion, where backslash is a quote character.  Therefore,
+you <em>must</em> use Unix-style slashes in these cases.
+
+   </body></html>
+

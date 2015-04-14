@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/cppvector/assign.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>assign</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C++ Vectors</a> &gt; <a href="assign.html">assign</a>
+  </div>
+
+  <div class="name-format">
+    assign
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;vector&gt;
+  void assign( <strong>size_type</strong> num, const <a href=
+"../containers.html">TYPE</a>&amp; val );
+  void assign( <a href=
+"../iterators.html">input_iterator</a> start, <a href=
+"../iterators.html">input_iterator</a> end );
+</pre>
+
+  <p>The assign() function either gives the current vector the values
+  from <em>start</em> to <em>end</em>, or gives it <em>num</em> copies
+  of <em>val</em>.</p>
+
+  <p>This function will destroy the previous contents of the
+  vector.</p>
+
+  <p>For example, the following code uses assign() to put 10 copies of
+  the integer 42 into a vector:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v;
+ v.assign( 10, 42 );
+ for( int i = 0; i &lt; v.size(); i++ ) {
+   cout &lt;&lt; v[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+</pre>
+
+  <p>The above code displays the following output:</p>
+<pre class="prettyprint">
+ 42 42 42 42 42 42 42 42 42 42          
+</pre>
+
+  <p>The next example shows how assign() can be used to copy one vector
+  to another:</p>
+<pre class="prettyprint">
+ vector&lt;int&gt; v1;
+ for( int i = 0; i &lt; 10; i++ ) {
+   v1.push_back( i );
+ }              
+
+ vector&lt;int&gt; v2;
+ v2.assign( v1.begin(), v1.end() );             
+
+ for( int i = 0; i &lt; v2.size(); i++ ) {
+   cout &lt;&lt; v2[i] &lt;&lt; &quot; &quot;;
+ }
+ cout &lt;&lt; endl;            
+</pre>
+
+  <p>When run, the above code displays the following output:</p>
+<pre class="prettyprint">
+ 0 1 2 3 4 5 6 7 8 9            
+</pre>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    (C++ Strings) <a href="../cppstring/assign1.html">assign</a><br>
+    <a href="insert.html">insert</a><br>
+    <a href="push_back.html">push_back</a><br>
+    (C++ Lists) <a href="../cpplist/push_front.html">push_front</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppvector/assign.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:25:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

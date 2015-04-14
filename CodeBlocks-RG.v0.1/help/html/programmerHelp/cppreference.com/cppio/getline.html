@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/cppio/getline.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>getline</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C++ I/O</a> &gt; <a href="getline.html">getline</a>
+  </div>
+
+  <div class="name-format">
+    getline
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  #include &lt;fstream&gt;
+  istream&amp; getline( char* buffer, streamsize num );
+  istream&amp; getline( char* buffer, streamsize num, char delim );
+</pre>
+
+  <p>The getline() function is used with input streams, and reads
+  characters into <em>buffer</em> until either:</p>
+
+  <ul>
+    <li><em>num</em> - 1 characters have been read,</li>
+
+    <li>a newline is encountered,</li>
+
+    <li>an <strong>EOF</strong> is encountered,</li>
+
+    <li>or, optionally, until the character <em>delim</em> is read. The
+    <em>delim</em> character is not put into buffer.</li>
+  </ul>
+
+  <p>For example, the following code uses the getline function to
+  display the first 100 characters from each line of a text file:</p>
+
+<pre class="prettyprint">
+  ifstream fin("tmp.dat");
+
+  int MAX_LENGTH = 100;
+  char line[MAX_LENGTH];
+
+  while( fin.getline(line, MAX_LENGTH) ) {
+    cout << "read line: " << line << endl;
+  }
+</pre>
+
+  <p>If you'd like to read lines from a file into <a
+  href="../cppstring/index-2.html">strings</a> instead of character arrays,
+  consider using the <a href="../cppstring/getline.html">string
+  getline</a> function.</p>
+
+  <p>Those using a Microsoft compiler may find that getline() reads an
+  extra character, and should consult the documentation on the <a href=
+  "http://support.microsoft.com/default.aspx?scid=kb;EN-US;q240015">Microsoft
+  getline bug</a>.</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="gcount.html">gcount</a><br>
+    <a href="get.html">get</a><br>
+    (C++ Strings) <a href="../cppstring/getline.html">getline</a><br>
+    <a href="ignore.html">ignore</a><br>
+    <a href="read.html">read</a>
+  </div>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/cppio/getline.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:24:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

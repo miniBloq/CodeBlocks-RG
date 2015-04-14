@@ -1,0 +1,95 @@
+<TITLE>BGI Documentation for 
+getaspectration
+</TITLE>
+<H2>
+getaspectration
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void getaspectratio(int *xasp, int *yasp);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+The y aspect factor, *yasp, is normalized to 10,000. On all graphics adapters except the VGA, *xasp (the x aspect factor) is less than *yasp because the pixels are taller than they are wide. On the VGA, which has "square" pixels, *xasp equals *yasp. In general, the relationship between *yasp and *xasp can be stated as
+<P>*yasp  = 10,000
+<P>*xasp <= 10,000
+<P>getaspectratio gets the values in *xasp and *yasp.
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD>None.
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* getaspectratio example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+main()
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int xasp, yasp, midx, midy;
+
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+   setcolor(getmaxcolor());
+
+   /* get current aspect ratio settings */
+   getaspectratio(&xasp, &yasp);
+
+   /* draw normal circle */
+   circle(midx, midy, 100);
+   getch();
+
+   /* draw wide circle */
+   cleardevice();
+   setaspectratio(xasp/2, yasp);
+   circle(midx, midy, 100);
+   getch();
+
+
+   /* draw narrow circle */
+   cleardevice();
+   setaspectratio(xasp, yasp/2);
+   circle(midx, midy, 100);
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

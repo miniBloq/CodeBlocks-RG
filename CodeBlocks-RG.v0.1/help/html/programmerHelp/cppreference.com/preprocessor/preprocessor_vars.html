@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/preprocessor/preprocessor_vars.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>Predefined preprocessor variables</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C/C++ Pre-processor Commands</a> &gt; <a href=
+    "preprocessor_vars.html">Predefined preprocessor variables</a>
+  </div>
+
+  <div class="name-format">
+    Predefined preprocessor variables
+  </div>
+
+  <div class="syntax-name-format">
+    Syntax:
+  </div>
+  <pre class="syntax-box">
+  __LINE__
+  __FILE__
+  __DATE__
+  __TIME__
+  __cplusplus
+  __STDC__
+</pre>
+
+  <p>The following variables can vary by compiler, but generally
+  work:</p>
+
+  <ul>
+    <li>The __LINE__ and __FILE__ variables represent the current line
+    and current file being processed.</li>
+
+    <li>The __DATE__ variable contains the current date, in the form
+    month/day/year.  This is the date that the file was compiled, not
+    necessarily the current date.</li>
+
+    <li>The __TIME__ variable represents the current time, in the form
+    hour:minute:second.  This is the time that the file was compiled,
+    not necessarily the current time.</li>
+
+    <li>The __cplusplus variable is only defined when compiling a C++
+    program.  In some older compilers, this is also called
+    c_plusplus.</li>
+
+    <li>The __STDC__ variable is defined when compiling a C program,
+    and may also be defined when compiling C++.</li>
+  </ul>
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/preprocessor/preprocessor_vars.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

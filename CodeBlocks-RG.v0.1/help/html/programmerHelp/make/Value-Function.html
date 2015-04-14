@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Value%20Function">Value Function</a>,
+Next:<a rel="next" accesskey="n" href="Eval-Function.html#Eval%20Function">Eval Function</a>,
+Previous:<a rel="previous" accesskey="p" href="Call-Function.html#Call%20Function">Call Function</a>,
+Up:<a rel="up" accesskey="u" href="Functions.html#Functions">Functions</a>
+<hr><br>
+</div>
+
+<h3 class="section">The <code>value</code> Function</h3>
+
+   <p>The <code>value</code> function provides a way for you to use the value of a
+variable <em>without</em> having it expanded.  Please note that this
+does not undo expansions which have already occurred; for example if
+you create a simply expanded variable its value is expanded during the
+definition; in that case the <code>value</code> function will return the
+same result as using the variable directly.
+
+   <p>The syntax of the <code>value</code> function is:
+
+<pre class="example">     $(value <var>variable</var>)
+     </pre>
+
+   <p>Note that <var>variable</var> is the <em>name</em> of a variable; not a
+<em>reference</em> to that variable.  Therefore you would not normally
+use a <code>$</code> or parentheses when writing it.  (You can, however, use
+a variable reference in the name if you want the name not to be a
+constant.)
+
+   <p>The result of this function is a string containing the value of
+<var>variable</var>, without any expansion occurring.  For example, in this
+makefile:
+
+<pre class="example">     FOO = $PATH
+     
+     all:
+             @echo $(FOO)
+             @echo $(value FOO)
+     </pre>
+
+<p>The first output line would be <code>ATH</code>, since the "$P" would be
+expanded as a <code>make</code> variable, while the second output line would
+be the current value of your <code>$PATH</code> environment variable, since
+the <code>value</code> function avoided the expansion.
+
+   <p>The <code>value</code> function is most often used in conjunction with the
+<code>eval</code> function (see <a href="Eval-Function.html#Eval%20Function">Eval Function</a>).
+
+   </body></html>
+

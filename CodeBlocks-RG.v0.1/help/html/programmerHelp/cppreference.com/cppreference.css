@@ -1,0 +1,292 @@
+body {
+	font-family: serif;
+	background: #ffffff;
+	color: black;
+}
+
+.body-content {
+	margin-right: 5px;
+}
+
+/* main container for the title page */
+.main-container {
+	margin: 0px;
+	padding: 0px;
+}
+
+
+/* title box for the website */
+.website-title-box {
+	border: solid;
+	border-width: 1px;
+	background: #eeeeff;
+}
+
+/* title text for the website */
+.website-title-text {
+	font-size: 200%;
+	font-style: bold;
+	color: #000000;
+	padding: 5px;
+	margin: 0px;
+}
+
+/* box containing the two columns */
+.left-right-box {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+/* box on the left side */
+.left-box {
+	float: left;
+	width: 50%;
+	width: 46%;
+	/*
+	float: left;
+	width: 50%;
+	margin-bottom: 10px;
+	*/
+}
+
+/* box on the right side */
+.right-box {
+	float: right;
+	width: 50%;
+	width: 46%;
+	/*
+	margin-bottom: 10px;
+	*/
+}
+
+/* centered text */
+.centered {
+	text-align: center;
+}
+
+/* bottom box for the website */
+.website-bottom-box {
+	clear: both;
+	border: solid;
+	border-width: 1px;
+	background: #eeeeff;
+	padding: 2px;
+}
+
+/* search box on the title page */
+.search-box {
+	float: right;
+	/*border-left: 1px dotted;*/
+	padding: 3px;
+	padding-left: 10px;
+}
+
+/* the form inside the search-box */
+.search-box-form {
+	margin: 0px;
+}
+
+/* text box with faq and mailto information */
+.faq-box {
+	padding-left: 5px;
+	padding-right: 5px;
+	margin: 2px;
+}
+
+/* last update date and name */
+.colophon {
+	text-align: right;
+	font-size: smaller;
+	color: #444444;
+}
+
+/* where the breadcrumb trail is */
+.header-box {
+	background: #eeeeff;
+	padding: 0.3em;
+	border: solid; 
+	border-width: 1px; 
+}
+
+/* title of an entry - asctime, for example */
+.name-format {
+	font-size: 200%;
+	/*font-family: serif;*/
+	font-weight: bold;
+	padding: 0.5em;
+}
+
+/* the actual word, syntax:, above the syntax box */
+.syntax-name-format {
+	/*font-family: serif;*/
+	font-style: italic;
+}
+
+/* the box around the actual syntax content */
+.syntax-box {
+	background: #ccccff;
+	padding: 0.3em;
+	border: solid; 
+	border-width: 1px;
+
+	/*font-family: monospace;*/
+	/*white-space: pre;*/
+}
+
+/* the text used for the examples title */
+.related-examples-format {
+	/*font-family: serif;*/
+	font-style: italic;
+}
+
+/* example code that can appear in an entry */
+.example-code, .example-data, .example-output {
+	font-family: monospace;
+	white-space: pre;
+	background-color: #ffffdd;
+	border-left: solid thin;
+	border-right: solid thin;
+}
+.example-data {
+	background-color: #ffeeff;
+}
+.example-output {
+	background-color: #ddeeff;
+}
+
+/* the actual phrase, "Related topics:, near the related content */
+.related-name-format {
+	/*font-family: serif;*/
+	font-style: italic;
+}
+
+/* the related content - blah, blah, lew for example */
+.related-content {
+	/*font-family: serif;*/
+	font-weight: bold;
+}
+
+/* what you click on to add a comment - Add a comment, namely */
+.add-comment-format {
+	text-align: right;
+}
+
+/* the title of the all-comments-box - User Comments, namely */
+.all-comments-title-format {
+	text-align: center;
+	font-weight: bold;
+	padding: 0.3em;
+}
+
+/* the box that holds all of the comments */
+.all-comments-box {
+	/*
+	background: #dddddd;
+	border: solid;
+	border-width: 1px;
+	*/
+	padding-left: 0.8em;
+	padding-right: 0.8em;
+}
+
+/* the box that holds a single comment */
+.comment-box {
+	background: #eeeeee;
+	border: solid;
+	border-width: 1px;
+	padding: 0.5em;
+
+	margin-bottom: 10px;
+}
+
+/* username/date information for a comment */
+.comment-header {
+	border: solid; 
+	border-width: 1px;
+	background: #dddddd;
+	/*width: 50%;*/
+	padding-left: 0.8em;
+	padding-right: 0.8em;
+}
+
+/* how the username looks in a comment */
+.comment-username-format {
+	font-style: italic;
+}
+
+/* how the date looks in a comment */
+.comment-date-format {
+	font-style: italic;
+}
+
+/* how a table specified using the ~ notation should be displayed */
+.code-table {
+	border-collapse:collapse;
+}
+.code-table-th {
+	margin:5px; 
+	padding: 0.4em;
+	border: solid #000000;
+	border-width: 1px;
+	background-color:#eeeeff;
+	font-weight:bold;
+}
+.code-table-td {
+	margin:5px; 	
+	padding: 5px;
+	border: solid;
+	border-width: 1px;
+	background-color:#ffffff;	
+	color:#000000;
+}
+
+/* how a category listing is formatted - it's a table with rows that
+alternate in color */
+.category-table {
+	border-collapse:collapse;
+}
+.category-table-tr-1 {
+	padding: 0.4em;
+	border: solid #000000;
+	border-width: 1px;
+	background-color:#ffffff;
+}
+.category-table-tr-2 {
+	padding: 0.4em;
+	border: solid #000000;
+	border-width: 1px;
+	background-color:#eeeeff;
+}
+.category-table-td {
+	margin: 2px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+/* how a miscellaneous tables are formatted - it's a table with rows that
+alternate in color */
+.misc-table {
+	border-collapse:collapse;
+}
+.misc-table th {
+	text-align: left;
+	padding-left: 0.4em;
+}
+.misc-table-tr-1 {
+	padding: 0.4em;
+	border: solid #000000;
+	border-width: 1px;
+	background-color:#ffffff;
+}
+.misc-table-tr-2 {
+	padding: 0.4em;
+	border: solid #000000;
+	border-width: 1px;
+	background-color:#eeeeff;
+}
+.misc-table-td {
+	margin: 2px;
+	padding-left: 20px;
+	padding-right: 20px;
+}

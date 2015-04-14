@@ -1,0 +1,135 @@
+<P>
+NOTE: Some machines at the University of Colorado have a D: drive
+that is too small to compile a project. In this case, you'll get an out of memory
+error. Move your work to a temporary directory on the C: Drive for these
+machines.
+<TITLE>BGI Documentation for 
+setpalette
+</TITLE>
+<H2>
+setpalette
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void setpalette(int colornum, int color);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+setpalette changes the colornum entry in the palette to color. For example, setpalette(0,5) changes the first color in the current palette (the background color) to actual color number 5. If size is the number of entries in the current palette, colornum can range between 0 and (size - 1).
+<P>
+You can partially (or completely) change the colors in the EGA/VGA palette with setpalette. On a CGA, you can only change the first entry in the palette (colornum equals 0, the background color) with a call to setpalette.
+<P>
+The color parameter passed to setpalette can be represented by
+symbolic constants which are defined in graphics.h.
+<TABLE>
+<TR><TD><B>Name</B><TD><B>Value</B>
+<TR><TD>BLACK <TD>0
+<TR><TD>BLUE<TD>1
+<TR><TD>GREEN<TD>2
+<TR><TD>CYAN<TD>3
+<TR><TD>RED<TD>4
+<TR><TD>MAGENTA<TD>5
+<TR><TD>BROWN<TD>6
+<TR><TD>LIGHTGRAY<TD>7
+<TR><TD>DARKGRAY<TD>8
+<TR><TD>LIGHTBLUE<TD>9
+<TR><TD>LIGHTGREEN<TD>10
+<TR><TD>LIGHTCYAN<TD>11
+<TR><TD>LIGHTRED<TD>12
+<TR><TD>LIGHTMAGENTA<TD>13
+<TR><TD>YELLOW<TD>14
+<TR><TD>WHITE<TD>15
+</TABLE>
+
+setpalette cannot be used with the IBM-8514 driver; use setrgbpalette instead.
+
+
+<P><DT><B>Return Value</B><DD>
+If invalid input is passed to setpalette, graphresult returns -11, and the current palette remains unchanged.
+
+<P><DT><B>Windows Notes <IMG SRC="win.gif" ALT="[WIN]"></B><DD>
+The <A HREF="http://www.cs.colorado.edu/~main/cs1300/bgi/README.html">winbgim</A> version allows the
+color
+argument to be an ordinary BGI color (from 0 to 15) or an
+<A HREF="wincolor.html">RGB color</A>.
+The colornum should be a palette index from 0 to 15.
+<P>
+In the windows version, changing the palette effects only future
+drawing.
+Currently drawn pixels do not change their color when the palette
+changes
+(no "palette animation").
+
+<P><DT><B>See also</B>
+<DD><A HREF="setrgbpalette.html"> setrgbpalette </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* setpalette example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int color, maxcolor, ht;
+   int y = 10;
+   char msg[80];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   maxcolor = getmaxcolor();
+   ht = 2 * textheight("W");
+
+   /* display the default colors */
+   for (color=1; color&lt;=maxcolor; color++) {
+      setcolor(color);
+      sprintf(msg, "Color: %d", color);
+      outtextxy(1, y, msg);
+      y += ht;
+   }
+
+   /* wait for a key */
+   getch();
+
+   /* black out the colors one by one */
+   for (color=1; color&lt;=maxcolor; color++) {
+
+      setpalette(color, BLACK);
+      getch();
+   }
+
+   /* clean up */
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="-w%20Option">-w Option</a>,
+Previous:<a rel="previous" accesskey="p" href="Options-Recursion.html#Options%2fRecursion">Options/Recursion</a>,
+Up:<a rel="up" accesskey="u" href="Recursion.html#Recursion">Recursion</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">The <code>--print-directory</code> Option</h4>
+
+   <p>If you use several levels of recursive <code>make</code> invocations, the
+<code>-w</code> or <code>--print-directory</code> option can make the output a
+lot easier to understand by showing each directory as <code>make</code>
+starts processing it and as <code>make</code> finishes processing it.  For
+example, if <code>make -w</code> is run in the directory <code>/u/gnu/make</code>,
+<code>make</code> will print a line of the form:
+
+<pre class="example">     make: Entering directory `/u/gnu/make'.
+     </pre>
+
+<p>before doing anything else, and a line of the form:
+
+<pre class="example">     make: Leaving directory `/u/gnu/make'.
+     </pre>
+
+<p>when processing is completed.
+
+   <p>Normally, you do not need to specify this option because <code>make</code>
+does it for you: <code>-w</code> is turned on automatically when you use the
+<code>-C</code> option, and in sub-<code>make</code>s.  <code>make</code> will not
+automatically turn on <code>-w</code> if you also use <code>-s</code>, which says to
+be silent, or if you use <code>--no-print-directory</code> to explicitly
+disable it.
+
+   </body></html>
+

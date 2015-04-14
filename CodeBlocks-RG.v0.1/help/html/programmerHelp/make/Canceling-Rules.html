@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+<title>GNU `make'</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNU `make'">
+<meta name="generator" content="makeinfo 4.3">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home">
+</head>
+<body>
+<div class="node">
+<p>
+Node:<a name="Canceling%20Rules">Canceling Rules</a>,
+Previous:<a rel="previous" accesskey="p" href="Match-Anything-Rules.html#Match-Anything%20Rules">Match-Anything Rules</a>,
+Up:<a rel="up" accesskey="u" href="Pattern-Rules.html#Pattern%20Rules">Pattern Rules</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">Canceling Implicit Rules</h4>
+
+   <p>You can override a built-in implicit rule (or one you have defined
+yourself) by defining a new pattern rule with the same target and
+prerequisites, but different commands.  When the new rule is defined, the
+built-in one is replaced.  The new rule's position in the sequence of
+implicit rules is determined by where you write the new rule.
+
+   <p>You can cancel a built-in implicit rule by defining a pattern rule with the
+same target and prerequisites, but no commands.  For example, the following
+would cancel the rule that runs the assembler:
+
+<pre class="example">     %.o : %.s
+     </pre>
+
+   </body></html>
+

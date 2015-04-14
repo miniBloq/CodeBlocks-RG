@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<!-- Mirrored from cppreference.com/keywords/sizeof.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1 September 2005), see www.w3.org">
+
+  <title>sizeof</title>
+  <link href="../cppreference.css" rel="stylesheet" type="text/css">
+  <link href="../prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../prettify.js"></script>
+</head>
+
+<body onload="prettyPrint()">
+<table>
+  <tr>
+  <td>
+  <div class="body-content">
+
+  <div class="header-box">
+    <a href="../index-2.html">cppreference.com</a> &gt; <a href=
+    "index.html">C/C++ Keywords</a> &gt; <a href=
+    "sizeof.html">sizeof</a>
+  </div>
+
+  <div class="name-format">
+    sizeof
+  </div>
+
+  <p>The sizeof operator is a compile-time operator that returns the
+  size of the argument passed to it.  The size is a multiple of the
+  size of a <code>char</code>, which on many personal computers is 1
+  byte (or 8 bits).  The number of bits in a <code>char</code> is
+  stored in the <code>CHAR_BIT</code> constant defined in
+  the <code>&lt;climits&gt;</code> header file.</p>
+
+  <p>For example, the following code uses sizeof to display the
+  sizes of a number of variables:</p>
+
+<pre class="prettyprint">
+  struct EmployeeRecord {
+    int ID;
+    int age;
+    double salary;
+    EmployeeRecord* boss;
+  };
+
+  ...
+
+  cout &lt;&lt; "sizeof(int): " &lt;&lt; sizeof(int) &lt;&lt; endl
+       &lt;&lt; "sizeof(float): " &lt;&lt; sizeof(float) &lt;&lt; endl
+       &lt;&lt; "sizeof(double): " &lt;&lt; sizeof(double) &lt;&lt; endl
+       &lt;&lt; "sizeof(char): " &lt;&lt; sizeof(char) &lt;&lt; endl
+       &lt;&lt; "sizeof(EmployeeRecord): " &lt;&lt; sizeof(EmployeeRecord) &lt;&lt; endl;
+
+  int i;
+  float f;
+  double d;
+  char c;
+  EmployeeRecord er;
+
+  cout &lt;&lt; "sizeof(i): " &lt;&lt; sizeof(i) &lt;&lt; endl
+       &lt;&lt; "sizeof(f): " &lt;&lt; sizeof(f) &lt;&lt; endl
+       &lt;&lt; "sizeof(d): " &lt;&lt; sizeof(d) &lt;&lt; endl
+       &lt;&lt; "sizeof(c): " &lt;&lt; sizeof(c) &lt;&lt; endl
+       &lt;&lt; "sizeof(er): " &lt;&lt; sizeof(er) &lt;&lt; endl;
+</pre>
+
+  <p>On some machines, the above code displays this output:</p>
+
+<pre class="prettyprint">
+  sizeof(int): 4
+  sizeof(float): 4
+  sizeof(double): 8
+  sizeof(char): 1
+  sizeof(EmployeeRecord): 20
+  sizeof(i): 4
+  sizeof(f): 4
+  sizeof(d): 8
+  sizeof(c): 1
+  sizeof(er): 20
+</pre>
+
+  <p>Note that sizeof can either take a variable type (such as
+  <strong>int</strong>) or a variable name (such as <strong>i</strong>
+  in the example above).</p>
+
+  <p>It is also important to note that the sizes of various types of
+  variables can change depending on what system you're on.  Check out
+  <a href="../data_types.html">a description
+  of the C and C++ data types</a> for more information.</p>
+
+  <p>The parentheses around the argument are not required if you are
+  using sizeof with a variable type (e.g. sizeof(int)).</p>
+
+  <div class="related-name-format">
+    Related topics:
+  </div>
+
+  <div class="related-content">
+    <a href="../data_types.html">C/C++ Data Types</a>
+  </div>
+
+  </div>
+  </td>
+  
+
+<script src="../../www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2828341-1";
+urchinTracker();
+</script>
+  </tr>
+  </table>
+</body>
+<!-- Mirrored from cppreference.com/keywords/sizeof.html by HTTrack Website Copier/3.x [XR&CO'2004], Tue, 22 Jan 2008 06:23:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><!-- /Added by HTTrack -->
+</html>

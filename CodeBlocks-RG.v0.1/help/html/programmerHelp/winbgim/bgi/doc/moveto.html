@@ -1,0 +1,91 @@
+<TITLE>BGI Documentation for 
+moveto
+</TITLE>
+<H2>
+moveto
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+void moveto(int x, int y);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+moveto moves the current position (CP) to viewport position (x,y).
+
+
+<P><DT><B>Return Value</B><DD>
+None.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="moverel.html"> moverel </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* moveto example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   char msg[80];
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   /* move the CP to location (20,30) */
+   moveto(20,30);
+
+   /* plot a pixel at the CP */
+   putpixel(getx(), gety(), getmaxcolor());
+
+   /* create and output a message at (20,30) */
+   sprintf(msg, " (%d, %d)", getx(), gety());
+   outtextxy(20,30, msg);
+
+   /* move to (100,100) */
+   moveto(100,100);
+
+   /* plot a pixel at the CP */
+
+   putpixel(getx(), gety(), getmaxcolor());
+
+   /* create and output a message at CP */
+   sprintf(msg, " (%d, %d)", getx(), gety());
+   outtext(msg);
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

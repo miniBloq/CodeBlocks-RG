@@ -1,0 +1,88 @@
+<TITLE>BGI Documentation for 
+getmaxx
+</TITLE>
+<H2>
+getmaxx
+</H2>
+<HR>
+<DL>
+
+
+<DT><B>Syntax</B><DD>
+<PRE>
+#include &lt;graphics.h&gt;
+int getmaxx(void);
+</PRE>
+
+
+
+<DT><B>Description</B><DD>
+getmaxx returns the maximum (screen-relative) x value for the current graphics driver and mode.
+<P>
+For example, on a CGA in 320*200 mode, getmaxx returns 319. getmaxx is invaluable for centering, determining the boundaries of a region onscreen, and so on.
+
+
+<P><DT><B>Return Value</B><DD>
+getmaxx returns the maximum x screen coordinate.
+
+
+<P><DT><B>See also</B>
+<DD><A HREF="getmaxy.html"> getmaxy </A>
+<DD><A HREF="getwindowwidth.html"> getwindowwidth </A>
+<DD><A HREF="getx.html"> getx </A>
+
+
+<P><DT><B>Example</B><DD>
+<PRE>
+/* getmaxx example */ 
+
+#include &lt;graphics.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main(void)
+{
+   /* request autodetection */
+   int gdriver = DETECT, gmode, errorcode;
+   int midx, midy;
+   char xrange[80], yrange[80];
+
+
+   /* initialize graphics and local variables */
+   initgraph(&gdriver, &gmode, "");
+
+   /* read result of initialization */
+   errorcode = graphresult();
+   if (errorcode != grOk) {  /* an error occurred */
+      printf("Graphics error: %s\n", grapherrormsg(errorcode));
+
+      printf("Press any key to halt:");
+      getch();
+      exit(1);               /* terminate with an error code */
+   }
+
+   midx = getmaxx() / 2;
+   midy = getmaxy() / 2;
+
+   /* convert max resolution values to strings */
+   sprintf(xrange, "X values range from 0..%d", getmaxx());
+   sprintf(yrange, "Y values range from 0..%d", getmaxy());
+
+   /* display the information */
+   settextjustify(CENTER_TEXT, CENTER_TEXT);
+   outtextxy(midx, midy, xrange);
+   outtextxy(midx, midy + textheight("W"), yrange);
+
+
+   /* clean up */
+   getch();
+   closegraph();
+   return 0;
+}
+</PRE>
+
+
+</DL>
+<HR>
+<A HREF="index-3.html">Back to index</A>

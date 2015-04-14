@@ -1,0 +1,3 @@
+::2010.08.29::
+
+These are CodeBlocks projects and workspace based on the msvc projects, provided with Bullet.

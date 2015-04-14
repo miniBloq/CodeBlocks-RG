@@ -1,0 +1,79 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Using SDL: Intialization</title>
+</head>
+
+<body bgcolor="#FFF8DC" text="#000000">
+<TABLE>
+<TR><!--#include file="../menu.tmpl" -->
+<TD>
+
+<p align="center">
+[<a href="whatplatforms.html">Prev</a>]
+<a href="toc.html"><font color="#8B0000">Table Of Contents</font> </a>
+[<a href="usingvideo.html">Next</a>]
+</p>
+
+<h1><font color="#8B0000">Using the Simple DirectMedia Layer API</font></h1>
+
+<h2>Initializing the library </h2>
+
+<table border="0" cellpadding="4">
+    <tr>
+        <td valign="top"><blockquote>
+            <p>Use SDL_Init() to dynamically load and initialize
+            the library. This function takes a set of flags
+            corresponding to the portions you want to activate: </p>
+            <dl>
+                <dd>SDL_INIT_AUDIO </dd>
+                <dd>SDL_INIT_VIDEO </dd>
+                <dd>SDL_INIT_CDROM </dd>
+                <dd>SDL_INIT_TIMER </dd>
+            </dl>
+            <p>Use SDL_Quit() to clean up the library when you
+            are done with it.</p>
+        </blockquote>
+        </td>
+        <td valign="top" width="200" bgcolor="#D3D3D3"><b>Tip:</b><br>
+        SDL dynamically loads the SDL library from the standard
+        system library locations. Use the SDL_SetLibraryPath()
+        function to use an alternate location for the dynamic
+        libraries distributed with your application. </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="50">
+    <tr>
+        <td><font color="#000080"><strong>Example</strong></font>:
+        <pre>
+<font color="#0000FF">#include</font> &lt;stdlib.h&gt;
+<font color="#0000FF">#include</font> &quot;<font color="#000000">SDL.h</font>&quot;
+
+main(<font color="#008000">int</font> argc, <font color="#008000">char *</font>argv[])
+{
+    <font color="#0000FF">if</font> ( SDL_Init(SDL_INIT_AUDIO|SDL_INIT_VIDEO) &lt; 0 ) {
+        fprintf(stderr, &quot;<font color="#000000">Unable to init SDL: %s\n</font>&quot;, SDL_GetError());
+        exit(1);
+    }
+    atexit(SDL_Quit);
+
+    ...
+}
+</pre>
+        </td>
+    </tr>
+</table>
+
+<p align="center">
+[<a href="whatplatforms.html">Prev</a>]
+<a href="toc.html"><font color="#8B0000">Table Of Contents</font> </a>
+[<a href="usingvideo.html">Next</a>]
+</p>
+
+</TABLE>
+</body>
+</html>

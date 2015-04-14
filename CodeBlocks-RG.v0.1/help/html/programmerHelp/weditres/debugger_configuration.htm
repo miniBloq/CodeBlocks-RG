@@ -1,0 +1,36 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="fr">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>The debugger configuration</title>
+</head>
+
+<body>
+
+<h2>The debugger configuration</h2>
+<p align="center"><img border="0" src="debugg17.gif" width="424" height="447"></p>
+<p class="MsoBodyText2" style="margin-left:0cm;mso-list:skip">&nbsp;</p>
+<p class="MsoBodyText2" style="margin-left:0cm;mso-list:skip"><span style="font-family:&quot;Times New Roman&quot;">You
+should verify that the start directory is correct.</span><o:p>
+</o:p>
+</p>
+<p class="MsoNormal">When building a DLL project, enter the name of the
+executable that will call up the DLL. This executable should have debug
+information and be linked with the DLL to debug statically. If the executable
+runs a <span style="font-family:&quot;Courier New&quot;">LoadLibrary</span>,
+instead of being linked with the DLL statically, Wedit’s debugger will not be
+able to restore the breakpoints you set, since the debugger cannot know in
+advance which DLLs are going to be loaded at which address.</p>
+<p align="left">&quot;Trap all exceptions&quot; means that the debugger will
+stop even if the exception is handled with an exception handler.</p>
+<p align="left">The &quot;Number of positions to display in arrays&quot;
+specifies how many logical positions will debugger display in an array for which
+it has no size information.</p>
+<p align="left">&nbsp;</p>
+
+</body>
+
+</html>
